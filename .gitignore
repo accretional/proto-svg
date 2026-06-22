@@ -1,0 +1,19 @@
+# OS
+.DS_Store
+**/.DS_Store
+
+# Go build artifacts (cmd source dirs are kept)
+/chrome-testing/gen
+/chrome-testing/shoot
+/genproto
+
+# Generated gallery bundle (regenerate via chrome-testing/dist.sh)
+/chrome-testing/dist/
+/chrome-testing/.vendor-cache/
+
+# Spec HTML cache is fetched by scripts/fetch_specs.sh (text kept for reading)
+/docs/specs/cache/
+
+# Temp
+**/temp/
+/tmp/

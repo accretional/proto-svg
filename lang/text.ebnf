@@ -1,0 +1,275 @@
+(* ============================================================================
+   text.ebnf — Text elements and text/font presentation-attribute productions.
+
+   Elements (DOM interface names as rule names):
+     SVGTextElement      (<text>)
+     SVGTSpanElement     (<tspan>)
+     SVGTextPathElement  (<textPath>)
+
+   Text/font presentation-attribute productions referenced by styling.ebnf's
+   PresentationAttribute union:
+     TextAnchorAttr, DominantBaselineAttr, AlignmentBaselineAttr,
+     BaselineShiftAttr, DirectionAttr, UnicodeBidiAttr, WritingModeAttr,
+     LetterSpacingAttr, WordSpacingAttr, TextDecorationAttr, TextOverflowAttr,
+     TextRenderingAttr, WhiteSpaceAttr, FontFamilyAttr, FontSizeAttr,
+     FontSizeAdjustAttr, FontStyleAttr, FontVariantAttr, FontWeightAttr,
+     FontStretchAttr, InlineSizeAttr, GlyphOrientationVerticalAttr.
+
+   Pattern (see docs/EBNF_PATTERN.md):
+     - Element:   Name = "<tag" , { NameAttribute } , ">" , { NameContent } , "</tag>" ;
+     - Attribute: NameAttr = ' attr="' , Value , '"' ;
+     - Closed keyword sets are enumerated in full as terminals; only genuinely
+       open values use the scalarized leaf *Type rules from datatype.ebnf.
+     - Element/attribute names with colons/kebab are literal terminals.
+
+   Cross-file references (resolved at concat time):
+     CoreAttribute, ConditionalProcessingAttribute, AriaAttribute,
+     PresentationAttribute (styling.ebnf), GlobalEventAttribute,
+     DocumentElementEventAttribute, GraphicalEventAttribute  (svg.ebnf)
+     XlinkAttribute (svg.ebnf)
+     SvgPath (path.ebnf), TransformList (transform.ebnf)
+     LengthPercentageType, NumberType, LengthType, IriType,
+     StringType, AngleType (datatype.ebnf)
+     AnimationElement, DescriptiveElement, PaintServerElement,
+     TextContentChildElement, SVGAElement, SVGClipPathElement,
+     SVGMarkerElement, SVGMaskElement, SVGScriptElement, SVGStyleElement,
+     SVGAnimateElement, SVGSetElement, SVGTSpanElement (svg.ebnf / this file)
+   ============================================================================ *)
+
+(* ── SVGTextElement ─────────────────────────────────────────────────────────── *)
+
+SVGTextElement = "<text" , { TextAttribute } , ">" , { TextContent } , "</text>" ;
+
+TextAttribute = TextXAttr | TextYAttr | TextDxAttr | TextDyAttr
+              | TextRotateAttr | TextLengthAttr | TextLengthAdjustAttr
+              | CoreAttribute | ConditionalProcessingAttribute | AriaAttribute
+              | PresentationAttribute | GlobalEventAttribute
+              | DocumentElementEventAttribute | GraphicalEventAttribute ;
+
+(* Positioning attribute lists: one or more length-percentage-or-number values. *)
+(* Collision avoidance: each is a fully-qualified per-element production.       *)
+TextXAttr            = ' x="'            , TextPositionList , '"' ;
+TextYAttr            = ' y="'            , TextPositionList , '"' ;
+TextDxAttr           = ' dx="'           , TextPositionList , '"' ;
+TextDyAttr           = ' dy="'           , TextPositionList , '"' ;
+TextRotateAttr       = ' rotate="'       , TextRotateList   , '"' ;
+TextLengthAttr       = ' textLength="'   , ( LengthPercentageType | NumberType ) , '"' ;
+TextLengthAdjustAttr = ' lengthAdjust="' , ( "spacing" | "spacingAndGlyphs" ) , '"' ;
+
+(* One or more space-separated length-percentage or unitless numbers. *)
+TextPositionList = ( LengthPercentageType | NumberType ) , { ( LengthPercentageType | NumberType ) } ;
+
+(* One or more space-separated numbers (rotation angles per character). *)
+TextRotateList = NumberType , { NumberType } ;
+
+TextContent = CharacterDataType
+            | AnimationElement
+            | DescriptiveElement
+            | PaintServerElement
+            | TextContentChildElement
+            | SVGAElement
+            | SVGClipPathElement
+            | SVGMarkerElement
+            | SVGMaskElement
+            | SVGScriptElement
+            | SVGStyleElement ;
+
+(* ── SVGTSpanElement ────────────────────────────────────────────────────────── *)
+
+SVGTSpanElement = "<tspan" , { TspanAttribute } , ">" , { TspanContent } , "</tspan>" ;
+
+TspanAttribute = TspanXAttr | TspanYAttr | TspanDxAttr | TspanDyAttr
+               | TspanRotateAttr | TspanLengthAttr | TspanLengthAdjustAttr
+               | CoreAttribute | ConditionalProcessingAttribute | AriaAttribute
+               | PresentationAttribute | GlobalEventAttribute
+               | DocumentElementEventAttribute | GraphicalEventAttribute ;
+
+TspanXAttr            = ' x="'            , TextPositionList , '"' ;
+TspanYAttr            = ' y="'            , TextPositionList , '"' ;
+TspanDxAttr           = ' dx="'           , TextPositionList , '"' ;
+TspanDyAttr           = ' dy="'           , TextPositionList , '"' ;
+TspanRotateAttr       = ' rotate="'       , TextRotateList   , '"' ;
+TspanLengthAttr       = ' textLength="'   , ( LengthPercentageType | NumberType ) , '"' ;
+TspanLengthAdjustAttr = ' lengthAdjust="' , ( "spacing" | "spacingAndGlyphs" ) , '"' ;
+
+TspanContent = CharacterDataType
+             | DescriptiveElement
+             | PaintServerElement
+             | SVGAElement
+             | SVGAnimateElement
+             | SVGScriptElement
+             | SVGSetElement
+             | SVGStyleElement
+             | SVGTSpanElement ;
+
+(* ── SVGTextPathElement ─────────────────────────────────────────────────────── *)
+
+SVGTextPathElement = "<textPath" , { TextPathAttribute } , ">" , { TextPathContent } , "</textPath>" ;
+
+TextPathAttribute = TextPathPathAttr | TextPathHrefAttr | TextPathStartOffsetAttr
+                  | TextPathMethodAttr | TextPathSpacingAttr | TextPathSideAttr
+                  | TextPathLengthAttr | TextPathLengthAdjustAttr
+                  | CoreAttribute | ConditionalProcessingAttribute | AriaAttribute
+                  | PresentationAttribute | GlobalEventAttribute
+                  | DocumentElementEventAttribute | GraphicalEventAttribute
+                  | XlinkAttribute ;
+
+TextPathPathAttr         = ' path="'         , SvgPath , '"' ;
+TextPathHrefAttr         = ' href="'         , IriType , '"' ;
+TextPathStartOffsetAttr  = ' startOffset="'  , ( LengthPercentageType | NumberType ) , '"' ;
+TextPathMethodAttr       = ' method="'       , ( "align" | "stretch" ) , '"' ;
+TextPathSpacingAttr      = ' spacing="'      , ( "auto" | "exact" ) , '"' ;
+TextPathSideAttr         = ' side="'         , ( "left" | "right" ) , '"' ;
+TextPathLengthAttr       = ' textLength="'   , ( LengthPercentageType | NumberType ) , '"' ;
+TextPathLengthAdjustAttr = ' lengthAdjust="' , ( "spacing" | "spacingAndGlyphs" ) , '"' ;
+
+TextPathContent = CharacterDataType
+                | DescriptiveElement
+                | PaintServerElement
+                | SVGAElement
+                | SVGAnimateElement
+                | SVGClipPathElement
+                | SVGMarkerElement
+                | SVGMaskElement
+                | SVGScriptElement
+                | SVGSetElement
+                | SVGStyleElement
+                | SVGTSpanElement ;
+
+(* ============================================================================
+   Text/Font Presentation-Attribute Productions
+   (added to PresentationAttribute union in styling.ebnf)
+
+   Every closed keyword set is enumerated in full.  Genuinely open values
+   (length, angle, string) use the appropriate *Type leaf from datatype.ebnf.
+   ============================================================================ *)
+
+(* text-anchor: SVG-specific; §11.10.1.1 — 3 keywords. *)
+TextAnchorAttr = ' text-anchor="' , ( "start" | "middle" | "end" ) , '"' ;
+
+(* dominant-baseline: CSS Inline Level 3 / SVG 2 — 9 keywords.
+   SVG 1.1 values reset-size/use-script/no-change removed. *)
+DominantBaselineAttr = ' dominant-baseline="' ,
+    ( "auto" | "text-bottom" | "alphabetic" | "ideographic" | "middle"
+    | "central" | "mathematical" | "hanging" | "text-top" ) , '"' ;
+
+(* alignment-baseline: CSS Inline Level 3 / SVG 2 — 9 keywords.
+   SVG 1.1 auto/before-edge/after-edge removed; initial = baseline (SVG 2). *)
+AlignmentBaselineAttr = ' alignment-baseline="' ,
+    ( "baseline" | "text-bottom" | "alphabetic" | "ideographic" | "middle"
+    | "central" | "mathematical" | "hanging" | "text-top" ) , '"' ;
+
+(* baseline-shift: 2 keywords + open length-percentage.
+   SVG 1.1 "baseline" keyword removed (treated as 0). *)
+BaselineShiftAttr = ' baseline-shift="' ,
+    ( "sub" | "super" | LengthPercentageType ) , '"' ;
+
+(* direction: CSS Writing Modes Level 3 — 2 keywords. *)
+DirectionAttr = ' direction="' , ( "ltr" | "rtl" ) , '"' ;
+
+(* unicode-bidi: CSS Writing Modes Level 3 — 6 keywords. *)
+UnicodeBidiAttr = ' unicode-bidi="' ,
+    ( "normal" | "embed" | "isolate" | "bidi-override" | "isolate-override" | "plaintext" ) , '"' ;
+
+(* writing-mode: CSS Writing Modes Level 3 (5 current) + SVG 1.1 legacy (6).
+   Legacy values lr/lr-tb/rl/rl-tb map to horizontal-tb;
+   tb/tb-rl map to vertical-rl on computed value. *)
+WritingModeAttr = ' writing-mode="' ,
+    ( "horizontal-tb" | "vertical-rl" | "vertical-lr" | "sideways-rl" | "sideways-lr"
+    | "lr" | "lr-tb" | "rl" | "rl-tb" | "tb" | "tb-rl" ) , '"' ;
+
+(* letter-spacing: SVG 2 aligns with CSS Text Level 3; percentages removed.
+   Value is "normal" or a <length> (NOT length-percentage). *)
+LetterSpacingAttr = ' letter-spacing="' , ( "normal" | LengthType ) , '"' ;
+
+(* word-spacing: SVG 2 percentages relative to character width. *)
+WordSpacingAttr = ' word-spacing="' , ( "normal" | LengthPercentageType ) , '"' ;
+
+(* text-decoration: CSS Text Decoration Level 3 shorthand.
+   Closed sub-sets (line, style) enumerated; color is open (ColorType). *)
+TextDecorationAttr = ' text-decoration="' , TextDecorationValue , '"' ;
+TextDecorationValue = "none"
+                    | TextDecorationLine
+                    | TextDecorationStyle
+                    | ( TextDecorationLine , " " , TextDecorationStyle )
+                    | ( TextDecorationLine , " " , ColorType )
+                    | ( TextDecorationStyle , " " , ColorType )
+                    | ( TextDecorationLine , " " , TextDecorationStyle , " " , ColorType ) ;
+TextDecorationLine  = "underline" | "overline" | "line-through" | "blink" ;
+TextDecorationStyle = "solid" | "double" | "dotted" | "dashed" | "wavy" ;
+
+(* text-overflow: SVG 2 restricts to closed 2-value set (clip | ellipsis). *)
+TextOverflowAttr = ' text-overflow="' , ( "clip" | "ellipsis" ) , '"' ;
+
+(* text-rendering: 4 keywords. *)
+TextRenderingAttr = ' text-rendering="' ,
+    ( "auto" | "optimizeSpeed" | "optimizeLegibility" | "geometricPrecision" ) , '"' ;
+
+(* white-space: CSS Text Level 3 — 6 keywords.
+   Preferred over deprecated xml:space in SVG 2. *)
+WhiteSpaceAttr = ' white-space="' ,
+    ( "normal" | "pre" | "nowrap" | "pre-wrap" | "pre-line" | "break-spaces" ) , '"' ;
+
+(* font-family: open value (family names are author-defined strings).
+   StringType covers both quoted family names and generic families. *)
+FontFamilyAttr = ' font-family="' , StringType , '"' ;
+
+(* font-size: absolute-size keywords + relative-size keywords + length-percentage. *)
+FontSizeAttr = ' font-size="' , FontSizeValue , '"' ;
+FontSizeValue = FontAbsoluteSize | FontRelativeSize | LengthPercentageType ;
+FontAbsoluteSize = "xx-small" | "x-small" | "small" | "medium"
+                 | "large" | "x-large" | "xx-large" | "xxx-large" ;
+FontRelativeSize = "larger" | "smaller" ;
+
+(* font-size-adjust: "none" or an open numeric factor. *)
+FontSizeAdjustAttr = ' font-size-adjust="' , ( "none" | NumberType ) , '"' ;
+
+(* font-style: CSS Fonts Level 4; oblique accepts an optional angle. *)
+FontStyleAttr = ' font-style="' , ( "normal" | "italic" | FontStyleOblique ) , '"' ;
+FontStyleOblique = "oblique" , [ " " , AngleType ] ;
+
+(* font-variant: CSS Fonts Level 3 shorthand — "normal" | "none" or
+   one or more of the closed sub-property keywords.
+   Sub-property keyword sets fully enumerated. *)
+FontVariantAttr = ' font-variant="' , FontVariantValue , '"' ;
+FontVariantValue = "normal" | "none"
+                 | FontVariantCaps
+                 | FontVariantLigatures
+                 | FontVariantNumeric
+                 | FontVariantEastAsian
+                 | FontVariantAlternates ;
+FontVariantCaps        = "small-caps" | "all-small-caps" | "petite-caps"
+                       | "all-petite-caps" | "unicase" | "titling-caps" ;
+FontVariantLigatures   = "common-ligatures" | "no-common-ligatures"
+                       | "discretionary-ligatures" | "no-discretionary-ligatures"
+                       | "historical-ligatures" | "no-historical-ligatures"
+                       | "contextual" | "no-contextual" ;
+FontVariantNumeric     = "lining-nums" | "oldstyle-nums" | "proportional-nums"
+                       | "tabular-nums" | "diagonal-fractions" | "stacked-fractions"
+                       | "ordinal" | "slashed-zero" ;
+FontVariantEastAsian   = "jis78" | "jis83" | "jis90" | "jis04"
+                       | "simplified" | "traditional"
+                       | "full-width" | "proportional-width" | "ruby" ;
+FontVariantAlternates  = "historical-forms" | "stylistic" | "styleset"
+                       | "character-variant" | "swash" | "ornaments" | "annotation" ;
+
+(* font-weight: 4 keywords + open numeric (CSS Fonts Level 4 1–1000). *)
+FontWeightAttr = ' font-weight="' ,
+    ( "normal" | "bold" | "bolder" | "lighter" | NumberType ) , '"' ;
+
+(* font-stretch: 9 keywords + percentage (CSS Fonts Level 4 50%–200%). *)
+FontStretchAttr = ' font-stretch="' ,
+    ( "normal"
+    | "ultra-condensed" | "extra-condensed" | "condensed" | "semi-condensed"
+    | "semi-expanded" | "expanded" | "extra-expanded" | "ultra-expanded"
+    | PercentageType ) , '"' ;
+
+(* inline-size: SVG 2 text wrapping (partial browser support).
+   "auto" disables wrapping (equivalent to 0). *)
+InlineSizeAttr = ' inline-size="' , ( "auto" | LengthPercentageType ) , '"' ;
+
+(* glyph-orientation-vertical: deprecated in SVG 2; aliased to text-orientation.
+   Only the 4 mapped tokens are valid; all others are invalid per spec.
+   "auto" → mixed; "0"/"0deg" → upright; "90"/"90deg" → sideways. *)
+GlyphOrientationVerticalAttr = ' glyph-orientation-vertical="' ,
+    ( "auto" | AngleType | NumberType ) , '"' ;

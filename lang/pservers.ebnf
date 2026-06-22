@@ -1,0 +1,248 @@
+(* ============================================================================
+   pservers.ebnf — Paint-server elements (SVG 2 §14).
+   STRUCTURAL grammar: every string derived is real SVG markup.
+
+   Defines:
+     LinearGradient, RadialGradient, Stop, Pattern
+
+   Shared productions (used by both gradient elements):
+     GradientUnitsAttr      — ' gradientUnits="' , UnitType , '"'
+     SpreadMethodAttr       — ' spreadMethod="' , ( "pad" | "reflect" | "repeat" ) , '"'
+
+   Per-element productions (colliding attribute names qualified per
+   docs/GRAMMAR_PLAN.md §b to prevent gluon silent deduplication):
+     LinearGradientX1Attr, LinearGradientY1Attr,
+     LinearGradientX2Attr, LinearGradientY2Attr,
+     LinearGradientHrefAttr
+     RadialGradientCxAttr, RadialGradientCyAttr, RadialGradientRAttr,
+     RadialGradientFxAttr, RadialGradientFyAttr, RadialGradientFrAttr,
+     RadialGradientHrefAttr
+     PatternXAttr, PatternYAttr, PatternWidthAttr, PatternHeightAttr,
+     PatternHrefAttr
+
+   Canonical home for stop-color / stop-opacity presentation attributes
+   (styling.ebnf's PresentationAttribute union references these by name):
+     StopColorAttr, StopOpacityAttr
+
+   Leaf types (defined in datatype.ebnf, referenced here):
+     UnitType, TransformList (transform.ebnf), ViewBox, PreserveAspectRatio,
+     IriType, LengthType, LengthPercentageType, NumberType, PercentageType,
+     ColorType, AlphaValue
+
+   Content-category unions (defined in svg.ebnf, referenced here):
+     DescriptiveElement, AnimationElement, ContainerContent
+
+   Reference: https://www.w3.org/TR/SVG2/pservers.html
+
+   Pattern (see docs/EBNF_PATTERN.md):
+     - Element:   Name = "<tag" , { NameAttribute } , ">" , { NameContent } , "</tag>" ;
+     - Attribute: NameAttr = ' attr="' , Value , '"' ;  (leading space + name + ="; closing ")
+     - Closed keyword sets are enumerated in full as terminals; only genuinely
+       open values use the scalarized leaf *Type rules from datatype.ebnf.
+   ============================================================================ *)
+
+(* ── Shared gradient attribute productions ──────────────────────────────────
+   gradientUnits and spreadMethod are identical on both gradient elements and
+   do NOT collide (they are singleton names; norm("GradientUnitsAttr") is
+   unique).  Per §b, value-identical shared group-level attrs MAY be shared.
+
+   UnitType enumerates the full closed set: "userSpaceOnUse" | "objectBoundingBox"
+   (defined in datatype.ebnf; not repeated here to avoid duplication).
+   spreadMethod: full closed set of three keywords enumerated in-line.           *)
+
+GradientUnitsAttr = ' gradientUnits="' , UnitType , '"' ;
+SpreadMethodAttr  = ' spreadMethod="' , ( "pad" | "reflect" | "repeat" ) , '"' ;
+
+(* ── LinearGradient ─────────────────────────────────────────────────────────
+   SVG 2 §14.4  https://www.w3.org/TR/SVG2/pservers.html#LinearGradients
+   Groups: Core, Presentation, GlobalEvent, DocumentElementEvent, Xlink      *)
+
+SVGLinearGradientElement = "<linearGradient" , { LinearGradientAttribute } , ">" ,
+                 { LinearGradientContent } , "</linearGradient>" ;
+
+LinearGradientAttribute =
+    GradientUnitsAttr
+  | LinearGradientTransformAttr
+  | LinearGradientX1Attr
+  | LinearGradientY1Attr
+  | LinearGradientX2Attr
+  | LinearGradientY2Attr
+  | SpreadMethodAttr
+  | LinearGradientHrefAttr
+  | CoreAttribute
+  | PresentationAttribute
+  | GlobalEventAttribute
+  | DocumentElementEventAttribute
+  | XlinkAttribute ;
+
+(* gradientTransform: per-element production; value is the shared TransformList
+   sub-grammar (transform.ebnf).  Name is qualified to avoid collision with
+   PatternTransformAttr / SvgTransformAttr. *)
+LinearGradientTransformAttr = ' gradientTransform="' , TransformList , '"' ;
+
+(* x1/y1/x2/y2: accept <length-percentage> | <number> (D1: bare number is a
+   valid OBB fraction; spec table lists <length> but prose/IDL/MDN agree on
+   the wider form — see grammar-notes/10-paint-servers.md §D1). *)
+LinearGradientX1Attr = ' x1="' , ( LengthPercentageType | NumberType ) , '"' ;
+LinearGradientY1Attr = ' y1="' , ( LengthPercentageType | NumberType ) , '"' ;
+LinearGradientX2Attr = ' x2="' , ( LengthPercentageType | NumberType ) , '"' ;
+LinearGradientY2Attr = ' y2="' , ( LengthPercentageType | NumberType ) , '"' ;
+
+(* href: per-element; targets linearGradient or radialGradient templates. *)
+LinearGradientHrefAttr = ' href="' , IriType , '"' ;
+
+(* Content: descriptive + animation/script subset + stop children.
+   animateMotion is excluded from gradient content (unlike pattern). *)
+LinearGradientContent =
+    DescriptiveElement
+  | SVGAnimateElement
+  | SVGAnimateTransformElement
+  | SVGSetElement
+  | SVGScriptElement
+  | SVGStyleElement
+  | SVGStopElement ;
+
+(* ── RadialGradient ─────────────────────────────────────────────────────────
+   SVG 2 §14.5  https://www.w3.org/TR/SVG2/pservers.html#RadialGradients
+   Groups: Core, Presentation, GlobalEvent, DocumentElementEvent, Xlink      *)
+
+SVGRadialGradientElement = "<radialGradient" , { RadialGradientAttribute } , ">" ,
+                 { RadialGradientContent } , "</radialGradient>" ;
+
+RadialGradientAttribute =
+    GradientUnitsAttr
+  | RadialGradientTransformAttr
+  | RadialGradientCxAttr
+  | RadialGradientCyAttr
+  | RadialGradientRAttr
+  | RadialGradientFxAttr
+  | RadialGradientFyAttr
+  | RadialGradientFrAttr
+  | SpreadMethodAttr
+  | RadialGradientHrefAttr
+  | CoreAttribute
+  | PresentationAttribute
+  | GlobalEventAttribute
+  | DocumentElementEventAttribute
+  | XlinkAttribute ;
+
+RadialGradientTransformAttr = ' gradientTransform="' , TransformList , '"' ;
+
+(* cx/cy/r/fx/fy/fr: all accept <length-percentage> | <number>.
+   fx/fy default to the computed value of cx/cy at reference time (D6);
+   fr is SVG-2-new (D4) and is safe to include without a browser caveat. *)
+RadialGradientCxAttr = ' cx="' , ( LengthPercentageType | NumberType ) , '"' ;
+RadialGradientCyAttr = ' cy="' , ( LengthPercentageType | NumberType ) , '"' ;
+RadialGradientRAttr  = ' r="'  , ( LengthPercentageType | NumberType ) , '"' ;
+RadialGradientFxAttr = ' fx="' , ( LengthPercentageType | NumberType ) , '"' ;
+RadialGradientFyAttr = ' fy="' , ( LengthPercentageType | NumberType ) , '"' ;
+RadialGradientFrAttr = ' fr="' , ( LengthPercentageType | NumberType ) , '"' ;
+
+(* href: per-element; targets linearGradient or radialGradient templates. *)
+RadialGradientHrefAttr = ' href="' , IriType , '"' ;
+
+(* Content: identical to LinearGradient (D9 applies to stop, not gradients). *)
+RadialGradientContent =
+    DescriptiveElement
+  | SVGAnimateElement
+  | SVGAnimateTransformElement
+  | SVGSetElement
+  | SVGScriptElement
+  | SVGStyleElement
+  | SVGStopElement ;
+
+(* ── Stop ───────────────────────────────────────────────────────────────────
+   SVG 2 §14.3  https://www.w3.org/TR/SVG2/pservers.html#GradientStops
+   Groups: Core, Presentation, GlobalEvent, DocumentElementEvent
+
+   NOTE: stop content is more restrictive than gradient parent models — no
+   descriptive elements (desc/title/metadata) and no animateTransform (D9).
+
+   stop-color and stop-opacity are CSS presentation attributes whose canonical
+   grammar home is this file (docs/GRAMMAR_PLAN.md §g and §d).  styling.ebnf's
+   PresentationAttribute union references StopColorAttr and StopOpacityAttr
+   by these names.                                                             *)
+
+SVGStopElement = "<stop" , { StopAttribute } , ">" , { StopContent } , "</stop>" ;
+
+StopAttribute =
+    StopOffsetAttr
+  | CoreAttribute
+  | PresentationAttribute
+  | GlobalEventAttribute
+  | DocumentElementEventAttribute ;
+
+(* offset: <number> (0..1 fraction) or <percentage> (0%..100%).
+   Clamping and monotonic ordering are overlay/semantic constraints, not
+   grammar-level restrictions (see grammar-notes/10-paint-servers.md §D-stop). *)
+StopOffsetAttr = ' offset="' , ( NumberType | PercentageType ) , '"' ;
+
+StopContent =
+    SVGAnimateElement
+  | SVGSetElement
+  | SVGScriptElement
+  | SVGStyleElement ;
+
+(* Canonical presentation-attribute productions for stop-color and stop-opacity.
+   "none" is NOT a valid stop-color value (D3; use transparent or stop-opacity=0).
+   <icccolor> (SVG 1.1) is omitted as unimplemented in SVG 2 (D2).
+   "currentColor" is a closed keyword enumerated as a terminal; ColorType covers
+   the genuinely open color value space.                                          *)
+StopColorAttr   = ' stop-color="'   , ( "currentColor" | ColorType ) , '"' ;
+StopOpacityAttr = ' stop-opacity="' , AlphaValue , '"' ;
+
+(* ── Pattern ────────────────────────────────────────────────────────────────
+   SVG 2 §14.6  https://www.w3.org/TR/SVG2/pservers.html#Patterns
+   Groups: Core, Conditional, Aria, Presentation, GlobalEvent,
+           DocumentElementEvent, GraphicalEvent, Xlink                        *)
+
+SVGPatternElement = "<pattern" , { PatternAttribute } , ">" , { ContainerContent } , "</pattern>" ;
+
+PatternAttribute =
+    PatternUnitsAttr
+  | PatternContentUnitsAttr
+  | PatternTransformAttr
+  | PatternXAttr
+  | PatternYAttr
+  | PatternWidthAttr
+  | PatternHeightAttr
+  | PatternViewBoxAttr
+  | PatternPreserveAspectRatioAttr
+  | PatternHrefAttr
+  | CoreAttribute
+  | ConditionalProcessingAttribute
+  | AriaAttribute
+  | PresentationAttribute
+  | GlobalEventAttribute
+  | DocumentElementEventAttribute
+  | GraphicalEventAttribute
+  | XlinkAttribute ;
+
+(* patternUnits / patternContentUnits: pattern-only; both use the shared UnitType
+   enum ("userSpaceOnUse" | "objectBoundingBox").  Defaults differ
+   (objectBoundingBox vs userSpaceOnUse respectively) and are recorded in the
+   overlay, not here. *)
+PatternUnitsAttr        = ' patternUnits="'        , UnitType , '"' ;
+PatternContentUnitsAttr = ' patternContentUnits="' , UnitType , '"' ;
+
+PatternTransformAttr = ' patternTransform="' , TransformList , '"' ;
+
+(* x/y/width/height: <length> ONLY — no percentage (D7; differs from gradient
+   coordinate attrs).  Negative width/height are errors per spec; clamped in
+   overlay. *)
+PatternXAttr      = ' x="'      , LengthType , '"' ;
+PatternYAttr      = ' y="'      , LengthType , '"' ;
+PatternWidthAttr  = ' width="'  , LengthType , '"' ;
+PatternHeightAttr = ' height="' , LengthType , '"' ;
+
+PatternViewBoxAttr             = ' viewBox="'             , ViewBox , '"' ;
+PatternPreserveAspectRatioAttr = ' preserveAspectRatio="' , PreserveAspectRatio , '"' ;
+
+(* href: per-element; targets a different pattern element only (unlike gradient
+   href which allows cross-type gradient references). *)
+PatternHrefAttr = ' href="' , IriType , '"' ;
+
+(* Pattern content is the full container child set (ContainerContent from
+   svg.ebnf), which is the most permissive content model of the four elements
+   here.  patternContentUnits / viewBox coordinate effects are semantic overlays
+   only (D8: patternContentUnits is suppressed when viewBox is present). *)

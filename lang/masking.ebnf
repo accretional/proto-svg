@@ -1,0 +1,312 @@
+(* ============================================================================
+   masking.ebnf — SVG Masking & Clipping grammar.
+
+   STRUCTURAL grammar: every string this file derives is real SVG markup or a
+   CSS attribute value directly embeddable in SVG markup.
+
+   Scope A:
+     SVGClipPathElement  (tag `clipPath`)
+     SVGMaskElement      (tag `mask`)
+
+   Scope B:
+     Presentation-attribute productions consumed by PresentationAttribute in
+     styling.ebnf:
+       ClipPathAttr, ClipRuleAttr, ClipAttr, MaskAttr
+       MaskModeAttr, MaskCompositeAttr, MaskClipAttr, MaskOriginAttr,
+       MaskRepeatAttr, MaskPositionAttr, MaskSizeAttr, MaskImageAttr,
+       MaskTypeAttr (also placed on SVGMaskElement below)
+
+   Pattern (see docs/EBNF_PATTERN.md):
+     Element:   Name = "<tag" , { NameAttribute } , ">" , { NameContent } , "</tag>" ;
+     Attribute: NameAttr = ' attr="' , Value , '"' ;   (leading space + name + ="; closing ")
+     Closed keyword sets are enumerated in full as terminals; only genuinely
+     open values use scalarized leaf *Type rules from datatype.ebnf.
+
+   References: CSS Masking Module Level 1 (CR 5 Aug 2021) + MDN snapshot Jun 2026.
+   Discrepancy resolutions: docs/grammar-notes/12-masking.md §Discrepancies.
+   ============================================================================ *)
+
+(* ============================================================================
+   SCOPE A — ELEMENTS
+   ============================================================================ *)
+
+(* ── SVGClipPathElement (tag: clipPath) ───────────────────────────────────── *)
+
+SVGClipPathElement = "<clipPath" , { ClipPathAttribute } , ">"
+                   , { ClipPathContent }
+                   , "</clipPath>" ;
+
+ClipPathAttribute = ClipPathUnitsAttr | ClipPathTransformAttr
+                  | CoreAttribute | ConditionalProcessingAttribute | AriaAttribute
+                  | PresentationAttribute | GlobalEventAttribute ;
+
+(* Content model: descriptive + animation + shape + text + use + script        *)
+(* (subset of ContainerContent; use direct names per EBNF_PATTERN rule)        *)
+ClipPathContent = DescriptiveElement | AnimationElement | ShapeElement
+                | SVGTextElement | SVGUseElement | SVGScriptElement ;
+
+(* clipPathUnits: userSpaceOnUse (default) | objectBoundingBox                 *)
+ClipPathUnitsAttr   = ' clipPathUnits="' , UnitType , '"' ;
+
+(* transform on clipPath (distinct production to avoid collision with SvgTransformAttr) *)
+ClipPathTransformAttr = ' transform="' , TransformList , '"' ;
+
+(* ── SVGMaskElement (tag: mask) ───────────────────────────────────────────── *)
+
+SVGMaskElement = "<mask" , { MaskAttribute } , ">"
+               , { MaskContent }
+               , "</mask>" ;
+
+MaskAttribute = MaskUnitsAttr | MaskContentUnitsAttr
+              | MaskXAttr | MaskYAttr | MaskWidthAttr | MaskHeightAttr
+              | MaskTypeAttr
+              | CoreAttribute | ConditionalProcessingAttribute | AriaAttribute
+              | PresentationAttribute | GlobalEventAttribute
+              | DocumentElementEventAttribute ;
+
+(* Content model: broad — animation, descriptive, shape, structural, gradient,
+   plus explicit individual elements per GRAMMAR_PLAN §f; SVG-1.1-removed
+   elements (color-profile, cursor, font*, altGlyphDef, animateColor) excluded
+   per 12-masking.md note.                                                      *)
+MaskContent = AnimationElement | DescriptiveElement | ShapeElement
+            | StructuralElement | GradientElement
+            | SVGAElement | SVGClipPathElement | SVGFilterElement
+            | SVGForeignObjectElement | SVGImageElement | SVGMarkerElement
+            | SVGMaskElement | SVGPatternElement | SVGScriptElement
+            | SVGStyleElement | SVGSwitchElement | SVGTextElement
+            | SVGViewElement ;
+
+(* maskUnits: objectBoundingBox (default) | userSpaceOnUse                     *)
+MaskUnitsAttr        = ' maskUnits="' , UnitType , '"' ;
+(* maskContentUnits: userSpaceOnUse (default) | objectBoundingBox              *)
+MaskContentUnitsAttr = ' maskContentUnits="' , UnitType , '"' ;
+
+(* Geometry attributes on mask (distinct per-element productions per §b):      *)
+MaskXAttr      = ' x="' , LengthPercentageType , '"' ;
+MaskYAttr      = ' y="' , LengthPercentageType , '"' ;
+MaskWidthAttr  = ' width="' , LengthPercentageType , '"' ;
+MaskHeightAttr = ' height="' , LengthPercentageType , '"' ;
+
+(* mask-type: applies to mask element only (also listed in PresentationAttribute
+   longhands below for completeness; value set is a closed 2-keyword set)       *)
+MaskTypeAttr = ' mask-type="' , ( "luminance" | "alpha" ) , '"' ;
+
+(* ============================================================================
+   SCOPE B — PRESENTATION ATTRIBUTES
+   Referenced by PresentationAttribute in styling.ebnf.
+   ============================================================================ *)
+
+(* ── clip-path ────────────────────────────────────────────────────────────── *)
+
+(*
+   Value: <clip-source> | [ <basic-shape> || <geometry-box> ] | none
+   The || combinator is split into explicit alternatives (EBNF has no || ).
+   Per 12-masking.md: ClipPathCombo covers both orderings of the combination.
+*)
+ClipPathAttr = ' clip-path="' ,
+               ( "none" | UrlType | BasicShape | GeometryBox | ClipPathCombo ) ,
+               '"' ;
+
+(* <basic-shape> || <geometry-box>: both orderings                             *)
+ClipPathCombo = ( BasicShape , GeometryBox ) | ( GeometryBox , BasicShape ) ;
+
+(* ── <geometry-box> ─────────────────────────────────────────────────────────
+   Full closed keyword set (7 keywords) from CSS Masking L1 §"geometry-box".
+   margin-box is retained here (for clip-path) per discrepancy §3.
+   Separate productions MaskClipBox / MaskOriginBox below exclude margin-box.  *)
+GeometryBox = "border-box" | "padding-box" | "content-box" | "margin-box"
+            | "fill-box" | "stroke-box" | "view-box" ;
+
+(* ── <basic-shape> ──────────────────────────────────────────────────────────
+   5 CSS Shapes L1 functions + shape() (CSS Shapes L2, broadly supported 2026).
+   Per 12-masking.md discrepancy §2: polygon() round and shape() are included.
+   Literal "(" ")" "," terminals are INSIDE the attribute value string.        *)
+BasicShape = InsetFn | CircleFn | EllipseFn | PolygonFn | PathFn | ShapeFn ;
+
+(* inset(<length-percentage>{1,4} [round <border-radius>]?)
+   1–4 values: top | top right | top right bottom | top right bottom left       *)
+InsetFn = "inset("
+        , LengthPercentageType
+        , [ " " , LengthPercentageType
+          , [ " " , LengthPercentageType
+            , [ " " , LengthPercentageType ]
+            ]
+          ]
+        , [ " round " , BorderRadius ]
+        , ")" ;
+
+(* <border-radius>: 1–4 values [/ 1–4 values]?                                 *)
+BorderRadius = LengthPercentageType
+             , [ " " , LengthPercentageType
+               , [ " " , LengthPercentageType
+                 , [ " " , LengthPercentageType ]
+                 ]
+               ]
+             , [ "/" , LengthPercentageType
+               , [ " " , LengthPercentageType
+                 , [ " " , LengthPercentageType
+                   , [ " " , LengthPercentageType ]
+                   ]
+                 ]
+               ] ;
+
+(* circle(<radial-size>? [at <position>]?)                                      *)
+CircleFn = "circle("
+         , [ RadialSize , [ " at " , CssPosition ] ]
+         , ")" ;
+
+(* ellipse(<radial-size> <radial-size> [at <position>]?)
+   Both radii are optional together (default 50% 50%).                          *)
+EllipseFn = "ellipse("
+           , [ RadialSize , " " , RadialSize , [ " at " , CssPosition ] ]
+           , ")" ;
+
+(* <radial-size>: <length-percentage> | closest-side | farthest-side
+   Full closed keyword set for keyword arms; LengthPercentageType for open arm. *)
+RadialSize = LengthPercentageType
+           | "closest-side"
+           | "farthest-side" ;
+
+(* <position>: open datatype (CSS background-position syntax); modelled as leaf *)
+CssPosition = StringType ;
+
+(* polygon([<fill-rule>? ,] [round <length>]? [<length-percentage> <length-percentage>]#)
+   CSS Shapes L2: optional "round <length>" for rounded vertices.               *)
+PolygonFn = "polygon("
+           , [ FillRule , "," ]
+           , [ " round " , LengthType , "," ]
+           , PolygonVertex , { "," , PolygonVertex }
+           , ")" ;
+
+PolygonVertex = LengthPercentageType , " " , LengthPercentageType ;
+
+(* path([<fill-rule>? ,] <string>)                                              *)
+PathFn = "path("
+        , [ FillRule , "," ]
+        , StringType
+        , ")" ;
+
+(* shape([<fill-rule>? from <position> , <shape-command>#])
+   CSS Shapes L2; <shape-command> sub-grammar deferred to CSS Shapes L2 spec.  *)
+ShapeFn = "shape("
+         , [ FillRule , " " ]
+         , "from " , CssPosition , ","
+         , ShapeCommand , { "," , ShapeCommand }
+         , ")" ;
+
+(* <shape-command>: open (CSS Shapes L2 — line/hline/vline/curve/smooth/arc/close) *)
+ShapeCommand = StringType ;
+
+(* <fill-rule>: full closed 2-keyword set                                       *)
+FillRule = "nonzero" | "evenodd" ;
+
+(* ── clip-rule ───────────────────────────────────────────────────────────────
+   Full closed keyword set: nonzero | evenodd                                   *)
+ClipRuleAttr = ' clip-rule="' , ( "nonzero" | "evenodd" ) , '"' ;
+
+(* ── clip (deprecated) ───────────────────────────────────────────────────────
+   Value: <rect()> | auto
+   Comma-only form encoded (normative per spec; space form is non-normative).   *)
+ClipAttr = ' clip="' , ( "auto" | ClipRect ) , '"' ;
+
+ClipRect = "rect(" , ClipEdge , "," , ClipEdge , "," , ClipEdge , "," , ClipEdge , ")" ;
+
+(* <edge>: <length> | auto                                                      *)
+ClipEdge = LengthType | "auto" ;
+
+(* ── mask (shorthand) ────────────────────────────────────────────────────────
+   Value: none | <url> | <mask-layer>#
+   Each layer is an over-approximating alternation of all components (the full
+   W3C grammar uses || with no fixed order; we enumerate each component as an
+   optional branch in a layer model).                                           *)
+MaskAttr = ' mask="' , ( "none" | UrlType | MaskLayerList ) , '"' ;
+
+MaskLayerList  = MaskLayer , { " , " , MaskLayer } ;
+
+MaskLayer = MaskLayerImage
+          | MaskLayerPosition
+          | MaskLayerRepeat
+          | MaskLayerOriginClip
+          | MaskLayerComposite
+          | MaskLayerMode ;
+
+(* mask-image component within a layer                                          *)
+MaskLayerImage = MaskReference ;
+
+(* mask-position [/ mask-size] component within a layer                        *)
+MaskLayerPosition = CssPosition , [ "/" , MaskBgSize ] ;
+
+(* mask-size (open: defers to background-size syntax)                          *)
+MaskBgSize = "auto" | "cover" | "contain"
+           | LengthPercentageType
+           | LengthPercentageType , " " , LengthPercentageType ;
+
+(* mask-repeat component within a layer (closed keyword set from CSS BG&B)     *)
+MaskLayerRepeat = MaskRepeatValue ;
+MaskRepeatValue = "repeat" | "repeat-x" | "repeat-y" | "space" | "round" | "no-repeat"
+                | ( ( "repeat" | "space" | "round" | "no-repeat" ) ,
+                    " " ,
+                    ( "repeat" | "space" | "round" | "no-repeat" ) ) ;
+
+(* mask-origin + mask-clip geometry-box component within a layer               *)
+MaskLayerOriginClip = MaskOriginBox | MaskClipBoxValue
+                    | ( MaskOriginBox , " " , MaskClipBoxValue ) ;
+
+(* mask-composite component within a layer                                      *)
+MaskLayerComposite = MaskCompositeValue ;
+
+(* mask-mode component within a layer                                           *)
+MaskLayerMode = MaskModeValue ;
+
+(* ── mask-image ──────────────────────────────────────────────────────────────
+   Value: <mask-reference>#
+   <mask-reference> = none | <image> | <mask-source>
+   <image> deferred to leaf (CSS Images L3 — gradient fns, url(), image-set(), …) *)
+MaskImageAttr = ' mask-image="' , MaskImageList , '"' ;
+MaskImageList = MaskReference , { " , " , MaskReference } ;
+MaskReference = "none" | UrlType | MaskImageLeaf ;
+(* MaskImageLeaf covers gradient functions and other CSS image values (open)   *)
+MaskImageLeaf = StringType ;
+
+(* ── mask-mode ───────────────────────────────────────────────────────────────
+   Full closed 3-keyword set: alpha | luminance | match-source
+   (auto excluded per discrepancy §6 — not a valid value)                      *)
+MaskModeAttr  = ' mask-mode="' , MaskModeList , '"' ;
+MaskModeList  = MaskModeValue , { " , " , MaskModeValue } ;
+MaskModeValue = "alpha" | "luminance" | "match-source" ;
+
+(* ── mask-repeat ─────────────────────────────────────────────────────────────*)
+MaskRepeatAttr = ' mask-repeat="' , MaskRepeatList , '"' ;
+MaskRepeatList = MaskRepeatValue , { " , " , MaskRepeatValue } ;
+
+(* ── mask-position ──────────────────────────────────────────────────────────*)
+MaskPositionAttr = ' mask-position="' , MaskPositionList , '"' ;
+MaskPositionList = CssPosition , { " , " , CssPosition } ;
+
+(* ── mask-clip ───────────────────────────────────────────────────────────────
+   Full closed keyword set (7): geometry-box minus margin-box + no-clip
+   (margin-box removed from mask-clip per discrepancy §3)                      *)
+MaskClipAttr     = ' mask-clip="' , MaskClipList , '"' ;
+MaskClipList     = MaskClipBoxValue , { " , " , MaskClipBoxValue } ;
+MaskClipBoxValue = "content-box" | "padding-box" | "border-box"
+                 | "fill-box" | "stroke-box" | "view-box"
+                 | "no-clip" ;
+
+(* ── mask-origin ─────────────────────────────────────────────────────────────
+   Full closed keyword set (6): geometry-box minus margin-box, no no-clip
+   (margin-box removed; no-clip invalid for mask-origin per discrepancy §4)    *)
+MaskOriginAttr = ' mask-origin="' , MaskOriginList , '"' ;
+MaskOriginList = MaskOriginBox , { " , " , MaskOriginBox } ;
+MaskOriginBox  = "content-box" | "padding-box" | "border-box"
+               | "fill-box" | "stroke-box" | "view-box" ;
+
+(* ── mask-size ───────────────────────────────────────────────────────────────*)
+MaskSizeAttr = ' mask-size="' , MaskSizeList , '"' ;
+MaskSizeList = MaskBgSize , { " , " , MaskBgSize } ;
+
+(* ── mask-composite ──────────────────────────────────────────────────────────
+   Full closed 4-keyword set: add | subtract | intersect | exclude
+   (webkit variant excluded per discrepancy §8)                                *)
+MaskCompositeAttr = ' mask-composite="' , MaskCompositeList , '"' ;
+MaskCompositeList  = MaskCompositeValue , { " , " , MaskCompositeValue } ;
+MaskCompositeValue = "add" | "subtract" | "intersect" | "exclude" ;

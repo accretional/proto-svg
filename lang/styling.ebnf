@@ -1,0 +1,152 @@
+(* ============================================================================
+   styling.ebnf — Display / visibility / box / render presentation attributes,
+   and the PresentationAttribute UNION that ties the whole presentation-attribute
+   set together.
+
+   STRUCTURAL grammar (see docs/EBNF_PATTERN.md): every string derives real SVG
+   markup.  Literal markup is baked into terminals.  Every closed CSS keyword set
+   is enumerated IN FULL as quoted terminals; a *Type leaf is used ONLY for a
+   genuinely open value space (an arbitrary number, an author URL, etc.).
+
+   Contains:
+     A. Display / visibility / overflow / opacity / cursor / transform /
+        transform-origin PRESENTATION-ATTRIBUTE productions (canonical home).
+        (paint-order, color, *-rendering, vector-effect, pointer-events,
+        stop-*, flood-*, clip-*, font/text props live in their own modules.)
+     B. PresentationAttribute — the union referencing ALL presentation-attribute
+        productions (defined here + across painting/filter/masking/text/
+        embedded/pservers).  genproto resolves the cross-file names at concat
+        time; the union just lists them.
+
+   Cross-file references resolved at concat time:
+     datatype.ebnf   — AlphaValue (opacity family)
+     transform.ebnf  — TransformList (transform / transform-origin reuse)
+     painting.ebnf   — FillAttr FillRuleAttr FillOpacityAttr StrokeAttr
+                       StrokeOpacityAttr StrokeWidthAttr StrokeLinecapAttr
+                       StrokeLinejoinAttr StrokeMiterlimitAttr StrokeDasharrayAttr
+                       StrokeDashoffsetAttr PaintOrderAttr MarkerAttr
+                       MarkerStartAttr MarkerMidAttr MarkerEndAttr ColorAttr
+                       ColorInterpolationAttr ColorRenderingAttr ShapeRenderingAttr
+                       VectorEffectAttr
+     filter.ebnf     — FilterAttr ColorInterpolationFiltersAttr FloodColorAttr
+                       FloodOpacityAttr LightingColorAttr ImageRenderingAttr
+     masking.ebnf    — ClipPathAttr ClipRuleAttr ClipAttr MaskAttr
+     text.ebnf       — TextAnchorAttr DominantBaselineAttr AlignmentBaselineAttr
+                       BaselineShiftAttr DirectionAttr UnicodeBidiAttr
+                       WritingModeAttr LetterSpacingAttr WordSpacingAttr
+                       TextDecorationAttr TextOverflowAttr TextRenderingAttr
+                       WhiteSpaceAttr FontFamilyAttr FontSizeAttr FontSizeAdjustAttr
+                       FontStyleAttr FontVariantAttr FontWeightAttr FontStretchAttr
+                       InlineSizeAttr GlyphOrientationVerticalAttr
+     embedded.ebnf   — PointerEventsAttr
+     pservers.ebnf   — StopColorAttr StopOpacityAttr
+   ============================================================================ *)
+
+(* ============================================================================
+   A. Display / visibility / box / render presentation-attribute productions.
+      Pattern: NameAttr = ' attr="' , Value , '"' ;
+      Closed keyword sets are fully enumerated; `none` keeps its SVG semantic.
+   ============================================================================ *)
+
+(* display — CSS 2.1 / css-display-3, SVG 2 §3.2.3 §6.7.  `none` removes the
+   element from the rendering tree; all other values render.  Enumerated in full
+   (display-outside, display-inside, display-legacy, display-box keywords) plus
+   the global CSS-wide keywords.  No leaf — this is a closed keyword set. *)
+DisplayAttr = ' display="' , DisplayValue , '"' ;
+DisplayValue = "none"
+             | "inline" | "block" | "run-in"
+             | "flow" | "flow-root" | "table" | "flex" | "grid" | "ruby"
+             | "list-item"
+             | "inline-block" | "inline-table" | "inline-flex" | "inline-grid"
+             | "table-row-group" | "table-header-group" | "table-footer-group"
+             | "table-row" | "table-cell" | "table-column-group"
+             | "table-column" | "table-caption"
+             | "ruby-base" | "ruby-text" | "ruby-base-container"
+             | "ruby-text-container"
+             | "contents"
+             | "inherit" | "initial" | "unset" | "revert" ;
+
+(* visibility — CSS 2.1, SVG 2 §3.2.3.  Closed keyword set. *)
+VisibilityAttr = ' visibility="' , ( "visible" | "hidden" | "collapse" | "inherit" ) , '"' ;
+
+(* overflow — CSS 2.1 §11.1.1, SVG 2 §3.11.  Closed keyword set.
+   (`clip` deliberately omitted — not in SVG 2 per 02.D3.) *)
+OverflowAttr = ' overflow="' , ( "visible" | "hidden" | "scroll" | "auto" | "inherit" ) , '"' ;
+
+(* opacity — css-color-3, SVG 2 §3.6.1 §6.7.  Open <alpha-value> domain. *)
+OpacityAttr = ' opacity="' , AlphaValue , '"' ;
+
+(* cursor — css-ui-3.  Full CSS cursor keyword set enumerated as terminals.
+   (url() forms are CSS-only and not modeled as an SVG presentation-attribute
+   leaf; the closed keyword set is the authored surface.) *)
+CursorAttr = ' cursor="' , CursorValue , '"' ;
+CursorValue = "auto" | "default" | "none"
+            | "context-menu" | "help" | "pointer" | "progress" | "wait"
+            | "cell" | "crosshair" | "text" | "vertical-text"
+            | "alias" | "copy" | "move" | "no-drop" | "not-allowed"
+            | "grab" | "grabbing"
+            | "e-resize" | "n-resize" | "ne-resize" | "nw-resize"
+            | "s-resize" | "se-resize" | "sw-resize" | "w-resize"
+            | "ew-resize" | "ns-resize" | "nesw-resize" | "nwse-resize"
+            | "col-resize" | "row-resize"
+            | "all-scroll" | "zoom-in" | "zoom-out"
+            | "inherit" ;
+
+(* transform — css-transforms-1 / SVG attribute form.  Structured value grammar
+   (TransformList lives in transform.ebnf), not a leaf. *)
+TransformAttr = ' transform="' , TransformList , '"' ;
+
+(* transform-origin — css-transforms-1, de-facto presentation attribute (02.D2).
+   Keyword + length/percentage offsets; one, two, or three components.
+   x-offset keyword set and y-offset keyword set are closed; numeric offsets are
+   the open LengthPercentageType leaf. *)
+TransformOriginAttr = ' transform-origin="' , TransformOriginValue , '"' ;
+TransformOriginValue = TransformOriginKeyword
+                     | TransformOriginPosition ;
+TransformOriginKeyword = "inherit" | "initial" | "unset" ;
+TransformOriginPosition = TransformOriginX , [ TransformOriginY , [ TransformOriginZ ] ] ;
+TransformOriginX = "left" | "center" | "right" | LengthPercentageType ;
+TransformOriginY = "top" | "center" | "bottom" | LengthPercentageType ;
+TransformOriginZ = LengthType ;
+
+(* ============================================================================
+   B. PresentationAttribute — the union.
+
+   Lists EVERY presentation-attribute production: the seven defined above plus
+   the cross-module productions defined in painting / filter / masking / text /
+   embedded / pservers.  Any name that is missing or misspelled here surfaces as
+   a dropped dangling field at genproto concat time, so the names below MUST be
+   exact.  This is the single union every element's attribute group references
+   (`... | PresentationAttribute | ...`).
+   ============================================================================ *)
+
+PresentationAttribute =
+  (* painting.ebnf *)
+    FillAttr | FillRuleAttr | FillOpacityAttr
+  | StrokeAttr | StrokeOpacityAttr | StrokeWidthAttr
+  | StrokeLinecapAttr | StrokeLinejoinAttr | StrokeMiterlimitAttr
+  | StrokeDasharrayAttr | StrokeDashoffsetAttr
+  | PaintOrderAttr
+  | MarkerAttr | MarkerStartAttr | MarkerMidAttr | MarkerEndAttr
+  | ColorAttr | ColorInterpolationAttr | ColorRenderingAttr
+  | ShapeRenderingAttr | VectorEffectAttr
+  (* filter.ebnf *)
+  | FilterAttr | ColorInterpolationFiltersAttr
+  | FloodColorAttr | FloodOpacityAttr | LightingColorAttr | ImageRenderingAttr
+  (* masking.ebnf *)
+  | ClipPathAttr | ClipRuleAttr | ClipAttr | MaskAttr
+  (* text.ebnf *)
+  | TextAnchorAttr | DominantBaselineAttr | AlignmentBaselineAttr
+  | BaselineShiftAttr | DirectionAttr | UnicodeBidiAttr | WritingModeAttr
+  | LetterSpacingAttr | WordSpacingAttr | TextDecorationAttr | TextOverflowAttr
+  | TextRenderingAttr | WhiteSpaceAttr
+  | FontFamilyAttr | FontSizeAttr | FontSizeAdjustAttr | FontStyleAttr
+  | FontVariantAttr | FontWeightAttr | FontStretchAttr
+  | InlineSizeAttr | GlyphOrientationVerticalAttr
+  (* embedded.ebnf *)
+  | PointerEventsAttr
+  (* pservers.ebnf *)
+  | StopColorAttr | StopOpacityAttr
+  (* styling.ebnf (this file) *)
+  | DisplayAttr | VisibilityAttr | OverflowAttr | OpacityAttr | CursorAttr
+  | TransformAttr | TransformOriginAttr ;

@@ -1,0 +1,72 @@
+(* ============================================================================
+   transform.ebnf — SVG transform-attribute grammar.
+
+   Defines TransformList: the value grammar for the SVG `transform` presentation
+   attribute (and its aliases `gradientTransform`, `patternTransform`, and the
+   `clipPath` element's `transform` attribute).  Also consumed as the
+   TransformList arm of AnimationValue in animation.ebnf.
+
+   Normative source: CSS Transforms Module Level 1 §6.2
+   <https://drafts.csswg.org/css-transforms-1/#svg-transform>
+   SVG 2 §8.5 delegates entirely: "User agents must support the transform
+   property and presentation attribute as defined in [css-transforms-1]."
+
+   IMPORTANT — bare numbers (no units):
+   The SVG ATTRIBUTE form uses bare numbers only.  Units (`px`, `deg`, etc.)
+   must not appear inside transform attribute argument lists.  Implied units
+   are applied by the UA (translate → px, rotate/skewX/skewY angle → deg,
+   scale and matrix[a,b,c,d] → dimensionless).  This contrasts with the CSS
+   `transform` PROPERTY, where explicit units are required.  Do not confuse
+   the two grammars (see docs/grammar-notes/04-coords-transforms.md §D1).
+
+   transform-origin is intentionally EXCLUDED.  It is defined in CSS Transforms
+   §6.1 as a separate CSS property; it is not part of the SVG attribute grammar.
+
+   Cross-file leaf reference:
+   NumberType is defined once in datatype.ebnf (the scalarized open leaf for
+   CSS <number>: optional sign, digits, optional decimal, optional exponent,
+   NO unit suffix).  Do NOT redefine it here.
+
+   Authoring conventions (docs/GRAMMAR_PLAN.md §b):
+     - PascalCase rule = one proto message.
+     - snake_case = lexical leaf (none defined here; all primitives come from
+       datatype.ebnf via scalarization).
+     - Literal `(`, `)`, `,` ARE included because they are function-syntax
+       punctuation, not whitespace-joined sequence separators.
+     - The renderer space-joins plain sequences; it does NOT insert commas or
+       parens, so those must appear as terminals in the grammar.
+   ============================================================================ *)
+
+(* TransformList: one or more transform functions, space-separated.
+   The { } repetition renders as a space-joined sequence of Transform values.
+   CSS Transforms §6.2 allows optional comma-wsp between transforms; the
+   grammar over-approximates by requiring at least one Transform and treating
+   inter-function whitespace as the renderer's responsibility (Rule 2,
+   CONTEXT_SENSITIVITY: over-approximate separators at the grammar level). *)
+TransformList = Transform , { Transform } ;
+
+(* Transform: one of the six SVG attribute transform functions.
+   (translateX, translateY, scaleX, scaleY, skew, rotate3d, perspective, etc.
+   are CSS property-only functions and are EXCLUDED per §D1.) *)
+Transform = Matrix | Translate | Scale | Rotate | SkewX | SkewY ;
+
+(* matrix(a,b,c,d,e,f) — 3×2 affine matrix; all six arguments are bare numbers.
+   a,b,c,d are dimensionless; e,f are implicit-px translation offsets. *)
+Matrix = "matrix(" , NumberType , "," , NumberType , "," , NumberType , ","
+       , NumberType , "," , NumberType , "," , NumberType , ")" ;
+
+(* translate(tx[,ty]) — tx mandatory; ty optional, defaults to 0 (implicit px). *)
+Translate = "translate(" , NumberType , [ "," , NumberType ] , ")" ;
+
+(* scale(sx[,sy]) — sx mandatory; sy optional, defaults to sx (dimensionless). *)
+Scale = "scale(" , NumberType , [ "," , NumberType ] , ")" ;
+
+(* rotate(angle[,cx,cy]) — angle in implicit degrees; cx,cy are the optional
+   centre of rotation in implicit px.  Both cx and cy must appear together. *)
+Rotate = "rotate(" , NumberType , [ "," , NumberType , "," , NumberType ] , ")" ;
+
+(* skewX(angle) — angle in implicit degrees. *)
+SkewX = "skewX(" , NumberType , ")" ;
+
+(* skewY(angle) — angle in implicit degrees. *)
+SkewY = "skewY(" , NumberType , ")" ;

@@ -1,0 +1,145 @@
+(* ============================================================================
+   structure.ebnf — SVG document-structure elements (SVG 2 §5).
+
+   Defines: Symbol, Use, Desc, Title, Metadata.
+
+   DOES NOT redefine: Svg, G, Defs, Switch, A, Unknown, ContainerContent, or any
+   shared attribute-group production — those live in svg.ebnf (file #1) and are
+   referenced here by name.  Leaf types (LengthType, LengthPercentageType,
+   IriType, …) and structured values (ViewBox, PreserveAspectRatio) are defined
+   in datatype.ebnf and likewise referenced by name only.
+
+   STRUCTURAL grammar: every string derived is real SVG markup.  Tag literals,
+   attribute quoting, and close tags are all part of the grammar as terminals.
+   See docs/EBNF_PATTERN.md for the canonical pattern.
+
+   Collision policy (docs/GRAMMAR_PLAN.md §b): every attribute whose name
+   appears on more than one element gets a fully-qualified per-element production
+   name so that gluon's norm-dedup cannot silently merge them.  E.g. Symbol's
+   x-coordinate attribute is SymbolXAttr, Use's is UseXAttr, etc.
+
+   Reference: https://www.w3.org/TR/SVG2/struct.html  (Chapter 5)
+   ============================================================================ *)
+
+(* ── Symbol (§5.5) ────────────────────────────────────────────────────────────
+   Categories: container element, structural element (never-rendered directly;
+   instantiated only through <use>).
+   Groups: Core, Cond (03.D2 — included despite spec gap), Aria, Pres,
+           GlobalEvent, DocumentElementEvent, GraphicalEvent.
+   Content: full ContainerContent (same child set as <g>/<defs>).             *)
+
+SVGSymbolElement = "<symbol" , { SymbolAttribute } , ">" , { ContainerContent } , "</symbol>" ;
+
+SymbolAttribute =
+    SymbolViewBoxAttr
+  | SymbolPreserveAspectRatioAttr
+  | SymbolRefXAttr
+  | SymbolRefYAttr
+  | SymbolXAttr
+  | SymbolYAttr
+  | SymbolWidthAttr
+  | SymbolHeightAttr
+  | CoreAttribute
+  | ConditionalProcessingAttribute
+  | AriaAttribute
+  | PresentationAttribute
+  | GlobalEventAttribute
+  | DocumentElementEventAttribute
+  | GraphicalEventAttribute ;
+
+(* viewBox and preserveAspectRatio: STRUCTURED sub-grammars from datatype.ebnf *)
+SymbolViewBoxAttr             = ' viewBox="' , ViewBox , '"' ;
+SymbolPreserveAspectRatioAttr = ' preserveAspectRatio="' , PreserveAspectRatio , '"' ;
+
+(* refX / refY: SVG 2 new feature (§5.5, R3).
+   Value: <length> OR one of the positional keywords (closed keyword sets
+   enumerated in full; "auto" is NOT a valid value for refX/refY).
+   (Note: refX uses left/center/right; refY uses top/center/bottom.) *)
+SymbolRefXAttr = ' refX="' , ( LengthType | "left" | "center" | "right" ) , '"' ;
+SymbolRefYAttr = ' refY="' , ( LengthType | "top"  | "center" | "bottom" ) , '"' ;
+
+(* Geometry properties (§4.2; unitless number included via LengthPercentageType) *)
+SymbolXAttr      = ' x="'      , LengthPercentageType , '"' ;
+SymbolYAttr      = ' y="'      , LengthPercentageType , '"' ;
+SymbolWidthAttr  = ' width="'  , ( "auto" | LengthPercentageType ) , '"' ;
+SymbolHeightAttr = ' height="' , ( "auto" | LengthPercentageType ) , '"' ;
+
+(* ── Use (§5.6) ───────────────────────────────────────────────────────────────
+   Categories: graphics referencing element, renderable, structural, structurally
+   external element (when href is present).
+   Groups: Core, Cond, Aria, Pres, GlobalEvent, DocumentElementEvent,
+           GraphicalEvent, Xlink (deprecated href alias).
+   Content: AnimationElement | DescriptiveElement | ClipPath | Mask | Script | Style
+   (significantly narrower than ContainerContent; per spec §5.6 and 03.D11).    *)
+
+SVGUseElement = "<use" , { UseAttribute } , ">" , { UseContent } , "</use>" ;
+
+UseAttribute =
+    UseHrefAttr
+  | UseXAttr
+  | UseYAttr
+  | UseWidthAttr
+  | UseHeightAttr
+  | CoreAttribute
+  | ConditionalProcessingAttribute
+  | AriaAttribute
+  | PresentationAttribute
+  | GlobalEventAttribute
+  | DocumentElementEventAttribute
+  | GraphicalEventAttribute
+  | XlinkAttribute ;
+
+UseHrefAttr   = ' href="'   , IriType , '"' ;
+UseXAttr      = ' x="'      , LengthPercentageType , '"' ;
+UseYAttr      = ' y="'      , LengthPercentageType , '"' ;
+UseWidthAttr  = ' width="'  , ( "auto" | LengthPercentageType ) , '"' ;
+UseHeightAttr = ' height="' , ( "auto" | LengthPercentageType ) , '"' ;
+
+(* Spec §5.6 content model: animation elements, descriptive elements,
+   clipPath, mask, script, style.  Named UseContent to avoid collision. *)
+UseContent = AnimationElement | DescriptiveElement | SVGClipPathElement | SVGMaskElement | SVGScriptElement | SVGStyleElement ;
+
+(* ── Desc (§5.8.1) ────────────────────────────────────────────────────────────
+   Categories: descriptive element, never-rendered element.
+   Groups: Core, GlobalEvent, DocumentElementEvent ONLY
+   (no Cond, no Aria, no GraphicalEvent — per 03.D14 and spec element table).
+   Content: mixed — character data (descriptive text) plus allowed child
+   elements; CharacterDataType covers raw text, ContainerContent covers any
+   child markup embedded in the description.                                   *)
+
+SVGDescElement = "<desc" , { DescAttribute } , ">" , { DescContent } , "</desc>" ;
+
+DescAttribute =
+    CoreAttribute
+  | GlobalEventAttribute
+  | DocumentElementEventAttribute ;
+
+DescContent = CharacterDataType | ContainerContent ;
+
+(* ── Title (§5.8.1) ───────────────────────────────────────────────────────────
+   Same shape as Desc: identical attribute groups, identical mixed content model.
+   Kept as a distinct production so each maps to its own proto message and the
+   renderer can emit the correct tag name.                                      *)
+
+SVGTitleElement = "<title" , { TitleAttribute } , ">" , { TitleContent } , "</title>" ;
+
+TitleAttribute =
+    CoreAttribute
+  | GlobalEventAttribute
+  | DocumentElementEventAttribute ;
+
+TitleContent = CharacterDataType | ContainerContent ;
+
+(* ── Metadata (§5.9) ─────────────────────────────────────────────────────────
+   Same shape as Desc/Title.  Content typically elements from other namespaces
+   (RDF, Dublin Core); mixed model preserves character data (e.g. bare text
+   nodes within RDF literals) alongside child markup.                          *)
+
+SVGMetadataElement = "<metadata" , { MetadataAttribute } , ">" , { MetadataContent } , "</metadata>" ;
+
+MetadataAttribute =
+    CoreAttribute
+  | GlobalEventAttribute
+  | DocumentElementEventAttribute ;
+
+MetadataContent = CharacterDataType | ContainerContent ;

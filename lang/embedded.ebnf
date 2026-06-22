@@ -1,0 +1,136 @@
+(* ============================================================================
+   embedded.ebnf — Embedded content, scripting, and styling elements.
+
+   Holds: SVGImageElement, SVGForeignObjectElement, SVGViewElement,
+   SVGScriptElement, SVGStyleElement, and the PointerEventsAttr
+   presentation-attribute production (canonical here; referenced by
+   styling.ebnf's PresentationAttribute union).
+
+   Pattern (see docs/EBNF_PATTERN.md):
+     - Element:   Name = "<tag" , { NameAttribute } , ">" , { NameContent } , "</tag>" ;
+     - Attribute: NameAttr = ' attr="' , Value , '"' ; (leading space + name + ="; closing ")
+     - Closed keyword sets are enumerated in full; only genuinely open values use
+       the scalarized leaf *Type rules from datatype.ebnf.
+     - All element rule names are DOM interface names; tag is the literal terminal.
+
+   Cross-file references resolved at concat time:
+     - datatype.ebnf: IriType, LengthPercentageType, StringType, BooleanValue,
+                      CharacterDataType, ViewBox, PreserveAspectRatio
+     - svg.ebnf:      CoreAttribute, ConditionalProcessingAttribute, AriaAttribute,
+                      PresentationAttribute, GlobalEventAttribute,
+                      DocumentElementEventAttribute, GraphicalEventAttribute,
+                      XlinkAttribute, AnimationElement, DescriptiveElement
+     - masking.ebnf:  SVGClipPathElement, SVGMaskElement
+   ============================================================================ *)
+
+(* ── SVGImageElement (tag: image) ─────────────────────────────────────────── *)
+
+SVGImageElement = "<image" , { ImageAttribute } , ">" , { ImageContent } , "</image>" ;
+
+ImageAttribute = ImageHrefAttr | ImageCrossoriginAttr | ImagePreserveAspectRatioAttr
+               | ImageXAttr | ImageYAttr | ImageWidthAttr | ImageHeightAttr
+               | ImageDecodingAttr
+               | CoreAttribute | ConditionalProcessingAttribute | AriaAttribute
+               | PresentationAttribute | GlobalEventAttribute
+               | DocumentElementEventAttribute | GraphicalEventAttribute
+               | XlinkAttribute ;
+
+ImageHrefAttr                = ' href="' , IriType , '"' ;
+ImageCrossoriginAttr         = ' crossorigin="' , ( "anonymous" | "use-credentials" ) , '"' ;
+ImagePreserveAspectRatioAttr = ' preserveAspectRatio="' , PreserveAspectRatio , '"' ;
+ImageXAttr                   = ' x="' , LengthPercentageType , '"' ;
+ImageYAttr                   = ' y="' , LengthPercentageType , '"' ;
+ImageWidthAttr               = ' width="' , ( "auto" | LengthPercentageType ) , '"' ;
+ImageHeightAttr              = ' height="' , ( "auto" | LengthPercentageType ) , '"' ;
+ImageDecodingAttr            = ' decoding="' , ( "sync" | "async" | "auto" ) , '"' ;
+
+ImageContent = AnimationElement | DescriptiveElement
+             | SVGClipPathElement | SVGMaskElement | SVGScriptElement | SVGStyleElement ;
+
+(* ── SVGForeignObjectElement (tag: foreignObject) ─────────────────────────── *)
+
+SVGForeignObjectElement = "<foreignObject" , { ForeignObjectAttribute } , ">"
+                        , { ForeignObjectContent }
+                        , "</foreignObject>" ;
+
+ForeignObjectAttribute = ForeignObjectXAttr | ForeignObjectYAttr
+                       | ForeignObjectWidthAttr | ForeignObjectHeightAttr
+                       | CoreAttribute | ConditionalProcessingAttribute | AriaAttribute
+                       | PresentationAttribute | GlobalEventAttribute
+                       | DocumentElementEventAttribute | GraphicalEventAttribute ;
+
+ForeignObjectXAttr      = ' x="' , LengthPercentageType , '"' ;
+ForeignObjectYAttr      = ' y="' , LengthPercentageType , '"' ;
+ForeignObjectWidthAttr  = ' width="' , ( "auto" | LengthPercentageType ) , '"' ;
+ForeignObjectHeightAttr = ' height="' , ( "auto" | LengthPercentageType ) , '"' ;
+
+(* Content model: any foreign-namespace content or character data; modelled as
+   the CharacterDataType leaf (over-approximation per CONTEXT_SENSITIVITY Rule 2). *)
+ForeignObjectContent = CharacterDataType ;
+
+(* ── SVGViewElement (tag: view) ───────────────────────────────────────────── *)
+
+SVGViewElement = "<view" , { ViewAttribute } , ">" , { ViewContent } , "</view>" ;
+
+ViewAttribute = ViewViewBoxAttr | ViewPreserveAspectRatioAttr | ViewZoomAndPanAttr
+              | CoreAttribute | AriaAttribute
+              | GlobalEventAttribute | DocumentElementEventAttribute ;
+              (* Note: no ConditionalProcessingAttribute on view — 08.note *)
+
+ViewViewBoxAttr             = ' viewBox="' , ViewBox , '"' ;
+ViewPreserveAspectRatioAttr = ' preserveAspectRatio="' , PreserveAspectRatio , '"' ;
+ViewZoomAndPanAttr          = ' zoomAndPan="' , ( "disable" | "magnify" ) , '"' ;
+(* viewTarget attribute is EXCLUDED — removed in SVG 2 at Paris 2015 F2F Day 3. *)
+
+ViewContent = AnimationElement | DescriptiveElement | SVGScriptElement | SVGStyleElement ;
+
+(* ── SVGScriptElement (tag: script) ───────────────────────────────────────── *)
+
+SVGScriptElement = "<script" , { ScriptAttribute } , ">" , { ScriptContent } , "</script>" ;
+
+ScriptAttribute = ScriptTypeAttr | ScriptHrefAttr | ScriptCrossoriginAttr
+                | ScriptAsyncAttr | ScriptDeferAttr
+                | CoreAttribute | GlobalEventAttribute | DocumentElementEventAttribute
+                | XlinkAttribute ;
+(* Note: no Aria, no ConditionalProcessing, no Presentation, no GraphicalEvent
+   on script per §f and 08-embedded-linking-interact.md. *)
+
+ScriptTypeAttr        = ' type="' , StringType , '"' ;
+ScriptHrefAttr        = ' href="' , IriType , '"' ;
+ScriptCrossoriginAttr = ' crossorigin="' , ( "anonymous" | "use-credentials" ) , '"' ;
+(* async / defer: sourced from HTML; flagged as gap in SVG 2 spec (08.D3). *)
+ScriptAsyncAttr = ' async="' , BooleanValue , '"' ;
+ScriptDeferAttr = ' defer="' , BooleanValue , '"' ;
+
+(* Content model: character data / inline script text only. *)
+ScriptContent = CharacterDataType ;
+
+(* ── SVGStyleElement (tag: style) ─────────────────────────────────────────── *)
+
+SVGStyleElement = "<style" , { StyleAttribute } , ">" , { StyleContent } , "</style>" ;
+
+StyleAttribute = StyleTypeAttr | StyleMediaAttr | StyleTitleAttr
+               | CoreAttribute | GlobalEventAttribute | DocumentElementEventAttribute ;
+(* Note: no Aria, no ConditionalProcessing, no Presentation, no GraphicalEvent
+   on style per §f. *)
+
+StyleTypeAttr  = ' type="' , StringType , '"' ;
+StyleMediaAttr = ' media="' , StringType , '"' ;  (* media-query-list; open value *)
+StyleTitleAttr = ' title="' , StringType , '"' ;
+
+(* Content model: raw CSS character data. *)
+StyleContent = CharacterDataType ;
+
+(* ── PointerEventsAttr ────────────────────────────────────────────────────── *)
+(* Canonical home: embedded.ebnf (per docs/GRAMMAR_PLAN.md §g).
+   Referenced by styling.ebnf's PresentationAttribute union.
+   Full SVG keyword set: 10 terminals.
+   'auto' is the CSS alias (resolves to visiblePainted on SVG elements;
+   see 08-embedded-linking-interact.md D9). *)
+
+PointerEventsAttr = ' pointer-events="' ,
+    ( "bounding-box" | "visiblePainted" | "visibleFill" | "visibleStroke"
+    | "visible" | "painted" | "fill" | "stroke" | "all" | "none"
+    | "auto" ) , '"' ;
+(* auto: CSS alias — not in SVG pointer-events keyword set but accepted by
+   browsers; maps to visiblePainted on SVG elements (08.D9). *)

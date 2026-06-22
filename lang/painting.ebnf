@@ -1,0 +1,136 @@
+(* ============================================================================
+   painting.ebnf — Painting, markers and render-hint presentation attributes.
+
+   STRUCTURAL grammar (see docs/EBNF_PATTERN.md): every string derives real SVG
+   markup.  Literal markup is baked into terminals.
+
+   Contains:
+     A. SVGMarkerElement  (tag `marker`)
+     B. Fill / stroke / marker / color PRESENTATION-ATTRIBUTE productions
+        (referenced by styling.ebnf's PresentationAttribute union)
+
+   Cross-file references resolved at concat time:
+     datatype.ebnf  — PaintType, AlphaValue, UnitType, ViewBox,
+                      PreserveAspectRatio, LengthPercentageType, NumberType,
+                      AngleType, UrlType, ColorType, DasharrayType
+     svg.ebnf       — ContainerContent (content-category union),
+                      CoreAttribute, GlobalEventAttribute,
+                      DocumentElementEventAttribute
+     styling.ebnf   — PresentationAttribute
+   ============================================================================ *)
+
+(* ============================================================================
+   A. SVGMarkerElement
+   ============================================================================ *)
+
+SVGMarkerElement = "<marker" , { MarkerAttribute } , ">" , { ContainerContent } , "</marker>" ;
+
+MarkerAttribute = MarkerMarkerUnitsAttr
+                | MarkerWidthAttr
+                | MarkerHeightAttr
+                | MarkerRefXAttr
+                | MarkerRefYAttr
+                | MarkerOrientAttr
+                | MarkerViewBoxAttr
+                | MarkerPreserveAspectRatioAttr
+                | CoreAttribute
+                | PresentationAttribute
+                | GlobalEventAttribute
+                | DocumentElementEventAttribute ;
+
+(* markerUnits: closed keyword set — strokeWidth | userSpaceOnUse *)
+MarkerMarkerUnitsAttr = ' markerUnits="' , ( "strokeWidth" | "userSpaceOnUse" ) , '"' ;
+
+(* markerWidth / markerHeight: open length/number values *)
+MarkerWidthAttr  = ' markerWidth="'  , ( LengthPercentageType | NumberType ) , '"' ;
+MarkerHeightAttr = ' markerHeight="' , ( LengthPercentageType | NumberType ) , '"' ;
+
+(* refX: open + closed keyword set *)
+MarkerRefXAttr = ' refX="' , ( LengthPercentageType | NumberType | "left" | "center" | "right" ) , '"' ;
+
+(* refY: open + closed keyword set *)
+MarkerRefYAttr = ' refY="' , ( LengthPercentageType | NumberType | "top" | "center" | "bottom" ) , '"' ;
+
+(* orient: closed keywords + open angle/number *)
+MarkerOrientAttr = ' orient="' , ( "auto" | "auto-start-reverse" | AngleType | NumberType ) , '"' ;
+
+(* viewBox / preserveAspectRatio: structured sub-grammars from datatype.ebnf *)
+MarkerViewBoxAttr             = ' viewBox="' , ViewBox , '"' ;
+MarkerPreserveAspectRatioAttr = ' preserveAspectRatio="' , PreserveAspectRatio , '"' ;
+
+(* ============================================================================
+   B. Fill / stroke / marker / color PRESENTATION-ATTRIBUTE productions
+   ============================================================================ *)
+
+(* ── Fill ──────────────────────────────────────────────────────────────────── *)
+
+(* fill: structured <paint> value (PaintType from datatype.ebnf) *)
+FillAttr = ' fill="' , PaintType , '"' ;
+
+(* fill-rule: closed keyword set *)
+FillRuleAttr = ' fill-rule="' , ( "nonzero" | "evenodd" ) , '"' ;
+
+(* fill-opacity: structured AlphaValue (<number> | <percentage>) *)
+FillOpacityAttr = ' fill-opacity="' , AlphaValue , '"' ;
+
+(* ── Stroke ────────────────────────────────────────────────────────────────── *)
+
+(* stroke: structured <paint> value (same PaintType as fill) *)
+StrokeAttr = ' stroke="' , PaintType , '"' ;
+
+(* stroke-opacity: structured AlphaValue *)
+StrokeOpacityAttr = ' stroke-opacity="' , AlphaValue , '"' ;
+
+(* stroke-width: open length-percentage or unitless number *)
+StrokeWidthAttr = ' stroke-width="' , ( LengthPercentageType | NumberType ) , '"' ;
+
+(* stroke-linecap: closed keyword set — butt | round | square *)
+StrokeLinecapAttr = ' stroke-linecap="' , ( "butt" | "round" | "square" ) , '"' ;
+
+(* stroke-linejoin: closed keyword set — miter | miter-clip | round | bevel | arcs *)
+StrokeLinejoinAttr = ' stroke-linejoin="' , ( "miter" | "miter-clip" | "round" | "bevel" | "arcs" ) , '"' ;
+
+(* stroke-miterlimit: open number value *)
+StrokeMiterlimitAttr = ' stroke-miterlimit="' , NumberType , '"' ;
+
+(* stroke-dasharray: none (keyword) or structured dasharray list *)
+StrokeDasharrayAttr = ' stroke-dasharray="' , ( "none" | DasharrayType ) , '"' ;
+
+(* stroke-dashoffset: open length-percentage or unitless number *)
+StrokeDashoffsetAttr = ' stroke-dashoffset="' , ( LengthPercentageType | NumberType ) , '"' ;
+
+(* ── Paint order ───────────────────────────────────────────────────────────── *)
+
+(* paint-order: normal (keyword) or ordered token list of fill/stroke/markers *)
+PaintOrderAttr  = ' paint-order="' , ( "normal" | PaintOrderList ) , '"' ;
+PaintOrderList  = PaintOrderToken , { PaintOrderToken } ;
+PaintOrderToken = "fill" | "stroke" | "markers" ;
+
+(* ── Marker references ─────────────────────────────────────────────────────── *)
+
+(* marker shorthand: none | url reference *)
+MarkerAttr    = ' marker="'       , ( "none" | UrlType ) , '"' ;
+MarkerStartAttr = ' marker-start="' , ( "none" | UrlType ) , '"' ;
+MarkerMidAttr   = ' marker-mid="'   , ( "none" | UrlType ) , '"' ;
+MarkerEndAttr   = ' marker-end="'   , ( "none" | UrlType ) , '"' ;
+
+(* ── Color ─────────────────────────────────────────────────────────────────── *)
+
+(* color: open ColorType leaf (all CSS Color L3 syntaxes) *)
+ColorAttr = ' color="' , ColorType , '"' ;
+
+(* color-interpolation: closed keyword set — auto | sRGB | linearRGB *)
+ColorInterpolationAttr = ' color-interpolation="' , ( "auto" | "sRGB" | "linearRGB" ) , '"' ;
+
+(* color-rendering: closed keyword set — auto | optimizeSpeed | optimizeQuality *)
+ColorRenderingAttr = ' color-rendering="' , ( "auto" | "optimizeSpeed" | "optimizeQuality" ) , '"' ;
+
+(* ── Rendering hints ───────────────────────────────────────────────────────── *)
+
+(* shape-rendering: closed keyword set *)
+ShapeRenderingAttr = ' shape-rendering="' ,
+    ( "auto" | "optimizeSpeed" | "crispEdges" | "geometricPrecision" ) , '"' ;
+
+(* vector-effect: closed keyword set *)
+VectorEffectAttr = ' vector-effect="' ,
+    ( "none" | "non-scaling-stroke" | "non-scaling-size" | "non-rotation" | "fixed-position" ) , '"' ;

@@ -1,0 +1,437 @@
+(* ============================================================================
+   animation.ebnf — SVG/SMIL animation elements (SVG Animations Level 2 §2).
+   STRUCTURAL grammar: every string it derives is real SVG markup.
+
+   Defines:
+     Animate, Set, AnimateMotion, AnimateTransform, Mpath, Discard
+   plus the shared, fully context-free VALUE sub-grammars they consume:
+     - SMIL timing values (BeginValueList / EndValueList / ClockValue and the
+       offset/syncbase/event/repeat/accessKey/wallclock forms)
+     - the AnimationValue union (the 13-arm CFG over-approximation)
+     - the animateTransform per-type value productions
+     - keyTimes / keySplines / keyPoints / motion-coordinate list grammars
+
+   Markup policy (docs/EBNF_PATTERN.md):
+     - Element:   Name = "<tag" , { NameAttribute } , ">" , { NameContent } , "</tag>" ;
+     - Attribute: NameAttr = ' attr="' , Value , '"' ;  (leading space + name + ="; closing ")
+     - Closed keyword sets are enumerated in full as terminals; only genuinely
+       open values use the scalarized leaf *Type rules from datatype.ebnf.
+     - Element/attribute names with colons/kebab are literal terminals.
+     - The VALUE grammars below (SMIL timing, AnimationValue, keyTimes/keySplines/
+       keyPoints, animateTransform per-type values, MotionValues) sit INSIDE
+       `="..."` and therefore carry NO markup — no `<`, `>`, or attribute quotes.
+
+   Normative sources:
+     - SVG Animations Level 2, W3C Editor's Draft 14 September 2025
+       <https://svgwg.org/specs/animations/>  (PRIMARY)
+     - SMIL Animation, W3C Recommendation 04 September 2001 §3.6.7
+       <https://www.w3.org/TR/smil-animation/>  (timing BNF, normative)
+     - SVG 1.1 Second Edition, Chapter 19 <https://www.w3.org/TR/SVG11/animate.html>
+       (cross-check)
+   Policy: docs/CONTEXT_SENSITIVITY.md, docs/GRAMMAR_PLAN.md §b/§c/§f/§h,
+           docs/grammar-notes/13-animation.md (AUTHORITATIVE EBNF-ready form).
+
+   ── Context-free / context-sensitive factoring (CONTEXT_SENSITIVITY.md) ──
+   IN THE GRAMMAR (context-free, exhaustive):
+     - element markup structure, attribute sets, content models;
+     - the entire SMIL timing syntax (offset/syncbase/event/repeat/accessKey/
+       wallclock/"indefinite") — these are genuine CFLs (Rule 1);
+     - every enum (calcMode/additive/accumulate/restart/type/rotate/origin/fill)
+       enumerated in full as terminals (Rule 1a);
+     - the animateTransform value shapes keyed by `type` (a closed set of five)
+       specialized as distinct productions (Rule 1, finite dependent type).
+   NOT IN THE GRAMMAR (overlay only — see CONTEXT_SENSITIVITY.md Rule 3 §6-9):
+     - value typing of from/to/by/values by the resolved attributeName;
+     - keyTimes/values/keySplines/keyPoints cardinality matching;
+     - values-vs-from/to/by mutual exclusion;
+     - keyTimes/keyPoints/keySplines range [0,1] and monotonicity;
+     - syncbase/event IDREF resolution and href target resolution;
+     - repeatCount>0, dur>0, min>=0, max>0, min<=max range checks.
+   The grammar over-approximates (AnimationValue union; any-attr-any-order) and
+   the overlay narrows; none of the above context-sensitive constraints leak in.
+
+   ── Authoring conventions (docs/GRAMMAR_PLAN.md §b) ──
+     - Element body = `{ <Elem>Attribute } , { <Elem>Content }` framed by tags.
+     - Attribute productions are per-element and fully-qualified so gluon's
+       norm-dedup never silently merges colliding names.  `href`, `begin`,
+       `type`, `from`, `to`, `by`, `values`, `fill` collide across elements and
+       with shapes/text/painting, so each gets a positional name
+       (AnimateBeginAttr, DiscardBeginAttr, MpathHrefAttr, DiscardHrefAttr,
+       AnimateFillAttr, …).  The correct value set is chosen by tree position
+       (CONTEXT_SENSITIVITY "What is not context-sensitive"); no overlay needed.
+     - animation `fill` = "freeze"|"remove" is DISTINCT from the paint FillAttr
+       on shapes/text; collision resolved positionally (GRAMMAR_PLAN §b.2).
+     - Closed value sets are enumerated as terminals; open domains use the
+       scalarized leaves from datatype.ebnf (NumberType, IntegerType, TimeType,
+       XmlNameType, IriType, EventSymbolType, LengthType, PercentageType,
+       AngleType, ColorType, PaintType, …) — never redefined here.
+     - Inside VALUE grammars, structural punctuation that the renderer does NOT
+       insert is a terminal: sign "+"/"-", ".", ":", "(", ")", and the ";" list
+       separator (so CollapseCommaList records it).  Pure inter-token whitespace
+       is the renderer's responsibility (over-approximated, as in transform.ebnf),
+       so no explicit `S` whitespace token appears in these productions.
+     - Cross-file leaves: SvgPath (path.ebnf), TransformList (transform.ebnf),
+       PaintType (datatype.ebnf), DescriptiveElement/Script/AnimationEvent/
+       Xlink/Core/Conditional/Presentation/GlobalEvent groups (svg.ebnf) all
+       resolve at genproto concat time.
+   ============================================================================ *)
+
+(* ============================================================================
+   SMIL timing grammar (SMIL Animation §3.6.7 — fully context-free, Rule 1).
+   VALUE grammar: sits inside `="..."`, carries NO markup.
+   Transcribed from docs/grammar-notes/13-animation.md "SMIL timing EBNF-ready".
+   ============================================================================ *)
+
+(* ── Clock values (SMIL §3.6.7 / SVGwg-L2 §2.9.1; verbatim across all sources) *)
+ClockValue        = FullClockValue | PartialClockValue | TimecountValue ;
+FullClockValue    = Hours , ":" , Minutes , ":" , Seconds , [ "." , ClockFraction ] ;
+PartialClockValue = Minutes , ":" , Seconds , [ "." , ClockFraction ] ;
+TimecountValue    = Timecount , [ "." , ClockFraction ] , [ Metric ] ;
+Metric            = "h" | "min" | "s" | "ms" ;
+Hours             = IntegerType ;   (* any positive integer; range overlay *)
+Minutes           = IntegerType ;   (* 00-59, range overlay *)
+Seconds           = IntegerType ;   (* 00-59, range overlay *)
+ClockFraction     = IntegerType ;   (* renamed from Fraction: norm-collides with datatype.ebnf `fraction` (§b) *)
+Timecount         = IntegerType ;
+
+(* ── Offset value: optional leading sign, then a clock value *)
+OffsetValue = [ "+" | "-" ] , ClockValue ;
+
+(* ── Syncbase value: <idref>.(begin|end) [(+|-) clock] *)
+SyncbaseValue = XmlNameType , "." , ( "begin" | "end" ) ,
+                [ ( "+" | "-" ) , ClockValue ] ;
+
+(* ── Event value: [<idref>.]<event-symbol> [(+|-) clock].  EventSymbolType is
+   the open DOM-event-name leaf (host-language-defined; datatype.ebnf). *)
+EventValue = [ XmlNameType , "." ] , EventSymbolType ,
+             [ ( "+" | "-" ) , ClockValue ] ;
+
+(* ── Repeat value: [<idref>.]repeat(<iteration>) [(+|-) clock] *)
+RepeatValue = [ XmlNameType , "." ] , "repeat(" , IntegerType , ")" ,
+              [ ( "+" | "-" ) , ClockValue ] ;
+
+(* ── AccessKey value: accessKey(<char>) [(+|-) clock].  The character is an
+   open single-code-point leaf modeled as StringType. *)
+AccessKeyValue = "accessKey(" , StringType , ")" ,
+                 [ ( "+" | "-" ) , ClockValue ] ;
+
+(* ── Wallclock value: wallclock( <DateTime> | <WallTime> ).  Syntactically
+   valid; not implemented by any major browser (overlay/runtime concern). *)
+WallclockValue = "wallclock(" , ( DateTime | WallTime ) , ")" ;
+DateTime       = Date , "T" , WallTime ;
+Date           = Years , "-" , Months , "-" , Days ;
+WallTime       = ( HhmmTime | HhmmssTime ) , [ Tzd ] ;
+HhmmTime       = Hours24 , ":" , Minutes ;
+HhmmssTime     = Hours24 , ":" , Minutes , ":" , Seconds , [ "." , ClockFraction ] ;
+Years          = IntegerType ;   (* 4 digits; overlay *)
+Months         = IntegerType ;   (* 01-12, range overlay *)
+Days           = IntegerType ;   (* 01-31, range overlay *)
+Hours24        = IntegerType ;   (* 00-23, range overlay *)
+Tzd            = "Z" | ( ( "+" | "-" ) , Hours24 , ":" , Minutes ) ;
+
+(* ── begin / end value lists.  ";" is a terminal so the renderer/CollapseComma-
+   List records the separator; "indefinite" is a closed keyword arm.
+   (media-marker-value is EXCLUDED — SVG defines no media markers, 13.D10.) *)
+BeginValue = OffsetValue | SyncbaseValue | EventValue | RepeatValue
+           | AccessKeyValue | WallclockValue | "indefinite" ;
+BeginValueList = BeginValue , { ";" , BeginValue } ;
+
+EndValue = OffsetValue | SyncbaseValue | EventValue | RepeatValue
+         | AccessKeyValue | WallclockValue | "indefinite" ;
+EndValueList = EndValue , { ";" , EndValue } ;
+
+(* ============================================================================
+   Value lists for keyTimes / keySplines / keyPoints (context-free; lists only.
+   VALUE grammars: no markup.  Range [0,1], monotonicity, and cardinality vs
+   `values` are overlay, Rule 3.)
+   ============================================================================ *)
+
+(* keyTimes = semicolon-separated <number> list *)
+KeyTimesList = NumberType , { ";" , NumberType } ;
+
+(* keyPoints = semicolon-separated <number> list (animateMotion) *)
+KeyPointsList = NumberType , { ";" , NumberType } ;
+
+(* keySplines = semicolon-separated cubic-Bezier control-point sets; each set is
+   four numbers (SVGwg-L2 §2.10: <number> ,? <number> ,? <number> ,? <number>).
+   Renderer space-joins within a set; ";" separates sets. *)
+ControlPointSet = NumberType , NumberType , NumberType , NumberType ;
+KeySplinesList  = ControlPointSet , { ";" , ControlPointSet } ;
+
+(* ============================================================================
+   AnimationValue union (GRAMMAR_PLAN §h; CONTEXT_SENSITIVITY Rule 2 §6).
+   VALUE grammar: no markup.  CFG over-approximation: the grammar accepts ANY
+   animatable value type; the overlay narrows to the single arm matching the
+   resolved attributeName type.  Used by animate (from/to/by/values) and set (to).
+   ============================================================================ *)
+
+AnimationValue =
+    LengthType            (* <length>: stroke-width, cx, cy, r, x, y, width, … *)
+  | NumberType            (* <number>: opacity, stroke-miterlimit, … *)
+  | PercentageType        (* <percentage> *)
+  | LengthPercentageType  (* <length-percentage> *)
+  | AngleType             (* <angle> *)
+  | ColorType             (* <color>: fill, stroke as colour *)
+  | PaintType             (* <paint>: url(#id) | <color> | none | context-* *)
+  | TransformList         (* <transform-list> *)
+  | SvgPath               (* <path-data>: the d attribute *)
+  | IntegerType           (* <integer> *)
+  | StringType            (* arbitrary string: non-interpolable attrs *)
+  | IriType               (* <IRI>: href-like attrs *)
+  | CustomIdentType       (* enumeration keywords: visibility, display, … *)
+  ;
+
+(* values = semicolon-separated list of AnimationValue *)
+AnimationValueList = AnimationValue , { ";" , AnimationValue } ;
+
+(* ============================================================================
+   animateMotion value grammar (13-animation.md "animateMotion special case").
+   VALUE grammar: no markup.  from/to/by/values on animateMotion are x,y
+   COORDINATE PAIRS, NOT the general AnimationValue union.  Renderer space-joins
+   within a pair; ";" separates.
+   ============================================================================ *)
+
+MotionCoordinatePair = NumberType , [ "," ] , NumberType ;
+MotionValues = MotionCoordinatePair , { ";" , MotionCoordinatePair } ;
+
+(* ============================================================================
+   animateTransform per-type value productions (CONTEXT_SENSITIVITY Rule 1;
+   13-animation.md "animateTransform per-type value productions").
+   VALUE grammars: no markup.  `type` is a closed set of five, so the value
+   shapes are specialized structurally.  The union AnimateTransformSingleValue
+   is the CFG over-approximation carried for from/to/by; the overlay selects the
+   correct arm from the resolved `type`.  Renderer space-joins the numbers.
+   ============================================================================ *)
+
+(* type="translate": <tx> [<ty>] *)
+AnimateTransformTranslateValue = NumberType , [ NumberType ] ;
+
+(* type="scale": <sx> [<sy>]  (sy defaults to sx — overlay) *)
+AnimateTransformScaleValue = NumberType , [ NumberType ] ;
+
+(* type="rotate": <rotate-angle> [<cx> <cy>] *)
+AnimateTransformRotateValue = NumberType , [ NumberType , NumberType ] ;
+
+(* type="skewX": <skew-angle> *)
+AnimateTransformSkewXValue = NumberType ;
+
+(* type="skewY": <skew-angle> *)
+AnimateTransformSkewYValue = NumberType ;
+
+(* CFG over-approximation for from/to/by; overlay selects the arm by `type`. *)
+AnimateTransformSingleValue =
+    AnimateTransformTranslateValue
+  | AnimateTransformScaleValue
+  | AnimateTransformRotateValue
+  | AnimateTransformSkewXValue
+  | AnimateTransformSkewYValue ;
+
+(* values = semicolon-separated list of single transform values *)
+AnimateTransformValues =
+    AnimateTransformSingleValue , { ";" , AnimateTransformSingleValue } ;
+
+(* ============================================================================
+   animate (SVG Animations Level 2 §2.13; SVGAnimateElement).
+   Content: zero or more descriptive elements and script, any order.
+   Groups: Core, Conditional, AnimationEvent, GlobalEvent, Presentation.
+   ============================================================================ *)
+
+SVGAnimateElement = "<animate" , { AnimateAttribute } , ">" , { AnimateContent } , "</animate>" ;
+AnimateContent = DescriptiveElement | SVGScriptElement ;
+
+AnimateAttribute =
+    AnimateHrefAttr | AnimateAttributeNameAttr
+  | AnimateBeginAttr | AnimateEndAttr | AnimateDurAttr | AnimateMinAttr
+  | AnimateMaxAttr | AnimateRestartAttr | AnimateRepeatCountAttr
+  | AnimateRepeatDurAttr | AnimateFillAttr
+  | AnimateCalcModeAttr | AnimateValuesAttr | AnimateKeyTimesAttr
+  | AnimateKeySplinesAttr | AnimateFromAttr | AnimateToAttr | AnimateByAttr
+  | AnimateAdditiveAttr | AnimateAccumulateAttr
+  | CoreAttribute | ConditionalProcessingAttribute | AnimationEventAttribute
+  | GlobalEventAttribute | PresentationAttribute ;
+
+(* target / attribute-target *)
+AnimateHrefAttr          = ' href="' , IriType , '"' ;
+AnimateAttributeNameAttr = ' attributeName="' , XmlNameType , '"' ;
+(* timing *)
+AnimateBeginAttr       = ' begin="' , BeginValueList , '"' ;
+AnimateEndAttr         = ' end="' , EndValueList , '"' ;
+AnimateDurAttr         = ' dur="' , ( ClockValue | "media" | "indefinite" ) , '"' ;
+AnimateMinAttr         = ' min="' , ( ClockValue | "media" ) , '"' ;
+AnimateMaxAttr         = ' max="' , ( ClockValue | "media" ) , '"' ;
+AnimateRestartAttr     = ' restart="' , ( "always" | "whenNotActive" | "never" ) , '"' ;
+AnimateRepeatCountAttr = ' repeatCount="' , ( NumberType | "indefinite" ) , '"' ;
+AnimateRepeatDurAttr   = ' repeatDur="' , ( ClockValue | "media" | "indefinite" ) , '"' ;
+(* animation fill — "freeze"|"remove"; positional, NOT paint FillAttr (§b.2) *)
+AnimateFillAttr        = ' fill="' , ( "freeze" | "remove" ) , '"' ;
+(* value *)
+AnimateCalcModeAttr    = ' calcMode="' , ( "discrete" | "linear" | "paced" | "spline" ) , '"' ;
+AnimateValuesAttr      = ' values="' , AnimationValueList , '"' ;
+AnimateKeyTimesAttr    = ' keyTimes="' , KeyTimesList , '"' ;
+AnimateKeySplinesAttr  = ' keySplines="' , KeySplinesList , '"' ;
+AnimateFromAttr        = ' from="' , AnimationValue , '"' ;
+AnimateToAttr          = ' to="' , AnimationValue , '"' ;
+AnimateByAttr          = ' by="' , AnimationValue , '"' ;
+(* addition *)
+AnimateAdditiveAttr    = ' additive="' , ( "replace" | "sum" ) , '"' ;
+AnimateAccumulateAttr  = ' accumulate="' , ( "none" | "sum" ) , '"' ;
+
+(* ============================================================================
+   set (SVG Animations Level 2 §2.14; SVGSetElement).
+   Non-additive: no additive/accumulate/calcMode/values/keyTimes/keySplines/
+   from/by; carries only `to` plus timing/target attributes.
+   Content: descriptive elements and script.  Groups: Core/Cond/AEv/GEv/Pres.
+   ============================================================================ *)
+
+SVGSetElement = "<set" , { SetAttribute } , ">" , { SetContent } , "</set>" ;
+SetContent = DescriptiveElement | SVGScriptElement ;
+
+SetAttribute =
+    SetHrefAttr | SetAttributeNameAttr
+  | SetBeginAttr | SetEndAttr | SetDurAttr | SetMinAttr | SetMaxAttr
+  | SetRestartAttr | SetRepeatCountAttr | SetRepeatDurAttr | SetFillAttr
+  | SetToAttr
+  | CoreAttribute | ConditionalProcessingAttribute | AnimationEventAttribute
+  | GlobalEventAttribute | PresentationAttribute ;
+
+SetHrefAttr          = ' href="' , IriType , '"' ;
+SetAttributeNameAttr = ' attributeName="' , XmlNameType , '"' ;
+SetBeginAttr       = ' begin="' , BeginValueList , '"' ;
+SetEndAttr         = ' end="' , EndValueList , '"' ;
+SetDurAttr         = ' dur="' , ( ClockValue | "media" | "indefinite" ) , '"' ;
+SetMinAttr         = ' min="' , ( ClockValue | "media" ) , '"' ;
+SetMaxAttr         = ' max="' , ( ClockValue | "media" ) , '"' ;
+SetRestartAttr     = ' restart="' , ( "always" | "whenNotActive" | "never" ) , '"' ;
+SetRepeatCountAttr = ' repeatCount="' , ( NumberType | "indefinite" ) , '"' ;
+SetRepeatDurAttr   = ' repeatDur="' , ( ClockValue | "media" | "indefinite" ) , '"' ;
+SetFillAttr        = ' fill="' , ( "freeze" | "remove" ) , '"' ;
+SetToAttr          = ' to="' , AnimationValue , '"' ;
+
+(* ============================================================================
+   animateMotion (SVG Animations Level 2 §2.15; SVGAnimateMotionElement).
+   Content: descriptive elements, script, and at most one mpath, any order
+   (at-most-one is an overlay cardinality check; the union over-approximates).
+   calcMode default is "paced" (differs from animate) — recorded in overlay.
+   No attributeName.  from/to/by/values use MotionValues (x,y pairs).
+   Groups: Core/Cond/AEv/GEv/Pres.
+   ============================================================================ *)
+
+SVGAnimateMotionElement = "<animateMotion" , { AnimateMotionAttribute } , ">" , { AnimateMotionContent } , "</animateMotion>" ;
+AnimateMotionContent = DescriptiveElement | SVGScriptElement | SVGMPathElement ;
+
+AnimateMotionAttribute =
+    AnimateMotionHrefAttr
+  | AnimateMotionBeginAttr | AnimateMotionEndAttr | AnimateMotionDurAttr
+  | AnimateMotionMinAttr | AnimateMotionMaxAttr | AnimateMotionRestartAttr
+  | AnimateMotionRepeatCountAttr | AnimateMotionRepeatDurAttr
+  | AnimateMotionFillAttr
+  | AnimateMotionCalcModeAttr | AnimateMotionValuesAttr
+  | AnimateMotionKeyTimesAttr | AnimateMotionKeySplinesAttr
+  | AnimateMotionFromAttr | AnimateMotionToAttr | AnimateMotionByAttr
+  | AnimateMotionPathAttr | AnimateMotionKeyPointsAttr
+  | AnimateMotionRotateAttr | AnimateMotionOriginAttr
+  | AnimateMotionAdditiveAttr | AnimateMotionAccumulateAttr
+  | CoreAttribute | ConditionalProcessingAttribute | AnimationEventAttribute
+  | GlobalEventAttribute | PresentationAttribute ;
+
+AnimateMotionHrefAttr        = ' href="' , IriType , '"' ;
+AnimateMotionBeginAttr       = ' begin="' , BeginValueList , '"' ;
+AnimateMotionEndAttr         = ' end="' , EndValueList , '"' ;
+AnimateMotionDurAttr         = ' dur="' , ( ClockValue | "media" | "indefinite" ) , '"' ;
+AnimateMotionMinAttr         = ' min="' , ( ClockValue | "media" ) , '"' ;
+AnimateMotionMaxAttr         = ' max="' , ( ClockValue | "media" ) , '"' ;
+AnimateMotionRestartAttr     = ' restart="' , ( "always" | "whenNotActive" | "never" ) , '"' ;
+AnimateMotionRepeatCountAttr = ' repeatCount="' , ( NumberType | "indefinite" ) , '"' ;
+AnimateMotionRepeatDurAttr   = ' repeatDur="' , ( ClockValue | "media" | "indefinite" ) , '"' ;
+AnimateMotionFillAttr        = ' fill="' , ( "freeze" | "remove" ) , '"' ;
+AnimateMotionCalcModeAttr    = ' calcMode="' , ( "discrete" | "linear" | "paced" | "spline" ) , '"' ;
+AnimateMotionValuesAttr      = ' values="' , MotionValues , '"' ;
+AnimateMotionKeyTimesAttr    = ' keyTimes="' , KeyTimesList , '"' ;
+AnimateMotionKeySplinesAttr  = ' keySplines="' , KeySplinesList , '"' ;
+AnimateMotionFromAttr        = ' from="' , MotionCoordinatePair , '"' ;
+AnimateMotionToAttr          = ' to="' , MotionCoordinatePair , '"' ;
+AnimateMotionByAttr          = ' by="' , MotionCoordinatePair , '"' ;
+AnimateMotionPathAttr        = ' path="' , SvgPath , '"' ;
+AnimateMotionKeyPointsAttr   = ' keyPoints="' , KeyPointsList , '"' ;
+AnimateMotionRotateAttr      = ' rotate="' , ( NumberType | "auto" | "auto-reverse" ) , '"' ;
+AnimateMotionOriginAttr      = ' origin="' , "default" , '"' ;
+AnimateMotionAdditiveAttr    = ' additive="' , ( "replace" | "sum" ) , '"' ;
+AnimateMotionAccumulateAttr  = ' accumulate="' , ( "none" | "sum" ) , '"' ;
+
+(* ============================================================================
+   animateTransform (SVG Animations Level 2 §2.16; SVGAnimateTransformElement).
+   from/to/by use AnimateTransformSingleValue; values uses AnimateTransformValues
+   — the per-type union (the `type` enum selects the arm structurally, Rule 1).
+   Content: descriptive elements and script.  Groups: Core/Cond/AEv/GEv/Pres.
+   ============================================================================ *)
+
+SVGAnimateTransformElement = "<animateTransform" , { AnimateTransformAttribute } , ">" , { AnimateTransformContent } , "</animateTransform>" ;
+AnimateTransformContent = DescriptiveElement | SVGScriptElement ;
+
+AnimateTransformAttribute =
+    AnimateTransformHrefAttr | AnimateTransformAttributeNameAttr
+  | AnimateTransformBeginAttr | AnimateTransformEndAttr | AnimateTransformDurAttr
+  | AnimateTransformMinAttr | AnimateTransformMaxAttr | AnimateTransformRestartAttr
+  | AnimateTransformRepeatCountAttr | AnimateTransformRepeatDurAttr
+  | AnimateTransformFillAttr
+  | AnimateTransformCalcModeAttr | AnimateTransformValuesAttr
+  | AnimateTransformKeyTimesAttr | AnimateTransformKeySplinesAttr
+  | AnimateTransformFromAttr | AnimateTransformToAttr | AnimateTransformByAttr
+  | AnimateTransformTypeAttr
+  | AnimateTransformAdditiveAttr | AnimateTransformAccumulateAttr
+  | CoreAttribute | ConditionalProcessingAttribute | AnimationEventAttribute
+  | GlobalEventAttribute | PresentationAttribute ;
+
+AnimateTransformHrefAttr          = ' href="' , IriType , '"' ;
+AnimateTransformAttributeNameAttr = ' attributeName="' , XmlNameType , '"' ;
+AnimateTransformBeginAttr       = ' begin="' , BeginValueList , '"' ;
+AnimateTransformEndAttr         = ' end="' , EndValueList , '"' ;
+AnimateTransformDurAttr         = ' dur="' , ( ClockValue | "media" | "indefinite" ) , '"' ;
+AnimateTransformMinAttr         = ' min="' , ( ClockValue | "media" ) , '"' ;
+AnimateTransformMaxAttr         = ' max="' , ( ClockValue | "media" ) , '"' ;
+AnimateTransformRestartAttr     = ' restart="' , ( "always" | "whenNotActive" | "never" ) , '"' ;
+AnimateTransformRepeatCountAttr = ' repeatCount="' , ( NumberType | "indefinite" ) , '"' ;
+AnimateTransformRepeatDurAttr   = ' repeatDur="' , ( ClockValue | "media" | "indefinite" ) , '"' ;
+AnimateTransformFillAttr        = ' fill="' , ( "freeze" | "remove" ) , '"' ;
+AnimateTransformCalcModeAttr    = ' calcMode="' , ( "discrete" | "linear" | "paced" | "spline" ) , '"' ;
+AnimateTransformValuesAttr      = ' values="' , AnimateTransformValues , '"' ;
+AnimateTransformKeyTimesAttr    = ' keyTimes="' , KeyTimesList , '"' ;
+AnimateTransformKeySplinesAttr  = ' keySplines="' , KeySplinesList , '"' ;
+AnimateTransformFromAttr        = ' from="' , AnimateTransformSingleValue , '"' ;
+AnimateTransformToAttr          = ' to="' , AnimateTransformSingleValue , '"' ;
+AnimateTransformByAttr          = ' by="' , AnimateTransformSingleValue , '"' ;
+AnimateTransformTypeAttr        = ' type="' ,
+    ( "translate" | "scale" | "rotate" | "skewX" | "skewY" ) , '"' ;
+AnimateTransformAdditiveAttr    = ' additive="' , ( "replace" | "sum" ) , '"' ;
+AnimateTransformAccumulateAttr  = ' accumulate="' , ( "none" | "sum" ) , '"' ;
+
+(* ============================================================================
+   mpath (SVG Animations Level 2 §2.15.1; SVGMPathElement, SVGURIReference).
+   Child of animateMotion; references a path or shape element via href.
+   Content: descriptive elements and script.  Groups: Core, GlobalEvent, Xlink.
+   ============================================================================ *)
+
+SVGMPathElement = "<mpath" , { MpathAttribute } , ">" , { MpathContent } , "</mpath>" ;
+MpathContent = DescriptiveElement | SVGScriptElement ;
+
+MpathAttribute =
+    MpathHrefAttr
+  | CoreAttribute | GlobalEventAttribute | XlinkAttribute ;
+
+MpathHrefAttr = ' href="' , IriType , '"' ;   (* required — overlay; target type overlay *)
+
+(* ============================================================================
+   discard (SVG 2 draft / MDN; NOT in SVG Animations Level 2 — stub, 13.D3).
+   Low confidence / limited browser support; included per task scope.
+   Content: descriptive elements and script.  Groups: Core only.
+   ============================================================================ *)
+
+SVGDiscardElement = "<discard" , { DiscardAttribute } , ">" , { DiscardContent } , "</discard>" ;
+DiscardContent = DescriptiveElement | SVGScriptElement ;
+
+DiscardAttribute =
+    DiscardHrefAttr | DiscardBeginAttr
+  | CoreAttribute ;
+
+DiscardHrefAttr  = ' href="' , IriType , '"' ;
+DiscardBeginAttr = ' begin="' , BeginValueList , '"' ;

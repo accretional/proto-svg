@@ -1,0 +1,954 @@
+(* ============================================================================
+   filter.ebnf — Filter Effects Module Level 1.
+   STRUCTURAL grammar (see docs/EBNF_PATTERN.md): every string derived is real
+   SVG markup.  Literal markup (`<tag`, ` attr="`, `"`, `>`, `</tag>`) is baked
+   into terminals; closed keyword sets are enumerated in full as quoted
+   terminals; only genuinely open value spaces use the scalarized *Type leaves
+   from datatype.ebnf.
+
+   This is the largest single module:
+     - 1 filter container element (SVGFilterElement, tag `filter`)
+     - 17 filter primitive elements (the FilterPrimitiveElement union members)
+     - 1 feMergeNode child (SVGFEMergeNodeElement — NOT a filter primitive)
+     - 4 transfer-function children (feFuncR/G/B/A — TransferFunctionElement)
+     - 3 light-source children (feDistantLight/fePointLight/feSpotLight —
+       LightSourceElement)
+   = 25 element productions total. (FilterPrimitiveElement, TransferFunctionElement
+   and LightSourceElement unions themselves are defined in svg.ebnf §e.)
+
+   It also defines the filter-family PRESENTATION-ATTRIBUTE productions
+   referenced by styling.ebnf's PresentationAttribute union (filter,
+   color-interpolation-filters, flood-color, flood-opacity, lighting-color,
+   image-rendering), including the CSS `filter` property value list
+   (<filter-value-list> with all 10 filter-function forms + url()).
+
+   ── Shared / cross-file references ──────────────────────────────────────────
+   datatype.ebnf  — UnitType, LengthPercentageType, CustomIdentType, IriType,
+                    NumberType, IntegerType, ListOfNumbersType,
+                    NumberOptionalNumberType, AlphaValue, ColorType, UrlType,
+                    LengthType, AngleType, PreserveAspectRatio, BooleanValue
+   svg.ebnf       — DescriptiveElement, FilterPrimitiveElement,
+                    TransferFunctionElement, LightSourceElement,
+                    SVGAnimateElement, SVGAnimateTransformElement, SVGSetElement,
+                    SVGScriptElement, CoreAttribute, PresentationAttribute,
+                    GlobalEventAttribute, DocumentElementEventAttribute,
+                    XlinkAttribute
+   styling.ebnf   — PresentationAttribute (references the filter-family attr
+                    productions defined at the bottom of this file)
+
+   ── Collision policy (docs/GRAMMAR_PLAN.md §b) ──────────────────────────────
+   x/y/width/height/in/in2/type/mode/operator/result/dx/dy/scale/edgeMode/order
+   collide across primitives → every one is a fully-qualified per-element
+   production (FeGaussianBlurXAttr, FeBlendModeAttr, FeColorMatrixTypeAttr,
+   FeTurbulenceTypeAttr, FeFuncRTypeAttr, …) so gluon's norm() dedupe cannot
+   silently merge them.  FeInValue is shared (the six builtin keywords are
+   identical everywhere `in`/`in2` appear; only the production NAME would
+   collide, so the value type is referenced, not the attr).
+
+   Reference: W3C Filter Effects Module Level 1, WD 18 Dec 2018
+              https://www.w3.org/TR/filter-effects-1/
+   See also:  docs/grammar-notes/11-filters.md, docs/GRAMMAR_PLAN.md §f.
+
+   Pattern:
+     - Element:   Name = "<tag" , { NameAttribute } , ">" , { NameContent } , "</tag>" ;
+     - Attribute: NameAttr = ' attr="' , Value , '"' ;
+   ============================================================================ *)
+
+
+(* ============================================================================
+   §0. Shared filter value types
+   ============================================================================ *)
+
+(* <fe-in-value>  (Filter Effects §15.7.5; grammar-notes/11-filters.md §<in>)
+   The six built-in source keywords are CLOSED terminals; the open arm is a
+   <filter-primitive-reference> = <custom-ident> naming a prior sibling's
+   `result`.  Shared by every `in`/`in2` attribute (the builtins are identical
+   everywhere — only the attr production NAME collides, so the VALUE type is the
+   shared singleton; see GRAMMAR_PLAN §g).
+   Context-sensitive constraint (overlay, not grammar): no forward references —
+   the custom-ident must match a `result` already emitted earlier in the same
+   filter. *)
+FeInValue = "SourceGraphic"
+          | "SourceAlpha"
+          | "BackgroundImage"
+          | "BackgroundAlpha"
+          | "FillPaint"
+          | "StrokePaint"
+          | CustomIdentType ;
+
+
+(* ============================================================================
+   §1. SVGFilterElement  (tag `filter`)
+   Filter Effects §15.3.  Content: descriptive elements, filter primitives,
+   animate/script/set.  Groups: Core, Presentation, GlobalEvent,
+   DocumentElementEvent, Xlink.  (filterRes EXCLUDED — removed in Level 1.)
+   ============================================================================ *)
+
+SVGFilterElement = "<filter" , { FilterAttribute } , ">" , { FilterContent } , "</filter>" ;
+
+FilterContent = DescriptiveElement
+              | FilterPrimitiveElement
+              | SVGAnimateElement
+              | SVGScriptElement
+              | SVGSetElement ;
+
+FilterAttribute = FilterFilterUnitsAttr
+                | FilterPrimitiveUnitsAttr
+                | FilterXAttr
+                | FilterYAttr
+                | FilterWidthAttr
+                | FilterHeightAttr
+                | FilterHrefAttr
+                | CoreAttribute
+                | PresentationAttribute
+                | GlobalEventAttribute
+                | DocumentElementEventAttribute
+                | XlinkAttribute ;
+
+(* filterUnits / primitiveUnits: shared UnitType enum (closed set
+   "userSpaceOnUse" | "objectBoundingBox"; defaults differ — objectBoundingBox
+   vs userSpaceOnUse — recorded in overlay, not grammar). *)
+FilterFilterUnitsAttr   = ' filterUnits="'    , UnitType , '"' ;
+FilterPrimitiveUnitsAttr = ' primitiveUnits="' , UnitType , '"' ;
+
+(* x/y/width/height: filter region <length-percentage>. *)
+FilterXAttr      = ' x="'      , LengthPercentageType , '"' ;
+FilterYAttr      = ' y="'      , LengthPercentageType , '"' ;
+FilterWidthAttr  = ' width="'  , LengthPercentageType , '"' ;
+FilterHeightAttr = ' height="' , LengthPercentageType , '"' ;
+
+(* href: reference to another filter element for inheritance. *)
+FilterHrefAttr = ' href="' , IriType , '"' ;
+
+
+(* ============================================================================
+   §2. Filter primitives (17)
+
+   Common filter-primitive attributes (SVGFilterPrimitiveStandardAttributes):
+   x/y/width/height → LengthPercentageType, result → CustomIdentType.  These
+   names collide across all 17 primitives, so each primitive gets its OWN fully
+   qualified productions (FeBlendXAttr, FeBlendResultAttr, …).  `in`/`in2` use
+   the shared FeInValue type via per-element attr productions.
+   ============================================================================ *)
+
+
+(* ── 2.1  feBlend  (Filter Effects §15.7.3) ──────────────────────────────────
+   in, in2, mode (16-keyword <blend-mode>), no-composite (boolean presence).
+   Content: descriptive + animate/script/set. *)
+
+SVGFEBlendElement = "<feBlend" , { FeBlendAttribute } , ">" , { FePrimitiveContent } , "</feBlend>" ;
+
+FeBlendAttribute = FeBlendInAttr
+                 | FeBlendIn2Attr
+                 | FeBlendModeAttr
+                 | FeBlendNoCompositeAttr
+                 | FeBlendXAttr
+                 | FeBlendYAttr
+                 | FeBlendWidthAttr
+                 | FeBlendHeightAttr
+                 | FeBlendResultAttr
+                 | CoreAttribute
+                 | PresentationAttribute ;
+
+FeBlendInAttr  = ' in="'  , FeInValue , '"' ;
+FeBlendIn2Attr = ' in2="' , FeInValue , '"' ;
+
+(* mode: the full closed 16-keyword <blend-mode> set (Compositing and Blending
+   Level 1; confirmed via the SVG_FEBLEND_MODE_* IDL constants). *)
+FeBlendModeAttr = ' mode="' ,
+    ( "normal" | "multiply" | "screen" | "darken" | "lighten"
+    | "overlay" | "color-dodge" | "color-burn" | "hard-light"
+    | "soft-light" | "difference" | "exclusion"
+    | "hue" | "saturation" | "color" | "luminosity" ) , '"' ;
+
+(* no-composite: boolean-presence attribute (Level-1 extension; not animatable). *)
+FeBlendNoCompositeAttr = ' no-composite="' , BooleanValue , '"' ;
+
+FeBlendXAttr      = ' x="'      , LengthPercentageType , '"' ;
+FeBlendYAttr      = ' y="'      , LengthPercentageType , '"' ;
+FeBlendWidthAttr  = ' width="'  , LengthPercentageType , '"' ;
+FeBlendHeightAttr = ' height="' , LengthPercentageType , '"' ;
+FeBlendResultAttr = ' result="' , CustomIdentType , '"' ;
+
+
+(* ── 2.2  feColorMatrix  (Filter Effects §15.7.4) ────────────────────────────
+   in, type (matrix|saturate|hueRotate|luminanceToAlpha), values (list-of-numbers).
+   Content: descriptive + animate/script/set. *)
+
+SVGFEColorMatrixElement = "<feColorMatrix" , { FeColorMatrixAttribute } , ">" , { FePrimitiveContent } , "</feColorMatrix>" ;
+
+FeColorMatrixAttribute = FeColorMatrixInAttr
+                       | FeColorMatrixTypeAttr
+                       | FeColorMatrixValuesAttr
+                       | FeColorMatrixXAttr
+                       | FeColorMatrixYAttr
+                       | FeColorMatrixWidthAttr
+                       | FeColorMatrixHeightAttr
+                       | FeColorMatrixResultAttr
+                       | CoreAttribute
+                       | PresentationAttribute ;
+
+FeColorMatrixInAttr = ' in="' , FeInValue , '"' ;
+
+(* type: closed 4-keyword set. *)
+FeColorMatrixTypeAttr = ' type="' ,
+    ( "matrix" | "saturate" | "hueRotate" | "luminanceToAlpha" ) , '"' ;
+
+(* values: <list-of-numbers> (count constraint by type is an overlay concern). *)
+FeColorMatrixValuesAttr = ' values="' , ListOfNumbersType , '"' ;
+
+FeColorMatrixXAttr      = ' x="'      , LengthPercentageType , '"' ;
+FeColorMatrixYAttr      = ' y="'      , LengthPercentageType , '"' ;
+FeColorMatrixWidthAttr  = ' width="'  , LengthPercentageType , '"' ;
+FeColorMatrixHeightAttr = ' height="' , LengthPercentageType , '"' ;
+FeColorMatrixResultAttr = ' result="' , CustomIdentType , '"' ;
+
+
+(* ── 2.3  feComponentTransfer  (Filter Effects §15.7.5) ──────────────────────
+   in only (params carried by feFunc* children).
+   Content: descriptive + transfer-function children + script. *)
+
+SVGFEComponentTransferElement = "<feComponentTransfer" , { FeComponentTransferAttribute } , ">" ,
+                 { FeComponentTransferContent } , "</feComponentTransfer>" ;
+
+FeComponentTransferContent = DescriptiveElement
+                           | TransferFunctionElement
+                           | SVGScriptElement ;
+
+FeComponentTransferAttribute = FeComponentTransferInAttr
+                             | FeComponentTransferXAttr
+                             | FeComponentTransferYAttr
+                             | FeComponentTransferWidthAttr
+                             | FeComponentTransferHeightAttr
+                             | FeComponentTransferResultAttr
+                             | CoreAttribute
+                             | PresentationAttribute ;
+
+FeComponentTransferInAttr     = ' in="'     , FeInValue , '"' ;
+FeComponentTransferXAttr      = ' x="'      , LengthPercentageType , '"' ;
+FeComponentTransferYAttr      = ' y="'      , LengthPercentageType , '"' ;
+FeComponentTransferWidthAttr  = ' width="'  , LengthPercentageType , '"' ;
+FeComponentTransferHeightAttr = ' height="' , LengthPercentageType , '"' ;
+FeComponentTransferResultAttr = ' result="' , CustomIdentType , '"' ;
+
+
+(* ── 2.4  feComposite  (Filter Effects §15.7.6) ──────────────────────────────
+   in, in2, operator (7-keyword set incl. `lighter` per prose), k1/k2/k3/k4.
+   Content: descriptive + animate/script/set. *)
+
+SVGFECompositeElement = "<feComposite" , { FeCompositeAttribute } , ">" , { FePrimitiveContent } , "</feComposite>" ;
+
+FeCompositeAttribute = FeCompositeInAttr
+                     | FeCompositeIn2Attr
+                     | FeCompositeOperatorAttr
+                     | FeCompositeK1Attr
+                     | FeCompositeK2Attr
+                     | FeCompositeK3Attr
+                     | FeCompositeK4Attr
+                     | FeCompositeXAttr
+                     | FeCompositeYAttr
+                     | FeCompositeWidthAttr
+                     | FeCompositeHeightAttr
+                     | FeCompositeResultAttr
+                     | CoreAttribute
+                     | PresentationAttribute ;
+
+FeCompositeInAttr  = ' in="'  , FeInValue , '"' ;
+FeCompositeIn2Attr = ' in2="' , FeInValue , '"' ;
+
+(* operator: closed 7-keyword set (spec prose §15.7.6; `lighter` has no IDL
+   constant but is browser-supported — D1). *)
+FeCompositeOperatorAttr = ' operator="' ,
+    ( "over" | "in" | "out" | "atop" | "xor" | "lighter" | "arithmetic" ) , '"' ;
+
+(* k1..k4: only used when operator="arithmetic" (overlay constraint). *)
+FeCompositeK1Attr = ' k1="' , NumberType , '"' ;
+FeCompositeK2Attr = ' k2="' , NumberType , '"' ;
+FeCompositeK3Attr = ' k3="' , NumberType , '"' ;
+FeCompositeK4Attr = ' k4="' , NumberType , '"' ;
+
+FeCompositeXAttr      = ' x="'      , LengthPercentageType , '"' ;
+FeCompositeYAttr      = ' y="'      , LengthPercentageType , '"' ;
+FeCompositeWidthAttr  = ' width="'  , LengthPercentageType , '"' ;
+FeCompositeHeightAttr = ' height="' , LengthPercentageType , '"' ;
+FeCompositeResultAttr = ' result="' , CustomIdentType , '"' ;
+
+
+(* ── 2.5  feConvolveMatrix  (Filter Effects §15.7.7) ─────────────────────────
+   in, order, kernelMatrix, divisor, bias, targetX, targetY, edgeMode
+   (duplicate|wrap|none, default duplicate), kernelUnitLength, preserveAlpha.
+   Content: descriptive + animate/script/set. *)
+
+SVGFEConvolveMatrixElement = "<feConvolveMatrix" , { FeConvolveMatrixAttribute } , ">" , { FePrimitiveContent } , "</feConvolveMatrix>" ;
+
+FeConvolveMatrixAttribute = FeConvolveMatrixInAttr
+                          | FeConvolveMatrixOrderAttr
+                          | FeConvolveMatrixKernelMatrixAttr
+                          | FeConvolveMatrixDivisorAttr
+                          | FeConvolveMatrixBiasAttr
+                          | FeConvolveMatrixTargetXAttr
+                          | FeConvolveMatrixTargetYAttr
+                          | FeConvolveMatrixEdgeModeAttr
+                          | FeConvolveMatrixKernelUnitLengthAttr
+                          | FeConvolveMatrixPreserveAlphaAttr
+                          | FeConvolveMatrixXAttr
+                          | FeConvolveMatrixYAttr
+                          | FeConvolveMatrixWidthAttr
+                          | FeConvolveMatrixHeightAttr
+                          | FeConvolveMatrixResultAttr
+                          | CoreAttribute
+                          | PresentationAttribute ;
+
+FeConvolveMatrixInAttr           = ' in="'           , FeInValue , '"' ;
+FeConvolveMatrixOrderAttr        = ' order="'        , NumberOptionalNumberType , '"' ;
+FeConvolveMatrixKernelMatrixAttr = ' kernelMatrix="' , ListOfNumbersType , '"' ;
+FeConvolveMatrixDivisorAttr      = ' divisor="'      , NumberType , '"' ;
+FeConvolveMatrixBiasAttr         = ' bias="'         , NumberType , '"' ;
+FeConvolveMatrixTargetXAttr      = ' targetX="'      , IntegerType , '"' ;
+FeConvolveMatrixTargetYAttr      = ' targetY="'      , IntegerType , '"' ;
+
+(* edgeMode: closed 3-keyword set (default duplicate — distinct from
+   feGaussianBlur's default none; see D3). *)
+FeConvolveMatrixEdgeModeAttr = ' edgeMode="' , ( "duplicate" | "wrap" | "none" ) , '"' ;
+
+FeConvolveMatrixKernelUnitLengthAttr = ' kernelUnitLength="' , NumberOptionalNumberType , '"' ;
+
+(* preserveAlpha: boolean ("false" | "true"). *)
+FeConvolveMatrixPreserveAlphaAttr = ' preserveAlpha="' , BooleanValue , '"' ;
+
+FeConvolveMatrixXAttr      = ' x="'      , LengthPercentageType , '"' ;
+FeConvolveMatrixYAttr      = ' y="'      , LengthPercentageType , '"' ;
+FeConvolveMatrixWidthAttr  = ' width="'  , LengthPercentageType , '"' ;
+FeConvolveMatrixHeightAttr = ' height="' , LengthPercentageType , '"' ;
+FeConvolveMatrixResultAttr = ' result="' , CustomIdentType , '"' ;
+
+
+(* ── 2.6  feDiffuseLighting  (Filter Effects §15.7.8) ────────────────────────
+   in, surfaceScale, diffuseConstant, kernelUnitLength.
+   Content: descriptive + script + exactly-one LightSourceElement.
+   (lighting-color via Presentation.) *)
+
+SVGFEDiffuseLightingElement = "<feDiffuseLighting" , { FeDiffuseLightingAttribute } , ">" ,
+                 { FeDiffuseLightingContent } , "</feDiffuseLighting>" ;
+
+FeDiffuseLightingContent = DescriptiveElement
+                         | LightSourceElement
+                         | SVGScriptElement ;
+
+FeDiffuseLightingAttribute = FeDiffuseLightingInAttr
+                           | FeDiffuseLightingSurfaceScaleAttr
+                           | FeDiffuseLightingDiffuseConstantAttr
+                           | FeDiffuseLightingKernelUnitLengthAttr
+                           | FeDiffuseLightingXAttr
+                           | FeDiffuseLightingYAttr
+                           | FeDiffuseLightingWidthAttr
+                           | FeDiffuseLightingHeightAttr
+                           | FeDiffuseLightingResultAttr
+                           | CoreAttribute
+                           | PresentationAttribute ;
+
+FeDiffuseLightingInAttr               = ' in="'               , FeInValue , '"' ;
+FeDiffuseLightingSurfaceScaleAttr     = ' surfaceScale="'     , NumberType , '"' ;
+FeDiffuseLightingDiffuseConstantAttr  = ' diffuseConstant="'  , NumberType , '"' ;
+FeDiffuseLightingKernelUnitLengthAttr = ' kernelUnitLength="' , NumberOptionalNumberType , '"' ;
+FeDiffuseLightingXAttr      = ' x="'      , LengthPercentageType , '"' ;
+FeDiffuseLightingYAttr      = ' y="'      , LengthPercentageType , '"' ;
+FeDiffuseLightingWidthAttr  = ' width="'  , LengthPercentageType , '"' ;
+FeDiffuseLightingHeightAttr = ' height="' , LengthPercentageType , '"' ;
+FeDiffuseLightingResultAttr = ' result="' , CustomIdentType , '"' ;
+
+
+(* ── 2.7  feDisplacementMap  (Filter Effects §15.7.9) ────────────────────────
+   in, in2, scale, xChannelSelector, yChannelSelector (each R|G|B|A).
+   Content: descriptive + animate/script/set. *)
+
+SVGFEDisplacementMapElement = "<feDisplacementMap" , { FeDisplacementMapAttribute } , ">" , { FePrimitiveContent } , "</feDisplacementMap>" ;
+
+FeDisplacementMapAttribute = FeDisplacementMapInAttr
+                           | FeDisplacementMapIn2Attr
+                           | FeDisplacementMapScaleAttr
+                           | FeDisplacementMapXChannelSelectorAttr
+                           | FeDisplacementMapYChannelSelectorAttr
+                           | FeDisplacementMapXAttr
+                           | FeDisplacementMapYAttr
+                           | FeDisplacementMapWidthAttr
+                           | FeDisplacementMapHeightAttr
+                           | FeDisplacementMapResultAttr
+                           | CoreAttribute
+                           | PresentationAttribute ;
+
+FeDisplacementMapInAttr    = ' in="'    , FeInValue , '"' ;
+FeDisplacementMapIn2Attr   = ' in2="'   , FeInValue , '"' ;
+FeDisplacementMapScaleAttr = ' scale="' , NumberType , '"' ;
+
+(* xChannelSelector / yChannelSelector: closed 4-keyword channel set. *)
+FeDisplacementMapXChannelSelectorAttr = ' xChannelSelector="' , ( "R" | "G" | "B" | "A" ) , '"' ;
+FeDisplacementMapYChannelSelectorAttr = ' yChannelSelector="' , ( "R" | "G" | "B" | "A" ) , '"' ;
+
+FeDisplacementMapXAttr      = ' x="'      , LengthPercentageType , '"' ;
+FeDisplacementMapYAttr      = ' y="'      , LengthPercentageType , '"' ;
+FeDisplacementMapWidthAttr  = ' width="'  , LengthPercentageType , '"' ;
+FeDisplacementMapHeightAttr = ' height="' , LengthPercentageType , '"' ;
+FeDisplacementMapResultAttr = ' result="' , CustomIdentType , '"' ;
+
+
+(* ── 2.8  feDropShadow  (Filter Effects §15.7.10) ────────────────────────────
+   in, dx, dy, stdDeviation.  (flood-color / flood-opacity via Presentation.)
+   Content: descriptive + animate/script/set. *)
+
+SVGFEDropShadowElement = "<feDropShadow" , { FeDropShadowAttribute } , ">" , { FePrimitiveContent } , "</feDropShadow>" ;
+
+FeDropShadowAttribute = FeDropShadowInAttr
+                      | FeDropShadowDxAttr
+                      | FeDropShadowDyAttr
+                      | FeDropShadowStdDeviationAttr
+                      | FeDropShadowXAttr
+                      | FeDropShadowYAttr
+                      | FeDropShadowWidthAttr
+                      | FeDropShadowHeightAttr
+                      | FeDropShadowResultAttr
+                      | CoreAttribute
+                      | PresentationAttribute ;
+
+FeDropShadowInAttr           = ' in="'           , FeInValue , '"' ;
+FeDropShadowDxAttr           = ' dx="'           , NumberType , '"' ;
+FeDropShadowDyAttr           = ' dy="'           , NumberType , '"' ;
+FeDropShadowStdDeviationAttr = ' stdDeviation="' , NumberOptionalNumberType , '"' ;
+FeDropShadowXAttr      = ' x="'      , LengthPercentageType , '"' ;
+FeDropShadowYAttr      = ' y="'      , LengthPercentageType , '"' ;
+FeDropShadowWidthAttr  = ' width="'  , LengthPercentageType , '"' ;
+FeDropShadowHeightAttr = ' height="' , LengthPercentageType , '"' ;
+FeDropShadowResultAttr = ' result="' , CustomIdentType , '"' ;
+
+
+(* ── 2.9  feFlood  (Filter Effects §15.7.11) ─────────────────────────────────
+   No `in`.  (flood-color / flood-opacity via Presentation.)
+   Content: descriptive + animate/script/set. *)
+
+SVGFEFloodElement = "<feFlood" , { FeFloodAttribute } , ">" , { FePrimitiveContent } , "</feFlood>" ;
+
+FeFloodAttribute = FeFloodXAttr
+                 | FeFloodYAttr
+                 | FeFloodWidthAttr
+                 | FeFloodHeightAttr
+                 | FeFloodResultAttr
+                 | CoreAttribute
+                 | PresentationAttribute ;
+
+FeFloodXAttr      = ' x="'      , LengthPercentageType , '"' ;
+FeFloodYAttr      = ' y="'      , LengthPercentageType , '"' ;
+FeFloodWidthAttr  = ' width="'  , LengthPercentageType , '"' ;
+FeFloodHeightAttr = ' height="' , LengthPercentageType , '"' ;
+FeFloodResultAttr = ' result="' , CustomIdentType , '"' ;
+
+
+(* ── 2.10  feGaussianBlur  (Filter Effects §15.7.12) ─────────────────────────
+   in, stdDeviation, edgeMode (duplicate|wrap|none, default none — D3).
+   Content: descriptive + animate/script/set. *)
+
+SVGFEGaussianBlurElement = "<feGaussianBlur" , { FeGaussianBlurAttribute } , ">" , { FePrimitiveContent } , "</feGaussianBlur>" ;
+
+FeGaussianBlurAttribute = FeGaussianBlurInAttr
+                        | FeGaussianBlurStdDeviationAttr
+                        | FeGaussianBlurEdgeModeAttr
+                        | FeGaussianBlurXAttr
+                        | FeGaussianBlurYAttr
+                        | FeGaussianBlurWidthAttr
+                        | FeGaussianBlurHeightAttr
+                        | FeGaussianBlurResultAttr
+                        | CoreAttribute
+                        | PresentationAttribute ;
+
+FeGaussianBlurInAttr           = ' in="'           , FeInValue , '"' ;
+FeGaussianBlurStdDeviationAttr = ' stdDeviation="' , NumberOptionalNumberType , '"' ;
+
+(* edgeMode: closed 3-keyword set (default none here — distinct from
+   feConvolveMatrix's default duplicate; see D3). *)
+FeGaussianBlurEdgeModeAttr = ' edgeMode="' , ( "duplicate" | "wrap" | "none" ) , '"' ;
+
+FeGaussianBlurXAttr      = ' x="'      , LengthPercentageType , '"' ;
+FeGaussianBlurYAttr      = ' y="'      , LengthPercentageType , '"' ;
+FeGaussianBlurWidthAttr  = ' width="'  , LengthPercentageType , '"' ;
+FeGaussianBlurHeightAttr = ' height="' , LengthPercentageType , '"' ;
+FeGaussianBlurResultAttr = ' result="' , CustomIdentType , '"' ;
+
+
+(* ── 2.11  feImage  (Filter Effects §15.7.13) ────────────────────────────────
+   No `in`.  href, preserveAspectRatio, crossorigin (anonymous|use-credentials),
+   Xlink.  Content: descriptive + animate/animateTransform/script/set. *)
+
+SVGFEImageElement = "<feImage" , { FeImageAttribute } , ">" , { FeImageContent } , "</feImage>" ;
+
+FeImageContent = DescriptiveElement
+               | SVGAnimateElement
+               | SVGAnimateTransformElement
+               | SVGScriptElement
+               | SVGSetElement ;
+
+FeImageAttribute = FeImageHrefAttr
+                 | FeImagePreserveAspectRatioAttr
+                 | FeImageCrossoriginAttr
+                 | FeImageXAttr
+                 | FeImageYAttr
+                 | FeImageWidthAttr
+                 | FeImageHeightAttr
+                 | FeImageResultAttr
+                 | CoreAttribute
+                 | PresentationAttribute
+                 | XlinkAttribute ;
+
+FeImageHrefAttr = ' href="' , IriType , '"' ;
+FeImagePreserveAspectRatioAttr = ' preserveAspectRatio="' , PreserveAspectRatio , '"' ;
+
+(* crossorigin: closed CORS keyword set (not animatable). *)
+FeImageCrossoriginAttr = ' crossorigin="' , ( "anonymous" | "use-credentials" ) , '"' ;
+
+FeImageXAttr      = ' x="'      , LengthPercentageType , '"' ;
+FeImageYAttr      = ' y="'      , LengthPercentageType , '"' ;
+FeImageWidthAttr  = ' width="'  , LengthPercentageType , '"' ;
+FeImageHeightAttr = ' height="' , LengthPercentageType , '"' ;
+FeImageResultAttr = ' result="' , CustomIdentType , '"' ;
+
+
+(* ── 2.12  feMerge  (Filter Effects §15.7.14) ────────────────────────────────
+   No `in`.  Content: descriptive + feMergeNode children + script. *)
+
+SVGFEMergeElement = "<feMerge" , { FeMergeAttribute } , ">" , { FeMergeContent } , "</feMerge>" ;
+
+FeMergeContent = DescriptiveElement
+               | SVGFEMergeNodeElement
+               | SVGScriptElement ;
+
+FeMergeAttribute = FeMergeXAttr
+                 | FeMergeYAttr
+                 | FeMergeWidthAttr
+                 | FeMergeHeightAttr
+                 | FeMergeResultAttr
+                 | CoreAttribute
+                 | PresentationAttribute ;
+
+FeMergeXAttr      = ' x="'      , LengthPercentageType , '"' ;
+FeMergeYAttr      = ' y="'      , LengthPercentageType , '"' ;
+FeMergeWidthAttr  = ' width="'  , LengthPercentageType , '"' ;
+FeMergeHeightAttr = ' height="' , LengthPercentageType , '"' ;
+FeMergeResultAttr = ' result="' , CustomIdentType , '"' ;
+
+
+(* ── 2.13  feMorphology  (Filter Effects §15.7.15) ───────────────────────────
+   in, operator (erode|dilate), radius.
+   Content: descriptive + animate/script/set. *)
+
+SVGFEMorphologyElement = "<feMorphology" , { FeMorphologyAttribute } , ">" , { FePrimitiveContent } , "</feMorphology>" ;
+
+FeMorphologyAttribute = FeMorphologyInAttr
+                      | FeMorphologyOperatorAttr
+                      | FeMorphologyRadiusAttr
+                      | FeMorphologyXAttr
+                      | FeMorphologyYAttr
+                      | FeMorphologyWidthAttr
+                      | FeMorphologyHeightAttr
+                      | FeMorphologyResultAttr
+                      | CoreAttribute
+                      | PresentationAttribute ;
+
+FeMorphologyInAttr = ' in="' , FeInValue , '"' ;
+
+(* operator: closed 2-keyword set. *)
+FeMorphologyOperatorAttr = ' operator="' , ( "erode" | "dilate" ) , '"' ;
+
+FeMorphologyRadiusAttr = ' radius="' , NumberOptionalNumberType , '"' ;
+
+FeMorphologyXAttr      = ' x="'      , LengthPercentageType , '"' ;
+FeMorphologyYAttr      = ' y="'      , LengthPercentageType , '"' ;
+FeMorphologyWidthAttr  = ' width="'  , LengthPercentageType , '"' ;
+FeMorphologyHeightAttr = ' height="' , LengthPercentageType , '"' ;
+FeMorphologyResultAttr = ' result="' , CustomIdentType , '"' ;
+
+
+(* ── 2.14  feOffset  (Filter Effects §15.7.16) ───────────────────────────────
+   in, dx, dy.  Content: descriptive + animate/script/set. *)
+
+SVGFEOffsetElement = "<feOffset" , { FeOffsetAttribute } , ">" , { FePrimitiveContent } , "</feOffset>" ;
+
+FeOffsetAttribute = FeOffsetInAttr
+                  | FeOffsetDxAttr
+                  | FeOffsetDyAttr
+                  | FeOffsetXAttr
+                  | FeOffsetYAttr
+                  | FeOffsetWidthAttr
+                  | FeOffsetHeightAttr
+                  | FeOffsetResultAttr
+                  | CoreAttribute
+                  | PresentationAttribute ;
+
+FeOffsetInAttr = ' in="' , FeInValue , '"' ;
+FeOffsetDxAttr = ' dx="' , NumberType , '"' ;
+FeOffsetDyAttr = ' dy="' , NumberType , '"' ;
+
+FeOffsetXAttr      = ' x="'      , LengthPercentageType , '"' ;
+FeOffsetYAttr      = ' y="'      , LengthPercentageType , '"' ;
+FeOffsetWidthAttr  = ' width="'  , LengthPercentageType , '"' ;
+FeOffsetHeightAttr = ' height="' , LengthPercentageType , '"' ;
+FeOffsetResultAttr = ' result="' , CustomIdentType , '"' ;
+
+
+(* ── 2.15  feSpecularLighting  (Filter Effects §15.7.17) ─────────────────────
+   in, surfaceScale, specularConstant, specularExponent, kernelUnitLength.
+   Content: descriptive + script + exactly-one LightSourceElement.
+   (lighting-color via Presentation.) *)
+
+SVGFESpecularLightingElement = "<feSpecularLighting" , { FeSpecularLightingAttribute } , ">" ,
+                 { FeSpecularLightingContent } , "</feSpecularLighting>" ;
+
+FeSpecularLightingContent = DescriptiveElement
+                          | LightSourceElement
+                          | SVGScriptElement ;
+
+FeSpecularLightingAttribute = FeSpecularLightingInAttr
+                            | FeSpecularLightingSurfaceScaleAttr
+                            | FeSpecularLightingSpecularConstantAttr
+                            | FeSpecularLightingSpecularExponentAttr
+                            | FeSpecularLightingKernelUnitLengthAttr
+                            | FeSpecularLightingXAttr
+                            | FeSpecularLightingYAttr
+                            | FeSpecularLightingWidthAttr
+                            | FeSpecularLightingHeightAttr
+                            | FeSpecularLightingResultAttr
+                            | CoreAttribute
+                            | PresentationAttribute ;
+
+FeSpecularLightingInAttr               = ' in="'               , FeInValue , '"' ;
+FeSpecularLightingSurfaceScaleAttr     = ' surfaceScale="'     , NumberType , '"' ;
+FeSpecularLightingSpecularConstantAttr = ' specularConstant="' , NumberType , '"' ;
+FeSpecularLightingSpecularExponentAttr = ' specularExponent="' , NumberType , '"' ;
+FeSpecularLightingKernelUnitLengthAttr = ' kernelUnitLength="' , NumberOptionalNumberType , '"' ;
+FeSpecularLightingXAttr      = ' x="'      , LengthPercentageType , '"' ;
+FeSpecularLightingYAttr      = ' y="'      , LengthPercentageType , '"' ;
+FeSpecularLightingWidthAttr  = ' width="'  , LengthPercentageType , '"' ;
+FeSpecularLightingHeightAttr = ' height="' , LengthPercentageType , '"' ;
+FeSpecularLightingResultAttr = ' result="' , CustomIdentType , '"' ;
+
+
+(* ── 2.16  feTile  (Filter Effects §15.7.18) ─────────────────────────────────
+   in only.  Content: descriptive + animate/script/set. *)
+
+SVGFETileElement = "<feTile" , { FeTileAttribute } , ">" , { FePrimitiveContent } , "</feTile>" ;
+
+FeTileAttribute = FeTileInAttr
+                | FeTileXAttr
+                | FeTileYAttr
+                | FeTileWidthAttr
+                | FeTileHeightAttr
+                | FeTileResultAttr
+                | CoreAttribute
+                | PresentationAttribute ;
+
+FeTileInAttr     = ' in="'     , FeInValue , '"' ;
+FeTileXAttr      = ' x="'      , LengthPercentageType , '"' ;
+FeTileYAttr      = ' y="'      , LengthPercentageType , '"' ;
+FeTileWidthAttr  = ' width="'  , LengthPercentageType , '"' ;
+FeTileHeightAttr = ' height="' , LengthPercentageType , '"' ;
+FeTileResultAttr = ' result="' , CustomIdentType , '"' ;
+
+
+(* ── 2.17  feTurbulence  (Filter Effects §15.7.19) ───────────────────────────
+   No `in`.  baseFrequency, numOctaves, seed, stitchTiles (stitch|noStitch),
+   type (fractalNoise|turbulence).  Content: descriptive + animate/script/set. *)
+
+SVGFETurbulenceElement = "<feTurbulence" , { FeTurbulenceAttribute } , ">" , { FePrimitiveContent } , "</feTurbulence>" ;
+
+FeTurbulenceAttribute = FeTurbulenceBaseFrequencyAttr
+                      | FeTurbulenceNumOctavesAttr
+                      | FeTurbulenceSeedAttr
+                      | FeTurbulenceStitchTilesAttr
+                      | FeTurbulenceTypeAttr
+                      | FeTurbulenceXAttr
+                      | FeTurbulenceYAttr
+                      | FeTurbulenceWidthAttr
+                      | FeTurbulenceHeightAttr
+                      | FeTurbulenceResultAttr
+                      | CoreAttribute
+                      | PresentationAttribute ;
+
+FeTurbulenceBaseFrequencyAttr = ' baseFrequency="' , NumberOptionalNumberType , '"' ;
+FeTurbulenceNumOctavesAttr    = ' numOctaves="'    , IntegerType , '"' ;
+FeTurbulenceSeedAttr          = ' seed="'          , NumberType , '"' ;
+
+(* stitchTiles: closed 2-keyword set. *)
+FeTurbulenceStitchTilesAttr = ' stitchTiles="' , ( "stitch" | "noStitch" ) , '"' ;
+
+(* type: closed 2-keyword set (distinct from feColorMatrix type — D-collision). *)
+FeTurbulenceTypeAttr = ' type="' , ( "fractalNoise" | "turbulence" ) , '"' ;
+
+FeTurbulenceXAttr      = ' x="'      , LengthPercentageType , '"' ;
+FeTurbulenceYAttr      = ' y="'      , LengthPercentageType , '"' ;
+FeTurbulenceWidthAttr  = ' width="'  , LengthPercentageType , '"' ;
+FeTurbulenceHeightAttr = ' height="' , LengthPercentageType , '"' ;
+FeTurbulenceResultAttr = ' result="' , CustomIdentType , '"' ;
+
+
+(* ── Shared filter-primitive content model ───────────────────────────────────
+   Most primitives share this content model: descriptive elements +
+   animate/script/set.  Primitives with richer models (feComponentTransfer,
+   feDiffuseLighting, feSpecularLighting, feImage, feMerge) define their own
+   above. *)
+
+FePrimitiveContent = DescriptiveElement
+                   | SVGAnimateElement
+                   | SVGScriptElement
+                   | SVGSetElement ;
+
+
+(* ============================================================================
+   §3. feMergeNode  (Filter Effects §15.7.14.1)
+   NOT a filter primitive (category "None" — D14).  Does NOT carry
+   x/y/width/height/result.  Only `in`.
+   Content: descriptive + animate/script/set.
+   ============================================================================ *)
+
+SVGFEMergeNodeElement = "<feMergeNode" , { FeMergeNodeAttribute } , ">" , { FePrimitiveContent } , "</feMergeNode>" ;
+
+FeMergeNodeAttribute = FeMergeNodeInAttr
+                     | CoreAttribute
+                     | PresentationAttribute ;
+
+FeMergeNodeInAttr = ' in="' , FeInValue , '"' ;
+
+
+(* ============================================================================
+   §4. Transfer-function elements  (feFuncR / feFuncG / feFuncB / feFuncA)
+   Filter Effects §15.7.5.  Children of feComponentTransfer
+   (TransferFunctionElement union, svg.ebnf §e).
+   type (identity|table|discrete|linear|gamma), tableValues, slope, intercept,
+   amplitude, exponent, offset.  Content: descriptive + animate/script/set.
+
+   The `type` keyword set is identical on all four, but the production NAME
+   collides → each gets its own FeFunc<C>TypeAttr (D-collision §b).
+   ============================================================================ *)
+
+(* ── 4.1  feFuncR ── *)
+SVGFEFuncRElement = "<feFuncR" , { FeFuncRAttribute } , ">" , { FePrimitiveContent } , "</feFuncR>" ;
+
+FeFuncRAttribute = FeFuncRTypeAttr
+                 | FeFuncRTableValuesAttr
+                 | FeFuncRSlopeAttr
+                 | FeFuncRInterceptAttr
+                 | FeFuncRAmplitudeAttr
+                 | FeFuncRExponentAttr
+                 | FeFuncROffsetAttr
+                 | CoreAttribute
+                 | PresentationAttribute ;
+
+FeFuncRTypeAttr        = ' type="'        , ( "identity" | "table" | "discrete" | "linear" | "gamma" ) , '"' ;
+FeFuncRTableValuesAttr = ' tableValues="' , ListOfNumbersType , '"' ;
+FeFuncRSlopeAttr       = ' slope="'       , NumberType , '"' ;
+FeFuncRInterceptAttr   = ' intercept="'   , NumberType , '"' ;
+FeFuncRAmplitudeAttr   = ' amplitude="'   , NumberType , '"' ;
+FeFuncRExponentAttr    = ' exponent="'    , NumberType , '"' ;
+FeFuncROffsetAttr      = ' offset="'      , NumberType , '"' ;
+
+(* ── 4.2  feFuncG ── *)
+SVGFEFuncGElement = "<feFuncG" , { FeFuncGAttribute } , ">" , { FePrimitiveContent } , "</feFuncG>" ;
+
+FeFuncGAttribute = FeFuncGTypeAttr
+                 | FeFuncGTableValuesAttr
+                 | FeFuncGSlopeAttr
+                 | FeFuncGInterceptAttr
+                 | FeFuncGAmplitudeAttr
+                 | FeFuncGExponentAttr
+                 | FeFuncGOffsetAttr
+                 | CoreAttribute
+                 | PresentationAttribute ;
+
+FeFuncGTypeAttr        = ' type="'        , ( "identity" | "table" | "discrete" | "linear" | "gamma" ) , '"' ;
+FeFuncGTableValuesAttr = ' tableValues="' , ListOfNumbersType , '"' ;
+FeFuncGSlopeAttr       = ' slope="'       , NumberType , '"' ;
+FeFuncGInterceptAttr   = ' intercept="'   , NumberType , '"' ;
+FeFuncGAmplitudeAttr   = ' amplitude="'   , NumberType , '"' ;
+FeFuncGExponentAttr    = ' exponent="'    , NumberType , '"' ;
+FeFuncGOffsetAttr      = ' offset="'      , NumberType , '"' ;
+
+(* ── 4.3  feFuncB ── *)
+SVGFEFuncBElement = "<feFuncB" , { FeFuncBAttribute } , ">" , { FePrimitiveContent } , "</feFuncB>" ;
+
+FeFuncBAttribute = FeFuncBTypeAttr
+                 | FeFuncBTableValuesAttr
+                 | FeFuncBSlopeAttr
+                 | FeFuncBInterceptAttr
+                 | FeFuncBAmplitudeAttr
+                 | FeFuncBExponentAttr
+                 | FeFuncBOffsetAttr
+                 | CoreAttribute
+                 | PresentationAttribute ;
+
+FeFuncBTypeAttr        = ' type="'        , ( "identity" | "table" | "discrete" | "linear" | "gamma" ) , '"' ;
+FeFuncBTableValuesAttr = ' tableValues="' , ListOfNumbersType , '"' ;
+FeFuncBSlopeAttr       = ' slope="'       , NumberType , '"' ;
+FeFuncBInterceptAttr   = ' intercept="'   , NumberType , '"' ;
+FeFuncBAmplitudeAttr   = ' amplitude="'   , NumberType , '"' ;
+FeFuncBExponentAttr    = ' exponent="'    , NumberType , '"' ;
+FeFuncBOffsetAttr      = ' offset="'      , NumberType , '"' ;
+
+(* ── 4.4  feFuncA ── *)
+SVGFEFuncAElement = "<feFuncA" , { FeFuncAAttribute } , ">" , { FePrimitiveContent } , "</feFuncA>" ;
+
+FeFuncAAttribute = FeFuncATypeAttr
+                 | FeFuncATableValuesAttr
+                 | FeFuncASlopeAttr
+                 | FeFuncAInterceptAttr
+                 | FeFuncAAmplitudeAttr
+                 | FeFuncAExponentAttr
+                 | FeFuncAOffsetAttr
+                 | CoreAttribute
+                 | PresentationAttribute ;
+
+FeFuncATypeAttr        = ' type="'        , ( "identity" | "table" | "discrete" | "linear" | "gamma" ) , '"' ;
+FeFuncATableValuesAttr = ' tableValues="' , ListOfNumbersType , '"' ;
+FeFuncASlopeAttr       = ' slope="'       , NumberType , '"' ;
+FeFuncAInterceptAttr   = ' intercept="'   , NumberType , '"' ;
+FeFuncAAmplitudeAttr   = ' amplitude="'   , NumberType , '"' ;
+FeFuncAExponentAttr    = ' exponent="'    , NumberType , '"' ;
+FeFuncAOffsetAttr      = ' offset="'      , NumberType , '"' ;
+
+
+(* ============================================================================
+   §5. Light-source elements  (feDistantLight / fePointLight / feSpotLight)
+   Filter Effects §15.6.  Children of feDiffuseLighting / feSpecularLighting
+   (LightSourceElement union, svg.ebnf §e).
+   Content: descriptive + animate/script/set.
+   ============================================================================ *)
+
+(* ── 5.1  feDistantLight ── azimuth, elevation. *)
+SVGFEDistantLightElement = "<feDistantLight" , { FeDistantLightAttribute } , ">" , { FePrimitiveContent } , "</feDistantLight>" ;
+
+FeDistantLightAttribute = FeDistantLightAzimuthAttr
+                        | FeDistantLightElevationAttr
+                        | CoreAttribute
+                        | PresentationAttribute ;
+
+FeDistantLightAzimuthAttr   = ' azimuth="'   , NumberType , '"' ;
+FeDistantLightElevationAttr = ' elevation="' , NumberType , '"' ;
+
+(* ── 5.2  fePointLight ── x, y, z. *)
+SVGFEPointLightElement = "<fePointLight" , { FePointLightAttribute } , ">" , { FePrimitiveContent } , "</fePointLight>" ;
+
+FePointLightAttribute = FePointLightXAttr
+                      | FePointLightYAttr
+                      | FePointLightZAttr
+                      | CoreAttribute
+                      | PresentationAttribute ;
+
+FePointLightXAttr = ' x="' , NumberType , '"' ;
+FePointLightYAttr = ' y="' , NumberType , '"' ;
+FePointLightZAttr = ' z="' , NumberType , '"' ;
+
+(* ── 5.3  feSpotLight ── x, y, z, pointsAtX, pointsAtY, pointsAtZ,
+   specularExponent, limitingConeAngle.  (specularExponent here is distinct
+   from feSpecularLighting's — D, different role; per-element name keeps them
+   from colliding.) *)
+SVGFESpotLightElement = "<feSpotLight" , { FeSpotLightAttribute } , ">" , { FePrimitiveContent } , "</feSpotLight>" ;
+
+FeSpotLightAttribute = FeSpotLightXAttr
+                     | FeSpotLightYAttr
+                     | FeSpotLightZAttr
+                     | FeSpotLightPointsAtXAttr
+                     | FeSpotLightPointsAtYAttr
+                     | FeSpotLightPointsAtZAttr
+                     | FeSpotLightSpecularExponentAttr
+                     | FeSpotLightLimitingConeAngleAttr
+                     | CoreAttribute
+                     | PresentationAttribute ;
+
+FeSpotLightXAttr                 = ' x="'                 , NumberType , '"' ;
+FeSpotLightYAttr                 = ' y="'                 , NumberType , '"' ;
+FeSpotLightZAttr                 = ' z="'                 , NumberType , '"' ;
+FeSpotLightPointsAtXAttr         = ' pointsAtX="'         , NumberType , '"' ;
+FeSpotLightPointsAtYAttr         = ' pointsAtY="'         , NumberType , '"' ;
+FeSpotLightPointsAtZAttr         = ' pointsAtZ="'         , NumberType , '"' ;
+FeSpotLightSpecularExponentAttr  = ' specularExponent="'  , NumberType , '"' ;
+FeSpotLightLimitingConeAngleAttr = ' limitingConeAngle="' , NumberType , '"' ;
+
+
+(* ============================================================================
+   §6. Filter-family PRESENTATION-ATTRIBUTE productions
+   Referenced by styling.ebnf's PresentationAttribute union.  Canonical home
+   (GRAMMAR_PLAN §d, §g) for: filter, color-interpolation-filters, flood-color,
+   flood-opacity, lighting-color, image-rendering.
+   ============================================================================ *)
+
+(* ── filter property ─────────────────────────────────────────────────────────
+   filter = none | <filter-value-list>
+   <filter-value-list> = [ <filter-function> | <url> ]+   (one or more)
+   Each <filter-function> is a functional value with `(` `)` terminals baked in.
+   (grammar-notes/11-filters.md "filter property value (CSS)".) *)
+
+FilterAttr = ' filter="' , ( "none" | FilterValueList ) , '"' ;
+
+FilterValueList = FilterValueItem , { FilterValueItem } ;
+
+FilterValueItem = FilterFunction | UrlType ;
+
+FilterFunction = BlurFunction
+               | BrightnessFunction
+               | ContrastFunction
+               | DropShadowFunction
+               | GrayscaleFunction
+               | HueRotateFunction
+               | InvertFunction
+               | OpacityFunction
+               | SaturateFunction
+               | SepiaFunction ;
+
+(* blur( <length>? ) — no percentages, no negatives (overlay). *)
+BlurFunction = "blur(" , [ LengthType ] , ")" ;
+
+(* brightness( <number-percentage>? ) *)
+BrightnessFunction = "brightness(" , [ NumberPercentage ] , ")" ;
+
+(* contrast( <number-percentage>? ) *)
+ContrastFunction = "contrast(" , [ NumberPercentage ] , ")" ;
+
+(* drop-shadow( <color>? && <length>{2,3} ) — color may precede or follow the
+   lengths; modeled as optional color plus two-or-three lengths. *)
+DropShadowFunction = "drop-shadow(" , [ ColorType ] , LengthType , LengthType , [ LengthType ] , ")" ;
+
+(* grayscale( <number-percentage>? ) *)
+GrayscaleFunction = "grayscale(" , [ NumberPercentage ] , ")" ;
+
+(* hue-rotate( [ <angle> | <zero> ]? ) — unitless 0 allowed (AngleType covers
+   the unit-suffixed forms; bare 0 via NumberType). *)
+HueRotateFunction = "hue-rotate(" , [ AngleType | NumberType ] , ")" ;
+
+(* invert( <number-percentage>? ) *)
+InvertFunction = "invert(" , [ NumberPercentage ] , ")" ;
+
+(* opacity( <number-percentage>? ) *)
+OpacityFunction = "opacity(" , [ NumberPercentage ] , ")" ;
+
+(* saturate( <number-percentage>? ) *)
+SaturateFunction = "saturate(" , [ NumberPercentage ] , ")" ;
+
+(* sepia( <number-percentage>? ) *)
+SepiaFunction = "sepia(" , [ NumberPercentage ] , ")" ;
+
+(* <number-percentage> = <number> | <percentage> *)
+NumberPercentage = NumberType | PercentageType ;
+
+(* ── color-interpolation-filters ── closed 3-keyword set (initial linearRGB —
+   distinct production from color-interpolation in painting.ebnf, which has
+   initial sRGB; D, GRAMMAR_PLAN §g). *)
+ColorInterpolationFiltersAttr = ' color-interpolation-filters="' ,
+    ( "auto" | "sRGB" | "linearRGB" ) , '"' ;
+
+(* ── flood-color ── currentColor (closed keyword) | <color>. *)
+FloodColorAttr = ' flood-color="' , ( "currentColor" | ColorType ) , '"' ;
+
+(* ── flood-opacity ── <alpha-value>. *)
+FloodOpacityAttr = ' flood-opacity="' , AlphaValue , '"' ;
+
+(* ── lighting-color ── currentColor (closed keyword) | <color>. *)
+LightingColorAttr = ' lighting-color="' , ( "currentColor" | ColorType ) , '"' ;
+
+(* ── image-rendering ── closed 5-keyword set. *)
+ImageRenderingAttr = ' image-rendering="' ,
+    ( "auto" | "optimizeSpeed" | "optimizeQuality" | "crisp-edges" | "pixelated" ) , '"' ;

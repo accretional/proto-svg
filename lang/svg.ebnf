@@ -1,0 +1,318 @@
+(* ============================================================================
+   svg.ebnf — ROOT grammar file (concatenated first; SvgDocument is the genproto
+   prune root). STRUCTURAL grammar: every string it derives is real SVG markup.
+
+   Holds: SvgDocument and the Svg element; the content-category unions; the
+   shared attribute-group productions (Core/Conditional/Aria/event/Xlink); and
+   the generic container elements (g, defs, switch, a, unknown).
+
+   Pattern (see docs/EBNF_PATTERN.md):
+     - Element:   Name = "<tag" , { NameAttribute } , ">" , { NameContent } , "</tag>" ;
+     - Attribute: NameAttr = ' attr="' , Value , '"' ;   (leading space + name + ="; closing ")
+     - Closed keyword sets are enumerated in full as terminals; only genuinely
+       open values use the scalarized leaf *Type rules from datatype.ebnf.
+     - Element/attribute names with colons/kebab are literal terminals.
+   ============================================================================ *)
+
+SvgDocument = SVGSVGElement ;
+
+(* ── Content-category unions (docs/GRAMMAR_PLAN.md §e) ─────────────────────── *)
+
+AnimationElement        = SVGAnimateElement | SVGAnimateMotionElement | SVGAnimateTransformElement | SVGDiscardElement | SVGSetElement ;
+DescriptiveElement      = SVGDescElement | SVGTitleElement | SVGMetadataElement ;
+ShapeElement            = SVGCircleElement | SVGEllipseElement | SVGLineElement | SVGPathElement | SVGPolygonElement | SVGPolylineElement | SVGRectElement ;
+StructuralElement       = SVGDefsElement | SVGGElement | SVGSVGElement | SVGSymbolElement | SVGUseElement ;
+PaintServerElement      = SVGLinearGradientElement | SVGRadialGradientElement | SVGPatternElement ;
+GradientElement         = SVGLinearGradientElement | SVGRadialGradientElement ;
+FilterPrimitiveElement  = SVGFEBlendElement | SVGFEColorMatrixElement | SVGFEComponentTransferElement | SVGFECompositeElement
+                        | SVGFEConvolveMatrixElement | SVGFEDiffuseLightingElement | SVGFEDisplacementMapElement
+                        | SVGFEDropShadowElement | SVGFEFloodElement | SVGFEGaussianBlurElement | SVGFEImageElement | SVGFEMergeElement
+                        | SVGFEMorphologyElement | SVGFEOffsetElement | SVGFESpecularLightingElement | SVGFETileElement | SVGFETurbulenceElement ;
+TransferFunctionElement = SVGFEFuncRElement | SVGFEFuncGElement | SVGFEFuncBElement | SVGFEFuncAElement ;
+LightSourceElement      = SVGFEDistantLightElement | SVGFEPointLightElement | SVGFESpotLightElement ;
+TextContentChildElement = SVGTSpanElement | SVGTextPathElement ;
+
+ContainerContent = AnimationElement | DescriptiveElement | PaintServerElement
+                 | ShapeElement | StructuralElement | SVGAElement | SVGClipPathElement | SVGFilterElement
+                 | SVGForeignObjectElement | SVGImageElement | SVGMarkerElement | SVGMaskElement | SVGScriptElement | SVGStyleElement
+                 | SVGSwitchElement | SVGTextElement | SVGViewElement ;
+
+(* ── CoreAttributes ───────────────────────────────────────────────────────── *)
+
+CoreAttribute = IdAttr | TabindexAttr | AutofocusAttr | LangAttr | XmlLangAttr
+              | XmlSpaceAttr | ClassAttr | StyleAttr | DataAttr ;
+
+IdAttr        = ' id="' , XmlNameType , '"' ;
+TabindexAttr  = ' tabindex="' , IntegerType , '"' ;
+AutofocusAttr = ' autofocus="' , BooleanValue , '"' ;
+LangAttr      = ' lang="' , Bcp47Type , '"' ;
+XmlLangAttr   = ' xml:lang="' , Bcp47Type , '"' ;
+XmlSpaceAttr  = ' xml:space="' , ( "default" | "preserve" ) , '"' ;
+ClassAttr     = ' class="' , StringType , '"' ;
+StyleAttr     = ' style="' , StringType , '"' ;
+DataAttr      = ' data-name="' , StringType , '"' ;
+
+(* ── ConditionalProcessingAttributes ──────────────────────────────────────── *)
+
+ConditionalProcessingAttribute = RequiredExtensionsAttr | SystemLanguageAttr ;
+RequiredExtensionsAttr = ' requiredExtensions="' , StringType , '"' ;
+SystemLanguageAttr     = ' systemLanguage="' , StringType , '"' ;
+
+(* ── AriaAttributes (role + 47 aria-*; every closed set enumerated) ────────── *)
+
+AriaAttribute = RoleAttr
+  | AriaActivedescendantAttr | AriaAtomicAttr | AriaAutocompleteAttr | AriaBusyAttr
+  | AriaCheckedAttr | AriaColcountAttr | AriaColindexAttr | AriaColspanAttr
+  | AriaControlsAttr | AriaCurrentAttr | AriaDescribedbyAttr | AriaDetailsAttr
+  | AriaDisabledAttr | AriaDropeffectAttr | AriaErrormessageAttr | AriaExpandedAttr
+  | AriaFlowtoAttr | AriaGrabbedAttr | AriaHaspopupAttr | AriaHiddenAttr
+  | AriaInvalidAttr | AriaKeyshortcutsAttr | AriaLabelAttr | AriaLabelledbyAttr
+  | AriaLevelAttr | AriaLiveAttr | AriaModalAttr | AriaMultilineAttr
+  | AriaMultiselectableAttr | AriaOrientationAttr | AriaOwnsAttr | AriaPlaceholderAttr
+  | AriaPosinsetAttr | AriaPressedAttr | AriaReadonlyAttr | AriaRelevantAttr
+  | AriaRequiredAttr | AriaRoledescriptionAttr | AriaRowcountAttr | AriaRowindexAttr
+  | AriaRowspanAttr | AriaSelectedAttr | AriaSetsizeAttr | AriaSortAttr
+  | AriaValuemaxAttr | AriaValueminAttr | AriaValuenowAttr | AriaValuetextAttr ;
+
+(* shared ARIA value enumerations (closed keyword sets) *)
+AriaBooleanUndefined = "true" | "false" | "undefined" ;
+AriaTristate         = "true" | "false" | "mixed" | "undefined" ;
+
+RoleAttr  = ' role="' , RoleValue , '"' ;
+RoleValue = RoleToken , { RoleToken } ;
+RoleToken = "alert" | "alertdialog" | "application" | "article" | "banner"
+          | "blockquote" | "button" | "caption" | "cell" | "checkbox" | "code"
+          | "columnheader" | "combobox" | "complementary" | "contentinfo"
+          | "definition" | "deletion" | "dialog" | "directory" | "document"
+          | "emphasis" | "feed" | "figure" | "form" | "generic" | "grid"
+          | "gridcell" | "group" | "heading" | "img" | "insertion" | "link"
+          | "list" | "listbox" | "listitem" | "log" | "main" | "marquee"
+          | "math" | "menu" | "menubar" | "menuitem" | "menuitemcheckbox"
+          | "menuitemradio" | "meter" | "navigation" | "none" | "note"
+          | "option" | "paragraph" | "presentation" | "progressbar" | "radio"
+          | "radiogroup" | "region" | "row" | "rowgroup" | "rowheader"
+          | "scrollbar" | "search" | "searchbox" | "separator" | "slider"
+          | "spinbutton" | "status" | "strong" | "subscript" | "superscript"
+          | "switch" | "tab" | "table" | "tablist" | "tabpanel" | "term"
+          | "textbox" | "time" | "timer" | "toolbar" | "tooltip" | "tree"
+          | "treegrid" | "treeitem" ;
+
+AriaActivedescendantAttr = ' aria-activedescendant="' , XmlNameType , '"' ;
+AriaAtomicAttr           = ' aria-atomic="' , BooleanValue , '"' ;
+AriaAutocompleteAttr     = ' aria-autocomplete="' , ( "inline" | "list" | "both" | "none" ) , '"' ;
+AriaBusyAttr             = ' aria-busy="' , BooleanValue , '"' ;
+AriaCheckedAttr          = ' aria-checked="' , AriaTristate , '"' ;
+AriaColcountAttr         = ' aria-colcount="' , IntegerType , '"' ;
+AriaColindexAttr         = ' aria-colindex="' , IntegerType , '"' ;
+AriaColspanAttr          = ' aria-colspan="' , IntegerType , '"' ;
+AriaControlsAttr         = ' aria-controls="' , StringType , '"' ;
+AriaCurrentAttr          = ' aria-current="' , ( "page" | "step" | "location" | "date" | "time" | "true" | "false" ) , '"' ;
+AriaDescribedbyAttr      = ' aria-describedby="' , StringType , '"' ;
+AriaDetailsAttr          = ' aria-details="' , StringType , '"' ;
+AriaDisabledAttr         = ' aria-disabled="' , BooleanValue , '"' ;
+AriaDropeffectAttr       = ' aria-dropeffect="' , AriaDropeffectValue , '"' ;
+AriaDropeffectValue      = AriaDropeffectToken , { AriaDropeffectToken } ;
+AriaDropeffectToken      = "copy" | "execute" | "link" | "move" | "none" | "popup" ;
+AriaErrormessageAttr     = ' aria-errormessage="' , StringType , '"' ;
+AriaExpandedAttr         = ' aria-expanded="' , AriaBooleanUndefined , '"' ;
+AriaFlowtoAttr           = ' aria-flowto="' , StringType , '"' ;
+AriaGrabbedAttr          = ' aria-grabbed="' , AriaBooleanUndefined , '"' ;
+AriaHaspopupAttr         = ' aria-haspopup="' , ( "false" | "true" | "menu" | "listbox" | "tree" | "grid" | "dialog" ) , '"' ;
+AriaHiddenAttr           = ' aria-hidden="' , AriaBooleanUndefined , '"' ;
+AriaInvalidAttr          = ' aria-invalid="' , ( "grammar" | "false" | "spelling" | "true" ) , '"' ;
+AriaKeyshortcutsAttr     = ' aria-keyshortcuts="' , StringType , '"' ;
+AriaLabelAttr            = ' aria-label="' , StringType , '"' ;
+AriaLabelledbyAttr       = ' aria-labelledby="' , StringType , '"' ;
+AriaLevelAttr            = ' aria-level="' , IntegerType , '"' ;
+AriaLiveAttr             = ' aria-live="' , ( "off" | "assertive" | "polite" ) , '"' ;
+AriaModalAttr            = ' aria-modal="' , BooleanValue , '"' ;
+AriaMultilineAttr        = ' aria-multiline="' , BooleanValue , '"' ;
+AriaMultiselectableAttr  = ' aria-multiselectable="' , BooleanValue , '"' ;
+AriaOrientationAttr      = ' aria-orientation="' , ( "horizontal" | "vertical" | "undefined" ) , '"' ;
+AriaOwnsAttr             = ' aria-owns="' , StringType , '"' ;
+AriaPlaceholderAttr      = ' aria-placeholder="' , StringType , '"' ;
+AriaPosinsetAttr         = ' aria-posinset="' , IntegerType , '"' ;
+AriaPressedAttr          = ' aria-pressed="' , AriaTristate , '"' ;
+AriaReadonlyAttr         = ' aria-readonly="' , BooleanValue , '"' ;
+AriaRelevantAttr         = ' aria-relevant="' , AriaRelevantValue , '"' ;
+AriaRelevantValue        = AriaRelevantToken , { AriaRelevantToken } ;
+AriaRelevantToken        = "additions" | "all" | "removals" | "text" ;
+AriaRequiredAttr         = ' aria-required="' , BooleanValue , '"' ;
+AriaRoledescriptionAttr  = ' aria-roledescription="' , StringType , '"' ;
+AriaRowcountAttr         = ' aria-rowcount="' , IntegerType , '"' ;
+AriaRowindexAttr         = ' aria-rowindex="' , IntegerType , '"' ;
+AriaRowspanAttr          = ' aria-rowspan="' , IntegerType , '"' ;
+AriaSelectedAttr         = ' aria-selected="' , AriaBooleanUndefined , '"' ;
+AriaSetsizeAttr          = ' aria-setsize="' , IntegerType , '"' ;
+AriaSortAttr             = ' aria-sort="' , ( "ascending" | "descending" | "none" | "other" ) , '"' ;
+AriaValuemaxAttr         = ' aria-valuemax="' , NumberType , '"' ;
+AriaValueminAttr         = ' aria-valuemin="' , NumberType , '"' ;
+AriaValuenowAttr         = ' aria-valuenow="' , NumberType , '"' ;
+AriaValuetextAttr        = ' aria-valuetext="' , StringType , '"' ;
+
+(* ── GlobalEventAttributes (57; values are arbitrary script bodies) ────────── *)
+
+GlobalEventAttribute = OncancelAttr | OncanplayAttr | OncanplaythroughAttr | OnchangeAttr
+  | OnclickAttr | OncloseAttr | OncuechangeAttr | OndblclickAttr | OndragAttr | OndragendAttr
+  | OndragenterAttr | OndragleaveAttr | OndragoverAttr | OndragstartAttr | OndropAttr
+  | OndurationchangeAttr | OnemptiedAttr | OnendedAttr | OnerrorAttr | OnfocusAttr | OninputAttr
+  | OninvalidAttr | OnkeydownAttr | OnkeypressAttr | OnkeyupAttr | OnloadAttr | OnloadeddataAttr
+  | OnloadedmetadataAttr | OnloadstartAttr | OnmousedownAttr | OnmouseenterAttr | OnmouseleaveAttr
+  | OnmousemoveAttr | OnmouseoutAttr | OnmouseoverAttr | OnmouseupAttr | OnpauseAttr | OnplayAttr
+  | OnplayingAttr | OnprogressAttr | OnratechangeAttr | OnresetAttr | OnresizeAttr | OnscrollAttr
+  | OnseekedAttr | OnseekingAttr | OnselectAttr | OnstalledAttr | OnsubmitAttr | OnsuspendAttr
+  | OntimeupdateAttr | OntoggleAttr | OnvolumechangeAttr | OnwaitingAttr | OnwheelAttr ;
+
+OncancelAttr         = ' oncancel="' , StringType , '"' ;
+OncanplayAttr        = ' oncanplay="' , StringType , '"' ;
+OncanplaythroughAttr = ' oncanplaythrough="' , StringType , '"' ;
+OnchangeAttr         = ' onchange="' , StringType , '"' ;
+OnclickAttr          = ' onclick="' , StringType , '"' ;
+OncloseAttr          = ' onclose="' , StringType , '"' ;
+OncuechangeAttr      = ' oncuechange="' , StringType , '"' ;
+OndblclickAttr       = ' ondblclick="' , StringType , '"' ;
+OndragAttr           = ' ondrag="' , StringType , '"' ;
+OndragendAttr        = ' ondragend="' , StringType , '"' ;
+OndragenterAttr      = ' ondragenter="' , StringType , '"' ;
+OndragleaveAttr      = ' ondragleave="' , StringType , '"' ;
+OndragoverAttr       = ' ondragover="' , StringType , '"' ;
+OndragstartAttr      = ' ondragstart="' , StringType , '"' ;
+OndropAttr           = ' ondrop="' , StringType , '"' ;
+OndurationchangeAttr = ' ondurationchange="' , StringType , '"' ;
+OnemptiedAttr        = ' onemptied="' , StringType , '"' ;
+OnendedAttr          = ' onended="' , StringType , '"' ;
+OnerrorAttr          = ' onerror="' , StringType , '"' ;
+OnfocusAttr          = ' onfocus="' , StringType , '"' ;
+OninputAttr          = ' oninput="' , StringType , '"' ;
+OninvalidAttr        = ' oninvalid="' , StringType , '"' ;
+OnkeydownAttr        = ' onkeydown="' , StringType , '"' ;
+OnkeypressAttr       = ' onkeypress="' , StringType , '"' ;
+OnkeyupAttr          = ' onkeyup="' , StringType , '"' ;
+OnloadAttr           = ' onload="' , StringType , '"' ;
+OnloadeddataAttr     = ' onloadeddata="' , StringType , '"' ;
+OnloadedmetadataAttr = ' onloadedmetadata="' , StringType , '"' ;
+OnloadstartAttr      = ' onloadstart="' , StringType , '"' ;
+OnmousedownAttr      = ' onmousedown="' , StringType , '"' ;
+OnmouseenterAttr     = ' onmouseenter="' , StringType , '"' ;
+OnmouseleaveAttr     = ' onmouseleave="' , StringType , '"' ;
+OnmousemoveAttr      = ' onmousemove="' , StringType , '"' ;
+OnmouseoutAttr       = ' onmouseout="' , StringType , '"' ;
+OnmouseoverAttr      = ' onmouseover="' , StringType , '"' ;
+OnmouseupAttr        = ' onmouseup="' , StringType , '"' ;
+OnpauseAttr          = ' onpause="' , StringType , '"' ;
+OnplayAttr           = ' onplay="' , StringType , '"' ;
+OnplayingAttr        = ' onplaying="' , StringType , '"' ;
+OnprogressAttr       = ' onprogress="' , StringType , '"' ;
+OnratechangeAttr     = ' onratechange="' , StringType , '"' ;
+OnresetAttr          = ' onreset="' , StringType , '"' ;
+OnresizeAttr         = ' onresize="' , StringType , '"' ;
+OnscrollAttr         = ' onscroll="' , StringType , '"' ;
+OnseekedAttr         = ' onseeked="' , StringType , '"' ;
+OnseekingAttr        = ' onseeking="' , StringType , '"' ;
+OnselectAttr         = ' onselect="' , StringType , '"' ;
+OnstalledAttr        = ' onstalled="' , StringType , '"' ;
+OnsubmitAttr         = ' onsubmit="' , StringType , '"' ;
+OnsuspendAttr        = ' onsuspend="' , StringType , '"' ;
+OntimeupdateAttr     = ' ontimeupdate="' , StringType , '"' ;
+OntoggleAttr         = ' ontoggle="' , StringType , '"' ;
+OnvolumechangeAttr   = ' onvolumechange="' , StringType , '"' ;
+OnwaitingAttr        = ' onwaiting="' , StringType , '"' ;
+OnwheelAttr          = ' onwheel="' , StringType , '"' ;
+
+(* ── DocumentEventAttributes (svg only; distinct names to avoid colliding with
+   the global onerror/onresize/onscroll productions) ───────────────────────── *)
+
+DocumentEventAttribute = DocOnunloadAttr | DocOnabortAttr | DocOnerrorAttr
+                       | DocOnresizeAttr | DocOnscrollAttr ;
+DocOnunloadAttr = ' onunload="' , StringType , '"' ;
+DocOnabortAttr  = ' onabort="' , StringType , '"' ;
+DocOnerrorAttr  = ' onerror="' , StringType , '"' ;
+DocOnresizeAttr = ' onresize="' , StringType , '"' ;
+DocOnscrollAttr = ' onscroll="' , StringType , '"' ;
+
+(* ── DocumentElementEventAttributes ──────────────────────────────────────── *)
+
+DocumentElementEventAttribute = OncopyAttr | OncutAttr | OnpasteAttr ;
+OncopyAttr  = ' oncopy="' , StringType , '"' ;
+OncutAttr   = ' oncut="' , StringType , '"' ;
+OnpasteAttr = ' onpaste="' , StringType , '"' ;
+
+(* ── GraphicalEventAttributes ────────────────────────────────────────────── *)
+
+GraphicalEventAttribute = OnfocusinAttr | OnfocusoutAttr ;
+OnfocusinAttr  = ' onfocusin="' , StringType , '"' ;
+OnfocusoutAttr = ' onfocusout="' , StringType , '"' ;
+
+(* ── AnimationEventAttributes (animation elements) ───────────────────────── *)
+
+AnimationEventAttribute = OnbeginAttr | OnendAttr | OnrepeatAttr ;
+OnbeginAttr  = ' onbegin="' , StringType , '"' ;
+OnendAttr    = ' onend="' , StringType , '"' ;
+OnrepeatAttr = ' onrepeat="' , StringType , '"' ;
+
+(* ── XlinkAttributes (deprecated aliases browsers still parse) ───────────── *)
+
+XlinkAttribute = XlinkHrefAttr | XlinkTitleAttr ;
+XlinkHrefAttr  = ' xlink:href="' , IriType , '"' ;
+XlinkTitleAttr = ' xlink:title="' , StringType , '"' ;
+
+(* ============================================================================
+   Elements: svg + generic containers (g, defs, switch, a, unknown).
+   PresentationAttribute (styling.ebnf) and TransformList (transform.ebnf) are
+   cross-file references resolved at concat time.
+   ============================================================================ *)
+
+SVGSVGElement = "<svg" , { SvgAttribute } , ">" , { ContainerContent } , "</svg>" ;
+SvgAttribute = SvgViewBoxAttr | SvgPreserveAspectRatioAttr | SvgZoomAndPanAttr
+             | SvgXAttr | SvgYAttr | SvgWidthAttr | SvgHeightAttr | SvgTransformAttr
+             | CoreAttribute | ConditionalProcessingAttribute | AriaAttribute
+             | PresentationAttribute | GlobalEventAttribute | DocumentEventAttribute
+             | DocumentElementEventAttribute | GraphicalEventAttribute ;
+SvgViewBoxAttr             = ' viewBox="' , ViewBox , '"' ;
+SvgPreserveAspectRatioAttr = ' preserveAspectRatio="' , PreserveAspectRatio , '"' ;
+SvgZoomAndPanAttr          = ' zoomAndPan="' , ( "disable" | "magnify" ) , '"' ;
+SvgXAttr      = ' x="' , LengthPercentageType , '"' ;
+SvgYAttr      = ' y="' , LengthPercentageType , '"' ;
+SvgWidthAttr  = ' width="' , ( "auto" | LengthPercentageType ) , '"' ;
+SvgHeightAttr = ' height="' , ( "auto" | LengthPercentageType ) , '"' ;
+SvgTransformAttr = ' transform="' , TransformList , '"' ;
+
+SVGGElement = "<g" , { GAttribute } , ">" , { ContainerContent } , "</g>" ;
+GAttribute = CoreAttribute | ConditionalProcessingAttribute | AriaAttribute
+           | PresentationAttribute | GlobalEventAttribute | DocumentElementEventAttribute
+           | GraphicalEventAttribute ;
+
+SVGDefsElement = "<defs" , { DefsAttribute } , ">" , { ContainerContent } , "</defs>" ;
+DefsAttribute = CoreAttribute | ConditionalProcessingAttribute | AriaAttribute
+              | PresentationAttribute | GlobalEventAttribute | DocumentElementEventAttribute
+              | GraphicalEventAttribute ;
+
+SVGSwitchElement = "<switch" , { SwitchAttribute } , ">" , { SwitchContent } , "</switch>" ;
+SwitchAttribute = CoreAttribute | ConditionalProcessingAttribute | AriaAttribute
+                | PresentationAttribute | GlobalEventAttribute | DocumentElementEventAttribute
+                | GraphicalEventAttribute ;
+SwitchContent = AnimationElement | ShapeElement | SVGAElement | SVGForeignObjectElement | SVGGElement | SVGImageElement
+              | SVGSVGElement | SVGSwitchElement | SVGTextElement | SVGUseElement ;
+
+SVGAElement = "<a" , { AAttribute } , ">" , { ContainerContent } , "</a>" ;
+AAttribute = AHrefAttr | ATargetAttr | ADownloadAttr | APingAttr | ARelAttr
+           | AHreflangAttr | ATypeAttr | AReferrerpolicyAttr
+           | CoreAttribute | ConditionalProcessingAttribute | AriaAttribute
+           | PresentationAttribute | GlobalEventAttribute | DocumentElementEventAttribute
+           | GraphicalEventAttribute | XlinkAttribute ;
+AHrefAttr     = ' href="' , IriType , '"' ;
+ATargetAttr   = ' target="' , ( "_self" | "_parent" | "_top" | "_blank" | XmlNameType ) , '"' ;
+ADownloadAttr = ' download="' , StringType , '"' ;
+APingAttr     = ' ping="' , StringType , '"' ;
+ARelAttr      = ' rel="' , StringType , '"' ;
+AHreflangAttr = ' hreflang="' , Bcp47Type , '"' ;
+ATypeAttr     = ' type="' , StringType , '"' ;
+AReferrerpolicyAttr = ' referrerpolicy="' ,
+    ( "no-referrer" | "no-referrer-when-downgrade" | "origin"
+    | "origin-when-cross-origin" | "same-origin" | "strict-origin"
+    | "strict-origin-when-cross-origin" | "unsafe-url" ) , '"' ;
+
+SVGUnknownElement = "<unknown" , { UnknownAttribute } , ">" , { ContainerContent } , "</unknown>" ;
+UnknownAttribute = CoreAttribute | ConditionalProcessingAttribute | AriaAttribute
+                 | PresentationAttribute | GlobalEventAttribute | DocumentElementEventAttribute
+                 | GraphicalEventAttribute ;

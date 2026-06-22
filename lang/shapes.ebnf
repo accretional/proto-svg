@@ -1,0 +1,198 @@
+(* ============================================================================
+   shapes.ebnf — Basic shape elements (SVG 2 §10).  Defines:
+     Rect, Circle, Ellipse, Line, Polyline, Polygon, Path
+   and the shared Points sub-grammar used by Polyline and Polygon.
+
+   STRUCTURAL grammar: every string this grammar derives is real SVG markup
+   (open tag, attribute strings, close tag).  See docs/EBNF_PATTERN.md.
+
+   Authoring conventions:
+     - Element:   Name = "<tag" , { NameAttribute } , ">" , { NameContent } , "</tag>" ;
+     - Attribute: NameAttr = ' attr="' , Value , '"' ;  (leading space+name+="  closing ")
+     - Closed keyword sets are enumerated in full as terminals; only genuinely
+       open values use the scalarized leaf *Type rules from datatype.ebnf.
+     - Attribute productions are per-element and fully-qualified to prevent
+       gluon's norm-dedup from silently merging attributes that share a name
+       across elements (e.g. RectXAttr vs SvgXAttr).
+     - PathLengthAttr is shared across all 7 elements: name and value are
+       identical everywhere, so one production is correct and is referenced 7×.
+     - rx/ry carry the "auto" keyword (initial value per SVG 2 §7.4/7.5).
+       r on Circle does NOT accept "auto" (per §7.3).
+     - Line x1/y1/x2/y2 use LengthPercentageType | NumberType; the unitless
+       number is explicit in the SVG 2 attribute grammar, not a §4.2 expansion
+       (spec prose: "not yet CSS geometry properties").
+     - SvgPath is defined in path.ebnf (file #4 in concat order); the reference
+       resolves at genproto concat time.
+     - Leaf types (LengthPercentageType, NumberType) are defined in datatype.ebnf;
+       they are NOT redefined here.
+     - CoordinatePair was renamed to PointsCoordinatePair to avoid collision with
+       path.ebnf's CoordinatePair under gluon's norm-dedupe.
+
+   Reference: https://www.w3.org/TR/SVG2/shapes.html (SVG 2 Chapter 10)
+   ============================================================================ *)
+
+(* ── Shared content model for all shape elements ─────────────────────────────
+   Content is identical across Rect, Circle, Ellipse, Line, Polyline, Polygon,
+   and Path (docs/GRAMMAR_PLAN.md §f "Shapes").  Each element gets its own
+   *Content rule (same body) so the renderer identifies the parent by name. *)
+
+RectContent     = AnimationElement | DescriptiveElement | PaintServerElement
+                | SVGClipPathElement | SVGMarkerElement | SVGMaskElement | SVGScriptElement | SVGStyleElement ;
+
+CircleContent   = AnimationElement | DescriptiveElement | PaintServerElement
+                | SVGClipPathElement | SVGMarkerElement | SVGMaskElement | SVGScriptElement | SVGStyleElement ;
+
+EllipseContent  = AnimationElement | DescriptiveElement | PaintServerElement
+                | SVGClipPathElement | SVGMarkerElement | SVGMaskElement | SVGScriptElement | SVGStyleElement ;
+
+LineContent     = AnimationElement | DescriptiveElement | PaintServerElement
+                | SVGClipPathElement | SVGMarkerElement | SVGMaskElement | SVGScriptElement | SVGStyleElement ;
+
+PolylineContent = AnimationElement | DescriptiveElement | PaintServerElement
+                | SVGClipPathElement | SVGMarkerElement | SVGMaskElement | SVGScriptElement | SVGStyleElement ;
+
+PolygonContent  = AnimationElement | DescriptiveElement | PaintServerElement
+                | SVGClipPathElement | SVGMarkerElement | SVGMaskElement | SVGScriptElement | SVGStyleElement ;
+
+PathContent     = AnimationElement | DescriptiveElement | PaintServerElement
+                | SVGClipPathElement | SVGMarkerElement | SVGMaskElement | SVGScriptElement | SVGStyleElement ;
+
+(* ── Shared pathLength attribute (identical across all 7 elements; referenced 7×) *)
+
+PathLengthAttr = ' pathLength="' , NumberType , '"' ;
+
+(* ============================================================================
+   10.2 rect
+   Geometry: x, y, width, height → LengthPercentageType (no "auto", see D2)
+             rx, ry              → "auto" | LengthPercentageType
+   ============================================================================ *)
+
+SVGRectElement = "<rect" , { RectAttribute } , ">" , { RectContent } , "</rect>" ;
+
+RectAttribute = RectXAttr | RectYAttr | RectWidthAttr | RectHeightAttr
+              | RectRxAttr | RectRyAttr | PathLengthAttr
+              | CoreAttribute | ConditionalProcessingAttribute | AriaAttribute
+              | PresentationAttribute | GlobalEventAttribute
+              | DocumentElementEventAttribute | GraphicalEventAttribute ;
+
+RectXAttr      = ' x="'      , LengthPercentageType , '"' ;
+RectYAttr      = ' y="'      , LengthPercentageType , '"' ;
+RectWidthAttr  = ' width="'  , LengthPercentageType , '"' ;
+RectHeightAttr = ' height="' , LengthPercentageType , '"' ;
+RectRxAttr     = ' rx="'     , ( "auto" | LengthPercentageType ) , '"' ;
+RectRyAttr     = ' ry="'     , ( "auto" | LengthPercentageType ) , '"' ;
+
+(* ============================================================================
+   10.3 circle
+   Geometry: cx, cy, r → LengthPercentageType
+   Note: r does NOT accept "auto" (negative r is illegal; zero disables render).
+   ============================================================================ *)
+
+SVGCircleElement = "<circle" , { CircleAttribute } , ">" , { CircleContent } , "</circle>" ;
+
+CircleAttribute = CircleCxAttr | CircleCyAttr | CircleRAttr | PathLengthAttr
+                | CoreAttribute | ConditionalProcessingAttribute | AriaAttribute
+                | PresentationAttribute | GlobalEventAttribute
+                | DocumentElementEventAttribute | GraphicalEventAttribute ;
+
+CircleCxAttr = ' cx="' , LengthPercentageType , '"' ;
+CircleCyAttr = ' cy="' , LengthPercentageType , '"' ;
+CircleRAttr  = ' r="'  , LengthPercentageType , '"' ;
+
+(* ============================================================================
+   10.4 ellipse
+   Geometry: cx, cy → LengthPercentageType
+             rx, ry → "auto" | LengthPercentageType  (SVG 2 addition)
+   ============================================================================ *)
+
+SVGEllipseElement = "<ellipse" , { EllipseAttribute } , ">" , { EllipseContent } , "</ellipse>" ;
+
+EllipseAttribute = EllipseCxAttr | EllipseCyAttr | EllipseRxAttr | EllipseRyAttr
+                 | PathLengthAttr
+                 | CoreAttribute | ConditionalProcessingAttribute | AriaAttribute
+                 | PresentationAttribute | GlobalEventAttribute
+                 | DocumentElementEventAttribute | GraphicalEventAttribute ;
+
+EllipseCxAttr = ' cx="' , LengthPercentageType , '"' ;
+EllipseCyAttr = ' cy="' , LengthPercentageType , '"' ;
+EllipseRxAttr = ' rx="' , ( "auto" | LengthPercentageType ) , '"' ;
+EllipseRyAttr = ' ry="' , ( "auto" | LengthPercentageType ) , '"' ;
+
+(* ============================================================================
+   10.5 line
+   Attrs: x1, y1, x2, y2 → LengthPercentageType | NumberType
+   The "| NumberType" is explicit in the SVG 2 attribute grammar (D1): these are
+   not yet CSS geometry properties; the unitless number is not a §4.2 expansion.
+   ============================================================================ *)
+
+SVGLineElement = "<line" , { LineAttribute } , ">" , { LineContent } , "</line>" ;
+
+LineAttribute = LineX1Attr | LineY1Attr | LineX2Attr | LineY2Attr | PathLengthAttr
+              | CoreAttribute | ConditionalProcessingAttribute | AriaAttribute
+              | PresentationAttribute | GlobalEventAttribute
+              | DocumentElementEventAttribute | GraphicalEventAttribute ;
+
+LineX1Attr = ' x1="' , ( LengthPercentageType | NumberType ) , '"' ;
+LineY1Attr = ' y1="' , ( LengthPercentageType | NumberType ) , '"' ;
+LineX2Attr = ' x2="' , ( LengthPercentageType | NumberType ) , '"' ;
+LineY2Attr = ' y2="' , ( LengthPercentageType | NumberType ) , '"' ;
+
+(* ============================================================================
+   10.6 polyline
+   Attrs: points → Points (STRUCTURED sub-grammar, renderer space-joins)
+   ============================================================================ *)
+
+SVGPolylineElement = "<polyline" , { PolylineAttribute } , ">" , { PolylineContent } , "</polyline>" ;
+
+PolylineAttribute = PolylinePointsAttr | PathLengthAttr
+                  | CoreAttribute | ConditionalProcessingAttribute | AriaAttribute
+                  | PresentationAttribute | GlobalEventAttribute
+                  | DocumentElementEventAttribute | GraphicalEventAttribute ;
+
+PolylinePointsAttr = ' points="' , Points , '"' ;
+
+(* ============================================================================
+   10.7 polygon
+   Attrs: points → Points (same grammar as polyline; closepath is semantic)
+   ============================================================================ *)
+
+SVGPolygonElement = "<polygon" , { PolygonAttribute } , ">" , { PolygonContent } , "</polygon>" ;
+
+PolygonAttribute = PolygonPointsAttr | PathLengthAttr
+                 | CoreAttribute | ConditionalProcessingAttribute | AriaAttribute
+                 | PresentationAttribute | GlobalEventAttribute
+                 | DocumentElementEventAttribute | GraphicalEventAttribute ;
+
+PolygonPointsAttr = ' points="' , Points , '"' ;
+
+(* ============================================================================
+   path element
+   Attrs: d → "none" | SvgPath  (SvgPath defined in path.ebnf; resolves at concat)
+   ============================================================================ *)
+
+SVGPathElement = "<path" , { PathAttribute } , ">" , { PathContent } , "</path>" ;
+
+PathAttribute = PathDAttr | PathLengthAttr
+              | CoreAttribute | ConditionalProcessingAttribute | AriaAttribute
+              | PresentationAttribute | GlobalEventAttribute
+              | DocumentElementEventAttribute | GraphicalEventAttribute ;
+
+PathDAttr = ' d="' , ( "none" | SvgPath ) , '"' ;
+
+(* ============================================================================
+   Points sub-grammar (docs/GRAMMAR_PLAN.md §f; referenced by Polyline/Polygon)
+
+   The spec gives: <points> = [ <number>+ ]# (CSS VDS).  Expanded to EBNF:
+   a non-empty sequence of PointsCoordinatePair values; the renderer space-joins
+   them.  Odd-coordinate error (drop last token) is a semantic overlay rule, not
+   grammar.
+
+   PointsCoordinatePair = two NumberType values (renderer space-joins within the
+   pair).  Named PointsCoordinatePair (not CoordinatePair) to avoid collision with
+   path.ebnf's CoordinatePair under gluon's norm-dedupe.
+
+   Points is a VALUE grammar (no markup): it sits inside the attribute quotes.
+   ============================================================================ *)
+
+Points               = PointsCoordinatePair , { PointsCoordinatePair } ;
+PointsCoordinatePair = NumberType , NumberType ;

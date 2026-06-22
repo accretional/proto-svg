@@ -1,0 +1,151 @@
+(* ============================================================================
+   datatype.ebnf — SVG basic data types and shared value grammars.
+
+   Two kinds of rule live here:
+
+   1. Open-domain LEAF types (PascalCase "*Type").  These are listed in
+      genproto's `leafTypes` set and SCALARIZED: gluon replaces their body with
+      `string value = 1`, and the renderer substitutes representative samples
+      from reps.go.  Their bodies below are honest-but-illustrative; they only
+      need to parse, because scalarize discards them (and the lexical helpers
+      they reference then become unreachable and are pruned).  Per
+      CONTEXT_SENSITIVITY Rule 1a, leaves are reserved for genuinely open value
+      spaces (numbers, lengths, colors, strings, IRIs); every CLOSED keyword set
+      is enumerated as terminals in its own module, never leafed.
+
+   2. STRUCTURED shared value grammars (PaintType, UnitType, ViewBox,
+      PreserveAspectRatio, AlphaValue).  These are NOT scalarized; they are real
+      sub-grammars the renderer walks.  Their keyword arms are terminals; only
+      their open sub-parts (ColorType, UrlType, NumberType) scalarize.
+
+   Reference: https://www.w3.org/TR/SVG2/types.html
+   ============================================================================ *)
+
+(* ── Lexical primitives (snake_case; referenced only by leaf bodies, pruned
+   after scalarization) ──────────────────────────────────────────────────── *)
+
+non_zero       = "1" ... "9" ;
+digit          = "0" ... "9" ;
+whole_number   = digit , { digit } ;
+hex_digit      = "0" ... "9" | "a" ... "f" | "A" ... "F" ;
+uppercase_letter = "A" ... "Z" ;
+lowercase_letter = "a" ... "z" ;
+letter         = uppercase_letter | lowercase_letter ;
+sign           = "+" | "-" ;
+
+name_start_char = letter | "_" ;
+name_char       = letter | digit | "-" | "_" | "." ;
+name            = name_start_char , { name_char } ;
+
+(* SVG/CSS number: optional sign, fraction, optional exponent *)
+fraction = whole_number , [ "." , whole_number ] | "." , whole_number ;
+exponent = ( "e" | "E" ) , [ sign ] , whole_number ;
+number   = [ sign ] , fraction , [ exponent ] ;
+
+length_unit = "em" | "ex" | "ch" | "rem" | "vw" | "vh" | "vmin" | "vmax"
+            | "cm" | "mm" | "Q" | "in" | "pc" | "pt" | "px" ;
+angle_unit  = "deg" | "grad" | "rad" | "turn" ;
+time_unit   = "s" | "ms" ;
+
+string_char  = " " ... "!" | "#" ... "~" ;
+url_char     = "!" ... "~" ;
+
+(* ── Open-domain leaf types (SCALARIZED by genproto) ─────────────────────── *)
+
+(* <number> https://www.w3.org/TR/SVG2/types.html#InterfaceSVGNumber *)
+NumberType = number ;
+
+(* <integer> *)
+IntegerType = [ sign ] , whole_number ;
+
+(* <length>; unitless = user units (SVG presentation-attribute §4.2 expansion) *)
+LengthType = number , [ length_unit ] ;
+
+(* <percentage> *)
+PercentageType = number , "%" ;
+
+(* <length-percentage> *)
+LengthPercentageType = LengthType | PercentageType ;
+
+(* <coordinate> is a <length> in the user coordinate system *)
+CoordinateType = number , [ length_unit ] ;
+
+(* <angle>; unitless = degrees in SVG attribute context *)
+AngleType = number , [ angle_unit ] ;
+
+(* <time> (SMIL clock fragments use this for unit-suffixed values) *)
+TimeType = number , time_unit ;
+
+(* <color>: hex, functional, or named; full space supplied by reps.go *)
+hex_color   = "#" , hex_digit , hex_digit , hex_digit ,
+              [ hex_digit , hex_digit , hex_digit , [ hex_digit , hex_digit ] ] ;
+named_color = letter , { letter } ;
+ColorType   = hex_color | named_color ;
+
+(* <IRI>/<FuncIRI>: a fragment, a relative/absolute URL, or url(...) *)
+IriType = "#" , name | "url(" , { url_char } , ")" | { url_char } ;
+
+(* <url>: the url(...) functional form *)
+UrlType = "url(" , { url_char } , ")" ;
+
+(* <string> *)
+StringType = '"' , { string_char } , '"' ;
+
+(* <custom-ident> (filter result names, etc.) *)
+CustomIdentType = name ;
+
+(* an XML name / IDREF token (id values, attributeName, fragment targets) *)
+XmlNameType = name ;
+
+(* BCP-47 language tag *)
+Bcp47Type = name , { "-" , name } ;
+
+(* whitespace/comma separated number list (feColorMatrix values, rotate, …) *)
+ListOfNumbersType = NumberType , { NumberType } ;
+
+(* length/percentage list *)
+ListOfLengthsType = LengthPercentageType , { LengthPercentageType } ;
+
+(* <number-optional-number> (stdDeviation, baseFrequency, order, radius, …) *)
+NumberOptionalNumberType = NumberType , [ NumberType ] ;
+
+(* stroke-dasharray list *)
+DasharrayType = LengthPercentageType , { LengthPercentageType } ;
+
+(* SMIL event symbol (begin/end event-value) *)
+EventSymbolType = name ;
+
+(* raw character data: the text content of title/desc/text/tspan/style/script/
+   metadata/foreignObject (sits between tags, unquoted, no markup) *)
+CharacterDataType = { string_char } ;
+
+(* ── Structured shared value grammars (NOT scalarized; rendered) ─────────── *)
+
+(* <alpha-value>: opacity-family value, number or percentage *)
+AlphaValue = NumberType | PercentageType ;
+
+(* Shared units enum: gradientUnits / patternUnits / maskUnits / clipPathUnits /
+   filterUnits / primitiveUnits / *ContentUnits.  Defaults differ per attribute
+   and are recorded in the overlay, not the grammar. *)
+UnitType = "userSpaceOnUse" | "objectBoundingBox" ;
+
+(* <paint> https://www.w3.org/TR/SVG2/painting.html#SpecifyingPaint — STRUCTURED:
+   keyword arms are terminals; only ColorType/UrlType sub-parts scalarize. *)
+PaintType     = "none" | "currentColor" | "context-fill" | "context-stroke"
+              | ColorType | PaintRef ;
+PaintRef      = UrlType , [ PaintFallback ] ;
+PaintFallback = "none" | "currentColor" | ColorType ;
+
+(* viewBox = min-x min-y width height (renderer space-joins the four numbers) *)
+ViewBox = NumberType , NumberType , NumberType , NumberType ;
+
+(* preserveAspectRatio = <align> [<meetOrSlice>] *)
+PreserveAspectRatio = Align , [ MeetOrSlice ] ;
+Align       = "none"
+            | "xMinYMin" | "xMidYMin" | "xMaxYMin"
+            | "xMinYMid" | "xMidYMid" | "xMaxYMid"
+            | "xMinYMax" | "xMidYMax" | "xMaxYMax" ;
+MeetOrSlice = "meet" | "slice" ;
+
+(* boolean-presence attribute value (autofocus, preserveAlpha, async, defer) *)
+BooleanValue = "true" | "false" ;

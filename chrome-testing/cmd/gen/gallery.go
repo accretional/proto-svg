@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"path/filepath"
 	"strings"
 
 	"google.golang.org/protobuf/types/descriptorpb"
@@ -13,7 +12,6 @@ import (
 // blueprint (assigning id="slot" when the blueprint references it), and writes
 // the gallery pages, index, values.json and manifest.tsv.
 
-const generatedHTMLDir = "chrome-testing/html/generated"
 const templateHTMLDir = "chrome-testing/html/template"
 
 func runGalleryPass(byFQN map[string]*descriptorpb.DescriptorProto, kw map[string]string, r *Renderer) {
@@ -67,25 +65,15 @@ func runGalleryPass(byFQN map[string]*descriptorpb.DescriptorProto, kw map[strin
 		total += len(variants)
 	}
 
-	// Write per-element pages.
-	for _, p := range pages {
-		writeFile(filepath.Join(generatedHTMLDir, p.tag+".html"), emitPage(p))
-	}
-	// index, values.json, manifest.tsv.
-	writeFile(filepath.Join(generatedHTMLDir, "index.html"), emitIndex(pages, total))
-	writeFile(filepath.Join(generatedHTMLDir, "values.json"), emitValuesJSON(pages))
-	writeFile(filepath.Join(generatedHTMLDir, "manifest.tsv"), emitManifest(pages))
+	// The gallery is now the SVG Lab app driven by a single catalogue.json (the
+	// per-element static HTML + specimen technique is retired). Emit the catalogue:
+	// per element, typed attribute controls + presets (one per visual value-path)
+	// + a base SVG.
+	catEls, catTemporal := runCataloguePass(en, bp, els, pages)
 
-	// Per-value SPECIMEN files + manifest (proto-css-style shoot pipeline). Runs
-	// off the same blueprint-wrapped pages, emitting one label-free standalone
-	// page per MAIN-GRID value-path plus specimens.json.
-	specFiles, specTemporal := runSpecimenPass(pages)
-
-	fmt.Printf("\n=== gallery ===\n")
-	fmt.Printf("elements: %d  variants: %d  pages: %s/*.html\n", len(pages), total, generatedHTMLDir)
-	fmt.Printf("=== specimens ===\n")
-	fmt.Printf("specimen files: %d  (temporal: %d, static: %d)  tree: %s/<tag>/NN-<slug>.html  manifest: %s/specimens.json\n",
-		specFiles, specTemporal, specFiles-specTemporal, specimenHTMLDir, specimenJSONDir)
+	fmt.Printf("\n=== catalogue ===\n")
+	fmt.Printf("elements: %d / %d  variants: %d  (temporal: %d)  ->  %s/catalogue.json\n",
+		catEls, len(pages), total, catTemporal, catalogueDir)
 	if len(unrendered) > 0 {
 		fmt.Printf("value-paths that did not render meaningfully (%d):\n", len(unrendered))
 		max := len(unrendered)

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>svglab · vector element explorer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:#0a0d0c}
+  body{height:100vh;overflow:hidden;color:#cdd6d2;font-family:'JetBrains Mono',monospace}
+  ::-webkit-scrollbar{width:10px;height:10px}
+  ::-webkit-scrollbar-track{background:#0c100e}
+  ::-webkit-scrollbar-thumb{background:#1f2925;border-radius:6px;border:2px solid #0c100e}
+  ::-webkit-scrollbar-thumb:hover{background:#2c3a33}
+  textarea::selection{background:rgba(78,227,154,.25)}
+  textarea::-moz-selection{background:rgba(78,227,154,.25)}
+  button{font-family:inherit}
+  input,select,textarea{font-family:inherit}
+  /* nav rail */
+  .grp-btn{width:100%;display:flex;align-items:center;gap:8px;padding:8px;background:none;border:none;border-radius:7px;cursor:pointer;text-align:left;transition:background .12s}
+  .grp-btn:hover{background:#11160f}
+  .card-btn{width:100%;display:flex;align-items:center;gap:10px;padding:5px 8px 5px 10px;border:none;border-radius:0 7px 7px 0;cursor:pointer;text-align:left;transition:background .12s;background:transparent;border-left:2px solid transparent}
+  .card-btn:hover{background:#141b18}
+  .card-btn.active{background:#10231a;border-left-color:#4ee39a}
+  /* viewer ctrl buttons */
+  .vbtn{background:#141917cc;border:1px solid #243029;color:#aeb8b3;border-radius:6px;font-family:inherit;font-size:11px;cursor:pointer;backdrop-filter:blur(4px);padding:6px 10px}
+  .vbtn:hover{border-color:#4ee39a;color:#4ee39a}
+  .vbtn.icon{width:30px;height:30px;font-size:14px;padding:0;display:flex;align-items:center;justify-content:center}
+  /* preset chips + inputs */
+  .preset{background:#151b18;border:1px solid #243029;color:#cdd6d2;padding:7px 12px;border-radius:7px;font-family:inherit;font-size:12px;cursor:pointer}
+  .preset:hover{border-color:#4ee39a;color:#4ee39a}
+  .fin{background:#0a0e0c;border:1px solid #1f2925;color:#cdd6d2;font-family:inherit;font-size:12px;padding:6px 8px;border-radius:6px;outline:none}
+  .fin:focus{border-color:#33463c}
+  select.fin{cursor:pointer;width:100%;padding:7px 8px}
+  input[type=range]{width:100%;accent-color:#4ee39a;cursor:pointer}
+  input[type=color]{width:28px;height:28px;padding:0;border:1px solid #243029;border-radius:6px;background:#141917;cursor:pointer;flex:none}
+</style>
+</head>
+<body>
+<div style="height:100vh;display:flex;flex-direction:column;background:#0a0d0c">
+
+  <header style="display:flex;align-items:center;gap:16px;padding:0 20px;height:52px;border-bottom:1px solid #1c2422;background:#0c100e;flex:none;z-index:20">
+    <div id="home-link" style="display:flex;align-items:center;gap:9px;cursor:pointer;user-select:none">
+      <span style="color:#4ee39a;font-size:15px">▸</span>
+      <span style="font-weight:700;font-size:15px;letter-spacing:-.3px"><span style="color:#4ee39a">svg</span><span style="color:#e7efeb">lab</span></span>
+    </div>
+    <span style="color:#5b6a64;font-size:12px;letter-spacing:.2px">// vector element explorer</span>
+    <div style="margin-left:auto;display:flex;align-items:center;gap:18px;font-size:12px;color:#6b7a73">
+      <span><span id="el-count" style="color:#9fb0a8">0</span> elements</span>
+      <span style="color:#3a4842">·</span>
+      <span><span id="grp-count" style="color:#9fb0a8">0</span> groups</span>
+      <span style="color:#3a4842">·</span>
+      <span>live editable</span>
+    </div>
+  </header>
+
+  <div style="flex:1;display:flex;overflow:hidden;min-height:0">
+
+    <!-- navigation rail -->
+    <aside style="width:244px;flex:none;border-right:1px solid #1c2422;background:#0c100e;display:flex;flex-direction:column;overflow-y:auto">
+      <div style="padding:16px 16px 8px;font-size:10.5px;letter-spacing:2.2px;color:#56655e;position:sticky;top:0;background:#0c100e;z-index:2">BROWSE ELEMENTS</div>
+      <div id="rail" style="padding:0 8px 16px"></div>
+    </aside>
+
+    <main style="flex:1;min-width:0;display:flex;flex-direction:column;overflow:hidden">
+      <!-- element page -->
+      <div id="elpage" style="flex:1;display:flex;flex-direction:column;overflow:hidden">
+        <div id="bcbar" style="display:flex;align-items:center;gap:14px;padding:0 20px;height:46px;border-bottom:1px solid #1c2422;background:#0c100e;flex:none">
+          <span id="bc-cat" style="font-size:11px;color:#6b7a73"></span>
+          <span style="color:#2c3833">/</span>
+          <span id="bc-name" style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:15px;color:#eef4f0"></span>
+          <span id="bc-tag" style="font-size:11px;color:#4ee39a;background:#10231a;padding:3px 8px;border-radius:5px"></span>
+          <span id="bc-desc" style="font-size:12px;color:#5b6a64;overflow:hidden;text-overflow:ellipsis;white-space:nowrap"></span>
+        </div>
+
+        <div style="flex:1;display:flex;overflow:hidden">
+          <!-- LEFT: viewer + editor -->
+          <div style="flex:1;min-width:0;display:flex;flex-direction:column">
+            <div id="viewerwrap" style="flex:1;position:relative;overflow:hidden;min-height:0">
+              <div id="vieweroverlay" style="position:absolute;top:12px;right:12px;left:12px;display:flex;align-items:center;gap:8px;z-index:10">
+                <span style="font-size:11px;color:#56655e;letter-spacing:1.5px">VIEWER</span>
+                <div style="margin-left:auto;display:flex;gap:6px">
+                  <button id="b-canvas" class="vbtn">dark bg</button>
+                  <button id="b-zoomout" class="vbtn icon">−</button>
+                  <button id="b-reset" class="vbtn" style="min-width:48px">100%</button>
+                  <button id="b-zoomin" class="vbtn icon">+</button>
+                  <div style="width:1px;background:#243029;margin:0 2px"></div>
+                  <button id="b-copy" class="vbtn">copy</button>
+                  <button id="b-svg" class="vbtn">svg</button>
+                  <button id="b-png" class="vbtn">png</button>
+                </div>
+              </div>
+              <div id="canvas" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;cursor:grab;overflow:hidden;background:#0c0f0e">
+                <div id="viewer" style="width:300px;height:300px;transform-origin:center;will-change:transform"></div>
+              </div>
+            </div>
+            <div id="editorpane" style="height:300px;flex:none;border-top:1px solid #1c2422;display:flex;flex-direction:column;background:#0b0f0d">
+              <div style="display:flex;align-items:center;gap:10px;padding:0 14px;height:36px;border-bottom:1px solid #161c19;flex:none">
+                <span style="width:9px;height:9px;border-radius:50%;background:#4ee39a"></span>
+                <span style="font-size:12px;color:#9fb0a8">structure.svg</span>
+                <span style="font-size:11px;color:#4a584f">— edit to update viewer live</span>
+                <span id="linecount" style="margin-left:auto;font-size:11px;color:#3f4d46">0 lines</span>
+              </div>
+              <div style="flex:1;display:flex;overflow:hidden;min-height:0">
+                <pre id="gutter" style="margin:0;padding:12px 10px;font-family:'JetBrains Mono',monospace;font-size:12.5px;line-height:20px;color:#3c4944;text-align:right;background:#0a0e0c;overflow:hidden;white-space:pre;user-select:none;border-right:1px solid #161c19;min-width:42px"></pre>
+                <div style="position:relative;flex:1;min-width:0">
+                  <pre id="hl" aria-hidden="true" style="position:absolute;inset:0;margin:0;padding:12px 14px;font-family:'JetBrains Mono',monospace;font-size:12.5px;line-height:20px;white-space:pre;overflow:hidden;pointer-events:none;color:#cdd6d2;tab-size:2"></pre>
+                  <textarea id="editor" spellcheck="false" autocomplete="off" autocapitalize="off" style="position:absolute;inset:0;margin:0;padding:12px 14px;font-family:'JetBrains Mono',monospace;font-size:12.5px;line-height:20px;white-space:pre;overflow:auto;border:none;outline:none;resize:none;background:transparent;color:transparent;caret-color:#4ee39a;tab-size:2"></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- RIGHT: control panel -->
+          <aside id="ctrlpanel" style="width:354px;flex:none;border-left:1px solid #1c2422;background:#0c100e;display:flex;flex-direction:column;overflow-y:auto">
+            <div style="padding:18px 18px 8px">
+              <div style="font-size:11px;letter-spacing:2px;color:#56655e;margin-bottom:13px">PRESETS <span id="preset-count" style="color:#3f4d46"></span></div>
+              <div id="presets" style="display:flex;flex-wrap:wrap;gap:8px;max-height:148px;overflow-y:auto"></div>
+            </div>
+            <div style="height:1px;background:#161c19;margin:14px 0 0"></div>
+            <div style="padding:16px 18px 26px">
+              <div style="font-size:11px;letter-spacing:2px;color:#56655e;margin-bottom:6px">ATTRIBUTES</div>
+              <div id="controls"></div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+<script src="./app.js"></script>
+</body>
+</html>

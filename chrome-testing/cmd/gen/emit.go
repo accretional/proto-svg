@@ -1,86 +1,15 @@
 package main
 
-import (
-	"encoding/json"
-	"fmt"
-	"html"
-	"sort"
-	"strings"
-)
+import "strings"
 
-// emit.go — write the generated galleries. Per element a dark-theme showcase
-// page (one card per enumerated value-path: blueprint-wrapped SVG + a monospace
-// attr="value" label), an index.html linking them, values.json
-// (element→[{attr,value}]) and manifest.tsv.
+// emit.go — the element×attribute APPLICABILITY classifier. nonVisualAttr reports
+// whether an attribute has any rendering effect on a given element; the catalogue
+// uses it to keep only the visually-meaningful attributes as controls/presets.
 
 // page bundles an element's enumerated variants for emission.
 type page struct {
 	tag      string
 	variants []Variant
-}
-
-// galleryCSS is the showcase CSS from TEMPLATE_GUIDE (dark theme).
-const galleryCSS = `body{margin:0;background:#1a1a2e;color:#e6e6e6;font:14px/1.4 ui-monospace,Menlo,monospace;padding:24px}
-h1{color:#16c79a;font-size:18px;margin:0 0 4px}
-p.desc{color:#9aa;margin:0 0 20px}
-a{color:#4d8bff}
-.grid{display:flex;flex-wrap:wrap;gap:16px}
-.card{background:#0f1530;border:1px solid #26305a;border-radius:8px;padding:10px;width:160px;min-width:160px;min-height:200px;box-sizing:border-box;display:flex;flex-direction:column}
-.card svg{display:block;background:#161c3a;border-radius:4px;width:140px;height:140px}
-.card .label{margin-top:8px;color:#f5a623;font-size:12px;word-break:break-word;overflow-wrap:anywhere}
-.card .attr{color:#16c79a}
-details.meta{margin-top:28px}
-details.meta>summary{color:#9aa;font-size:13px;cursor:pointer;margin-bottom:12px}
-.card--meta{opacity:.5;border-style:dashed}`
-
-// emitPage renders one element's gallery HTML. Visually-meaningful cards come
-// first in the main grid; no-visual-effect metadata attributes (id, aria-*, on*
-// events, etc.) are exhaustively kept but moved into a dimmed, collapsed
-// <details> section after them so they don't flood the grid (QA round1).
-func emitPage(p page) string {
-	var b strings.Builder
-	t := html.EscapeString("<" + p.tag + ">")
-
-	var visual, meta []Variant
-	for _, v := range p.variants {
-		if nonVisualAttr(v.Attr, p.tag) {
-			meta = append(meta, v)
-		} else {
-			visual = append(visual, v)
-		}
-	}
-
-	fmt.Fprintf(&b, `<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>%s</title>
-<style>%s</style></head><body>
-<h1>%s</h1>
-<p class="desc">%d enumerated value-paths walked from the grammar. <a href="index.html">&larr; index</a></p>
-<div class="grid">
-`, t, galleryCSS, t, len(p.variants))
-	for _, v := range visual {
-		fmt.Fprintf(&b, `  <div class="card">%s<div class="label">%s</div></div>
-`, v.WrappedSVG, cardLabel(v))
-	}
-	b.WriteString("</div>\n")
-
-	if len(meta) > 0 {
-		fmt.Fprintf(&b, `<details class="meta"><summary>Non-visual attributes (%d) — accessibility / scripting / metadata, no rendering effect</summary>
-<div class="grid">
-`, len(meta))
-		for _, v := range meta {
-			fmt.Fprintf(&b, `  <div class="card card--meta">%s<div class="label">%s</div></div>
-`, v.WrappedSVG, cardLabel(v))
-		}
-		b.WriteString("</div></details>\n")
-	}
-
-	b.WriteString("</body></html>\n")
-	return b.String()
-}
-
-// cardLabel renders the monospace attr="value" caption for a variant.
-func cardLabel(v Variant) string {
-	return fmt.Sprintf(`<span class="attr">%s</span>="%s"`,
-		html.EscapeString(v.Attr), html.EscapeString(v.Value))
 }
 
 // --- tag-aware non-visual grouping (QA round2) ------------------------------
@@ -450,62 +379,3 @@ func nonVisualAttr(attr, tag string) bool {
 	return false
 }
 
-// emitIndex renders the index linking every element page.
-func emitIndex(pages []page, totalVariants int) string {
-	var b strings.Builder
-	fmt.Fprintf(&b, `<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>SVG grammar gallery</title>
-<style>%s
-ul{columns:4;list-style:none;padding:0}li{margin:2px 0}.n{color:#9aa}</style></head><body>
-<h1>SVG grammar — all value-paths</h1>
-<p class="desc">%d elements, %d enumerated value-path variants. Each page walks one element's grammar for every attribute and every value, rendered as an SVG.</p>
-<ul>
-`, galleryCSS, len(pages), totalVariants)
-	for _, p := range pages {
-		fmt.Fprintf(&b, `  <li><a href="%s.html">&lt;%s&gt;</a> <span class="n">%d</span></li>
-`, p.tag, html.EscapeString(p.tag), len(p.variants))
-	}
-	b.WriteString("</ul></body></html>\n")
-	return b.String()
-}
-
-// emitValuesJSON builds the element→[{attr,value}] map.
-func emitValuesJSON(pages []page) string {
-	type av struct {
-		Attr  string `json:"attr"`
-		Value string `json:"value"`
-	}
-	m := map[string][]av{}
-	for _, p := range pages {
-		for _, v := range p.variants {
-			m[p.tag] = append(m[p.tag], av{Attr: v.Attr, Value: v.Value})
-		}
-	}
-	data, _ := json.MarshalIndent(m, "", "  ")
-	return string(data) + "\n"
-}
-
-// emitManifest builds the TSV: tag⇥attr⇥value⇥needsID.
-func emitManifest(pages []page) string {
-	var b strings.Builder
-	b.WriteString("element\tattr\tvalue\tneeds_id\n")
-	tags := make([]string, 0, len(pages))
-	for _, p := range pages {
-		tags = append(tags, p.tag)
-	}
-	sort.Strings(tags)
-	byTag := map[string]page{}
-	for _, p := range pages {
-		byTag[p.tag] = p
-	}
-	for _, tag := range tags {
-		for _, v := range byTag[tag].variants {
-			needs := "0"
-			if v.NeedsID {
-				needs = "1"
-			}
-			fmt.Fprintf(&b, "%s\t%s\t%s\t%s\n",
-				tag, v.Attr, strings.ReplaceAll(v.Value, "\t", " "), needs)
-		}
-	}
-	return b.String()
-}

@@ -29,8 +29,7 @@ ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$ROOT"
 
 CT="$ROOT/chrome-testing"
-GEN_DIR="$CT/html/generated"
-SHOTS_DIR="$CT/screenshots/generated"
+GALLERY_DIR="$CT/gallery"
 SERVE_PORT="${SERVE_PORT:-8899}"
 
 echo ""
@@ -76,29 +75,17 @@ echo "============ Step 3/5: Test (validation) ============"
 "$ROOT/test.sh"
 echo ""
 
-# ── 4/5 Screenshot the generated gallery ────────────────────────────────────
-echo "============ Step 4/5: Screenshot generated gallery ============"
-if [[ -n "${SKIP_SHOTS:-}" ]]; then
-  echo "  SKIP_SHOTS=1 — skipping screenshots"
-else
-  if [[ -d "$GEN_DIR" ]] && ls "$GEN_DIR"/*.html &>/dev/null; then
-    mkdir -p "$SHOTS_DIR"
-    # Directory mode: snap.sh writes one PNG per .html in the input dir.
-    "$CT/snap.sh" "$GEN_DIR/" "$SHOTS_DIR/"
-    echo "  screenshots written to $SHOTS_DIR"
-  else
-    echo "  [warn] no generated gallery pages to screenshot (did build.sh run?)" >&2
-  fi
-fi
-echo ""
-
-# ── 4.5/5 Per-value specimen shoot + GIFs (opt-in; long-running) ────────────
-echo "============ Step 4.5/5: Per-value specimen shoot ============"
+# ── 4/5 Per-preset gallery shoot + GIFs (opt-in; long-running) ──────────────
+# The gallery is one live SPA; screenshots are captured by driving its viewer to
+# each preset (= each attribute value) via chrome-testing/shoot.sh, not by
+# snapping per-element pages.
+echo "============ Step 4/5: Per-preset gallery shoot ============"
 if [[ -n "${SHOOT:-}" ]]; then
   "$CT/shoot.sh"
 else
-  echo "  Skipped. Set SHOOT=1 to capture one PNG per attribute value of every"
-  echo "  element (+ animated GIFs for SMIL elements) into screenshots/specimens/."
+  echo "  Skipped. Set SHOOT=1 to drive the gallery viewer through every preset"
+  echo "  (one PNG per attribute value + animated GIFs for SMIL elements) into"
+  echo "  screenshots/gallery/."
 fi
 echo ""
 
@@ -111,13 +98,13 @@ if [[ -n "${SKIP_SERVE:-}" ]]; then
 fi
 
 echo "============ Step 5/5: Serve gallery ============"
-if [[ ! -f "$GEN_DIR/index.html" ]]; then
-  echo "ERROR: $GEN_DIR/index.html not found — cannot serve." >&2
+if [[ ! -f "$GALLERY_DIR/index.html" ]]; then
+  echo "ERROR: $GALLERY_DIR/index.html not found — cannot serve." >&2
   exit 1
 fi
 
 kill_port "$SERVE_PORT"
-python3 -m http.server "$SERVE_PORT" --directory "$GEN_DIR" &
+python3 -m http.server "$SERVE_PORT" --directory "$GALLERY_DIR" &
 SERVE_PID=$!
 
 # Wait for the server to accept connections.
@@ -133,8 +120,8 @@ echo "############################################"
 echo "#  LET IT RIP complete — gallery is live   #"
 echo "############################################"
 echo ""
-echo "  Generated gallery:  http://localhost:$SERVE_PORT/index.html"
-echo "  Serving directory:  $GEN_DIR"
+echo "  SVG Lab gallery:    http://localhost:$SERVE_PORT/index.html"
+echo "  Serving directory:  $GALLERY_DIR"
 echo "  Press Ctrl-C to stop the server."
 echo ""
 

@@ -11,9 +11,9 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 cd "$ROOT"   # go-run + textproto output paths below are repo-root-relative
 CT="$ROOT/chrome-testing"
-SCREENS="$CT/screenshots/specimens"
-REL_SCREENS="chrome-testing/screenshots/specimens"
-SPECIMENS="$CT/generated/specimens.json"
+SCREENS="$CT/screenshots/gallery"
+REL_SCREENS="chrome-testing/screenshots/gallery"
+CATALOGUE="$CT/gallery/catalogue.json"
 
 CHROMERPC_GIT="${CHROMERPC_GIT:-https://github.com/accretional/chromerpc}"
 CACHE="/tmp/chromerpc-testing"
@@ -70,26 +70,26 @@ else
   echo "==> Using cached chromerpc: $CHROMERPC_BIN"
 fi
 
-# ── serve chrome-testing/ so /html/specimen/... is reachable ─────────────────
+# ── serve chrome-testing/ so /gallery/index.html + catalogue.json are reachable ─
 SERVE_PORT="$(free_port)"
 echo "==> Serving $CT on :$SERVE_PORT"
 python3 -m http.server "$SERVE_PORT" --directory "$CT" &>/dev/null &
 HTTP_PID=$!
-BASE="http://localhost:$SERVE_PORT"
+BASE="http://localhost:$SERVE_PORT/gallery"
 
 # ── build the automation sequence (chunked to keep gRPC responses small) ──────
 mkdir -p "$SCREENS" "$SEQDIR"
 rm -f "$SEQDIR"/shots-*.textproto
 
 # Clean stale per-tag screenshot dirs first so values that no longer exist don't
-# linger. ONLY → just those tags; otherwise every tag in specimens.json. RESUME
-# preserves existing output (shoot skips already-shot specimens), so don't clean.
+# linger. ONLY → just those tags; otherwise every tag in catalogue.json. RESUME
+# preserves existing output (shoot skips already-shot presets), so don't clean.
 if [[ -z "$RESUME" ]]; then
   if [[ -n "$ONLY" ]]; then
     IFS=',' read -ra _clean_tags <<< "$ONLY"
     for _t in "${_clean_tags[@]}"; do _t="${_t// /}"; [[ -n "$_t" ]] && rm -rf "$SCREENS/$_t"; done
   else
-    python3 -c "import json;[print(k) for k in json.load(open('$SPECIMENS'))]" \
+    python3 -c "import json;[print(e['tag']) for e in json.load(open('$CATALOGUE'))['elements']]" \
       | while IFS= read -r _t; do [[ -n "$_t" ]] && rm -rf "$SCREENS/$_t"; done
   fi
 fi
@@ -97,7 +97,7 @@ fi
 # Emit ROOT-relative output_path values in the textprotos (chromerpc + automate
 # are launched below from $ROOT, so relative paths resolve to the same dir).
 RESUME="$RESUME" go run ./chrome-testing/cmd/shoot/ \
-  -specimens "$SPECIMENS" \
+  -catalogue "$CATALOGUE" \
   -base "$BASE" -outdir "$REL_SCREENS" -seq "$SEQ" \
   ${ONLY:+-only "$ONLY"}
 

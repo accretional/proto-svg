@@ -23,13 +23,13 @@ pipeline (grammar → proto → gallery → screenshots) is green.
 | What | Command |
 |---|---|
 | Setup (prereqs, `go mod tidy`, chromerpc warmup) | `./setup.sh` |
-| Build (EBNF → proto → gallery) | `./build.sh` |
+| Build (EBNF → proto → catalogue) | `./build.sh` |
 | Test / validate (the ONLY sanctioned pre-commit check) | `./test.sh` |
-| Full pipeline + screenshots + serve | `./LET_IT_RIP.sh` |
+| Full pipeline + serve the gallery (+ `SHOOT=1` for screenshots) | `./LET_IT_RIP.sh` |
 | Compile the grammar → proto schema (called by build) | `./tools/genproto.sh` |
-| Generate the value-path galleries (called by build) | `./tools/gen.sh` |
-| Screenshot HTML/dir/URL via chromerpc | `./chrome-testing/snap.sh <input> <output>` |
-| Per-value screenshots + animation GIFs (proto-css `shoot` port) | `./chrome-testing/shoot.sh` (or `SHOOT=1 ./LET_IT_RIP.sh`) |
+| Generate the gallery catalogue (called by build) | `./tools/gen.sh` |
+| Per-preset viewer screenshots + animation GIFs (drives the gallery) | `./chrome-testing/shoot.sh` (or `SHOOT=1 ./LET_IT_RIP.sh`) |
+| Ad-hoc screenshot of any HTML/dir/URL via chromerpc | `./chrome-testing/snap.sh <input> <output>` |
 
 `setup.sh` → `build.sh` → `test.sh` → `LET_IT_RIP.sh` is a strict superset chain:
 each one runs the previous stages, so running the outermost runs everything.
@@ -41,11 +41,12 @@ lang/*.ebnf  ──genproto──▶  proto/svg.proto + proto/svg.fdset
 (14 modules,                 + proto/pb/svg/{prefix_map,separator_map}.go
  svg.ebnf is root)
       │
-      └──gen──▶  chrome-testing/html/generated/*.html  (per-element galleries)
-                 + index.html + values.json + manifest.tsv
+      └──gen──▶  chrome-testing/gallery/catalogue.json  (the SVG Lab data contract:
+                 per element → typed attribute controls + presets + base SVG)
                  + chrome-testing/generated/sample-{document,rect}.svg
       │
-      └──snap──▶ chrome-testing/screenshots/generated/*.png  (one PNG per page)
+      └──shoot──▶ chrome-testing/screenshots/gallery/<tag>/NN-<slug>.png
+                  (drives the gallery viewer to each preset; SMIL → GIF)
 ```
 
 1. **Grammar (`lang/*.ebnf`, 14 modules).** A STRUCTURAL grammar for real SVG:
@@ -63,29 +64,33 @@ lang/*.ebnf  ──genproto──▶  proto/svg.proto + proto/svg.fdset
 
 3. **gen (`tools/gen.sh`).** Runs `go run ./chrome-testing/cmd/gen/`, which
    compiles the grammar in memory, walks the proto message graph, and enumerates
-   **every element's every attribute's every value-path**. Each value is injected
-   into the element's hand-authored blueprint and written as a per-element
-   gallery page under `chrome-testing/html/generated/`, plus `index.html`,
-   `values.json`, and `manifest.tsv`. Unlike proto-css's gen, REPEATED fields are
-   RENDERED (children and attributes are genuine repetitions in SVG).
+   **every element's every attribute's every value-path**. It emits
+   `chrome-testing/gallery/catalogue.json` — the data contract the SVG Lab gallery
+   renders from: per element, the showcased element's typed attribute controls
+   (paint / range / select / number / text, derived from each attribute's value
+   type), a baseline **base** SVG (the hand-authored blueprint with the element at
+   its defaults), and **presets** (one per visually-meaningful value-path). The
+   per-element static HTML + specimen technique is RETIRED — there is one live app.
 
-4. **snap (`chrome-testing/snap.sh`).** Screenshots a file, a directory (one PNG
-   per `.html`), or a URL via headless Chrome driven by **chromerpc**.
+4. **gallery (`chrome-testing/gallery/`).** The SVG Lab app: a standalone vanilla
+   HTML+JS SPA (no framework) that loads `catalogue.json`. Three linked panes —
+   the VIEWER (renders the SVG), the CONTROL PANEL (typed controls + presets), and
+   the live EDITOR (the SVG markup, editable client-side) — all stay in sync, no
+   server needed. `index.html` + `app.js` are hand-maintained; `catalogue.json` is
+   generated. Hash routes: `#/el/<tag>` opens an element; `#/embed/<tag>/<idx>`
+   shows the chrome-free viewer with preset `idx` applied (used by the shoot).
 
-## Per-value specimen shoot + animation GIFs (`chrome-testing/shoot.sh`)
+## Per-preset gallery shoot + animation GIFs (`chrome-testing/shoot.sh`)
 
-`gen` also emits a label-free **specimen** page per visually-meaningful value-path
-(`chrome-testing/html/specimen/<tag>/<NN>-<slug>.html`) and a `specimens.json`
-manifest. `chrome-testing/shoot.sh` (a port of proto-css's `shoot` + `gifenc`)
-drives chromerpc to capture ONE PNG per value into
-`chrome-testing/screenshots/specimens/<tag>/`; for SMIL/animation elements it
-captures a frame sequence that `chrome-testing/cmd/gifenc` encodes into an animated
-GIF. It is long-running (one capture per value across every element), so it is
-opt-in: run `./chrome-testing/shoot.sh` directly, or `SHOOT=1 ./LET_IT_RIP.sh`.
-`ONLY=rect,animate` limits it to some tags; `RESUME=1` skips already-captured
-values. Specimens of the no-effect attributes (the collapsed "Non-visual" gallery
-section) are deliberately NOT captured — they have no distinct render. Screenshots
-are gitignored (regenerable).
+`chrome-testing/shoot.sh` (a port of proto-css's `shoot` + `gifenc`) serves the
+gallery and drives chromerpc through it: for every preset (= one attribute value)
+it sets `location.hash = '#/embed/<tag>/<idx>'` and screenshots the viewer into
+`chrome-testing/screenshots/gallery/<tag>/NN-<slug>.png`; for SMIL/animation
+elements it captures a frame sequence that `chrome-testing/cmd/gifenc` encodes
+into an animated GIF. It is long-running (one capture per preset across every
+element), so it is opt-in: run `./chrome-testing/shoot.sh` directly, or
+`SHOOT=1 ./LET_IT_RIP.sh`. `ONLY=rect,animate` limits it to some tags; `RESUME=1`
+skips already-captured presets. Screenshots are gitignored (regenerable).
 
 ## Templates are HAND-AUTHORED, never script-generated
 
@@ -98,8 +103,9 @@ each by hand**, then verify it by screenshotting and *looking at the PNG* (it
 must render, and every variation card must be visibly distinct). The full
 authoring + verification protocol is `docs/TEMPLATE_GUIDE.md`.
 
-The generated galleries under `chrome-testing/html/generated/` ARE
-script-generated — do not edit them by hand.
+`chrome-testing/gallery/catalogue.json` is script-generated (by `tools/gen.sh`) —
+do not edit it by hand. The gallery's `index.html` + `app.js` ARE hand-maintained
+(the SVG Lab UI); only the catalogue data is generated.
 
 ## Grammar conventions (read before touching `lang/*.ebnf`)
 
@@ -150,11 +156,11 @@ sibling checkouts `../gluon` and `../proto-merge`. `go mod tidy` (run by
   run `./test.sh` (and `./LET_IT_RIP.sh` before committing).
 - Do NOT commit or push without running `./LET_IT_RIP.sh` first.
 - Do NOT hand-edit generated artifacts: `proto/svg.proto`, `proto/svg.fdset`,
-  `proto/pb/svg/*.go`, or anything under `chrome-testing/html/generated/`. They
-  are regenerated by `tools/genproto.sh` and `tools/gen.sh` — change the grammar
-  or generator instead and rerun.
+  `proto/pb/svg/*.go`, or `chrome-testing/gallery/catalogue.json`. They are
+  regenerated by `tools/genproto.sh` and `tools/gen.sh` — change the grammar or
+  generator instead and rerun. (The gallery's `index.html`/`app.js` ARE editable.)
 - Do NOT hand-edit screenshots under `chrome-testing/screenshots/` — they are
-  produced by `chrome-testing/snap.sh`.
+  produced by `chrome-testing/shoot.sh`.
 - Do NOT script-generate the hand-authored templates in
   `chrome-testing/html/template/` — author and screenshot-verify each by hand
   (`docs/TEMPLATE_GUIDE.md`).

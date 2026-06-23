@@ -84,25 +84,27 @@ check_nonempty "$ROOT/proto/svg.fdset"           "proto/svg.fdset"
 check_nonempty "$ROOT/proto/pb/svg/prefix_map.go"    "proto/pb/svg/prefix_map.go"
 check_nonempty "$ROOT/proto/pb/svg/separator_map.go" "proto/pb/svg/separator_map.go"
 
-# ── Generated gallery ───────────────────────────────────────────────────────
+# ── Gallery app + generated catalogue ───────────────────────────────────────
 echo ""
-echo "============ Generated gallery ============"
-GEN_DIR="$ROOT/chrome-testing/html/generated"
-if [[ -f "$GEN_DIR/index.html" ]]; then
-  pass "generated index.html exists"
-else
-  fail "generated index.html not found — run ./build.sh"
-fi
+echo "============ Gallery app + catalogue ============"
+GALLERY_DIR="$ROOT/chrome-testing/gallery"
+for f in index.html app.js; do
+  if [[ -f "$GALLERY_DIR/$f" ]]; then
+    pass "gallery/$f exists"
+  else
+    fail "gallery/$f not found"
+  fi
+done
 
-# Per-element pages = generated *.html minus index.html.
-GEN_PAGES=0
-if [[ -d "$GEN_DIR" ]]; then
-  GEN_PAGES=$(find "$GEN_DIR" -maxdepth 1 -name '*.html' ! -name 'index.html' | wc -l | tr -d ' ')
+CATALOGUE="$GALLERY_DIR/catalogue.json"
+CAT_ELS=0
+if [[ -f "$CATALOGUE" ]]; then
+  CAT_ELS=$(python3 -c "import json,sys;print(len(json.load(open('$CATALOGUE')).get('elements',[])))" 2>/dev/null || echo 0)
 fi
-if [[ "$GEN_PAGES" -gt 0 ]]; then
-  pass "$GEN_PAGES per-element gallery page(s) generated"
+if [[ "$CAT_ELS" -gt 0 ]]; then
+  pass "catalogue.json parses with $CAT_ELS element(s)"
 else
-  fail "no per-element gallery pages in $GEN_DIR — run ./build.sh"
+  fail "catalogue.json missing/empty/invalid — run ./build.sh"
 fi
 
 # ── Hand-authored templates start with <!DOCTYPE ────────────────────────────
@@ -135,37 +137,33 @@ else
   fail "hand-authored template dir not found: $TPL_DIR"
 fi
 
-# ── Well-formedness of a sample of generated pages ──────────────────────────
-# Lightweight, dependency-free balance check: each sampled page must contain a
-# DOCTYPE, balanced <html>…</html>, and the grammar-injected SVG markup.
+# ── Well-formedness of the catalogue base SVGs ──────────────────────────────
+# Every element's base render must be a balanced <svg>…</svg> the gallery can
+# mount. Checked in one pass over catalogue.json.
 echo ""
-echo "============ Generated page well-formedness (sample) ============"
-wellformed() {
-  local f="$1"
-  head -c 200 "$f" | grep -qi '<!DOCTYPE'  || { echo "    no DOCTYPE: $(basename "$f")" >&2; return 1; }
-  grep -qi '<html'  "$f"                    || { echo "    no <html>: $(basename "$f")"  >&2; return 1; }
-  grep -qi '</html>' "$f"                   || { echo "    no </html>: $(basename "$f")" >&2; return 1; }
-  grep -q  '<svg'   "$f"                     || { echo "    no <svg>: $(basename "$f")"   >&2; return 1; }
-  return 0
-}
-
-if [[ "$GEN_PAGES" -gt 0 ]]; then
-  # Sample up to 8 pages deterministically (sorted, evenly spaced). Built with a
-  # while-read loop, not mapfile, so it works on bash 3.2 (macOS default).
-  SAMPLE_COUNT=0
-  BAD_GEN=0
-  while IFS= read -r f; do
-    [[ -z "$f" ]] && continue
-    SAMPLE_COUNT=$((SAMPLE_COUNT + 1))
-    wellformed "$f" || BAD_GEN=$((BAD_GEN + 1))
-  done < <(find "$GEN_DIR" -maxdepth 1 -name '*.html' ! -name 'index.html' | sort | awk 'NR%8==1' | head -8)
-  if [[ $BAD_GEN -eq 0 ]]; then
-    pass "$SAMPLE_COUNT sampled generated page(s) well-formed"
+echo "============ Catalogue base SVG well-formedness ============"
+if [[ "$CAT_ELS" -gt 0 ]]; then
+  if python3 - "$CATALOGUE" <<'PY'
+import json, sys, re
+els = json.load(open(sys.argv[1]))["elements"]
+bad = []
+for e in els:
+    b = e.get("base", "")
+    if b.count("<svg") < 1 or b.count("</svg>") < 1 or "{{ELEMENT}}" in b:
+        bad.append(e["tag"])
+    if not e.get("attrs") or not e.get("presets"):
+        bad.append(e["tag"] + "(empty)")
+if bad:
+    print("    malformed/empty:", ", ".join(sorted(set(bad)))); sys.exit(1)
+print("    %d catalogue base SVGs well-formed" % len(els))
+PY
+  then
+    pass "all $CAT_ELS catalogue base SVGs well-formed with controls + presets"
   else
-    fail "$BAD_GEN of $SAMPLE_COUNT sampled generated page(s) malformed"
+    fail "some catalogue entries are malformed/empty"
   fi
 else
-  echo "  [skip] no generated pages to sample"
+  echo "  [skip] no catalogue to check"
 fi
 
 # ── Summary ─────────────────────────────────────────────────────────────────

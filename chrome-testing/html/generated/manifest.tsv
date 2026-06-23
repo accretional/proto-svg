@@ -1136,7 +1136,7 @@ feColorMatrix	type	matrix	0
 feColorMatrix	type	saturate	0
 feColorMatrix	type	hueRotate	0
 feColorMatrix	type	luminanceToAlpha	0
-feColorMatrix	values	10; 45; 80	0
+feColorMatrix	values	120	0
 feColorMatrix	x	10	0
 feColorMatrix	x	24px	0
 feColorMatrix	x	2em	0

@@ -404,8 +404,15 @@ func (e *Enumerator) renderWithOneAttr(el element, prefix, value, suffix string)
 	}
 	attr := prefix + value + suffix
 	closeTag := "</" + el.tag + ">"
-	// Self-closing-friendly: emit open + baseline + this attr + ">" + close.
-	return open + baseline + attr + ">" + bodyFor(el.tag) + closeTag, needsID || needsRef
+	// The element body normally comes from bodyFor(tag), but the varied attribute
+	// can require an alternate child geometry (e.g. objectBoundingBox units need
+	// fractional child coords). bodyOverride is consulted first.
+	body := bodyFor(el.tag)
+	if ob, ok := bodyOverride(el.tag, attrNameFromPrefix(prefix), value); ok {
+		body = ob
+	}
+	// Self-closing-friendly: emit open + baseline + this attr + ">" + body + close.
+	return open + baseline + attr + ">" + body + closeTag, needsID || needsRef
 }
 
 func paths(vs ...string) []valuePath {

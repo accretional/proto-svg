@@ -63,6 +63,30 @@ var builtinScaffoldWins = map[string]bool{
 	"feFuncA":             true,
 	"feConvolveMatrix":    true,
 	"feDropShadow":        true,
+	// QA round3: the on-disk templates for these tags shadow the corrected
+	// built-in scaffolds. Force the built-ins so the round3 fixes take effect:
+	//   linearGradient → refgrad sibling def + non-zero x1 baseline (FIX 2)
+	//   stop           → anchor moved to 0.3 + color on root (FIX 3)
+	//   clipPath/mask  → bodyOverride fractional OBB children (FIX 1)
+	//   pattern        → bodyOverride fractional OBB content (FIX 1)
+	//   feColorMatrix  → hueRotate baseline (FIX 6, via baselineFor+overlay)
+	//   feTile         → non-uniform patch tiling (FIX 5, via catFilterPrimitive)
+	//   use            → larger referenced target circle (FIX 7)
+	//   switch         → fill=currentColor child + root color (FIX 8)
+	//   script         → pre-colored target rect (FIX 9)
+	//   mpath/discard  → larger brightly-colored host shape (FIX 10)
+	"linearGradient": true,
+	"stop":           true,
+	"clipPath":       true,
+	"mask":           true,
+	"pattern":        true,
+	"feColorMatrix":  true,
+	"feTile":         true,
+	"use":            true,
+	"switch":         true,
+	"script":         true,
+	"mpath":          true,
+	"discard":        true,
 }
 
 // blueprintFor returns the scaffold for tag (with a {{ELEMENT}} placeholder).
@@ -145,10 +169,14 @@ func defaultScaffold(tag string) string {
 		} else {
 			slot = `<filter id="slot"><feComponentTransfer>{{ELEMENT}}</feComponentTransfer></filter>`
 		}
+		// FIX 4: a COLORED source gradient (red→green→blue) instead of a black→white
+		// greyscale ramp. With an achromatic source R=G=B, so manipulating a single
+		// channel (feFuncR/G/B/A) is nearly imperceptible. A colored ramp makes each
+		// channel's transfer curve show as a visible hue shift across the rect.
 		return svgOpen +
 			`<defs>` +
 			`<linearGradient id="bpGrad" x1="0" y1="0" x2="1" y2="0">` +
-			`<stop offset="0" stop-color="#000000"/><stop offset="1" stop-color="#ffffff"/>` +
+			`<stop offset="0" stop-color="#ff0000"/><stop offset="0.5" stop-color="#00ff00"/><stop offset="1" stop-color="#0000ff"/>` +
 			`</linearGradient>` +
 			slot +
 			`</defs>` +
@@ -192,11 +220,68 @@ func defaultScaffold(tag string) string {
 		return svgOpen +
 			`<defs><filter id="slot" x="-20%" y="-20%" width="150%" height="150%">{{ELEMENT}}</filter></defs>` +
 			`<rect x="20" y="20" width="55" height="55" fill="#f5a623" filter="url(#slot)"/></svg>`
+	case "discard":
+		// FIX 10: <discard> removes its target after `begin`; the static snapshot is
+		// taken before the (60s, via baselineFor) discard fires, so the host should
+		// be present and clearly visible. Use a large, bright centered circle (r=20)
+		// instead of a tiny corner square. discard is a child of the target it
+		// removes; host it directly inside a rendered shape.
+		return svgOpen +
+			`<circle id="target" cx="50" cy="50" r="20" fill="#4d8bff">{{ELEMENT}}</circle></svg>`
+	case "script":
+		// FIX 9: pre-color the target rect so cards whose <script type="…"> is a
+		// non-JS MIME type (which the browser refuses to execute) are not a blank
+		// grey square. The <script> is illustrative — it would recolor the rect IF
+		// it ran — but the base color does not depend on JS execution. The script
+		// body (bodyFor) targets id="slot-target".
+		return svgOpen +
+			`<rect id="slot-target" x="20" y="20" width="60" height="60" fill="#e94560"/>` +
+			`{{ELEMENT}}</svg>`
+	case "switch":
+		// FIX 8: <switch> is a container; presentation attrs set on it (color,
+		// fill-opacity, opacity, …) only show if its rendered child INHERITS them.
+		// The child rect uses fill="currentColor" (see bodyFor), so a root
+		// color="#16c79a" gives a visible base while attrs varied on <switch>
+		// (e.g. color="#e94560", fill-opacity, opacity) produce distinct cards
+		// (mirrors the <g> approach).
+		return `<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100" color="#16c79a">` +
+			`{{ELEMENT}}</svg>`
+	case "feTile":
+		// FIX 5: tiling a UNIFORM source produces a uniform output (no pattern), so
+		// the round2 white-flood feTile showed nothing. Two things are needed:
+		//  (1) A NON-UNIFORM 25×25 tile cell to tile — built from filter primitives
+		//      only (a teal field feFlood + an orange corner feFlood composited
+		//      over it → result="patch"); feImage data:/fragment patches do not
+		//      paint reliably headless / under the gallery's duplicate ids.
+		//  (2) The HOST graphic must itself be non-uniform. The `in` attribute is
+		//      enumerated, so the FIRST card on the page is `in="SourceGraphic"`;
+		//      because every card shares id="slot", that first filter (tiling a
+		//      flat host) otherwise poisoned ALL cards to a uniform fill. Filling
+		//      the host with a repeating <pattern> makes even `in="SourceGraphic"`
+		//      tile a visible dot grid, so no card is blank.
+		// feTile (in="patch", via baselineFor) repeats the cell across the filter
+		// region; varying its x/y/width/height shifts/scales the tiling region.
+		return svgOpen +
+			`<defs>` +
+			`<pattern id="tilehost" width="25" height="25" patternUnits="userSpaceOnUse">` +
+			`<rect width="25" height="25" fill="#16c79a"/><circle cx="12" cy="12" r="6" fill="#f5a623"/></pattern>` +
+			`<filter id="slot" x="0" y="0" width="100%" height="100%">` +
+			`<feFlood flood-color="#16c79a" x="0" y="0" width="25" height="25" result="base"/>` +
+			`<feFlood flood-color="#f5a623" x="0" y="0" width="13" height="13" result="dot"/>` +
+			`<feComposite in="dot" in2="base" operator="over" x="0" y="0" width="25" height="25" result="patch"/>` +
+			`{{ELEMENT}}</filter></defs>` +
+			`<rect x="0" y="0" width="100" height="100" fill="url(#tilehost)" filter="url(#slot)"/></svg>`
 	}
 	switch category(tag) {
 	case catGradient:
+		// FIX 2(a): provide a concrete <linearGradient id="refgrad"> sibling so a
+		// generated href="#refgrad" / xlink:href="#refgrad" actually resolves
+		// instead of dangling (overlay routes gradient href to #refgrad).
 		return svgOpen +
+			`<defs>` +
+			`<linearGradient id="refgrad"><stop offset="0" stop-color="#e94560"/><stop offset="1" stop-color="#16c79a"/></linearGradient>` +
 			`{{ELEMENT}}` +
+			`</defs>` +
 			`<rect x="5" y="5" width="90" height="90" fill="url(#slot)"/></svg>`
 	case catPattern:
 		return svgOpen +
@@ -256,11 +341,13 @@ func defaultScaffold(tag string) string {
 	case catStop:
 		// Two CONTRASTING fixed anchor stops bracket the varied stop so any
 		// offset/stop-color change produces a visible gradient band that shifts and
-		// recolors (QA round2). The leading anchor sits at offset="0.1" (not 0) so
-		// a varied stop at offset="0" does not collide with it and lose the leading
-		// edge; the trailing anchor is a strong blue for high contrast.
-		return svgOpen +
-			`<defs><linearGradient id="slot"><stop offset="0.1" stop-color="#e94560"/>{{ELEMENT}}<stop offset="1" stop-color="#4d8bff"/></linearGradient></defs>` +
+		// recolors (QA round2). FIX 3: the leading anchor sits at offset="0.3" (was
+		// 0.1) so a varied stop at offset="0" is clearly separated from it by a wide
+		// red band; the trailing anchor is a strong blue for high contrast. The root
+		// <svg> carries color="#f5a623" so a varied stop-color="currentColor"
+		// resolves to a visible orange instead of the near-white CSS text color.
+		return `<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100" color="#f5a623">` +
+			`<defs><linearGradient id="slot"><stop offset="0.3" stop-color="#e94560"/>{{ELEMENT}}<stop offset="1" stop-color="#4d8bff"/></linearGradient></defs>` +
 			`<rect x="5" y="5" width="90" height="90" fill="url(#slot)"/></svg>`
 	case catMergeNode:
 		// Named colored layers so a feMergeNode baseline in="layerA" resolves and the
@@ -277,17 +364,22 @@ func defaultScaffold(tag string) string {
 	case catMpath:
 		// The mpath's href resolves (via overlay) to "#target"; the motion-path def
 		// id must match. Host shape starts mid-canvas so it is not clipped at (0,0).
+		// FIX 10: a larger, bright host (40×40 #4d8bff, centered) so the element is
+		// clearly visible in the static snapshot instead of a tiny corner square.
 		return svgOpen +
 			`<defs><path id="target" d="M30 50 Q50 10 70 50"/></defs>` +
-			`<rect x="30" y="30" width="20" height="20" fill="#f5a623"><animateMotion dur="2s" repeatCount="indefinite">{{ELEMENT}}</animateMotion></rect></svg>`
+			`<rect x="30" y="30" width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite">{{ELEMENT}}</animateMotion></rect></svg>`
 	case catDescriptive:
 		return svgOpen +
 			`<rect x="10" y="10" width="80" height="80" fill="#16c79a">{{ELEMENT}}</rect></svg>`
 	case catContainerRef:
 		// <use> references a defined shape; the baseline href is "#slot", so the
 		// referenced def carries id="slot" (was "#ref" → dangling, QA round1).
+		// FIX 7: reference a LARGE centered circle (was a tiny 40×40 top-left rect)
+		// so the <use> instance renders prominently and x/y offsets shift it
+		// visibly across cards.
 		return svgOpen +
-			`<defs><rect id="slot" x="0" y="0" width="40" height="40" fill="#e94560"/></defs>{{ELEMENT}}</svg>`
+			`<defs><circle id="slot" cx="50" cy="50" r="32" fill="#e94560"/></defs>{{ELEMENT}}</svg>`
 	default: // shapes, text, image, g, svg, etc. — self-render
 		return svgOpen + `{{ELEMENT}}</svg>`
 	}
@@ -405,7 +497,10 @@ func baselineFor(tag, varyingPrefix string) (string, bool) {
 	case "g", "svg", "defs", "switch", "a", "symbol":
 		return "", false
 	case "linearGradient":
-		return "", false // stops supply the visible color; baseline kept minimal
+		// FIX 2(b): a non-zero x1 baseline so the x2="0" card still has a non-zero
+		// gradient vector (x1=0 default + x2=0 → zero-length → solid last-stop fill).
+		// Skipped automatically when x1 itself is the varied attribute.
+		return add([2]string{"x1", "20%"}), false
 	case "radialGradient":
 		return "", false
 	case "stop":
@@ -423,8 +518,12 @@ func baselineFor(tag, varyingPrefix string) (string, bool) {
 	case "feFlood":
 		return add([2]string{"flood-color", "#e94560"}), false
 	case "feColorMatrix":
-		// Without a matching type+values the effect is identity (no visible change).
-		return add([2]string{"type", "saturate"}, [2]string{"values", "0.3"}), false
+		// FIX 6: a hueRotate baseline takes a single number ("90") that is clearly
+		// visible (rotates hues 90°), so every non-type/values card shows a strong,
+		// well-formed effect. The previous saturate+"0.3" paired badly with the
+		// type="matrix" card (matrix needs 20 numbers; "0.3" → silent identity).
+		// The values override (overlay.go) returns "120" — valid for hueRotate.
+		return add([2]string{"type", "hueRotate"}, [2]string{"values", "90"}), false
 	case "feFuncR", "feFuncG", "feFuncB", "feFuncA":
 		// type defaults to identity (ignores slope/intercept); linear makes them show.
 		return add([2]string{"type", "linear"}, [2]string{"slope", "1.5"}), false
@@ -493,6 +592,33 @@ func baselineFor(tag, varyingPrefix string) (string, bool) {
 	return "", false
 }
 
+// bodyOverride returns an alternate inner body for tag when the single varied
+// attribute (attrName=attrValue) changes how the CHILD geometry must be
+// expressed. The motivating case is objectBoundingBox units: when a
+// clipPath/mask/pattern switches its child/content coordinate system to
+// objectBoundingBox, the standard userSpaceOnUse children (pixel coords like
+// cx="50") map far off-canvas and the card looks blank/identical to the
+// userSpaceOnUse card. Returning FRACTIONAL-coordinate children keeps the
+// element visible and distinct in OBB mode. Returns ("", false) when no
+// override applies and the normal bodyFor(tag) should be used.
+func bodyOverride(tag, attrName, attrValue string) (string, bool) {
+	if attrValue != "objectBoundingBox" {
+		return "", false
+	}
+	switch {
+	case tag == "clipPath" && attrName == "clipPathUnits":
+		// Fractional circle: cx/cy/r as fractions of the clipped element's bbox.
+		return `<circle cx="0.5" cy="0.5" r="0.4"/>`, true
+	case tag == "mask" && attrName == "maskContentUnits":
+		// Fractional white rect so the mask content covers most of the bbox.
+		return `<rect x="0.1" y="0.1" width="0.8" height="0.8" fill="#fff"/>`, true
+	case tag == "pattern" && attrName == "patternContentUnits":
+		// A small fractional tile so the pattern content is visible in OBB mode.
+		return `<circle cx="0.25" cy="0.25" r="0.2" fill="#16c79a"/>`, true
+	}
+	return "", false
+}
+
 // bodyFor returns the child content a freshly-generated element needs to be
 // visible (e.g. a gradient/pattern needs stops/children; a marker/clipPath needs
 // a shape). For self-rendering shapes this is empty.
@@ -510,8 +636,14 @@ func bodyFor(tag string) string {
 		return `<rect x="20" y="20" width="60" height="60" fill="#fff"/>`
 	case "filter":
 		return `<feGaussianBlur stdDeviation="3"/>`
-	case "g", "a", "switch", "svg", "defs", "symbol":
+	case "g", "a", "svg", "defs", "symbol":
 		return `<rect x="20" y="20" width="60" height="60" fill="#4d8bff"/>`
+	case "switch":
+		// FIX 8: the rendered child uses fill="currentColor" so presentation attrs
+		// set on the <switch> parent (color/fill-opacity/opacity) actually propagate
+		// and produce visibly distinct cards. The first child whose conditional-
+		// processing attrs evaluate true renders; a bare rect always qualifies.
+		return `<rect x="20" y="20" width="60" height="60" fill="currentColor"/>`
 	case "feMerge":
 		// Two nodes stacking colored blueprint layers so the merge is visible.
 		return `<feMergeNode in="layerA"/><feMergeNode in="layerB"/>`
@@ -525,8 +657,11 @@ func bodyFor(tag string) string {
 		// foreignObject needs an XHTML child or it renders nothing.
 		return `<div xmlns="http://www.w3.org/1999/xhtml" style="background:#4d8bff;color:#fff;font:12px sans-serif;padding:6px">HTML in SVG</div>`
 	case "script":
-		// A JS body that visibly colors the blueprint's target rect (id="slot-target").
-		return `(function(){var t=document.getElementById('slot-target');if(t){t.setAttribute('fill','#e94560');}})();`
+		// A JS body that recolors the blueprint's target rect (id="slot-target") to
+		// teal. The rect is PRE-COLORED red in the scaffold (FIX 9) so non-JS-MIME
+		// cards still show a colored square; an executing card additionally shifts it
+		// to teal, demonstrating the script ran.
+		return `(function(){var t=document.getElementById('slot-target');if(t){t.setAttribute('fill','#16c79a');}})();`
 	case "style":
 		// A CSS body that styles the blueprint's .slot shapes so cards differ.
 		return `.slot{fill:#e94560;stroke:#16c79a;stroke-width:3}`

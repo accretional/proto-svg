@@ -196,6 +196,13 @@ func overlaySample(tag, attrName, valueKind string) (string, bool) {
 	case "by":
 		return animBy(tag), true
 	case "values":
+		// FIX 6: feColorMatrix `values` is a numeric matrix/scalar, NOT an animation
+		// value list. With the hueRotate baseline it takes a single number; "120" is
+		// a clearly-visible rotation. (The animation `values` list applies to
+		// animate/set/animateMotion/animateTransform, handled by animValues.)
+		if tag == "feColorMatrix" {
+			return "120", true
+		}
 		return animValues(tag), true
 	}
 

@@ -97,9 +97,16 @@ toward inclusion since modeling cost is near-zero and it appears in the SVG 2 in
 `fr` on radialGradient (SVG 2, universally supported); `href` bare form everywhere;
 `zoomAndPan` (deprecated, closed set, parseable); `discard` (experimental); `side` on
 textPath (experimental); `context-fill`/`context-stroke` paint; `stroke-linejoin: arcs`/
-`miter-clip` (limited support); SVG 2 text-wrapping props (`inline-size`, `shape-inside`,
-`shape-subtract`, `shape-padding`, `shape-margin` — grammar-present, overlay-flagged
-unimplemented); `wallclock` timing (grammar-present, never rendered).
+`miter-clip` (limited support); `inline-size` (SVG 2 text wrapping, grammar-present,
+limited support); `wallclock` timing (grammar-present, never rendered).
+
+**CSS-only properties (no SVG attribute form — correctly absent from the grammar).**
+`line-height`, `shape-inside`, `shape-subtract`, `shape-padding`, `shape-margin`,
+`isolation`, and `mix-blend-mode` apply to SVG via CSS but are NOT in the SVG 2
+attribute index G.2, i.e. they have no presentation-attribute form. They can only be
+set through `style="…"`/a stylesheet, never as an XML attribute, so the structural
+grammar (which models XML attributes) correctly does not express them. (An earlier note
+mislabeled the `shape-*` set as grammar-present; only `inline-size` is.)
 
 ---
 

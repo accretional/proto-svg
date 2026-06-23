@@ -28,6 +28,7 @@ pipeline (grammar → proto → gallery → screenshots) is green.
 | Full pipeline + serve the gallery (+ `SHOOT=1` for screenshots) | `./LET_IT_RIP.sh` |
 | Compile the grammar → proto schema (called by build) | `./tools/genproto.sh` |
 | Generate the gallery catalogue (called by build) | `./tools/gen.sh` |
+| Serve the SVG Lab gallery locally (no build) | `./chrome-testing/serve.sh` (port 8899; `SERVE_PORT=`) |
 | Per-preset viewer screenshots + animation GIFs (drives the gallery) | `./chrome-testing/shoot.sh` (or `SHOOT=1 ./LET_IT_RIP.sh`) |
 | Ad-hoc screenshot of any HTML/dir/URL via chromerpc | `./chrome-testing/snap.sh <input> <output>` |
 

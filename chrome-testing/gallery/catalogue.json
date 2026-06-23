@@ -68,14 +68,6 @@
      ]
     },
     {
-     "key": "stroke-miterlimit",
-     "label": "stroke-miterlimit",
-     "control": "range",
-     "min": 1,
-     "max": 20,
-     "step": 0.5
-    },
-    {
      "key": "stroke-dasharray",
      "label": "stroke-dasharray",
      "control": "select",
@@ -105,62 +97,6 @@
      "control": "paint"
     },
     {
-     "key": "filter",
-     "label": "filter",
-     "control": "select",
-     "options": [
-      "none"
-     ]
-    },
-    {
-     "key": "clip-path",
-     "label": "clip-path",
-     "control": "select",
-     "options": [
-      "none"
-     ]
-    },
-    {
-     "key": "clip",
-     "label": "clip",
-     "control": "select",
-     "options": [
-      "auto"
-     ]
-    },
-    {
-     "key": "mask",
-     "label": "mask",
-     "control": "select",
-     "options": [
-      "none"
-     ]
-    },
-    {
-     "key": "display",
-     "label": "display",
-     "control": "select",
-     "options": [
-      "none"
-     ]
-    },
-    {
-     "key": "visibility",
-     "label": "visibility",
-     "control": "select",
-     "options": [
-      "visible"
-     ]
-    },
-    {
-     "key": "overflow",
-     "label": "overflow",
-     "control": "select",
-     "options": [
-      "visible"
-     ]
-    },
-    {
      "key": "opacity",
      "label": "opacity",
      "control": "range",
@@ -169,25 +105,9 @@
      "step": 0.05
     },
     {
-     "key": "cursor",
-     "label": "cursor",
-     "control": "select",
-     "options": [
-      "auto"
-     ]
-    },
-    {
      "key": "transform",
      "label": "transform",
      "control": "text"
-    },
-    {
-     "key": "transform-origin",
-     "label": "transform-origin",
-     "control": "select",
-     "options": [
-      "inherit"
-     ]
     }
    ],
    "defaults": {},
@@ -368,26 +288,17 @@
     {
      "key": "values",
      "label": "values",
-     "control": "range",
-     "min": 0,
-     "max": 14,
-     "step": 1
+     "control": "text"
     },
     {
      "key": "keyTimes",
      "label": "keyTimes",
-     "control": "range",
-     "min": 0,
-     "max": 140,
-     "step": 1
+     "control": "text"
     },
     {
      "key": "keySplines",
      "label": "keySplines",
-     "control": "range",
-     "min": 0,
-     "max": 140,
-     "step": 1
+     "control": "text"
     },
     {
      "key": "from",
@@ -522,26 +433,17 @@
     {
      "key": "values",
      "label": "values",
-     "control": "range",
-     "min": 0,
-     "max": 14,
-     "step": 1
+     "control": "text"
     },
     {
      "key": "keyTimes",
      "label": "keyTimes",
-     "control": "range",
-     "min": 0,
-     "max": 140,
-     "step": 1
+     "control": "text"
     },
     {
      "key": "keySplines",
      "label": "keySplines",
-     "control": "range",
-     "min": 0,
-     "max": 140,
-     "step": 1
+     "control": "text"
     },
     {
      "key": "from",
@@ -570,15 +472,17 @@
     {
      "key": "path",
      "label": "path",
-     "control": "text"
+     "control": "select",
+     "options": [
+      "M10 10 L90 90",
+      "M10 50 Q50 10 90 50",
+      "M20 20 H80 V80 H20 Z"
+     ]
     },
     {
      "key": "keyPoints",
      "label": "keyPoints",
-     "control": "range",
-     "min": 0,
-     "max": 140,
-     "step": 1
+     "control": "text"
     },
     {
      "key": "rotate",
@@ -759,42 +663,27 @@
     {
      "key": "values",
      "label": "values",
-     "control": "range",
-     "min": 0,
-     "max": 140,
-     "step": 1
+     "control": "text"
     },
     {
      "key": "keyTimes",
      "label": "keyTimes",
-     "control": "range",
-     "min": 0,
-     "max": 140,
-     "step": 1
+     "control": "text"
     },
     {
      "key": "keySplines",
      "label": "keySplines",
-     "control": "range",
-     "min": 0,
-     "max": 140,
-     "step": 1
+     "control": "text"
     },
     {
      "key": "from",
      "label": "from",
-     "control": "range",
-     "min": 0,
-     "max": 140,
-     "step": 1
+     "control": "text"
     },
     {
      "key": "to",
      "label": "to",
-     "control": "range",
-     "min": 0,
-     "max": 504,
-     "step": 1
+     "control": "text"
     },
     {
      "key": "by",
@@ -1011,14 +900,6 @@
      ]
     },
     {
-     "key": "stroke-miterlimit",
-     "label": "stroke-miterlimit",
-     "control": "range",
-     "min": 1,
-     "max": 20,
-     "step": 0.5
-    },
-    {
      "key": "stroke-dasharray",
      "label": "stroke-dasharray",
      "control": "select",
@@ -1048,70 +929,6 @@
      "control": "paint"
     },
     {
-     "key": "shape-rendering",
-     "label": "shape-rendering",
-     "control": "select",
-     "options": [
-      "auto"
-     ]
-    },
-    {
-     "key": "filter",
-     "label": "filter",
-     "control": "select",
-     "options": [
-      "none"
-     ]
-    },
-    {
-     "key": "clip-path",
-     "label": "clip-path",
-     "control": "select",
-     "options": [
-      "none"
-     ]
-    },
-    {
-     "key": "clip",
-     "label": "clip",
-     "control": "select",
-     "options": [
-      "auto"
-     ]
-    },
-    {
-     "key": "mask",
-     "label": "mask",
-     "control": "select",
-     "options": [
-      "none"
-     ]
-    },
-    {
-     "key": "display",
-     "label": "display",
-     "control": "select",
-     "options": [
-      "none"
-     ]
-    },
-    {
-     "key": "visibility",
-     "label": "visibility",
-     "control": "select",
-     "options": [
-      "visible"
-     ]
-    },
-    {
-     "key": "overflow",
-     "label": "overflow",
-     "control": "select",
-     "options": [
-      "visible"
-     ]
-    },
-    {
      "key": "opacity",
      "label": "opacity",
      "control": "range",
@@ -1120,25 +937,9 @@
      "step": 0.05
     },
     {
-     "key": "cursor",
-     "label": "cursor",
-     "control": "select",
-     "options": [
-      "auto"
-     ]
-    },
-    {
      "key": "transform",
      "label": "transform",
      "control": "text"
-    },
-    {
-     "key": "transform-origin",
-     "label": "transform-origin",
-     "control": "select",
-     "options": [
-      "inherit"
-     ]
     }
    ],
    "defaults": {
@@ -1402,14 +1203,6 @@
       "userSpaceOnUse",
       "objectBoundingBox"
      ]
-    },
-    {
-     "key": "fill-rule",
-     "label": "fill-rule",
-     "control": "select",
-     "options": [
-      "nonzero"
-     ]
     }
    ],
    "defaults": {},
@@ -1550,14 +1343,6 @@
      ]
     },
     {
-     "key": "stroke-miterlimit",
-     "label": "stroke-miterlimit",
-     "control": "range",
-     "min": 1,
-     "max": 20,
-     "step": 0.5
-    },
-    {
      "key": "stroke-dasharray",
      "label": "stroke-dasharray",
      "control": "select",
@@ -1587,70 +1372,6 @@
      "control": "paint"
     },
     {
-     "key": "shape-rendering",
-     "label": "shape-rendering",
-     "control": "select",
-     "options": [
-      "auto"
-     ]
-    },
-    {
-     "key": "filter",
-     "label": "filter",
-     "control": "select",
-     "options": [
-      "none"
-     ]
-    },
-    {
-     "key": "clip-path",
-     "label": "clip-path",
-     "control": "select",
-     "options": [
-      "none"
-     ]
-    },
-    {
-     "key": "clip",
-     "label": "clip",
-     "control": "select",
-     "options": [
-      "auto"
-     ]
-    },
-    {
-     "key": "mask",
-     "label": "mask",
-     "control": "select",
-     "options": [
-      "none"
-     ]
-    },
-    {
-     "key": "display",
-     "label": "display",
-     "control": "select",
-     "options": [
-      "none"
-     ]
-    },
-    {
-     "key": "visibility",
-     "label": "visibility",
-     "control": "select",
-     "options": [
-      "visible"
-     ]
-    },
-    {
-     "key": "overflow",
-     "label": "overflow",
-     "control": "select",
-     "options": [
-      "visible"
-     ]
-    },
-    {
      "key": "opacity",
      "label": "opacity",
      "control": "range",
@@ -1659,25 +1380,9 @@
      "step": 0.05
     },
     {
-     "key": "cursor",
-     "label": "cursor",
-     "control": "select",
-     "options": [
-      "auto"
-     ]
-    },
-    {
      "key": "transform",
      "label": "transform",
      "control": "text"
-    },
-    {
-     "key": "transform-origin",
-     "label": "transform-origin",
-     "control": "select",
-     "options": [
-      "inherit"
-     ]
     }
    ],
    "defaults": {
@@ -2036,14 +1741,6 @@
      "min": 0,
      "max": 240,
      "step": 1
-    },
-    {
-     "key": "color-interpolation-filters",
-     "label": "color-interpolation-filters",
-     "control": "select",
-     "options": [
-      "auto"
-     ]
     }
    ],
    "defaults": {
@@ -2444,14 +2141,6 @@
      "min": 0,
      "max": 240,
      "step": 1
-    },
-    {
-     "key": "color-interpolation-filters",
-     "label": "color-interpolation-filters",
-     "control": "select",
-     "options": [
-      "auto"
-     ]
     }
    ],
    "defaults": {
@@ -2719,14 +2408,6 @@
      "min": 0,
      "max": 240,
      "step": 1
-    },
-    {
-     "key": "color-interpolation-filters",
-     "label": "color-interpolation-filters",
-     "control": "select",
-     "options": [
-      "auto"
-     ]
     }
    ],
    "defaults": {},
@@ -3022,14 +2703,6 @@
      "min": 0,
      "max": 240,
      "step": 1
-    },
-    {
-     "key": "color-interpolation-filters",
-     "label": "color-interpolation-filters",
-     "control": "select",
-     "options": [
-      "auto"
-     ]
     }
    ],
    "defaults": {
@@ -3482,10 +3155,7 @@
     {
      "key": "kernelMatrix",
      "label": "kernelMatrix",
-     "control": "range",
-     "min": -2,
-     "max": 2.2,
-     "step": 0.5
+     "control": "text"
     },
     {
      "key": "divisor",
@@ -3569,14 +3239,6 @@
      "min": 0,
      "max": 240,
      "step": 1
-    },
-    {
-     "key": "color-interpolation-filters",
-     "label": "color-interpolation-filters",
-     "control": "select",
-     "options": [
-      "auto"
-     ]
     }
    ],
    "defaults": {
@@ -4043,14 +3705,6 @@
      "step": 1
     },
     {
-     "key": "color-interpolation-filters",
-     "label": "color-interpolation-filters",
-     "control": "select",
-     "options": [
-      "auto"
-     ]
-    },
-    {
      "key": "lighting-color",
      "label": "lighting-color",
      "control": "paint"
@@ -4386,14 +4040,6 @@
      "min": 0,
      "max": 240,
      "step": 1
-    },
-    {
-     "key": "color-interpolation-filters",
-     "label": "color-interpolation-filters",
-     "control": "select",
-     "options": [
-      "auto"
-     ]
     }
    ],
    "defaults": {
@@ -4733,14 +4379,6 @@
      "min": 0,
      "max": 180,
      "step": 5
-    },
-    {
-     "key": "color-interpolation-filters",
-     "label": "color-interpolation-filters",
-     "control": "select",
-     "options": [
-      "auto"
-     ]
     }
    ],
    "defaults": {
@@ -4876,14 +4514,6 @@
      "min": 0,
      "max": 240,
      "step": 1
-    },
-    {
-     "key": "color-interpolation-filters",
-     "label": "color-interpolation-filters",
-     "control": "select",
-     "options": [
-      "auto"
-     ]
     },
     {
      "key": "flood-color",
@@ -5214,14 +4844,6 @@
      "step": 1
     },
     {
-     "key": "color-interpolation-filters",
-     "label": "color-interpolation-filters",
-     "control": "select",
-     "options": [
-      "auto"
-     ]
-    },
-    {
      "key": "flood-color",
      "label": "flood-color",
      "control": "paint"
@@ -5402,10 +5024,7 @@
     {
      "key": "tableValues",
      "label": "tableValues",
-     "control": "range",
-     "min": 0,
-     "max": 1.4,
-     "step": 0.5
+     "control": "text"
     },
     {
      "key": "slope",
@@ -5446,14 +5065,6 @@
      "min": 0,
      "max": 1,
      "step": 0.05
-    },
-    {
-     "key": "color-interpolation-filters",
-     "label": "color-interpolation-filters",
-     "control": "select",
-     "options": [
-      "auto"
-     ]
     }
    ],
    "defaults": {
@@ -5714,10 +5325,7 @@
     {
      "key": "tableValues",
      "label": "tableValues",
-     "control": "range",
-     "min": 0,
-     "max": 4.396,
-     "step": 0.5
+     "control": "text"
     },
     {
      "key": "slope",
@@ -5758,14 +5366,6 @@
      "min": 0,
      "max": 1,
      "step": 0.05
-    },
-    {
-     "key": "color-interpolation-filters",
-     "label": "color-interpolation-filters",
-     "control": "select",
-     "options": [
-      "auto"
-     ]
     }
    ],
    "defaults": {
@@ -6026,10 +5626,7 @@
     {
      "key": "tableValues",
      "label": "tableValues",
-     "control": "range",
-     "min": 0,
-     "max": 1.4,
-     "step": 0.5
+     "control": "text"
     },
     {
      "key": "slope",
@@ -6070,14 +5667,6 @@
      "min": 0,
      "max": 1,
      "step": 0.05
-    },
-    {
-     "key": "color-interpolation-filters",
-     "label": "color-interpolation-filters",
-     "control": "select",
-     "options": [
-      "auto"
-     ]
     }
    ],
    "defaults": {
@@ -6338,10 +5927,7 @@
     {
      "key": "tableValues",
      "label": "tableValues",
-     "control": "range",
-     "min": -1,
-     "max": 3.2,
-     "step": 0.5
+     "control": "text"
     },
     {
      "key": "slope",
@@ -6382,14 +5968,6 @@
      "min": 0,
      "max": 1,
      "step": 0.05
-    },
-    {
-     "key": "color-interpolation-filters",
-     "label": "color-interpolation-filters",
-     "control": "select",
-     "options": [
-      "auto"
-     ]
     }
    ],
    "defaults": {
@@ -6699,14 +6277,6 @@
      "min": 0,
      "max": 240,
      "step": 1
-    },
-    {
-     "key": "color-interpolation-filters",
-     "label": "color-interpolation-filters",
-     "control": "select",
-     "options": [
-      "auto"
-     ]
     }
    ],
    "defaults": {
@@ -6937,7 +6507,9 @@
      "label": "preserveAspectRatio",
      "control": "select",
      "options": [
-      "none"
+      "none",
+      "xMidYMid meet",
+      "xMinYMin slice"
      ]
     },
     {
@@ -6971,22 +6543,6 @@
      "min": 0,
      "max": 240,
      "step": 1
-    },
-    {
-     "key": "color-interpolation-filters",
-     "label": "color-interpolation-filters",
-     "control": "select",
-     "options": [
-      "auto"
-     ]
-    },
-    {
-     "key": "image-rendering",
-     "label": "image-rendering",
-     "control": "select",
-     "options": [
-      "auto"
-     ]
     },
     {
      "key": "xlink:href",
@@ -7215,14 +6771,6 @@
      "min": 0,
      "max": 240,
      "step": 1
-    },
-    {
-     "key": "color-interpolation-filters",
-     "label": "color-interpolation-filters",
-     "control": "select",
-     "options": [
-      "auto"
-     ]
     }
    ],
    "defaults": {},
@@ -7377,14 +6925,6 @@
       "blur1",
       "result1"
      ]
-    },
-    {
-     "key": "color-interpolation-filters",
-     "label": "color-interpolation-filters",
-     "control": "select",
-     "options": [
-      "auto"
-     ]
     }
    ],
    "defaults": {
@@ -7518,14 +7058,6 @@
      "min": 0,
      "max": 240,
      "step": 1
-    },
-    {
-     "key": "color-interpolation-filters",
-     "label": "color-interpolation-filters",
-     "control": "select",
-     "options": [
-      "auto"
-     ]
     }
    ],
    "defaults": {
@@ -7803,14 +7335,6 @@
      "min": 0,
      "max": 240,
      "step": 1
-    },
-    {
-     "key": "color-interpolation-filters",
-     "label": "color-interpolation-filters",
-     "control": "select",
-     "options": [
-      "auto"
-     ]
     }
    ],
    "defaults": {
@@ -8097,14 +7621,6 @@
      "min": 0,
      "max": 70,
      "step": 1
-    },
-    {
-     "key": "color-interpolation-filters",
-     "label": "color-interpolation-filters",
-     "control": "select",
-     "options": [
-      "auto"
-     ]
     }
    ],
    "defaults": {
@@ -8277,14 +7793,6 @@
      "min": 0,
      "max": 240,
      "step": 1
-    },
-    {
-     "key": "color-interpolation-filters",
-     "label": "color-interpolation-filters",
-     "control": "select",
-     "options": [
-      "auto"
-     ]
     },
     {
      "key": "lighting-color",
@@ -8601,14 +8109,6 @@
      "min": 0,
      "max": 42,
      "step": 1
-    },
-    {
-     "key": "color-interpolation-filters",
-     "label": "color-interpolation-filters",
-     "control": "select",
-     "options": [
-      "auto"
-     ]
     }
    ],
    "defaults": {
@@ -8882,14 +8382,6 @@
      "min": 0,
      "max": 240,
      "step": 1
-    },
-    {
-     "key": "color-interpolation-filters",
-     "label": "color-interpolation-filters",
-     "control": "select",
-     "options": [
-      "auto"
-     ]
     }
    ],
    "defaults": {
@@ -9153,14 +8645,6 @@
      "min": 0,
      "max": 240,
      "step": 1
-    },
-    {
-     "key": "color-interpolation-filters",
-     "label": "color-interpolation-filters",
-     "control": "select",
-     "options": [
-      "auto"
-     ]
     }
    ],
    "defaults": {
@@ -9654,62 +9138,6 @@
      "step": 1
     },
     {
-     "key": "filter",
-     "label": "filter",
-     "control": "select",
-     "options": [
-      "none"
-     ]
-    },
-    {
-     "key": "clip-path",
-     "label": "clip-path",
-     "control": "select",
-     "options": [
-      "none"
-     ]
-    },
-    {
-     "key": "clip",
-     "label": "clip",
-     "control": "select",
-     "options": [
-      "auto"
-     ]
-    },
-    {
-     "key": "mask",
-     "label": "mask",
-     "control": "select",
-     "options": [
-      "none"
-     ]
-    },
-    {
-     "key": "display",
-     "label": "display",
-     "control": "select",
-     "options": [
-      "none"
-     ]
-    },
-    {
-     "key": "visibility",
-     "label": "visibility",
-     "control": "select",
-     "options": [
-      "visible"
-     ]
-    },
-    {
-     "key": "overflow",
-     "label": "overflow",
-     "control": "select",
-     "options": [
-      "visible"
-     ]
-    },
-    {
      "key": "opacity",
      "label": "opacity",
      "control": "range",
@@ -9718,25 +9146,9 @@
      "step": 0.05
     },
     {
-     "key": "cursor",
-     "label": "cursor",
-     "control": "select",
-     "options": [
-      "auto"
-     ]
-    },
-    {
      "key": "transform",
      "label": "transform",
      "control": "text"
-    },
-    {
-     "key": "transform-origin",
-     "label": "transform-origin",
-     "control": "select",
-     "options": [
-      "inherit"
-     ]
     }
    ],
    "defaults": {
@@ -9981,14 +9393,6 @@
      ]
     },
     {
-     "key": "stroke-miterlimit",
-     "label": "stroke-miterlimit",
-     "control": "range",
-     "min": 1,
-     "max": 20,
-     "step": 0.5
-    },
-    {
      "key": "stroke-dasharray",
      "label": "stroke-dasharray",
      "control": "select",
@@ -10018,70 +9422,6 @@
      "control": "paint"
     },
     {
-     "key": "shape-rendering",
-     "label": "shape-rendering",
-     "control": "select",
-     "options": [
-      "auto"
-     ]
-    },
-    {
-     "key": "filter",
-     "label": "filter",
-     "control": "select",
-     "options": [
-      "none"
-     ]
-    },
-    {
-     "key": "clip-path",
-     "label": "clip-path",
-     "control": "select",
-     "options": [
-      "none"
-     ]
-    },
-    {
-     "key": "clip",
-     "label": "clip",
-     "control": "select",
-     "options": [
-      "auto"
-     ]
-    },
-    {
-     "key": "mask",
-     "label": "mask",
-     "control": "select",
-     "options": [
-      "none"
-     ]
-    },
-    {
-     "key": "display",
-     "label": "display",
-     "control": "select",
-     "options": [
-      "none"
-     ]
-    },
-    {
-     "key": "visibility",
-     "label": "visibility",
-     "control": "select",
-     "options": [
-      "visible"
-     ]
-    },
-    {
-     "key": "overflow",
-     "label": "overflow",
-     "control": "select",
-     "options": [
-      "visible"
-     ]
-    },
-    {
      "key": "opacity",
      "label": "opacity",
      "control": "range",
@@ -10090,25 +9430,9 @@
      "step": 0.05
     },
     {
-     "key": "cursor",
-     "label": "cursor",
-     "control": "select",
-     "options": [
-      "auto"
-     ]
-    },
-    {
      "key": "transform",
      "label": "transform",
      "control": "text"
-    },
-    {
-     "key": "transform-origin",
-     "label": "transform-origin",
-     "control": "select",
-     "options": [
-      "inherit"
-     ]
     }
    ],
    "defaults": {},
@@ -10277,7 +9601,9 @@
      "label": "preserveAspectRatio",
      "control": "select",
      "options": [
-      "none"
+      "none",
+      "xMidYMid meet",
+      "xMinYMin slice"
      ]
     },
     {
@@ -10313,70 +9639,6 @@
      "step": 1
     },
     {
-     "key": "filter",
-     "label": "filter",
-     "control": "select",
-     "options": [
-      "none"
-     ]
-    },
-    {
-     "key": "image-rendering",
-     "label": "image-rendering",
-     "control": "select",
-     "options": [
-      "auto"
-     ]
-    },
-    {
-     "key": "clip-path",
-     "label": "clip-path",
-     "control": "select",
-     "options": [
-      "none"
-     ]
-    },
-    {
-     "key": "clip",
-     "label": "clip",
-     "control": "select",
-     "options": [
-      "auto"
-     ]
-    },
-    {
-     "key": "mask",
-     "label": "mask",
-     "control": "select",
-     "options": [
-      "none"
-     ]
-    },
-    {
-     "key": "display",
-     "label": "display",
-     "control": "select",
-     "options": [
-      "none"
-     ]
-    },
-    {
-     "key": "visibility",
-     "label": "visibility",
-     "control": "select",
-     "options": [
-      "visible"
-     ]
-    },
-    {
-     "key": "overflow",
-     "label": "overflow",
-     "control": "select",
-     "options": [
-      "visible"
-     ]
-    },
-    {
      "key": "opacity",
      "label": "opacity",
      "control": "range",
@@ -10385,25 +9647,9 @@
      "step": 0.05
     },
     {
-     "key": "cursor",
-     "label": "cursor",
-     "control": "select",
-     "options": [
-      "auto"
-     ]
-    },
-    {
      "key": "transform",
      "label": "transform",
      "control": "text"
-    },
-    {
-     "key": "transform-origin",
-     "label": "transform-origin",
-     "control": "select",
-     "options": [
-      "inherit"
-     ]
     },
     {
      "key": "xlink:href",
@@ -10724,14 +9970,6 @@
      ]
     },
     {
-     "key": "stroke-miterlimit",
-     "label": "stroke-miterlimit",
-     "control": "range",
-     "min": 1,
-     "max": 20,
-     "step": 0.5
-    },
-    {
      "key": "stroke-dasharray",
      "label": "stroke-dasharray",
      "control": "select",
@@ -10756,105 +9994,9 @@
      ]
     },
     {
-     "key": "marker",
-     "label": "marker",
-     "control": "select",
-     "options": [
-      "none"
-     ]
-    },
-    {
-     "key": "marker-start",
-     "label": "marker-start",
-     "control": "select",
-     "options": [
-      "none"
-     ]
-    },
-    {
-     "key": "marker-mid",
-     "label": "marker-mid",
-     "control": "select",
-     "options": [
-      "none"
-     ]
-    },
-    {
-     "key": "marker-end",
-     "label": "marker-end",
-     "control": "select",
-     "options": [
-      "none"
-     ]
-    },
-    {
      "key": "color",
      "label": "color",
      "control": "paint"
-    },
-    {
-     "key": "shape-rendering",
-     "label": "shape-rendering",
-     "control": "select",
-     "options": [
-      "auto"
-     ]
-    },
-    {
-     "key": "filter",
-     "label": "filter",
-     "control": "select",
-     "options": [
-      "none"
-     ]
-    },
-    {
-     "key": "clip-path",
-     "label": "clip-path",
-     "control": "select",
-     "options": [
-      "none"
-     ]
-    },
-    {
-     "key": "clip",
-     "label": "clip",
-     "control": "select",
-     "options": [
-      "auto"
-     ]
-    },
-    {
-     "key": "mask",
-     "label": "mask",
-     "control": "select",
-     "options": [
-      "none"
-     ]
-    },
-    {
-     "key": "display",
-     "label": "display",
-     "control": "select",
-     "options": [
-      "none"
-     ]
-    },
-    {
-     "key": "visibility",
-     "label": "visibility",
-     "control": "select",
-     "options": [
-      "visible"
-     ]
-    },
-    {
-     "key": "overflow",
-     "label": "overflow",
-     "control": "select",
-     "options": [
-      "visible"
-     ]
     },
     {
      "key": "opacity",
@@ -10865,25 +10007,9 @@
      "step": 0.05
     },
     {
-     "key": "cursor",
-     "label": "cursor",
-     "control": "select",
-     "options": [
-      "auto"
-     ]
-    },
-    {
      "key": "transform",
      "label": "transform",
      "control": "text"
-    },
-    {
-     "key": "transform-origin",
-     "label": "transform-origin",
-     "control": "select",
-     "options": [
-      "inherit"
-     ]
     }
    ],
    "defaults": {
@@ -11476,17 +10602,16 @@
     {
      "key": "viewBox",
      "label": "viewBox",
-     "control": "range",
-     "min": -10,
-     "max": 4,
-     "step": 0.5
+     "control": "text"
     },
     {
      "key": "preserveAspectRatio",
      "label": "preserveAspectRatio",
      "control": "select",
      "options": [
-      "none"
+      "none",
+      "xMidYMid meet",
+      "xMinYMin slice"
      ]
     },
     {
@@ -11538,14 +10663,6 @@
      "options": [
       "miter"
      ]
-    },
-    {
-     "key": "stroke-miterlimit",
-     "label": "stroke-miterlimit",
-     "control": "range",
-     "min": 1,
-     "max": 20,
-     "step": 0.5
     },
     {
      "key": "stroke-dasharray",
@@ -12175,20 +11292,15 @@
     {
      "key": "d",
      "label": "d",
-     "control": "text"
+     "control": "select",
+     "options": [
+      "M10 50 Q50 10 90 50"
+     ]
     },
     {
      "key": "fill",
      "label": "fill",
      "control": "paint"
-    },
-    {
-     "key": "fill-rule",
-     "label": "fill-rule",
-     "control": "select",
-     "options": [
-      "nonzero"
-     ]
     },
     {
      "key": "fill-opacity",
@@ -12236,14 +11348,6 @@
      ]
     },
     {
-     "key": "stroke-miterlimit",
-     "label": "stroke-miterlimit",
-     "control": "range",
-     "min": 1,
-     "max": 20,
-     "step": 0.5
-    },
-    {
      "key": "stroke-dasharray",
      "label": "stroke-dasharray",
      "control": "select",
@@ -12268,105 +11372,9 @@
      ]
     },
     {
-     "key": "marker",
-     "label": "marker",
-     "control": "select",
-     "options": [
-      "none"
-     ]
-    },
-    {
-     "key": "marker-start",
-     "label": "marker-start",
-     "control": "select",
-     "options": [
-      "none"
-     ]
-    },
-    {
-     "key": "marker-mid",
-     "label": "marker-mid",
-     "control": "select",
-     "options": [
-      "none"
-     ]
-    },
-    {
-     "key": "marker-end",
-     "label": "marker-end",
-     "control": "select",
-     "options": [
-      "none"
-     ]
-    },
-    {
      "key": "color",
      "label": "color",
      "control": "paint"
-    },
-    {
-     "key": "shape-rendering",
-     "label": "shape-rendering",
-     "control": "select",
-     "options": [
-      "auto"
-     ]
-    },
-    {
-     "key": "filter",
-     "label": "filter",
-     "control": "select",
-     "options": [
-      "none"
-     ]
-    },
-    {
-     "key": "clip-path",
-     "label": "clip-path",
-     "control": "select",
-     "options": [
-      "none"
-     ]
-    },
-    {
-     "key": "clip",
-     "label": "clip",
-     "control": "select",
-     "options": [
-      "auto"
-     ]
-    },
-    {
-     "key": "mask",
-     "label": "mask",
-     "control": "select",
-     "options": [
-      "none"
-     ]
-    },
-    {
-     "key": "display",
-     "label": "display",
-     "control": "select",
-     "options": [
-      "none"
-     ]
-    },
-    {
-     "key": "visibility",
-     "label": "visibility",
-     "control": "select",
-     "options": [
-      "visible"
-     ]
-    },
-    {
-     "key": "overflow",
-     "label": "overflow",
-     "control": "select",
-     "options": [
-      "visible"
-     ]
     },
     {
      "key": "opacity",
@@ -12377,25 +11385,9 @@
      "step": 0.05
     },
     {
-     "key": "cursor",
-     "label": "cursor",
-     "control": "select",
-     "options": [
-      "auto"
-     ]
-    },
-    {
      "key": "transform",
      "label": "transform",
      "control": "text"
-    },
-    {
-     "key": "transform-origin",
-     "label": "transform-origin",
-     "control": "select",
-     "options": [
-      "inherit"
-     ]
     }
    ],
    "defaults": {
@@ -12653,17 +11645,16 @@
     {
      "key": "viewBox",
      "label": "viewBox",
-     "control": "range",
-     "min": -10,
-     "max": 4,
-     "step": 0.5
+     "control": "text"
     },
     {
      "key": "preserveAspectRatio",
      "label": "preserveAspectRatio",
      "control": "select",
      "options": [
-      "none"
+      "none",
+      "xMidYMid meet",
+      "xMinYMin slice"
      ]
     },
     {
@@ -12720,14 +11711,6 @@
      "options": [
       "miter"
      ]
-    },
-    {
-     "key": "stroke-miterlimit",
-     "label": "stroke-miterlimit",
-     "control": "range",
-     "min": 1,
-     "max": 20,
-     "step": 0.5
     },
     {
      "key": "stroke-dasharray",
@@ -13109,23 +12092,12 @@
     {
      "key": "points",
      "label": "points",
-     "control": "range",
-     "min": 0,
-     "max": 28,
-     "step": 1
+     "control": "text"
     },
     {
      "key": "fill",
      "label": "fill",
      "control": "paint"
-    },
-    {
-     "key": "fill-rule",
-     "label": "fill-rule",
-     "control": "select",
-     "options": [
-      "nonzero"
-     ]
     },
     {
      "key": "fill-opacity",
@@ -13173,14 +12145,6 @@
      ]
     },
     {
-     "key": "stroke-miterlimit",
-     "label": "stroke-miterlimit",
-     "control": "range",
-     "min": 1,
-     "max": 20,
-     "step": 0.5
-    },
-    {
      "key": "stroke-dasharray",
      "label": "stroke-dasharray",
      "control": "select",
@@ -13205,105 +12169,9 @@
      ]
     },
     {
-     "key": "marker",
-     "label": "marker",
-     "control": "select",
-     "options": [
-      "none"
-     ]
-    },
-    {
-     "key": "marker-start",
-     "label": "marker-start",
-     "control": "select",
-     "options": [
-      "none"
-     ]
-    },
-    {
-     "key": "marker-mid",
-     "label": "marker-mid",
-     "control": "select",
-     "options": [
-      "none"
-     ]
-    },
-    {
-     "key": "marker-end",
-     "label": "marker-end",
-     "control": "select",
-     "options": [
-      "none"
-     ]
-    },
-    {
      "key": "color",
      "label": "color",
      "control": "paint"
-    },
-    {
-     "key": "shape-rendering",
-     "label": "shape-rendering",
-     "control": "select",
-     "options": [
-      "auto"
-     ]
-    },
-    {
-     "key": "filter",
-     "label": "filter",
-     "control": "select",
-     "options": [
-      "none"
-     ]
-    },
-    {
-     "key": "clip-path",
-     "label": "clip-path",
-     "control": "select",
-     "options": [
-      "none"
-     ]
-    },
-    {
-     "key": "clip",
-     "label": "clip",
-     "control": "select",
-     "options": [
-      "auto"
-     ]
-    },
-    {
-     "key": "mask",
-     "label": "mask",
-     "control": "select",
-     "options": [
-      "none"
-     ]
-    },
-    {
-     "key": "display",
-     "label": "display",
-     "control": "select",
-     "options": [
-      "none"
-     ]
-    },
-    {
-     "key": "visibility",
-     "label": "visibility",
-     "control": "select",
-     "options": [
-      "visible"
-     ]
-    },
-    {
-     "key": "overflow",
-     "label": "overflow",
-     "control": "select",
-     "options": [
-      "visible"
-     ]
     },
     {
      "key": "opacity",
@@ -13314,25 +12182,9 @@
      "step": 0.05
     },
     {
-     "key": "cursor",
-     "label": "cursor",
-     "control": "select",
-     "options": [
-      "auto"
-     ]
-    },
-    {
      "key": "transform",
      "label": "transform",
      "control": "text"
-    },
-    {
-     "key": "transform-origin",
-     "label": "transform-origin",
-     "control": "select",
-     "options": [
-      "inherit"
-     ]
     }
    ],
    "defaults": {
@@ -13541,23 +12393,12 @@
     {
      "key": "points",
      "label": "points",
-     "control": "range",
-     "min": 0,
-     "max": 28,
-     "step": 1
+     "control": "text"
     },
     {
      "key": "fill",
      "label": "fill",
      "control": "paint"
-    },
-    {
-     "key": "fill-rule",
-     "label": "fill-rule",
-     "control": "select",
-     "options": [
-      "nonzero"
-     ]
     },
     {
      "key": "fill-opacity",
@@ -13605,14 +12446,6 @@
      ]
     },
     {
-     "key": "stroke-miterlimit",
-     "label": "stroke-miterlimit",
-     "control": "range",
-     "min": 1,
-     "max": 20,
-     "step": 0.5
-    },
-    {
      "key": "stroke-dasharray",
      "label": "stroke-dasharray",
      "control": "select",
@@ -13637,105 +12470,9 @@
      ]
     },
     {
-     "key": "marker",
-     "label": "marker",
-     "control": "select",
-     "options": [
-      "none"
-     ]
-    },
-    {
-     "key": "marker-start",
-     "label": "marker-start",
-     "control": "select",
-     "options": [
-      "none"
-     ]
-    },
-    {
-     "key": "marker-mid",
-     "label": "marker-mid",
-     "control": "select",
-     "options": [
-      "none"
-     ]
-    },
-    {
-     "key": "marker-end",
-     "label": "marker-end",
-     "control": "select",
-     "options": [
-      "none"
-     ]
-    },
-    {
      "key": "color",
      "label": "color",
      "control": "paint"
-    },
-    {
-     "key": "shape-rendering",
-     "label": "shape-rendering",
-     "control": "select",
-     "options": [
-      "auto"
-     ]
-    },
-    {
-     "key": "filter",
-     "label": "filter",
-     "control": "select",
-     "options": [
-      "none"
-     ]
-    },
-    {
-     "key": "clip-path",
-     "label": "clip-path",
-     "control": "select",
-     "options": [
-      "none"
-     ]
-    },
-    {
-     "key": "clip",
-     "label": "clip",
-     "control": "select",
-     "options": [
-      "auto"
-     ]
-    },
-    {
-     "key": "mask",
-     "label": "mask",
-     "control": "select",
-     "options": [
-      "none"
-     ]
-    },
-    {
-     "key": "display",
-     "label": "display",
-     "control": "select",
-     "options": [
-      "none"
-     ]
-    },
-    {
-     "key": "visibility",
-     "label": "visibility",
-     "control": "select",
-     "options": [
-      "visible"
-     ]
-    },
-    {
-     "key": "overflow",
-     "label": "overflow",
-     "control": "select",
-     "options": [
-      "visible"
-     ]
     },
     {
      "key": "opacity",
@@ -13746,25 +12483,9 @@
      "step": 0.05
     },
     {
-     "key": "cursor",
-     "label": "cursor",
-     "control": "select",
-     "options": [
-      "auto"
-     ]
-    },
-    {
      "key": "transform",
      "label": "transform",
      "control": "text"
-    },
-    {
-     "key": "transform-origin",
-     "label": "transform-origin",
-     "control": "select",
-     "options": [
-      "inherit"
-     ]
     }
    ],
    "defaults": {
@@ -14400,14 +13121,6 @@
      ]
     },
     {
-     "key": "stroke-miterlimit",
-     "label": "stroke-miterlimit",
-     "control": "range",
-     "min": 1,
-     "max": 20,
-     "step": 0.5
-    },
-    {
      "key": "stroke-dasharray",
      "label": "stroke-dasharray",
      "control": "select",
@@ -14437,70 +13150,6 @@
      "control": "paint"
     },
     {
-     "key": "shape-rendering",
-     "label": "shape-rendering",
-     "control": "select",
-     "options": [
-      "auto"
-     ]
-    },
-    {
-     "key": "filter",
-     "label": "filter",
-     "control": "select",
-     "options": [
-      "none"
-     ]
-    },
-    {
-     "key": "clip-path",
-     "label": "clip-path",
-     "control": "select",
-     "options": [
-      "none"
-     ]
-    },
-    {
-     "key": "clip",
-     "label": "clip",
-     "control": "select",
-     "options": [
-      "auto"
-     ]
-    },
-    {
-     "key": "mask",
-     "label": "mask",
-     "control": "select",
-     "options": [
-      "none"
-     ]
-    },
-    {
-     "key": "display",
-     "label": "display",
-     "control": "select",
-     "options": [
-      "none"
-     ]
-    },
-    {
-     "key": "visibility",
-     "label": "visibility",
-     "control": "select",
-     "options": [
-      "visible"
-     ]
-    },
-    {
-     "key": "overflow",
-     "label": "overflow",
-     "control": "select",
-     "options": [
-      "visible"
-     ]
-    },
-    {
      "key": "opacity",
      "label": "opacity",
      "control": "range",
@@ -14509,25 +13158,9 @@
      "step": 0.05
     },
     {
-     "key": "cursor",
-     "label": "cursor",
-     "control": "select",
-     "options": [
-      "auto"
-     ]
-    },
-    {
      "key": "transform",
      "label": "transform",
      "control": "text"
-    },
-    {
-     "key": "transform-origin",
-     "label": "transform-origin",
-     "control": "select",
-     "options": [
-      "inherit"
-     ]
     }
    ],
    "defaults": {
@@ -14982,17 +13615,16 @@
     {
      "key": "viewBox",
      "label": "viewBox",
-     "control": "range",
-     "min": -10,
-     "max": 4,
-     "step": 0.5
+     "control": "text"
     },
     {
      "key": "preserveAspectRatio",
      "label": "preserveAspectRatio",
      "control": "select",
      "options": [
-      "none"
+      "none",
+      "xMidYMid meet",
+      "xMinYMin slice"
      ]
     },
     {
@@ -15083,14 +13715,6 @@
      ]
     },
     {
-     "key": "stroke-miterlimit",
-     "label": "stroke-miterlimit",
-     "control": "range",
-     "min": 1,
-     "max": 20,
-     "step": 0.5
-    },
-    {
      "key": "stroke-dasharray",
      "label": "stroke-dasharray",
      "control": "select",
@@ -15120,92 +13744,12 @@
      "control": "paint"
     },
     {
-     "key": "shape-rendering",
-     "label": "shape-rendering",
-     "control": "select",
-     "options": [
-      "auto"
-     ]
-    },
-    {
-     "key": "filter",
-     "label": "filter",
-     "control": "select",
-     "options": [
-      "none"
-     ]
-    },
-    {
-     "key": "clip-path",
-     "label": "clip-path",
-     "control": "select",
-     "options": [
-      "none"
-     ]
-    },
-    {
-     "key": "clip",
-     "label": "clip",
-     "control": "select",
-     "options": [
-      "auto"
-     ]
-    },
-    {
-     "key": "mask",
-     "label": "mask",
-     "control": "select",
-     "options": [
-      "none"
-     ]
-    },
-    {
-     "key": "display",
-     "label": "display",
-     "control": "select",
-     "options": [
-      "none"
-     ]
-    },
-    {
-     "key": "visibility",
-     "label": "visibility",
-     "control": "select",
-     "options": [
-      "visible"
-     ]
-    },
-    {
-     "key": "overflow",
-     "label": "overflow",
-     "control": "select",
-     "options": [
-      "visible"
-     ]
-    },
-    {
      "key": "opacity",
      "label": "opacity",
      "control": "range",
      "min": 0,
      "max": 1,
      "step": 0.05
-    },
-    {
-     "key": "cursor",
-     "label": "cursor",
-     "control": "select",
-     "options": [
-      "auto"
-     ]
-    },
-    {
-     "key": "transform-origin",
-     "label": "transform-origin",
-     "control": "select",
-     "options": [
-      "inherit"
-     ]
     }
    ],
    "defaults": {
@@ -15570,14 +14114,6 @@
      ]
     },
     {
-     "key": "stroke-miterlimit",
-     "label": "stroke-miterlimit",
-     "control": "range",
-     "min": 1,
-     "max": 20,
-     "step": 0.5
-    },
-    {
      "key": "stroke-dasharray",
      "label": "stroke-dasharray",
      "control": "select",
@@ -15607,62 +14143,6 @@
      "control": "paint"
     },
     {
-     "key": "filter",
-     "label": "filter",
-     "control": "select",
-     "options": [
-      "none"
-     ]
-    },
-    {
-     "key": "clip-path",
-     "label": "clip-path",
-     "control": "select",
-     "options": [
-      "none"
-     ]
-    },
-    {
-     "key": "clip",
-     "label": "clip",
-     "control": "select",
-     "options": [
-      "auto"
-     ]
-    },
-    {
-     "key": "mask",
-     "label": "mask",
-     "control": "select",
-     "options": [
-      "none"
-     ]
-    },
-    {
-     "key": "display",
-     "label": "display",
-     "control": "select",
-     "options": [
-      "none"
-     ]
-    },
-    {
-     "key": "visibility",
-     "label": "visibility",
-     "control": "select",
-     "options": [
-      "visible"
-     ]
-    },
-    {
-     "key": "overflow",
-     "label": "overflow",
-     "control": "select",
-     "options": [
-      "visible"
-     ]
-    },
-    {
      "key": "opacity",
      "label": "opacity",
      "control": "range",
@@ -15671,25 +14151,9 @@
      "step": 0.05
     },
     {
-     "key": "cursor",
-     "label": "cursor",
-     "control": "select",
-     "options": [
-      "auto"
-     ]
-    },
-    {
      "key": "transform",
      "label": "transform",
      "control": "text"
-    },
-    {
-     "key": "transform-origin",
-     "label": "transform-origin",
-     "control": "select",
-     "options": [
-      "inherit"
-     ]
     }
    ],
    "defaults": {},
@@ -15845,17 +14309,16 @@
     {
      "key": "viewBox",
      "label": "viewBox",
-     "control": "range",
-     "min": -10,
-     "max": 4,
-     "step": 0.5
+     "control": "text"
     },
     {
      "key": "preserveAspectRatio",
      "label": "preserveAspectRatio",
      "control": "select",
      "options": [
-      "none"
+      "none",
+      "xMidYMid meet",
+      "xMinYMin slice"
      ]
     },
     {
@@ -15957,14 +14420,6 @@
      ]
     },
     {
-     "key": "stroke-miterlimit",
-     "label": "stroke-miterlimit",
-     "control": "range",
-     "min": 1,
-     "max": 20,
-     "step": 0.5
-    },
-    {
      "key": "stroke-dasharray",
      "label": "stroke-dasharray",
      "control": "select",
@@ -15994,62 +14449,6 @@
      "control": "paint"
     },
     {
-     "key": "filter",
-     "label": "filter",
-     "control": "select",
-     "options": [
-      "none"
-     ]
-    },
-    {
-     "key": "clip-path",
-     "label": "clip-path",
-     "control": "select",
-     "options": [
-      "none"
-     ]
-    },
-    {
-     "key": "clip",
-     "label": "clip",
-     "control": "select",
-     "options": [
-      "auto"
-     ]
-    },
-    {
-     "key": "mask",
-     "label": "mask",
-     "control": "select",
-     "options": [
-      "none"
-     ]
-    },
-    {
-     "key": "display",
-     "label": "display",
-     "control": "select",
-     "options": [
-      "none"
-     ]
-    },
-    {
-     "key": "visibility",
-     "label": "visibility",
-     "control": "select",
-     "options": [
-      "visible"
-     ]
-    },
-    {
-     "key": "overflow",
-     "label": "overflow",
-     "control": "select",
-     "options": [
-      "visible"
-     ]
-    },
-    {
      "key": "opacity",
      "label": "opacity",
      "control": "range",
@@ -16058,25 +14457,9 @@
      "step": 0.05
     },
     {
-     "key": "cursor",
-     "label": "cursor",
-     "control": "select",
-     "options": [
-      "auto"
-     ]
-    },
-    {
      "key": "transform",
      "label": "transform",
      "control": "text"
-    },
-    {
-     "key": "transform-origin",
-     "label": "transform-origin",
-     "control": "select",
-     "options": [
-      "inherit"
-     ]
     }
    ],
    "defaults": {},
@@ -16424,18 +14807,12 @@
     {
      "key": "x",
      "label": "x",
-     "control": "range",
-     "min": 0,
-     "max": 240,
-     "step": 1
+     "control": "text"
     },
     {
      "key": "y",
      "label": "y",
-     "control": "range",
-     "min": 0,
-     "max": 240,
-     "step": 1
+     "control": "text"
     },
     {
      "key": "dx",
@@ -16456,10 +14833,7 @@
     {
      "key": "rotate",
      "label": "rotate",
-     "control": "range",
-     "min": 0,
-     "max": 4.396,
-     "step": 0.5
+     "control": "text"
     },
     {
      "key": "textLength",
@@ -16482,14 +14856,6 @@
      "key": "fill",
      "label": "fill",
      "control": "paint"
-    },
-    {
-     "key": "fill-rule",
-     "label": "fill-rule",
-     "control": "select",
-     "options": [
-      "nonzero"
-     ]
     },
     {
      "key": "fill-opacity",
@@ -16537,14 +14903,6 @@
      ]
     },
     {
-     "key": "stroke-miterlimit",
-     "label": "stroke-miterlimit",
-     "control": "range",
-     "min": 1,
-     "max": 20,
-     "step": 0.5
-    },
-    {
      "key": "stroke-dasharray",
      "label": "stroke-dasharray",
      "control": "select",
@@ -16574,238 +14932,6 @@
      "control": "paint"
     },
     {
-     "key": "filter",
-     "label": "filter",
-     "control": "select",
-     "options": [
-      "none"
-     ]
-    },
-    {
-     "key": "clip-path",
-     "label": "clip-path",
-     "control": "select",
-     "options": [
-      "none"
-     ]
-    },
-    {
-     "key": "clip",
-     "label": "clip",
-     "control": "select",
-     "options": [
-      "auto"
-     ]
-    },
-    {
-     "key": "mask",
-     "label": "mask",
-     "control": "select",
-     "options": [
-      "none"
-     ]
-    },
-    {
-     "key": "text-anchor",
-     "label": "text-anchor",
-     "control": "select",
-     "options": [
-      "start"
-     ]
-    },
-    {
-     "key": "dominant-baseline",
-     "label": "dominant-baseline",
-     "control": "select",
-     "options": [
-      "auto"
-     ]
-    },
-    {
-     "key": "alignment-baseline",
-     "label": "alignment-baseline",
-     "control": "select",
-     "options": [
-      "baseline"
-     ]
-    },
-    {
-     "key": "baseline-shift",
-     "label": "baseline-shift",
-     "control": "select",
-     "options": [
-      "sub"
-     ]
-    },
-    {
-     "key": "direction",
-     "label": "direction",
-     "control": "select",
-     "options": [
-      "ltr"
-     ]
-    },
-    {
-     "key": "unicode-bidi",
-     "label": "unicode-bidi",
-     "control": "select",
-     "options": [
-      "normal"
-     ]
-    },
-    {
-     "key": "writing-mode",
-     "label": "writing-mode",
-     "control": "select",
-     "options": [
-      "horizontal-tb"
-     ]
-    },
-    {
-     "key": "letter-spacing",
-     "label": "letter-spacing",
-     "control": "select",
-     "options": [
-      "normal"
-     ]
-    },
-    {
-     "key": "word-spacing",
-     "label": "word-spacing",
-     "control": "select",
-     "options": [
-      "normal"
-     ]
-    },
-    {
-     "key": "text-decoration",
-     "label": "text-decoration",
-     "control": "select",
-     "options": [
-      "none"
-     ]
-    },
-    {
-     "key": "text-overflow",
-     "label": "text-overflow",
-     "control": "select",
-     "options": [
-      "clip"
-     ]
-    },
-    {
-     "key": "text-rendering",
-     "label": "text-rendering",
-     "control": "select",
-     "options": [
-      "auto"
-     ]
-    },
-    {
-     "key": "white-space",
-     "label": "white-space",
-     "control": "select",
-     "options": [
-      "normal"
-     ]
-    },
-    {
-     "key": "font-family",
-     "label": "font-family",
-     "control": "select",
-     "options": [
-      "label"
-     ]
-    },
-    {
-     "key": "font-size",
-     "label": "font-size",
-     "control": "select",
-     "options": [
-      "xx-small"
-     ]
-    },
-    {
-     "key": "font-size-adjust",
-     "label": "font-size-adjust",
-     "control": "select",
-     "options": [
-      "none"
-     ]
-    },
-    {
-     "key": "font-style",
-     "label": "font-style",
-     "control": "select",
-     "options": [
-      "normal"
-     ]
-    },
-    {
-     "key": "font-variant",
-     "label": "font-variant",
-     "control": "select",
-     "options": [
-      "normal"
-     ]
-    },
-    {
-     "key": "font-weight",
-     "label": "font-weight",
-     "control": "select",
-     "options": [
-      "normal"
-     ]
-    },
-    {
-     "key": "font-stretch",
-     "label": "font-stretch",
-     "control": "select",
-     "options": [
-      "normal"
-     ]
-    },
-    {
-     "key": "inline-size",
-     "label": "inline-size",
-     "control": "select",
-     "options": [
-      "auto"
-     ]
-    },
-    {
-     "key": "glyph-orientation-vertical",
-     "label": "glyph-orientation-vertical",
-     "control": "select",
-     "options": [
-      "auto"
-     ]
-    },
-    {
-     "key": "display",
-     "label": "display",
-     "control": "select",
-     "options": [
-      "none"
-     ]
-    },
-    {
-     "key": "visibility",
-     "label": "visibility",
-     "control": "select",
-     "options": [
-      "visible"
-     ]
-    },
-    {
-     "key": "overflow",
-     "label": "overflow",
-     "control": "select",
-     "options": [
-      "visible"
-     ]
-    },
-    {
      "key": "opacity",
      "label": "opacity",
      "control": "range",
@@ -16814,30 +14940,13 @@
      "step": 0.05
     },
     {
-     "key": "cursor",
-     "label": "cursor",
-     "control": "select",
-     "options": [
-      "auto"
-     ]
-    },
-    {
      "key": "transform",
      "label": "transform",
      "control": "text"
-    },
-    {
-     "key": "transform-origin",
-     "label": "transform-origin",
-     "control": "select",
-     "options": [
-      "inherit"
-     ]
     }
    ],
    "defaults": {
     "fill": "currentColor",
-    "font-size": "20",
     "x": "10",
     "y": "55"
    },
@@ -17197,7 +15306,12 @@
     {
      "key": "path",
      "label": "path",
-     "control": "text"
+     "control": "select",
+     "options": [
+      "M10 10 L90 90",
+      "M10 50 Q50 10 90 50",
+      "M20 20 H80 V80 H20 Z"
+     ]
     },
     {
      "key": "href",
@@ -17262,14 +15376,6 @@
      "control": "paint"
     },
     {
-     "key": "fill-rule",
-     "label": "fill-rule",
-     "control": "select",
-     "options": [
-      "nonzero"
-     ]
-    },
-    {
      "key": "fill-opacity",
      "label": "fill-opacity",
      "control": "range",
@@ -17315,14 +15421,6 @@
      ]
     },
     {
-     "key": "stroke-miterlimit",
-     "label": "stroke-miterlimit",
-     "control": "range",
-     "min": 1,
-     "max": 20,
-     "step": 0.5
-    },
-    {
      "key": "stroke-dasharray",
      "label": "stroke-dasharray",
      "control": "select",
@@ -17352,238 +15450,6 @@
      "control": "paint"
     },
     {
-     "key": "filter",
-     "label": "filter",
-     "control": "select",
-     "options": [
-      "none"
-     ]
-    },
-    {
-     "key": "clip-path",
-     "label": "clip-path",
-     "control": "select",
-     "options": [
-      "none"
-     ]
-    },
-    {
-     "key": "clip",
-     "label": "clip",
-     "control": "select",
-     "options": [
-      "auto"
-     ]
-    },
-    {
-     "key": "mask",
-     "label": "mask",
-     "control": "select",
-     "options": [
-      "none"
-     ]
-    },
-    {
-     "key": "text-anchor",
-     "label": "text-anchor",
-     "control": "select",
-     "options": [
-      "start"
-     ]
-    },
-    {
-     "key": "dominant-baseline",
-     "label": "dominant-baseline",
-     "control": "select",
-     "options": [
-      "auto"
-     ]
-    },
-    {
-     "key": "alignment-baseline",
-     "label": "alignment-baseline",
-     "control": "select",
-     "options": [
-      "baseline"
-     ]
-    },
-    {
-     "key": "baseline-shift",
-     "label": "baseline-shift",
-     "control": "select",
-     "options": [
-      "sub"
-     ]
-    },
-    {
-     "key": "direction",
-     "label": "direction",
-     "control": "select",
-     "options": [
-      "ltr"
-     ]
-    },
-    {
-     "key": "unicode-bidi",
-     "label": "unicode-bidi",
-     "control": "select",
-     "options": [
-      "normal"
-     ]
-    },
-    {
-     "key": "writing-mode",
-     "label": "writing-mode",
-     "control": "select",
-     "options": [
-      "horizontal-tb"
-     ]
-    },
-    {
-     "key": "letter-spacing",
-     "label": "letter-spacing",
-     "control": "select",
-     "options": [
-      "normal"
-     ]
-    },
-    {
-     "key": "word-spacing",
-     "label": "word-spacing",
-     "control": "select",
-     "options": [
-      "normal"
-     ]
-    },
-    {
-     "key": "text-decoration",
-     "label": "text-decoration",
-     "control": "select",
-     "options": [
-      "none"
-     ]
-    },
-    {
-     "key": "text-overflow",
-     "label": "text-overflow",
-     "control": "select",
-     "options": [
-      "clip"
-     ]
-    },
-    {
-     "key": "text-rendering",
-     "label": "text-rendering",
-     "control": "select",
-     "options": [
-      "auto"
-     ]
-    },
-    {
-     "key": "white-space",
-     "label": "white-space",
-     "control": "select",
-     "options": [
-      "normal"
-     ]
-    },
-    {
-     "key": "font-family",
-     "label": "font-family",
-     "control": "select",
-     "options": [
-      "label"
-     ]
-    },
-    {
-     "key": "font-size",
-     "label": "font-size",
-     "control": "select",
-     "options": [
-      "xx-small"
-     ]
-    },
-    {
-     "key": "font-size-adjust",
-     "label": "font-size-adjust",
-     "control": "select",
-     "options": [
-      "none"
-     ]
-    },
-    {
-     "key": "font-style",
-     "label": "font-style",
-     "control": "select",
-     "options": [
-      "normal"
-     ]
-    },
-    {
-     "key": "font-variant",
-     "label": "font-variant",
-     "control": "select",
-     "options": [
-      "normal"
-     ]
-    },
-    {
-     "key": "font-weight",
-     "label": "font-weight",
-     "control": "select",
-     "options": [
-      "normal"
-     ]
-    },
-    {
-     "key": "font-stretch",
-     "label": "font-stretch",
-     "control": "select",
-     "options": [
-      "normal"
-     ]
-    },
-    {
-     "key": "inline-size",
-     "label": "inline-size",
-     "control": "select",
-     "options": [
-      "auto"
-     ]
-    },
-    {
-     "key": "glyph-orientation-vertical",
-     "label": "glyph-orientation-vertical",
-     "control": "select",
-     "options": [
-      "auto"
-     ]
-    },
-    {
-     "key": "display",
-     "label": "display",
-     "control": "select",
-     "options": [
-      "none"
-     ]
-    },
-    {
-     "key": "visibility",
-     "label": "visibility",
-     "control": "select",
-     "options": [
-      "visible"
-     ]
-    },
-    {
-     "key": "overflow",
-     "label": "overflow",
-     "control": "select",
-     "options": [
-      "visible"
-     ]
-    },
-    {
      "key": "opacity",
      "label": "opacity",
      "control": "range",
@@ -17592,25 +15458,9 @@
      "step": 0.05
     },
     {
-     "key": "cursor",
-     "label": "cursor",
-     "control": "select",
-     "options": [
-      "auto"
-     ]
-    },
-    {
      "key": "transform",
      "label": "transform",
      "control": "text"
-    },
-    {
-     "key": "transform-origin",
-     "label": "transform-origin",
-     "control": "select",
-     "options": [
-      "inherit"
-     ]
     },
     {
      "key": "xlink:href",
@@ -17628,7 +15478,6 @@
    ],
    "defaults": {
     "fill": "currentColor",
-    "font-size": "20",
     "href": "#slot"
    },
    "base": "\u003csvg xmlns=\"http://www.w3.org/2000/svg\" width=\"120\" height=\"120\" viewBox=\"0 0 100 100\" color=\"#16c79a\"\u003e\u003cdefs\u003e\u003cpath id=\"slot\" d=\"M 5 70 Q 50 10 95 70\"/\u003e\u003c/defs\u003e\u003ctext font-size=\"20\"\u003e\u003ctextPath href=\"#slot\" fill=\"currentColor\" font-size=\"20\"\u003eAg\u003c/textPath\u003e\u003c/text\u003e\u003c/svg\u003e",
@@ -18035,18 +15884,12 @@
     {
      "key": "x",
      "label": "x",
-     "control": "range",
-     "min": 0,
-     "max": 240,
-     "step": 1
+     "control": "text"
     },
     {
      "key": "y",
      "label": "y",
-     "control": "range",
-     "min": 0,
-     "max": 240,
-     "step": 1
+     "control": "text"
     },
     {
      "key": "dx",
@@ -18067,10 +15910,7 @@
     {
      "key": "rotate",
      "label": "rotate",
-     "control": "range",
-     "min": 0,
-     "max": 4.396,
-     "step": 0.5
+     "control": "text"
     },
     {
      "key": "textLength",
@@ -18093,14 +15933,6 @@
      "key": "fill",
      "label": "fill",
      "control": "paint"
-    },
-    {
-     "key": "fill-rule",
-     "label": "fill-rule",
-     "control": "select",
-     "options": [
-      "nonzero"
-     ]
     },
     {
      "key": "fill-opacity",
@@ -18148,14 +15980,6 @@
      ]
     },
     {
-     "key": "stroke-miterlimit",
-     "label": "stroke-miterlimit",
-     "control": "range",
-     "min": 1,
-     "max": 20,
-     "step": 0.5
-    },
-    {
      "key": "stroke-dasharray",
      "label": "stroke-dasharray",
      "control": "select",
@@ -18185,238 +16009,6 @@
      "control": "paint"
     },
     {
-     "key": "filter",
-     "label": "filter",
-     "control": "select",
-     "options": [
-      "none"
-     ]
-    },
-    {
-     "key": "clip-path",
-     "label": "clip-path",
-     "control": "select",
-     "options": [
-      "none"
-     ]
-    },
-    {
-     "key": "clip",
-     "label": "clip",
-     "control": "select",
-     "options": [
-      "auto"
-     ]
-    },
-    {
-     "key": "mask",
-     "label": "mask",
-     "control": "select",
-     "options": [
-      "none"
-     ]
-    },
-    {
-     "key": "text-anchor",
-     "label": "text-anchor",
-     "control": "select",
-     "options": [
-      "start"
-     ]
-    },
-    {
-     "key": "dominant-baseline",
-     "label": "dominant-baseline",
-     "control": "select",
-     "options": [
-      "auto"
-     ]
-    },
-    {
-     "key": "alignment-baseline",
-     "label": "alignment-baseline",
-     "control": "select",
-     "options": [
-      "baseline"
-     ]
-    },
-    {
-     "key": "baseline-shift",
-     "label": "baseline-shift",
-     "control": "select",
-     "options": [
-      "sub"
-     ]
-    },
-    {
-     "key": "direction",
-     "label": "direction",
-     "control": "select",
-     "options": [
-      "ltr"
-     ]
-    },
-    {
-     "key": "unicode-bidi",
-     "label": "unicode-bidi",
-     "control": "select",
-     "options": [
-      "normal"
-     ]
-    },
-    {
-     "key": "writing-mode",
-     "label": "writing-mode",
-     "control": "select",
-     "options": [
-      "horizontal-tb"
-     ]
-    },
-    {
-     "key": "letter-spacing",
-     "label": "letter-spacing",
-     "control": "select",
-     "options": [
-      "normal"
-     ]
-    },
-    {
-     "key": "word-spacing",
-     "label": "word-spacing",
-     "control": "select",
-     "options": [
-      "normal"
-     ]
-    },
-    {
-     "key": "text-decoration",
-     "label": "text-decoration",
-     "control": "select",
-     "options": [
-      "none"
-     ]
-    },
-    {
-     "key": "text-overflow",
-     "label": "text-overflow",
-     "control": "select",
-     "options": [
-      "clip"
-     ]
-    },
-    {
-     "key": "text-rendering",
-     "label": "text-rendering",
-     "control": "select",
-     "options": [
-      "auto"
-     ]
-    },
-    {
-     "key": "white-space",
-     "label": "white-space",
-     "control": "select",
-     "options": [
-      "normal"
-     ]
-    },
-    {
-     "key": "font-family",
-     "label": "font-family",
-     "control": "select",
-     "options": [
-      "label"
-     ]
-    },
-    {
-     "key": "font-size",
-     "label": "font-size",
-     "control": "select",
-     "options": [
-      "xx-small"
-     ]
-    },
-    {
-     "key": "font-size-adjust",
-     "label": "font-size-adjust",
-     "control": "select",
-     "options": [
-      "none"
-     ]
-    },
-    {
-     "key": "font-style",
-     "label": "font-style",
-     "control": "select",
-     "options": [
-      "normal"
-     ]
-    },
-    {
-     "key": "font-variant",
-     "label": "font-variant",
-     "control": "select",
-     "options": [
-      "normal"
-     ]
-    },
-    {
-     "key": "font-weight",
-     "label": "font-weight",
-     "control": "select",
-     "options": [
-      "normal"
-     ]
-    },
-    {
-     "key": "font-stretch",
-     "label": "font-stretch",
-     "control": "select",
-     "options": [
-      "normal"
-     ]
-    },
-    {
-     "key": "inline-size",
-     "label": "inline-size",
-     "control": "select",
-     "options": [
-      "auto"
-     ]
-    },
-    {
-     "key": "glyph-orientation-vertical",
-     "label": "glyph-orientation-vertical",
-     "control": "select",
-     "options": [
-      "auto"
-     ]
-    },
-    {
-     "key": "display",
-     "label": "display",
-     "control": "select",
-     "options": [
-      "none"
-     ]
-    },
-    {
-     "key": "visibility",
-     "label": "visibility",
-     "control": "select",
-     "options": [
-      "visible"
-     ]
-    },
-    {
-     "key": "overflow",
-     "label": "overflow",
-     "control": "select",
-     "options": [
-      "visible"
-     ]
-    },
-    {
      "key": "opacity",
      "label": "opacity",
      "control": "range",
@@ -18425,30 +16017,13 @@
      "step": 0.05
     },
     {
-     "key": "cursor",
-     "label": "cursor",
-     "control": "select",
-     "options": [
-      "auto"
-     ]
-    },
-    {
      "key": "transform",
      "label": "transform",
      "control": "text"
-    },
-    {
-     "key": "transform-origin",
-     "label": "transform-origin",
-     "control": "select",
-     "options": [
-      "inherit"
-     ]
     }
    ],
    "defaults": {
     "fill": "currentColor",
-    "font-size": "20",
     "x": "10",
     "y": "55"
    },
@@ -18893,14 +16468,6 @@
      ]
     },
     {
-     "key": "stroke-miterlimit",
-     "label": "stroke-miterlimit",
-     "control": "range",
-     "min": 1,
-     "max": 20,
-     "step": 0.5
-    },
-    {
      "key": "stroke-dasharray",
      "label": "stroke-dasharray",
      "control": "select",
@@ -18930,70 +16497,6 @@
      "control": "paint"
     },
     {
-     "key": "shape-rendering",
-     "label": "shape-rendering",
-     "control": "select",
-     "options": [
-      "auto"
-     ]
-    },
-    {
-     "key": "filter",
-     "label": "filter",
-     "control": "select",
-     "options": [
-      "none"
-     ]
-    },
-    {
-     "key": "clip-path",
-     "label": "clip-path",
-     "control": "select",
-     "options": [
-      "none"
-     ]
-    },
-    {
-     "key": "clip",
-     "label": "clip",
-     "control": "select",
-     "options": [
-      "auto"
-     ]
-    },
-    {
-     "key": "mask",
-     "label": "mask",
-     "control": "select",
-     "options": [
-      "none"
-     ]
-    },
-    {
-     "key": "display",
-     "label": "display",
-     "control": "select",
-     "options": [
-      "none"
-     ]
-    },
-    {
-     "key": "visibility",
-     "label": "visibility",
-     "control": "select",
-     "options": [
-      "visible"
-     ]
-    },
-    {
-     "key": "overflow",
-     "label": "overflow",
-     "control": "select",
-     "options": [
-      "visible"
-     ]
-    },
-    {
      "key": "opacity",
      "label": "opacity",
      "control": "range",
@@ -19002,25 +16505,9 @@
      "step": 0.05
     },
     {
-     "key": "cursor",
-     "label": "cursor",
-     "control": "select",
-     "options": [
-      "auto"
-     ]
-    },
-    {
      "key": "transform",
      "label": "transform",
      "control": "text"
-    },
-    {
-     "key": "transform-origin",
-     "label": "transform-origin",
-     "control": "select",
-     "options": [
-      "inherit"
-     ]
     },
     {
      "key": "xlink:href",
@@ -19313,17 +16800,16 @@
     {
      "key": "viewBox",
      "label": "viewBox",
-     "control": "range",
-     "min": -10,
-     "max": 4,
-     "step": 0.5
+     "control": "text"
     },
     {
      "key": "preserveAspectRatio",
      "label": "preserveAspectRatio",
      "control": "select",
      "options": [
-      "none"
+      "none",
+      "xMidYMid meet",
+      "xMinYMin slice"
      ]
     }
    ],

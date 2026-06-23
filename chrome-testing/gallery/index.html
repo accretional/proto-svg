@@ -66,6 +66,40 @@
     </aside>
 
     <main style="flex:1;min-width:0;display:flex;flex-direction:column;overflow:hidden">
+
+      <!-- home view -->
+      <div id="home" style="flex:1;overflow-y:auto;display:none">
+        <div style="max-width:1080px;margin:0 auto;padding:40px 44px 48px">
+          <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(26px,3vw,38px);letter-spacing:-1.2px;line-height:1.05;color:#eef4f0;margin-bottom:14px">A live playground for SVG elements.</div>
+          <div style="font-size:13px;line-height:1.65;color:#8a978f;max-width:660px">svglab catalogues every core SVG building block — shapes, paths, gradients, filters, text and motion — straight from a grammar. Pick an element, tune its attributes in real time, then read and edit the generated markup live.</div>
+
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:26px">
+            <div style="background:#0f1311;border:1px solid #1c2422;border-radius:10px;padding:13px 14px">
+              <div style="font-size:11px;color:#4ee39a;margin-bottom:5px">01 · browse</div>
+              <div style="font-size:11.5px;line-height:1.5;color:#7b8a82">Open a group in the rail and pick an element.</div>
+            </div>
+            <div style="background:#0f1311;border:1px solid #1c2422;border-radius:10px;padding:13px 14px">
+              <div style="font-size:11px;color:#4ee39a;margin-bottom:5px">02 · tweak</div>
+              <div style="font-size:11.5px;line-height:1.5;color:#7b8a82">Drag the attribute controls or apply a preset.</div>
+            </div>
+            <div style="background:#0f1311;border:1px solid #1c2422;border-radius:10px;padding:13px 14px">
+              <div style="font-size:11px;color:#4ee39a;margin-bottom:5px">03 · edit code</div>
+              <div style="font-size:11.5px;line-height:1.5;color:#7b8a82">Edit the markup directly — the viewer updates live.</div>
+            </div>
+            <div style="background:#0f1311;border:1px solid #1c2422;border-radius:10px;padding:13px 14px">
+              <div style="font-size:11px;color:#4ee39a;margin-bottom:5px">04 · export</div>
+              <div style="font-size:11.5px;line-height:1.5;color:#7b8a82">Copy the SVG or download it as SVG / PNG.</div>
+            </div>
+          </div>
+
+          <div style="display:flex;align-items:center;gap:10px;margin:34px 0 14px">
+            <span style="font-size:11px;letter-spacing:2px;color:#56655e">FEATURED ELEMENTS</span>
+            <span style="flex:1;height:1px;background:#161c19"></span>
+          </div>
+          <div id="featured" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px"></div>
+        </div>
+      </div>
+
       <!-- element page -->
       <div id="elpage" style="flex:1;display:flex;flex-direction:column;overflow:hidden">
         <div id="bcbar" style="display:flex;align-items:center;gap:14px;padding:0 20px;height:46px;border-bottom:1px solid #1c2422;background:#0c100e;flex:none">

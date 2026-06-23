@@ -116,6 +116,9 @@ func runCataloguePass(en *Enumerator, bp *blueprintProvider, els []element, page
 		seenGroup[ce.Cat] = true
 
 		for _, attr := range order {
+			if !controlWorthy(attr) {
+				continue // still a preset below, just not a cluttering control
+			}
 			c := inferControl(attr, p.tag, dedupStr(vals[attr]))
 			ce.Attrs = append(ce.Attrs, c)
 			// Default ONLY from the baseline render (which is tuned for visibility).
@@ -125,7 +128,7 @@ func runCataloguePass(en *Enumerator, bp *blueprintProvider, els []element, page
 				ce.Defaults[attr] = d
 			}
 		}
-		// presets: one per visual value-path.
+		// presets: one per visual value-path (ALL attributes, control-worthy or not).
 		for _, attr := range order {
 			for _, val := range dedupStr(vals[attr]) {
 				ce.Presets = append(ce.Presets, catPreset{
@@ -166,7 +169,9 @@ var paintAttrs = map[string]bool{
 	"lighting-color": true, "color": true, "solid-color": true,
 }
 
-var kwRe = regexp.MustCompile(`^[a-zA-Z][a-zA-Z0-9_-]*$`)
+// kwRe matches a single keyword OR a space-separated compound keyword
+// ("xMidYMid meet"); numStartRe matches anything beginning like a number.
+var kwRe = regexp.MustCompile(`^[a-zA-Z][a-zA-Z0-9 _-]*$`)
 var numStartRe = regexp.MustCompile(`^[-+]?[.0-9]`)
 
 func inferControl(attr, tag string, values []string) catControl {
@@ -175,27 +180,71 @@ func inferControl(attr, tag string, values []string) catControl {
 		c.Control = "paint"
 		return c
 	}
-	var kw, num []string
+	var kw, singleNum, listNum []string
 	for _, v := range values {
-		if numStartRe.MatchString(v) {
-			num = append(num, v)
-		} else if kwRe.MatchString(v) {
+		switch {
+		case numStartRe.MatchString(v):
+			if strings.Contains(v, " ") {
+				listNum = append(listNum, v)
+			} else {
+				singleNum = append(singleNum, v)
+			}
+		case kwRe.MatchString(v):
 			kw = append(kw, v)
 		}
 	}
-	if len(num) > 0 {
+	num := append(append([]string{}, singleNum...), listNum...)
+	switch {
+	case forceRange[attr] && len(num) > 0:
+		// number-optional-number filter attrs (stdDeviation, baseFrequency, …)
+		// render as 1-or-2-number lists but read best as a slider on the primary
+		// value; the "x y" forms stay available as presets.
 		c.Control = "range"
 		mn, mx, st := rangeFor(attr, tag, num)
 		c.Min, c.Max, c.Step = &mn, &mx, &st
-		return c
-	}
-	if len(kw) > 0 {
+	case len(singleNum) > 0:
+		c.Control = "range"
+		mn, mx, st := rangeFor(attr, tag, singleNum)
+		c.Min, c.Max, c.Step = &mn, &mx, &st
+	case len(listNum) > 0:
+		c.Control = "text" // multi-number lists (text x/rotate, points, …) — a slider can't hold them
+	case len(kw) > 0:
 		c.Control = "select"
 		c.Options = dedupStr(kw)
-		return c
+	default:
+		c.Control = "text"
 	}
-	c.Control = "text"
 	return c
+}
+
+// forceRange are number-optional-number attributes whose value-paths are 1-or-2
+// number lists but whose primary value reads best as a slider.
+var forceRange = map[string]bool{
+	"stdDeviation": true, "baseFrequency": true, "radius": true,
+	"order": true, "kernelUnitLength": true,
+}
+
+// primaryPresentation is the small set of presentation attributes worth a live
+// CONTROL (paint, stroke, opacity, dash, transform). Every other presentation
+// attribute (cursor, color-rendering, clip, pointer-events, …) is dropped from
+// the control panel — it still appears as a PRESET so its values are catalogued
+// and screenshot, but it doesn't clutter the interactive controls.
+var primaryPresentation = map[string]bool{
+	"fill": true, "stroke": true, "stroke-width": true, "stroke-opacity": true,
+	"fill-opacity": true, "opacity": true, "stroke-dasharray": true, "stroke-dashoffset": true,
+	"stroke-linecap": true, "stroke-linejoin": true, "transform": true, "paint-order": true,
+	"stop-color": true, "stop-opacity": true, "flood-color": true, "flood-opacity": true,
+	"lighting-color": true, "color": true, "offset": true,
+}
+
+// controlWorthy reports whether an attribute should get an interactive control:
+// element-specific attributes always do; shared presentation attributes only if
+// they are in the primary set.
+func controlWorthy(attr string) bool {
+	if presentationAttrs[attr] {
+		return primaryPresentation[attr]
+	}
+	return true
 }
 
 // rangeMeta is a curated slider range for common numeric attributes (the user

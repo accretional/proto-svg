@@ -227,12 +227,46 @@
     else { v.style.width = '300px'; v.style.height = '300px'; }
   }
 
+  // ---- home view ----
+  function showPage(which) {
+    $('home').style.display = which === 'home' ? 'block' : 'none';
+    $('elpage').style.display = which === 'home' ? 'none' : 'flex';
+  }
+  function featuredIds() {
+    var pref = ['rect', 'circle', 'path', 'polygon', 'linearGradient', 'radialGradient',
+      'feGaussianBlur', 'feDropShadow', 'text', 'pattern', 'feTurbulence', 'animate'];
+    var out = pref.filter(function (id) { return byId[id]; });
+    els.forEach(function (e) { if (out.length < 12 && out.indexOf(e.id) < 0) out.push(e.id); });
+    return out.slice(0, 12);
+  }
+  function renderHome() {
+    var feat = $('featured'); if (!feat) return;
+    feat.innerHTML = '';
+    featuredIds().forEach(function (id) {
+      var el = byId[id]; if (!el) return;
+      var card = document.createElement('button');
+      card.style.cssText = 'text-align:left;background:#0f1311;border:1px solid #1c2422;border-radius:12px;overflow:hidden;cursor:pointer;padding:0;font-family:inherit;transition:border-color .15s';
+      card.onmouseenter = function () { card.style.borderColor = '#33463c'; };
+      card.onmouseleave = function () { card.style.borderColor = '#1c2422'; };
+      card.innerHTML =
+        '<div style="height:118px;background:#0c0f0e;display:flex;align-items:center;justify-content:center;padding:18px;border-bottom:1px solid #161c19">' +
+        '<div style="width:100%;height:100%;max-width:88px;display:flex;align-items:center;justify-content:center">' + miniSvg(el) + '</div></div>' +
+        '<div style="padding:11px 13px">' +
+        '<div style="font-size:12px;color:#4ee39a;font-family:\'JetBrains Mono\',monospace">&lt;' + el.tag + '&gt;</div>' +
+        '<div style="font-family:\'Space Grotesk\',sans-serif;font-weight:600;font-size:14px;color:#eef4f0;margin-top:2px">' + el.name + '</div>' +
+        '<div style="font-size:10.5px;color:#6b7a73;margin-top:3px">' + el.cat + '</div></div>';
+      card.onclick = function () { location.hash = '#/el/' + el.id; };
+      feat.appendChild(card);
+    });
+  }
+
   // ---- routing ----
   function route() {
     var h = location.hash.replace(/^#\/?/, '');
     var parts = h.split('/').filter(Boolean);
     if (parts[0] === 'embed' && parts[1]) {
       setEmbed(true);
+      showPage('element');
       var el = byId[parts[1]];
       var idx = parseInt(parts[2] || '0', 10);
       var preset = el && el.presets && el.presets[idx] ? el.presets[idx].values : null;
@@ -240,8 +274,10 @@
       return;
     }
     setEmbed(false);
-    if (parts[0] === 'el' && parts[1]) { openElement(parts[1]); return; }
-    if (els[0]) openElement(els[0].id);
+    if (parts[0] === 'el' && parts[1]) { showPage('element'); openElement(parts[1]); return; }
+    showPage('home');
+    markActive(null);
+    renderHome();
   }
 
   // ---- viewer interactions ----
@@ -267,7 +303,7 @@
     $('b-copy').onclick = function () { try { navigator.clipboard.writeText(code); } catch (e) {} var b = $('b-copy'); b.textContent = 'copied'; setTimeout(function () { b.textContent = 'copy'; }, 1200); };
     $('b-svg').onclick = function () { save(new Blob([code], { type: 'image/svg+xml' }), (cur ? cur.id : 'svg') + '.svg'); };
     $('b-png').onclick = downloadPng;
-    $('home-link').onclick = function () { location.hash = '#/el/' + (els[0] ? els[0].id : ''); };
+    $('home-link').onclick = function () { location.hash = '#/'; };
   }
   function save(blob, name) { var u = URL.createObjectURL(blob); var a = document.createElement('a'); a.href = u; a.download = name; document.body.appendChild(a); a.click(); a.remove(); setTimeout(function () { URL.revokeObjectURL(u); }, 1500); }
   function downloadPng() {

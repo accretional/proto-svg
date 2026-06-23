@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>&lt;radialGradient&gt;</title>
+<style>
+  body{margin:0;background:#1a1a2e;color:#e6e6e6;font:14px/1.4 ui-monospace,Menlo,monospace;padding:24px}
+  h1{color:#16c79a;font-size:18px;margin:0 0 4px}
+  p.desc{color:#9aa;margin:0 0 20px}
+  .grid{display:flex;flex-wrap:wrap;gap:16px}
+  .card{background:#0f1530;border:1px solid #26305a;border-radius:8px;padding:10px;width:160px}
+  .card svg{display:block;background:#161c3a;border-radius:4px;width:140px;height:140px}
+  .card .label{margin-top:8px;color:#f5a623;font-size:12px;word-break:break-all}
+</style></head>
+<body>
+  <h1>&lt;radialGradient&gt;</h1>
+  <p class="desc">Radial gradient paint server. Showcasing cx/cy/r center, fx/fy focal point, fr focal radius, spreadMethod, gradientUnits, gradientTransform.</p>
+  <div class="grid">
+
+    <!-- 1. Default centered radial gradient -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <radialGradient id="rg1" cx="0.5" cy="0.5" r="0.5">
+            <stop offset="0" stop-color="#ffd166"/>
+            <stop offset="1" stop-color="#e94560"/>
+          </radialGradient>
+        </defs>
+        <rect x="5" y="5" width="90" height="90" fill="url(#rg1)"/>
+      </svg>
+      <div class="label">cx=.5 cy=.5 r=.5<br>centered</div>
+    </div>
+
+    <!-- 2. Off-center cx/cy -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <radialGradient id="rg2" cx="0.25" cy="0.25" r="0.6">
+            <stop offset="0" stop-color="#16c79a"/>
+            <stop offset="1" stop-color="#1a1a2e"/>
+          </radialGradient>
+        </defs>
+        <rect x="5" y="5" width="90" height="90" fill="url(#rg2)"/>
+      </svg>
+      <div class="label">cx=.25 cy=.25<br>top-left center</div>
+    </div>
+
+    <!-- 3. Shifted focal point fx/fy -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <radialGradient id="rg3" cx="0.5" cy="0.5" r="0.5" fx="0.2" fy="0.3">
+            <stop offset="0" stop-color="#ffd166"/>
+            <stop offset="1" stop-color="#b06aff"/>
+          </radialGradient>
+        </defs>
+        <rect x="5" y="5" width="90" height="90" fill="url(#rg3)"/>
+      </svg>
+      <div class="label">fx=.2 fy=.3<br>offset focal</div>
+    </div>
+
+    <!-- 4. fr focal radius (annular / donut effect) -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <radialGradient id="rg4" cx="0.5" cy="0.5" r="0.5" fr="0.2">
+            <stop offset="0" stop-color="#4d8bff"/>
+            <stop offset="1" stop-color="#e94560"/>
+          </radialGradient>
+        </defs>
+        <rect x="5" y="5" width="90" height="90" fill="url(#rg4)"/>
+      </svg>
+      <div class="label">fr=0.2<br>focal radius (SVG2)</div>
+    </div>
+
+    <!-- 5. 3-color stops -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <radialGradient id="rg5" cx="0.5" cy="0.5" r="0.5">
+            <stop offset="0" stop-color="#ffd166"/>
+            <stop offset="0.5" stop-color="#16c79a"/>
+            <stop offset="1" stop-color="#4d8bff"/>
+          </radialGradient>
+        </defs>
+        <rect x="5" y="5" width="90" height="90" fill="url(#rg5)"/>
+      </svg>
+      <div class="label">3 stops<br>yellow→teal→blue</div>
+    </div>
+
+    <!-- 6. gradientUnits=userSpaceOnUse -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <radialGradient id="rg6" gradientUnits="userSpaceOnUse"
+                          cx="50" cy="50" r="45">
+            <stop offset="0" stop-color="#e94560"/>
+            <stop offset="1" stop-color="#161c3a"/>
+          </radialGradient>
+        </defs>
+        <rect x="5" y="5" width="90" height="90" fill="url(#rg6)"/>
+      </svg>
+      <div class="label">gradientUnits=<br>userSpaceOnUse</div>
+    </div>
+
+    <!-- 7. spreadMethod=reflect -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <radialGradient id="rg7" cx="0.5" cy="0.5" r="0.25" spreadMethod="reflect">
+            <stop offset="0" stop-color="#16c79a"/>
+            <stop offset="1" stop-color="#b06aff"/>
+          </radialGradient>
+        </defs>
+        <rect x="5" y="5" width="90" height="90" fill="url(#rg7)"/>
+      </svg>
+      <div class="label">spreadMethod=<br>reflect (r=.25)</div>
+    </div>
+
+    <!-- 8. spreadMethod=repeat -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <radialGradient id="rg8" cx="0.5" cy="0.5" r="0.2" spreadMethod="repeat">
+            <stop offset="0" stop-color="#ffd166"/>
+            <stop offset="1" stop-color="#e94560"/>
+          </radialGradient>
+        </defs>
+        <rect x="5" y="5" width="90" height="90" fill="url(#rg8)"/>
+      </svg>
+      <div class="label">spreadMethod=<br>repeat (r=.2)</div>
+    </div>
+
+    <!-- 9. gradientTransform=scale -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <radialGradient id="rg9" cx="0.5" cy="0.5" r="0.5"
+                          gradientTransform="scale(1,0.5) translate(0,50)">
+            <stop offset="0" stop-color="#4d8bff"/>
+            <stop offset="1" stop-color="#ffd166"/>
+          </radialGradient>
+        </defs>
+        <rect x="5" y="5" width="90" height="90" fill="url(#rg9)"/>
+      </svg>
+      <div class="label">gradientTransform=<br>scale(1,0.5)</div>
+    </div>
+
+    <!-- 10. Applied to circle shape -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <radialGradient id="rg10" cx="0.35" cy="0.3" r="0.65" fx="0.3" fy="0.25">
+            <stop offset="0" stop-color="#ffffff" stop-opacity="0.9"/>
+            <stop offset="0.4" stop-color="#b06aff"/>
+            <stop offset="1" stop-color="#e94560"/>
+          </radialGradient>
+        </defs>
+        <circle cx="50" cy="50" r="44" fill="url(#rg10)"/>
+      </svg>
+      <div class="label">circle, fx/fy<br>highlight look</div>
+    </div>
+
+  </div>
+
+  <!-- machine blueprint: gradient in defs, rect filled url(#slot) -->
+  <script type="application/svg-blueprint" id="blueprint">
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100"><defs>{{ELEMENT}}</defs><rect x="5" y="5" width="90" height="90" fill="url(#slot)"/></svg>
+  </script>
+</body></html>

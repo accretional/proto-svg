@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>&lt;feOffset&gt;</title>
+<style>
+  body{margin:0;background:#1a1a2e;color:#e6e6e6;font:14px/1.4 ui-monospace,Menlo,monospace;padding:24px}
+  h1{color:#16c79a;font-size:18px;margin:0 0 4px}
+  p.desc{color:#9aa;margin:0 0 20px}
+  .grid{display:flex;flex-wrap:wrap;gap:16px}
+  .card{background:#0f1530;border:1px solid #26305a;border-radius:8px;padding:10px;width:160px}
+  .card svg{display:block;background:#161c3a;border-radius:4px;width:140px;height:140px}
+  .card .label{margin-top:8px;color:#f5a623;font-size:12px;word-break:break-all}
+</style></head>
+<body>
+  <h1>&lt;feOffset&gt;</h1>
+  <p class="desc">Shifts the input image by dx/dy in user units. Commonly used to build manual drop-shadows by merging offset shadow with original.</p>
+  <div class="grid">
+
+    <!-- 1. dx=0 dy=0 — no shift baseline -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="fo-zero">
+            <feOffset dx="0" dy="0"/>
+          </filter>
+        </defs>
+        <rect x="15" y="15" width="70" height="70" fill="#e94560" filter="url(#fo-zero)"/>
+      </svg>
+      <div class="label">dx="0" dy="0"<br>(no shift)</div>
+    </div>
+
+    <!-- 2. dx=10 dy=0 — right shift only -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="fo-right" x="-20%" width="140%">
+            <feOffset dx="10" dy="0"/>
+          </filter>
+        </defs>
+        <rect x="5" y="15" width="70" height="70" fill="#4d8bff" filter="url(#fo-right)"/>
+      </svg>
+      <div class="label">dx="10" dy="0"<br>(right)</div>
+    </div>
+
+    <!-- 3. dx=0 dy=10 — down shift only -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="fo-down" y="-20%" height="140%">
+            <feOffset dx="0" dy="10"/>
+          </filter>
+        </defs>
+        <rect x="15" y="5" width="70" height="70" fill="#16c79a" filter="url(#fo-down)"/>
+      </svg>
+      <div class="label">dx="0" dy="10"<br>(down)</div>
+    </div>
+
+    <!-- 4. dx=12 dy=12 — diagonal shift -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="fo-diag" x="-20%" y="-20%" width="150%" height="150%">
+            <feOffset dx="12" dy="12"/>
+          </filter>
+        </defs>
+        <rect x="5" y="5" width="65" height="65" fill="#f5a623" filter="url(#fo-diag)"/>
+      </svg>
+      <div class="label">dx="12" dy="12"<br>(diagonal)</div>
+    </div>
+
+    <!-- 5. Negative dx/dy — upper-left shift -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="fo-neg" x="-20%" y="-20%" width="140%" height="140%">
+            <feOffset dx="-10" dy="-10"/>
+          </filter>
+        </defs>
+        <rect x="25" y="25" width="65" height="65" fill="#b06aff" filter="url(#fo-neg)"/>
+      </svg>
+      <div class="label">dx="-10" dy="-10"<br>(upper-left)</div>
+    </div>
+
+    <!-- 6. Shadow composite: offset shadow + original merge -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="fo-shadow" x="-10%" y="-10%" width="130%" height="130%">
+            <feFlood flood-color="#000" flood-opacity="0.5" result="shadowColor"/>
+            <feComposite in="shadowColor" in2="SourceAlpha" operator="in" result="alphaInk"/>
+            <feOffset in="alphaInk" dx="8" dy="8" result="shadow"/>
+            <feMerge>
+              <feMergeNode in="shadow"/>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+          </filter>
+        </defs>
+        <circle cx="45" cy="45" r="35" fill="#e94560" filter="url(#fo-shadow)"/>
+      </svg>
+      <div class="label">shadow: offset +<br>merge with source</div>
+    </div>
+
+    <!-- 7. Large dx — clearly offset far to the right -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="fo-far" x="-40%" width="200%">
+            <feOffset dx="30" dy="0"/>
+          </filter>
+        </defs>
+        <rect x="5" y="20" width="50" height="60" fill="#ffd166" filter="url(#fo-far)"/>
+      </svg>
+      <div class="label">dx="30" dy="0"<br>(large offset)</div>
+    </div>
+
+  </div>
+
+  <!-- machine blueprint -->
+  <script type="application/svg-blueprint" id="blueprint">
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot" x="-20%" y="-20%" width="150%" height="150%">{{ELEMENT}}</filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
+</svg>
+  </script>
+</body></html>

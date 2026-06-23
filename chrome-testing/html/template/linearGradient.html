@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>&lt;linearGradient&gt;</title>
+<style>
+  body{margin:0;background:#1a1a2e;color:#e6e6e6;font:14px/1.4 ui-monospace,Menlo,monospace;padding:24px}
+  h1{color:#16c79a;font-size:18px;margin:0 0 4px}
+  p.desc{color:#9aa;margin:0 0 20px}
+  .grid{display:flex;flex-wrap:wrap;gap:16px}
+  .card{background:#0f1530;border:1px solid #26305a;border-radius:8px;padding:10px;width:160px}
+  .card svg{display:block;background:#161c3a;border-radius:4px;width:140px;height:140px}
+  .card .label{margin-top:8px;color:#f5a623;font-size:12px;word-break:break-all}
+</style></head>
+<body>
+  <h1>&lt;linearGradient&gt;</h1>
+  <p class="desc">Linear gradient paint server. Showcasing x1/y1/x2/y2 direction, stop colors, gradientUnits, spreadMethod, gradientTransform.</p>
+  <div class="grid">
+
+    <!-- 1. Default: left→right, objectBoundingBox -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <linearGradient id="lg1" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stop-color="#e94560"/>
+            <stop offset="1" stop-color="#ffd166"/>
+          </linearGradient>
+        </defs>
+        <rect x="5" y="5" width="90" height="90" fill="url(#lg1)"/>
+      </svg>
+      <div class="label">x1=0 x2=1<br>left → right</div>
+    </div>
+
+    <!-- 2. Top→bottom (vertical) -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <linearGradient id="lg2" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#4d8bff"/>
+            <stop offset="1" stop-color="#16c79a"/>
+          </linearGradient>
+        </defs>
+        <rect x="5" y="5" width="90" height="90" fill="url(#lg2)"/>
+      </svg>
+      <div class="label">y1=0 y2=1<br>top → bottom</div>
+    </div>
+
+    <!-- 3. Diagonal (top-left→bottom-right) -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <linearGradient id="lg3" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#b06aff"/>
+            <stop offset="1" stop-color="#ffd166"/>
+          </linearGradient>
+        </defs>
+        <rect x="5" y="5" width="90" height="90" fill="url(#lg3)"/>
+      </svg>
+      <div class="label">x1=0,y1=0<br>x2=1,y2=1 diagonal</div>
+    </div>
+
+    <!-- 4. 3-color stop gradient -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <linearGradient id="lg4" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stop-color="#e94560"/>
+            <stop offset="0.5" stop-color="#4d8bff"/>
+            <stop offset="1" stop-color="#16c79a"/>
+          </linearGradient>
+        </defs>
+        <rect x="5" y="5" width="90" height="90" fill="url(#lg4)"/>
+      </svg>
+      <div class="label">3 stops<br>red→blue→teal</div>
+    </div>
+
+    <!-- 5. gradientUnits=userSpaceOnUse with px coords -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <linearGradient id="lg5" gradientUnits="userSpaceOnUse" x1="5" y1="0" x2="95" y2="0">
+            <stop offset="0" stop-color="#ffd166"/>
+            <stop offset="1" stop-color="#e94560"/>
+          </linearGradient>
+        </defs>
+        <rect x="5" y="5" width="90" height="90" fill="url(#lg5)"/>
+      </svg>
+      <div class="label">gradientUnits=<br>userSpaceOnUse</div>
+    </div>
+
+    <!-- 6. spreadMethod=reflect -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <linearGradient id="lg6" x1="0" y1="0" x2="0.4" y2="0" spreadMethod="reflect">
+            <stop offset="0" stop-color="#16c79a"/>
+            <stop offset="1" stop-color="#b06aff"/>
+          </linearGradient>
+        </defs>
+        <rect x="5" y="5" width="90" height="90" fill="url(#lg6)"/>
+      </svg>
+      <div class="label">spreadMethod=<br>reflect</div>
+    </div>
+
+    <!-- 7. spreadMethod=repeat -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <linearGradient id="lg7" x1="0" y1="0" x2="0.3" y2="0" spreadMethod="repeat">
+            <stop offset="0" stop-color="#e94560"/>
+            <stop offset="1" stop-color="#ffd166"/>
+          </linearGradient>
+        </defs>
+        <rect x="5" y="5" width="90" height="90" fill="url(#lg7)"/>
+      </svg>
+      <div class="label">spreadMethod=<br>repeat</div>
+    </div>
+
+    <!-- 8. spreadMethod=pad (default, for comparison) -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <linearGradient id="lg8" x1="0.2" y1="0" x2="0.8" y2="0" spreadMethod="pad">
+            <stop offset="0" stop-color="#4d8bff"/>
+            <stop offset="1" stop-color="#ffd166"/>
+          </linearGradient>
+        </defs>
+        <rect x="5" y="5" width="90" height="90" fill="url(#lg8)"/>
+      </svg>
+      <div class="label">spreadMethod=pad<br>(x1=0.2 x2=0.8)</div>
+    </div>
+
+    <!-- 9. gradientTransform=rotate(45) -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <linearGradient id="lg9" x1="0" y1="0" x2="1" y2="0"
+                          gradientTransform="rotate(45,0.5,0.5)">
+            <stop offset="0" stop-color="#b06aff"/>
+            <stop offset="1" stop-color="#e94560"/>
+          </linearGradient>
+        </defs>
+        <rect x="5" y="5" width="90" height="90" fill="url(#lg9)"/>
+      </svg>
+      <div class="label">gradientTransform=<br>rotate(45)</div>
+    </div>
+
+    <!-- 10. Applied to circle (not just rect) -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <linearGradient id="lg10" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stop-color="#16c79a"/>
+            <stop offset="0.5" stop-color="#ffd166"/>
+            <stop offset="1" stop-color="#e94560"/>
+          </linearGradient>
+        </defs>
+        <circle cx="50" cy="50" r="44" fill="url(#lg10)"/>
+      </svg>
+      <div class="label">fill circle<br>3-stop L→R</div>
+    </div>
+
+  </div>
+
+  <!-- machine blueprint: gradient in defs, rect filled url(#slot) -->
+  <script type="application/svg-blueprint" id="blueprint">
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100"><defs>{{ELEMENT}}</defs><rect x="5" y="5" width="90" height="90" fill="url(#slot)"/></svg>
+  </script>
+</body></html>

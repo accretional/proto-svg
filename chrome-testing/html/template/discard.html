@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>&lt;discard&gt;</title>
+<style>
+  body{margin:0;background:#1a1a2e;color:#e6e6e6;font:14px/1.4 ui-monospace,Menlo,monospace;padding:24px}
+  h1{color:#16c79a;font-size:18px;margin:0 0 4px}
+  p.desc{color:#9aa;margin:0 0 20px}
+  .grid{display:flex;flex-wrap:wrap;gap:16px}
+  .card{background:#0f1530;border:1px solid #26305a;border-radius:8px;padding:10px;width:160px}
+  .card svg{display:block;background:#161c3a;border-radius:4px;width:140px;height:140px}
+  .card .label{margin-top:8px;color:#f5a623;font-size:12px;word-break:break-all}
+  .note{color:#e94560;font-size:11px;margin:0 0 16px;background:#1f0f15;border:1px solid #4a1a25;border-radius:4px;padding:8px}
+</style></head>
+<body>
+  <h1>&lt;discard&gt;</h1>
+  <p class="desc">SVG 2 draft element (NOT in SVG Animations Level 2 or SVG 1.1). Removes an element from the DOM after a timing delay. Limited browser support. Non-visual timing element shown with host shape + markup.</p>
+  <p class="note">Note: discard is SVG 2 draft only. Browser support is incomplete. Each card shows the host shape as rendered before discard fires; the element disappears after the begin time if supported.</p>
+  <div class="grid">
+
+    <!-- 1. discard sibling with href — removes target after 3s -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <rect id="d1" x="15" y="15" width="70" height="70" rx="8" fill="#e94560"/>
+        <discard href="#d1" begin="3s"/>
+        <text x="50" y="95" text-anchor="middle" font-size="8" fill="#9aa">gone at 3s</text>
+      </svg>
+      <div class="label">href="#d1"<br>begin="3s"</div>
+    </div>
+
+    <!-- 2. discard on parent (self-discard, no href) -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <g id="d2">
+          <circle cx="50" cy="50" r="36" fill="#16c79a"/>
+          <discard begin="4s"/>
+        </g>
+        <text x="50" y="95" text-anchor="middle" font-size="8" fill="#9aa">self-discard 4s</text>
+      </svg>
+      <div class="label">no href (parent)<br>begin="4s"</div>
+    </div>
+
+    <!-- 3. discard with offset begin -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <ellipse id="d3" cx="50" cy="50" rx="40" ry="28" fill="#4d8bff"/>
+        <discard href="#d3" begin="2s"/>
+        <text x="50" y="95" text-anchor="middle" font-size="8" fill="#9aa">ellipse gone 2s</text>
+      </svg>
+      <div class="label">ellipse target<br>begin="2s"</div>
+    </div>
+
+    <!-- 4. discard a group with multiple shapes -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <g id="d4">
+          <rect x="10" y="10" width="35" height="35" fill="#ffd166" rx="4"/>
+          <rect x="55" y="55" width="35" height="35" fill="#b06aff" rx="4"/>
+        </g>
+        <discard href="#d4" begin="2.5s"/>
+        <text x="50" y="95" text-anchor="middle" font-size="8" fill="#9aa">group gone 2.5s</text>
+      </svg>
+      <div class="label">discard group<br>begin="2.5s"</div>
+    </div>
+
+    <!-- 5. discard after animation completes — begin uses syncbase -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <rect id="d5" x="15" y="15" width="70" height="70" rx="6" fill="#f5a623">
+          <animate id="anim5" attributeName="opacity" from="1" to="0.1" dur="2s" fill="freeze"/>
+        </rect>
+        <discard href="#d5" begin="anim5.end"/>
+        <text x="50" y="95" text-anchor="middle" font-size="8" fill="#9aa">after anim ends</text>
+      </svg>
+      <div class="label">begin="anim.end"<br>syncbase timing</div>
+    </div>
+
+    <!-- 6. discard at time=0 (immediate, element flashes) -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <polygon id="d6" points="50,10 90,90 10,90" fill="#e94560"/>
+        <discard href="#d6" begin="0s"/>
+        <text x="50" y="95" text-anchor="middle" font-size="8" fill="#9aa">immediate discard</text>
+      </svg>
+      <div class="label">begin="0s"<br>instant remove</div>
+    </div>
+
+    <!-- 7. multiple discard elements, different targets, sequential -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <rect id="da" x="5" y="5" width="40" height="40" fill="#16c79a" rx="4"/>
+        <rect id="db" x="55" y="5" width="40" height="40" fill="#4d8bff" rx="4"/>
+        <rect id="dc" x="5" y="55" width="40" height="40" fill="#ffd166" rx="4"/>
+        <rect id="dd" x="55" y="55" width="40" height="40" fill="#b06aff" rx="4"/>
+        <discard href="#da" begin="1s"/>
+        <discard href="#db" begin="2s"/>
+        <discard href="#dc" begin="3s"/>
+        <discard href="#dd" begin="4s"/>
+      </svg>
+      <div class="label">4× discard<br>1s/2s/3s/4s seq</div>
+    </div>
+
+    <!-- 8. discard with large offset (long-lived document pattern) -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <rect id="d8" x="10" y="10" width="80" height="80" rx="10" fill="#e94560"/>
+        <discard href="#d8" begin="30s"/>
+        <text x="50" y="55" text-anchor="middle" font-size="9" fill="white">30s TTL</text>
+        <text x="50" y="70" text-anchor="middle" font-size="8" fill="#9aa">long-lived doc</text>
+      </svg>
+      <div class="label">begin="30s"<br>long TTL pattern</div>
+    </div>
+
+  </div>
+
+  <!-- machine blueprint: {{ELEMENT}} as child of a shape (timing, non-visual) -->
+  <script type="application/svg-blueprint" id="blueprint">
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff">{{ELEMENT}}</rect>
+</svg>
+  </script>
+</body></html>

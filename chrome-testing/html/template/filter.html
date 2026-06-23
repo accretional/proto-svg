@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>&lt;filter&gt;</title>
+<style>
+  body{margin:0;background:#1a1a2e;color:#e6e6e6;font:14px/1.4 ui-monospace,Menlo,monospace;padding:24px}
+  h1{color:#16c79a;font-size:18px;margin:0 0 4px}
+  p.desc{color:#9aa;margin:0 0 20px}
+  .grid{display:flex;flex-wrap:wrap;gap:16px}
+  .card{background:#0f1530;border:1px solid #26305a;border-radius:8px;padding:10px;width:160px}
+  .card svg{display:block;background:#161c3a;border-radius:4px;width:140px;height:140px}
+  .card .label{margin-top:8px;color:#f5a623;font-size:12px;word-break:break-all}
+</style></head>
+<body>
+  <h1>&lt;filter&gt;</h1>
+  <p class="desc">Filter container. Showcasing filterUnits, primitiveUnits, x/y/width/height region, and wrapping a couple of primitives.</p>
+  <div class="grid">
+
+    <!-- 1. Default objectBoundingBox filterUnits with blur -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="f1">
+            <feGaussianBlur stdDeviation="3"/>
+          </filter>
+        </defs>
+        <rect x="10" y="10" width="80" height="80" fill="#e94560" filter="url(#f1)"/>
+      </svg>
+      <div class="label">default<br>filterUnits=oBB<br>blur primitive</div>
+    </div>
+
+    <!-- 2. filterUnits=userSpaceOnUse with explicit px region -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="f2" filterUnits="userSpaceOnUse" x="0" y="0" width="100" height="100">
+            <feGaussianBlur stdDeviation="4"/>
+          </filter>
+        </defs>
+        <rect x="10" y="10" width="80" height="80" fill="#16c79a" filter="url(#f2)"/>
+      </svg>
+      <div class="label">filterUnits=<br>userSpaceOnUse<br>x=0 y=0 w=100 h=100</div>
+    </div>
+
+    <!-- 3. Tight region — clips the blur halo -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="f3" x="0%" y="0%" width="100%" height="100%">
+            <feGaussianBlur stdDeviation="5"/>
+          </filter>
+        </defs>
+        <rect x="15" y="15" width="70" height="70" fill="#4d8bff" filter="url(#f3)"/>
+      </svg>
+      <div class="label">x=0% y=0%<br>w=100% h=100%<br>(tight, clips halo)</div>
+    </div>
+
+    <!-- 4. Extended region allows full blur halo (default -10%/120%) -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="f4" x="-15%" y="-15%" width="130%" height="130%">
+            <feGaussianBlur stdDeviation="5"/>
+          </filter>
+        </defs>
+        <rect x="15" y="15" width="70" height="70" fill="#ffd166" filter="url(#f4)"/>
+      </svg>
+      <div class="label">x=-15% y=-15%<br>w=130% h=130%<br>(full halo)</div>
+    </div>
+
+    <!-- 5. primitiveUnits=objectBoundingBox -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="f5" primitiveUnits="objectBoundingBox">
+            <feGaussianBlur stdDeviation="0.04"/>
+          </filter>
+        </defs>
+        <rect x="10" y="10" width="80" height="80" fill="#b06aff" filter="url(#f5)"/>
+      </svg>
+      <div class="label">primitiveUnits=<br>objectBoundingBox<br>stdDev=0.04</div>
+    </div>
+
+    <!-- 6. Two primitives chained (blur then color matrix) -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="f6">
+            <feGaussianBlur stdDeviation="2" result="blurred"/>
+            <feColorMatrix in="blurred" type="saturate" values="3"/>
+          </filter>
+        </defs>
+        <g filter="url(#f6)">
+          <circle cx="35" cy="35" r="25" fill="#e94560"/>
+          <circle cx="65" cy="65" r="25" fill="#16c79a"/>
+        </g>
+      </svg>
+      <div class="label">two primitives<br>blur → saturate<br>(chained result=)</div>
+    </div>
+
+    <!-- 7. filter on a group with colorful children -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="f7">
+            <feGaussianBlur stdDeviation="3"/>
+          </filter>
+        </defs>
+        <g filter="url(#f7)">
+          <rect x="10" y="10" width="40" height="40" fill="#e94560"/>
+          <rect x="50" y="10" width="40" height="40" fill="#4d8bff"/>
+          <rect x="10" y="50" width="40" height="40" fill="#ffd166"/>
+          <rect x="50" y="50" width="40" height="40" fill="#16c79a"/>
+        </g>
+      </svg>
+      <div class="label">filter on &lt;g&gt;<br>4-color quad<br>blurred together</div>
+    </div>
+
+    <!-- 8. filter=none (no effect, for comparison) -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <rect x="10" y="10" width="80" height="80" fill="#f5a623"/>
+        <text x="50" y="56" text-anchor="middle" font-size="14" fill="#1a1a2e">no filter</text>
+      </svg>
+      <div class="label">no filter<br>(baseline)</div>
+    </div>
+
+  </div>
+
+  <!-- machine blueprint: filter in defs, rect references url(#slot) -->
+  <script type="application/svg-blueprint" id="blueprint">
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100"><defs>{{ELEMENT}}</defs><rect x="5" y="5" width="90" height="90" fill="#16c79a" filter="url(#slot)"/></svg>
+  </script>
+</body></html>

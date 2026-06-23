@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>&lt;script&gt;</title>
+<style>
+  body{margin:0;background:#1a1a2e;color:#e6e6e6;font:14px/1.4 ui-monospace,Menlo,monospace;padding:24px}
+  h1{color:#16c79a;font-size:18px;margin:0 0 4px}
+  p.desc{color:#9aa;margin:0 0 20px}
+  .grid{display:flex;flex-wrap:wrap;gap:16px}
+  .card{background:#0f1530;border:1px solid #26305a;border-radius:8px;padding:10px;width:160px}
+  .card svg{display:block;background:#161c3a;border-radius:4px;width:140px;height:140px}
+  .card .label{margin-top:8px;color:#f5a623;font-size:12px;word-break:break-all}
+</style></head>
+<body>
+  <h1>&lt;script&gt;</h1>
+  <p class="desc">Inline SVG script. Headless Chrome executes scripts on load; shapes are colored/modified by JS. Fallback fills ensure content renders even if script is inert.</p>
+  <div class="grid">
+
+    <!-- 1. Script sets rect fill on load (rect starts gray, script turns it red) -->
+    <div class="card">
+      <svg id="svg1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <rect id="r1" x="10" y="10" width="80" height="80" fill="#444" rx="8"/>
+        <script type="application/ecmascript">
+          (function(){
+            var r = document.getElementById('r1');
+            if(r){ r.setAttribute('fill','#e94560'); }
+          })();
+        </script>
+      </svg>
+      <div class="label">script sets fill<br>→ #e94560 (red)</div>
+    </div>
+
+    <!-- 2. Script sets multiple rects to different fills -->
+    <div class="card">
+      <svg id="svg2" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <rect id="ra" x="5" y="5" width="42" height="42" fill="#333" rx="4"/>
+        <rect id="rb" x="53" y="5" width="42" height="42" fill="#333" rx="4"/>
+        <rect id="rc" x="5" y="53" width="42" height="42" fill="#333" rx="4"/>
+        <rect id="rd" x="53" y="53" width="42" height="42" fill="#333" rx="4"/>
+        <script type="application/ecmascript">
+          (function(){
+            var colors = {ra:'#16c79a', rb:'#4d8bff', rc:'#f5a623', rd:'#b06aff'};
+            for(var id in colors){
+              var el = document.getElementById(id);
+              if(el){ el.setAttribute('fill', colors[id]); }
+            }
+          })();
+        </script>
+      </svg>
+      <div class="label">script colors<br>4 rects</div>
+    </div>
+
+    <!-- 3. Script sets circle radius via setAttribute -->
+    <div class="card">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <circle id="c3" cx="50" cy="50" r="10" fill="#ffd166"/>
+        <script type="application/ecmascript">
+          (function(){
+            var c = document.getElementById('c3');
+            if(c){
+              c.setAttribute('r','38');
+              c.setAttribute('fill','#ffd166');
+            }
+          })();
+        </script>
+      </svg>
+      <div class="label">script sets r="38"<br>(circle grows)</div>
+    </div>
+
+    <!-- 4. Script appends a new circle to the SVG -->
+    <div class="card">
+      <svg id="svg4" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <rect width="100" height="100" fill="#0f1a30"/>
+        <rect x="10" y="10" width="80" height="80" fill="#1a2a50" rx="6"/>
+        <script type="application/ecmascript">
+          (function(){
+            var svgNS = 'http://www.w3.org/2000/svg';
+            var svg = document.getElementById('svg4');
+            if(!svg) return;
+            var c = document.createElementNS(svgNS, 'circle');
+            c.setAttribute('cx','50'); c.setAttribute('cy','50');
+            c.setAttribute('r','30'); c.setAttribute('fill','#e94560');
+            svg.appendChild(c);
+            var c2 = document.createElementNS(svgNS, 'circle');
+            c2.setAttribute('cx','50'); c2.setAttribute('cy','50');
+            c2.setAttribute('r','15'); c2.setAttribute('fill','#4d8bff');
+            svg.appendChild(c2);
+          })();
+        </script>
+      </svg>
+      <div class="label">script appends<br>circles via DOM</div>
+    </div>
+
+    <!-- 5. Script sets stroke and stroke-width -->
+    <div class="card">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <ellipse id="e5" cx="50" cy="50" rx="40" ry="25" fill="#0f1530" stroke="#333" stroke-width="1"/>
+        <script type="application/ecmascript">
+          (function(){
+            var e = document.getElementById('e5');
+            if(e){
+              e.setAttribute('stroke','#16c79a');
+              e.setAttribute('stroke-width','5');
+              e.setAttribute('fill','#1a3050');
+            }
+          })();
+        </script>
+      </svg>
+      <div class="label">script sets<br>stroke + width</div>
+    </div>
+
+    <!-- 6. Script sets text content -->
+    <div class="card">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <rect width="100" height="100" fill="#0f1530"/>
+        <text id="t6" x="50" y="55" text-anchor="middle"
+              font-size="12" fill="#444" font-family="monospace">waiting</text>
+        <script type="application/ecmascript">
+          (function(){
+            var t = document.getElementById('t6');
+            if(t){
+              t.textContent = 'JS ran!';
+              t.setAttribute('fill','#f5a623');
+              t.setAttribute('font-size','16');
+              t.setAttribute('font-weight','bold');
+            }
+          })();
+        </script>
+      </svg>
+      <div class="label">script updates<br>text content</div>
+    </div>
+
+    <!-- 7. type="application/ecmascript" explicit -->
+    <div class="card">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <polygon id="p7" points="50,10 90,80 10,80" fill="#555"/>
+        <script type="application/ecmascript">
+          (function(){
+            var p = document.getElementById('p7');
+            if(p){ p.setAttribute('fill','#b06aff'); }
+          })();
+        </script>
+      </svg>
+      <div class="label">type="application/<br>ecmascript"</div>
+    </div>
+
+    <!-- 8. Script sets opacity -->
+    <div class="card">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <rect id="bg8" x="0" y="0" width="100" height="100" fill="#ffd166"/>
+        <rect id="r8" x="15" y="15" width="70" height="70" fill="#e94560" rx="12"/>
+        <script type="application/ecmascript">
+          (function(){
+            var r = document.getElementById('r8');
+            if(r){ r.setAttribute('opacity','0.6'); }
+          })();
+        </script>
+      </svg>
+      <div class="label">script sets<br>opacity="0.6"</div>
+    </div>
+
+  </div>
+
+  <!-- machine blueprint: script is a never-rendered element; blueprint has a rect that script can color -->
+  <script type="application/svg-blueprint" id="blueprint">
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect id="slot-target" x="10" y="10" width="80" height="80" fill="#444" rx="8"/>
+  {{ELEMENT}}
+</svg>
+  </script>
+</body></html>

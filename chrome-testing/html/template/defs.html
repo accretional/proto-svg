@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>&lt;defs&gt;</title>
+<style>
+  body{margin:0;background:#1a1a2e;color:#e6e6e6;font:14px/1.4 ui-monospace,Menlo,monospace;padding:24px}
+  h1{color:#16c79a;font-size:18px;margin:0 0 4px}
+  p.desc{color:#9aa;margin:0 0 20px}
+  .grid{display:flex;flex-wrap:wrap;gap:16px}
+  .card{background:#0f1530;border:1px solid #26305a;border-radius:8px;padding:10px;width:160px}
+  .card svg{display:block;background:#161c3a;border-radius:4px;width:140px;height:140px}
+  .card .label{margin-top:8px;color:#f5a623;font-size:12px;word-break:break-all}
+</style></head>
+<body>
+  <h1>&lt;defs&gt;</h1>
+  <p class="desc">Definitions container — never rendered directly. Shapes/gradients/patterns defined inside defs are invisible until referenced. Each card shows a defined shape then used via &lt;use&gt; or a paint reference.</p>
+  <div class="grid">
+
+    <!-- Card 1: defs defining a circle, referenced by use -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <circle id="dot" cx="0" cy="0" r="12" fill="#e94560"/>
+        </defs>
+        <!-- defs content is invisible — only the use references render -->
+        <use href="#dot" x="25" y="25"/>
+        <use href="#dot" x="75" y="25"/>
+        <use href="#dot" x="25" y="75"/>
+        <use href="#dot" x="75" y="75"/>
+      </svg>
+      <div class="label">defs circle + 4× use</div>
+    </div>
+
+    <!-- Card 2: defs defining a rect, referenced -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <rect id="tile" x="-15" y="-15" width="30" height="30" rx="4" fill="#4d8bff"/>
+        </defs>
+        <use href="#tile" x="20" y="20"/>
+        <use href="#tile" x="55" y="20"/>
+        <use href="#tile" x="20" y="55"/>
+        <use href="#tile" x="55" y="55"/>
+      </svg>
+      <div class="label">defs rect + use tiling</div>
+    </div>
+
+    <!-- Card 3: defs defining a linearGradient used on a shape -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <linearGradient id="grad1" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stop-color="#16c79a"/>
+            <stop offset="1" stop-color="#4d8bff"/>
+          </linearGradient>
+        </defs>
+        <rect x="10" y="30" width="80" height="40" rx="8" fill="url(#grad1)"/>
+        <text x="50" y="55" text-anchor="middle" font-size="11" fill="#fff">gradient</text>
+      </svg>
+      <div class="label">defs linearGradient</div>
+    </div>
+
+    <!-- Card 4: defs defining a radialGradient -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <radialGradient id="rgrad" cx="0.5" cy="0.5" r="0.5">
+            <stop offset="0" stop-color="#ffd166"/>
+            <stop offset="1" stop-color="#b06aff"/>
+          </radialGradient>
+        </defs>
+        <circle cx="50" cy="50" r="42" fill="url(#rgrad)"/>
+      </svg>
+      <div class="label">defs radialGradient</div>
+    </div>
+
+    <!-- Card 5: defs defining a group shape (g inside defs) referenced by use -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <g id="icon">
+            <circle cx="0" cy="0" r="14" fill="#f5a623"/>
+            <rect x="-6" y="-3" width="12" height="6" rx="1" fill="#1a1a2e"/>
+          </g>
+        </defs>
+        <use href="#icon" x="30" y="30"/>
+        <use href="#icon" x="70" y="70"/>
+        <use href="#icon" x="70" y="30"/>
+      </svg>
+      <div class="label">defs g icon + 3× use</div>
+    </div>
+
+    <!-- Card 6: defs defining a clipPath used on a shape -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <clipPath id="clip1">
+            <circle cx="50" cy="50" r="35"/>
+          </clipPath>
+        </defs>
+        <rect width="100" height="100" fill="#e94560" clip-path="url(#clip1)"/>
+        <rect x="20" y="20" width="60" height="60" fill="#ffd166" clip-path="url(#clip1)"/>
+      </svg>
+      <div class="label">defs clipPath (circle clip)</div>
+    </div>
+
+    <!-- Card 7: defs with a path shape (star), referenced by use -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <path id="star"
+            d="M0,-20 L5,-7 L19,-7 L8,2 L12,16 L0,8 L-12,16 L-8,2 L-19,-7 L-5,-7 Z"
+            fill="#16c79a"/>
+        </defs>
+        <use href="#star" x="30" y="35"/>
+        <use href="#star" x="70" y="35" transform="scale(0.7)" style="transform-origin:70px 35px"/>
+        <use href="#star" x="50" y="75"/>
+      </svg>
+      <div class="label">defs path star + use</div>
+    </div>
+
+    <!-- Card 8: defs content is NOT rendered directly (empty appearance demo) -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <!-- This rect is ONLY in defs; it must not appear -->
+          <rect id="hidden" x="10" y="10" width="80" height="80" fill="#e94560"/>
+        </defs>
+        <!-- No use → canvas stays empty (show defs are never-rendered) -->
+        <text x="50" y="45" text-anchor="middle" font-size="11" fill="#9aa">defs only:</text>
+        <text x="50" y="62" text-anchor="middle" font-size="11" fill="#9aa">not rendered</text>
+        <text x="50" y="79" text-anchor="middle" font-size="9" fill="#4d8bff">(add &lt;use&gt; to see)</text>
+      </svg>
+      <div class="label">defs without use = invisible</div>
+    </div>
+
+  </div>
+
+  <script type="application/svg-blueprint" id="blueprint">
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100"><defs>{{ELEMENT}}</defs><use href="#slot" x="10" y="10"/></svg>
+  </script>
+</body></html>

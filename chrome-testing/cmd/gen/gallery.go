@@ -1,0 +1,114 @@
+package main
+
+import (
+	"fmt"
+	"path/filepath"
+	"strings"
+
+	"google.golang.org/protobuf/types/descriptorpb"
+)
+
+// gallery.go — the enumerate → inject → emit driver. It runs the full
+// all-value-paths walk over every element, wraps each variant in the element's
+// blueprint (assigning id="slot" when the blueprint references it), and writes
+// the gallery pages, index, values.json and manifest.tsv.
+
+const generatedHTMLDir = "chrome-testing/html/generated"
+const templateHTMLDir = "chrome-testing/html/template"
+
+func runGalleryPass(byFQN map[string]*descriptorpb.DescriptorProto, kw map[string]string, r *Renderer) {
+	en := newEnumerator(byFQN, kw, r)
+	bp := newBlueprintProvider(templateHTMLDir)
+
+	els := en.allElements()
+	var pages []page
+	total := 0
+	var unrendered []string
+
+	for _, el := range els {
+		variants := en.enumerateElement(el)
+		if len(variants) == 0 {
+			unrendered = append(unrendered, "<"+el.tag+"> (no enumerable attributes)")
+			continue
+		}
+		blueprint := bp.blueprintFor(el.tag)
+		bpRefsSlot := strings.Contains(blueprint, "url(#"+slotID+")") ||
+			strings.Contains(blueprint, `href="#`+slotID+`"`) ||
+			strings.Contains(blueprint, `marker-end="url(#`+slotID) ||
+			strings.Contains(blueprint, `clip-path="url(#`+slotID) ||
+			strings.Contains(blueprint, `mask="url(#`+slotID)
+		// The blueprint may also place {{ELEMENT}} directly inside a referenced
+		// container (filter/gradient with id="slot" already on the wrapper). In
+		// those scaffolds {{ELEMENT}} is the def itself and must carry id="slot".
+		slotIsElement := blueprintSlotNeedsID(blueprint, el.tag)
+
+		for i := range variants {
+			markup := variants[i].Markup
+			if (bpRefsSlot && slotIsElement) || variants[i].NeedsID {
+				markup = ensureSlotID(markup, el.tag)
+			}
+			variants[i].WrappedSVG = inject(blueprint, markup)
+
+			if ok, msg := checkWellFormed(variants[i].WrappedSVG); !ok {
+				unrendered = append(unrendered,
+					fmt.Sprintf("<%s> %s=%q: not well-formed (%s)", el.tag, variants[i].Attr, variants[i].Value, msg))
+			}
+		}
+		pages = append(pages, page{tag: el.tag, variants: variants})
+		total += len(variants)
+	}
+
+	// Write per-element pages.
+	for _, p := range pages {
+		writeFile(filepath.Join(generatedHTMLDir, p.tag+".html"), emitPage(p))
+	}
+	// index, values.json, manifest.tsv.
+	writeFile(filepath.Join(generatedHTMLDir, "index.html"), emitIndex(pages, total))
+	writeFile(filepath.Join(generatedHTMLDir, "values.json"), emitValuesJSON(pages))
+	writeFile(filepath.Join(generatedHTMLDir, "manifest.tsv"), emitManifest(pages))
+
+	fmt.Printf("\n=== gallery ===\n")
+	fmt.Printf("elements: %d  variants: %d  pages: %s/*.html\n", len(pages), total, generatedHTMLDir)
+	if len(unrendered) > 0 {
+		fmt.Printf("value-paths that did not render meaningfully (%d):\n", len(unrendered))
+		max := len(unrendered)
+		if max > 20 {
+			max = 20
+		}
+		for _, u := range unrendered[:max] {
+			fmt.Printf("  - %s\n", u)
+		}
+		if len(unrendered) > max {
+			fmt.Printf("  ... and %d more\n", len(unrendered)-max)
+		}
+	}
+}
+
+// blueprintSlotNeedsID reports whether the {{ELEMENT}} placeholder in the
+// blueprint sits where the referenced def lives (so the injected element must
+// carry id="slot"). True for paint-server/filter/clip/mask scaffolds where the
+// element IS the referenced def; false for self-rendering scaffolds and those
+// where the element is nested inside a wrapper that already owns id="slot"
+// (filter primitives inside <filter id="slot">, stops inside a gradient, etc.).
+func blueprintSlotNeedsID(blueprint, tag string) bool {
+	switch category(tag) {
+	case catGradient, catPattern, catMarker, catClip, catMask, catFilter:
+		return true
+	}
+	return false
+}
+
+// ensureSlotID inserts id="slot" into the element's open tag if it is not
+// already present. It targets the FIRST occurrence of the element's open tag.
+func ensureSlotID(markup, tag string) string {
+	if strings.Contains(markup, `id="`+slotID+`"`) {
+		return markup
+	}
+	open := "<" + tag
+	idx := strings.Index(markup, open)
+	if idx < 0 {
+		return markup
+	}
+	insert := idx + len(open)
+	return markup[:insert] + ` id="` + slotID + `"` + markup[insert:]
+}

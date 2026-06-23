@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>&lt;animateTransform&gt;</title>
+<style>
+  body{margin:0;background:#1a1a2e;color:#e6e6e6;font:14px/1.4 ui-monospace,Menlo,monospace;padding:24px}
+  h1{color:#16c79a;font-size:18px;margin:0 0 4px}
+  p.desc{color:#9aa;margin:0 0 20px}
+  .grid{display:flex;flex-wrap:wrap;gap:16px}
+  .card{background:#0f1530;border:1px solid #26305a;border-radius:8px;padding:10px;width:160px}
+  .card svg{display:block;background:#161c3a;border-radius:4px;width:140px;height:140px}
+  .card .label{margin-top:8px;color:#f5a623;font-size:12px;word-break:break-all}
+</style></head>
+<body>
+  <h1>&lt;animateTransform&gt;</h1>
+  <p class="desc">Animate transform attributes. Showcasing type: translate, scale, rotate (with cx/cy), skewX, skewY; from/to, values, additive.</p>
+  <div class="grid">
+
+    <!-- 1. type="translate" horizontal slide -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <rect x="-15" y="35" width="30" height="30" fill="#e94560">
+          <animateTransform attributeName="transform" type="translate"
+            from="0,0" to="70,0" dur="2s" repeatCount="indefinite"/>
+        </rect>
+      </svg>
+      <div class="label">type="translate"<br>from/to x-axis</div>
+    </div>
+
+    <!-- 2. type="translate" diagonal -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <circle cx="0" cy="0" r="12" fill="#16c79a">
+          <animateTransform attributeName="transform" type="translate"
+            from="15,15" to="80,80" dur="2s" repeatCount="indefinite"/>
+        </circle>
+      </svg>
+      <div class="label">type="translate"<br>diagonal (tx,ty)</div>
+    </div>
+
+    <!-- 3. type="scale" uniform grow/shrink -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <rect x="-20" y="-20" width="40" height="40" rx="5" fill="#4d8bff"
+              transform="translate(50 50)">
+          <animateTransform attributeName="transform" type="scale"
+            from="0.5" to="2" dur="1.5s" repeatCount="indefinite" additive="sum"/>
+        </rect>
+      </svg>
+      <div class="label">type="scale"<br>uniform 0.5→2</div>
+    </div>
+
+    <!-- 4. type="scale" non-uniform (sx,sy) -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <ellipse cx="50" cy="50" rx="20" ry="10" fill="#ffd166">
+          <animateTransform attributeName="transform" type="scale"
+            values="1,1;2,0.5;1,1" dur="2s" repeatCount="indefinite"/>
+        </ellipse>
+      </svg>
+      <div class="label">type="scale"<br>values sx,sy pairs</div>
+    </div>
+
+    <!-- 5. type="rotate" around center (simple angle) -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <rect x="35" y="5" width="30" height="30" rx="3" fill="#b06aff">
+          <animateTransform attributeName="transform" type="rotate"
+            from="0 50 50" to="360 50 50" dur="3s" repeatCount="indefinite"/>
+        </rect>
+      </svg>
+      <div class="label">type="rotate"<br>from=0 to=360 cx=cy=50</div>
+    </div>
+
+    <!-- 6. type="rotate" with cx,cy offset center -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <polygon points="50,5 58,30 80,30 63,47 70,72 50,57 30,72 37,47 20,30 42,30"
+                 fill="#f5a623">
+          <animateTransform attributeName="transform" type="rotate"
+            from="0 50 50" to="360 50 50" dur="4s" repeatCount="indefinite"/>
+        </polygon>
+      </svg>
+      <div class="label">type="rotate"<br>star spin cx/cy</div>
+    </div>
+
+    <!-- 7. type="skewX" -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <rect x="25" y="25" width="50" height="50" fill="#e94560">
+          <animateTransform attributeName="transform" type="skewX"
+            from="0" to="30" dur="1.5s" repeatCount="indefinite"/>
+        </rect>
+      </svg>
+      <div class="label">type="skewX"<br>0° → 30°</div>
+    </div>
+
+    <!-- 8. type="skewY" -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <rect x="25" y="25" width="50" height="50" fill="#16c79a">
+          <animateTransform attributeName="transform" type="skewY"
+            from="0" to="30" dur="1.5s" repeatCount="indefinite"/>
+        </rect>
+      </svg>
+      <div class="label">type="skewY"<br>0° → 30°</div>
+    </div>
+
+    <!-- 9. additive="sum" — two transforms stacked -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <rect x="-10" y="-10" width="20" height="20" rx="4" fill="#4d8bff"
+              transform="translate(50 50)">
+          <!-- spin -->
+          <animateTransform attributeName="transform" type="rotate"
+            from="0" to="360" dur="3s" repeatCount="indefinite" additive="sum"/>
+          <!-- simultaneous translate -->
+          <animateTransform attributeName="transform" type="translate"
+            from="0,0" to="30,0" dur="1.5s" repeatCount="indefinite" additive="sum"/>
+        </rect>
+      </svg>
+      <div class="label">additive="sum"<br>rotate+translate</div>
+    </div>
+
+    <!-- 10. values list for rotate — multi-keyframe -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <polygon points="50,12 61,40 90,40 67,57 76,85 50,68 24,85 33,57 10,40 39,40"
+                 fill="#ffd166">
+          <animateTransform attributeName="transform" type="rotate"
+            values="0 50 50;180 50 50;360 50 50"
+            keyTimes="0;0.5;1"
+            calcMode="spline"
+            keySplines="0.4 0 0.6 1;0.4 0 0.6 1"
+            dur="3s" repeatCount="indefinite"/>
+        </polygon>
+      </svg>
+      <div class="label">values list rotate<br>spline easing</div>
+    </div>
+
+  </div>
+
+  <!-- machine blueprint: {{ELEMENT}} as child of animated shape -->
+  <script type="application/svg-blueprint" id="blueprint">
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff">{{ELEMENT}}</rect>
+</svg>
+  </script>
+</body></html>

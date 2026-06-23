@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>&lt;feDropShadow&gt;</title>
+<style>
+  body{margin:0;background:#1a1a2e;color:#e6e6e6;font:14px/1.4 ui-monospace,Menlo,monospace;padding:24px}
+  h1{color:#16c79a;font-size:18px;margin:0 0 4px}
+  p.desc{color:#9aa;margin:0 0 20px}
+  .grid{display:flex;flex-wrap:wrap;gap:16px}
+  .card{background:#0f1530;border:1px solid #26305a;border-radius:8px;padding:10px;width:160px}
+  .card svg{display:block;background:#161c3a;border-radius:4px;width:140px;height:140px}
+  .card .label{margin-top:8px;color:#f5a623;font-size:12px;word-break:break-all}
+</style></head>
+<body>
+  <h1>&lt;feDropShadow&gt;</h1>
+  <p class="desc">Shorthand for a drop shadow. Attributes: dx, dy, stdDeviation (blur). Color/opacity via flood-color / flood-opacity CSS properties.</p>
+  <div class="grid">
+
+    <!-- 1. Default-ish shadow: black, moderate blur -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="ds-default" x="-20%" y="-20%" width="150%" height="150%">
+            <feDropShadow dx="4" dy="4" stdDeviation="3" flood-color="#000000" flood-opacity="0.7"/>
+          </filter>
+        </defs>
+        <rect x="10" y="10" width="65" height="65" fill="#e94560" filter="url(#ds-default)"/>
+      </svg>
+      <div class="label">dx=4 dy=4<br>stdDev=3 black</div>
+    </div>
+
+    <!-- 2. Large offset, no blur -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="ds-hard" x="-20%" y="-20%" width="160%" height="160%">
+            <feDropShadow dx="10" dy="10" stdDeviation="0" flood-color="#000" flood-opacity="0.8"/>
+          </filter>
+        </defs>
+        <rect x="5" y="5" width="60" height="60" fill="#4d8bff" filter="url(#ds-hard)"/>
+      </svg>
+      <div class="label">dx=10 dy=10<br>stdDev=0 (hard)</div>
+    </div>
+
+    <!-- 3. Colored shadow — teal -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="ds-color" x="-20%" y="-20%" width="150%" height="150%">
+            <feDropShadow dx="5" dy="5" stdDeviation="4" flood-color="#16c79a" flood-opacity="0.9"/>
+          </filter>
+        </defs>
+        <rect x="8" y="8" width="65" height="65" fill="#ffd166" filter="url(#ds-color)"/>
+      </svg>
+      <div class="label">colored shadow<br>flood-color=#16c79a</div>
+    </div>
+
+    <!-- 4. Heavy blur, small offset — soft glow -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="ds-glow" x="-30%" y="-30%" width="160%" height="160%">
+            <feDropShadow dx="0" dy="0" stdDeviation="8" flood-color="#b06aff" flood-opacity="1"/>
+          </filter>
+        </defs>
+        <rect x="20" y="20" width="60" height="60" fill="#f5a623" filter="url(#ds-glow)"/>
+      </svg>
+      <div class="label">dx=0 dy=0<br>stdDev=8 (glow)</div>
+    </div>
+
+    <!-- 5. Negative dx/dy — upper-left shadow -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="ds-upleft" x="-30%" y="-30%" width="160%" height="160%">
+            <feDropShadow dx="-6" dy="-6" stdDeviation="3" flood-color="#000" flood-opacity="0.6"/>
+          </filter>
+        </defs>
+        <rect x="25" y="25" width="65" height="65" fill="#e94560" filter="url(#ds-upleft)"/>
+      </svg>
+      <div class="label">dx=-6 dy=-6<br>(upper-left shadow)</div>
+    </div>
+
+    <!-- 6. Semi-transparent shadow -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="ds-faint" x="-20%" y="-20%" width="150%" height="150%">
+            <feDropShadow dx="6" dy="6" stdDeviation="4" flood-color="#000" flood-opacity="0.25"/>
+          </filter>
+        </defs>
+        <rect x="8" y="8" width="65" height="65" fill="#16c79a" filter="url(#ds-faint)"/>
+      </svg>
+      <div class="label">flood-opacity=0.25<br>(faint shadow)</div>
+    </div>
+
+    <!-- 7. Asymmetric stdDeviation: more Y blur than X -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="ds-asym" x="-20%" y="-20%" width="150%" height="160%">
+            <feDropShadow dx="3" dy="8" stdDeviation="1 6" flood-color="#4d8bff" flood-opacity="0.8"/>
+          </filter>
+        </defs>
+        <rect x="10" y="5" width="65" height="65" fill="#ffd166" filter="url(#ds-asym)"/>
+      </svg>
+      <div class="label">stdDeviation="1 6"<br>(asymmetric blur)</div>
+    </div>
+
+    <!-- 8. Applied to circle -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="ds-circle" x="-20%" y="-20%" width="150%" height="150%">
+            <feDropShadow dx="5" dy="5" stdDeviation="3" flood-color="#e94560" flood-opacity="0.85"/>
+          </filter>
+        </defs>
+        <circle cx="45" cy="45" r="35" fill="#b06aff" filter="url(#ds-circle)"/>
+      </svg>
+      <div class="label">on circle<br>red shadow</div>
+    </div>
+
+  </div>
+
+  <!-- machine blueprint -->
+  <script type="application/svg-blueprint" id="blueprint">
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot" x="-20%" y="-20%" width="150%" height="150%">{{ELEMENT}}</filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
+</svg>
+  </script>
+</body></html>

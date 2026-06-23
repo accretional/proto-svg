@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>&lt;desc&gt;</title>
+<style>
+  body{margin:0;background:#1a1a2e;color:#e6e6e6;font:14px/1.4 ui-monospace,Menlo,monospace;padding:24px}
+  h1{color:#16c79a;font-size:18px;margin:0 0 4px}
+  p.desc{color:#9aa;margin:0 0 20px}
+  .grid{display:flex;flex-wrap:wrap;gap:16px}
+  .card{background:#0f1530;border:1px solid #26305a;border-radius:8px;padding:10px;width:220px}
+  .card svg{display:block;background:#161c3a;border-radius:4px;width:200px;height:120px}
+  .card .label{margin-top:8px;color:#f5a623;font-size:12px;word-break:break-all}
+  .card .markup{margin-top:6px;background:#0a0e20;border-radius:4px;padding:8px;font-size:10px;color:#9af;white-space:pre;overflow-x:auto}
+  .note{color:#9aa;font-size:11px;margin-top:12px;max-width:700px}
+</style></head>
+<body>
+  <h1>&lt;desc&gt;</h1>
+  <p class="desc">Descriptive element — never rendered visually. Provides a long description for accessibility (screen readers). Each card shows the host shape rendering + the markup used.</p>
+  <div class="grid">
+
+    <!-- Card 1: desc on the root svg -->
+    <div class="card">
+      <svg viewBox="0 0 200 120">
+        <desc>A simple red rectangle used to demonstrate the desc element for accessibility.</desc>
+        <rect x="20" y="20" width="160" height="80" rx="10" fill="#e94560"/>
+        <text x="100" y="65" text-anchor="middle" font-size="14" fill="#fff">Red Rect</text>
+      </svg>
+      <div class="label">desc on root svg</div>
+      <div class="markup">&lt;svg&gt;
+  &lt;desc&gt;A simple red rectangle...&lt;/desc&gt;
+  &lt;rect .../&gt;
+&lt;/svg&gt;</div>
+    </div>
+
+    <!-- Card 2: desc on a circle shape -->
+    <div class="card">
+      <svg viewBox="0 0 200 120">
+        <circle cx="100" cy="60" r="50" fill="#16c79a">
+          <desc>A teal circle representing a status indicator at position (100,60).</desc>
+        </circle>
+        <text x="100" y="65" text-anchor="middle" font-size="12" fill="#1a1a2e">Circle</text>
+      </svg>
+      <div class="label">desc child of circle</div>
+      <div class="markup">&lt;circle cx="100" cy="60" r="50"&gt;
+  &lt;desc&gt;A teal circle...&lt;/desc&gt;
+&lt;/circle&gt;</div>
+    </div>
+
+    <!-- Card 3: desc on a group (g element) -->
+    <div class="card">
+      <svg viewBox="0 0 200 120">
+        <g>
+          <desc>A group of three overlapping colored circles representing a Venn diagram.</desc>
+          <circle cx="70"  cy="60" r="40" fill="#4d8bff" opacity="0.7"/>
+          <circle cx="100" cy="60" r="40" fill="#e94560" opacity="0.7"/>
+          <circle cx="130" cy="60" r="40" fill="#ffd166" opacity="0.7"/>
+        </g>
+      </svg>
+      <div class="label">desc child of g</div>
+      <div class="markup">&lt;g&gt;
+  &lt;desc&gt;Three overlapping circles...&lt;/desc&gt;
+  &lt;circle.../&gt; ...
+&lt;/g&gt;</div>
+    </div>
+
+    <!-- Card 4: desc with id attribute -->
+    <div class="card">
+      <svg viewBox="0 0 200 120">
+        <rect x="20" y="20" width="160" height="80" rx="8" fill="#b06aff"
+              aria-describedby="rect-desc">
+          <desc id="rect-desc">A purple rounded rectangle. Referenced by aria-describedby.</desc>
+        </rect>
+        <text x="100" y="65" text-anchor="middle" font-size="11" fill="#fff">aria-describedby</text>
+      </svg>
+      <div class="label">desc with id + aria-describedby</div>
+      <div class="markup">&lt;rect aria-describedby="rect-desc"&gt;
+  &lt;desc id="rect-desc"&gt;...&lt;/desc&gt;
+&lt;/rect&gt;</div>
+    </div>
+
+    <!-- Card 5: multiple desc elements with different lang attributes -->
+    <div class="card">
+      <svg viewBox="0 0 200 120">
+        <circle cx="100" cy="60" r="50" fill="#f5a623">
+          <desc lang="en">An orange circle. English description.</desc>
+          <desc lang="fr">Un cercle orange. Description française.</desc>
+          <desc lang="de">Ein oranger Kreis. Deutsche Beschreibung.</desc>
+        </circle>
+        <text x="100" y="58" text-anchor="middle" font-size="11" fill="#1a1a2e">multi-lang</text>
+        <text x="100" y="73" text-anchor="middle" font-size="9" fill="#1a1a2e">desc elements</text>
+      </svg>
+      <div class="label">multiple desc with lang</div>
+      <div class="markup">&lt;circle&gt;
+  &lt;desc lang="en"&gt;...&lt;/desc&gt;
+  &lt;desc lang="fr"&gt;...&lt;/desc&gt;
+  &lt;desc lang="de"&gt;...&lt;/desc&gt;
+&lt;/circle&gt;</div>
+    </div>
+
+    <!-- Card 6: desc is invisible — host shape renders, desc does not -->
+    <div class="card">
+      <svg viewBox="0 0 200 120">
+        <polygon points="100,10 190,110 10,110" fill="#16c79a">
+          <desc>This text is NOT visible on screen. Only the triangle renders.</desc>
+        </polygon>
+        <text x="100" y="90" text-anchor="middle" font-size="10" fill="#1a1a2e">desc = invisible</text>
+      </svg>
+      <div class="label">desc never renders visually</div>
+      <div class="markup">&lt;polygon ...&gt;
+  &lt;desc&gt;
+    This text is NOT visible...
+  &lt;/desc&gt;
+&lt;/polygon&gt;</div>
+    </div>
+
+  </div>
+
+  <p class="note">Note: &lt;desc&gt; is a never-rendered element (UA sets display:none). Its content is exposed to screen readers and accessibility APIs. The host shapes above all render; only the desc text is invisible.</p>
+
+  <script type="application/svg-blueprint" id="blueprint">
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100"><rect x="5" y="5" width="90" height="90" fill="#4d8bff"/>{{ELEMENT}}</svg>
+  </script>
+</body></html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>&lt;mask&gt;</title>
+<style>
+  body{margin:0;background:#1a1a2e;color:#e6e6e6;font:14px/1.4 ui-monospace,Menlo,monospace;padding:24px}
+  h1{color:#16c79a;font-size:18px;margin:0 0 4px}
+  p.desc{color:#9aa;margin:0 0 20px}
+  .grid{display:flex;flex-wrap:wrap;gap:16px}
+  .card{background:#0f1530;border:1px solid #26305a;border-radius:8px;padding:10px;width:160px}
+  .card svg{display:block;background:#161c3a;border-radius:4px;width:140px;height:140px}
+  .card .label{margin-top:8px;color:#f5a623;font-size:12px;word-break:break-all}
+</style></head>
+<body>
+  <h1>&lt;mask&gt;</h1>
+  <p class="desc">Masking. Showcasing white-shape reveal, gradient alpha fade, maskUnits, maskContentUnits, mask-type luminance vs alpha.</p>
+  <div class="grid">
+
+    <!-- 1. White circle reveals rect (luminance mask default) -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <mask id="m1">
+            <circle cx="50" cy="50" r="38" fill="white"/>
+          </mask>
+        </defs>
+        <rect x="0" y="0" width="100" height="100" fill="#e94560" mask="url(#m1)"/>
+      </svg>
+      <div class="label">white circle reveal<br>luminance (default)</div>
+    </div>
+
+    <!-- 2. White rect with black hole — reveals rect except the hole -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <mask id="m2">
+            <rect x="0" y="0" width="100" height="100" fill="white"/>
+            <circle cx="50" cy="50" r="25" fill="black"/>
+          </mask>
+        </defs>
+        <rect x="0" y="0" width="100" height="100" fill="#16c79a" mask="url(#m2)"/>
+      </svg>
+      <div class="label">white bg + black hole<br>donut reveal</div>
+    </div>
+
+    <!-- 3. Linear gradient mask — left opaque, right transparent (alpha fade) -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <linearGradient id="mgr3" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stop-color="white" stop-opacity="1"/>
+            <stop offset="1" stop-color="white" stop-opacity="0"/>
+          </linearGradient>
+          <mask id="m3" maskContentUnits="objectBoundingBox">
+            <rect x="0" y="0" width="1" height="1" fill="url(#mgr3)"/>
+          </mask>
+        </defs>
+        <rect x="0" y="0" width="100" height="100" fill="#4d8bff" mask="url(#m3)"/>
+      </svg>
+      <div class="label">gradient fade<br>left→right alpha</div>
+    </div>
+
+    <!-- 4. Radial gradient mask — center bright, edges transparent -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <radialGradient id="mgr4" cx="50%" cy="50%" r="50%">
+            <stop offset="0" stop-color="white" stop-opacity="1"/>
+            <stop offset="1" stop-color="white" stop-opacity="0"/>
+          </radialGradient>
+          <mask id="m4">
+            <rect x="0" y="0" width="100" height="100" fill="url(#mgr4)"/>
+          </mask>
+        </defs>
+        <rect x="0" y="0" width="100" height="100" fill="#ffd166" mask="url(#m4)"/>
+      </svg>
+      <div class="label">radial gradient mask<br>vignette fade</div>
+    </div>
+
+    <!-- 5. maskUnits="userSpaceOnUse" — mask box coords in SVG space -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <mask id="m5" maskUnits="userSpaceOnUse" x="10" y="10" width="80" height="80">
+            <rect x="10" y="10" width="80" height="80" fill="white" rx="15"/>
+          </mask>
+        </defs>
+        <rect x="0" y="0" width="100" height="100" fill="#b06aff" mask="url(#m5)"/>
+      </svg>
+      <div class="label">maskUnits=<br>userSpaceOnUse</div>
+    </div>
+
+    <!-- 6. maskUnits="objectBoundingBox" (default) — mask x/y/w/h in 0-1 fraction -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <mask id="m6" maskUnits="objectBoundingBox" x="0.1" y="0.1" width="0.8" height="0.8">
+            <rect x="0" y="0" width="100" height="100" fill="white"/>
+          </mask>
+        </defs>
+        <rect x="5" y="5" width="90" height="90" fill="#f5a623" mask="url(#m6)"/>
+      </svg>
+      <div class="label">maskUnits=<br>objectBoundingBox<br>x/y as fractions</div>
+    </div>
+
+    <!-- 7. maskContentUnits="objectBoundingBox" — content coords in 0-1 space -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <mask id="m7" maskContentUnits="objectBoundingBox">
+            <ellipse cx="0.5" cy="0.5" rx="0.4" ry="0.3" fill="white"/>
+          </mask>
+        </defs>
+        <rect x="0" y="0" width="100" height="100" fill="#e94560" mask="url(#m7)"/>
+      </svg>
+      <div class="label">maskContentUnits=<br>objectBoundingBox<br>ellipse at 0.5,0.5</div>
+    </div>
+
+    <!-- 8. mask-type="luminance" — white=opaque, grey=partial, black=hidden -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <mask id="m8" style="mask-type:luminance">
+            <rect x="5" y="5" width="40" height="90" fill="white"/>
+            <rect x="50" y="5" width="45" height="90" fill="#808080"/>
+          </mask>
+        </defs>
+        <rect x="0" y="0" width="100" height="100" fill="#16c79a" mask="url(#m8)"/>
+      </svg>
+      <div class="label">mask-type=luminance<br>white vs grey reveal</div>
+    </div>
+
+    <!-- 9. mask-type="alpha" — white with opacity=0.5 gives 50% alpha mask -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <mask id="m9" style="mask-type:alpha">
+            <rect x="5" y="5" width="40" height="90" fill="white" opacity="1"/>
+            <rect x="50" y="5" width="45" height="90" fill="white" opacity="0.3"/>
+          </mask>
+        </defs>
+        <rect x="0" y="0" width="100" height="100" fill="#4d8bff" mask="url(#m9)"/>
+      </svg>
+      <div class="label">mask-type=alpha<br>full vs partial alpha</div>
+    </div>
+
+    <!-- 10. Polygon star mask — reveals star shape -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <mask id="m10">
+            <polygon points="50,8 61,35 90,35 67,57 76,84 50,65 24,84 33,57 10,35 39,35"
+                     fill="white"/>
+          </mask>
+        </defs>
+        <rect x="0" y="0" width="100" height="100" fill="#ffd166" mask="url(#m10)"/>
+      </svg>
+      <div class="label">polygon star mask<br>yellow reveal</div>
+    </div>
+
+  </div>
+
+  <!-- machine blueprint: mask in defs, bright rect using mask="url(#slot)" -->
+  <script type="application/svg-blueprint" id="blueprint">
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>{{ELEMENT}}</defs>
+  <rect x="5" y="5" width="90" height="90" fill="#e94560" mask="url(#slot)"/>
+</svg>
+  </script>
+</body></html>

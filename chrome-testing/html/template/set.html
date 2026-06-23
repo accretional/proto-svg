@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>&lt;set&gt;</title>
+<style>
+  body{margin:0;background:#1a1a2e;color:#e6e6e6;font:14px/1.4 ui-monospace,Menlo,monospace;padding:24px}
+  h1{color:#16c79a;font-size:18px;margin:0 0 4px}
+  p.desc{color:#9aa;margin:0 0 20px}
+  .grid{display:flex;flex-wrap:wrap;gap:16px}
+  .card{background:#0f1530;border:1px solid #26305a;border-radius:8px;padding:10px;width:160px}
+  .card svg{display:block;background:#161c3a;border-radius:4px;width:140px;height:140px}
+  .card .label{margin-top:8px;color:#f5a623;font-size:12px;word-break:break-all}
+</style></head>
+<body>
+  <h1>&lt;set&gt;</h1>
+  <p class="desc">SMIL set element: instantly assigns an attribute value at a begin time. Non-interpolating (no from/by/calcMode). Showcasing attributeName, to, begin, dur, fill.</p>
+  <div class="grid">
+
+    <!-- 1. set fill color after 1s -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <rect x="15" y="15" width="70" height="70" rx="8" fill="#4d8bff">
+          <set attributeName="fill" to="#e94560" begin="1s"/>
+        </rect>
+      </svg>
+      <div class="label">fill → #e94560<br>begin="1s"</div>
+    </div>
+
+    <!-- 2. set opacity to 0.2 at begin=0.5s -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="38" fill="#16c79a">
+          <set attributeName="opacity" to="0.2" begin="0.5s"/>
+        </circle>
+      </svg>
+      <div class="label">opacity → 0.2<br>begin="0.5s"</div>
+    </div>
+
+    <!-- 3. set visibility to hidden at 1.5s -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <ellipse cx="50" cy="50" rx="42" ry="28" fill="#ffd166">
+          <set attributeName="visibility" to="hidden" begin="1.5s"/>
+        </ellipse>
+        <text x="50" y="90" text-anchor="middle" font-size="9" fill="#9aa">hides at 1.5s</text>
+      </svg>
+      <div class="label">visibility→hidden<br>begin="1.5s"</div>
+    </div>
+
+    <!-- 4. set rx (rounding) to 40 at 1s -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <rect x="10" y="25" width="80" height="50" rx="4" fill="#b06aff">
+          <set attributeName="rx" to="40" begin="1s"/>
+        </rect>
+      </svg>
+      <div class="label">rx → 40<br>begin="1s" (pill)</div>
+    </div>
+
+    <!-- 5. set stroke-width to 8 at 0.8s -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <rect x="15" y="15" width="70" height="70" rx="10" fill="none"
+              stroke="#e94560" stroke-width="2">
+          <set attributeName="stroke-width" to="10" begin="0.8s"/>
+        </rect>
+      </svg>
+      <div class="label">stroke-width→10<br>begin="0.8s"</div>
+    </div>
+
+    <!-- 6. set with dur + fill="freeze" (hold the set value) -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <rect x="10" y="10" width="80" height="80" rx="6" fill="#f5a623">
+          <set attributeName="fill" to="#4d8bff" begin="1s" dur="1s" fill="freeze"/>
+        </rect>
+      </svg>
+      <div class="label">dur="1s" fill="freeze"<br>holds blue</div>
+    </div>
+
+    <!-- 7. set r on circle at begin=0 (immediate) -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="10" fill="#16c79a">
+          <set attributeName="r" to="42" begin="0s"/>
+        </circle>
+      </svg>
+      <div class="label">r → 42<br>begin="0s" (instant)</div>
+    </div>
+
+    <!-- 8. set display:none at 2s -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <rect x="20" y="20" width="60" height="60" fill="#e94560" rx="5">
+          <set attributeName="display" to="none" begin="2s"/>
+        </rect>
+        <text x="50" y="90" text-anchor="middle" font-size="9" fill="#9aa">gone at 2s</text>
+      </svg>
+      <div class="label">display→none<br>begin="2s"</div>
+    </div>
+
+  </div>
+
+  <!-- machine blueprint: {{ELEMENT}} as child of a shape -->
+  <script type="application/svg-blueprint" id="blueprint">
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff">{{ELEMENT}}</rect>
+</svg>
+  </script>
+</body></html>

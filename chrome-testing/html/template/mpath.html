@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>&lt;mpath&gt;</title>
+<style>
+  body{margin:0;background:#1a1a2e;color:#e6e6e6;font:14px/1.4 ui-monospace,Menlo,monospace;padding:24px}
+  h1{color:#16c79a;font-size:18px;margin:0 0 4px}
+  p.desc{color:#9aa;margin:0 0 20px}
+  .grid{display:flex;flex-wrap:wrap;gap:16px}
+  .card{background:#0f1530;border:1px solid #26305a;border-radius:8px;padding:10px;width:160px}
+  .card svg{display:block;background:#161c3a;border-radius:4px;width:140px;height:140px}
+  .card .label{margin-top:8px;color:#f5a623;font-size:12px;word-break:break-all}
+</style></head>
+<body>
+  <h1>&lt;mpath&gt;</h1>
+  <p class="desc">mpath child of animateMotion: references a defined path element. Shows the motion path visually and moves a shape along it. Showcasing different path shapes and rotate modes.</p>
+  <div class="grid">
+
+    <!-- 1. mpath referencing a simple arc path, motion path visible -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <path id="arc1" d="M10 80 A50 50 0 0 1 90 80"/>
+        </defs>
+        <!-- visible motion path -->
+        <path d="M10 80 A50 50 0 0 1 90 80" fill="none" stroke="#26305a" stroke-width="1.5" stroke-dasharray="4 2"/>
+        <circle r="8" fill="#e94560">
+          <animateMotion dur="2s" repeatCount="indefinite">
+            <mpath href="#arc1"/>
+          </animateMotion>
+        </circle>
+      </svg>
+      <div class="label">mpath arc<br>motion path shown</div>
+    </div>
+
+    <!-- 2. mpath referencing a cubic bezier S-curve, rotate=auto -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <path id="scurve" d="M10 80 C30 80 30 20 50 20 C70 20 70 80 90 80"/>
+        </defs>
+        <path d="M10 80 C30 80 30 20 50 20 C70 20 70 80 90 80"
+              fill="none" stroke="#26305a" stroke-width="1.5" stroke-dasharray="4 2"/>
+        <polygon points="-8,-5 8,0 -8,5" fill="#16c79a">
+          <animateMotion dur="3s" rotate="auto" repeatCount="indefinite">
+            <mpath href="#scurve"/>
+          </animateMotion>
+        </polygon>
+      </svg>
+      <div class="label">mpath S-curve<br>rotate="auto"</div>
+    </div>
+
+    <!-- 3. mpath referencing a closed circle path -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <!-- approximate circle as bezier path -->
+          <path id="circle-path" d="M50 10 A40 40 0 1 1 49.99 10Z"/>
+        </defs>
+        <circle cx="50" cy="50" r="40" fill="none" stroke="#26305a" stroke-width="1.5" stroke-dasharray="4 2"/>
+        <rect x="-8" y="-8" width="16" height="16" rx="2" fill="#4d8bff">
+          <animateMotion dur="3s" rotate="auto" repeatCount="indefinite">
+            <mpath href="#circle-path"/>
+          </animateMotion>
+        </rect>
+      </svg>
+      <div class="label">mpath circle orbit<br>rotate="auto"</div>
+    </div>
+
+    <!-- 4. mpath with rotate="auto-reverse" -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <path id="wave" d="M5 50 Q25 20 50 50 Q75 80 95 50"/>
+        </defs>
+        <path d="M5 50 Q25 20 50 50 Q75 80 95 50"
+              fill="none" stroke="#26305a" stroke-width="1.5" stroke-dasharray="4 2"/>
+        <polygon points="-8,-5 8,0 -8,5" fill="#ffd166">
+          <animateMotion dur="2s" rotate="auto-reverse" repeatCount="indefinite">
+            <mpath href="#wave"/>
+          </animateMotion>
+        </polygon>
+      </svg>
+      <div class="label">mpath wave<br>rotate="auto-reverse"</div>
+    </div>
+
+    <!-- 5. mpath with fixed rotate angle -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <path id="diag" d="M10 10 L90 90"/>
+        </defs>
+        <path d="M10 10 L90 90" fill="none" stroke="#26305a" stroke-width="1.5" stroke-dasharray="4 2"/>
+        <rect x="-10" y="-6" width="20" height="12" rx="3" fill="#b06aff">
+          <animateMotion dur="2s" rotate="45" repeatCount="indefinite">
+            <mpath href="#diag"/>
+          </animateMotion>
+        </rect>
+      </svg>
+      <div class="label">mpath diagonal<br>rotate="45"</div>
+    </div>
+
+    <!-- 6. mpath — shape references a path, no rotate (default 0) -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <path id="zigzag" d="M5 80 L25 20 L45 80 L65 20 L85 80"/>
+        </defs>
+        <path d="M5 80 L25 20 L45 80 L65 20 L85 80"
+              fill="none" stroke="#26305a" stroke-width="1.5" stroke-dasharray="4 2"/>
+        <circle r="7" fill="#f5a623">
+          <animateMotion dur="3s" repeatCount="indefinite">
+            <mpath href="#zigzag"/>
+          </animateMotion>
+        </circle>
+      </svg>
+      <div class="label">mpath zigzag<br>rotate=0 (default)</div>
+    </div>
+
+    <!-- 7. mpath with keyPoints + keyTimes on the animateMotion -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <path id="hline" d="M10 50 H90"/>
+        </defs>
+        <path d="M10 50 H90" fill="none" stroke="#26305a" stroke-width="1.5" stroke-dasharray="4 2"/>
+        <circle r="9" fill="#e94560">
+          <animateMotion dur="3s" repeatCount="indefinite"
+            keyPoints="0;0.8;0.2;1"
+            keyTimes="0;0.4;0.6;1"
+            calcMode="linear">
+            <mpath href="#hline"/>
+          </animateMotion>
+        </circle>
+      </svg>
+      <div class="label">mpath + keyPoints<br>keyTimes non-linear</div>
+    </div>
+
+    <!-- 8. mpath referencing a pentagram path (complex shape) -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <path id="pentagram" d="M50 5 L61 35 L95 35 L68 57 L79 90 L50 70 L21 90 L32 57 L5 35 L39 35 Z"/>
+        </defs>
+        <path d="M50 5 L61 35 L95 35 L68 57 L79 90 L50 70 L21 90 L32 57 L5 35 L39 35 Z"
+              fill="none" stroke="#26305a" stroke-width="1" stroke-dasharray="3 2"/>
+        <circle r="6" fill="#16c79a">
+          <animateMotion dur="4s" rotate="auto" repeatCount="indefinite">
+            <mpath href="#pentagram"/>
+          </animateMotion>
+        </circle>
+      </svg>
+      <div class="label">mpath star outline<br>rotate="auto"</div>
+    </div>
+
+  </div>
+
+  <!-- machine blueprint: {{ELEMENT}} as child of animateMotion inside a shape -->
+  <script type="application/svg-blueprint" id="blueprint">
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs><path id="slot-path" d="M10 50 Q50 10 90 50"/></defs>
+  <rect width="20" height="20" fill="#4d8bff">
+    <animateMotion dur="2s" repeatCount="indefinite">{{ELEMENT}}</animateMotion>
+  </rect>
+</svg>
+  </script>
+</body></html>

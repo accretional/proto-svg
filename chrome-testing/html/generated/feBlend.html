@@ -1,0 +1,914 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>&lt;feBlend&gt;</title>
+<style>body{margin:0;background:#1a1a2e;color:#e6e6e6;font:14px/1.4 ui-monospace,Menlo,monospace;padding:24px}
+h1{color:#16c79a;font-size:18px;margin:0 0 4px}
+p.desc{color:#9aa;margin:0 0 20px}
+a{color:#4d8bff}
+.grid{display:flex;flex-wrap:wrap;gap:16px}
+.card{background:#0f1530;border:1px solid #26305a;border-radius:8px;padding:10px;width:160px}
+.card svg{display:block;background:#161c3a;border-radius:4px;width:140px;height:140px}
+.card .label{margin-top:8px;color:#f5a623;font-size:12px;word-break:break-all}
+.card .attr{color:#16c79a}</style></head><body>
+<h1>&lt;feBlend&gt;</h1>
+<p class="desc">100 enumerated value-paths walked from the grammar. <a href="index.html">&larr; index</a></p>
+<div class="grid">
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" result="layer2"/>
+      <feBlend in="SourceGraphic"></feBlend>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">in</span>="SourceGraphic"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" result="layer2"/>
+      <feBlend in="SourceAlpha"></feBlend>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">in</span>="SourceAlpha"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" result="layer2"/>
+      <feBlend in="BackgroundImage"></feBlend>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">in</span>="BackgroundImage"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" result="layer2"/>
+      <feBlend in="BackgroundAlpha"></feBlend>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">in</span>="BackgroundAlpha"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" result="layer2"/>
+      <feBlend in="FillPaint"></feBlend>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">in</span>="FillPaint"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" result="layer2"/>
+      <feBlend in="StrokePaint"></feBlend>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">in</span>="StrokePaint"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" result="layer2"/>
+      <feBlend in="blur1"></feBlend>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">in</span>="blur1"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" result="layer2"/>
+      <feBlend in="result1"></feBlend>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">in</span>="result1"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" result="layer2"/>
+      <feBlend in2="SourceGraphic"></feBlend>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">in2</span>="SourceGraphic"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" result="layer2"/>
+      <feBlend in2="SourceAlpha"></feBlend>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">in2</span>="SourceAlpha"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" result="layer2"/>
+      <feBlend in2="BackgroundImage"></feBlend>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">in2</span>="BackgroundImage"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" result="layer2"/>
+      <feBlend in2="BackgroundAlpha"></feBlend>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">in2</span>="BackgroundAlpha"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" result="layer2"/>
+      <feBlend in2="FillPaint"></feBlend>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">in2</span>="FillPaint"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" result="layer2"/>
+      <feBlend in2="StrokePaint"></feBlend>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">in2</span>="StrokePaint"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" result="layer2"/>
+      <feBlend in2="blur1"></feBlend>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">in2</span>="blur1"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" result="layer2"/>
+      <feBlend in2="result1"></feBlend>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">in2</span>="result1"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" result="layer2"/>
+      <feBlend mode="normal"></feBlend>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">mode</span>="normal"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" result="layer2"/>
+      <feBlend mode="multiply"></feBlend>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">mode</span>="multiply"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" result="layer2"/>
+      <feBlend mode="screen"></feBlend>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">mode</span>="screen"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" result="layer2"/>
+      <feBlend mode="darken"></feBlend>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">mode</span>="darken"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" result="layer2"/>
+      <feBlend mode="lighten"></feBlend>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">mode</span>="lighten"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" result="layer2"/>
+      <feBlend mode="overlay"></feBlend>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">mode</span>="overlay"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" result="layer2"/>
+      <feBlend mode="color-dodge"></feBlend>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">mode</span>="color-dodge"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" result="layer2"/>
+      <feBlend mode="color-burn"></feBlend>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">mode</span>="color-burn"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" result="layer2"/>
+      <feBlend mode="hard-light"></feBlend>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">mode</span>="hard-light"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" result="layer2"/>
+      <feBlend mode="soft-light"></feBlend>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">mode</span>="soft-light"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" result="layer2"/>
+      <feBlend mode="difference"></feBlend>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">mode</span>="difference"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" result="layer2"/>
+      <feBlend mode="exclusion"></feBlend>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">mode</span>="exclusion"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" result="layer2"/>
+      <feBlend mode="hue"></feBlend>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">mode</span>="hue"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" result="layer2"/>
+      <feBlend mode="saturation"></feBlend>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">mode</span>="saturation"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" result="layer2"/>
+      <feBlend mode="color"></feBlend>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">mode</span>="color"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" result="layer2"/>
+      <feBlend mode="luminosity"></feBlend>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">mode</span>="luminosity"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" result="layer2"/>
+      <feBlend no-composite="true"></feBlend>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">no-composite</span>="true"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" result="layer2"/>
+      <feBlend no-composite="false"></feBlend>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">no-composite</span>="false"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" result="layer2"/>
+      <feBlend x="10"></feBlend>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">x</span>="10"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" result="layer2"/>
+      <feBlend x="24px"></feBlend>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">x</span>="24px"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" result="layer2"/>
+      <feBlend x="2em"></feBlend>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">x</span>="2em"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" result="layer2"/>
+      <feBlend x="50%"></feBlend>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">x</span>="50%"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" result="layer2"/>
+      <feBlend x="100%"></feBlend>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">x</span>="100%"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" result="layer2"/>
+      <feBlend y="10"></feBlend>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">y</span>="10"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" result="layer2"/>
+      <feBlend y="24px"></feBlend>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">y</span>="24px"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" result="layer2"/>
+      <feBlend y="2em"></feBlend>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">y</span>="2em"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" result="layer2"/>
+      <feBlend y="50%"></feBlend>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">y</span>="50%"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" result="layer2"/>
+      <feBlend y="100%"></feBlend>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">y</span>="100%"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" result="layer2"/>
+      <feBlend width="20"></feBlend>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">width</span>="20"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" result="layer2"/>
+      <feBlend height="20"></feBlend>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">height</span>="20"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" result="layer2"/>
+      <feBlend result="blur1"></feBlend>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">result</span>="blur1"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" result="layer2"/>
+      <feBlend result="result1"></feBlend>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">result</span>="result1"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" result="layer2"/>
+      <feBlend result="myFilter"></feBlend>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">result</span>="myFilter"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" result="layer2"/>
+      <feBlend result="shadow"></feBlend>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">result</span>="shadow"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" result="layer2"/>
+      <feBlend result="out"></feBlend>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">result</span>="out"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" result="layer2"/>
+      <feBlend id="circle1"></feBlend>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">id</span>="circle1"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" result="layer2"/>
+      <feBlend id="grad-a"></feBlend>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">id</span>="grad-a"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" result="layer2"/>
+      <feBlend id="myId"></feBlend>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">id</span>="myId"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" result="layer2"/>
+      <feBlend id="node3"></feBlend>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">id</span>="node3"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" result="layer2"/>
+      <feBlend id="r1"></feBlend>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">id</span>="r1"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" result="layer2"/>
+      <feBlend tabindex="0"></feBlend>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">tabindex</span>="0"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" result="layer2"/>
+      <feBlend tabindex="1"></feBlend>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">tabindex</span>="1"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" result="layer2"/>
+      <feBlend tabindex="-1"></feBlend>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">tabindex</span>="-1"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" result="layer2"/>
+      <feBlend tabindex="100"></feBlend>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">tabindex</span>="100"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" result="layer2"/>
+      <feBlend tabindex="3"></feBlend>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">tabindex</span>="3"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" result="layer2"/>
+      <feBlend tabindex="10"></feBlend>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">tabindex</span>="10"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" result="layer2"/>
+      <feBlend autofocus="true"></feBlend>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">autofocus</span>="true"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" result="layer2"/>
+      <feBlend autofocus="false"></feBlend>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">autofocus</span>="false"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" result="layer2"/>
+      <feBlend lang="en"></feBlend>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">lang</span>="en"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" result="layer2"/>
+      <feBlend lang="fr-CA"></feBlend>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">lang</span>="fr-CA"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" result="layer2"/>
+      <feBlend lang="de"></feBlend>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">lang</span>="de"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" result="layer2"/>
+      <feBlend lang="zh-Hans"></feBlend>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">lang</span>="zh-Hans"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" result="layer2"/>
+      <feBlend lang="pt-BR"></feBlend>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">lang</span>="pt-BR"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" result="layer2"/>
+      <feBlend xml:lang="en"></feBlend>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">xml:lang</span>="en"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" result="layer2"/>
+      <feBlend xml:lang="fr-CA"></feBlend>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">xml:lang</span>="fr-CA"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" result="layer2"/>
+      <feBlend xml:lang="de"></feBlend>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">xml:lang</span>="de"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" result="layer2"/>
+      <feBlend xml:lang="zh-Hans"></feBlend>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">xml:lang</span>="zh-Hans"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" result="layer2"/>
+      <feBlend xml:lang="pt-BR"></feBlend>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">xml:lang</span>="pt-BR"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" result="layer2"/>
+      <feBlend xml:space="default"></feBlend>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">xml:space</span>="default"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" result="layer2"/>
+      <feBlend xml:space="preserve"></feBlend>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">xml:space</span>="preserve"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" result="layer2"/>
+      <feBlend fill="none"></feBlend>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">fill</span>="none"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" result="layer2"/>
+      <feBlend fill-rule="nonzero"></feBlend>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">fill-rule</span>="nonzero"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" result="layer2"/>
+      <feBlend fill-opacity="0.5"></feBlend>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">fill-opacity</span>="0.5"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" result="layer2"/>
+      <feBlend stroke="none"></feBlend>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">stroke</span>="none"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" result="layer2"/>
+      <feBlend stroke-opacity="0.5"></feBlend>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">stroke-opacity</span>="0.5"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" result="layer2"/>
+      <feBlend stroke-width="20"></feBlend>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">stroke-width</span>="20"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" result="layer2"/>
+      <feBlend stroke-linecap="butt"></feBlend>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">stroke-linecap</span>="butt"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" result="layer2"/>
+      <feBlend stroke-linejoin="miter"></feBlend>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">stroke-linejoin</span>="miter"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" result="layer2"/>
+      <feBlend stroke-miterlimit="0"></feBlend>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">stroke-miterlimit</span>="0"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" result="layer2"/>
+      <feBlend stroke-dasharray="none"></feBlend>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">stroke-dasharray</span>="none"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" result="layer2"/>
+      <feBlend stroke-dashoffset="20"></feBlend>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">stroke-dashoffset</span>="20"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" result="layer2"/>
+      <feBlend paint-order="normal"></feBlend>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">paint-order</span>="normal"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" result="layer2"/>
+      <feBlend marker="none"></feBlend>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">marker</span>="none"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" result="layer2"/>
+      <feBlend marker-start="none"></feBlend>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">marker-start</span>="none"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" result="layer2"/>
+      <feBlend marker-mid="none"></feBlend>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">marker-mid</span>="none"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" result="layer2"/>
+      <feBlend marker-end="none"></feBlend>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">marker-end</span>="none"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" result="layer2"/>
+      <feBlend color="#e94560"></feBlend>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">color</span>="#e94560"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" result="layer2"/>
+      <feBlend color-interpolation="auto"></feBlend>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">color-interpolation</span>="auto"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" result="layer2"/>
+      <feBlend color-rendering="auto"></feBlend>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">color-rendering</span>="auto"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" result="layer2"/>
+      <feBlend shape-rendering="auto"></feBlend>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">shape-rendering</span>="auto"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" result="layer2"/>
+      <feBlend vector-effect="none"></feBlend>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">vector-effect</span>="none"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" result="layer2"/>
+      <feBlend filter="none"></feBlend>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">filter</span>="none"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" result="layer2"/>
+      <feBlend color-interpolation-filters="auto"></feBlend>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">color-interpolation-filters</span>="auto"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" result="layer2"/>
+      <feBlend flood-color="currentColor"></feBlend>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">flood-color</span>="currentColor"</div></div>
+</div></body></html>

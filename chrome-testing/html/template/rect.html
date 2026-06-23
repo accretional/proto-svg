@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>&lt;rect&gt;</title>
+<style>
+  body{margin:0;background:#1a1a2e;color:#e6e6e6;font:14px/1.4 ui-monospace,Menlo,monospace;padding:24px}
+  h1{color:#16c79a;font-size:18px;margin:0 0 4px}
+  p.desc{color:#9aa;margin:0 0 20px}
+  .grid{display:flex;flex-wrap:wrap;gap:16px}
+  .card{background:#0f1530;border:1px solid #26305a;border-radius:8px;padding:10px;width:160px}
+  .card svg{display:block;background:#161c3a;border-radius:4px;width:140px;height:140px}
+  .card .label{margin-top:8px;color:#f5a623;font-size:12px;word-break:break-all}
+</style></head>
+<body>
+  <h1>&lt;rect&gt;</h1>
+  <p class="desc">Rectangle. Showcasing x, y, width, height, rx/ry rounding, fill, stroke, stroke-width.</p>
+  <div class="grid">
+
+    <!-- 1. Basic fill, no rounding -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <rect x="10" y="10" width="80" height="80" fill="#e94560"/>
+      </svg>
+      <div class="label">basic fill<br>x=10 y=10 w=80 h=80</div>
+    </div>
+
+    <!-- 2. rx only — symmetric rounding -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <rect x="10" y="10" width="80" height="80" rx="20" fill="#16c79a"/>
+      </svg>
+      <div class="label">rx="20"<br>(ry auto = rx)</div>
+    </div>
+
+    <!-- 3. rx + ry — asymmetric rounding -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <rect x="10" y="10" width="80" height="80" rx="30" ry="10" fill="#4d8bff"/>
+      </svg>
+      <div class="label">rx="30" ry="10"<br>asymmetric</div>
+    </div>
+
+    <!-- 4. rx clamped to 50% → pill / stadium -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <rect x="10" y="30" width="80" height="40" rx="50" fill="#ffd166"/>
+      </svg>
+      <div class="label">rx="50" clamped<br>→ pill shape</div>
+    </div>
+
+    <!-- 5. Stroke, no fill -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <rect x="10" y="10" width="80" height="80" fill="none"
+              stroke="#e94560" stroke-width="4"/>
+      </svg>
+      <div class="label">fill="none"<br>stroke + width</div>
+    </div>
+
+    <!-- 6. Thick stroke + rounding -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <rect x="15" y="15" width="70" height="70" rx="15"
+              fill="#b06aff" stroke="#ffd166" stroke-width="6"/>
+      </svg>
+      <div class="label">rx=15 stroke-width=6<br>fill+stroke</div>
+    </div>
+
+    <!-- 7. x/y offset — positioned away from origin -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <rect x="40" y="40" width="50" height="50" fill="#f5a623"/>
+      </svg>
+      <div class="label">x=40 y=40<br>offset position</div>
+    </div>
+
+    <!-- 8. Narrow tall rect (height >> width) -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <rect x="35" y="5" width="30" height="90" fill="#16c79a" rx="8"/>
+      </svg>
+      <div class="label">tall/narrow<br>w=30 h=90</div>
+    </div>
+
+    <!-- 9. Wide short rect (width >> height) -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <rect x="5" y="35" width="90" height="30" fill="#4d8bff" rx="8"/>
+      </svg>
+      <div class="label">wide/short<br>w=90 h=30</div>
+    </div>
+
+    <!-- 10. Stroke-dasharray on rect outline -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <rect x="10" y="10" width="80" height="80" rx="10"
+              fill="#161c3a" stroke="#e94560" stroke-width="3"
+              stroke-dasharray="8 4"/>
+      </svg>
+      <div class="label">stroke-dasharray<br>"8 4"</div>
+    </div>
+
+  </div>
+
+  <!-- machine blueprint: self-rendering shape -->
+  <script type="application/svg-blueprint" id="blueprint">
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">{{ELEMENT}}</svg>
+  </script>
+</body></html>

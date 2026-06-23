@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>&lt;feDisplacementMap&gt;</title>
+<style>
+  body{margin:0;background:#1a1a2e;color:#e6e6e6;font:14px/1.4 ui-monospace,Menlo,monospace;padding:24px}
+  h1{color:#16c79a;font-size:18px;margin:0 0 4px}
+  p.desc{color:#9aa;margin:0 0 20px}
+  .grid{display:flex;flex-wrap:wrap;gap:16px}
+  .card{background:#0f1530;border:1px solid #26305a;border-radius:8px;padding:10px;width:160px}
+  .card svg{display:block;background:#161c3a;border-radius:4px;width:140px;height:140px}
+  .card .label{margin-top:8px;color:#f5a623;font-size:12px;word-break:break-all}
+</style></head>
+<body>
+  <h1>&lt;feDisplacementMap&gt;</h1>
+  <p class="desc">Warps the in= image by using the in2= image as a displacement map. scale controls strength; xChannelSelector/yChannelSelector pick channels.</p>
+  <div class="grid">
+
+    <!-- 1. scale=0 — no displacement (passthrough) -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="fdm-zero">
+            <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noise"/>
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="0" xChannelSelector="R" yChannelSelector="G"/>
+          </filter>
+        </defs>
+        <rect x="10" y="10" width="80" height="80" fill="#e94560" filter="url(#fdm-zero)"/>
+      </svg>
+      <div class="label">scale="0"<br>(no warp)</div>
+    </div>
+
+    <!-- 2. scale=10 — mild warp -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="fdm-mild" x="-10%" y="-10%" width="120%" height="120%">
+            <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noise"/>
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="10" xChannelSelector="R" yChannelSelector="G"/>
+          </filter>
+        </defs>
+        <rect x="10" y="10" width="80" height="80" fill="#4d8bff" filter="url(#fdm-mild)"/>
+      </svg>
+      <div class="label">scale="10"<br>(mild warp)</div>
+    </div>
+
+    <!-- 3. scale=25 — strong warp -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="fdm-strong" x="-15%" y="-15%" width="130%" height="130%">
+            <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noise"/>
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="25" xChannelSelector="R" yChannelSelector="G"/>
+          </filter>
+        </defs>
+        <rect x="10" y="10" width="80" height="80" fill="#16c79a" filter="url(#fdm-strong)"/>
+      </svg>
+      <div class="label">scale="25"<br>(strong warp)</div>
+    </div>
+
+    <!-- 4. xChannelSelector=A yChannelSelector=A -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="fdm-alpha" x="-15%" y="-15%" width="130%" height="130%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.06" numOctaves="3" seed="5" result="noise"/>
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="20" xChannelSelector="A" yChannelSelector="A"/>
+          </filter>
+        </defs>
+        <rect x="10" y="10" width="80" height="80" fill="#f5a623" filter="url(#fdm-alpha)"/>
+      </svg>
+      <div class="label">xChan=A yChan=A<br>alpha channel</div>
+    </div>
+
+    <!-- 5. xChannelSelector=B yChannelSelector=R — different channels -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="fdm-br" x="-15%" y="-15%" width="130%" height="130%">
+            <feTurbulence type="turbulence" baseFrequency="0.04" numOctaves="2" seed="11" result="noise"/>
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="20" xChannelSelector="B" yChannelSelector="R"/>
+          </filter>
+        </defs>
+        <rect x="10" y="10" width="80" height="80" fill="#b06aff" filter="url(#fdm-br)"/>
+      </svg>
+      <div class="label">xChan=B yChan=R<br>different channels</div>
+    </div>
+
+    <!-- 6. fractalNoise displacement — smoother warp -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="fdm-frac" x="-15%" y="-15%" width="130%" height="130%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="4" seed="2" result="noise"/>
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="20" xChannelSelector="R" yChannelSelector="G"/>
+          </filter>
+        </defs>
+        <rect x="10" y="10" width="80" height="80" fill="#ffd166" filter="url(#fdm-frac)"/>
+      </svg>
+      <div class="label">fractalNoise map<br>smoother warp</div>
+    </div>
+
+    <!-- 7. Text warped via displacement -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="fdm-text" x="-10%" y="-10%" width="120%" height="120%">
+            <feTurbulence type="turbulence" baseFrequency="0.07" numOctaves="2" seed="8" result="noise"/>
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="8" xChannelSelector="R" yChannelSelector="G"/>
+          </filter>
+        </defs>
+        <text x="50" y="60" text-anchor="middle" font-size="36" font-weight="bold" fill="#e94560" filter="url(#fdm-text)">SVG</text>
+      </svg>
+      <div class="label">text displaced<br>scale=8</div>
+    </div>
+
+    <!-- 8. High frequency map — ripple effect -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="fdm-ripple" x="-15%" y="-15%" width="130%" height="130%">
+            <feTurbulence type="turbulence" baseFrequency="0.15" numOctaves="1" seed="3" result="noise"/>
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="15" xChannelSelector="R" yChannelSelector="G"/>
+          </filter>
+        </defs>
+        <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#fdm-ripple)"/>
+      </svg>
+      <div class="label">high-freq ripple<br>baseFreq=0.15</div>
+    </div>
+
+  </div>
+
+  <!-- machine blueprint -->
+  <script type="application/svg-blueprint" id="blueprint">
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
+      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
+      {{ELEMENT}}
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
+</svg>
+  </script>
+</body></html>

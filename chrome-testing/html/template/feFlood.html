@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>&lt;feFlood&gt;</title>
+<style>
+  body{margin:0;background:#1a1a2e;color:#e6e6e6;font:14px/1.4 ui-monospace,Menlo,monospace;padding:24px}
+  h1{color:#16c79a;font-size:18px;margin:0 0 4px}
+  p.desc{color:#9aa;margin:0 0 20px}
+  .grid{display:flex;flex-wrap:wrap;gap:16px}
+  .card{background:#0f1530;border:1px solid #26305a;border-radius:8px;padding:10px;width:160px}
+  .card svg{display:block;background:#161c3a;border-radius:4px;width:140px;height:140px}
+  .card .label{margin-top:8px;color:#f5a623;font-size:12px;word-break:break-all}
+</style></head>
+<body>
+  <h1>&lt;feFlood&gt;</h1>
+  <p class="desc">Fills the filter primitive subregion with a solid color. flood-color sets the color; flood-opacity sets alpha. No in= attribute.</p>
+  <div class="grid">
+
+    <!-- 1. Basic flood — fills entire filter region -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="ff-basic">
+            <feFlood flood-color="#e94560" flood-opacity="1"/>
+          </filter>
+        </defs>
+        <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#ff-basic)"/>
+      </svg>
+      <div class="label">flood-color="#e94560"<br>flood-opacity=1</div>
+    </div>
+
+    <!-- 2. Semi-transparent flood -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="ff-alpha">
+            <feFlood flood-color="#16c79a" flood-opacity="0.5"/>
+          </filter>
+        </defs>
+        <rect x="5" y="5" width="90" height="90" fill="#e94560" filter="url(#ff-alpha)"/>
+      </svg>
+      <div class="label">flood-opacity="0.5"<br>semi-transparent</div>
+    </div>
+
+    <!-- 3. Nearly transparent -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="ff-neartrans">
+            <feFlood flood-color="#ffd166" flood-opacity="0.15"/>
+          </filter>
+        </defs>
+        <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#ff-neartrans)"/>
+      </svg>
+      <div class="label">flood-opacity="0.15"<br>nearly transparent</div>
+    </div>
+
+    <!-- 4. Flood used as input to feComposite (mask shape) -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="ff-mask">
+            <feFlood flood-color="#b06aff" result="flood"/>
+            <feComposite in="flood" in2="SourceAlpha" operator="in"/>
+          </filter>
+        </defs>
+        <circle cx="50" cy="50" r="40" fill="white" filter="url(#ff-mask)"/>
+      </svg>
+      <div class="label">flood + composite<br>in=SourceAlpha</div>
+    </div>
+
+    <!-- 5. Partial flood region with x/y/width/height -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="ff-region">
+            <feFlood flood-color="#f5a623" flood-opacity="1" x="20%" y="20%" width="60%" height="60%"/>
+          </filter>
+        </defs>
+        <rect x="5" y="5" width="90" height="90" fill="#16c79a" filter="url(#ff-region)"/>
+      </svg>
+      <div class="label">subregion x=20%<br>w=60% h=60%</div>
+    </div>
+
+    <!-- 6. Black flood — complete darkening -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="ff-black">
+            <feFlood flood-color="#000000" flood-opacity="1"/>
+          </filter>
+        </defs>
+        <rect x="5" y="5" width="90" height="90" fill="#e94560" filter="url(#ff-black)"/>
+      </svg>
+      <div class="label">flood-color="#000"<br>(black fill)</div>
+    </div>
+
+    <!-- 7. Flood as shadow color source -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="ff-shadow-src" x="-10%" y="-10%" width="130%" height="130%">
+            <feFlood flood-color="#4d8bff" flood-opacity="0.8" result="shadowPaint"/>
+            <feComposite in="shadowPaint" in2="SourceAlpha" operator="in" result="colored"/>
+            <feOffset in="colored" dx="7" dy="7" result="shifted"/>
+            <feMerge>
+              <feMergeNode in="shifted"/>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+          </filter>
+        </defs>
+        <rect x="10" y="10" width="65" height="65" fill="#ffd166" filter="url(#ff-shadow-src)"/>
+      </svg>
+      <div class="label">flood as shadow color<br>offset + merge</div>
+    </div>
+
+  </div>
+
+  <!-- machine blueprint -->
+  <script type="application/svg-blueprint" id="blueprint">
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">{{ELEMENT}}</filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
+</svg>
+  </script>
+</body></html>

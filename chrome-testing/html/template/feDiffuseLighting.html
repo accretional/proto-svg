@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>&lt;feDiffuseLighting&gt;</title>
+<style>
+  body{margin:0;background:#1a1a2e;color:#e6e6e6;font:14px/1.4 ui-monospace,Menlo,monospace;padding:24px}
+  h1{color:#16c79a;font-size:18px;margin:0 0 4px}
+  p.desc{color:#9aa;margin:0 0 20px}
+  .grid{display:flex;flex-wrap:wrap;gap:16px}
+  .card{background:#0f1530;border:1px solid #26305a;border-radius:8px;padding:10px;width:160px}
+  .card svg{display:block;background:#161c3a;border-radius:4px;width:140px;height:140px}
+  .card .label{margin-top:8px;color:#f5a623;font-size:12px;word-break:break-all}
+</style></head>
+<body>
+  <h1>&lt;feDiffuseLighting&gt;</h1>
+  <p class="desc">Diffuse lighting. Showcasing surfaceScale, diffuseConstant, lighting-color, and feDistantLight / fePointLight / feSpotLight children. Lighting is composited (multiply) back onto the colorful source.</p>
+  <div class="grid">
+
+    <!-- 1. feDistantLight, surfaceScale=5, composited onto source color -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="dl1">
+            <feDiffuseLighting in="SourceGraphic" surfaceScale="5" diffuseConstant="1" lighting-color="white" result="light">
+              <feDistantLight azimuth="45" elevation="45"/>
+            </feDiffuseLighting>
+            <feComposite in="light" in2="SourceGraphic" operator="arithmetic" k1="1" k2="0" k3="0" k4="0"/>
+          </filter>
+        </defs>
+        <g filter="url(#dl1)">
+          <rect x="5" y="5" width="45" height="45" fill="#e94560"/>
+          <rect x="50" y="5" width="45" height="45" fill="#16c79a"/>
+          <rect x="5" y="50" width="45" height="45" fill="#4d8bff"/>
+          <rect x="50" y="50" width="45" height="45" fill="#ffd166"/>
+        </g>
+      </svg>
+      <div class="label">feDistantLight<br>az=45 elev=45<br>surfaceScale=5</div>
+    </div>
+
+    <!-- 2. Higher surfaceScale — more pronounced bump from blurred source -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="dl2">
+            <feGaussianBlur in="SourceAlpha" stdDeviation="4" result="bump"/>
+            <feDiffuseLighting in="bump" surfaceScale="10" diffuseConstant="1" lighting-color="white" result="light">
+              <feDistantLight azimuth="45" elevation="45"/>
+            </feDiffuseLighting>
+            <feComposite in="light" in2="SourceGraphic" operator="in"/>
+          </filter>
+        </defs>
+        <g filter="url(#dl2)">
+          <rect x="5" y="5" width="45" height="45" fill="#e94560"/>
+          <rect x="50" y="5" width="45" height="45" fill="#16c79a"/>
+          <rect x="5" y="50" width="45" height="45" fill="#4d8bff"/>
+          <rect x="50" y="50" width="45" height="45" fill="#ffd166"/>
+        </g>
+      </svg>
+      <div class="label">surfaceScale=10<br>bump from<br>SourceAlpha</div>
+    </div>
+
+    <!-- 3. diffuseConstant=3 — very bright diffuse -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="dl3">
+            <feGaussianBlur in="SourceAlpha" stdDeviation="4" result="bump"/>
+            <feDiffuseLighting in="bump" surfaceScale="8" diffuseConstant="3" lighting-color="white" result="light">
+              <feDistantLight azimuth="45" elevation="60"/>
+            </feDiffuseLighting>
+            <feComposite in="light" in2="SourceGraphic" operator="in"/>
+          </filter>
+        </defs>
+        <g filter="url(#dl3)">
+          <rect x="5" y="5" width="45" height="45" fill="#e94560"/>
+          <rect x="50" y="5" width="45" height="45" fill="#16c79a"/>
+          <rect x="5" y="50" width="45" height="45" fill="#4d8bff"/>
+          <rect x="50" y="50" width="45" height="45" fill="#ffd166"/>
+        </g>
+      </svg>
+      <div class="label">diffuseConstant=3<br>(bright diffuse)</div>
+    </div>
+
+    <!-- 4. diffuseConstant=0.3 — dim diffuse -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="dl4">
+            <feGaussianBlur in="SourceAlpha" stdDeviation="4" result="bump"/>
+            <feDiffuseLighting in="bump" surfaceScale="8" diffuseConstant="0.3" lighting-color="white" result="light">
+              <feDistantLight azimuth="45" elevation="60"/>
+            </feDiffuseLighting>
+            <feComposite in="light" in2="SourceGraphic" operator="in"/>
+          </filter>
+        </defs>
+        <g filter="url(#dl4)">
+          <rect x="5" y="5" width="45" height="45" fill="#e94560"/>
+          <rect x="50" y="5" width="45" height="45" fill="#16c79a"/>
+          <rect x="5" y="50" width="45" height="45" fill="#4d8bff"/>
+          <rect x="50" y="50" width="45" height="45" fill="#ffd166"/>
+        </g>
+      </svg>
+      <div class="label">diffuseConstant=0.3<br>(dim diffuse)</div>
+    </div>
+
+    <!-- 5. Warm orange light, opposing azimuth -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="dl5">
+            <feGaussianBlur in="SourceAlpha" stdDeviation="5" result="bump"/>
+            <feDiffuseLighting in="bump" surfaceScale="8" diffuseConstant="2" lighting-color="#ff8800" result="light">
+              <feDistantLight azimuth="225" elevation="45"/>
+            </feDiffuseLighting>
+            <feComposite in="light" in2="SourceGraphic" operator="in"/>
+          </filter>
+        </defs>
+        <g filter="url(#dl5)">
+          <rect x="5" y="5" width="45" height="45" fill="#e94560"/>
+          <rect x="50" y="5" width="45" height="45" fill="#16c79a"/>
+          <rect x="5" y="50" width="45" height="45" fill="#4d8bff"/>
+          <rect x="50" y="50" width="45" height="45" fill="#ffd166"/>
+        </g>
+      </svg>
+      <div class="label">lighting-color=<br>"#ff8800"<br>(warm light)</div>
+    </div>
+
+    <!-- 6. Cool cyan light, different azimuth -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="dl6">
+            <feGaussianBlur in="SourceAlpha" stdDeviation="5" result="bump"/>
+            <feDiffuseLighting in="bump" surfaceScale="8" diffuseConstant="2" lighting-color="#00ccff" result="light">
+              <feDistantLight azimuth="135" elevation="30"/>
+            </feDiffuseLighting>
+            <feComposite in="light" in2="SourceGraphic" operator="in"/>
+          </filter>
+        </defs>
+        <g filter="url(#dl6)">
+          <rect x="5" y="5" width="45" height="45" fill="#e94560"/>
+          <rect x="50" y="5" width="45" height="45" fill="#16c79a"/>
+          <rect x="5" y="50" width="45" height="45" fill="#4d8bff"/>
+          <rect x="50" y="50" width="45" height="45" fill="#ffd166"/>
+        </g>
+      </svg>
+      <div class="label">lighting-color=<br>"#00ccff"<br>azimuth=135</div>
+    </div>
+
+    <!-- 7. fePointLight — center source -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="dl7">
+            <feGaussianBlur in="SourceAlpha" stdDeviation="5" result="bump"/>
+            <feDiffuseLighting in="bump" surfaceScale="8" diffuseConstant="1" lighting-color="white" result="light">
+              <fePointLight x="50" y="50" z="60"/>
+            </feDiffuseLighting>
+            <feComposite in="light" in2="SourceGraphic" operator="in"/>
+          </filter>
+        </defs>
+        <g filter="url(#dl7)">
+          <rect x="5" y="5" width="45" height="45" fill="#e94560"/>
+          <rect x="50" y="5" width="45" height="45" fill="#16c79a"/>
+          <rect x="5" y="50" width="45" height="45" fill="#4d8bff"/>
+          <rect x="50" y="50" width="45" height="45" fill="#ffd166"/>
+        </g>
+      </svg>
+      <div class="label">fePointLight<br>x=50 y=50 z=60<br>(center)</div>
+    </div>
+
+    <!-- 8. fePointLight — corner source -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="dl8">
+            <feGaussianBlur in="SourceAlpha" stdDeviation="5" result="bump"/>
+            <feDiffuseLighting in="bump" surfaceScale="8" diffuseConstant="1" lighting-color="white" result="light">
+              <fePointLight x="10" y="10" z="40"/>
+            </feDiffuseLighting>
+            <feComposite in="light" in2="SourceGraphic" operator="in"/>
+          </filter>
+        </defs>
+        <g filter="url(#dl8)">
+          <rect x="5" y="5" width="45" height="45" fill="#e94560"/>
+          <rect x="50" y="5" width="45" height="45" fill="#16c79a"/>
+          <rect x="5" y="50" width="45" height="45" fill="#4d8bff"/>
+          <rect x="50" y="50" width="45" height="45" fill="#ffd166"/>
+        </g>
+      </svg>
+      <div class="label">fePointLight<br>x=10 y=10 z=40<br>(corner)</div>
+    </div>
+
+    <!-- 9. feSpotLight — tight cone -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="dl9">
+            <feGaussianBlur in="SourceAlpha" stdDeviation="5" result="bump"/>
+            <feDiffuseLighting in="bump" surfaceScale="8" diffuseConstant="1" lighting-color="white" result="light">
+              <feSpotLight x="50" y="10" z="60" pointsAtX="50" pointsAtY="50" pointsAtZ="0"
+                           specularExponent="20" limitingConeAngle="30"/>
+            </feDiffuseLighting>
+            <feComposite in="light" in2="SourceGraphic" operator="in"/>
+          </filter>
+        </defs>
+        <g filter="url(#dl9)">
+          <rect x="5" y="5" width="45" height="45" fill="#e94560"/>
+          <rect x="50" y="5" width="45" height="45" fill="#16c79a"/>
+          <rect x="5" y="50" width="45" height="45" fill="#4d8bff"/>
+          <rect x="50" y="50" width="45" height="45" fill="#ffd166"/>
+        </g>
+      </svg>
+      <div class="label">feSpotLight<br>coneAngle=30°<br>(focused)</div>
+    </div>
+
+    <!-- 10. feDistantLight — low elevation (grazing) -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="dl10">
+            <feGaussianBlur in="SourceAlpha" stdDeviation="5" result="bump"/>
+            <feDiffuseLighting in="bump" surfaceScale="10" diffuseConstant="1" lighting-color="white" result="light">
+              <feDistantLight azimuth="0" elevation="10"/>
+            </feDiffuseLighting>
+            <feComposite in="light" in2="SourceGraphic" operator="in"/>
+          </filter>
+        </defs>
+        <g filter="url(#dl10)">
+          <rect x="5" y="5" width="45" height="45" fill="#e94560"/>
+          <rect x="50" y="5" width="45" height="45" fill="#16c79a"/>
+          <rect x="5" y="50" width="45" height="45" fill="#4d8bff"/>
+          <rect x="50" y="50" width="45" height="45" fill="#ffd166"/>
+        </g>
+      </svg>
+      <div class="label">feDistantLight<br>elevation=10°<br>(grazing light)</div>
+    </div>
+
+  </div>
+
+  <!-- machine blueprint: feDiffuseLighting inside filter, {{ELEMENT}} is the light source child -->
+  <script type="application/svg-blueprint" id="blueprint">
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100"><defs><filter id="slot"><feDiffuseLighting surfaceScale="5" diffuseConstant="1" lighting-color="white">{{ELEMENT}}</feDiffuseLighting></filter></defs><rect x="5" y="5" width="90" height="90" fill="#16c79a" filter="url(#slot)"/></svg>
+  </script>
+</body></html>

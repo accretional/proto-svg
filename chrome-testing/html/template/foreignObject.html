@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>&lt;foreignObject&gt;</title>
+<style>
+  body{margin:0;background:#1a1a2e;color:#e6e6e6;font:14px/1.4 ui-monospace,Menlo,monospace;padding:24px}
+  h1{color:#16c79a;font-size:18px;margin:0 0 4px}
+  p.desc{color:#9aa;margin:0 0 20px}
+  .grid{display:flex;flex-wrap:wrap;gap:16px}
+  .card{background:#0f1530;border:1px solid #26305a;border-radius:8px;padding:10px;width:160px}
+  .card svg{display:block;background:#161c3a;border-radius:4px;width:140px;height:140px}
+  .card .label{margin-top:8px;color:#f5a623;font-size:12px;word-break:break-all}
+</style></head>
+<body>
+  <h1>&lt;foreignObject&gt;</h1>
+  <p class="desc">HTML embedded in SVG via foreignObject. Showcasing x/y/width/height, styled XHTML content, nesting with SVG shapes.</p>
+  <div class="grid">
+
+    <!-- 1. Basic foreignObject with a colored div and text -->
+    <div class="card">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <foreignObject x="5" y="5" width="90" height="90">
+          <div xmlns="http://www.w3.org/1999/xhtml"
+               style="width:100%;height:100%;background:#e94560;color:#fff;font:bold 13px sans-serif;display:flex;align-items:center;justify-content:center;border-radius:6px;box-sizing:border-box;padding:6px;text-align:center;">
+            Hello HTML
+          </div>
+        </foreignObject>
+      </svg>
+      <div class="label">basic<br>x=5 y=5 w=90 h=90</div>
+    </div>
+
+    <!-- 2. foreignObject positioned at offset with smaller dimensions -->
+    <div class="card">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <rect width="100" height="100" fill="#0d1b33"/>
+        <foreignObject x="20" y="20" width="60" height="60">
+          <div xmlns="http://www.w3.org/1999/xhtml"
+               style="width:100%;height:100%;background:#16c79a;color:#0a1a0a;font:bold 11px sans-serif;display:flex;align-items:center;justify-content:center;border-radius:4px;box-sizing:border-box;text-align:center;">
+            offset<br/>x=20 y=20
+          </div>
+        </foreignObject>
+      </svg>
+      <div class="label">x=20 y=20<br>w=60 h=60</div>
+    </div>
+
+    <!-- 3. foreignObject with styled button inside -->
+    <div class="card">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <rect width="100" height="100" fill="#0f0f2a"/>
+        <foreignObject x="10" y="30" width="80" height="40">
+          <div xmlns="http://www.w3.org/1999/xhtml"
+               style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;box-sizing:border-box;">
+            <button style="background:#4d8bff;color:#fff;border:none;border-radius:6px;padding:8px 16px;font:bold 12px sans-serif;cursor:pointer;width:100%;">
+              Click Me
+            </button>
+          </div>
+        </foreignObject>
+      </svg>
+      <div class="label">HTML button<br>inside SVG</div>
+    </div>
+
+    <!-- 4. foreignObject overlaid on SVG shapes -->
+    <div class="card">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="50" cy="50" r="45" fill="#b06aff" opacity="0.4"/>
+        <rect x="20" y="20" width="60" height="60" fill="#ffd166" opacity="0.3" rx="8"/>
+        <foreignObject x="15" y="35" width="70" height="30">
+          <div xmlns="http://www.w3.org/1999/xhtml"
+               style="width:100%;height:100%;background:rgba(14,20,60,0.85);color:#ffd166;font:bold 11px sans-serif;display:flex;align-items:center;justify-content:center;border-radius:4px;box-sizing:border-box;text-align:center;">
+            over shapes
+          </div>
+        </foreignObject>
+      </svg>
+      <div class="label">overlay on<br>SVG shapes</div>
+    </div>
+
+    <!-- 5. foreignObject with multi-line HTML paragraph -->
+    <div class="card">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <rect width="100" height="100" fill="#1a1a30"/>
+        <foreignObject x="5" y="5" width="90" height="90">
+          <div xmlns="http://www.w3.org/1999/xhtml"
+               style="width:100%;height:100%;color:#e6e6e6;font:11px sans-serif;padding:8px;box-sizing:border-box;background:#0f1530;border:1px solid #26305a;border-radius:6px;">
+            <strong style="color:#16c79a;">foreignObject</strong>
+            <p style="margin:4px 0;font-size:10px;">Embeds HTML content inside SVG with full CSS layout.</p>
+            <p style="margin:0;font-size:10px;color:#f5a623;">x/y/width/height control the region.</p>
+          </div>
+        </foreignObject>
+      </svg>
+      <div class="label">HTML paragraph<br>with CSS</div>
+    </div>
+
+    <!-- 6. foreignObject — full width/height fill (x=0 y=0) -->
+    <div class="card">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <foreignObject x="0" y="0" width="100" height="100">
+          <div xmlns="http://www.w3.org/1999/xhtml"
+               style="width:100%;height:100%;background:linear-gradient(135deg,#e94560,#b06aff);color:#fff;font:bold 14px sans-serif;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;box-sizing:border-box;">
+            <span>Full Area</span>
+            <span style="font-size:10px;opacity:0.8;">x=0 y=0<br/>w=100 h=100</span>
+          </div>
+        </foreignObject>
+      </svg>
+      <div class="label">full area<br>x=0 y=0<br>w=100 h=100</div>
+    </div>
+
+    <!-- 7. foreignObject with SVG transform applied to it -->
+    <div class="card">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <rect width="100" height="100" fill="#0a0a20"/>
+        <foreignObject x="10" y="10" width="80" height="80"
+                       transform="rotate(10, 50, 50)">
+          <div xmlns="http://www.w3.org/1999/xhtml"
+               style="width:100%;height:100%;background:#ffd166;color:#1a1a1a;font:bold 11px sans-serif;display:flex;align-items:center;justify-content:center;border-radius:4px;box-sizing:border-box;text-align:center;">
+            rotated<br/>transform
+          </div>
+        </foreignObject>
+      </svg>
+      <div class="label">transform=<br>"rotate(10)"</div>
+    </div>
+
+  </div>
+
+  <!-- machine blueprint: self-rendering element; generator injects foreignObject markup -->
+  <script type="application/svg-blueprint" id="blueprint">
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">{{ELEMENT}}</svg>
+  </script>
+</body></html>

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>&lt;feColorMatrix&gt;</title>
+<style>
+  body{margin:0;background:#1a1a2e;color:#e6e6e6;font:14px/1.4 ui-monospace,Menlo,monospace;padding:24px}
+  h1{color:#16c79a;font-size:18px;margin:0 0 4px}
+  p.desc{color:#9aa;margin:0 0 20px}
+  .grid{display:flex;flex-wrap:wrap;gap:16px}
+  .card{background:#0f1530;border:1px solid #26305a;border-radius:8px;padding:10px;width:160px}
+  .card svg{display:block;background:#161c3a;border-radius:4px;width:140px;height:140px}
+  .card .label{margin-top:8px;color:#f5a623;font-size:12px;word-break:break-all}
+</style></head>
+<body>
+  <h1>&lt;feColorMatrix&gt;</h1>
+  <p class="desc">Color matrix primitive. Showcasing type=matrix/saturate/hueRotate/luminanceToAlpha with values on a colorful source graphic.</p>
+  <div class="grid">
+
+    <!-- 1. Baseline — no filter for comparison -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <rect x="5" y="5" width="45" height="45" fill="#e94560"/>
+        <rect x="50" y="5" width="45" height="45" fill="#16c79a"/>
+        <rect x="5" y="50" width="45" height="45" fill="#4d8bff"/>
+        <rect x="50" y="50" width="45" height="45" fill="#ffd166"/>
+      </svg>
+      <div class="label">no filter<br>(baseline)</div>
+    </div>
+
+    <!-- 2. type=matrix identity -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="cm1">
+            <feColorMatrix type="matrix"
+              values="1 0 0 0 0
+                      0 1 0 0 0
+                      0 0 1 0 0
+                      0 0 0 1 0"/>
+          </filter>
+        </defs>
+        <g filter="url(#cm1)">
+          <rect x="5" y="5" width="45" height="45" fill="#e94560"/>
+          <rect x="50" y="5" width="45" height="45" fill="#16c79a"/>
+          <rect x="5" y="50" width="45" height="45" fill="#4d8bff"/>
+          <rect x="50" y="50" width="45" height="45" fill="#ffd166"/>
+        </g>
+      </svg>
+      <div class="label">type="matrix"<br>identity (no change)</div>
+    </div>
+
+    <!-- 3. type=matrix — swap R and G channels -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="cm2">
+            <feColorMatrix type="matrix"
+              values="0 1 0 0 0
+                      1 0 0 0 0
+                      0 0 1 0 0
+                      0 0 0 1 0"/>
+          </filter>
+        </defs>
+        <g filter="url(#cm2)">
+          <rect x="5" y="5" width="45" height="45" fill="#e94560"/>
+          <rect x="50" y="5" width="45" height="45" fill="#16c79a"/>
+          <rect x="5" y="50" width="45" height="45" fill="#4d8bff"/>
+          <rect x="50" y="50" width="45" height="45" fill="#ffd166"/>
+        </g>
+      </svg>
+      <div class="label">type="matrix"<br>R↔G swap</div>
+    </div>
+
+    <!-- 4. type=saturate values=0 — full grayscale -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="cm3">
+            <feColorMatrix type="saturate" values="0"/>
+          </filter>
+        </defs>
+        <g filter="url(#cm3)">
+          <rect x="5" y="5" width="45" height="45" fill="#e94560"/>
+          <rect x="50" y="5" width="45" height="45" fill="#16c79a"/>
+          <rect x="5" y="50" width="45" height="45" fill="#4d8bff"/>
+          <rect x="50" y="50" width="45" height="45" fill="#ffd166"/>
+        </g>
+      </svg>
+      <div class="label">type="saturate"<br>values="0"<br>(grayscale)</div>
+    </div>
+
+    <!-- 5. type=saturate values=1 — unchanged -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="cm4">
+            <feColorMatrix type="saturate" values="1"/>
+          </filter>
+        </defs>
+        <g filter="url(#cm4)">
+          <rect x="5" y="5" width="45" height="45" fill="#e94560"/>
+          <rect x="50" y="5" width="45" height="45" fill="#16c79a"/>
+          <rect x="5" y="50" width="45" height="45" fill="#4d8bff"/>
+          <rect x="50" y="50" width="45" height="45" fill="#ffd166"/>
+        </g>
+      </svg>
+      <div class="label">type="saturate"<br>values="1"<br>(unchanged)</div>
+    </div>
+
+    <!-- 6. type=saturate values=3 — oversaturated -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="cm5">
+            <feColorMatrix type="saturate" values="3"/>
+          </filter>
+        </defs>
+        <g filter="url(#cm5)">
+          <rect x="5" y="5" width="45" height="45" fill="#e94560"/>
+          <rect x="50" y="5" width="45" height="45" fill="#16c79a"/>
+          <rect x="5" y="50" width="45" height="45" fill="#4d8bff"/>
+          <rect x="50" y="50" width="45" height="45" fill="#ffd166"/>
+        </g>
+      </svg>
+      <div class="label">type="saturate"<br>values="3"<br>(oversaturated)</div>
+    </div>
+
+    <!-- 7. type=hueRotate values=0 — no change -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="cm6">
+            <feColorMatrix type="hueRotate" values="0"/>
+          </filter>
+        </defs>
+        <g filter="url(#cm6)">
+          <rect x="5" y="5" width="45" height="45" fill="#e94560"/>
+          <rect x="50" y="5" width="45" height="45" fill="#16c79a"/>
+          <rect x="5" y="50" width="45" height="45" fill="#4d8bff"/>
+          <rect x="50" y="50" width="45" height="45" fill="#ffd166"/>
+        </g>
+      </svg>
+      <div class="label">type="hueRotate"<br>values="0"<br>(no change)</div>
+    </div>
+
+    <!-- 8. type=hueRotate values=90 -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="cm7">
+            <feColorMatrix type="hueRotate" values="90"/>
+          </filter>
+        </defs>
+        <g filter="url(#cm7)">
+          <rect x="5" y="5" width="45" height="45" fill="#e94560"/>
+          <rect x="50" y="5" width="45" height="45" fill="#16c79a"/>
+          <rect x="5" y="50" width="45" height="45" fill="#4d8bff"/>
+          <rect x="50" y="50" width="45" height="45" fill="#ffd166"/>
+        </g>
+      </svg>
+      <div class="label">type="hueRotate"<br>values="90"</div>
+    </div>
+
+    <!-- 9. type=hueRotate values=180 -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="cm8">
+            <feColorMatrix type="hueRotate" values="180"/>
+          </filter>
+        </defs>
+        <g filter="url(#cm8)">
+          <rect x="5" y="5" width="45" height="45" fill="#e94560"/>
+          <rect x="50" y="5" width="45" height="45" fill="#16c79a"/>
+          <rect x="5" y="50" width="45" height="45" fill="#4d8bff"/>
+          <rect x="50" y="50" width="45" height="45" fill="#ffd166"/>
+        </g>
+      </svg>
+      <div class="label">type="hueRotate"<br>values="180"</div>
+    </div>
+
+    <!-- 10. type=luminanceToAlpha -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="cm9">
+            <feColorMatrix type="luminanceToAlpha"/>
+          </filter>
+        </defs>
+        <rect x="5" y="5" width="90" height="90" fill="#b06aff"/>
+        <g filter="url(#cm9)">
+          <rect x="5" y="5" width="45" height="45" fill="#e94560"/>
+          <rect x="50" y="5" width="45" height="45" fill="#16c79a"/>
+          <rect x="5" y="50" width="45" height="45" fill="#4d8bff"/>
+          <rect x="50" y="50" width="45" height="45" fill="#ffd166"/>
+        </g>
+      </svg>
+      <div class="label">type="luminanceToAlpha"<br>(alpha=luminance)</div>
+    </div>
+
+  </div>
+
+  <!-- machine blueprint -->
+  <script type="application/svg-blueprint" id="blueprint">
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100"><defs><filter id="slot">{{ELEMENT}}</filter></defs><rect x="5" y="5" width="90" height="90" fill="#16c79a" filter="url(#slot)"/></svg>
+  </script>
+</body></html>

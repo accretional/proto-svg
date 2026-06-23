@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>&lt;animate&gt;</title>
+<style>
+  body{margin:0;background:#1a1a2e;color:#e6e6e6;font:14px/1.4 ui-monospace,Menlo,monospace;padding:24px}
+  h1{color:#16c79a;font-size:18px;margin:0 0 4px}
+  p.desc{color:#9aa;margin:0 0 20px}
+  .grid{display:flex;flex-wrap:wrap;gap:16px}
+  .card{background:#0f1530;border:1px solid #26305a;border-radius:8px;padding:10px;width:160px}
+  .card svg{display:block;background:#161c3a;border-radius:4px;width:140px;height:140px}
+  .card .label{margin-top:8px;color:#f5a623;font-size:12px;word-break:break-all}
+</style></head>
+<body>
+  <h1>&lt;animate&gt;</h1>
+  <p class="desc">SMIL animate element. Showcasing attributeName (x, cx, r, opacity, fill), from/to, by, values list, dur, repeatCount, calcMode, begin.</p>
+  <div class="grid">
+
+    <!-- 1. animate x (rect sliding horizontally) — captured mid-slide -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <rect y="35" width="30" height="30" fill="#e94560">
+          <animate attributeName="x" from="5" to="65" dur="2s" repeatCount="indefinite"/>
+        </rect>
+      </svg>
+      <div class="label">attributeName="x"<br>from/to, repeat</div>
+    </div>
+
+    <!-- 2. animate cx on a circle -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <circle cy="50" r="14" fill="#16c79a">
+          <animate attributeName="cx" from="20" to="80" dur="1.5s" repeatCount="indefinite"/>
+        </circle>
+      </svg>
+      <div class="label">attributeName="cx"<br>circle, dur=1.5s</div>
+    </div>
+
+    <!-- 3. animate r (pulsing radius) -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <circle cx="50" cy="50" fill="#4d8bff">
+          <animate attributeName="r" from="8" to="42" dur="1s" repeatCount="indefinite"/>
+        </circle>
+      </svg>
+      <div class="label">attributeName="r"<br>from=8 to=42</div>
+    </div>
+
+    <!-- 4. animate opacity (fade in/out) -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <rect x="15" y="15" width="70" height="70" rx="10" fill="#ffd166">
+          <animate attributeName="opacity" from="1" to="0.1" dur="1.2s" repeatCount="indefinite"/>
+        </rect>
+      </svg>
+      <div class="label">attributeName="opacity"<br>from=1 to=0.1</div>
+    </div>
+
+    <!-- 5. animate fill color (color cycle via values list) -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <ellipse cx="50" cy="50" rx="40" ry="30">
+          <animate attributeName="fill"
+            values="#e94560;#16c79a;#4d8bff;#ffd166;#b06aff;#e94560"
+            dur="3s" repeatCount="indefinite" calcMode="discrete"/>
+        </ellipse>
+      </svg>
+      <div class="label">attributeName="fill"<br>values list, discrete</div>
+    </div>
+
+    <!-- 6. animate by (additive offset on x) -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <rect x="5" y="35" width="25" height="25" fill="#b06aff">
+          <animate attributeName="x" by="60" dur="2s" repeatCount="indefinite" fill="freeze"/>
+        </rect>
+      </svg>
+      <div class="label">by="60"<br>fill="freeze"</div>
+    </div>
+
+    <!-- 7. calcMode="linear" explicit, keyTimes + values -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <rect y="30" width="20" height="20" fill="#f5a623">
+          <animate attributeName="x"
+            values="5;80;5"
+            keyTimes="0;0.5;1"
+            dur="2.5s" calcMode="linear" repeatCount="indefinite"/>
+        </rect>
+      </svg>
+      <div class="label">calcMode="linear"<br>keyTimes+values</div>
+    </div>
+
+    <!-- 8. calcMode="spline" smooth easing -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <circle cy="50" r="12" fill="#16c79a">
+          <animate attributeName="cx"
+            values="15;85;15"
+            keyTimes="0;0.5;1"
+            keySplines="0.42 0 0.58 1;0.42 0 0.58 1"
+            calcMode="spline" dur="2s" repeatCount="indefinite"/>
+        </circle>
+      </svg>
+      <div class="label">calcMode="spline"<br>ease-in-out</div>
+    </div>
+
+    <!-- 9. begin offset — starts after 1s delay -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <rect x="5" y="35" width="28" height="28" fill="#e94560">
+          <animate attributeName="x" from="5" to="65" dur="2s" begin="1s" repeatCount="indefinite"/>
+        </rect>
+        <text x="50" y="90" text-anchor="middle" font-size="9" fill="#9aa">begin=1s</text>
+      </svg>
+      <div class="label">begin="1s"<br>delayed start</div>
+    </div>
+
+    <!-- 10. repeatCount finite (3 times then freeze) -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <circle cx="50" cy="50" fill="#ffd166">
+          <animate attributeName="r" from="5" to="40" dur="0.8s" repeatCount="3" fill="freeze"/>
+        </circle>
+      </svg>
+      <div class="label">repeatCount="3"<br>fill="freeze"</div>
+    </div>
+
+  </div>
+
+  <!-- machine blueprint: {{ELEMENT}} as child of animated shape -->
+  <script type="application/svg-blueprint" id="blueprint">
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff">{{ELEMENT}}</rect>
+</svg>
+  </script>
+</body></html>

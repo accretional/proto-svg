@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>&lt;feFuncR&gt;</title>
+<style>
+  body{margin:0;background:#1a1a2e;color:#e6e6e6;font:14px/1.4 ui-monospace,Menlo,monospace;padding:24px}
+  h1{color:#16c79a;font-size:18px;margin:0 0 4px}
+  p.desc{color:#9aa;margin:0 0 20px}
+  .grid{display:flex;flex-wrap:wrap;gap:16px}
+  .card{background:#0f1530;border:1px solid #26305a;border-radius:8px;padding:10px;width:160px}
+  .card svg{display:block;background:#161c3a;border-radius:4px;width:140px;height:140px}
+  .card .label{margin-top:8px;color:#f5a623;font-size:12px;word-break:break-all}
+</style></head>
+<body>
+  <h1>&lt;feFuncR&gt;</h1>
+  <p class="desc">Red channel transfer function. Showcasing type=identity/table/discrete/linear/gamma on a colorful multi-rect source. Other channels are identity.</p>
+  <div class="grid">
+
+    <!-- 1. type=identity — pass-through (no change to red) -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="fr1">
+            <feComponentTransfer>
+              <feFuncR type="identity"/>
+            </feComponentTransfer>
+          </filter>
+        </defs>
+        <g filter="url(#fr1)">
+          <rect x="5" y="5" width="45" height="45" fill="#e94560"/>
+          <rect x="50" y="5" width="45" height="45" fill="#16c79a"/>
+          <rect x="5" y="50" width="45" height="45" fill="#4d8bff"/>
+          <rect x="50" y="50" width="45" height="45" fill="#ffd166"/>
+        </g>
+      </svg>
+      <div class="label">type="identity"<br>(no change)</div>
+    </div>
+
+    <!-- 2. type=linear slope=2 — boost red -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="fr2">
+            <feComponentTransfer>
+              <feFuncR type="linear" slope="2" intercept="0"/>
+            </feComponentTransfer>
+          </filter>
+        </defs>
+        <g filter="url(#fr2)">
+          <rect x="5" y="5" width="45" height="45" fill="#e94560"/>
+          <rect x="50" y="5" width="45" height="45" fill="#16c79a"/>
+          <rect x="5" y="50" width="45" height="45" fill="#4d8bff"/>
+          <rect x="50" y="50" width="45" height="45" fill="#ffd166"/>
+        </g>
+      </svg>
+      <div class="label">type="linear"<br>slope="2"<br>(boost red)</div>
+    </div>
+
+    <!-- 3. type=linear slope=0 intercept=0.5 — red = flat 50% -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="fr3">
+            <feComponentTransfer>
+              <feFuncR type="linear" slope="0" intercept="0.5"/>
+            </feComponentTransfer>
+          </filter>
+        </defs>
+        <g filter="url(#fr3)">
+          <rect x="5" y="5" width="45" height="45" fill="#e94560"/>
+          <rect x="50" y="5" width="45" height="45" fill="#16c79a"/>
+          <rect x="5" y="50" width="45" height="45" fill="#4d8bff"/>
+          <rect x="50" y="50" width="45" height="45" fill="#ffd166"/>
+        </g>
+      </svg>
+      <div class="label">type="linear"<br>slope=0 intercept=0.5<br>(flat red=128)</div>
+    </div>
+
+    <!-- 4. type=table — invert red channel -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="fr4">
+            <feComponentTransfer>
+              <feFuncR type="table" tableValues="1 0"/>
+            </feComponentTransfer>
+          </filter>
+        </defs>
+        <g filter="url(#fr4)">
+          <rect x="5" y="5" width="45" height="45" fill="#e94560"/>
+          <rect x="50" y="5" width="45" height="45" fill="#16c79a"/>
+          <rect x="5" y="50" width="45" height="45" fill="#4d8bff"/>
+          <rect x="50" y="50" width="45" height="45" fill="#ffd166"/>
+        </g>
+      </svg>
+      <div class="label">type="table"<br>tableValues="1 0"<br>(invert red)</div>
+    </div>
+
+    <!-- 5. type=table — custom curve: dip-and-rise -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="fr5">
+            <feComponentTransfer>
+              <feFuncR type="table" tableValues="0 0.8 0.2 1"/>
+            </feComponentTransfer>
+          </filter>
+        </defs>
+        <g filter="url(#fr5)">
+          <rect x="5" y="5" width="45" height="45" fill="#e94560"/>
+          <rect x="50" y="5" width="45" height="45" fill="#16c79a"/>
+          <rect x="5" y="50" width="45" height="45" fill="#4d8bff"/>
+          <rect x="50" y="50" width="45" height="45" fill="#ffd166"/>
+        </g>
+      </svg>
+      <div class="label">type="table"<br>tableValues=<br>"0 0.8 0.2 1"</div>
+    </div>
+
+    <!-- 6. type=discrete 2 levels — posterize red to B&W -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="fr6">
+            <feComponentTransfer>
+              <feFuncR type="discrete" tableValues="0 1"/>
+            </feComponentTransfer>
+          </filter>
+        </defs>
+        <g filter="url(#fr6)">
+          <rect x="5" y="5" width="45" height="45" fill="#e94560"/>
+          <rect x="50" y="5" width="45" height="45" fill="#16c79a"/>
+          <rect x="5" y="50" width="45" height="45" fill="#4d8bff"/>
+          <rect x="50" y="50" width="45" height="45" fill="#ffd166"/>
+        </g>
+      </svg>
+      <div class="label">type="discrete"<br>tableValues="0 1"<br>(2-level red)</div>
+    </div>
+
+    <!-- 7. type=discrete 4 levels -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="fr7">
+            <feComponentTransfer>
+              <feFuncR type="discrete" tableValues="0 0.33 0.66 1"/>
+            </feComponentTransfer>
+          </filter>
+        </defs>
+        <g filter="url(#fr7)">
+          <rect x="5" y="5" width="45" height="45" fill="#e94560"/>
+          <rect x="50" y="5" width="45" height="45" fill="#16c79a"/>
+          <rect x="5" y="50" width="45" height="45" fill="#4d8bff"/>
+          <rect x="50" y="50" width="45" height="45" fill="#ffd166"/>
+        </g>
+      </svg>
+      <div class="label">type="discrete"<br>tableValues=<br>"0 0.33 0.66 1"</div>
+    </div>
+
+    <!-- 8. type=gamma amplitude=1 exponent=0.5 offset=0 -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="fr8">
+            <feComponentTransfer>
+              <feFuncR type="gamma" amplitude="1" exponent="0.5" offset="0"/>
+            </feComponentTransfer>
+          </filter>
+        </defs>
+        <g filter="url(#fr8)">
+          <rect x="5" y="5" width="45" height="45" fill="#e94560"/>
+          <rect x="50" y="5" width="45" height="45" fill="#16c79a"/>
+          <rect x="5" y="50" width="45" height="45" fill="#4d8bff"/>
+          <rect x="50" y="50" width="45" height="45" fill="#ffd166"/>
+        </g>
+      </svg>
+      <div class="label">type="gamma"<br>exponent=0.5<br>(brighten red)</div>
+    </div>
+
+    <!-- 9. type=gamma amplitude=1 exponent=3 offset=0 -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="fr9">
+            <feComponentTransfer>
+              <feFuncR type="gamma" amplitude="1" exponent="3" offset="0"/>
+            </feComponentTransfer>
+          </filter>
+        </defs>
+        <g filter="url(#fr9)">
+          <rect x="5" y="5" width="45" height="45" fill="#e94560"/>
+          <rect x="50" y="5" width="45" height="45" fill="#16c79a"/>
+          <rect x="5" y="50" width="45" height="45" fill="#4d8bff"/>
+          <rect x="50" y="50" width="45" height="45" fill="#ffd166"/>
+        </g>
+      </svg>
+      <div class="label">type="gamma"<br>exponent=3<br>(crush red)</div>
+    </div>
+
+    <!-- 10. type=gamma with offset -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="fr10">
+            <feComponentTransfer>
+              <feFuncR type="gamma" amplitude="0.8" exponent="1" offset="0.2"/>
+            </feComponentTransfer>
+          </filter>
+        </defs>
+        <g filter="url(#fr10)">
+          <rect x="5" y="5" width="45" height="45" fill="#e94560"/>
+          <rect x="50" y="5" width="45" height="45" fill="#16c79a"/>
+          <rect x="5" y="50" width="45" height="45" fill="#4d8bff"/>
+          <rect x="50" y="50" width="45" height="45" fill="#ffd166"/>
+        </g>
+      </svg>
+      <div class="label">type="gamma"<br>amp=0.8 exp=1<br>offset=0.2</div>
+    </div>
+
+  </div>
+
+  <!-- machine blueprint: feFuncR inside feComponentTransfer inside filter -->
+  <script type="application/svg-blueprint" id="blueprint">
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100"><defs><filter id="slot"><feComponentTransfer>{{ELEMENT}}</feComponentTransfer></filter></defs><rect x="5" y="5" width="90" height="90" fill="#16c79a" filter="url(#slot)"/></svg>
+  </script>
+</body></html>

@@ -44,10 +44,22 @@ const rootEBNF = "svg.ebnf"
 func main() {
 	langDir := flag.String("lang", "lang", "directory of EBNF files")
 	out := flag.String("out", "chrome-testing/generated", "output directory")
+	debugTag := flag.String("debug", "", "dump in-memory structure for an element open-tag (e.g. \"<rect\") or \"ALL\"")
 	flag.Parse()
 
 	byFQN, kw, optional := compileGrammar(*langDir)
 	r := newRenderer(byFQN, kw, optional)
+
+	if *debugTag != "" {
+		if *debugTag == "ALL" {
+			dumpAllElements(byFQN, kw)
+		} else if strings.HasPrefix(*debugTag, ".svg.") {
+			dumpMsg(byFQN, kw, *debugTag, 0, map[string]int{})
+		} else {
+			dumpElement(byFQN, kw, *debugTag)
+		}
+		return
+	}
 
 	if err := os.MkdirAll(*out, 0o755); err != nil {
 		fail("mkdir %s: %v", *out, err)
@@ -79,6 +91,11 @@ func main() {
 	if !okDoc || !okRect {
 		os.Exit(1)
 	}
+
+	// (c) The all-value-paths gallery: enumerate every element's every attribute's
+	// every value, inject each into the element's blueprint, and emit per-element
+	// gallery pages + index + values.json + manifest.tsv.
+	runGalleryPass(byFQN, kw, r)
 }
 
 // compileGrammar reads every lang/*.ebnf (svg.ebnf first, then the rest sorted),

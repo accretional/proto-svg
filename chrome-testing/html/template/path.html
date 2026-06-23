@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>&lt;path&gt;</title>
+<style>
+  body{margin:0;background:#1a1a2e;color:#e6e6e6;font:14px/1.4 ui-monospace,Menlo,monospace;padding:24px}
+  h1{color:#16c79a;font-size:18px;margin:0 0 4px}
+  p.desc{color:#9aa;margin:0 0 20px}
+  .grid{display:flex;flex-wrap:wrap;gap:16px}
+  .card{background:#0f1530;border:1px solid #26305a;border-radius:8px;padding:10px;width:160px}
+  .card svg{display:block;background:#161c3a;border-radius:4px;width:140px;height:140px}
+  .card .label{margin-top:8px;color:#f5a623;font-size:12px;word-break:break-all}
+</style></head>
+<body>
+  <h1>&lt;path&gt;</h1>
+  <p class="desc">Path. Showcasing M/L, H/V, C cubic Bezier, Q quadratic Bezier, A arc, Z close, relative commands, fill-rule, stroke-linejoin.</p>
+  <div class="grid">
+
+    <!-- 1. M + L: straight segments (open triangle-ish) -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <path d="M 10 90 L 50 10 L 90 90" fill="none"
+              stroke="#e94560" stroke-width="3"/>
+      </svg>
+      <div class="label">M + L<br>straight segments</div>
+    </div>
+
+    <!-- 2. M + L + Z: closed triangle -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <path d="M 50 10 L 90 90 L 10 90 Z" fill="#16c79a"/>
+      </svg>
+      <div class="label">M L Z<br>closed triangle</div>
+    </div>
+
+    <!-- 3. H + V: horizontal + vertical lines -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <path d="M 20 20 H 80 V 80 H 20 V 20" fill="none"
+              stroke="#4d8bff" stroke-width="3"/>
+      </svg>
+      <div class="label">H + V<br>axis-aligned square</div>
+    </div>
+
+    <!-- 4. C: cubic Bezier curve -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <path d="M 10 80 C 10 20 90 20 90 80" fill="none"
+              stroke="#ffd166" stroke-width="3"/>
+      </svg>
+      <div class="label">C cubic Bezier<br>arch curve</div>
+    </div>
+
+    <!-- 5. Multiple C curves (S chained) -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <path d="M 5 50 C 20 10 40 10 50 50 S 80 90 95 50"
+              fill="none" stroke="#b06aff" stroke-width="3"/>
+      </svg>
+      <div class="label">C + S<br>smooth cubic chain</div>
+    </div>
+
+    <!-- 6. Q: quadratic Bezier -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <path d="M 10 80 Q 50 10 90 80" fill="none"
+              stroke="#e94560" stroke-width="3"/>
+      </svg>
+      <div class="label">Q quadratic Bezier<br>single control pt</div>
+    </div>
+
+    <!-- 7. Q + T: chained quadratic -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <path d="M 5 60 Q 25 20 50 60 T 95 60"
+              fill="none" stroke="#16c79a" stroke-width="3"/>
+      </svg>
+      <div class="label">Q + T<br>smooth quad chain</div>
+    </div>
+
+    <!-- 8. A: arc (elliptical arc) -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <!-- large arc, sweep 1 -->
+        <path d="M 20 70 A 35 35 0 1 1 80 70" fill="none"
+              stroke="#4d8bff" stroke-width="3"/>
+      </svg>
+      <div class="label">A arc<br>large-arc=1 sweep=1</div>
+    </div>
+
+    <!-- 9. A arc: small arc, opposite sweep -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <path d="M 20 70 A 35 35 0 0 0 80 70" fill="none"
+              stroke="#ffd166" stroke-width="3"/>
+      </svg>
+      <div class="label">A arc<br>large-arc=0 sweep=0</div>
+    </div>
+
+    <!-- 10. Relative commands (m l c) -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <path d="m 10 50 l 20 -30 l 20 30 l 20 -30 l 20 30"
+              fill="none" stroke="#b06aff" stroke-width="3"/>
+      </svg>
+      <div class="label">relative m l<br>lowercase commands</div>
+    </div>
+
+    <!-- 11. fill-rule: nonzero on self-intersecting star path -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <!-- 5-pointed star via path -->
+        <path d="M 50 5 L 61 35 L 95 35 L 68 57 L 79 91 L 50 70 L 21 91 L 32 57 L 5 35 L 39 35 Z"
+              fill="#e94560" fill-rule="nonzero"/>
+      </svg>
+      <div class="label">fill-rule=nonzero<br>star path</div>
+    </div>
+
+    <!-- 12. fill-rule: evenodd (holey) -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <path d="M 50 5 L 61 35 L 95 35 L 68 57 L 79 91 L 50 70 L 21 91 L 32 57 L 5 35 L 39 35 Z"
+              fill="#16c79a" fill-rule="evenodd"/>
+      </svg>
+      <div class="label">fill-rule=evenodd<br>star (holey)</div>
+    </div>
+
+    <!-- 13. stroke-linejoin: miter (sharp) -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <path d="M 50 10 L 90 90 L 10 90 Z" fill="none"
+              stroke="#f5a623" stroke-width="6"
+              stroke-linejoin="miter"/>
+      </svg>
+      <div class="label">stroke-linejoin<br>="miter"</div>
+    </div>
+
+    <!-- 14. stroke-linejoin: round -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <path d="M 50 10 L 90 90 L 10 90 Z" fill="none"
+              stroke="#4d8bff" stroke-width="6"
+              stroke-linejoin="round"/>
+      </svg>
+      <div class="label">stroke-linejoin<br>="round"</div>
+    </div>
+
+    <!-- 15. stroke-linejoin: bevel -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <path d="M 50 10 L 90 90 L 10 90 Z" fill="none"
+              stroke="#b06aff" stroke-width="6"
+              stroke-linejoin="bevel"/>
+      </svg>
+      <div class="label">stroke-linejoin<br>="bevel"</div>
+    </div>
+
+    <!-- 16. Complex compound path (outer rect + inner rect → donut) -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <!-- outer clockwise, inner counter-clockwise → evenodd punch-out -->
+        <path d="M 10 10 H 90 V 90 H 10 Z M 30 30 H 70 V 70 H 30 Z"
+              fill="#ffd166" fill-rule="evenodd"/>
+      </svg>
+      <div class="label">compound path<br>evenodd punch-out</div>
+    </div>
+
+    <!-- 17. Stroke-dasharray on curved path -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <path d="M 10 50 C 30 10 70 90 90 50" fill="none"
+              stroke="#e94560" stroke-width="3"
+              stroke-dasharray="8 5"/>
+      </svg>
+      <div class="label">stroke-dasharray<br>on cubic curve</div>
+    </div>
+
+  </div>
+
+  <!-- machine blueprint: self-rendering shape -->
+  <script type="application/svg-blueprint" id="blueprint">
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">{{ELEMENT}}</svg>
+  </script>
+</body></html>

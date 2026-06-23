@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>&lt;style&gt;</title>
+<style>
+  body{margin:0;background:#1a1a2e;color:#e6e6e6;font:14px/1.4 ui-monospace,Menlo,monospace;padding:24px}
+  h1{color:#16c79a;font-size:18px;margin:0 0 4px}
+  p.desc{color:#9aa;margin:0 0 20px}
+  .grid{display:flex;flex-wrap:wrap;gap:16px}
+  .card{background:#0f1530;border:1px solid #26305a;border-radius:8px;padding:10px;width:160px}
+  .card svg{display:block;background:#161c3a;border-radius:4px;width:140px;height:140px}
+  .card .label{margin-top:8px;color:#f5a623;font-size:12px;word-break:break-all}
+</style></head>
+<body>
+  <h1>&lt;style&gt;</h1>
+  <p class="desc">SVG style element. CSS rules target SVG elements by class/tag/selector. Showcasing fill, stroke, opacity, class-based styling, type/media attributes.</p>
+  <div class="grid">
+
+    <!-- 1. Basic class-based fill styling -->
+    <div class="card">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <style type="text/css">
+          .red-fill { fill: #e94560; }
+          .blue-fill { fill: #4d8bff; }
+        </style>
+        <rect x="5" y="5" width="40" height="40" class="red-fill" rx="4"/>
+        <rect x="55" y="5" width="40" height="40" class="blue-fill" rx="4"/>
+        <rect x="5" y="55" width="40" height="40" class="blue-fill" rx="4"/>
+        <rect x="55" y="55" width="40" height="40" class="red-fill" rx="4"/>
+      </svg>
+      <div class="label">class fill<br>.red-fill .blue-fill</div>
+    </div>
+
+    <!-- 2. Tag-based selector (all circles get teal fill) -->
+    <div class="card">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <style type="text/css">
+          circle { fill: #16c79a; stroke: #ffd166; stroke-width: 3; }
+        </style>
+        <circle cx="30" cy="30" r="22"/>
+        <circle cx="70" cy="70" r="22"/>
+        <circle cx="70" cy="30" r="12"/>
+      </svg>
+      <div class="label">tag selector<br>circle { fill }</div>
+    </div>
+
+    <!-- 3. Stroke styling via class -->
+    <div class="card">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <style type="text/css">
+          .outline {
+            fill: none;
+            stroke: #f5a623;
+            stroke-width: 4;
+            stroke-dasharray: 8 4;
+          }
+          .outline-solid {
+            fill: none;
+            stroke: #b06aff;
+            stroke-width: 3;
+          }
+        </style>
+        <rect x="10" y="10" width="80" height="40" class="outline" rx="6"/>
+        <rect x="10" y="58" width="80" height="35" class="outline-solid" rx="6"/>
+      </svg>
+      <div class="label">stroke class<br>dashed + solid</div>
+    </div>
+
+    <!-- 4. opacity via style rule -->
+    <div class="card">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <style type="text/css">
+          .opaque   { fill: #e94560; opacity: 1.0; }
+          .half     { fill: #e94560; opacity: 0.5; }
+          .faint    { fill: #e94560; opacity: 0.15; }
+        </style>
+        <rect x="10" y="10" width="80" height="22" class="opaque" rx="4"/>
+        <rect x="10" y="39" width="80" height="22" class="half" rx="4"/>
+        <rect x="10" y="68" width="80" height="22" class="faint" rx="4"/>
+      </svg>
+      <div class="label">opacity 1.0 / 0.5<br>/ 0.15 via class</div>
+    </div>
+
+    <!-- 5. Multiple selectors — fill-opacity and stroke-opacity -->
+    <div class="card">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <style type="text/css">
+          .gem {
+            fill: #4d8bff;
+            fill-opacity: 0.6;
+            stroke: #16c79a;
+            stroke-width: 3;
+            stroke-opacity: 0.9;
+          }
+        </style>
+        <polygon class="gem" points="50,5 95,35 80,90 20,90 5,35"/>
+      </svg>
+      <div class="label">fill-opacity +<br>stroke-opacity</div>
+    </div>
+
+    <!-- 6. type="text/css" explicit attribute -->
+    <div class="card">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <style type="text/css">
+          .bright { fill: #ffd166; }
+          .dark   { fill: #b06aff; }
+          ellipse { stroke: #fff; stroke-width: 2; }
+        </style>
+        <ellipse cx="35" cy="50" rx="28" ry="40" class="bright"/>
+        <ellipse cx="65" cy="50" rx="28" ry="40" class="dark"/>
+      </svg>
+      <div class="label">type="text/css"<br>ellipse selector</div>
+    </div>
+
+    <!-- 7. media attribute — media="screen" (always matches in browser) -->
+    <div class="card">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <style type="text/css" media="screen">
+          .screen-only { fill: #16c79a; stroke: #ffd166; stroke-width: 3; }
+          rect.bg      { fill: #0d1b33; }
+        </style>
+        <rect class="bg" width="100" height="100"/>
+        <rect class="screen-only" x="15" y="15" width="70" height="70" rx="12"/>
+        <text x="50" y="90" text-anchor="middle" fill="#f5a623" font-size="8">media="screen"</text>
+      </svg>
+      <div class="label">media="screen"<br>style attribute</div>
+    </div>
+
+    <!-- 8. :hover pseudo-class (visible in real browser; static in headless) -->
+    <div class="card">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <style type="text/css">
+          .hoverable {
+            fill: #4d8bff;
+            transition: fill 0.2s;
+          }
+          .hoverable:hover {
+            fill: #e94560;
+          }
+          .lbl { fill: #9aa; font-size: 8px; font-family: monospace; }
+        </style>
+        <circle class="hoverable" cx="50" cy="45" r="32"/>
+        <text class="lbl" x="50" y="90" text-anchor="middle">:hover → #e94560</text>
+      </svg>
+      <div class="label">:hover pseudo-class<br>(CSS transition)</div>
+    </div>
+
+    <!-- 9. Cascade: id selector overrides class -->
+    <div class="card">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <style type="text/css">
+          .base    { fill: #444; }
+          #special { fill: #f5a623; stroke: #e94560; stroke-width: 4; }
+        </style>
+        <rect class="base" x="5" y="5" width="40" height="40" rx="4"/>
+        <rect class="base" x="55" y="5" width="40" height="40" rx="4"/>
+        <rect class="base" x="5" y="55" width="40" height="40" rx="4"/>
+        <rect class="base" id="special" x="55" y="55" width="40" height="40" rx="4"/>
+      </svg>
+      <div class="label">#id overrides<br>.class (cascade)</div>
+    </div>
+
+    <!-- 10. Multiple classes on one element -->
+    <div class="card">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <style type="text/css">
+          .big-stroke { stroke-width: 6; }
+          .orange-stroke { stroke: #f5a623; }
+          .teal-fill { fill: #16c79a; }
+          .round { rx: 20; }
+        </style>
+        <rect x="10" y="10" width="80" height="80"
+              class="teal-fill big-stroke orange-stroke" rx="20"/>
+      </svg>
+      <div class="label">multiple classes<br>on one element</div>
+    </div>
+
+  </div>
+
+  <!-- machine blueprint: style is a never-rendered element; blueprint has shapes styled by injected style -->
+  <script type="application/svg-blueprint" id="blueprint">
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  {{ELEMENT}}
+  <rect class="slot" x="10" y="10" width="80" height="80" rx="8"/>
+  <circle class="slot" cx="50" cy="50" r="30"/>
+</svg>
+  </script>
+</body></html>

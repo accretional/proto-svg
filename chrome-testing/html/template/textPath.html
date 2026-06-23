@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>&lt;textPath&gt;</title>
+<style>
+  body{margin:0;background:#1a1a2e;color:#e6e6e6;font:14px/1.4 ui-monospace,Menlo,monospace;padding:24px}
+  h1{color:#16c79a;font-size:18px;margin:0 0 4px}
+  p.desc{color:#9aa;margin:0 0 20px}
+  .grid{display:flex;flex-wrap:wrap;gap:16px}
+  .card{background:#0f1530;border:1px solid #26305a;border-radius:8px;padding:10px;width:160px}
+  .card svg{display:block;background:#161c3a;border-radius:4px;width:140px;height:140px}
+  .card .label{margin-top:8px;color:#f5a623;font-size:12px;word-break:break-all}
+</style></head>
+<body>
+  <h1>&lt;textPath&gt;</h1>
+  <p class="desc">Text following a path. Showcasing href, startOffset, side, method, tspan inside textPath, circular path, wavy path, inline path attr.</p>
+  <div class="grid">
+
+    <!-- basic arc path, href -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <path id="arc1" d="M 10 70 Q 50 10 90 70"/>
+        </defs>
+        <path d="M 10 70 Q 50 10 90 70" fill="none" stroke="#26305a" stroke-width="1"/>
+        <text font-size="13" fill="#e94560">
+          <textPath href="#arc1">On a curve</textPath>
+        </text>
+      </svg>
+      <div class="label">textPath href (arc)</div>
+    </div>
+
+    <!-- startOffset 0% -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <path id="arc2" d="M 5 65 Q 50 10 95 65"/>
+        </defs>
+        <path d="M 5 65 Q 50 10 95 65" fill="none" stroke="#26305a" stroke-width="1"/>
+        <text font-size="12" fill="#16c79a">
+          <textPath href="#arc2" startOffset="0%">start 0%</textPath>
+        </text>
+      </svg>
+      <div class="label">startOffset="0%"</div>
+    </div>
+
+    <!-- startOffset 25% -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <path id="arc3" d="M 5 65 Q 50 10 95 65"/>
+        </defs>
+        <path d="M 5 65 Q 50 10 95 65" fill="none" stroke="#26305a" stroke-width="1"/>
+        <text font-size="12" fill="#f5a623">
+          <textPath href="#arc3" startOffset="25%">offset 25%</textPath>
+        </text>
+      </svg>
+      <div class="label">startOffset="25%"</div>
+    </div>
+
+    <!-- startOffset 50% (middle anchor) -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <path id="arc4" d="M 5 65 Q 50 10 95 65"/>
+        </defs>
+        <path d="M 5 65 Q 50 10 95 65" fill="none" stroke="#26305a" stroke-width="1"/>
+        <text font-size="12" text-anchor="middle" fill="#4d8bff">
+          <textPath href="#arc4" startOffset="50%">centered</textPath>
+        </text>
+      </svg>
+      <div class="label">startOffset="50%" middle</div>
+    </div>
+
+    <!-- circular path (full circle) -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <path id="circle1" d="M 50 10 A 40 40 0 1 1 49.9 10"/>
+        </defs>
+        <circle cx="50" cy="50" r="40" fill="none" stroke="#26305a" stroke-width="1"/>
+        <text font-size="11" fill="#ffd166">
+          <textPath href="#circle1">Round and round!</textPath>
+        </text>
+      </svg>
+      <div class="label">circular path</div>
+    </div>
+
+    <!-- side="left" (default) -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <path id="side-l" d="M 10 75 C 30 20 70 20 90 75"/>
+        </defs>
+        <path d="M 10 75 C 30 20 70 20 90 75" fill="none" stroke="#26305a" stroke-width="1"/>
+        <text font-size="12" fill="#b06aff">
+          <textPath href="#side-l" side="left">Left side</textPath>
+        </text>
+      </svg>
+      <div class="label">side="left" (default)</div>
+    </div>
+
+    <!-- side="right" (reverses path direction) -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <path id="side-r" d="M 10 30 C 30 80 70 80 90 30"/>
+        </defs>
+        <path d="M 10 30 C 30 80 70 80 90 30" fill="none" stroke="#26305a" stroke-width="1"/>
+        <text font-size="12" fill="#e94560">
+          <textPath href="#side-r" side="right" startOffset="50%" text-anchor="middle">Right!</textPath>
+        </text>
+      </svg>
+      <div class="label">side="right"</div>
+    </div>
+
+    <!-- method="align" -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <path id="meth-a" d="M 5 70 Q 50 5 95 70"/>
+        </defs>
+        <path d="M 5 70 Q 50 5 95 70" fill="none" stroke="#26305a" stroke-width="1"/>
+        <text font-size="12" fill="#16c79a">
+          <textPath href="#meth-a" method="align">align</textPath>
+        </text>
+      </svg>
+      <div class="label">method="align"</div>
+    </div>
+
+    <!-- method="stretch" (UA may fall back to align) -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <path id="meth-s" d="M 5 70 Q 50 5 95 70"/>
+        </defs>
+        <path d="M 5 70 Q 50 5 95 70" fill="none" stroke="#26305a" stroke-width="1"/>
+        <text font-size="12" fill="#f5a623">
+          <textPath href="#meth-s" method="stretch">stretch</textPath>
+        </text>
+      </svg>
+      <div class="label">method="stretch"</div>
+    </div>
+
+    <!-- wavy S-curve path -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <path id="wave1" d="M 5 60 C 25 30 45 80 65 50 S 85 20 95 50"/>
+        </defs>
+        <path d="M 5 60 C 25 30 45 80 65 50 S 85 20 95 50" fill="none" stroke="#26305a" stroke-width="1"/>
+        <text font-size="11" fill="#4d8bff">
+          <textPath href="#wave1">Wavy path text!</textPath>
+        </text>
+      </svg>
+      <div class="label">wavy S-curve path</div>
+    </div>
+
+    <!-- tspan inside textPath (color change mid-path) -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <path id="arc5" d="M 5 70 Q 50 10 95 70"/>
+        </defs>
+        <path d="M 5 70 Q 50 10 95 70" fill="none" stroke="#26305a" stroke-width="1"/>
+        <text font-size="12">
+          <textPath href="#arc5">
+            <tspan fill="#e94560">Red</tspan><tspan fill="#ffd166">Gold</tspan>
+          </textPath>
+        </text>
+      </svg>
+      <div class="label">tspan inside textPath</div>
+    </div>
+
+    <!-- textPath using inline path attribute (no href) -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <text font-size="12" fill="#b06aff">
+          <textPath path="M 5 70 Q 50 15 95 70">Inline path attr</textPath>
+        </text>
+      </svg>
+      <div class="label">textPath path="…" (inline)</div>
+    </div>
+
+    <!-- dy on textPath (lift off path) -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <path id="arc6" d="M 5 70 Q 50 20 95 70"/>
+        </defs>
+        <path d="M 5 70 Q 50 20 95 70" fill="none" stroke="#26305a" stroke-width="1"/>
+        <text font-size="12" fill="#16c79a">
+          <textPath href="#arc6" dy="-6">Lifted</textPath>
+        </text>
+      </svg>
+      <div class="label">dy="-6" (lift off path)</div>
+    </div>
+
+    <!-- straight line path as baseline -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <path id="line1" d="M 5 55 H 95"/>
+        </defs>
+        <path d="M 5 55 H 95" fill="none" stroke="#26305a" stroke-width="1"/>
+        <text font-size="13" fill="#ffd166">
+          <textPath href="#line1">Straight!</textPath>
+        </text>
+      </svg>
+      <div class="label">straight line path</div>
+    </div>
+
+  </div>
+
+  <!-- machine blueprint: textPath needs defs with a path element id="slot" -->
+  <script type="application/svg-blueprint" id="blueprint">
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100"><defs><path id="slot" d="M 5 70 Q 50 10 95 70"/></defs><text font-size="13" fill="#e94560">{{ELEMENT}}</text></svg>
+  </script>
+</body></html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>&lt;metadata&gt;</title>
+<style>
+  body{margin:0;background:#1a1a2e;color:#e6e6e6;font:14px/1.4 ui-monospace,Menlo,monospace;padding:24px}
+  h1{color:#16c79a;font-size:18px;margin:0 0 4px}
+  p.desc{color:#9aa;margin:0 0 20px}
+  .grid{display:flex;flex-wrap:wrap;gap:16px}
+  .card{background:#0f1530;border:1px solid #26305a;border-radius:8px;padding:10px;width:220px}
+  .card svg{display:block;background:#161c3a;border-radius:4px;width:200px;height:120px}
+  .card .label{margin-top:8px;color:#f5a623;font-size:12px;word-break:break-all}
+  .card .markup{margin-top:6px;background:#0a0e20;border-radius:4px;padding:8px;font-size:10px;color:#9af;white-space:pre;overflow-x:auto}
+  .note{color:#9aa;font-size:11px;margin-top:12px;max-width:700px}
+</style></head>
+<body>
+  <h1>&lt;metadata&gt;</h1>
+  <p class="desc">Descriptive element — never rendered visually. Carries machine-readable metadata (Dublin Core, RDF, custom data). The host shape is always visible; the metadata element is hidden by UA.</p>
+  <div class="grid">
+
+    <!-- Card 1: metadata with Dublin Core fields inside svg -->
+    <div class="card">
+      <svg viewBox="0 0 200 120">
+        <metadata>
+          <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Proto SVG Project</dc:creator>
+          <dc:title xmlns:dc="http://purl.org/dc/elements/1.1/">Structure Showcase</dc:title>
+          <dc:date xmlns:dc="http://purl.org/dc/elements/1.1/">2026-06-22</dc:date>
+        </metadata>
+        <rect x="10" y="10" width="180" height="100" rx="8" fill="#4d8bff"/>
+        <text x="100" y="58" text-anchor="middle" font-size="12" fill="#fff">Dublin Core</text>
+        <text x="100" y="73" text-anchor="middle" font-size="9" fill="#ffd166">metadata inside</text>
+      </svg>
+      <div class="label">Dublin Core inside metadata</div>
+      <div class="markup">&lt;svg&gt;
+  &lt;metadata&gt;
+    &lt;dc:creator&gt;...&lt;/dc:creator&gt;
+    &lt;dc:title&gt;...&lt;/dc:title&gt;
+    &lt;dc:date&gt;...&lt;/dc:date&gt;
+  &lt;/metadata&gt;
+&lt;/svg&gt;</div>
+    </div>
+
+    <!-- Card 2: metadata with RDF structure -->
+    <div class="card">
+      <svg viewBox="0 0 200 120">
+        <metadata>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+                   xmlns:dc="http://purl.org/dc/elements/1.1/">
+            <rdf:Description rdf:about="">
+              <dc:format>image/svg+xml</dc:format>
+              <dc:type>StillImage</dc:type>
+            </rdf:Description>
+          </rdf:RDF>
+        </metadata>
+        <circle cx="100" cy="60" r="50" fill="#e94560"/>
+        <text x="100" y="58" text-anchor="middle" font-size="12" fill="#fff">RDF</text>
+        <text x="100" y="73" text-anchor="middle" font-size="9" fill="#ffd166">metadata</text>
+      </svg>
+      <div class="label">RDF metadata</div>
+      <div class="markup">&lt;metadata&gt;
+  &lt;rdf:RDF&gt;
+    &lt;rdf:Description&gt;
+      &lt;dc:format&gt;image/svg+xml&lt;/dc:format&gt;
+      &lt;dc:type&gt;StillImage&lt;/dc:type&gt;
+    &lt;/rdf:Description&gt;
+  &lt;/rdf:RDF&gt;
+&lt;/metadata&gt;</div>
+    </div>
+
+    <!-- Card 3: metadata with plain text content (simple key-value) -->
+    <div class="card">
+      <svg viewBox="0 0 200 120">
+        <metadata>version: 1.0; license: CC-BY-4.0; author: Proto SVG</metadata>
+        <polygon points="100,10 190,110 10,110" fill="#16c79a"/>
+        <text x="100" y="88" text-anchor="middle" font-size="11" fill="#1a1a2e">plain text</text>
+        <text x="100" y="103" text-anchor="middle" font-size="9" fill="#1a1a2e">in metadata</text>
+      </svg>
+      <div class="label">metadata: plain text content</div>
+      <div class="markup">&lt;metadata&gt;
+  version: 1.0;
+  license: CC-BY-4.0;
+&lt;/metadata&gt;</div>
+    </div>
+
+    <!-- Card 4: metadata with id attribute -->
+    <div class="card">
+      <svg viewBox="0 0 200 120">
+        <metadata id="doc-meta">
+          <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Design Team</dc:creator>
+          <dc:rights xmlns:dc="http://purl.org/dc/elements/1.1/">Copyright 2026</dc:rights>
+        </metadata>
+        <rect x="10" y="10" width="180" height="100" rx="8" fill="#b06aff"/>
+        <text x="100" y="58" text-anchor="middle" font-size="12" fill="#fff">id="doc-meta"</text>
+        <text x="100" y="73" text-anchor="middle" font-size="9" fill="#ffd166">metadata with id</text>
+      </svg>
+      <div class="label">metadata with id attribute</div>
+      <div class="markup">&lt;metadata id="doc-meta"&gt;
+  &lt;dc:creator&gt;Design Team&lt;/dc:creator&gt;
+  &lt;dc:rights&gt;Copyright...&lt;/dc:rights&gt;
+&lt;/metadata&gt;</div>
+    </div>
+
+    <!-- Card 5: metadata is invisible — only host shape renders -->
+    <div class="card">
+      <svg viewBox="0 0 200 120">
+        <metadata>
+          <invisible-element>This entire metadata block does not render on canvas.</invisible-element>
+        </metadata>
+        <rect x="10" y="10" width="180" height="100" rx="8" fill="#f5a623"/>
+        <text x="100" y="55" text-anchor="middle" font-size="11" fill="#1a1a2e">metadata = invisible</text>
+        <text x="100" y="70" text-anchor="middle" font-size="9" fill="#1a1a2e">(shape renders fine)</text>
+      </svg>
+      <div class="label">metadata never renders visually</div>
+      <div class="markup">&lt;metadata&gt;
+  &lt;!-- NEVER rendered on canvas --&gt;
+  &lt;invisible-element&gt;...
+  &lt;/invisible-element&gt;
+&lt;/metadata&gt;
+&lt;rect .../&gt; &lt;!-- renders --&gt;</div>
+    </div>
+
+    <!-- Card 6: metadata with data-* attributes (per spec: data-* allowed on metadata) -->
+    <div class="card">
+      <svg viewBox="0 0 200 120">
+        <metadata data-schema="1.0" data-source="proto-svg" data-generated="2026-06-22">
+          Structured data attributes on metadata element.
+        </metadata>
+        <circle cx="60" cy="60" r="45" fill="#16c79a" opacity="0.9"/>
+        <circle cx="140" cy="60" r="45" fill="#e94560" opacity="0.9"/>
+        <text x="100" y="64" text-anchor="middle" font-size="10" fill="#fff">data-*</text>
+      </svg>
+      <div class="label">metadata with data-* attrs</div>
+      <div class="markup">&lt;metadata
+  data-schema="1.0"
+  data-source="proto-svg"
+  data-generated="2026-06-22"&gt;
+  ...
+&lt;/metadata&gt;</div>
+    </div>
+
+  </div>
+
+  <p class="note">Note: &lt;metadata&gt; is a never-rendered element (UA sets display:none). It carries machine-readable structured data (RDF, Dublin Core, custom schemas). The host shapes above all render; only the metadata content is hidden. data-* attributes are expressly allowed on metadata per the SVG 2 spec (§5.9).</p>
+
+  <script type="application/svg-blueprint" id="blueprint">
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100"><rect x="5" y="5" width="90" height="90" fill="#b06aff"/>{{ELEMENT}}</svg>
+  </script>
+</body></html>

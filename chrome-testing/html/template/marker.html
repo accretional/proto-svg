@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>&lt;marker&gt;</title>
+<style>
+  body{margin:0;background:#1a1a2e;color:#e6e6e6;font:14px/1.4 ui-monospace,Menlo,monospace;padding:24px}
+  h1{color:#16c79a;font-size:18px;margin:0 0 4px}
+  p.desc{color:#9aa;margin:0 0 20px}
+  .grid{display:flex;flex-wrap:wrap;gap:16px}
+  .card{background:#0f1530;border:1px solid #26305a;border-radius:8px;padding:10px;width:160px}
+  .card svg{display:block;background:#161c3a;border-radius:4px;width:140px;height:140px}
+  .card .label{margin-top:8px;color:#f5a623;font-size:12px;word-break:break-all}
+</style></head>
+<body>
+  <h1>&lt;marker&gt;</h1>
+  <p class="desc">Marker paint. Showcasing arrowhead/dot shapes, markerUnits, markerWidth/Height, refX/refY, orient=auto/angle, marker-start/mid/end.</p>
+  <div class="grid">
+
+    <!-- 1. Basic arrowhead: orient=auto, marker-end -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <marker id="m1" markerWidth="10" markerHeight="7"
+                  refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" fill="#e94560"/>
+          </marker>
+        </defs>
+        <line x1="10" y1="50" x2="82" y2="50"
+              stroke="#e94560" stroke-width="3"
+              marker-end="url(#m1)"/>
+      </svg>
+      <div class="label">orient=auto<br>marker-end arrow</div>
+    </div>
+
+    <!-- 2. Dot marker: marker-start, mid, end -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <marker id="m2" markerWidth="6" markerHeight="6"
+                  refX="3" refY="3" orient="auto">
+            <circle cx="3" cy="3" r="2.5" fill="#4d8bff"/>
+          </marker>
+        </defs>
+        <polyline points="10,80 35,25 65,65 90,20"
+                  fill="none" stroke="#4d8bff" stroke-width="2"
+                  marker-start="url(#m2)"
+                  marker-mid="url(#m2)"
+                  marker-end="url(#m2)"/>
+      </svg>
+      <div class="label">dot: start+mid+end<br>polyline</div>
+    </div>
+
+    <!-- 3. markerUnits=strokeWidth (default, scales with stroke) -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <marker id="m3" markerUnits="strokeWidth"
+                  markerWidth="5" markerHeight="5"
+                  refX="2.5" refY="2.5" orient="auto">
+            <polygon points="0 0, 5 2.5, 0 5" fill="#16c79a"/>
+          </marker>
+        </defs>
+        <line x1="10" y1="40" x2="82" y2="40"
+              stroke="#16c79a" stroke-width="2"
+              marker-end="url(#m3)"/>
+        <line x1="10" y1="65" x2="82" y2="65"
+              stroke="#16c79a" stroke-width="5"
+              marker-end="url(#m3)"/>
+      </svg>
+      <div class="label">markerUnits=<br>strokeWidth (2 vs 5)</div>
+    </div>
+
+    <!-- 4. markerUnits=userSpaceOnUse (fixed size regardless of stroke-width) -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <marker id="m4" markerUnits="userSpaceOnUse"
+                  markerWidth="12" markerHeight="12"
+                  refX="6" refY="6" orient="auto">
+            <polygon points="0 0, 12 6, 0 12" fill="#ffd166"/>
+          </marker>
+        </defs>
+        <line x1="10" y1="40" x2="78" y2="40"
+              stroke="#ffd166" stroke-width="1"
+              marker-end="url(#m4)"/>
+        <line x1="10" y1="68" x2="78" y2="68"
+              stroke="#ffd166" stroke-width="6"
+              marker-end="url(#m4)"/>
+      </svg>
+      <div class="label">markerUnits=<br>userSpaceOnUse</div>
+    </div>
+
+    <!-- 5. refX/refY alignment: tip at path end -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <!-- refX=10 places the right tip of the arrow at the path end -->
+          <marker id="m5" markerWidth="10" markerHeight="8"
+                  refX="10" refY="4" orient="auto">
+            <path d="M0,0 L10,4 L0,8 Z" fill="#b06aff"/>
+          </marker>
+        </defs>
+        <line x1="10" y1="50" x2="88" y2="50"
+              stroke="#b06aff" stroke-width="2.5"
+              marker-end="url(#m5)"/>
+        <!-- show endpoint as dot -->
+        <circle cx="88" cy="50" r="2" fill="#ffd166"/>
+      </svg>
+      <div class="label">refX=10 (tip)<br>vs path endpoint</div>
+    </div>
+
+    <!-- 6. orient=fixed angle (45deg) -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <marker id="m6" markerWidth="8" markerHeight="8"
+                  refX="4" refY="4" orient="45">
+            <polygon points="0 0, 8 4, 0 8" fill="#e94560"/>
+          </marker>
+        </defs>
+        <!-- horizontal line, marker always 45° regardless of path direction -->
+        <line x1="15" y1="50" x2="75" y2="50"
+              stroke="#e94560" stroke-width="2"
+              marker-end="url(#m6)"/>
+      </svg>
+      <div class="label">orient=45<br>fixed angle</div>
+    </div>
+
+    <!-- 7. orient=auto (follows curve tangent) on a path -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <marker id="m7" markerWidth="8" markerHeight="6"
+                  refX="7" refY="3" orient="auto">
+            <polygon points="0 0, 8 3, 0 6" fill="#16c79a"/>
+          </marker>
+        </defs>
+        <path d="M10,80 Q50,10 90,80"
+              fill="none" stroke="#16c79a" stroke-width="2.5"
+              marker-end="url(#m7)"/>
+      </svg>
+      <div class="label">orient=auto<br>curved path tangent</div>
+    </div>
+
+    <!-- 8. marker-start (arrow pointing backward at line start) -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <marker id="m8" markerWidth="8" markerHeight="6"
+                  refX="0" refY="3" orient="auto-start-reverse">
+            <polygon points="0 3, 8 0, 8 6" fill="#ffd166"/>
+          </marker>
+        </defs>
+        <line x1="15" y1="50" x2="85" y2="50"
+              stroke="#ffd166" stroke-width="2"
+              marker-start="url(#m8)"/>
+      </svg>
+      <div class="label">marker-start<br>orient=auto-start-reverse</div>
+    </div>
+
+    <!-- 9. Both marker-start and marker-end (double-headed arrow) -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <marker id="m9s" markerWidth="8" markerHeight="6"
+                  refX="0" refY="3" orient="auto-start-reverse">
+            <polygon points="0 3, 8 0, 8 6" fill="#4d8bff"/>
+          </marker>
+          <marker id="m9e" markerWidth="8" markerHeight="6"
+                  refX="8" refY="3" orient="auto">
+            <polygon points="0 0, 8 3, 0 6" fill="#4d8bff"/>
+          </marker>
+        </defs>
+        <line x1="12" y1="50" x2="88" y2="50"
+              stroke="#4d8bff" stroke-width="2.5"
+              marker-start="url(#m9s)"
+              marker-end="url(#m9e)"/>
+      </svg>
+      <div class="label">double-headed<br>start + end</div>
+    </div>
+
+    <!-- 10. Large markerWidth/markerHeight (big decorative marker) -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <marker id="m10" markerWidth="16" markerHeight="16"
+                  refX="8" refY="8" orient="auto">
+            <circle cx="8" cy="8" r="7" fill="#b06aff" stroke="#ffd166" stroke-width="2"/>
+            <line x1="8" y1="1" x2="8" y2="15" stroke="#ffd166" stroke-width="1"/>
+            <line x1="1" y1="8" x2="15" y2="8" stroke="#ffd166" stroke-width="1"/>
+          </marker>
+        </defs>
+        <path d="M15,80 L50,20 L85,80"
+              fill="none" stroke="#b06aff" stroke-width="2"
+              marker-end="url(#m10)"
+              marker-mid="url(#m10)"/>
+      </svg>
+      <div class="label">large marker w=16<br>circle+cross mid+end</div>
+    </div>
+
+  </div>
+
+  <!-- machine blueprint: marker in defs, path with marker-end url(#slot) -->
+  <script type="application/svg-blueprint" id="blueprint">
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100"><defs>{{ELEMENT}}</defs><path d="M10 50 H90" stroke="#16c79a" stroke-width="3" fill="none" marker-end="url(#slot)"/></svg>
+  </script>
+</body></html>

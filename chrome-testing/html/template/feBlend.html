@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>&lt;feBlend&gt;</title>
+<style>
+  body{margin:0;background:#1a1a2e;color:#e6e6e6;font:14px/1.4 ui-monospace,Menlo,monospace;padding:24px}
+  h1{color:#16c79a;font-size:18px;margin:0 0 4px}
+  p.desc{color:#9aa;margin:0 0 20px}
+  .grid{display:flex;flex-wrap:wrap;gap:16px}
+  .card{background:#0f1530;border:1px solid #26305a;border-radius:8px;padding:10px;width:160px}
+  .card svg{display:block;background:#161c3a;border-radius:4px;width:140px;height:140px}
+  .card .label{margin-top:8px;color:#f5a623;font-size:12px;word-break:break-all}
+</style></head>
+<body>
+  <h1>&lt;feBlend&gt;</h1>
+  <p class="desc">Blends two inputs via compositing mode. Showing in/in2 with mode=normal/multiply/screen/darken/lighten/overlay/difference/exclusion.</p>
+  <div class="grid">
+
+    <!-- 1. mode=normal -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="bl-normal">
+            <feFlood flood-color="#e94560" result="flood1"/>
+            <feBlend in="flood1" in2="SourceGraphic" mode="normal"/>
+          </filter>
+        </defs>
+        <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#bl-normal)"/>
+      </svg>
+      <div class="label">mode="normal"</div>
+    </div>
+
+    <!-- 2. mode=multiply — orange × teal, darkens where they overlap -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="bl-multiply">
+            <feFlood flood-color="#f5a623" result="top"/>
+            <feBlend in="top" in2="SourceGraphic" mode="multiply"/>
+          </filter>
+        </defs>
+        <rect x="5" y="5" width="90" height="90" fill="#16c79a" filter="url(#bl-multiply)"/>
+      </svg>
+      <div class="label">mode="multiply"</div>
+    </div>
+
+    <!-- 3. mode=screen — brightens -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="bl-screen">
+            <feFlood flood-color="#e94560" result="top"/>
+            <feBlend in="top" in2="SourceGraphic" mode="screen"/>
+          </filter>
+        </defs>
+        <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#bl-screen)"/>
+      </svg>
+      <div class="label">mode="screen"</div>
+    </div>
+
+    <!-- 4. mode=darken -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="bl-darken">
+            <feFlood flood-color="#ffd166" result="top"/>
+            <feBlend in="top" in2="SourceGraphic" mode="darken"/>
+          </filter>
+        </defs>
+        <rect x="5" y="5" width="90" height="90" fill="#b06aff" filter="url(#bl-darken)"/>
+      </svg>
+      <div class="label">mode="darken"</div>
+    </div>
+
+    <!-- 5. mode=lighten -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="bl-lighten">
+            <feFlood flood-color="#e94560" result="top"/>
+            <feBlend in="top" in2="SourceGraphic" mode="lighten"/>
+          </filter>
+        </defs>
+        <rect x="5" y="5" width="90" height="90" fill="#16c79a" filter="url(#bl-lighten)"/>
+      </svg>
+      <div class="label">mode="lighten"</div>
+    </div>
+
+    <!-- 6. mode=overlay — high-contrast mix -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="bl-overlay">
+            <feFlood flood-color="#f5a623" result="top"/>
+            <feBlend in="top" in2="SourceGraphic" mode="overlay"/>
+          </filter>
+        </defs>
+        <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#bl-overlay)"/>
+      </svg>
+      <div class="label">mode="overlay"</div>
+    </div>
+
+    <!-- 7. mode=difference — inverts where they overlap -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="bl-diff">
+            <feFlood flood-color="#ffd166" result="top"/>
+            <feBlend in="top" in2="SourceGraphic" mode="difference"/>
+          </filter>
+        </defs>
+        <rect x="5" y="5" width="90" height="90" fill="#e94560" filter="url(#bl-diff)"/>
+      </svg>
+      <div class="label">mode="difference"</div>
+    </div>
+
+    <!-- 8. mode=exclusion -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="bl-excl">
+            <feFlood flood-color="#b06aff" result="top"/>
+            <feBlend in="top" in2="SourceGraphic" mode="exclusion"/>
+          </filter>
+        </defs>
+        <rect x="5" y="5" width="90" height="90" fill="#16c79a" filter="url(#bl-excl)"/>
+      </svg>
+      <div class="label">mode="exclusion"</div>
+    </div>
+
+  </div>
+
+  <!-- machine blueprint: feBlend inside a filter; blueprint already provides the filter wrapper -->
+  <script type="application/svg-blueprint" id="blueprint">
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" result="layer2"/>
+      {{ELEMENT}}
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#slot)"/>
+</svg>
+  </script>
+</body></html>

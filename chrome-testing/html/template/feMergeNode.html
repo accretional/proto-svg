@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>&lt;feMergeNode&gt;</title>
+<style>
+  body{margin:0;background:#1a1a2e;color:#e6e6e6;font:14px/1.4 ui-monospace,Menlo,monospace;padding:24px}
+  h1{color:#16c79a;font-size:18px;margin:0 0 4px}
+  p.desc{color:#9aa;margin:0 0 20px}
+  .grid{display:flex;flex-wrap:wrap;gap:16px}
+  .card{background:#0f1530;border:1px solid #26305a;border-radius:8px;padding:10px;width:160px}
+  .card svg{display:block;background:#161c3a;border-radius:4px;width:140px;height:140px}
+  .card .label{margin-top:8px;color:#f5a623;font-size:12px;word-break:break-all}
+</style></head>
+<body>
+  <h1>&lt;feMergeNode&gt;</h1>
+  <p class="desc">Child of feMerge. in= selects which filter result to place as a layer. Order determines paint order (bottom to top).</p>
+  <div class="grid">
+
+    <!-- 1. Single feMergeNode with in=SourceGraphic -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="mn-src">
+            <feMerge>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+          </filter>
+        </defs>
+        <rect x="10" y="10" width="80" height="80" fill="#e94560" filter="url(#mn-src)"/>
+      </svg>
+      <div class="label">in="SourceGraphic"<br>(passthrough)</div>
+    </div>
+
+    <!-- 2. Two nodes: flood result first, then source on top -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="mn-flood-src">
+            <feFlood flood-color="#ffd166" x="10%" y="10%" width="80%" height="80%" result="glow"/>
+            <feMerge>
+              <feMergeNode in="glow"/>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+          </filter>
+        </defs>
+        <rect x="25" y="25" width="50" height="50" fill="#4d8bff" filter="url(#mn-flood-src)"/>
+      </svg>
+      <div class="label">in="flood result"<br>then SourceGraphic</div>
+    </div>
+
+    <!-- 3. Reversed order: source first, flood on top (occludes) -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="mn-src-flood">
+            <feFlood flood-color="#e94560" flood-opacity="0.7" x="10%" y="40%" width="80%" height="50%" result="bar"/>
+            <feMerge>
+              <feMergeNode in="SourceGraphic"/>
+              <feMergeNode in="bar"/>
+            </feMerge>
+          </filter>
+        </defs>
+        <rect x="10" y="10" width="80" height="80" fill="#16c79a" filter="url(#mn-src-flood)"/>
+      </svg>
+      <div class="label">source then flood<br>(flood on top)</div>
+    </div>
+
+    <!-- 4. Three MergeNodes — named result chain -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="mn-chain">
+            <feFlood flood-color="#b06aff" x="0" y="0" width="50%" height="100%" result="left"/>
+            <feFlood flood-color="#f5a623" x="50%" y="0" width="50%" height="100%" result="right"/>
+            <feMerge>
+              <feMergeNode in="left"/>
+              <feMergeNode in="right"/>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+          </filter>
+        </defs>
+        <rect x="30" y="30" width="40" height="40" fill="#ffd166" filter="url(#mn-chain)"/>
+      </svg>
+      <div class="label">3 nodes: split halves<br>+ source on top</div>
+    </div>
+
+    <!-- 5. in=SourceAlpha as a node -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="mn-alpha">
+            <feFlood flood-color="#16c79a" result="teal"/>
+            <feComposite in="teal" in2="SourceAlpha" operator="in" result="masked"/>
+            <feMerge>
+              <feMergeNode in="masked"/>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+          </filter>
+        </defs>
+        <circle cx="50" cy="50" r="40" fill="#e94560" filter="url(#mn-alpha)"/>
+      </svg>
+      <div class="label">in="SourceAlpha"<br>masked teal fill</div>
+    </div>
+
+  </div>
+
+  <!-- machine blueprint: feMergeNode is a child of feMerge -->
+  <script type="application/svg-blueprint" id="blueprint">
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" x="0" y="0" width="70%" height="70%" result="layerA"/>
+      <feFlood flood-color="#4d8bff" x="30%" y="30%" width="70%" height="70%" result="layerB"/>
+      <feMerge>
+        {{ELEMENT}}
+      </feMerge>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#e94560" filter="url(#slot)"/>
+</svg>
+  </script>
+</body></html>

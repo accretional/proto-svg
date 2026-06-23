@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>&lt;image&gt;</title>
+<style>
+  body{margin:0;background:#1a1a2e;color:#e6e6e6;font:14px/1.4 ui-monospace,Menlo,monospace;padding:24px}
+  h1{color:#16c79a;font-size:18px;margin:0 0 4px}
+  p.desc{color:#9aa;margin:0 0 20px}
+  .grid{display:flex;flex-wrap:wrap;gap:16px}
+  .card{background:#0f1530;border:1px solid #26305a;border-radius:8px;padding:10px;width:160px}
+  .card svg{display:block;background:#161c3a;border-radius:4px;width:140px;height:140px}
+  .card .label{margin-top:8px;color:#f5a623;font-size:12px;word-break:break-all}
+</style></head>
+<body>
+  <h1>&lt;image&gt;</h1>
+  <p class="desc">Embedded image. Showcasing href (data: URI), x/y/width/height, preserveAspectRatio (meet/slice/none), crossorigin.</p>
+  <div class="grid">
+
+    <!-- Inline SVG data URI used across cards:
+         A 40x40 SVG with a teal circle and orange rect, base64-encoded -->
+
+    <!-- 1. Basic image — default preserveAspectRatio (xMidYMid meet) -->
+    <div class="card">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCI+PHJlY3Qgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBmaWxsPSIjMjIyIi8+PGNpcmNsZSBjeD0iMjAiIGN5PSIyMCIgcj0iMTYiIGZpbGw9IiMxNmM3OWEiLz48cmVjdCB4PSIxMCIgeT0iMTAiIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0iI2Y1YTYyMyIgb3BhY2l0eT0iMC43Ii8+PC9zdmc+"
+              x="0" y="0" width="100" height="100"/>
+      </svg>
+      <div class="label">default<br>xMidYMid meet</div>
+    </div>
+
+    <!-- 2. preserveAspectRatio="xMidYMid meet" — image fits, centered, letterboxed -->
+    <div class="card">
+      <svg viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg">
+        <rect width="100" height="60" fill="#0d1b2a"/>
+        <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCI+PHJlY3Qgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBmaWxsPSIjMjIyIi8+PGNpcmNsZSBjeD0iMjAiIGN5PSIyMCIgcj0iMTYiIGZpbGw9IiMxNmM3OWEiLz48cmVjdCB4PSIxMCIgeT0iMTAiIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0iI2Y1YTYyMyIgb3BhY2l0eT0iMC43Ii8+PC9zdmc+"
+              x="0" y="0" width="100" height="60"
+              preserveAspectRatio="xMidYMid meet"/>
+      </svg>
+      <div class="label">xMidYMid meet<br>(letterbox)</div>
+    </div>
+
+    <!-- 3. preserveAspectRatio="xMidYMid slice" — image fills, cropped -->
+    <div class="card">
+      <svg viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg">
+        <rect width="100" height="60" fill="#0d1b2a"/>
+        <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCI+PHJlY3Qgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBmaWxsPSIjMjIyIi8+PGNpcmNsZSBjeD0iMjAiIGN5PSIyMCIgcj0iMTYiIGZpbGw9IiMxNmM3OWEiLz48cmVjdCB4PSIxMCIgeT0iMTAiIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0iI2Y1YTYyMyIgb3BhY2l0eT0iMC43Ii8+PC9zdmc+"
+              x="0" y="0" width="100" height="60"
+              preserveAspectRatio="xMidYMid slice"/>
+      </svg>
+      <div class="label">xMidYMid slice<br>(crop-fill)</div>
+    </div>
+
+    <!-- 4. preserveAspectRatio="none" — stretches to fit exactly -->
+    <div class="card">
+      <svg viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg">
+        <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCI+PHJlY3Qgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBmaWxsPSIjMjIyIi8+PGNpcmNsZSBjeD0iMjAiIGN5PSIyMCIgcj0iMTYiIGZpbGw9IiMxNmM3OWEiLz48cmVjdCB4PSIxMCIgeT0iMTAiIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0iI2Y1YTYyMyIgb3BhY2l0eT0iMC43Ii8+PC9zdmc+"
+              x="0" y="0" width="100" height="60"
+              preserveAspectRatio="none"/>
+      </svg>
+      <div class="label">none<br>(stretch)</div>
+    </div>
+
+    <!-- 5. x/y offset + small width/height (positioned sub-region) -->
+    <div class="card">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <rect width="100" height="100" fill="#0f1b33"/>
+        <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCI+PHJlY3Qgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBmaWxsPSIjMjIyIi8+PGNpcmNsZSBjeD0iMjAiIGN5PSIyMCIgcj0iMTYiIGZpbGw9IiMxNmM3OWEiLz48cmVjdCB4PSIxMCIgeT0iMTAiIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0iI2Y1YTYyMyIgb3BhY2l0eT0iMC43Ii8+PC9zdmc+"
+              x="30" y="30" width="40" height="40"/>
+      </svg>
+      <div class="label">x=30 y=30<br>w=40 h=40<br>(offset + small)</div>
+    </div>
+
+    <!-- 6. xMinYMin meet — image aligned to top-left corner -->
+    <div class="card">
+      <svg viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg">
+        <rect width="100" height="60" fill="#0d1b2a"/>
+        <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCI+PHJlY3Qgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBmaWxsPSIjMjIyIi8+PGNpcmNsZSBjeD0iMjAiIGN5PSIyMCIgcj0iMTYiIGZpbGw9IiMxNmM3OWEiLz48cmVjdCB4PSIxMCIgeT0iMTAiIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0iI2Y1YTYyMyIgb3BhY2l0eT0iMC43Ii8+PC9zdmc+"
+              x="0" y="0" width="100" height="60"
+              preserveAspectRatio="xMinYMin meet"/>
+      </svg>
+      <div class="label">xMinYMin meet<br>(top-left align)</div>
+    </div>
+
+    <!-- 7. xMaxYMax meet — image aligned to bottom-right corner -->
+    <div class="card">
+      <svg viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg">
+        <rect width="100" height="60" fill="#0d1b2a"/>
+        <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCI+PHJlY3Qgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBmaWxsPSIjMjIyIi8+PGNpcmNsZSBjeD0iMjAiIGN5PSIyMCIgcj0iMTYiIGZpbGw9IiMxNmM3OWEiLz48cmVjdCB4PSIxMCIgeT0iMTAiIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0iI2Y1YTYyMyIgb3BhY2l0eT0iMC43Ii8+PC9zdmc+"
+              x="0" y="0" width="100" height="60"
+              preserveAspectRatio="xMaxYMax meet"/>
+      </svg>
+      <div class="label">xMaxYMax meet<br>(bottom-right)</div>
+    </div>
+
+    <!-- 8. crossorigin="anonymous" shown with label (attribute presence) -->
+    <div class="card">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <rect width="100" height="100" fill="#1a0030"/>
+        <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCI+PHJlY3Qgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBmaWxsPSIjMjIyIi8+PGNpcmNsZSBjeD0iMjAiIGN5PSIyMCIgcj0iMTYiIGZpbGw9IiNiMDZhZmYiLz48cmVjdCB4PSIxMCIgeT0iMTAiIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0iI2ZmZDE2NiIgb3BhY2l0eT0iMC44Ii8+PC9zdmc+"
+              x="10" y="10" width="80" height="80"
+              crossorigin="anonymous"/>
+      </svg>
+      <div class="label">crossorigin=<br>"anonymous"</div>
+    </div>
+
+    <!-- 9. SVG with xlink:href deprecated syntax shown via annotation -->
+    <div class="card">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <rect width="100" height="100" fill="#0a1a10"/>
+        <!-- decoding="async" attribute variant — image still renders same -->
+        <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCI+PHJlY3Qgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBmaWxsPSIjMjIyIi8+PGNpcmNsZSBjeD0iMjAiIGN5PSIyMCIgcj0iMTYiIGZpbGw9IiNlOTQ1NjAiLz48cmVjdCB4PSI4IiB5PSI4IiB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIGZpbGw9IiNmZmQxNjYiIG9wYWNpdHk9IjAuOCIvPjwvc3ZnPg=="
+              x="10" y="10" width="80" height="80"
+              decoding="async"/>
+        <text x="50" y="97" text-anchor="middle" fill="#16c79a" font-size="7">decoding="async"</text>
+      </svg>
+      <div class="label">decoding="async"<br>(red+gold SVG)</div>
+    </div>
+
+  </div>
+
+  <!-- machine blueprint: self-rendering element; generator injects image markup -->
+  <script type="application/svg-blueprint" id="blueprint">
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">{{ELEMENT}}</svg>
+  </script>
+</body></html>

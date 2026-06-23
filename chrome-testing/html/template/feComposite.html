@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>&lt;feComposite&gt;</title>
+<style>
+  body{margin:0;background:#1a1a2e;color:#e6e6e6;font:14px/1.4 ui-monospace,Menlo,monospace;padding:24px}
+  h1{color:#16c79a;font-size:18px;margin:0 0 4px}
+  p.desc{color:#9aa;margin:0 0 20px}
+  .grid{display:flex;flex-wrap:wrap;gap:16px}
+  .card{background:#0f1530;border:1px solid #26305a;border-radius:8px;padding:10px;width:160px}
+  .card svg{display:block;background:#161c3a;border-radius:4px;width:140px;height:140px}
+  .card .label{margin-top:8px;color:#f5a623;font-size:12px;word-break:break-all}
+</style></head>
+<body>
+  <h1>&lt;feComposite&gt;</h1>
+  <p class="desc">Porter-Duff compositing of two inputs. operator: over/in/out/atop/xor/arithmetic. k1..k4 for arithmetic formula.</p>
+  <div class="grid">
+
+    <!-- 1. operator=over — source on top of dest -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="fc-over">
+            <feFlood flood-color="#e94560" x="0" y="0" width="70%" height="70%" result="src"/>
+            <feFlood flood-color="#4d8bff" x="30%" y="30%" width="70%" height="70%" result="dst"/>
+            <feComposite in="src" in2="dst" operator="over"/>
+          </filter>
+        </defs>
+        <rect x="5" y="5" width="90" height="90" fill="white" filter="url(#fc-over)"/>
+      </svg>
+      <div class="label">operator="over"</div>
+    </div>
+
+    <!-- 2. operator=in — show source only where dest is -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="fc-in">
+            <feFlood flood-color="#ffd166" x="0" y="0" width="70%" height="70%" result="src"/>
+            <feFlood flood-color="#16c79a" x="30%" y="30%" width="70%" height="70%" result="dst"/>
+            <feComposite in="src" in2="dst" operator="in"/>
+          </filter>
+        </defs>
+        <rect x="5" y="5" width="90" height="90" fill="white" filter="url(#fc-in)"/>
+      </svg>
+      <div class="label">operator="in"</div>
+    </div>
+
+    <!-- 3. operator=out — source where dest is NOT -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="fc-out">
+            <feFlood flood-color="#e94560" x="0" y="0" width="70%" height="70%" result="src"/>
+            <feFlood flood-color="#4d8bff" x="30%" y="30%" width="70%" height="70%" result="dst"/>
+            <feComposite in="src" in2="dst" operator="out"/>
+          </filter>
+        </defs>
+        <rect x="5" y="5" width="90" height="90" fill="white" filter="url(#fc-out)"/>
+      </svg>
+      <div class="label">operator="out"</div>
+    </div>
+
+    <!-- 4. operator=atop — source where dest exists, else dest -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="fc-atop">
+            <feFlood flood-color="#f5a623" x="0" y="0" width="70%" height="70%" result="src"/>
+            <feFlood flood-color="#16c79a" x="30%" y="30%" width="70%" height="70%" result="dst"/>
+            <feComposite in="src" in2="dst" operator="atop"/>
+          </filter>
+        </defs>
+        <rect x="5" y="5" width="90" height="90" fill="white" filter="url(#fc-atop)"/>
+      </svg>
+      <div class="label">operator="atop"</div>
+    </div>
+
+    <!-- 5. operator=xor — exclusive OR, removes overlap -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="fc-xor">
+            <feFlood flood-color="#b06aff" x="0" y="0" width="70%" height="70%" result="src"/>
+            <feFlood flood-color="#ffd166" x="30%" y="30%" width="70%" height="70%" result="dst"/>
+            <feComposite in="src" in2="dst" operator="xor"/>
+          </filter>
+        </defs>
+        <rect x="5" y="5" width="90" height="90" fill="white" filter="url(#fc-xor)"/>
+      </svg>
+      <div class="label">operator="xor"</div>
+    </div>
+
+    <!-- 6. operator=arithmetic k1=0 k2=1 k3=1 k4=0 → add -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="fc-arith-add">
+            <feFlood flood-color="#e94560" x="0" y="0" width="60%" height="60%" result="src"/>
+            <feFlood flood-color="#4d8bff" x="40%" y="40%" width="60%" height="60%" result="dst"/>
+            <feComposite in="src" in2="dst" operator="arithmetic" k1="0" k2="1" k3="1" k4="0"/>
+          </filter>
+        </defs>
+        <rect x="5" y="5" width="90" height="90" fill="white" filter="url(#fc-arith-add)"/>
+      </svg>
+      <div class="label">arithmetic<br>k2=1 k3=1 (add)</div>
+    </div>
+
+    <!-- 7. operator=arithmetic k1=1 k2=0 k3=0 k4=0 → multiply -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="fc-arith-mul">
+            <feFlood flood-color="#ffd166" x="0" y="0" width="70%" height="70%" result="src"/>
+            <feFlood flood-color="#16c79a" x="30%" y="30%" width="70%" height="70%" result="dst"/>
+            <feComposite in="src" in2="dst" operator="arithmetic" k1="1" k2="0" k3="0" k4="0"/>
+          </filter>
+        </defs>
+        <rect x="5" y="5" width="90" height="90" fill="white" filter="url(#fc-arith-mul)"/>
+      </svg>
+      <div class="label">arithmetic<br>k1=1 (multiply)</div>
+    </div>
+
+    <!-- 8. operator=arithmetic with k4 bias -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="fc-arith-bias">
+            <feFlood flood-color="#e94560" x="0" y="0" width="60%" height="60%" result="src"/>
+            <feFlood flood-color="#4d8bff" x="40%" y="40%" width="60%" height="60%" result="dst"/>
+            <feComposite in="src" in2="dst" operator="arithmetic" k1="0" k2="0.5" k3="0.5" k4="0.2"/>
+          </filter>
+        </defs>
+        <rect x="5" y="5" width="90" height="90" fill="white" filter="url(#fc-arith-bias)"/>
+      </svg>
+      <div class="label">arithmetic<br>k4=0.2 (bias)</div>
+    </div>
+
+  </div>
+
+  <!-- machine blueprint -->
+  <script type="application/svg-blueprint" id="blueprint">
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" x="0" y="0" width="70%" height="70%" result="layer1"/>
+      <feFlood flood-color="#4d8bff" x="30%" y="30%" width="70%" height="70%" result="layer2"/>
+      {{ELEMENT}}
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="white" filter="url(#slot)"/>
+</svg>
+  </script>
+</body></html>

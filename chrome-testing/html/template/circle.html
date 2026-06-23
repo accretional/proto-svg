@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>&lt;circle&gt;</title>
+<style>
+  body{margin:0;background:#1a1a2e;color:#e6e6e6;font:14px/1.4 ui-monospace,Menlo,monospace;padding:24px}
+  h1{color:#16c79a;font-size:18px;margin:0 0 4px}
+  p.desc{color:#9aa;margin:0 0 20px}
+  .grid{display:flex;flex-wrap:wrap;gap:16px}
+  .card{background:#0f1530;border:1px solid #26305a;border-radius:8px;padding:10px;width:160px}
+  .card svg{display:block;background:#161c3a;border-radius:4px;width:140px;height:140px}
+  .card .label{margin-top:8px;color:#f5a623;font-size:12px;word-break:break-all}
+</style></head>
+<body>
+  <h1>&lt;circle&gt;</h1>
+  <p class="desc">Circle. Showcasing cx, cy, r, fill, stroke, stroke-width, stroke-dasharray, opacity.</p>
+  <div class="grid">
+
+    <!-- 1. Default center, mid-sized radius -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="40" fill="#e94560"/>
+      </svg>
+      <div class="label">cx=50 cy=50 r=40<br>centered</div>
+    </div>
+
+    <!-- 2. Small radius -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="15" fill="#16c79a"/>
+      </svg>
+      <div class="label">r=15<br>small radius</div>
+    </div>
+
+    <!-- 3. Large radius (touching edges) -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="48" fill="#4d8bff"/>
+      </svg>
+      <div class="label">r=48<br>nearly full viewport</div>
+    </div>
+
+    <!-- 4. cx/cy offset — off-center -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <circle cx="25" cy="25" r="22" fill="#ffd166"/>
+      </svg>
+      <div class="label">cx=25 cy=25<br>offset center</div>
+    </div>
+
+    <!-- 5. Stroke only, no fill -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="38" fill="none"
+                stroke="#e94560" stroke-width="4"/>
+      </svg>
+      <div class="label">fill="none"<br>stroke-width=4</div>
+    </div>
+
+    <!-- 6. Thick stroke (stroke-width large) -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="32" fill="#b06aff"
+                stroke="#ffd166" stroke-width="10"/>
+      </svg>
+      <div class="label">stroke-width=10<br>fill + stroke</div>
+    </div>
+
+    <!-- 7. Dashed stroke -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="38" fill="none"
+                stroke="#16c79a" stroke-width="3"
+                stroke-dasharray="10 5"/>
+      </svg>
+      <div class="label">stroke-dasharray<br>"10 5"</div>
+    </div>
+
+    <!-- 8. Semi-transparent fill (opacity) -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <circle cx="35" cy="50" r="30" fill="#e94560" opacity="0.7"/>
+        <circle cx="65" cy="50" r="30" fill="#4d8bff" opacity="0.7"/>
+      </svg>
+      <div class="label">opacity=0.7<br>two overlapping</div>
+    </div>
+
+    <!-- 9. cx at origin edge (partially clipped) -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <circle cx="0" cy="50" r="30" fill="#f5a623"/>
+      </svg>
+      <div class="label">cx=0 half-visible<br>edge position</div>
+    </div>
+
+  </div>
+
+  <!-- machine blueprint: self-rendering shape -->
+  <script type="application/svg-blueprint" id="blueprint">
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">{{ELEMENT}}</svg>
+  </script>
+</body></html>

@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>&lt;feSpotLight&gt;</title>
+<style>
+  body{margin:0;background:#1a1a2e;color:#e6e6e6;font:14px/1.4 ui-monospace,Menlo,monospace;padding:24px}
+  h1{color:#16c79a;font-size:18px;margin:0 0 4px}
+  p.desc{color:#9aa;margin:0 0 20px}
+  .grid{display:flex;flex-wrap:wrap;gap:16px}
+  .card{background:#0f1530;border:1px solid #26305a;border-radius:8px;padding:10px;width:160px}
+  .card svg{display:block;background:#161c3a;border-radius:4px;width:140px;height:140px}
+  .card .label{margin-top:8px;color:#f5a623;font-size:12px;word-break:break-all}
+</style></head>
+<body>
+  <h1>&lt;feSpotLight&gt;</h1>
+  <p class="desc">Spot light source. Showcasing x/y/z (light position), pointsAtX/Y/Z (target), specularExponent (cone focus sharpness), limitingConeAngle (wide/narrow). Bump mapped for clarity.</p>
+  <div class="grid">
+
+    <!-- 1. Overhead center, wide cone -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="sp1">
+            <feGaussianBlur in="SourceAlpha" stdDeviation="6" result="bump"/>
+            <feDiffuseLighting in="bump" surfaceScale="10" diffuseConstant="1" lighting-color="white" result="light">
+              <feSpotLight x="50" y="50" z="80" pointsAtX="50" pointsAtY="50" pointsAtZ="0"
+                           specularExponent="5" limitingConeAngle="60"/>
+            </feDiffuseLighting>
+            <feComposite in="light" in2="SourceGraphic" operator="in"/>
+          </filter>
+        </defs>
+        <g filter="url(#sp1)">
+          <rect x="5" y="5" width="45" height="45" fill="#e94560"/>
+          <rect x="50" y="5" width="45" height="45" fill="#16c79a"/>
+          <rect x="5" y="50" width="45" height="45" fill="#4d8bff"/>
+          <rect x="50" y="50" width="45" height="45" fill="#ffd166"/>
+        </g>
+      </svg>
+      <div class="label">overhead center<br>coneAngle=60°<br>(wide)</div>
+    </div>
+
+    <!-- 2. Narrower cone -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="sp2">
+            <feGaussianBlur in="SourceAlpha" stdDeviation="6" result="bump"/>
+            <feDiffuseLighting in="bump" surfaceScale="10" diffuseConstant="1" lighting-color="white" result="light">
+              <feSpotLight x="50" y="50" z="80" pointsAtX="50" pointsAtY="50" pointsAtZ="0"
+                           specularExponent="20" limitingConeAngle="25"/>
+            </feDiffuseLighting>
+            <feComposite in="light" in2="SourceGraphic" operator="in"/>
+          </filter>
+        </defs>
+        <g filter="url(#sp2)">
+          <rect x="5" y="5" width="45" height="45" fill="#e94560"/>
+          <rect x="50" y="5" width="45" height="45" fill="#16c79a"/>
+          <rect x="5" y="50" width="45" height="45" fill="#4d8bff"/>
+          <rect x="50" y="50" width="45" height="45" fill="#ffd166"/>
+        </g>
+      </svg>
+      <div class="label">coneAngle=25°<br>(narrow spot)</div>
+    </div>
+
+    <!-- 3. Very tight cone — small circle of light -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="sp3">
+            <feGaussianBlur in="SourceAlpha" stdDeviation="6" result="bump"/>
+            <feDiffuseLighting in="bump" surfaceScale="10" diffuseConstant="1" lighting-color="white" result="light">
+              <feSpotLight x="50" y="50" z="80" pointsAtX="50" pointsAtY="50" pointsAtZ="0"
+                           specularExponent="50" limitingConeAngle="10"/>
+            </feDiffuseLighting>
+            <feComposite in="light" in2="SourceGraphic" operator="in"/>
+          </filter>
+        </defs>
+        <g filter="url(#sp3)">
+          <rect x="5" y="5" width="45" height="45" fill="#e94560"/>
+          <rect x="50" y="5" width="45" height="45" fill="#16c79a"/>
+          <rect x="5" y="50" width="45" height="45" fill="#4d8bff"/>
+          <rect x="50" y="50" width="45" height="45" fill="#ffd166"/>
+        </g>
+      </svg>
+      <div class="label">coneAngle=10°<br>(very tight)</div>
+    </div>
+
+    <!-- 4. No limitingConeAngle — full hemisphere -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="sp4">
+            <feGaussianBlur in="SourceAlpha" stdDeviation="6" result="bump"/>
+            <feDiffuseLighting in="bump" surfaceScale="10" diffuseConstant="1" lighting-color="white" result="light">
+              <feSpotLight x="50" y="50" z="80" pointsAtX="50" pointsAtY="50" pointsAtZ="0"
+                           specularExponent="5"/>
+            </feDiffuseLighting>
+            <feComposite in="light" in2="SourceGraphic" operator="in"/>
+          </filter>
+        </defs>
+        <g filter="url(#sp4)">
+          <rect x="5" y="5" width="45" height="45" fill="#e94560"/>
+          <rect x="50" y="5" width="45" height="45" fill="#16c79a"/>
+          <rect x="5" y="50" width="45" height="45" fill="#4d8bff"/>
+          <rect x="50" y="50" width="45" height="45" fill="#ffd166"/>
+        </g>
+      </svg>
+      <div class="label">no limitingConeAngle<br>(full hemisphere)</div>
+    </div>
+
+    <!-- 5. Light from top-left, pointing to center -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="sp5">
+            <feGaussianBlur in="SourceAlpha" stdDeviation="6" result="bump"/>
+            <feDiffuseLighting in="bump" surfaceScale="10" diffuseConstant="1" lighting-color="white" result="light">
+              <feSpotLight x="0" y="0" z="80" pointsAtX="50" pointsAtY="50" pointsAtZ="0"
+                           specularExponent="10" limitingConeAngle="45"/>
+            </feDiffuseLighting>
+            <feComposite in="light" in2="SourceGraphic" operator="in"/>
+          </filter>
+        </defs>
+        <g filter="url(#sp5)">
+          <rect x="5" y="5" width="45" height="45" fill="#e94560"/>
+          <rect x="50" y="5" width="45" height="45" fill="#16c79a"/>
+          <rect x="5" y="50" width="45" height="45" fill="#4d8bff"/>
+          <rect x="50" y="50" width="45" height="45" fill="#ffd166"/>
+        </g>
+      </svg>
+      <div class="label">x=0 y=0 z=80<br>→ center<br>coneAngle=45°</div>
+    </div>
+
+    <!-- 6. Light from bottom-right, pointing to center -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="sp6">
+            <feGaussianBlur in="SourceAlpha" stdDeviation="6" result="bump"/>
+            <feDiffuseLighting in="bump" surfaceScale="10" diffuseConstant="1" lighting-color="white" result="light">
+              <feSpotLight x="100" y="100" z="80" pointsAtX="50" pointsAtY="50" pointsAtZ="0"
+                           specularExponent="10" limitingConeAngle="45"/>
+            </feDiffuseLighting>
+            <feComposite in="light" in2="SourceGraphic" operator="in"/>
+          </filter>
+        </defs>
+        <g filter="url(#sp6)">
+          <rect x="5" y="5" width="45" height="45" fill="#e94560"/>
+          <rect x="50" y="5" width="45" height="45" fill="#16c79a"/>
+          <rect x="5" y="50" width="45" height="45" fill="#4d8bff"/>
+          <rect x="50" y="50" width="45" height="45" fill="#ffd166"/>
+        </g>
+      </svg>
+      <div class="label">x=100 y=100 z=80<br>→ center<br>coneAngle=45°</div>
+    </div>
+
+    <!-- 7. High specularExponent on feSpotLight — sharp cone falloff -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="sp7">
+            <feGaussianBlur in="SourceAlpha" stdDeviation="6" result="bump"/>
+            <feDiffuseLighting in="bump" surfaceScale="10" diffuseConstant="1" lighting-color="white" result="light">
+              <feSpotLight x="50" y="50" z="80" pointsAtX="50" pointsAtY="50" pointsAtZ="0"
+                           specularExponent="100" limitingConeAngle="35"/>
+            </feDiffuseLighting>
+            <feComposite in="light" in2="SourceGraphic" operator="in"/>
+          </filter>
+        </defs>
+        <g filter="url(#sp7)">
+          <rect x="5" y="5" width="45" height="45" fill="#e94560"/>
+          <rect x="50" y="5" width="45" height="45" fill="#16c79a"/>
+          <rect x="5" y="50" width="45" height="45" fill="#4d8bff"/>
+          <rect x="50" y="50" width="45" height="45" fill="#ffd166"/>
+        </g>
+      </svg>
+      <div class="label">specExp=100<br>coneAngle=35°<br>(hard edge)</div>
+    </div>
+
+    <!-- 8. Low specularExponent — soft gradient inside cone -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="sp8">
+            <feGaussianBlur in="SourceAlpha" stdDeviation="6" result="bump"/>
+            <feDiffuseLighting in="bump" surfaceScale="10" diffuseConstant="1" lighting-color="white" result="light">
+              <feSpotLight x="50" y="50" z="80" pointsAtX="50" pointsAtY="50" pointsAtZ="0"
+                           specularExponent="1" limitingConeAngle="45"/>
+            </feDiffuseLighting>
+            <feComposite in="light" in2="SourceGraphic" operator="in"/>
+          </filter>
+        </defs>
+        <g filter="url(#sp8)">
+          <rect x="5" y="5" width="45" height="45" fill="#e94560"/>
+          <rect x="50" y="5" width="45" height="45" fill="#16c79a"/>
+          <rect x="5" y="50" width="45" height="45" fill="#4d8bff"/>
+          <rect x="50" y="50" width="45" height="45" fill="#ffd166"/>
+        </g>
+      </svg>
+      <div class="label">specExp=1<br>coneAngle=45°<br>(soft gradient)</div>
+    </div>
+
+    <!-- 9. Warm spot pointed off-center -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="sp9">
+            <feGaussianBlur in="SourceAlpha" stdDeviation="6" result="bump"/>
+            <feDiffuseLighting in="bump" surfaceScale="10" diffuseConstant="1.5" lighting-color="#ffaa00" result="light">
+              <feSpotLight x="50" y="20" z="80" pointsAtX="30" pointsAtY="70" pointsAtZ="0"
+                           specularExponent="15" limitingConeAngle="40"/>
+            </feDiffuseLighting>
+            <feComposite in="light" in2="SourceGraphic" operator="in"/>
+          </filter>
+        </defs>
+        <g filter="url(#sp9)">
+          <rect x="5" y="5" width="45" height="45" fill="#e94560"/>
+          <rect x="50" y="5" width="45" height="45" fill="#16c79a"/>
+          <rect x="5" y="50" width="45" height="45" fill="#4d8bff"/>
+          <rect x="50" y="50" width="45" height="45" fill="#ffd166"/>
+        </g>
+      </svg>
+      <div class="label">warm #ffaa00<br>off-center target</div>
+    </div>
+
+    <!-- 10. Cool side-lit spot -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="sp10">
+            <feGaussianBlur in="SourceAlpha" stdDeviation="6" result="bump"/>
+            <feDiffuseLighting in="bump" surfaceScale="10" diffuseConstant="1.5" lighting-color="#44aaff" result="light">
+              <feSpotLight x="10" y="50" z="60" pointsAtX="50" pointsAtY="50" pointsAtZ="0"
+                           specularExponent="20" limitingConeAngle="35"/>
+            </feDiffuseLighting>
+            <feComposite in="light" in2="SourceGraphic" operator="in"/>
+          </filter>
+        </defs>
+        <g filter="url(#sp10)">
+          <rect x="5" y="5" width="45" height="45" fill="#e94560"/>
+          <rect x="50" y="5" width="45" height="45" fill="#16c79a"/>
+          <rect x="5" y="50" width="45" height="45" fill="#4d8bff"/>
+          <rect x="50" y="50" width="45" height="45" fill="#ffd166"/>
+        </g>
+      </svg>
+      <div class="label">cool #44aaff<br>x=10 side-lit</div>
+    </div>
+
+  </div>
+
+  <!-- machine blueprint: feSpotLight inside feDiffuseLighting inside filter -->
+  <script type="application/svg-blueprint" id="blueprint">
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100"><defs><filter id="slot"><feDiffuseLighting surfaceScale="5" diffuseConstant="1" lighting-color="white">{{ELEMENT}}</feDiffuseLighting></filter></defs><rect x="5" y="5" width="90" height="90" fill="#16c79a" filter="url(#slot)"/></svg>
+  </script>
+</body></html>

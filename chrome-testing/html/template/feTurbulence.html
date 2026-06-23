@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>&lt;feTurbulence&gt;</title>
+<style>
+  body{margin:0;background:#1a1a2e;color:#e6e6e6;font:14px/1.4 ui-monospace,Menlo,monospace;padding:24px}
+  h1{color:#16c79a;font-size:18px;margin:0 0 4px}
+  p.desc{color:#9aa;margin:0 0 20px}
+  .grid{display:flex;flex-wrap:wrap;gap:16px}
+  .card{background:#0f1530;border:1px solid #26305a;border-radius:8px;padding:10px;width:160px}
+  .card svg{display:block;background:#161c3a;border-radius:4px;width:140px;height:140px}
+  .card .label{margin-top:8px;color:#f5a623;font-size:12px;word-break:break-all}
+</style></head>
+<body>
+  <h1>&lt;feTurbulence&gt;</h1>
+  <p class="desc">Generates Perlin noise / turbulence. type=fractalNoise|turbulence; baseFrequency, numOctaves, seed, stitchTiles. No in= attribute.</p>
+  <div class="grid">
+
+    <!-- 1. type=turbulence, low frequency -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="ft-turb-low">
+            <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1"/>
+          </filter>
+        </defs>
+        <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#ft-turb-low)"/>
+      </svg>
+      <div class="label">turbulence<br>baseFreq=0.05</div>
+    </div>
+
+    <!-- 2. type=turbulence, high frequency -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="ft-turb-hi">
+            <feTurbulence type="turbulence" baseFrequency="0.3" numOctaves="2" seed="1"/>
+          </filter>
+        </defs>
+        <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#ft-turb-hi)"/>
+      </svg>
+      <div class="label">turbulence<br>baseFreq=0.3</div>
+    </div>
+
+    <!-- 3. type=fractalNoise -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="ft-frac">
+            <feTurbulence type="fractalNoise" baseFrequency="0.065" numOctaves="4" seed="5"/>
+          </filter>
+        </defs>
+        <rect x="5" y="5" width="90" height="90" fill="#e94560" filter="url(#ft-frac)"/>
+      </svg>
+      <div class="label">fractalNoise<br>baseFreq=0.065 oct=4</div>
+    </div>
+
+    <!-- 4. numOctaves=1 vs default — simple noise -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="ft-oct1">
+            <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="1" seed="10"/>
+          </filter>
+        </defs>
+        <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#ft-oct1)"/>
+      </svg>
+      <div class="label">fractalNoise<br>numOctaves="1"</div>
+    </div>
+
+    <!-- 5. numOctaves=8 — very detailed -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="ft-oct8">
+            <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="8" seed="3"/>
+          </filter>
+        </defs>
+        <rect x="5" y="5" width="90" height="90" fill="#16c79a" filter="url(#ft-oct8)"/>
+      </svg>
+      <div class="label">fractalNoise<br>numOctaves="8"</div>
+    </div>
+
+    <!-- 6. Different seed — same settings, different pattern -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="ft-seed42">
+            <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="3" seed="42"/>
+          </filter>
+        </defs>
+        <rect x="5" y="5" width="90" height="90" fill="#b06aff" filter="url(#ft-seed42)"/>
+      </svg>
+      <div class="label">seed="42"<br>(different pattern)</div>
+    </div>
+
+    <!-- 7. stitchTiles=stitch — seamless tiling -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="ft-stitch">
+            <feTurbulence type="fractalNoise" baseFrequency="0.1" numOctaves="3" seed="7" stitchTiles="stitch"/>
+          </filter>
+        </defs>
+        <rect x="5" y="5" width="90" height="90" fill="#ffd166" filter="url(#ft-stitch)"/>
+      </svg>
+      <div class="label">stitchTiles="stitch"<br>(seamless)</div>
+    </div>
+
+    <!-- 8. Turbulence used as displacement map -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="ft-displace" x="-10%" y="-10%" width="120%" height="120%">
+            <feTurbulence type="turbulence" baseFrequency="0.04" numOctaves="3" seed="2" result="noise"/>
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="15" xChannelSelector="R" yChannelSelector="G"/>
+          </filter>
+        </defs>
+        <rect x="10" y="10" width="80" height="80" fill="#e94560" filter="url(#ft-displace)"/>
+      </svg>
+      <div class="label">turbulence →<br>displacementMap</div>
+    </div>
+
+  </div>
+
+  <!-- machine blueprint -->
+  <script type="application/svg-blueprint" id="blueprint">
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">{{ELEMENT}}</filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
+</svg>
+  </script>
+</body></html>

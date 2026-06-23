@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>&lt;title&gt;</title>
+<style>
+  body{margin:0;background:#1a1a2e;color:#e6e6e6;font:14px/1.4 ui-monospace,Menlo,monospace;padding:24px}
+  h1{color:#16c79a;font-size:18px;margin:0 0 4px}
+  p.desc{color:#9aa;margin:0 0 20px}
+  .grid{display:flex;flex-wrap:wrap;gap:16px}
+  .card{background:#0f1530;border:1px solid #26305a;border-radius:8px;padding:10px;width:220px}
+  .card svg{display:block;background:#161c3a;border-radius:4px;width:200px;height:120px}
+  .card .label{margin-top:8px;color:#f5a623;font-size:12px;word-break:break-all}
+  .card .markup{margin-top:6px;background:#0a0e20;border-radius:4px;padding:8px;font-size:10px;color:#9af;white-space:pre;overflow-x:auto}
+  .note{color:#9aa;font-size:11px;margin-top:12px;max-width:700px}
+</style></head>
+<body>
+  <h1>&lt;title&gt;</h1>
+  <p class="desc">Descriptive element — never rendered visually. Provides a short title for accessibility and tooltips. Browsers show the title as a tooltip on hover. The host shape always renders.</p>
+  <div class="grid">
+
+    <!-- Card 1: title on the root svg (hover to see tooltip) -->
+    <div class="card">
+      <svg viewBox="0 0 200 120">
+        <title>Root SVG: Showcase of the title element</title>
+        <rect x="10" y="10" width="180" height="100" rx="8" fill="#e94560"/>
+        <text x="100" y="58" text-anchor="middle" font-size="13" fill="#fff">Hover me</text>
+        <text x="100" y="74" text-anchor="middle" font-size="10" fill="#ffd166">(tooltip from title)</text>
+      </svg>
+      <div class="label">title on root svg (hover)</div>
+      <div class="markup">&lt;svg&gt;
+  &lt;title&gt;Root SVG: Showcase...&lt;/title&gt;
+  &lt;rect .../&gt;
+&lt;/svg&gt;</div>
+    </div>
+
+    <!-- Card 2: title on a shape element -->
+    <div class="card">
+      <svg viewBox="0 0 200 120">
+        <circle cx="100" cy="60" r="50" fill="#4d8bff">
+          <title>Blue Circle: status indicator</title>
+        </circle>
+        <text x="100" y="58" text-anchor="middle" font-size="12" fill="#fff">Hover</text>
+        <text x="100" y="73" text-anchor="middle" font-size="9" fill="#ffd166">circle title</text>
+      </svg>
+      <div class="label">title child of circle</div>
+      <div class="markup">&lt;circle cx="100" cy="60" r="50"&gt;
+  &lt;title&gt;Blue Circle...&lt;/title&gt;
+&lt;/circle&gt;</div>
+    </div>
+
+    <!-- Card 3: title on a group -->
+    <div class="card">
+      <svg viewBox="0 0 200 120">
+        <g>
+          <title>Navigation icons group</title>
+          <rect x="20" y="40" width="40" height="40" rx="4" fill="#16c79a"/>
+          <rect x="80" y="40" width="40" height="40" rx="4" fill="#b06aff"/>
+          <rect x="140" y="40" width="40" height="40" rx="4" fill="#f5a623"/>
+        </g>
+      </svg>
+      <div class="label">title child of g</div>
+      <div class="markup">&lt;g&gt;
+  &lt;title&gt;Navigation icons&lt;/title&gt;
+  &lt;rect.../&gt; &lt;rect.../&gt; ...
+&lt;/g&gt;</div>
+    </div>
+
+    <!-- Card 4: title with id (for aria-labelledby) -->
+    <div class="card">
+      <svg viewBox="0 0 200 120" aria-labelledby="chart-title">
+        <title id="chart-title">Bar Chart: Monthly Revenue</title>
+        <!-- Simple bar chart -->
+        <rect x="20" y="80" width="20" height="30" fill="#e94560"/>
+        <rect x="50" y="50" width="20" height="60" fill="#16c79a"/>
+        <rect x="80" y="30" width="20" height="80" fill="#4d8bff"/>
+        <rect x="110" y="60" width="20" height="50" fill="#ffd166"/>
+        <rect x="140" y="20" width="20" height="90" fill="#b06aff"/>
+        <line x1="15" y1="110" x2="175" y2="110" stroke="#9aa" stroke-width="1"/>
+      </svg>
+      <div class="label">title with id + aria-labelledby</div>
+      <div class="markup">&lt;svg aria-labelledby="chart-title"&gt;
+  &lt;title id="chart-title"&gt;
+    Bar Chart: Monthly Revenue
+  &lt;/title&gt;
+&lt;/svg&gt;</div>
+    </div>
+
+    <!-- Card 5: multiple title elements with lang -->
+    <div class="card">
+      <svg viewBox="0 0 200 120">
+        <polygon points="100,10 190,110 10,110" fill="#f5a623">
+          <title lang="en">Warning Triangle (English)</title>
+          <title lang="fr">Triangle d'avertissement (Français)</title>
+          <title lang="de">Warndreieck (Deutsch)</title>
+        </polygon>
+        <text x="100" y="88" text-anchor="middle" font-size="11" fill="#1a1a2e">multi-lang</text>
+      </svg>
+      <div class="label">multiple title with lang</div>
+      <div class="markup">&lt;polygon&gt;
+  &lt;title lang="en"&gt;Warning...&lt;/title&gt;
+  &lt;title lang="fr"&gt;Triangle...&lt;/title&gt;
+  &lt;title lang="de"&gt;Warndreieck...&lt;/title&gt;
+&lt;/polygon&gt;</div>
+    </div>
+
+    <!-- Card 6: title is invisible — only host shape renders -->
+    <div class="card">
+      <svg viewBox="0 0 200 120">
+        <rect x="10" y="10" width="180" height="100" rx="8" fill="#16c79a">
+          <title>This title text never appears on canvas</title>
+        </rect>
+        <text x="100" y="55" text-anchor="middle" font-size="11" fill="#1a1a2e">title = invisible</text>
+        <text x="100" y="70" text-anchor="middle" font-size="9" fill="#1a1a2e">(shape renders, text does not)</text>
+      </svg>
+      <div class="label">title never renders visually</div>
+      <div class="markup">&lt;rect ...&gt;
+  &lt;title&gt;
+    Never appears on canvas
+  &lt;/title&gt;
+&lt;/rect&gt;</div>
+    </div>
+
+  </div>
+
+  <p class="note">Note: &lt;title&gt; is a never-rendered element (UA sets display:none). Browsers expose its text as a tooltip on mouse hover and as an accessible name. The host shapes above all render correctly; only the title text is invisible on the canvas.</p>
+
+  <script type="application/svg-blueprint" id="blueprint">
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100"><rect x="5" y="5" width="90" height="90" fill="#16c79a"/>{{ELEMENT}}</svg>
+  </script>
+</body></html>

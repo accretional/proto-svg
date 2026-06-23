@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>&lt;feConvolveMatrix&gt;</title>
+<style>
+  body{margin:0;background:#1a1a2e;color:#e6e6e6;font:14px/1.4 ui-monospace,Menlo,monospace;padding:24px}
+  h1{color:#16c79a;font-size:18px;margin:0 0 4px}
+  p.desc{color:#9aa;margin:0 0 20px}
+  .grid{display:flex;flex-wrap:wrap;gap:16px}
+  .card{background:#0f1530;border:1px solid #26305a;border-radius:8px;padding:10px;width:160px}
+  .card svg{display:block;background:#161c3a;border-radius:4px;width:140px;height:140px}
+  .card .label{margin-top:8px;color:#f5a623;font-size:12px;word-break:break-all}
+</style></head>
+<body>
+  <h1>&lt;feConvolveMatrix&gt;</h1>
+  <p class="desc">Applies a kernel convolution to the input image. order sets kernel size; kernelMatrix are the weights; divisor, bias, edgeMode, preserveAlpha.</p>
+  <div class="grid">
+
+    <!-- 1. Identity kernel 3×3 — passthrough -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="fcm-identity">
+            <feConvolveMatrix order="3" kernelMatrix="0 0 0  0 1 0  0 0 0" divisor="1"/>
+          </filter>
+        </defs>
+        <rect x="5" y="5" width="90" height="90" fill="#e94560" filter="url(#fcm-identity)"/>
+      </svg>
+      <div class="label">identity kernel<br>3×3 center=1</div>
+    </div>
+
+    <!-- 2. Box blur 3×3 -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="fcm-blur">
+            <feConvolveMatrix order="3"
+              kernelMatrix="1 1 1  1 1 1  1 1 1"
+              divisor="9"/>
+          </filter>
+        </defs>
+        <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#fcm-blur)"/>
+      </svg>
+      <div class="label">box blur 3×3<br>divisor=9</div>
+    </div>
+
+    <!-- 3. Sharpen kernel -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="fcm-sharpen">
+            <!-- Sharpen: 0 -1 0 / -1 5 -1 / 0 -1 0 -->
+            <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="2" seed="5" result="noise"/>
+            <feConvolveMatrix in="noise" order="3"
+              kernelMatrix="0 -1 0  -1 5 -1  0 -1 0"
+              divisor="1"/>
+          </filter>
+        </defs>
+        <rect x="5" y="5" width="90" height="90" fill="#16c79a" filter="url(#fcm-sharpen)"/>
+      </svg>
+      <div class="label">sharpen kernel<br>on noise input</div>
+    </div>
+
+    <!-- 4. Emboss kernel -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="fcm-emboss">
+            <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="3" seed="7" result="src"/>
+            <feConvolveMatrix in="src" order="3"
+              kernelMatrix="-2 -1 0  -1 1 1  0 1 2"
+              divisor="1" bias="0.5"/>
+          </filter>
+        </defs>
+        <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#fcm-emboss)"/>
+      </svg>
+      <div class="label">emboss kernel<br>bias=0.5</div>
+    </div>
+
+    <!-- 5. Edge detection kernel -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="fcm-edge">
+            <feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="4" seed="9" result="src"/>
+            <feConvolveMatrix in="src" order="3"
+              kernelMatrix="-1 -1 -1  -1 8 -1  -1 -1 -1"
+              divisor="1"/>
+          </filter>
+        </defs>
+        <rect x="5" y="5" width="90" height="90" fill="#b06aff" filter="url(#fcm-edge)"/>
+      </svg>
+      <div class="label">edge detect kernel<br>Laplacian</div>
+    </div>
+
+    <!-- 6. edgeMode=wrap -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="fcm-wrap">
+            <feTurbulence type="turbulence" baseFrequency="0.08" numOctaves="2" seed="3" result="src"/>
+            <feConvolveMatrix in="src" order="3"
+              kernelMatrix="0 -1 0  -1 5 -1  0 -1 0"
+              divisor="1" edgeMode="wrap"/>
+          </filter>
+        </defs>
+        <rect x="5" y="5" width="90" height="90" fill="#ffd166" filter="url(#fcm-wrap)"/>
+      </svg>
+      <div class="label">edgeMode="wrap"<br>sharpen</div>
+    </div>
+
+    <!-- 7. edgeMode=none -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="fcm-none">
+            <feTurbulence type="fractalNoise" baseFrequency="0.06" numOctaves="3" seed="4" result="src"/>
+            <feConvolveMatrix in="src" order="3"
+              kernelMatrix="1 1 1  1 1 1  1 1 1"
+              divisor="9" edgeMode="none"/>
+          </filter>
+        </defs>
+        <rect x="5" y="5" width="90" height="90" fill="#e94560" filter="url(#fcm-none)"/>
+      </svg>
+      <div class="label">edgeMode="none"<br>box blur</div>
+    </div>
+
+    <!-- 8. preserveAlpha=true + sharpen on colored rect -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="fcm-palpha">
+            <feConvolveMatrix in="SourceGraphic" order="3"
+              kernelMatrix="0 -1 0  -1 5 -1  0 -1 0"
+              divisor="1" preserveAlpha="true"/>
+          </filter>
+        </defs>
+        <rect x="10" y="10" width="80" height="80" rx="12" fill="#16c79a" filter="url(#fcm-palpha)"/>
+      </svg>
+      <div class="label">preserveAlpha=true<br>sharpen rect</div>
+    </div>
+
+  </div>
+
+  <!-- machine blueprint -->
+  <script type="application/svg-blueprint" id="blueprint">
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">{{ELEMENT}}</filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
+</svg>
+  </script>
+</body></html>

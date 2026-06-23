@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>&lt;a&gt;</title>
+<style>
+  body{margin:0;background:#1a1a2e;color:#e6e6e6;font:14px/1.4 ui-monospace,Menlo,monospace;padding:24px}
+  h1{color:#16c79a;font-size:18px;margin:0 0 4px}
+  p.desc{color:#9aa;margin:0 0 20px}
+  .grid{display:flex;flex-wrap:wrap;gap:16px}
+  .card{background:#0f1530;border:1px solid #26305a;border-radius:8px;padding:10px;width:160px}
+  .card svg{display:block;background:#161c3a;border-radius:4px;width:140px;height:140px}
+  .card .label{margin-top:8px;color:#f5a623;font-size:12px;word-break:break-all}
+</style></head>
+<body>
+  <h1>&lt;a&gt;</h1>
+  <p class="desc">SVG hyperlink element. Wraps shapes/groups as clickable links. Showcases href, target variants, wrapping different shape types, and styling cues for interactivity.</p>
+  <div class="grid">
+
+    <!-- Card 1: basic a wrapping a rect with href -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <a href="https://www.w3.org/TR/SVG2/">
+          <rect x="15" y="30" width="70" height="40" rx="8" fill="#e94560"/>
+          <text x="50" y="55" text-anchor="middle" font-size="11" fill="#fff">click me</text>
+        </a>
+      </svg>
+      <div class="label">href (external URL)</div>
+    </div>
+
+    <!-- Card 2: a wrapping a circle, target="_blank" -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/a" target="_blank">
+          <circle cx="50" cy="50" r="38" fill="#4d8bff"/>
+          <text x="50" y="46" text-anchor="middle" font-size="10" fill="#fff">MDN docs</text>
+          <text x="50" y="60" text-anchor="middle" font-size="9" fill="#ffd166">_blank</text>
+        </a>
+      </svg>
+      <div class="label">target="_blank"</div>
+    </div>
+
+    <!-- Card 3: a wrapping a polygon (triangle) -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <a href="#section1">
+          <polygon points="50,10 90,85 10,85" fill="#16c79a"/>
+          <text x="50" y="70" text-anchor="middle" font-size="9" fill="#1a1a2e">anchor link</text>
+        </a>
+      </svg>
+      <div class="label">href="#anchor" (fragment)</div>
+    </div>
+
+    <!-- Card 4: a wrapping a group of shapes -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <a href="https://www.w3.org/TR/SVG2/struct.html#AElement" target="_blank">
+          <g>
+            <rect x="10" y="10" width="80" height="80" rx="10" fill="#b06aff"/>
+            <rect x="25" y="30" width="50" height="8" rx="2" fill="#fff"/>
+            <rect x="25" y="45" width="50" height="8" rx="2" fill="#fff"/>
+            <rect x="25" y="60" width="35" height="8" rx="2" fill="#fff"/>
+          </g>
+        </a>
+      </svg>
+      <div class="label">a wrapping a group</div>
+    </div>
+
+    <!-- Card 5: a with target="_self" (explicit default) -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <a href="#" target="_self">
+          <rect x="10" y="35" width="80" height="30" rx="15" fill="#f5a623"/>
+          <text x="50" y="55" text-anchor="middle" font-size="11" fill="#1a1a2e">_self</text>
+        </a>
+      </svg>
+      <div class="label">target="_self"</div>
+    </div>
+
+    <!-- Card 6: a with target="_top" -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <a href="https://www.w3.org/" target="_top">
+          <circle cx="50" cy="50" r="38" fill="#ffd166"/>
+          <text x="50" y="46" text-anchor="middle" font-size="10" fill="#1a1a2e">target</text>
+          <text x="50" y="60" text-anchor="middle" font-size="10" fill="#1a1a2e">_top</text>
+        </a>
+      </svg>
+      <div class="label">target="_top"</div>
+    </div>
+
+    <!-- Card 7: a wrapping text -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <a href="https://www.w3.org/TR/SVG2/" target="_blank">
+          <text x="50" y="55" text-anchor="middle" font-size="16"
+                fill="#16c79a" text-decoration="underline">SVG spec</text>
+        </a>
+      </svg>
+      <div class="label">a wrapping text element</div>
+    </div>
+
+    <!-- Card 8: a with hreflang attribute -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <a href="https://www.w3.org/TR/SVG2/" hreflang="en" target="_blank">
+          <rect x="10" y="10" width="80" height="80" rx="8"
+                fill="none" stroke="#e94560" stroke-width="4"/>
+          <text x="50" y="46" text-anchor="middle" font-size="11" fill="#e94560">hreflang</text>
+          <text x="50" y="61" text-anchor="middle" font-size="10" fill="#9aa">="en"</text>
+        </a>
+      </svg>
+      <div class="label">hreflang="en"</div>
+    </div>
+
+    <!-- Card 9: a with download attribute -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <a href="data:text/plain,hello" download="hello.txt">
+          <rect x="20" y="15" width="60" height="70" rx="4" fill="#4d8bff"/>
+          <!-- Down-arrow icon -->
+          <line x1="50" y1="30" x2="50" y2="65" stroke="#fff" stroke-width="5" stroke-linecap="round"/>
+          <polyline points="35,55 50,70 65,55" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+        </a>
+      </svg>
+      <div class="label">download attribute</div>
+    </div>
+
+    <!-- Card 10: nested a inside g -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <g transform="translate(0,0)">
+          <a href="https://svg.w3.org" target="_blank">
+            <circle cx="50" cy="50" r="30" fill="#e94560"/>
+            <text x="50" y="54" text-anchor="middle" font-size="10" fill="#fff">nested in g</text>
+          </a>
+        </g>
+      </svg>
+      <div class="label">a nested inside g</div>
+    </div>
+
+  </div>
+
+  <script type="application/svg-blueprint" id="blueprint">
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">{{ELEMENT}}</svg>
+  </script>
+</body></html>

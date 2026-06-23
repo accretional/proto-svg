@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>&lt;feTile&gt;</title>
+<style>
+  body{margin:0;background:#1a1a2e;color:#e6e6e6;font:14px/1.4 ui-monospace,Menlo,monospace;padding:24px}
+  h1{color:#16c79a;font-size:18px;margin:0 0 4px}
+  p.desc{color:#9aa;margin:0 0 20px}
+  .grid{display:flex;flex-wrap:wrap;gap:16px}
+  .card{background:#0f1530;border:1px solid #26305a;border-radius:8px;padding:10px;width:160px}
+  .card svg{display:block;background:#161c3a;border-radius:4px;width:140px;height:140px}
+  .card .label{margin-top:8px;color:#f5a623;font-size:12px;word-break:break-all}
+</style></head>
+<body>
+  <h1>&lt;feTile&gt;</h1>
+  <p class="desc">Tiles the input image (a sub-region) to fill the filter primitive subregion. Takes in= (the tile source, typically a small region).</p>
+  <div class="grid">
+
+    <!-- 1. Tile a small flood patch across full area -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="ft-basic">
+            <feFlood flood-color="#e94560" x="0" y="0" width="25%" height="25%" result="patch"/>
+            <feTile in="patch"/>
+          </filter>
+        </defs>
+        <rect x="5" y="5" width="90" height="90" fill="white" filter="url(#ft-basic)"/>
+      </svg>
+      <div class="label">tile flood patch<br>25%×25% red</div>
+    </div>
+
+    <!-- 2. Different color — teal patch tiled -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="ft-teal">
+            <feFlood flood-color="#16c79a" x="0" y="0" width="30%" height="20%" result="tpatch"/>
+            <feTile in="tpatch"/>
+          </filter>
+        </defs>
+        <rect x="5" y="5" width="90" height="90" fill="white" filter="url(#ft-teal)"/>
+      </svg>
+      <div class="label">teal patch 30%×20%<br>(rect tile)</div>
+    </div>
+
+    <!-- 3. feImage small pattern tiled -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="ft-img">
+            <feImage href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20'%3E%3Crect width='20' height='20' fill='%231a1a2e'/%3E%3Ccircle cx='10' cy='10' r='7' fill='%234d8bff'/%3E%3C/svg%3E"
+              preserveAspectRatio="xMidYMid meet" x="0" y="0" width="20" height="20" result="imgTile"/>
+            <feTile in="imgTile"/>
+          </filter>
+        </defs>
+        <rect x="5" y="5" width="90" height="90" fill="white" filter="url(#ft-img)"/>
+      </svg>
+      <div class="label">feImage + feTile<br>circles pattern</div>
+    </div>
+
+    <!-- 4. Diagonal checker effect via feImage tile -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="ft-checker">
+            <feImage href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20'%3E%3Crect width='10' height='10' fill='%23f5a623'/%3E%3Crect x='10' width='10' height='10' fill='%23e94560'/%3E%3Crect y='10' width='10' height='10' fill='%23e94560'/%3E%3Crect x='10' y='10' width='10' height='10' fill='%23f5a623'/%3E%3C/svg%3E"
+              x="0" y="0" width="20" height="20" result="checker"/>
+            <feTile in="checker"/>
+          </filter>
+        </defs>
+        <rect x="5" y="5" width="90" height="90" fill="white" filter="url(#ft-checker)"/>
+      </svg>
+      <div class="label">checkerboard<br>feImage → feTile</div>
+    </div>
+
+    <!-- 5. feTile result used as feBlend input -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="ft-blend">
+            <feImage href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='15' height='15'%3E%3Crect width='15' height='15' fill='%23b06aff'/%3E%3Crect x='2' y='2' width='11' height='11' fill='%23ffd166'/%3E%3C/svg%3E"
+              x="0" y="0" width="15" height="15" result="tiny"/>
+            <feTile in="tiny" result="tiled"/>
+            <feBlend in="tiled" in2="SourceGraphic" mode="multiply"/>
+          </filter>
+        </defs>
+        <rect x="5" y="5" width="90" height="90" fill="#4d8bff" filter="url(#ft-blend)"/>
+      </svg>
+      <div class="label">tile → feBlend<br>multiply on source</div>
+    </div>
+
+    <!-- 6. feTile after SourceGraphic restricted to small region -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="ft-srcregion">
+            <feFlood flood-color="#ffd166" x="0" y="0" width="20%" height="20%" result="cell"/>
+            <feTile in="cell" result="tiled2"/>
+            <feComposite in="tiled2" in2="SourceAlpha" operator="in"/>
+          </filter>
+        </defs>
+        <circle cx="50" cy="50" r="42" fill="white" filter="url(#ft-srcregion)"/>
+      </svg>
+      <div class="label">tile clipped by<br>SourceAlpha circle</div>
+    </div>
+
+  </div>
+
+  <!-- machine blueprint -->
+  <script type="application/svg-blueprint" id="blueprint">
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot">
+      <feFlood flood-color="#f5a623" x="0" y="0" width="25%" height="25%" result="patch"/>
+      {{ELEMENT}}
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="white" filter="url(#slot)"/>
+</svg>
+  </script>
+</body></html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>&lt;tspan&gt;</title>
+<style>
+  body{margin:0;background:#1a1a2e;color:#e6e6e6;font:14px/1.4 ui-monospace,Menlo,monospace;padding:24px}
+  h1{color:#16c79a;font-size:18px;margin:0 0 4px}
+  p.desc{color:#9aa;margin:0 0 20px}
+  .grid{display:flex;flex-wrap:wrap;gap:16px}
+  .card{background:#0f1530;border:1px solid #26305a;border-radius:8px;padding:10px;width:160px}
+  .card svg{display:block;background:#161c3a;border-radius:4px;width:140px;height:140px}
+  .card .label{margin-top:8px;color:#f5a623;font-size:12px;word-break:break-all}
+</style></head>
+<body>
+  <h1>&lt;tspan&gt;</h1>
+  <p class="desc">tspan inside text. Showcasing different fill/font-size per span, dy multi-line, baseline-shift super/sub, dx offset, rotate, font-weight/style, textLength.</p>
+  <div class="grid">
+
+    <!-- different fill per tspan -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <text x="50" y="55" font-size="18" text-anchor="middle">
+          <tspan fill="#e94560">Re</tspan><tspan fill="#16c79a">d</tspan><tspan fill="#f5a623">Go</tspan>
+        </text>
+      </svg>
+      <div class="label">tspan fill per-span</div>
+    </div>
+
+    <!-- different font-size per tspan -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <text x="10" y="60" dominant-baseline="alphabetic">
+          <tspan font-size="28" fill="#4d8bff">Big</tspan><tspan font-size="13" fill="#ffd166">small</tspan>
+        </text>
+      </svg>
+      <div class="label">tspan font-size mixed</div>
+    </div>
+
+    <!-- dy multi-line (newline simulation) -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <text x="10" y="30" font-size="16" fill="#b06aff">
+          <tspan x="10" dy="0">Line 1</tspan>
+          <tspan x="10" dy="22">Line 2</tspan>
+          <tspan x="10" dy="22">Line 3</tspan>
+        </text>
+      </svg>
+      <div class="label">tspan dy multi-line</div>
+    </div>
+
+    <!-- baseline-shift super -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <text x="10" y="60" font-size="18" fill="#e6e6e6">
+          X<tspan font-size="11" baseline-shift="super" fill="#e94560">2</tspan>
+          +Y<tspan font-size="11" baseline-shift="super" fill="#16c79a">3</tspan>
+        </text>
+      </svg>
+      <div class="label">baseline-shift="super"</div>
+    </div>
+
+    <!-- baseline-shift sub -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <text x="10" y="50" font-size="18" fill="#e6e6e6">
+          H<tspan font-size="11" baseline-shift="sub" fill="#f5a623">2</tspan>O
+        </text>
+      </svg>
+      <div class="label">baseline-shift="sub"</div>
+    </div>
+
+    <!-- dx horizontal offset on tspan -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <text x="10" y="55" font-size="16" fill="#4d8bff">
+          Hello<tspan dx="10" fill="#ffd166">gap</tspan>
+        </text>
+      </svg>
+      <div class="label">tspan dx="10" (gap)</div>
+    </div>
+
+    <!-- font-weight bold tspan inside normal text -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <text x="50" y="55" font-size="16" text-anchor="middle" fill="#e6e6e6">
+          Go <tspan font-weight="bold" fill="#e94560">Bold</tspan>!
+        </text>
+      </svg>
+      <div class="label">tspan font-weight="bold"</div>
+    </div>
+
+    <!-- font-style italic tspan -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <text x="50" y="55" font-size="16" text-anchor="middle" fill="#e6e6e6">
+          Hi <tspan font-style="italic" fill="#16c79a">italic</tspan>!
+        </text>
+      </svg>
+      <div class="label">tspan font-style="italic"</div>
+    </div>
+
+    <!-- rotate per-glyph on tspan -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <text x="10" y="60" font-size="18" fill="#b06aff">
+          <tspan rotate="0 20 40 20 0">Hello</tspan>
+        </text>
+      </svg>
+      <div class="label">tspan rotate per-glyph</div>
+    </div>
+
+    <!-- nested tspan (tspan inside tspan) -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <text x="10" y="55" font-size="14" fill="#e6e6e6">
+          <tspan fill="#f5a623">Out<tspan font-size="18" fill="#4d8bff">In</tspan>er</tspan>
+        </text>
+      </svg>
+      <div class="label">nested tspan</div>
+    </div>
+
+    <!-- tspan with absolute x repositioning -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <text font-size="16" fill="#e6e6e6">
+          <tspan x="5" y="40" fill="#e94560">Left</tspan>
+          <tspan x="55" y="70" fill="#16c79a">Right</tspan>
+        </text>
+      </svg>
+      <div class="label">tspan x="…" absolute reposition</div>
+    </div>
+
+    <!-- textLength on tspan -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <text x="10" y="55" font-size="18" fill="#e6e6e6">
+          <tspan textLength="78" lengthAdjust="spacing" fill="#ffd166">Hi!</tspan>
+        </text>
+      </svg>
+      <div class="label">tspan textLength="78"</div>
+    </div>
+
+  </div>
+
+  <!-- machine blueprint: tspan is a child element; text wraps it -->
+  <script type="application/svg-blueprint" id="blueprint">
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100"><text x="10" y="55" font-size="18" fill="#e6e6e6">{{ELEMENT}}</text></svg>
+  </script>
+</body></html>

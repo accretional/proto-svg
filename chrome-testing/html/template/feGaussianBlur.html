@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>&lt;feGaussianBlur&gt;</title>
+<style>
+  body{margin:0;background:#1a1a2e;color:#e6e6e6;font:14px/1.4 ui-monospace,Menlo,monospace;padding:24px}
+  h1{color:#16c79a;font-size:18px;margin:0 0 4px}
+  p.desc{color:#9aa;margin:0 0 20px}
+  .grid{display:flex;flex-wrap:wrap;gap:16px}
+  .card{background:#0f1530;border:1px solid #26305a;border-radius:8px;padding:10px;width:160px}
+  .card svg{display:block;background:#161c3a;border-radius:4px;width:140px;height:140px}
+  .card .label{margin-top:8px;color:#f5a623;font-size:12px;word-break:break-all}
+</style></head>
+<body>
+  <h1>&lt;feGaussianBlur&gt;</h1>
+  <p class="desc">Gaussian blur primitive. Showcasing stdDeviation (0, small, medium, large, asymmetric two-value) and edgeMode (none/duplicate/wrap).</p>
+  <div class="grid">
+
+    <!-- 1. stdDeviation=0 — identity (no blur) -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="gb1" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="0"/>
+          </filter>
+        </defs>
+        <g filter="url(#gb1)">
+          <rect x="10" y="10" width="35" height="35" fill="#e94560"/>
+          <rect x="55" y="10" width="35" height="35" fill="#16c79a"/>
+          <rect x="10" y="55" width="35" height="35" fill="#4d8bff"/>
+          <rect x="55" y="55" width="35" height="35" fill="#ffd166"/>
+        </g>
+      </svg>
+      <div class="label">stdDeviation="0"<br>(no blur)</div>
+    </div>
+
+    <!-- 2. stdDeviation=2 — light blur -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="gb2" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="2"/>
+          </filter>
+        </defs>
+        <g filter="url(#gb2)">
+          <rect x="10" y="10" width="35" height="35" fill="#e94560"/>
+          <rect x="55" y="10" width="35" height="35" fill="#16c79a"/>
+          <rect x="10" y="55" width="35" height="35" fill="#4d8bff"/>
+          <rect x="55" y="55" width="35" height="35" fill="#ffd166"/>
+        </g>
+      </svg>
+      <div class="label">stdDeviation="2"<br>(light blur)</div>
+    </div>
+
+    <!-- 3. stdDeviation=5 — medium blur -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="gb3" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="5"/>
+          </filter>
+        </defs>
+        <g filter="url(#gb3)">
+          <rect x="10" y="10" width="35" height="35" fill="#e94560"/>
+          <rect x="55" y="10" width="35" height="35" fill="#16c79a"/>
+          <rect x="10" y="55" width="35" height="35" fill="#4d8bff"/>
+          <rect x="55" y="55" width="35" height="35" fill="#ffd166"/>
+        </g>
+      </svg>
+      <div class="label">stdDeviation="5"<br>(medium blur)</div>
+    </div>
+
+    <!-- 4. stdDeviation=10 — heavy blur -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="gb4" x="-30%" y="-30%" width="160%" height="160%">
+            <feGaussianBlur stdDeviation="10"/>
+          </filter>
+        </defs>
+        <g filter="url(#gb4)">
+          <rect x="10" y="10" width="35" height="35" fill="#e94560"/>
+          <rect x="55" y="10" width="35" height="35" fill="#16c79a"/>
+          <rect x="10" y="55" width="35" height="35" fill="#4d8bff"/>
+          <rect x="55" y="55" width="35" height="35" fill="#ffd166"/>
+        </g>
+      </svg>
+      <div class="label">stdDeviation="10"<br>(heavy blur)</div>
+    </div>
+
+    <!-- 5. stdDeviation="10 0" — horizontal-only blur (two values) -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="gb5" x="-30%" y="-5%" width="160%" height="110%">
+            <feGaussianBlur stdDeviation="10 0"/>
+          </filter>
+        </defs>
+        <g filter="url(#gb5)">
+          <rect x="10" y="10" width="35" height="35" fill="#e94560"/>
+          <rect x="55" y="10" width="35" height="35" fill="#16c79a"/>
+          <rect x="10" y="55" width="35" height="35" fill="#4d8bff"/>
+          <rect x="55" y="55" width="35" height="35" fill="#ffd166"/>
+        </g>
+      </svg>
+      <div class="label">stdDeviation="10 0"<br>(X-only blur)</div>
+    </div>
+
+    <!-- 6. stdDeviation="0 10" — vertical-only blur -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="gb6" x="-5%" y="-30%" width="110%" height="160%">
+            <feGaussianBlur stdDeviation="0 10"/>
+          </filter>
+        </defs>
+        <g filter="url(#gb6)">
+          <rect x="10" y="10" width="35" height="35" fill="#e94560"/>
+          <rect x="55" y="10" width="35" height="35" fill="#16c79a"/>
+          <rect x="10" y="55" width="35" height="35" fill="#4d8bff"/>
+          <rect x="55" y="55" width="35" height="35" fill="#ffd166"/>
+        </g>
+      </svg>
+      <div class="label">stdDeviation="0 10"<br>(Y-only blur)</div>
+    </div>
+
+    <!-- 7. edgeMode=duplicate (default for feConvolveMatrix, but testable here) -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="gb7" x="0%" y="0%" width="100%" height="100%">
+            <feGaussianBlur stdDeviation="5" edgeMode="duplicate"/>
+          </filter>
+        </defs>
+        <g filter="url(#gb7)">
+          <rect x="5" y="5" width="90" height="90" fill="#b06aff"/>
+          <circle cx="50" cy="50" r="30" fill="#ffd166"/>
+        </g>
+      </svg>
+      <div class="label">edgeMode="duplicate"<br>tight region</div>
+    </div>
+
+    <!-- 8. edgeMode=none (default for feGaussianBlur) -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="gb8" x="0%" y="0%" width="100%" height="100%">
+            <feGaussianBlur stdDeviation="5" edgeMode="none"/>
+          </filter>
+        </defs>
+        <g filter="url(#gb8)">
+          <rect x="5" y="5" width="90" height="90" fill="#b06aff"/>
+          <circle cx="50" cy="50" r="30" fill="#ffd166"/>
+        </g>
+      </svg>
+      <div class="label">edgeMode="none"<br>tight region</div>
+    </div>
+
+    <!-- 9. edgeMode=wrap -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <filter id="gb9" x="0%" y="0%" width="100%" height="100%">
+            <feGaussianBlur stdDeviation="5" edgeMode="wrap"/>
+          </filter>
+        </defs>
+        <g filter="url(#gb9)">
+          <rect x="5" y="5" width="90" height="90" fill="#e94560"/>
+          <circle cx="50" cy="50" r="30" fill="#16c79a"/>
+        </g>
+      </svg>
+      <div class="label">edgeMode="wrap"<br>tight region</div>
+    </div>
+
+  </div>
+
+  <!-- machine blueprint: primitive inside filter wrapper -->
+  <script type="application/svg-blueprint" id="blueprint">
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100"><defs><filter id="slot">{{ELEMENT}}</filter></defs><rect x="5" y="5" width="90" height="90" fill="#16c79a" filter="url(#slot)"/></svg>
+  </script>
+</body></html>

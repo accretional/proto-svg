@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>&lt;use&gt;</title>
+<style>
+  body{margin:0;background:#1a1a2e;color:#e6e6e6;font:14px/1.4 ui-monospace,Menlo,monospace;padding:24px}
+  h1{color:#16c79a;font-size:18px;margin:0 0 4px}
+  p.desc{color:#9aa;margin:0 0 20px}
+  .grid{display:flex;flex-wrap:wrap;gap:16px}
+  .card{background:#0f1530;border:1px solid #26305a;border-radius:8px;padding:10px;width:160px}
+  .card svg{display:block;background:#161c3a;border-radius:4px;width:140px;height:140px}
+  .card .label{margin-top:8px;color:#f5a623;font-size:12px;word-break:break-all}
+</style></head>
+<body>
+  <h1>&lt;use&gt;</h1>
+  <p class="desc">Reuse/stamp a defined element or symbol at one or more positions. Showcases href, x/y offset, width/height scaling on symbols, multiple instances, fill override, and referencing both shapes and symbols.</p>
+  <div class="grid">
+
+    <!-- Card 1: use referencing a simple shape (circle in defs) -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <circle id="dot1" r="10" fill="#e94560"/>
+        </defs>
+        <use href="#dot1" x="20" y="20"/>
+        <use href="#dot1" x="60" y="20"/>
+        <use href="#dot1" x="40" y="55"/>
+        <use href="#dot1" x="20" y="80"/>
+        <use href="#dot1" x="70" y="75"/>
+      </svg>
+      <div class="label">use href="#circle" (5 instances)</div>
+    </div>
+
+    <!-- Card 2: use x/y positioning -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <rect id="sq" x="0" y="0" width="20" height="20" rx="3" fill="#16c79a"/>
+        </defs>
+        <!-- x/y places the use element (adds translate(x,y) to the element) -->
+        <use href="#sq" x="5"  y="5"/>
+        <use href="#sq" x="35" y="25"/>
+        <use href="#sq" x="65" y="45"/>
+        <use href="#sq" x="35" y="65"/>
+        <use href="#sq" x="5"  y="75"/>
+      </svg>
+      <div class="label">x/y offset (staircase)</div>
+    </div>
+
+    <!-- Card 3: use referencing a symbol, controlling width/height -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <symbol id="sym1" viewBox="0 0 40 40">
+            <rect width="40" height="40" rx="6" fill="#4d8bff"/>
+            <polygon points="20,8 32,32 8,32" fill="#ffd166"/>
+          </symbol>
+        </defs>
+        <!-- width/height controls the symbol viewport size -->
+        <use href="#sym1" x="5"  y="5"  width="25" height="25"/>
+        <use href="#sym1" x="40" y="5"  width="55" height="55"/>
+        <use href="#sym1" x="5"  y="65" width="30" height="30"/>
+      </svg>
+      <div class="label">width/height on symbol use</div>
+    </div>
+
+    <!-- Card 4: use with fill presentation override -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <!-- Shape uses currentColor so fill override works -->
+          <circle id="colordot" r="14" fill="currentColor"/>
+        </defs>
+        <use href="#colordot" x="25" y="28" fill="#e94560"/>
+        <use href="#colordot" x="75" y="28" fill="#f5a623"/>
+        <use href="#colordot" x="25" y="75" fill="#16c79a"/>
+        <use href="#colordot" x="75" y="75" fill="#b06aff"/>
+      </svg>
+      <div class="label">use fill override (currentColor)</div>
+    </div>
+
+    <!-- Card 5: use referencing a g (group) in defs -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <g id="crosshair">
+            <line x1="-15" y1="0" x2="15" y2="0" stroke="#ffd166" stroke-width="2"/>
+            <line x1="0" y1="-15" x2="0" y2="15" stroke="#ffd166" stroke-width="2"/>
+            <circle r="5" fill="none" stroke="#ffd166" stroke-width="2"/>
+          </g>
+        </defs>
+        <rect width="100" height="100" fill="#0f2040"/>
+        <use href="#crosshair" x="25" y="25"/>
+        <use href="#crosshair" x="75" y="25"/>
+        <use href="#crosshair" x="50" y="60"/>
+        <use href="#crosshair" x="25" y="82"/>
+        <use href="#crosshair" x="75" y="82"/>
+      </svg>
+      <div class="label">use referencing a group</div>
+    </div>
+
+    <!-- Card 6: use with transform -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <rect id="tile2" x="-10" y="-10" width="20" height="20" rx="2" fill="#b06aff"/>
+        </defs>
+        <use href="#tile2" x="50" y="50" transform="rotate(0,50,50)"/>
+        <use href="#tile2" x="50" y="50" transform="rotate(30,50,50) translate(0,-28)"/>
+        <use href="#tile2" x="50" y="50" transform="rotate(90,50,50) translate(0,-28)"/>
+        <use href="#tile2" x="50" y="50" transform="rotate(150,50,50) translate(0,-28)"/>
+        <use href="#tile2" x="50" y="50" transform="rotate(210,50,50) translate(0,-28)"/>
+        <use href="#tile2" x="50" y="50" transform="rotate(270,50,50) translate(0,-28)"/>
+        <use href="#tile2" x="50" y="50" transform="rotate(330,50,50) translate(0,-28)"/>
+      </svg>
+      <div class="label">use + transform (rotated ring)</div>
+    </div>
+
+    <!-- Card 7: use referencing a symbol (not a shape) with different x/y -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <symbol id="badge" viewBox="0 0 30 30">
+            <circle cx="15" cy="15" r="14" fill="#e94560" stroke="#ffd166" stroke-width="2"/>
+            <text x="15" y="19" text-anchor="middle" font-size="12" fill="#fff" font-weight="bold">!</text>
+          </symbol>
+        </defs>
+        <!-- Instantiate badge symbol at 4 corners + center -->
+        <use href="#badge" x="5"  y="5"  width="28" height="28"/>
+        <use href="#badge" x="67" y="5"  width="28" height="28"/>
+        <use href="#badge" x="5"  y="67" width="28" height="28"/>
+        <use href="#badge" x="67" y="67" width="28" height="28"/>
+        <use href="#badge" x="36" y="36" width="28" height="28"/>
+      </svg>
+      <div class="label">symbol badge — 5 positions</div>
+    </div>
+
+    <!-- Card 8: use with zero-offset (x/y default 0) -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <path id="arrow" d="M10,50 L90,50 M70,30 L90,50 L70,70"
+            fill="none" stroke="#16c79a" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+        </defs>
+        <!-- use with no x/y = defaults to 0,0 -->
+        <use href="#arrow"/>
+        <use href="#arrow" transform="rotate(90,50,50)" stroke="#f5a623"/>
+      </svg>
+      <div class="label">use (no x/y = 0,0 default)</div>
+    </div>
+
+  </div>
+
+  <script type="application/svg-blueprint" id="blueprint">
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100"><defs><circle id="slot" r="12" fill="#e94560"/></defs>{{ELEMENT}}</svg>
+  </script>
+</body></html>

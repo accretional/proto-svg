@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>&lt;text&gt;</title>
+<style>
+  body{margin:0;background:#1a1a2e;color:#e6e6e6;font:14px/1.4 ui-monospace,Menlo,monospace;padding:24px}
+  h1{color:#16c79a;font-size:18px;margin:0 0 4px}
+  p.desc{color:#9aa;margin:0 0 20px}
+  .grid{display:flex;flex-wrap:wrap;gap:16px}
+  .card{background:#0f1530;border:1px solid #26305a;border-radius:8px;padding:10px;width:160px}
+  .card svg{display:block;background:#161c3a;border-radius:4px;width:140px;height:140px}
+  .card .label{margin-top:8px;color:#f5a623;font-size:12px;word-break:break-all}
+</style></head>
+<body>
+  <h1>&lt;text&gt;</h1>
+  <p class="desc">Text element. Showcasing x/y, fill, font-size, font-family, font-weight, font-style, text-anchor, dominant-baseline, letter-spacing, dx/dy/rotate, textLength/lengthAdjust.</p>
+  <div class="grid">
+
+    <!-- basic x/y positioning -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <text x="10" y="55" font-size="22" fill="#e94560">Hello</text>
+      </svg>
+      <div class="label">x="10" y="55"</div>
+    </div>
+
+    <!-- fill color -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <text x="50" y="55" font-size="22" text-anchor="middle" fill="#16c79a">Fill</text>
+      </svg>
+      <div class="label">fill="#16c79a"</div>
+    </div>
+
+    <!-- font-size large -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <text x="50" y="62" font-size="38" text-anchor="middle" fill="#f5a623">Aa</text>
+      </svg>
+      <div class="label">font-size="38"</div>
+    </div>
+
+    <!-- font-size small -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <text x="50" y="55" font-size="11" text-anchor="middle" fill="#4d8bff">Small text here</text>
+      </svg>
+      <div class="label">font-size="11"</div>
+    </div>
+
+    <!-- font-family serif -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <text x="50" y="58" font-size="24" font-family="serif" text-anchor="middle" fill="#ffd166">Serif</text>
+      </svg>
+      <div class="label">font-family="serif"</div>
+    </div>
+
+    <!-- font-family monospace -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <text x="50" y="58" font-size="18" font-family="monospace" text-anchor="middle" fill="#b06aff">Mono</text>
+      </svg>
+      <div class="label">font-family="monospace"</div>
+    </div>
+
+    <!-- font-weight bold -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <text x="50" y="58" font-size="22" font-weight="bold" text-anchor="middle" fill="#e94560">Bold</text>
+      </svg>
+      <div class="label">font-weight="bold"</div>
+    </div>
+
+    <!-- font-weight 100 thin -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <text x="50" y="58" font-size="22" font-weight="100" text-anchor="middle" fill="#16c79a">Thin</text>
+      </svg>
+      <div class="label">font-weight="100"</div>
+    </div>
+
+    <!-- font-style italic -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <text x="50" y="58" font-size="22" font-style="italic" text-anchor="middle" fill="#f5a623">Italic</text>
+      </svg>
+      <div class="label">font-style="italic"</div>
+    </div>
+
+    <!-- text-anchor start -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <line x1="20" y1="0" x2="20" y2="100" stroke="#26305a" stroke-width="1"/>
+        <text x="20" y="55" font-size="18" text-anchor="start" fill="#4d8bff">Start</text>
+      </svg>
+      <div class="label">text-anchor="start"</div>
+    </div>
+
+    <!-- text-anchor middle -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <line x1="50" y1="0" x2="50" y2="100" stroke="#26305a" stroke-width="1"/>
+        <text x="50" y="55" font-size="18" text-anchor="middle" fill="#ffd166">Mid</text>
+      </svg>
+      <div class="label">text-anchor="middle"</div>
+    </div>
+
+    <!-- text-anchor end -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <line x1="80" y1="0" x2="80" y2="100" stroke="#26305a" stroke-width="1"/>
+        <text x="80" y="55" font-size="18" text-anchor="end" fill="#b06aff">End</text>
+      </svg>
+      <div class="label">text-anchor="end"</div>
+    </div>
+
+    <!-- dominant-baseline alphabetic (default) -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <line x1="0" y1="55" x2="100" y2="55" stroke="#26305a" stroke-width="1"/>
+        <text x="50" y="55" font-size="20" text-anchor="middle" dominant-baseline="alphabetic" fill="#e94560">Alpha</text>
+      </svg>
+      <div class="label">dominant-baseline="alphabetic"</div>
+    </div>
+
+    <!-- dominant-baseline middle -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <line x1="0" y1="50" x2="100" y2="50" stroke="#26305a" stroke-width="1"/>
+        <text x="50" y="50" font-size="20" text-anchor="middle" dominant-baseline="middle" fill="#16c79a">Mid</text>
+      </svg>
+      <div class="label">dominant-baseline="middle"</div>
+    </div>
+
+    <!-- dominant-baseline hanging -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <line x1="0" y1="40" x2="100" y2="40" stroke="#26305a" stroke-width="1"/>
+        <text x="50" y="40" font-size="20" text-anchor="middle" dominant-baseline="hanging" fill="#f5a623">Hang</text>
+      </svg>
+      <div class="label">dominant-baseline="hanging"</div>
+    </div>
+
+    <!-- letter-spacing wide -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <text x="50" y="55" font-size="16" text-anchor="middle" letter-spacing="4" fill="#4d8bff">ABC</text>
+      </svg>
+      <div class="label">letter-spacing="4"</div>
+    </div>
+
+    <!-- letter-spacing tight -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <text x="50" y="55" font-size="16" text-anchor="middle" letter-spacing="-1" fill="#ffd166">TIGHT</text>
+      </svg>
+      <div class="label">letter-spacing="-1"</div>
+    </div>
+
+    <!-- dx per-glyph offsets -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <text x="10" y="55" font-size="18" fill="#b06aff" dx="0 8 0 8 0">Hello</text>
+      </svg>
+      <div class="label">dx="0 8 0 8 0" (per-glyph)</div>
+    </div>
+
+    <!-- dy per-glyph offsets (wave) -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <text x="8" y="55" font-size="18" fill="#e94560" dy="0 -8 0 8 0">Wave!</text>
+      </svg>
+      <div class="label">dy="0 -8 0 8 0" (wave)</div>
+    </div>
+
+    <!-- rotate per-glyph -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <text x="10" y="60" font-size="18" fill="#16c79a" rotate="0 15 30 15 0">Hello</text>
+      </svg>
+      <div class="label">rotate="0 15 30 15 0"</div>
+    </div>
+
+    <!-- textLength spacing -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <text x="10" y="55" font-size="18" fill="#f5a623" textLength="80" lengthAdjust="spacing">Hi</text>
+      </svg>
+      <div class="label">textLength="80" spacing</div>
+    </div>
+
+    <!-- textLength spacingAndGlyphs -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <text x="10" y="55" font-size="18" fill="#4d8bff" textLength="80" lengthAdjust="spacingAndGlyphs">Hi</text>
+      </svg>
+      <div class="label">textLength="80" spacingAndGlyphs</div>
+    </div>
+
+  </div>
+
+  <!-- machine blueprint: text is self-rendering -->
+  <script type="application/svg-blueprint" id="blueprint">
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">{{ELEMENT}}</svg>
+  </script>
+</body></html>

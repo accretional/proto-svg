@@ -1,0 +1,383 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>&lt;animateMotion&gt;</title>
+<style>body{margin:0;background:#1a1a2e;color:#e6e6e6;font:14px/1.4 ui-monospace,Menlo,monospace;padding:24px}
+h1{color:#16c79a;font-size:18px;margin:0 0 4px}
+p.desc{color:#9aa;margin:0 0 20px}
+a{color:#4d8bff}
+.grid{display:flex;flex-wrap:wrap;gap:16px}
+.card{background:#0f1530;border:1px solid #26305a;border-radius:8px;padding:10px;width:160px}
+.card svg{display:block;background:#161c3a;border-radius:4px;width:140px;height:140px}
+.card .label{margin-top:8px;color:#f5a623;font-size:12px;word-break:break-all}
+.card .attr{color:#16c79a}</style></head><body>
+<h1>&lt;animateMotion&gt;</h1>
+<p class="desc">123 enumerated value-paths walked from the grammar. <a href="index.html">&larr; index</a></p>
+<div class="grid">
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" href="#target"></animateMotion></rect>
+</svg><div class="label"><span class="attr">href</span>="#target"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" begin="indefinite;+100:3.10;node3.begin+0.1ms"></animateMotion></rect>
+</svg><div class="label"><span class="attr">begin</span>="indefinite;+100:3.10;node3.begin+0.1ms"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" begin="r1.focus+-1:100:3.10;circle1.repeat(0)+1:-1.100;accessKey(Aa)+3.10h"></animateMotion></rect>
+</svg><div class="label"><span class="attr">begin</span>="r1.focus+-1:100:3.10;circle1.repeat(0)+1:-1.100;accessKey(Aa)+3.10h"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" end="indefinite;-0:1:-1.100;grad-a.end-3:10.0"></animateMotion></rect>
+</svg><div class="label"><span class="attr">end</span>="indefinite;-0:1:-1.100;grad-a.end-3:10.0"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" end="myId.beginEvent-1.-1min;node3.repeat(100)-3:10:0.1;accessKey(sample)--1:100.3"></animateMotion></rect>
+</svg><div class="label"><span class="attr">end</span>="myId.beginEvent-1.-1min;node3.repeat(100)-3:10:0.1;accessKey(sample)--1:100.3"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion repeatCount="indefinite" path="M0 0 L60 60" dur="10:0:1.-1"></animateMotion></rect>
+</svg><div class="label"><span class="attr">dur</span>="10:0:1.-1"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion repeatCount="indefinite" path="M0 0 L60 60" dur="100:3:10.0"></animateMotion></rect>
+</svg><div class="label"><span class="attr">dur</span>="100:3:10.0"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion repeatCount="indefinite" path="M0 0 L60 60" dur="1:-1.100"></animateMotion></rect>
+</svg><div class="label"><span class="attr">dur</span>="1:-1.100"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion repeatCount="indefinite" path="M0 0 L60 60" dur="3:10.0"></animateMotion></rect>
+</svg><div class="label"><span class="attr">dur</span>="3:10.0"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion repeatCount="indefinite" path="M0 0 L60 60" dur="1.-1s"></animateMotion></rect>
+</svg><div class="label"><span class="attr">dur</span>="1.-1s"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion repeatCount="indefinite" path="M0 0 L60 60" dur="100.3ms"></animateMotion></rect>
+</svg><div class="label"><span class="attr">dur</span>="100.3ms"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion repeatCount="indefinite" path="M0 0 L60 60" dur="media"></animateMotion></rect>
+</svg><div class="label"><span class="attr">dur</span>="media"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion repeatCount="indefinite" path="M0 0 L60 60" dur="indefinite"></animateMotion></rect>
+</svg><div class="label"><span class="attr">dur</span>="indefinite"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" min="10:0:1.-1"></animateMotion></rect>
+</svg><div class="label"><span class="attr">min</span>="10:0:1.-1"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" min="100:3:10.0"></animateMotion></rect>
+</svg><div class="label"><span class="attr">min</span>="100:3:10.0"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" min="1:-1.100"></animateMotion></rect>
+</svg><div class="label"><span class="attr">min</span>="1:-1.100"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" min="3:10.0"></animateMotion></rect>
+</svg><div class="label"><span class="attr">min</span>="3:10.0"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" min="1.-1h"></animateMotion></rect>
+</svg><div class="label"><span class="attr">min</span>="1.-1h"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" min="100.3min"></animateMotion></rect>
+</svg><div class="label"><span class="attr">min</span>="100.3min"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" min="media"></animateMotion></rect>
+</svg><div class="label"><span class="attr">min</span>="media"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" max="10:0:1.-1"></animateMotion></rect>
+</svg><div class="label"><span class="attr">max</span>="10:0:1.-1"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" max="100:3:10.0"></animateMotion></rect>
+</svg><div class="label"><span class="attr">max</span>="100:3:10.0"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" max="1:-1.100"></animateMotion></rect>
+</svg><div class="label"><span class="attr">max</span>="1:-1.100"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" max="3:10.0"></animateMotion></rect>
+</svg><div class="label"><span class="attr">max</span>="3:10.0"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" max="1.-1s"></animateMotion></rect>
+</svg><div class="label"><span class="attr">max</span>="1.-1s"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" max="100.3ms"></animateMotion></rect>
+</svg><div class="label"><span class="attr">max</span>="100.3ms"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" max="media"></animateMotion></rect>
+</svg><div class="label"><span class="attr">max</span>="media"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" restart="always"></animateMotion></rect>
+</svg><div class="label"><span class="attr">restart</span>="always"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" restart="whenNotActive"></animateMotion></rect>
+</svg><div class="label"><span class="attr">restart</span>="whenNotActive"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" restart="never"></animateMotion></rect>
+</svg><div class="label"><span class="attr">restart</span>="never"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" path="M0 0 L60 60" repeatCount="0"></animateMotion></rect>
+</svg><div class="label"><span class="attr">repeatCount</span>="0"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" path="M0 0 L60 60" repeatCount="1"></animateMotion></rect>
+</svg><div class="label"><span class="attr">repeatCount</span>="1"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" path="M0 0 L60 60" repeatCount="indefinite"></animateMotion></rect>
+</svg><div class="label"><span class="attr">repeatCount</span>="indefinite"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" repeatDur="10:0:1.-1"></animateMotion></rect>
+</svg><div class="label"><span class="attr">repeatDur</span>="10:0:1.-1"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" repeatDur="100:3:10.0"></animateMotion></rect>
+</svg><div class="label"><span class="attr">repeatDur</span>="100:3:10.0"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" repeatDur="1:-1.100"></animateMotion></rect>
+</svg><div class="label"><span class="attr">repeatDur</span>="1:-1.100"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" repeatDur="3:10.0"></animateMotion></rect>
+</svg><div class="label"><span class="attr">repeatDur</span>="3:10.0"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" repeatDur="1.-1h"></animateMotion></rect>
+</svg><div class="label"><span class="attr">repeatDur</span>="1.-1h"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" repeatDur="100.3min"></animateMotion></rect>
+</svg><div class="label"><span class="attr">repeatDur</span>="100.3min"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" repeatDur="media"></animateMotion></rect>
+</svg><div class="label"><span class="attr">repeatDur</span>="media"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" repeatDur="indefinite"></animateMotion></rect>
+</svg><div class="label"><span class="attr">repeatDur</span>="indefinite"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" fill="freeze"></animateMotion></rect>
+</svg><div class="label"><span class="attr">fill</span>="freeze"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" fill="remove"></animateMotion></rect>
+</svg><div class="label"><span class="attr">fill</span>="remove"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" calcMode="discrete"></animateMotion></rect>
+</svg><div class="label"><span class="attr">calcMode</span>="discrete"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" calcMode="linear"></animateMotion></rect>
+</svg><div class="label"><span class="attr">calcMode</span>="linear"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" calcMode="paced"></animateMotion></rect>
+</svg><div class="label"><span class="attr">calcMode</span>="paced"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" calcMode="spline"></animateMotion></rect>
+</svg><div class="label"><span class="attr">calcMode</span>="spline"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" values="1,-1;3.14,0.5;2,0"></animateMotion></rect>
+</svg><div class="label"><span class="attr">values</span>="1,-1;3.14,0.5;2,0"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" keyTimes="0; 0.5; 1"></animateMotion></rect>
+</svg><div class="label"><span class="attr">keyTimes</span>="0; 0.5; 1"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" keySplines="0 0 1 1"></animateMotion></rect>
+</svg><div class="label"><span class="attr">keySplines</span>="0 0 1 1"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" from="1,-1"></animateMotion></rect>
+</svg><div class="label"><span class="attr">from</span>="1,-1"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" from="3.14,0.5"></animateMotion></rect>
+</svg><div class="label"><span class="attr">from</span>="3.14,0.5"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" to="2,0"></animateMotion></rect>
+</svg><div class="label"><span class="attr">to</span>="2,0"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" to="1,-1"></animateMotion></rect>
+</svg><div class="label"><span class="attr">to</span>="1,-1"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" by="3.14,0.5"></animateMotion></rect>
+</svg><div class="label"><span class="attr">by</span>="3.14,0.5"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" by="2,0"></animateMotion></rect>
+</svg><div class="label"><span class="attr">by</span>="2,0"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M10 10 L90 90"></animateMotion></rect>
+</svg><div class="label"><span class="attr">path</span>="M10 10 L90 90"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M10 50 Q50 10 90 50"></animateMotion></rect>
+</svg><div class="label"><span class="attr">path</span>="M10 50 Q50 10 90 50"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M20 20 H80 V80 H20 Z"></animateMotion></rect>
+</svg><div class="label"><span class="attr">path</span>="M20 20 H80 V80 H20 Z"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" keyPoints="0; 0.5; 1"></animateMotion></rect>
+</svg><div class="label"><span class="attr">keyPoints</span>="0; 0.5; 1"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" rotate="0"></animateMotion></rect>
+</svg><div class="label"><span class="attr">rotate</span>="0"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" rotate="1"></animateMotion></rect>
+</svg><div class="label"><span class="attr">rotate</span>="1"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" rotate="auto"></animateMotion></rect>
+</svg><div class="label"><span class="attr">rotate</span>="auto"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" rotate="auto-reverse"></animateMotion></rect>
+</svg><div class="label"><span class="attr">rotate</span>="auto-reverse"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" origin="default"></animateMotion></rect>
+</svg><div class="label"><span class="attr">origin</span>="default"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" additive="replace"></animateMotion></rect>
+</svg><div class="label"><span class="attr">additive</span>="replace"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" additive="sum"></animateMotion></rect>
+</svg><div class="label"><span class="attr">additive</span>="sum"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" accumulate="none"></animateMotion></rect>
+</svg><div class="label"><span class="attr">accumulate</span>="none"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" accumulate="sum"></animateMotion></rect>
+</svg><div class="label"><span class="attr">accumulate</span>="sum"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" id="circle1"></animateMotion></rect>
+</svg><div class="label"><span class="attr">id</span>="circle1"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" id="grad-a"></animateMotion></rect>
+</svg><div class="label"><span class="attr">id</span>="grad-a"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" id="myId"></animateMotion></rect>
+</svg><div class="label"><span class="attr">id</span>="myId"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" id="node3"></animateMotion></rect>
+</svg><div class="label"><span class="attr">id</span>="node3"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" id="r1"></animateMotion></rect>
+</svg><div class="label"><span class="attr">id</span>="r1"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" tabindex="0"></animateMotion></rect>
+</svg><div class="label"><span class="attr">tabindex</span>="0"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" tabindex="1"></animateMotion></rect>
+</svg><div class="label"><span class="attr">tabindex</span>="1"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" tabindex="-1"></animateMotion></rect>
+</svg><div class="label"><span class="attr">tabindex</span>="-1"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" tabindex="100"></animateMotion></rect>
+</svg><div class="label"><span class="attr">tabindex</span>="100"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" tabindex="3"></animateMotion></rect>
+</svg><div class="label"><span class="attr">tabindex</span>="3"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" tabindex="10"></animateMotion></rect>
+</svg><div class="label"><span class="attr">tabindex</span>="10"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" autofocus="true"></animateMotion></rect>
+</svg><div class="label"><span class="attr">autofocus</span>="true"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" autofocus="false"></animateMotion></rect>
+</svg><div class="label"><span class="attr">autofocus</span>="false"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" lang="en"></animateMotion></rect>
+</svg><div class="label"><span class="attr">lang</span>="en"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" lang="fr-CA"></animateMotion></rect>
+</svg><div class="label"><span class="attr">lang</span>="fr-CA"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" lang="de"></animateMotion></rect>
+</svg><div class="label"><span class="attr">lang</span>="de"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" lang="zh-Hans"></animateMotion></rect>
+</svg><div class="label"><span class="attr">lang</span>="zh-Hans"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" lang="pt-BR"></animateMotion></rect>
+</svg><div class="label"><span class="attr">lang</span>="pt-BR"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" xml:lang="en"></animateMotion></rect>
+</svg><div class="label"><span class="attr">xml:lang</span>="en"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" xml:lang="fr-CA"></animateMotion></rect>
+</svg><div class="label"><span class="attr">xml:lang</span>="fr-CA"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" xml:lang="de"></animateMotion></rect>
+</svg><div class="label"><span class="attr">xml:lang</span>="de"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" xml:lang="zh-Hans"></animateMotion></rect>
+</svg><div class="label"><span class="attr">xml:lang</span>="zh-Hans"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" xml:lang="pt-BR"></animateMotion></rect>
+</svg><div class="label"><span class="attr">xml:lang</span>="pt-BR"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" xml:space="default"></animateMotion></rect>
+</svg><div class="label"><span class="attr">xml:space</span>="default"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" xml:space="preserve"></animateMotion></rect>
+</svg><div class="label"><span class="attr">xml:space</span>="preserve"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" requiredExtensions="label"></animateMotion></rect>
+</svg><div class="label"><span class="attr">requiredExtensions</span>="label"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" systemLanguage="label"></animateMotion></rect>
+</svg><div class="label"><span class="attr">systemLanguage</span>="label"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" onbegin="label"></animateMotion></rect>
+</svg><div class="label"><span class="attr">onbegin</span>="label"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" oncancel="label"></animateMotion></rect>
+</svg><div class="label"><span class="attr">oncancel</span>="label"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" oncanplay="label"></animateMotion></rect>
+</svg><div class="label"><span class="attr">oncanplay</span>="label"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" fill="none"></animateMotion></rect>
+</svg><div class="label"><span class="attr">fill</span>="none"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" fill-rule="nonzero"></animateMotion></rect>
+</svg><div class="label"><span class="attr">fill-rule</span>="nonzero"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" fill-opacity="0.5"></animateMotion></rect>
+</svg><div class="label"><span class="attr">fill-opacity</span>="0.5"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" stroke="none"></animateMotion></rect>
+</svg><div class="label"><span class="attr">stroke</span>="none"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" stroke-opacity="0.5"></animateMotion></rect>
+</svg><div class="label"><span class="attr">stroke-opacity</span>="0.5"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" stroke-width="20"></animateMotion></rect>
+</svg><div class="label"><span class="attr">stroke-width</span>="20"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" stroke-linecap="butt"></animateMotion></rect>
+</svg><div class="label"><span class="attr">stroke-linecap</span>="butt"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" stroke-linejoin="miter"></animateMotion></rect>
+</svg><div class="label"><span class="attr">stroke-linejoin</span>="miter"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" stroke-miterlimit="0"></animateMotion></rect>
+</svg><div class="label"><span class="attr">stroke-miterlimit</span>="0"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" stroke-dasharray="none"></animateMotion></rect>
+</svg><div class="label"><span class="attr">stroke-dasharray</span>="none"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" stroke-dashoffset="20"></animateMotion></rect>
+</svg><div class="label"><span class="attr">stroke-dashoffset</span>="20"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" paint-order="normal"></animateMotion></rect>
+</svg><div class="label"><span class="attr">paint-order</span>="normal"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" marker="none"></animateMotion></rect>
+</svg><div class="label"><span class="attr">marker</span>="none"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" marker-start="none"></animateMotion></rect>
+</svg><div class="label"><span class="attr">marker-start</span>="none"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" marker-mid="none"></animateMotion></rect>
+</svg><div class="label"><span class="attr">marker-mid</span>="none"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" marker-end="none"></animateMotion></rect>
+</svg><div class="label"><span class="attr">marker-end</span>="none"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" color="#e94560"></animateMotion></rect>
+</svg><div class="label"><span class="attr">color</span>="#e94560"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" color-interpolation="auto"></animateMotion></rect>
+</svg><div class="label"><span class="attr">color-interpolation</span>="auto"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" color-rendering="auto"></animateMotion></rect>
+</svg><div class="label"><span class="attr">color-rendering</span>="auto"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" shape-rendering="auto"></animateMotion></rect>
+</svg><div class="label"><span class="attr">shape-rendering</span>="auto"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" vector-effect="none"></animateMotion></rect>
+</svg><div class="label"><span class="attr">vector-effect</span>="none"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" filter="none"></animateMotion></rect>
+</svg><div class="label"><span class="attr">filter</span>="none"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" color-interpolation-filters="auto"></animateMotion></rect>
+</svg><div class="label"><span class="attr">color-interpolation-filters</span>="auto"</div></div>
+  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 L60 60" flood-color="currentColor"></animateMotion></rect>
+</svg><div class="label"><span class="attr">flood-color</span>="currentColor"</div></div>
+</div></body></html>

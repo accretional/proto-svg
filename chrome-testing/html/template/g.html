@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>&lt;g&gt;</title>
+<style>
+  body{margin:0;background:#1a1a2e;color:#e6e6e6;font:14px/1.4 ui-monospace,Menlo,monospace;padding:24px}
+  h1{color:#16c79a;font-size:18px;margin:0 0 4px}
+  p.desc{color:#9aa;margin:0 0 20px}
+  .grid{display:flex;flex-wrap:wrap;gap:16px}
+  .card{background:#0f1530;border:1px solid #26305a;border-radius:8px;padding:10px;width:160px}
+  .card svg{display:block;background:#161c3a;border-radius:4px;width:140px;height:140px}
+  .card .label{margin-top:8px;color:#f5a623;font-size:12px;word-break:break-all}
+</style></head>
+<body>
+  <h1>&lt;g&gt;</h1>
+  <p class="desc">Grouping element. Showcasing shared fill/stroke/opacity on children, and transform variants: translate, rotate, scale, skewX.</p>
+  <div class="grid">
+
+    <!-- Card 1: g with shared fill on children -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <g fill="#e94560">
+          <rect x="10" y="10" width="30" height="30"/>
+          <rect x="60" y="10" width="30" height="30"/>
+          <rect x="10" y="60" width="30" height="30"/>
+          <rect x="60" y="60" width="30" height="30"/>
+        </g>
+      </svg>
+      <div class="label">g fill="#e94560" (shared)</div>
+    </div>
+
+    <!-- Card 2: g with shared stroke -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <g fill="none" stroke="#16c79a" stroke-width="3">
+          <circle cx="30" cy="30" r="18"/>
+          <circle cx="70" cy="30" r="18"/>
+          <circle cx="30" cy="70" r="18"/>
+          <circle cx="70" cy="70" r="18"/>
+        </g>
+      </svg>
+      <div class="label">g stroke="#16c79a" (shared)</div>
+    </div>
+
+    <!-- Card 3: g with opacity applied to group -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <rect width="100" height="100" fill="#4d8bff"/>
+        <g opacity="0.4">
+          <rect x="10" y="10" width="80" height="80" fill="#ffd166"/>
+          <circle cx="50" cy="50" r="25" fill="#e94560"/>
+        </g>
+      </svg>
+      <div class="label">g opacity="0.4"</div>
+    </div>
+
+    <!-- Card 4: g with translate transform -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <!-- original position ghost -->
+        <rect x="10" y="10" width="30" height="30" fill="#26305a"/>
+        <!-- translated group -->
+        <g transform="translate(40,40)">
+          <rect x="10" y="10" width="30" height="30" fill="#f5a623"/>
+          <circle cx="25" cy="25" r="8" fill="#1a1a2e"/>
+        </g>
+      </svg>
+      <div class="label">translate(40,40)</div>
+    </div>
+
+    <!-- Card 5: g with rotate transform -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <g transform="rotate(45,50,50)">
+          <rect x="20" y="20" width="60" height="60" fill="#b06aff" rx="4"/>
+          <line x1="50" y1="20" x2="50" y2="80" stroke="#ffd166" stroke-width="2"/>
+          <line x1="20" y1="50" x2="80" y2="50" stroke="#ffd166" stroke-width="2"/>
+        </g>
+      </svg>
+      <div class="label">rotate(45,50,50)</div>
+    </div>
+
+    <!-- Card 6: g with scale transform -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <g transform="scale(0.5)" fill="#16c79a">
+          <rect x="10" y="10" width="80" height="80" rx="8"/>
+          <circle cx="50" cy="50" r="20" fill="#e94560"/>
+        </g>
+      </svg>
+      <div class="label">scale(0.5)</div>
+    </div>
+
+    <!-- Card 7: g with scale(2) — larger, clipped by viewBox -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <g transform="scale(1.8) translate(-15,-15)" fill="#4d8bff">
+          <rect x="20" y="20" width="40" height="40" rx="4"/>
+          <circle cx="40" cy="40" r="10" fill="#ffd166"/>
+        </g>
+      </svg>
+      <div class="label">scale(1.8) translate(-15,-15)</div>
+    </div>
+
+    <!-- Card 8: g with skewX -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <g transform="skewX(20)" fill="#e94560">
+          <rect x="20" y="20" width="50" height="60" rx="4"/>
+          <rect x="25" y="30" width="10" height="10" fill="#ffd166"/>
+          <rect x="25" y="55" width="10" height="10" fill="#ffd166"/>
+        </g>
+      </svg>
+      <div class="label">skewX(20)</div>
+    </div>
+
+    <!-- Card 9: nested g groups, each with distinct transform -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <g transform="translate(50,50)">
+          <g transform="rotate(0)" fill="#f5a623">
+            <rect x="-15" y="-40" width="10" height="30" rx="2"/>
+          </g>
+          <g transform="rotate(90)" fill="#16c79a">
+            <rect x="-15" y="-40" width="10" height="30" rx="2"/>
+          </g>
+          <g transform="rotate(180)" fill="#e94560">
+            <rect x="-15" y="-40" width="10" height="30" rx="2"/>
+          </g>
+          <g transform="rotate(270)" fill="#b06aff">
+            <rect x="-15" y="-40" width="10" height="30" rx="2"/>
+          </g>
+          <circle r="8" fill="#ffd166"/>
+        </g>
+      </svg>
+      <div class="label">nested g + rotate arms</div>
+    </div>
+
+    <!-- Card 10: g with fill + stroke + stroke-width all inherited -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <g fill="#4d8bff" stroke="#ffd166" stroke-width="3">
+          <polygon points="50,10 90,80 10,80"/>
+          <circle cx="50" cy="55" r="10"/>
+        </g>
+      </svg>
+      <div class="label">g fill+stroke+stroke-width</div>
+    </div>
+
+  </div>
+
+  <script type="application/svg-blueprint" id="blueprint">
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">{{ELEMENT}}</svg>
+  </script>
+</body></html>

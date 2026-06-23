@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>&lt;stop&gt;</title>
+<style>
+  body{margin:0;background:#1a1a2e;color:#e6e6e6;font:14px/1.4 ui-monospace,Menlo,monospace;padding:24px}
+  h1{color:#16c79a;font-size:18px;margin:0 0 4px}
+  p.desc{color:#9aa;margin:0 0 20px}
+  .grid{display:flex;flex-wrap:wrap;gap:16px}
+  .card{background:#0f1530;border:1px solid #26305a;border-radius:8px;padding:10px;width:160px}
+  .card svg{display:block;background:#161c3a;border-radius:4px;width:140px;height:140px}
+  .card .label{margin-top:8px;color:#f5a623;font-size:12px;word-break:break-all}
+</style></head>
+<body>
+  <h1>&lt;stop&gt;</h1>
+  <p class="desc">Gradient stop. Showcasing offset (number vs %), stop-color (named/hex/rgb/currentColor), stop-opacity, and duplicate/edge offsets.</p>
+  <div class="grid">
+
+    <!-- 1. offset as bare number 0..1 -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <linearGradient id="s1" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stop-color="#e94560"/>
+            <stop offset="1" stop-color="#ffd166"/>
+          </linearGradient>
+        </defs>
+        <rect x="5" y="5" width="90" height="90" fill="url(#s1)"/>
+      </svg>
+      <div class="label">offset=0 / offset=1<br>(bare number)</div>
+    </div>
+
+    <!-- 2. offset as percentage -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <linearGradient id="s2" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#4d8bff"/>
+            <stop offset="100%" stop-color="#16c79a"/>
+          </linearGradient>
+        </defs>
+        <rect x="5" y="5" width="90" height="90" fill="url(#s2)"/>
+      </svg>
+      <div class="label">offset=0% / 100%<br>(percentage)</div>
+    </div>
+
+    <!-- 3. stop-color: named color keyword -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <linearGradient id="s3" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stop-color="coral"/>
+            <stop offset="1" stop-color="midnightblue"/>
+          </linearGradient>
+        </defs>
+        <rect x="5" y="5" width="90" height="90" fill="url(#s3)"/>
+      </svg>
+      <div class="label">stop-color=coral<br>→ midnightblue</div>
+    </div>
+
+    <!-- 4. stop-color: rgb() function -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <linearGradient id="s4" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stop-color="rgb(255,100,50)"/>
+            <stop offset="1" stop-color="rgb(50,200,180)"/>
+          </linearGradient>
+        </defs>
+        <rect x="5" y="5" width="90" height="90" fill="url(#s4)"/>
+      </svg>
+      <div class="label">stop-color=rgb()<br>orange → teal</div>
+    </div>
+
+    <!-- 5. stop-color: hsl() function -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <linearGradient id="s5" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stop-color="hsl(280,80%,55%)"/>
+            <stop offset="1" stop-color="hsl(160,70%,45%)"/>
+          </linearGradient>
+        </defs>
+        <rect x="5" y="5" width="90" height="90" fill="url(#s5)"/>
+      </svg>
+      <div class="label">stop-color=hsl()<br>purple → green</div>
+    </div>
+
+    <!-- 6. stop-opacity: partial transparency -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <linearGradient id="s6" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stop-color="#e94560" stop-opacity="1"/>
+            <stop offset="1" stop-color="#e94560" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+        <!-- checkerboard to reveal transparency -->
+        <rect x="5" y="5" width="45" height="90" fill="#555"/>
+        <rect x="50" y="5" width="45" height="90" fill="#888"/>
+        <rect x="5" y="5" width="90" height="90" fill="url(#s6)"/>
+      </svg>
+      <div class="label">stop-opacity=1→0<br>(fade to transp.)</div>
+    </div>
+
+    <!-- 7. stop-opacity: 0.5 mid-transparency -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <linearGradient id="s7" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stop-color="#4d8bff" stop-opacity="0.2"/>
+            <stop offset="1" stop-color="#4d8bff" stop-opacity="1"/>
+          </linearGradient>
+        </defs>
+        <rect x="5" y="5" width="90" height="90" fill="#16c79a"/>
+        <rect x="5" y="5" width="90" height="90" fill="url(#s7)"/>
+      </svg>
+      <div class="label">stop-opacity=.2→1<br>blue over teal</div>
+    </div>
+
+    <!-- 8. Mid-offset stop: color band shifted -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <linearGradient id="s8" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stop-color="#ffd166"/>
+            <stop offset="0.2" stop-color="#e94560"/>
+            <stop offset="1" stop-color="#b06aff"/>
+          </linearGradient>
+        </defs>
+        <rect x="5" y="5" width="90" height="90" fill="url(#s8)"/>
+      </svg>
+      <div class="label">offset=0,.2,1<br>abrupt early band</div>
+    </div>
+
+    <!-- 9. currentColor stop-color (inherits from SVG color property) -->
+    <div class="card">
+      <svg viewBox="0 0 100 100" color="#16c79a">
+        <defs>
+          <linearGradient id="s9" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stop-color="currentColor"/>
+            <stop offset="1" stop-color="#ffd166"/>
+          </linearGradient>
+        </defs>
+        <rect x="5" y="5" width="90" height="90" fill="url(#s9)"/>
+      </svg>
+      <div class="label">stop-color=<br>currentColor</div>
+    </div>
+
+    <!-- 10. Duplicate offset at midpoint (hard color stop) -->
+    <div class="card">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <linearGradient id="s10" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stop-color="#4d8bff"/>
+            <stop offset="0.5" stop-color="#4d8bff"/>
+            <stop offset="0.5" stop-color="#e94560"/>
+            <stop offset="1" stop-color="#e94560"/>
+          </linearGradient>
+        </defs>
+        <rect x="5" y="5" width="90" height="90" fill="url(#s10)"/>
+      </svg>
+      <div class="label">dup offset=0.5<br>hard color stop</div>
+    </div>
+
+  </div>
+
+  <!-- machine blueprint: stop injected into a linearGradient whose rect renders it -->
+  <script type="application/svg-blueprint" id="blueprint">
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100"><defs><linearGradient id="slot"><stop offset="0" stop-color="#e94560"/>{{ELEMENT}}</linearGradient></defs><rect width="100" height="100" fill="url(#slot)"/></svg>
+  </script>
+</body></html>

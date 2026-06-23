@@ -29,6 +29,7 @@ pipeline (grammar → proto → gallery → screenshots) is green.
 | Compile the grammar → proto schema (called by build) | `./tools/genproto.sh` |
 | Generate the value-path galleries (called by build) | `./tools/gen.sh` |
 | Screenshot HTML/dir/URL via chromerpc | `./chrome-testing/snap.sh <input> <output>` |
+| Per-value screenshots + animation GIFs (proto-css `shoot` port) | `./chrome-testing/shoot.sh` (or `SHOOT=1 ./LET_IT_RIP.sh`) |
 
 `setup.sh` → `build.sh` → `test.sh` → `LET_IT_RIP.sh` is a strict superset chain:
 each one runs the previous stages, so running the outermost runs everything.
@@ -70,6 +71,21 @@ lang/*.ebnf  ──genproto──▶  proto/svg.proto + proto/svg.fdset
 
 4. **snap (`chrome-testing/snap.sh`).** Screenshots a file, a directory (one PNG
    per `.html`), or a URL via headless Chrome driven by **chromerpc**.
+
+## Per-value specimen shoot + animation GIFs (`chrome-testing/shoot.sh`)
+
+`gen` also emits a label-free **specimen** page per visually-meaningful value-path
+(`chrome-testing/html/specimen/<tag>/<NN>-<slug>.html`) and a `specimens.json`
+manifest. `chrome-testing/shoot.sh` (a port of proto-css's `shoot` + `gifenc`)
+drives chromerpc to capture ONE PNG per value into
+`chrome-testing/screenshots/specimens/<tag>/`; for SMIL/animation elements it
+captures a frame sequence that `chrome-testing/cmd/gifenc` encodes into an animated
+GIF. It is long-running (one capture per value across every element), so it is
+opt-in: run `./chrome-testing/shoot.sh` directly, or `SHOOT=1 ./LET_IT_RIP.sh`.
+`ONLY=rect,animate` limits it to some tags; `RESUME=1` skips already-captured
+values. Specimens of the no-effect attributes (the collapsed "Non-visual" gallery
+section) are deliberately NOT captured — they have no distinct render. Screenshots
+are gitignored (regenerable).
 
 ## Templates are HAND-AUTHORED, never script-generated
 

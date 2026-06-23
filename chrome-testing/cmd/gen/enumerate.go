@@ -131,7 +131,25 @@ func (e *Enumerator) enumerateElement(el element) []Variant {
 		// A concrete attribute production sequence.
 		out = append(out, e.enumerateAttr(el, arm.GetTypeName())...)
 	}
-	return out
+	// Dedup by (attr, value): a few attributes are reachable through two grammar
+	// branches at once — e.g. `transform` on <svg> comes both from the element-
+	// specific SvgTransformAttr (enumerated in full: translate/rotate/scale/skew)
+	// AND, identically, from the shared PresentationAttribute group's TransformAttr
+	// (capped to one value). That second path re-emits an identical
+	// transform="translate(20 10)" specimen. First-wins dedup keeps the richer
+	// element-specific enumeration (it comes first) and drops the redundant twin,
+	// so no element ever renders two byte-identical (attr, value) specimens.
+	seen := make(map[[2]string]bool, len(out))
+	deduped := out[:0]
+	for _, v := range out {
+		key := [2]string{v.Attr, v.Value}
+		if seen[key] {
+			continue
+		}
+		seen[key] = true
+		deduped = append(deduped, v)
+	}
+	return deduped
 }
 
 // sharedGroupCap caps how many members of a large shared group (presentation,
@@ -276,6 +294,19 @@ func attrNameFromPrefix(prefix string) string {
 //   - reps leaf          → one variant per rep sample (overlay may override)
 //   - structured value   → a few canonical instances
 func (e *Enumerator) enumerateValue(tag, attrName, valFQN string) []valuePath {
+	// Per-(tag, attr) DISTINCT value set: a handful of attrs need a hand-picked
+	// list of values so each one renders DIFFERENTLY (the grammar's generic leaf
+	// samples are all invalid → identity, collapsing the cards). E.g.
+	// feConvolveMatrix kernelMatrix needs order²-length kernels; the shared
+	// ListOfNumbersType reps (1 2 3 4, …) never match order=3 → 9.
+	if set := distinctValueSet(tag, attrName); set != nil {
+		out := make([]valuePath, 0, len(set))
+		for _, s := range set {
+			out = append(out, valuePath{value: s})
+		}
+		return out
+	}
+
 	// Overlay may fully determine the value (refs, alpha, monotone lists).
 	if ov, ok := overlaySample(tag, attrName, simpleName(valFQN)); ok {
 		return []valuePath{{value: ov, needsID: strings.Contains(ov, "#"+slotID)}}
@@ -396,7 +427,7 @@ func (e *Enumerator) structuredInstances(attrName, valFQN string, m *descriptorp
 // shape, etc.). Returns the markup and whether the element references #slot.
 func (e *Enumerator) renderWithOneAttr(el element, prefix, value, suffix string) (string, bool) {
 	open := "<" + el.tag
-	baseline, needsID := baselineFor(el.tag, prefix)
+	baseline, needsID := baselineFor(el.tag, prefix, value)
 	needsRef := strings.Contains(value, "#"+slotID)
 	if needsRef {
 		// The element references itself by id — give it id="slot".

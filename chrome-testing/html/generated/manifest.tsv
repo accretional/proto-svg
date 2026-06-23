@@ -193,7 +193,6 @@ animate	systemLanguage	en	0
 animate	onbegin	label	0
 animate	oncancel	label	0
 animate	oncanplay	label	0
-animate	fill	freeze	0
 animate	fill-rule	nonzero	0
 animate	fill-opacity	0.5	0
 animate	stroke	none	0
@@ -323,7 +322,6 @@ animateMotion	systemLanguage	en	0
 animateMotion	onbegin	label	0
 animateMotion	oncancel	label	0
 animateMotion	oncanplay	label	0
-animateMotion	fill	freeze	0
 animateMotion	fill-rule	nonzero	0
 animateMotion	fill-opacity	0.5	0
 animateMotion	stroke	none	0
@@ -450,7 +448,6 @@ animateTransform	systemLanguage	en	0
 animateTransform	onbegin	label	0
 animateTransform	oncancel	label	0
 animateTransform	oncanplay	label	0
-animateTransform	fill	freeze	0
 animateTransform	fill-rule	nonzero	0
 animateTransform	fill-opacity	0.5	0
 animateTransform	stroke	none	0
@@ -719,7 +716,6 @@ clipPath	visibility	visible	0
 clipPath	overflow	visible	0
 clipPath	opacity	0.5	0
 clipPath	cursor	auto	0
-clipPath	transform	translate(20 10)	0
 clipPath	transform-origin	inherit	0
 clipPath	oncancel	label	0
 clipPath	oncanplay	label	0
@@ -885,10 +881,14 @@ ellipse	cy	24px	0
 ellipse	cy	2em	0
 ellipse	cy	50%	0
 ellipse	cy	75%	0
-ellipse	rx	auto	0
-ellipse	rx	20	0
-ellipse	ry	auto	0
-ellipse	ry	20	0
+ellipse	rx	30	0
+ellipse	rx	45	0
+ellipse	rx	20%	0
+ellipse	rx	60	0
+ellipse	ry	30	0
+ellipse	ry	45	0
+ellipse	ry	20%	0
+ellipse	ry	60	0
 ellipse	pathLength	2	0
 ellipse	id	circle1	0
 ellipse	id	grad-a	0
@@ -1516,11 +1516,11 @@ feConvolveMatrix	in	StrokePaint	0
 feConvolveMatrix	in	blur1	0
 feConvolveMatrix	in	result1	0
 feConvolveMatrix	order	3	0
-feConvolveMatrix	kernelMatrix	1 2 3 4	0
-feConvolveMatrix	kernelMatrix	0 1 0 0	0
-feConvolveMatrix	kernelMatrix	1 0.5	0
-feConvolveMatrix	kernelMatrix	0 0 1 1 0	0
-feConvolveMatrix	kernelMatrix	2 4 6	0
+feConvolveMatrix	kernelMatrix	0 0 0 0 1 0 0 0 0	0
+feConvolveMatrix	kernelMatrix	0 -1 0 -1 4 -1 0 -1 0	0
+feConvolveMatrix	kernelMatrix	-2 -1 0 -1 1 1 0 1 2	0
+feConvolveMatrix	kernelMatrix	1 1 1 1 1 1 1 1 1	0
+feConvolveMatrix	kernelMatrix	0 -1 0 -1 5 -1 0 -1 0	0
 feConvolveMatrix	divisor	0	0
 feConvolveMatrix	divisor	1	0
 feConvolveMatrix	divisor	-1	0
@@ -3682,12 +3682,12 @@ feSpotLight	pointsAtY	-1	0
 feSpotLight	pointsAtY	3.14	0
 feSpotLight	pointsAtY	0.5	0
 feSpotLight	pointsAtY	2	0
+feSpotLight	pointsAtZ	-40	0
+feSpotLight	pointsAtZ	-10	0
 feSpotLight	pointsAtZ	0	0
-feSpotLight	pointsAtZ	1	0
-feSpotLight	pointsAtZ	-1	0
-feSpotLight	pointsAtZ	3.14	0
-feSpotLight	pointsAtZ	0.5	0
-feSpotLight	pointsAtZ	2	0
+feSpotLight	pointsAtZ	10	0
+feSpotLight	pointsAtZ	40	0
+feSpotLight	pointsAtZ	80	0
 feSpotLight	specularExponent	20	0
 feSpotLight	limitingConeAngle	30	0
 feSpotLight	id	circle1	0
@@ -4123,10 +4123,14 @@ foreignObject	y	24px	0
 foreignObject	y	2em	0
 foreignObject	y	50%	0
 foreignObject	y	75%	0
-foreignObject	width	auto	0
-foreignObject	width	20	0
-foreignObject	height	auto	0
-foreignObject	height	20	0
+foreignObject	width	30	0
+foreignObject	width	60	0
+foreignObject	width	50%	0
+foreignObject	width	90	0
+foreignObject	height	30	0
+foreignObject	height	60	0
+foreignObject	height	50%	0
+foreignObject	height	90	0
 foreignObject	id	circle1	0
 foreignObject	id	grad-a	0
 foreignObject	id	myId	0
@@ -5722,7 +5726,6 @@ set	systemLanguage	en	0
 set	onbegin	label	0
 set	oncancel	label	0
 set	oncanplay	label	0
-set	fill	freeze	0
 set	fill-rule	nonzero	0
 set	fill-opacity	0.5	0
 set	stroke	none	0
@@ -6037,7 +6040,6 @@ svg	visibility	visible	0
 svg	overflow	visible	0
 svg	opacity	0.5	0
 svg	cursor	auto	0
-svg	transform	translate(20 10)	0
 svg	transform-origin	inherit	0
 svg	oncancel	label	0
 svg	oncanplay	label	0

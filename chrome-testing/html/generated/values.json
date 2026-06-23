@@ -779,10 +779,6 @@
       "value": "label"
     },
     {
-      "attr": "fill",
-      "value": "freeze"
-    },
-    {
       "attr": "fill-rule",
       "value": "nonzero"
     },
@@ -1301,10 +1297,6 @@
       "value": "label"
     },
     {
-      "attr": "fill",
-      "value": "freeze"
-    },
-    {
       "attr": "fill-rule",
       "value": "nonzero"
     },
@@ -1809,10 +1801,6 @@
     {
       "attr": "oncanplay",
       "value": "label"
-    },
-    {
-      "attr": "fill",
-      "value": "freeze"
     },
     {
       "attr": "fill-rule",
@@ -2891,10 +2879,6 @@
       "value": "auto"
     },
     {
-      "attr": "transform",
-      "value": "translate(20 10)"
-    },
-    {
       "attr": "transform-origin",
       "value": "inherit"
     },
@@ -3564,19 +3548,35 @@
     },
     {
       "attr": "rx",
-      "value": "auto"
+      "value": "30"
     },
     {
       "attr": "rx",
-      "value": "20"
+      "value": "45"
+    },
+    {
+      "attr": "rx",
+      "value": "20%"
+    },
+    {
+      "attr": "rx",
+      "value": "60"
     },
     {
       "attr": "ry",
-      "value": "auto"
+      "value": "30"
     },
     {
       "attr": "ry",
-      "value": "20"
+      "value": "45"
+    },
+    {
+      "attr": "ry",
+      "value": "20%"
+    },
+    {
+      "attr": "ry",
+      "value": "60"
     },
     {
       "attr": "pathLength",
@@ -6098,23 +6098,23 @@
     },
     {
       "attr": "kernelMatrix",
-      "value": "1 2 3 4"
+      "value": "0 0 0 0 1 0 0 0 0"
     },
     {
       "attr": "kernelMatrix",
-      "value": "0 1 0 0"
+      "value": "0 -1 0 -1 4 -1 0 -1 0"
     },
     {
       "attr": "kernelMatrix",
-      "value": "1 0.5"
+      "value": "-2 -1 0 -1 1 1 0 1 2"
     },
     {
       "attr": "kernelMatrix",
-      "value": "0 0 1 1 0"
+      "value": "1 1 1 1 1 1 1 1 1"
     },
     {
       "attr": "kernelMatrix",
-      "value": "2 4 6"
+      "value": "0 -1 0 -1 5 -1 0 -1 0"
     },
     {
       "attr": "divisor",
@@ -14798,27 +14798,27 @@
     },
     {
       "attr": "pointsAtZ",
+      "value": "-40"
+    },
+    {
+      "attr": "pointsAtZ",
+      "value": "-10"
+    },
+    {
+      "attr": "pointsAtZ",
       "value": "0"
     },
     {
       "attr": "pointsAtZ",
-      "value": "1"
+      "value": "10"
     },
     {
       "attr": "pointsAtZ",
-      "value": "-1"
+      "value": "40"
     },
     {
       "attr": "pointsAtZ",
-      "value": "3.14"
-    },
-    {
-      "attr": "pointsAtZ",
-      "value": "0.5"
-    },
-    {
-      "attr": "pointsAtZ",
-      "value": "2"
+      "value": "80"
     },
     {
       "attr": "specularExponent",
@@ -16570,19 +16570,35 @@
     },
     {
       "attr": "width",
-      "value": "auto"
+      "value": "30"
     },
     {
       "attr": "width",
-      "value": "20"
+      "value": "60"
+    },
+    {
+      "attr": "width",
+      "value": "50%"
+    },
+    {
+      "attr": "width",
+      "value": "90"
     },
     {
       "attr": "height",
-      "value": "auto"
+      "value": "30"
     },
     {
       "attr": "height",
-      "value": "20"
+      "value": "60"
+    },
+    {
+      "attr": "height",
+      "value": "50%"
+    },
+    {
+      "attr": "height",
+      "value": "90"
     },
     {
       "attr": "id",
@@ -22997,10 +23013,6 @@
       "value": "label"
     },
     {
-      "attr": "fill",
-      "value": "freeze"
-    },
-    {
       "attr": "fill-rule",
       "value": "nonzero"
     },
@@ -24261,10 +24273,6 @@
     {
       "attr": "cursor",
       "value": "auto"
-    },
-    {
-      "attr": "transform",
-      "value": "translate(20 10)"
     },
     {
       "attr": "transform-origin",

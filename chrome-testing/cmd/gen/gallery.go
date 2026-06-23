@@ -76,8 +76,16 @@ func runGalleryPass(byFQN map[string]*descriptorpb.DescriptorProto, kw map[strin
 	writeFile(filepath.Join(generatedHTMLDir, "values.json"), emitValuesJSON(pages))
 	writeFile(filepath.Join(generatedHTMLDir, "manifest.tsv"), emitManifest(pages))
 
+	// Per-value SPECIMEN files + manifest (proto-css-style shoot pipeline). Runs
+	// off the same blueprint-wrapped pages, emitting one label-free standalone
+	// page per MAIN-GRID value-path plus specimens.json.
+	specFiles, specTemporal := runSpecimenPass(pages)
+
 	fmt.Printf("\n=== gallery ===\n")
 	fmt.Printf("elements: %d  variants: %d  pages: %s/*.html\n", len(pages), total, generatedHTMLDir)
+	fmt.Printf("=== specimens ===\n")
+	fmt.Printf("specimen files: %d  (temporal: %d, static: %d)  tree: %s/<tag>/NN-<slug>.html  manifest: %s/specimens.json\n",
+		specFiles, specTemporal, specFiles-specTemporal, specimenHTMLDir, specimenJSONDir)
 	if len(unrendered) > 0 {
 		fmt.Printf("value-paths that did not render meaningfully (%d):\n", len(unrendered))
 		max := len(unrendered)

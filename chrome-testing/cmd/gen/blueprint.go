@@ -82,11 +82,42 @@ var builtinScaffoldWins = map[string]bool{
 	"pattern":        true,
 	"feColorMatrix":  true,
 	"feTile":         true,
+	// FIX 5: the on-disk feTurbulence template uses a tight filter region, so the
+	// enumerated primitive-subregion x/y/width/height values clip the noise to a
+	// zero/empty area off the visible rect → blank cards. Force the corrected
+	// built-in, which uses a wide filter region and a full-host rect so the
+	// subregion always intersects the visible area.
+	"feTurbulence": true,
 	"use":            true,
 	"switch":         true,
 	"script":         true,
 	"mpath":          true,
 	"discard":        true,
+	// FIX 6: the on-disk set template hosts the animation on a 40-wide rect at x=0,
+	// so set attributeName="x" to="80" slides it mostly off the 100-wide viewBox
+	// (a narrow sliver). Force the built-in, which uses a small centered host so the
+	// whole from/to range keeps the shape fully visible.
+	"set": true,
+	// FIX 2 (wrapper inheritance): the on-disk templates for these wrapper/
+	// container tags use a colorless root, so the child's fill="currentColor"
+	// resolves to black (invisible on the dark card) and paint set on the wrapper
+	// does not produce a visible base. Force the corrected built-ins, which seed a
+	// neutral root color (svgOpenColor) and a currentColor-painting child so
+	// fill(currentColor)/color/opacity/transform varied on the wrapper give
+	// distinct, visible cards.
+	"g":             true,
+	"a":             true,
+	"svg":           true,
+	"symbol":        true,
+	"foreignObject": true,
+	// FIX 3 (text color): the on-disk text/tspan/textPath templates hardcode the
+	// glyph fill (#e6e6e6 / #e94560), so the CSS `color` property never reaches the
+	// text and `color`/`fill`(currentColor) cards look identical. Force the
+	// corrected built-ins, which seed a neutral root color and paint the text with
+	// fill="currentColor" (baselineFor) so varying color visibly recolors it.
+	"text":     true,
+	"tspan":    true,
+	"textPath": true,
 }
 
 // blueprintFor returns the scaffold for tag (with a {{ELEMENT}} placeholder).
@@ -136,6 +167,13 @@ func inject(blueprint, elementMarkup string) string {
 // svgOpen is the standard root used by the default scaffolds.
 const svgOpen = `<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">`
 
+// svgOpenColor is the root used by WRAPPER/CONTAINER scaffolds (a/g/svg/symbol/
+// use/foreignObject). It seeds a neutral inherited color so a child painted with
+// fill="currentColor" is visible by default; when the wrapper's fill (via
+// currentColor)/color/opacity/transform is varied, the inheriting child visibly
+// changes and the cards become distinct (FIX 2).
+const svgOpenColor = `<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100" color="#16c79a">`
+
 // imageDataURI is a self-contained 80x80 SVG (dark square + teal circle) used as
 // the baseline href for <image> and <feImage> so they render offline instead of
 // dangling (QA round1). It is an inline base64 data: URI — no network/fetch.
@@ -173,14 +211,30 @@ func defaultScaffold(tag string) string {
 		// greyscale ramp. With an achromatic source R=G=B, so manipulating a single
 		// channel (feFuncR/G/B/A) is nearly imperceptible. A colored ramp makes each
 		// channel's transfer curve show as a visible hue shift across the rect.
+		//
+		// COLLISION FIX: the RGB ramp is fully OPAQUE, so feFuncA (the ALPHA transfer)
+		// sees a constant alpha=1 → every feFuncA type/param card is uniform and
+		// identical. Add a VERTICAL alpha ramp (a white→transparent mask gradient,
+		// vertical axis, orthogonal to the horizontal RGB axis) so the source alpha
+		// varies top→bottom. feFuncA's transfer then reshapes a real alpha ramp
+		// (distinct per type), while feFuncR/G/B keep reading the horizontal hue ramp.
+		// The mask must be applied to the source BEFORE the filter consumes it: the
+		// inner <rect> carries the alpha mask and is rendered first; the wrapping <g>
+		// carries the filter, so the filter's SourceGraphic already has the vertical
+		// alpha ramp (the filter→mask order on a single element would mask AFTER the
+		// filter and feFuncA would still see constant alpha).
 		return svgOpen +
 			`<defs>` +
 			`<linearGradient id="bpGrad" x1="0" y1="0" x2="1" y2="0">` +
 			`<stop offset="0" stop-color="#ff0000"/><stop offset="0.5" stop-color="#00ff00"/><stop offset="1" stop-color="#0000ff"/>` +
 			`</linearGradient>` +
+			`<linearGradient id="bpAlpha" x1="0" y1="0" x2="0" y2="1">` +
+			`<stop offset="0" stop-color="#fff" stop-opacity="1"/><stop offset="1" stop-color="#fff" stop-opacity="0.1"/>` +
+			`</linearGradient>` +
+			`<mask id="bpAlphaMask"><rect x="5" y="5" width="90" height="90" fill="url(#bpAlpha)"/></mask>` +
 			slot +
 			`</defs>` +
-			`<rect x="5" y="5" width="90" height="90" fill="url(#bpGrad)" filter="url(#slot)"/></svg>`
+			`<g filter="url(#slot)"><rect x="5" y="5" width="90" height="90" fill="url(#bpGrad)" mask="url(#bpAlphaMask)"/></g></svg>`
 	case "feDiffuseLighting", "feSpecularLighting":
 		// Lighting computes a surface normal from the ALPHA gradient of its input.
 		// A flat opaque rect has no alpha relief → uniform, flat shading. Prepend a
@@ -220,6 +274,14 @@ func defaultScaffold(tag string) string {
 		return svgOpen +
 			`<defs><filter id="slot" x="-20%" y="-20%" width="150%" height="150%">{{ELEMENT}}</filter></defs>` +
 			`<rect x="20" y="20" width="55" height="55" fill="#f5a623" filter="url(#slot)"/></svg>`
+	case "set":
+		// FIX 6: <set attributeName="x" to="80"> slides the host rect to x=80. With a
+		// 40-wide host on a 100-wide viewBox the rect ran mostly off-canvas (a narrow
+		// 20px sliver). Use a SMALL host (18×18, vertically centered) so the whole
+		// from/to range (x: 10→80) keeps the shape fully visible (right edge ≤ 98).
+		// The element is a child of the animated rect (id="target" so href resolves).
+		return svgOpen +
+			`<rect id="target" x="10" y="41" width="18" height="18" fill="#4d8bff">{{ELEMENT}}</rect></svg>`
 	case "discard":
 		// FIX 10: <discard> removes its target after `begin`; the static snapshot is
 		// taken before the (60s, via baselineFor) discard fires, so the host should
@@ -244,8 +306,68 @@ func defaultScaffold(tag string) string {
 		// color="#16c79a" gives a visible base while attrs varied on <switch>
 		// (e.g. color="#e94560", fill-opacity, opacity) produce distinct cards
 		// (mirrors the <g> approach).
-		return `<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100" color="#16c79a">` +
-			`{{ELEMENT}}</svg>`
+		return svgOpenColor + `{{ELEMENT}}</svg>`
+	case "text":
+		// FIX 3: text content paints with fill="currentColor" (see baselineFor) so
+		// the CSS `color` property reaches the glyphs. The root seeds a neutral
+		// color so the base card is visible; varying `color` (and `fill` via
+		// currentColor) then visibly recolors the text.
+		return svgOpenColor + `{{ELEMENT}}</svg>`
+	case "tspan":
+		// FIX 3: the wrapping <text> carries NO fill, so the tspan's own
+		// fill="currentColor" (baselineFor) governs the glyph color and a varied
+		// `color`/`fill` recolors it. Root seeds a neutral color for the base card.
+		return svgOpenColor +
+			`<text x="10" y="55" font-size="18">{{ELEMENT}}</text></svg>`
+	case "textPath":
+		// FIX 3: <path id="slot"> for href="#slot" to follow; the wrapping <text>
+		// carries no fill so the textPath's own fill="currentColor" (baselineFor)
+		// governs the glyph color. Root seeds a neutral color for the base card.
+		return svgOpenColor +
+			`<defs><path id="slot" d="M 5 70 Q 50 10 95 70"/></defs>` +
+			`<text font-size="20">{{ELEMENT}}</text></svg>`
+	case "g", "a", "svg", "foreignObject":
+		// FIX 2: self-rendering wrapper/container elements. Their rendered child
+		// paints with fill="currentColor" (see bodyFor); the neutral root color makes
+		// the base card visible, and varying the wrapper's inheritable paint (fill via
+		// currentColor, color, opacity) — or its transform — now visibly changes the
+		// child, so cards that were identical become distinct.
+		return svgOpenColor + `{{ELEMENT}}</svg>`
+	case "symbol":
+		// FIX 2: <symbol> is NOT rendered directly — it must be instanced. Place the
+		// generated <symbol> (carrying the varied attr, id="slot" via the slot
+		// machinery) in <defs> and instance it with <use>. The symbol's child paints
+		// fill="currentColor" and the root seeds a neutral color, so color/opacity/
+		// fill-opacity/transform varied on the <symbol> inherit through the instance
+		// and yield distinct, visible cards (base is teal, not invisible black).
+		return svgOpenColor +
+			`<defs>{{ELEMENT}}</defs>` +
+			`<use href="#slot" x="10" y="10" width="80" height="80"/></svg>`
+	case "feColorMatrix":
+		// FIX 4: feColorMatrix must operate on a CLEAN, fully-saturated multi-color
+		// source so the type=matrix channel-swap (and saturate/hueRotate) is visibly
+		// distinct. The generic filter-primitive scaffold chains it off a low-
+		// saturation turbulence result, where a matrix vs hueRotate difference is
+		// muted. Operate directly on SourceGraphic (four bright quadrants) instead.
+		// The 20-number matrix companion (companionFor) recolors those quadrants.
+		return svgOpen +
+			`<defs><filter id="slot">{{ELEMENT}}</filter></defs>` +
+			`<g filter="url(#slot)">` +
+			`<rect x="5" y="5" width="45" height="45" fill="#e94560"/>` +
+			`<rect x="50" y="5" width="45" height="45" fill="#16c79a"/>` +
+			`<rect x="5" y="50" width="45" height="45" fill="#4d8bff"/>` +
+			`<rect x="50" y="50" width="45" height="45" fill="#ffd166"/>` +
+			`</g></svg>`
+	case "feTurbulence":
+		// FIX 5: feTurbulence's x/y/width/height define the PRIMITIVE SUBREGION that
+		// clips the generated noise. With the default tight filter region, percentage
+		// subregion values (50%/75%) and the small length values resolve to a zero/
+		// empty area off the visible rect → blank cards. Give the filter a WIDE region
+		// (-20%..140%) and fill the whole 0..100 host so the subregion always lands
+		// inside the visible area and the clipped noise patch shows on every card.
+		return svgOpen +
+			`<defs><filter id="slot" x="-20%" y="-20%" width="140%" height="140%">{{ELEMENT}}</filter></defs>` +
+			`<rect x="0" y="0" width="100" height="100" fill="#4d8bff" filter="url(#slot)"/></svg>`
 	case "feTile":
 		// FIX 5: tiling a UNIFORM source produces a uniform output (no pattern), so
 		// the round2 white-flood feTile showed nothing. Two things are needed:
@@ -378,8 +500,12 @@ func defaultScaffold(tag string) string {
 		// FIX 7: reference a LARGE centered circle (was a tiny 40×40 top-left rect)
 		// so the <use> instance renders prominently and x/y offsets shift it
 		// visibly across cards.
-		return svgOpen +
-			`<defs><circle id="slot" cx="50" cy="50" r="32" fill="#e94560"/></defs>{{ELEMENT}}</svg>`
+		// FIX 2: the referenced circle paints with fill="currentColor" so paint
+		// inherited through the <use> (fill via currentColor, color, opacity) reaches
+		// the instance and varying it on the <use> yields distinct cards; the neutral
+		// root color keeps the base instance visible.
+		return svgOpenColor +
+			`<defs><circle id="slot" cx="50" cy="50" r="32" fill="currentColor"/></defs>{{ELEMENT}}</svg>`
 	default: // shapes, text, image, g, svg, etc. — self-render
 		return svgOpen + `{{ELEMENT}}</svg>`
 	}
@@ -449,15 +575,40 @@ func category(tag string) contentCategory {
 // omits the attribute the variant is varying (passed as varyingPrefix) to avoid
 // a duplicate. The second result reports whether the element needs an id (unused
 // for baselines but kept for symmetry with the slot mechanism).
-func baselineFor(tag, varyingPrefix string) (string, bool) {
+//
+// varyingValue is the concrete value chosen for the varied attribute. It lets
+// the baseline carry a DEPENDENT COMPANION attribute that makes the varied attr
+// effective: several filter-primitive attrs are inert unless a sibling attr is
+// set (feComposite k1-k4 need operator="arithmetic"; feFunc amplitude/exponent/
+// offset need type="gamma"; tableValues needs type="table"; …). companionFor
+// supplies those companions (and may override a baseline pair, e.g. flipping
+// feComposite's baseline operator="over" to "arithmetic").
+func baselineFor(tag, varyingPrefix, varyingValue string) (string, bool) {
 	varying := attrNameFromPrefix(varyingPrefix)
+	companions, overrides := companionFor(tag, varying, varyingValue)
 	add := func(pairs ...[2]string) string {
 		var b strings.Builder
 		for _, p := range pairs {
 			if p[0] == varying {
 				continue
 			}
-			b.WriteString(` ` + p[0] + `="` + p[1] + `"`)
+			// A companion may override a baseline pair (e.g. operator over→arithmetic).
+			val := p[1]
+			if ov, ok := overrides[p[0]]; ok {
+				val = ov
+			}
+			b.WriteString(` ` + p[0] + `="` + val + `"`)
+		}
+		// Append companion attrs that are not already part of the baseline pairs.
+		present := map[string]bool{varying: true}
+		for _, p := range pairs {
+			present[p[0]] = true
+		}
+		for _, c := range companions {
+			if present[c[0]] {
+				continue
+			}
+			b.WriteString(` ` + c[0] + `="` + c[1] + `"`)
 		}
 		return b.String()
 	}
@@ -479,11 +630,14 @@ func baselineFor(tag, varyingPrefix string) (string, bool) {
 		// path baseline is stroke-only; the explicit stroke keeps fill="none" visible.
 		return add([2]string{"d", "M10 50 Q50 10 90 50 T90 90"}, [2]string{"fill", "none"}, [2]string{"stroke", "#16c79a"}, [2]string{"stroke-width", "2"}), false
 	case "text", "tspan":
-		return add([2]string{"x", "10"}, [2]string{"y", "55"}, [2]string{"fill", "#e6e6e6"}, [2]string{"font-size", "20"}), false
+		// FIX 3: fill="currentColor" so a varied CSS `color` (or `fill`) recolors the
+		// glyphs; the scaffold root seeds a neutral color so the base card is visible.
+		return add([2]string{"x", "10"}, [2]string{"y", "55"}, [2]string{"fill", "currentColor"}, [2]string{"font-size", "20"}), false
 	case "textPath":
 		// textPath ignores x/y; it follows a referenced path. The blueprint defines
 		// <path id="slot"> in defs, so href="#slot" makes every card's text follow it.
-		return add([2]string{"href", "#slot"}, [2]string{"fill", "#e6e6e6"}, [2]string{"font-size", "20"}), false
+		// FIX 3: fill="currentColor" so a varied `color`/`fill` recolors the glyphs.
+		return add([2]string{"href", "#slot"}, [2]string{"fill", "currentColor"}, [2]string{"font-size", "20"}), false
 	case "image":
 		// An inline data: URI so the image renders offline; omitted when href varies.
 		return add([2]string{"x", "10"}, [2]string{"y", "10"}, [2]string{"width", "80"}, [2]string{"height", "80"}, [2]string{"href", imageDataURI}), false
@@ -511,6 +665,12 @@ func baselineFor(tag, varyingPrefix string) (string, bool) {
 		return add([2]string{"width", "20"}, [2]string{"height", "20"}, [2]string{"patternUnits", "userSpaceOnUse"}), false
 	case "marker":
 		return add([2]string{"markerWidth", "10"}, [2]string{"markerHeight", "10"}, [2]string{"refX", "5"}, [2]string{"refY", "5"}), false
+	case "feTurbulence":
+		// FIX 5: baseFrequency defaults to 0 → uniform black on every non-frequency
+		// card (including the x/y/width/height subregion cards). Seed a visible
+		// frequency + octaves so the noise is clearly textured and the varied
+		// subregion clips a recognizable patch of it.
+		return add([2]string{"type", "turbulence"}, [2]string{"baseFrequency", "0.06"}, [2]string{"numOctaves", "3"}, [2]string{"seed", "5"}), false
 	case "feGaussianBlur":
 		return add([2]string{"stdDeviation", "3"}), false
 	case "feOffset":
@@ -568,9 +728,15 @@ func baselineFor(tag, varyingPrefix string) (string, bool) {
 	case "fePointLight":
 		return add([2]string{"x", "50"}, [2]string{"y", "50"}, [2]string{"z", "50"}), false
 	case "feSpotLight":
-		return add([2]string{"x", "50"}, [2]string{"y", "50"}, [2]string{"z", "50"},
-			[2]string{"pointsAtX", "50"}, [2]string{"pointsAtY", "50"}, [2]string{"pointsAtZ", "0"},
-			[2]string{"specularExponent", "5"}, [2]string{"limitingConeAngle", "45"}), false
+		// pointsAtZ shifts the cone's target depth. With a high z and the target
+		// directly under the light, S_z = pointsAtZ−z barely changes over the small
+		// NumberType samples (0/1/−1/3.14/0.5/2) → identical cones. Use a LOW light
+		// z (10) and an OFF-AXIS target (pointsAt at 20,20 vs light at 70,70) so the
+		// cone is angled and a few units of pointsAtZ visibly tilt where it lands; a
+		// high surfaceScale + tight cone make the bright lobe move card-to-card.
+		return add([2]string{"x", "70"}, [2]string{"y", "70"}, [2]string{"z", "10"},
+			[2]string{"pointsAtX", "20"}, [2]string{"pointsAtY", "20"}, [2]string{"pointsAtZ", "0"},
+			[2]string{"specularExponent", "8"}, [2]string{"limitingConeAngle", "25"}), false
 	case "discard":
 		// begin="60s" so discard does not remove the host shape at t=0.
 		return add([2]string{"begin", "60s"}), false
@@ -619,6 +785,130 @@ func bodyOverride(tag, attrName, attrValue string) (string, bool) {
 	return "", false
 }
 
+// companionFor supplies DEPENDENT-COMPANION attributes for a filter primitive
+// whose varied attribute is INERT unless a sibling attribute is set. It returns
+// (a) companion attrs to ADD to the element's baseline and (b) overrides that
+// REPLACE a baseline pair's value (keyed by attribute name). Both are keyed on
+// (tag, the varied attribute name, the varied value) so the element always
+// carries the context that makes the varied attribute produce a visible effect.
+//
+//   - feComposite varying k1/k2/k3/k4 → operator must be "arithmetic" (the k's
+//     only weight the output under arithmetic mode); override the baseline
+//     operator="over". When varying `operator` itself we add nothing — each
+//     operator value (over/in/out/atop/xor/arithmetic) already differs.
+//   - feFunc* varying amplitude/exponent/offset → type="gamma" (the gamma curve
+//     C' = amplitude·Cᵉˣᵖ + offset); pair in the OTHER gamma params so the curve
+//     bends visibly. Varying tableValues → type="table". Varying slope/intercept
+//     → type="linear" (already the baseline). Varying `type` itself → pair each
+//     type value with the param that makes that type visible.
+//   - feConvolveMatrix varying kernelMatrix → order="3" (the kernels are 9-value;
+//     baselineFor already sets order="3", distinctValueSet supplies the kernels).
+func companionFor(tag, varied, value string) (companions [][2]string, overrides map[string]string) {
+	overrides = map[string]string{}
+	switch tag {
+	case "feColorMatrix":
+		// FIX 4: the baseline is type="hueRotate" values="90" (a valid 1-number
+		// rotation). When the enumerated `type` value is "matrix", that 1 number is
+		// invalid (matrix needs 20) → near-identity, so override `values` with a
+		// VALID 20-number channel-swap matrix that visibly transforms color. The
+		// other type values (saturate/hueRotate) take a 1-number `values`, so keep
+		// the baseline "90" for them. When `values` itself is the varied attribute,
+		// baselineFor pins type="hueRotate" (a 1-number type) so the values cards
+		// stay valid (overlay.go returns "120").
+		if varied == "type" && value == "matrix" {
+			// channel-swap: R↔B (and keep G, A) — clearly distinct from hueRotate.
+			overrides["values"] = "0 0 1 0 0  0 1 0 0 0  1 0 0 0 0  0 0 0 1 0"
+		}
+		// The arithmetic coefficients k1-k4 are ignored in every mode but
+		// arithmetic, so flip the baseline operator when one of them is varied.
+		switch varied {
+		case "k1", "k2", "k3", "k4":
+			overrides["operator"] = "arithmetic"
+			// Seed the OTHER coefficients so the varied k is not the lone non-zero
+			// term (k1·i1·i2 + k2·i1 + k3·i2 + k4). A mid blend makes each k visible.
+			seed := map[string]string{"k1": "0.5", "k2": "0.5", "k3": "0.5", "k4": "0"}
+			delete(seed, varied)
+			for _, k := range []string{"k1", "k2", "k3", "k4"} {
+				if v, ok := seed[k]; ok {
+					companions = append(companions, [2]string{k, v})
+				}
+			}
+		}
+	case "feFuncR", "feFuncG", "feFuncB", "feFuncA":
+		switch varied {
+		case "amplitude", "exponent", "offset":
+			// gamma transfer: C' = amplitude·Cᵉˣᵖᵒⁿᵉⁿᵗ + offset.
+			overrides["type"] = "gamma"
+			seed := map[string]string{"amplitude": "1", "exponent": "3", "offset": "0"}
+			delete(seed, varied)
+			for _, k := range []string{"amplitude", "exponent", "offset"} {
+				if v, ok := seed[k]; ok {
+					companions = append(companions, [2]string{k, v})
+				}
+			}
+		case "tableValues":
+			overrides["type"] = "table"
+		case "type":
+			// Pair each enumerated type value with the param that makes it visible:
+			// table/discrete need tableValues; gamma needs exponent; linear needs
+			// slope (already in the baseline, kept as-is). identity needs nothing.
+			switch value {
+			case "table", "discrete":
+				companions = append(companions, [2]string{"tableValues", "0 0.3 0.6 1"})
+			case "gamma":
+				companions = append(companions, [2]string{"amplitude", "1"}, [2]string{"exponent", "3"})
+			case "linear":
+				companions = append(companions, [2]string{"slope", "1.5"}, [2]string{"intercept", "0"})
+			}
+		}
+	}
+	return companions, overrides
+}
+
+// distinctValueSet returns a hand-picked list of VALUES for a (tag, attr) whose
+// shared grammar leaf samples all collapse to one render. Returns nil when the
+// normal enumeration applies. Consulted by enumerateValue before the generic
+// leaf/overlay sampling.
+//
+// feConvolveMatrix kernelMatrix: the convolution is only applied when the kernel
+// length equals order² (=9 for order=3, set in baselineFor); the shared
+// ListOfNumbersType reps (1 2 3 4, 0 1 0 0, …) never have 9 elements, so every
+// kernel is invalid → identity → identical cards. Supply five 9-value 3×3
+// kernels with visibly different effects.
+func distinctValueSet(tag, attrName string) []string {
+	// FIX 1: ellipse rx/ry. The grammar's ( "auto" | LengthPercentageType ) admits
+	// rx="auto"/ry="auto", but Chrome does not implement SVG2 `auto` ellipse radii
+	// (it treats them as 0 → the ellipse is invisible). Restrict the showcase to
+	// CONCRETE radii so every card paints a real ellipse shape. (rect rx/ry keep
+	// "auto" — there it just means "no corner rounding", which renders fine.)
+	if tag == "ellipse" && (attrName == "rx" || attrName == "ry") {
+		return []string{"30", "45", "20%", "60"}
+	}
+	// FIX 2: foreignObject width/height. `auto` is invalid for foreignObject
+	// dimensions (the HTML box collapses to 0×0 → blank card). Use concrete
+	// LengthPercentageType values only so the embedded HTML box always has size.
+	if tag == "foreignObject" && (attrName == "width" || attrName == "height") {
+		return []string{"30", "60", "50%", "90"}
+	}
+	if tag == "feConvolveMatrix" && attrName == "kernelMatrix" {
+		return []string{
+			"0 0 0 0 1 0 0 0 0",     // identity — passthrough
+			"0 -1 0 -1 4 -1 0 -1 0", // edge detect (Laplacian)
+			"-2 -1 0 -1 1 1 0 1 2",  // emboss
+			"1 1 1 1 1 1 1 1 1",     // box blur
+			"0 -1 0 -1 5 -1 0 -1 0", // sharpen
+		}
+	}
+	if tag == "feSpotLight" && attrName == "pointsAtZ" {
+		// The shared NumberType samples (0/1/−1/3.14/0.5/2) are all tiny relative to
+		// the light position, so the cone target barely moves → identical cones.
+		// Sweep pointsAtZ across a wide depth range (in front of, on, and behind the
+		// surface plane) so the cone axis tilt and the lit lobe shift card-to-card.
+		return []string{"-40", "-10", "0", "10", "40", "80"}
+	}
+	return nil
+}
+
 // bodyFor returns the child content a freshly-generated element needs to be
 // visible (e.g. a gradient/pattern needs stops/children; a marker/clipPath needs
 // a shape). For self-rendering shapes this is empty.
@@ -636,7 +926,18 @@ func bodyFor(tag string) string {
 		return `<rect x="20" y="20" width="60" height="60" fill="#fff"/>`
 	case "filter":
 		return `<feGaussianBlur stdDeviation="3"/>`
-	case "g", "a", "svg", "defs", "symbol":
+	case "g", "a", "svg", "symbol":
+		// FIX 2: the rendered child INHERITS paint from the wrapper via
+		// fill="currentColor", so presentation attrs varied on the wrapper element
+		// (fill via currentColor, color, opacity, transform) actually change the
+		// child and produce visibly distinct cards instead of identical ones. The
+		// scaffold root carries a neutral color (see colorRootScaffold) so the base
+		// card is visible. (Mirrors the <switch>/<g> approach.)
+		return `<rect x="20" y="20" width="60" height="60" fill="currentColor"/>`
+	case "defs":
+		// <defs> never renders directly; its <use href="#defskid"> instantiates a
+		// fixed rect (the defs child can't inherit paint set on <defs>). Keep a
+		// concrete fill so the card is visible.
 		return `<rect x="20" y="20" width="60" height="60" fill="#4d8bff"/>`
 	case "switch":
 		// FIX 8: the rendered child uses fill="currentColor" so presentation attrs
@@ -654,8 +955,12 @@ func bodyFor(tag string) string {
 		// need a large z which the bare scaffold can't guarantee).
 		return `<feDistantLight azimuth="45" elevation="45"/>`
 	case "foreignObject":
-		// foreignObject needs an XHTML child or it renders nothing.
-		return `<div xmlns="http://www.w3.org/1999/xhtml" style="background:#4d8bff;color:#fff;font:12px sans-serif;padding:6px">HTML in SVG</div>`
+		// foreignObject needs an XHTML child or it renders nothing. The div fills
+		// the foreignObject box (width:100%;height:100%) so that varying the
+		// foreignObject's width OR height visibly resizes the painted area — a
+		// content-sized div would leave every height looking identical (the one
+		// text line is shorter than any tested height).
+		return `<div xmlns="http://www.w3.org/1999/xhtml" style="box-sizing:border-box;width:100%;height:100%;background:#4d8bff;color:#fff;font:12px sans-serif;padding:6px">HTML in SVG</div>`
 	case "script":
 		// A JS body that recolors the blueprint's target rect (id="slot-target") to
 		// teal. The rect is PRE-COLORED red in the scaffold (FIX 9) so non-JS-MIME

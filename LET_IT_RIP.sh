@@ -13,7 +13,10 @@
 # It is the single command that proves the whole pipeline is green.
 #
 # Env toggles:
-#   SKIP_SHOTS=1   skip the screenshot step (steps 1-3, then serve)
+#   SKIP_SHOTS=1   skip the gallery screenshot step (steps 1-3, then serve)
+#   SHOOT=1        also capture ONE PNG per attribute value of every element +
+#                  animated GIFs for SMIL elements (chrome-testing/shoot.sh).
+#                  Long-running (~thousands of captures); off by default.
 #   SKIP_SERVE=1   stop after screenshots; do not start the HTTP server
 #   SERVE_PORT=N   gallery server port (default 8899)
 #
@@ -86,6 +89,16 @@ else
   else
     echo "  [warn] no generated gallery pages to screenshot (did build.sh run?)" >&2
   fi
+fi
+echo ""
+
+# ── 4.5/5 Per-value specimen shoot + GIFs (opt-in; long-running) ────────────
+echo "============ Step 4.5/5: Per-value specimen shoot ============"
+if [[ -n "${SHOOT:-}" ]]; then
+  "$CT/shoot.sh"
+else
+  echo "  Skipped. Set SHOOT=1 to capture one PNG per attribute value of every"
+  echo "  element (+ animated GIFs for SMIL elements) into screenshots/specimens/."
 fi
 echo ""
 

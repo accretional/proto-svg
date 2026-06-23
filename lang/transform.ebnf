@@ -17,7 +17,7 @@
    are applied by the UA (translate → px, rotate/skewX/skewY angle → deg,
    scale and matrix[a,b,c,d] → dimensionless).  This contrasts with the CSS
    `transform` PROPERTY, where explicit units are required.  Do not confuse
-   the two grammars (see docs/grammar-notes/04-coords-transforms.md §D1).
+   the two grammars.
 
    transform-origin is intentionally EXCLUDED.  It is defined in CSS Transforms
    §6.1 as a separate CSS property; it is not part of the SVG attribute grammar.

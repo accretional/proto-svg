@@ -47,7 +47,7 @@
 
    Reference: W3C Filter Effects Module Level 1, WD 18 Dec 2018
               https://www.w3.org/TR/filter-effects-1/
-   See also:  docs/grammar-notes/11-filters.md, docs/GRAMMAR_PLAN.md §f.
+   See also:  docs/GRAMMAR_PLAN.md §f.
 
    Pattern:
      - Element:   Name = "<tag" , { NameAttribute } , ">" , { NameContent } , "</tag>" ;
@@ -59,7 +59,7 @@
    §0. Shared filter value types
    ============================================================================ *)
 
-(* <fe-in-value>  (Filter Effects §15.7.5; grammar-notes/11-filters.md §<in>)
+(* <fe-in-value>  (Filter Effects §15.7.5)
    The six built-in source keywords are CLOSED terminals; the open arm is a
    <filter-primitive-reference> = <custom-ident> naming a prior sibling's
    `result`.  Shared by every `in`/`in2` attribute (the builtins are identical
@@ -890,8 +890,7 @@ FeSpotLightLimitingConeAngleAttr = ' limitingConeAngle="' , NumberType , '"' ;
 (* ── filter property ─────────────────────────────────────────────────────────
    filter = none | <filter-value-list>
    <filter-value-list> = [ <filter-function> | <url> ]+   (one or more)
-   Each <filter-function> is a functional value with `(` `)` terminals baked in.
-   (grammar-notes/11-filters.md "filter property value (CSS)".) *)
+   Each <filter-function> is a functional value with `(` `)` terminals baked in. *)
 
 FilterAttr = ' filter="' , ( "none" | FilterValueList ) , '"' ;
 

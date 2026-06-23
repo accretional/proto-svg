@@ -28,8 +28,7 @@
        <https://www.w3.org/TR/smil-animation/>  (timing BNF, normative)
      - SVG 1.1 Second Edition, Chapter 19 <https://www.w3.org/TR/SVG11/animate.html>
        (cross-check)
-   Policy: docs/CONTEXT_SENSITIVITY.md, docs/GRAMMAR_PLAN.md §b/§c/§f/§h,
-           docs/grammar-notes/13-animation.md (AUTHORITATIVE EBNF-ready form).
+   Policy: docs/CONTEXT_SENSITIVITY.md, docs/GRAMMAR_PLAN.md §b/§c/§f/§h.
 
    ── Context-free / context-sensitive factoring (CONTEXT_SENSITIVITY.md) ──
    IN THE GRAMMAR (context-free, exhaustive):
@@ -79,7 +78,6 @@
 (* ============================================================================
    SMIL timing grammar (SMIL Animation §3.6.7 — fully context-free, Rule 1).
    VALUE grammar: sits inside `="..."`, carries NO markup.
-   Transcribed from docs/grammar-notes/13-animation.md "SMIL timing EBNF-ready".
    ============================================================================ *)
 
 (* ── Clock values (SMIL §3.6.7 / SVGwg-L2 §2.9.1; verbatim across all sources) *)

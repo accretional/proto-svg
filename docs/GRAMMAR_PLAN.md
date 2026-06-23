@@ -1,10 +1,9 @@
 # proto-svg Grammar Authoring Contract
 
 The single authoring contract for the SVG EBNF grammar. Every per-module author
-follows this verbatim; nothing below should need re-deriving. It reconciles all 14
-module grammar-notes against the policy in `CONTEXT_SENSITIVITY.md`, the pipeline in
-`PIPELINE_PORTING.md`, and the ISO-14977 dialect of `proto-css/lang/*.ebnf`. Scope and
-discrepancy resolutions live in `DOC_GAPS.md`; this file is the structure.
+follows this verbatim; nothing below should need re-deriving. It applies the policy
+in `CONTEXT_SENSITIVITY.md` and the markup conventions in `EBNF_PATTERN.md`; this
+file is the structure (file layout, naming, collision avoidance, per-element tables).
 
 EBNF dialect (matches proto-css exactly): `=` definition, `,` concatenation, `|`
 alternation, `[ ]` optional, `{ }` repetition, `( )` group, `"literal"` terminal, `;`
@@ -141,7 +140,7 @@ Notes:
   `<preserveAspectRatio>` — these are real sub-grammars and MUST render via the
   repeated-field-aware renderer, not as reps strings.
 - **Multi-token reps caution:** because identical adjacent leaves collapse to one
-  repeated proto field (PIPELINE_PORTING §6), keep list grammars (`Points`, path data,
+  repeated proto field, keep list grammars (`Points`, path data,
   `KeyTimesList`) as genuine `{ }` repetitions rendered by the fixed renderer; do not
   pre-bake whole tuples as single reps strings except where unavoidable.
 - `EventSymbol`, `character`, `IDREF` (animation timing) reduce to `XmlNameType` /

@@ -12,9 +12,10 @@ renderer re-emits them, exactly as proto-css bakes CSS punctuation (`{ } : ;`).
 1. **Enumerate every fixed keyword set in full.** If an attribute or value
    ranges over a defined set of keywords, list ALL of them as quoted terminals,
    however many (16 blend modes, ~80 ARIA roles, all of them). A scalarized leaf
-   (`NumberType`, `StringType`, `ColorType`, ...) is ONLY for values that are
-   genuinely arbitrary (a real number, a free-text label, author-chosen idents,
-   a URL, a script body). Never use a leaf where a closed keyword set exists.
+   (`NumberType`, `LengthType`, `StringType`, `HexColor`, ...) is ONLY for values
+   that are genuinely arbitrary (a real number, a free-text label, author-chosen
+   idents, a URL, a script body). Never use a leaf where a closed keyword set
+   exists — e.g. the 148 CSS named colours are enumerated in `NamedColor`, not leafed.
 
 2. **Bake the markup.** Elements and attributes carry their literal SVG syntax.
 

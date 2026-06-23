@@ -10,8 +10,7 @@
      - animateMotion `path` attribute    (animation.ebnf)
      - CSS `path()` basic-shape function (masking.ebnf)
 
-   Two corrections from the spec BNF are applied (documented in
-   docs/grammar-notes/05-paths.md §Discrepancies):
+   Two corrections from the spec BNF are applied:
 
      D1. `number` is corrected from integer-only to real decimal.
          The spec BNF `number ::= ([0-9])+` is a known omission; every
@@ -103,7 +102,7 @@ EllipticalArcArgumentSequence = EllipticalArcArgument , { EllipticalArcArgument 
 (* rx ry x-axis-rotation large-arc-flag sweep-flag x y
    (SVG 2 §9.3.9, "elliptical_arc_argument")
 
-   FLAG-PARSING SUBTLETY (docs/grammar-notes/05-paths.md §Flag-parsing):
+   FLAG-PARSING SUBTLETY:
    `arc_flag` is a SINGLE CHARACTER "0" or "1", kept STRICTLY DISTINCT from
    the NumberType coordinate production.  This is not cosmetic — it is
    mandatory for correct parsing.  A maximal-munch scanner applied to the

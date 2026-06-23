@@ -19,9 +19,6 @@
 # chrome-testing/shoot.sh. The specimens.json manifest IS tracked; the tree is not.
 /chrome-testing/html/specimen/
 
-# Spec HTML cache is fetched by scripts/fetch_specs.sh (text kept for reading)
-/docs/specs/cache/
-
 # Temp
 **/temp/
 /tmp/

@@ -23,7 +23,6 @@
      open values use scalarized leaf *Type rules from datatype.ebnf.
 
    References: CSS Masking Module Level 1 (CR 5 Aug 2021) + MDN snapshot Jun 2026.
-   Discrepancy resolutions: docs/grammar-notes/12-masking.md §Discrepancies.
    ============================================================================ *)
 
 (* ============================================================================

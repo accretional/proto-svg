@@ -82,7 +82,7 @@ LinearGradientTransformAttr = ' gradientTransform="' , TransformList , '"' ;
 
 (* x1/y1/x2/y2: accept <length-percentage> | <number> (D1: bare number is a
    valid OBB fraction; spec table lists <length> but prose/IDL/MDN agree on
-   the wider form — see grammar-notes/10-paint-servers.md §D1). *)
+   the wider form). *)
 LinearGradientX1Attr = ' x1="' , ( LengthPercentageType | NumberType ) , '"' ;
 LinearGradientY1Attr = ' y1="' , ( LengthPercentageType | NumberType ) , '"' ;
 LinearGradientX2Attr = ' x2="' , ( LengthPercentageType | NumberType ) , '"' ;
@@ -174,7 +174,7 @@ StopAttribute =
 
 (* offset: <number> (0..1 fraction) or <percentage> (0%..100%).
    Clamping and monotonic ordering are overlay/semantic constraints, not
-   grammar-level restrictions (see grammar-notes/10-paint-servers.md §D-stop). *)
+   grammar-level restrictions. *)
 StopOffsetAttr = ' offset="' , ( NumberType | PercentageType ) , '"' ;
 
 StopContent =

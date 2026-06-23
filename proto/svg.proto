@@ -423,9 +423,7 @@ message RoleAttr {
 }
 
 message RoleValue {
-  RoleToken role_token = 1;
-
-  repeated RoleToken role_token_2 = 2;
+  repeated RoleToken role_token = 1;
 }
 
 message RoleToken {
@@ -711,9 +709,7 @@ message AriaDropeffectAttr {
 }
 
 message AriaDropeffectValue {
-  AriaDropeffectToken aria_dropeffect_token = 1;
-
-  repeated AriaDropeffectToken aria_dropeffect_token_2 = 2;
+  repeated AriaDropeffectToken aria_dropeffect_token = 1;
 }
 
 message AriaDropeffectToken {
@@ -915,9 +911,7 @@ message AriaRelevantAttr {
 }
 
 message AriaRelevantValue {
-  AriaRelevantToken aria_relevant_token = 1;
-
-  repeated AriaRelevantToken aria_relevant_token_2 = 2;
+  repeated AriaRelevantToken aria_relevant_token = 1;
 }
 
 message AriaRelevantToken {
@@ -2339,11 +2333,17 @@ message KeyPointsList {
 message ControlPointSet {
   NumberType number_type = 1;
 
-  NumberType number_type_2 = 2;
+  SpaceKeyword space_keyword = 2;
 
-  NumberType number_type_3 = 3;
+  NumberType number_type_2 = 3;
 
-  NumberType number_type_4 = 4;
+  SpaceKeyword space_keyword_2 = 4;
+
+  NumberType number_type_3 = 5;
+
+  SpaceKeyword space_keyword_3 = 6;
+
+  NumberType number_type_4 = 7;
 }
 
 message KeySplinesList {
@@ -2399,24 +2399,34 @@ message MotionValues {
 message AnimateTransformTranslateValue {
   NumberType number_type = 1;
 
-  NumberType number_type_2 = 2;
+  Space space = 2;
+
+  message Space {
+    NumberType number_type = 1;
+  }
 }
 
 message AnimateTransformScaleValue {
   NumberType number_type = 1;
 
-  NumberType number_type_2 = 2;
+  Space space = 2;
+
+  message Space {
+    NumberType number_type = 1;
+  }
 }
 
 message AnimateTransformRotateValue {
   NumberType number_type = 1;
 
-  Seq1 seq1 = 2;
+  Space space = 2;
 
-  message Seq1 {
+  message Space {
     NumberType number_type = 1;
 
-    NumberType number_type_2 = 2;
+    SpaceKeyword space_keyword = 2;
+
+    NumberType number_type_2 = 3;
   }
 }
 
@@ -3736,11 +3746,17 @@ message PaintFallback {
 message ViewBox {
   NumberType number_type = 1;
 
-  NumberType number_type_2 = 2;
+  SpaceKeyword space_keyword = 2;
 
-  NumberType number_type_3 = 3;
+  NumberType number_type_2 = 3;
 
-  NumberType number_type_4 = 4;
+  SpaceKeyword space_keyword_2 = 4;
+
+  NumberType number_type_3 = 5;
+
+  SpaceKeyword space_keyword_3 = 6;
+
+  NumberType number_type_4 = 7;
 }
 
 message PreserveAspectRatio {
@@ -4363,21 +4379,19 @@ message FeBlendAttribute {
 
     FeBlendModeAttr fe_blend_mode_attr = 3;
 
-    FeBlendNoCompositeAttr fe_blend_no_composite_attr = 4;
+    FeBlendXattr fe_blend_xattr = 4;
 
-    FeBlendXattr fe_blend_xattr = 5;
+    FeBlendYattr fe_blend_yattr = 5;
 
-    FeBlendYattr fe_blend_yattr = 6;
+    FeBlendWidthAttr fe_blend_width_attr = 6;
 
-    FeBlendWidthAttr fe_blend_width_attr = 7;
+    FeBlendHeightAttr fe_blend_height_attr = 7;
 
-    FeBlendHeightAttr fe_blend_height_attr = 8;
+    FeBlendResultAttr fe_blend_result_attr = 8;
 
-    FeBlendResultAttr fe_blend_result_attr = 9;
+    CoreAttribute core_attribute = 9;
 
-    CoreAttribute core_attribute = 10;
-
-    PresentationAttribute presentation_attribute = 11;
+    PresentationAttribute presentation_attribute = 10;
   }
 }
 
@@ -4433,12 +4447,6 @@ message FeBlendModeAttr {
       LuminosityKeyword luminosity_keyword = 16;
     }
   }
-}
-
-message FeBlendNoCompositeAttr {
-  BooleanValue boolean_value = 1;
-
-  QuotationMarkKeyword quotation_mark_keyword = 2;
 }
 
 message FeBlendXattr {
@@ -6580,9 +6588,7 @@ message FilterAttr {
 }
 
 message FilterValueList {
-  FilterValueItem filter_value_item = 1;
-
-  repeated FilterValueItem filter_value_item_2 = 2;
+  repeated FilterValueItem filter_value_item = 1;
 }
 
 message FilterValueItem {
@@ -7794,9 +7800,7 @@ message PaintOrderAttr {
 }
 
 message PaintOrderList {
-  PaintOrderToken paint_order_token = 1;
-
-  repeated PaintOrderToken paint_order_token_2 = 2;
+  repeated PaintOrderToken paint_order_token = 1;
 }
 
 message PaintOrderToken {
@@ -10112,19 +10116,9 @@ message TextLengthAdjustAttr {
 }
 
 message TextPositionList {
-  Alt1 alt1 = 1;
-
-  repeated Alt2 alt2 = 2;
+  repeated Alt1 alt1 = 1;
 
   message Alt1 {
-    oneof value {
-      LengthPercentageType length_percentage_type = 1;
-
-      NumberType number_type = 2;
-    }
-  }
-
-  message Alt2 {
     oneof value {
       LengthPercentageType length_percentage_type = 1;
 
@@ -10134,9 +10128,7 @@ message TextPositionList {
 }
 
 message TextRotateList {
-  NumberType number_type = 1;
-
-  repeated NumberType number_type_2 = 2;
+  repeated NumberType number_type = 1;
 }
 
 message TextContent {

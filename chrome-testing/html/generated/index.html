@@ -4,77 +4,80 @@ h1{color:#16c79a;font-size:18px;margin:0 0 4px}
 p.desc{color:#9aa;margin:0 0 20px}
 a{color:#4d8bff}
 .grid{display:flex;flex-wrap:wrap;gap:16px}
-.card{background:#0f1530;border:1px solid #26305a;border-radius:8px;padding:10px;width:160px}
+.card{background:#0f1530;border:1px solid #26305a;border-radius:8px;padding:10px;width:160px;min-width:160px;min-height:200px;box-sizing:border-box;display:flex;flex-direction:column}
 .card svg{display:block;background:#161c3a;border-radius:4px;width:140px;height:140px}
-.card .label{margin-top:8px;color:#f5a623;font-size:12px;word-break:break-all}
+.card .label{margin-top:8px;color:#f5a623;font-size:12px;word-break:break-word;overflow-wrap:anywhere}
 .card .attr{color:#16c79a}
+details.meta{margin-top:28px}
+details.meta>summary{color:#9aa;font-size:13px;cursor:pointer;margin-bottom:12px}
+.card--meta{opacity:.5;border-style:dashed}
 ul{columns:4;list-style:none;padding:0}li{margin:2px 0}.n{color:#9aa}</style></head><body>
 <h1>SVG grammar — all value-paths</h1>
-<p class="desc">65 elements, 4998 enumerated value-path variants. Each page walks one element's grammar for every attribute and every value, rendered as an SVG.</p>
+<p class="desc">65 elements, 6879 enumerated value-path variants. Each page walks one element's grammar for every attribute and every value, rendered as an SVG.</p>
 <ul>
-  <li><a href="a.html">&lt;a&gt;</a> <span class="n">96</span></li>
-  <li><a href="animate.html">&lt;animate&gt;</a> <span class="n">195</span></li>
-  <li><a href="animateMotion.html">&lt;animateMotion&gt;</a> <span class="n">123</span></li>
-  <li><a href="animateTransform.html">&lt;animateTransform&gt;</a> <span class="n">146</span></li>
-  <li><a href="circle.html">&lt;circle&gt;</a> <span class="n">70</span></li>
-  <li><a href="clipPath.html">&lt;clipPath&gt;</a> <span class="n">62</span></li>
-  <li><a href="defs.html">&lt;defs&gt;</a> <span class="n">58</span></li>
+  <li><a href="a.html">&lt;a&gt;</a> <span class="n">135</span></li>
+  <li><a href="animate.html">&lt;animate&gt;</a> <span class="n">122</span></li>
+  <li><a href="animateMotion.html">&lt;animateMotion&gt;</a> <span class="n">130</span></li>
+  <li><a href="animateTransform.html">&lt;animateTransform&gt;</a> <span class="n">127</span></li>
+  <li><a href="circle.html">&lt;circle&gt;</a> <span class="n">109</span></li>
+  <li><a href="clipPath.html">&lt;clipPath&gt;</a> <span class="n">101</span></li>
+  <li><a href="defs.html">&lt;defs&gt;</a> <span class="n">97</span></li>
   <li><a href="desc.html">&lt;desc&gt;</a> <span class="n">28</span></li>
-  <li><a href="discard.html">&lt;discard&gt;</a> <span class="n">28</span></li>
-  <li><a href="ellipse.html">&lt;ellipse&gt;</a> <span class="n">73</span></li>
-  <li><a href="feBlend.html">&lt;feBlend&gt;</a> <span class="n">100</span></li>
-  <li><a href="feColorMatrix.html">&lt;feColorMatrix&gt;</a> <span class="n">83</span></li>
-  <li><a href="feComponentTransfer.html">&lt;feComponentTransfer&gt;</a> <span class="n">74</span></li>
-  <li><a href="feComposite.html">&lt;feComposite&gt;</a> <span class="n">113</span></li>
-  <li><a href="feConvolveMatrix.html">&lt;feConvolveMatrix&gt;</a> <span class="n">118</span></li>
-  <li><a href="feDiffuseLighting.html">&lt;feDiffuseLighting&gt;</a> <span class="n">91</span></li>
-  <li><a href="feDisplacementMap.html">&lt;feDisplacementMap&gt;</a> <span class="n">96</span></li>
-  <li><a href="feDistantLight.html">&lt;feDistantLight&gt;</a> <span class="n">61</span></li>
-  <li><a href="feDropShadow.html">&lt;feDropShadow&gt;</a> <span class="n">87</span></li>
-  <li><a href="feFlood.html">&lt;feFlood&gt;</a> <span class="n">66</span></li>
-  <li><a href="feFuncA.html">&lt;feFuncA&gt;</a> <span class="n">89</span></li>
-  <li><a href="feFuncB.html">&lt;feFuncB&gt;</a> <span class="n">89</span></li>
-  <li><a href="feFuncG.html">&lt;feFuncG&gt;</a> <span class="n">89</span></li>
-  <li><a href="feFuncR.html">&lt;feFuncR&gt;</a> <span class="n">89</span></li>
-  <li><a href="feGaussianBlur.html">&lt;feGaussianBlur&gt;</a> <span class="n">78</span></li>
-  <li><a href="feImage.html">&lt;feImage&gt;</a> <span class="n">74</span></li>
-  <li><a href="feMerge.html">&lt;feMerge&gt;</a> <span class="n">66</span></li>
-  <li><a href="feMergeNode.html">&lt;feMergeNode&gt;</a> <span class="n">57</span></li>
-  <li><a href="feMorphology.html">&lt;feMorphology&gt;</a> <span class="n">77</span></li>
-  <li><a href="feOffset.html">&lt;feOffset&gt;</a> <span class="n">86</span></li>
-  <li><a href="fePointLight.html">&lt;fePointLight&gt;</a> <span class="n">67</span></li>
-  <li><a href="feSpecularLighting.html">&lt;feSpecularLighting&gt;</a> <span class="n">97</span></li>
-  <li><a href="feSpotLight.html">&lt;feSpotLight&gt;</a> <span class="n">97</span></li>
-  <li><a href="feTile.html">&lt;feTile&gt;</a> <span class="n">74</span></li>
-  <li><a href="feTurbulence.html">&lt;feTurbulence&gt;</a> <span class="n">87</span></li>
-  <li><a href="filter.html">&lt;filter&gt;</a> <span class="n">71</span></li>
-  <li><a href="foreignObject.html">&lt;foreignObject&gt;</a> <span class="n">72</span></li>
-  <li><a href="g.html">&lt;g&gt;</a> <span class="n">58</span></li>
-  <li><a href="image.html">&lt;image&gt;</a> <span class="n">83</span></li>
-  <li><a href="line.html">&lt;line&gt;</a> <span class="n">75</span></li>
-  <li><a href="linearGradient.html">&lt;linearGradient&gt;</a> <span class="n">80</span></li>
-  <li><a href="marker.html">&lt;marker&gt;</a> <span class="n">84</span></li>
-  <li><a href="mask.html">&lt;mask&gt;</a> <span class="n">75</span></li>
+  <li><a href="discard.html">&lt;discard&gt;</a> <span class="n">27</span></li>
+  <li><a href="ellipse.html">&lt;ellipse&gt;</a> <span class="n">112</span></li>
+  <li><a href="feBlend.html">&lt;feBlend&gt;</a> <span class="n">137</span></li>
+  <li><a href="feColorMatrix.html">&lt;feColorMatrix&gt;</a> <span class="n">118</span></li>
+  <li><a href="feComponentTransfer.html">&lt;feComponentTransfer&gt;</a> <span class="n">113</span></li>
+  <li><a href="feComposite.html">&lt;feComposite&gt;</a> <span class="n">152</span></li>
+  <li><a href="feConvolveMatrix.html">&lt;feConvolveMatrix&gt;</a> <span class="n">153</span></li>
+  <li><a href="feDiffuseLighting.html">&lt;feDiffuseLighting&gt;</a> <span class="n">125</span></li>
+  <li><a href="feDisplacementMap.html">&lt;feDisplacementMap&gt;</a> <span class="n">135</span></li>
+  <li><a href="feDistantLight.html">&lt;feDistantLight&gt;</a> <span class="n">95</span></li>
+  <li><a href="feDropShadow.html">&lt;feDropShadow&gt;</a> <span class="n">126</span></li>
+  <li><a href="feFlood.html">&lt;feFlood&gt;</a> <span class="n">105</span></li>
+  <li><a href="feFuncA.html">&lt;feFuncA&gt;</a> <span class="n">128</span></li>
+  <li><a href="feFuncB.html">&lt;feFuncB&gt;</a> <span class="n">128</span></li>
+  <li><a href="feFuncG.html">&lt;feFuncG&gt;</a> <span class="n">128</span></li>
+  <li><a href="feFuncR.html">&lt;feFuncR&gt;</a> <span class="n">128</span></li>
+  <li><a href="feGaussianBlur.html">&lt;feGaussianBlur&gt;</a> <span class="n">117</span></li>
+  <li><a href="feImage.html">&lt;feImage&gt;</a> <span class="n">113</span></li>
+  <li><a href="feMerge.html">&lt;feMerge&gt;</a> <span class="n">105</span></li>
+  <li><a href="feMergeNode.html">&lt;feMergeNode&gt;</a> <span class="n">96</span></li>
+  <li><a href="feMorphology.html">&lt;feMorphology&gt;</a> <span class="n">116</span></li>
+  <li><a href="feOffset.html">&lt;feOffset&gt;</a> <span class="n">125</span></li>
+  <li><a href="fePointLight.html">&lt;fePointLight&gt;</a> <span class="n">101</span></li>
+  <li><a href="feSpecularLighting.html">&lt;feSpecularLighting&gt;</a> <span class="n">126</span></li>
+  <li><a href="feSpotLight.html">&lt;feSpotLight&gt;</a> <span class="n">121</span></li>
+  <li><a href="feTile.html">&lt;feTile&gt;</a> <span class="n">113</span></li>
+  <li><a href="feTurbulence.html">&lt;feTurbulence&gt;</a> <span class="n">112</span></li>
+  <li><a href="filter.html">&lt;filter&gt;</a> <span class="n">110</span></li>
+  <li><a href="foreignObject.html">&lt;foreignObject&gt;</a> <span class="n">111</span></li>
+  <li><a href="g.html">&lt;g&gt;</a> <span class="n">97</span></li>
+  <li><a href="image.html">&lt;image&gt;</a> <span class="n">122</span></li>
+  <li><a href="line.html">&lt;line&gt;</a> <span class="n">114</span></li>
+  <li><a href="linearGradient.html">&lt;linearGradient&gt;</a> <span class="n">119</span></li>
+  <li><a href="marker.html">&lt;marker&gt;</a> <span class="n">123</span></li>
+  <li><a href="mask.html">&lt;mask&gt;</a> <span class="n">114</span></li>
   <li><a href="metadata.html">&lt;metadata&gt;</a> <span class="n">28</span></li>
   <li><a href="mpath.html">&lt;mpath&gt;</a> <span class="n">30</span></li>
-  <li><a href="path.html">&lt;path&gt;</a> <span class="n">63</span></li>
-  <li><a href="pattern.html">&lt;pattern&gt;</a> <span class="n">89</span></li>
-  <li><a href="polygon.html">&lt;polygon&gt;</a> <span class="n">61</span></li>
-  <li><a href="polyline.html">&lt;polyline&gt;</a> <span class="n">61</span></li>
-  <li><a href="radialGradient.html">&lt;radialGradient&gt;</a> <span class="n">84</span></li>
-  <li><a href="rect.html">&lt;rect&gt;</a> <span class="n">75</span></li>
+  <li><a href="path.html">&lt;path&gt;</a> <span class="n">99</span></li>
+  <li><a href="pattern.html">&lt;pattern&gt;</a> <span class="n">128</span></li>
+  <li><a href="polygon.html">&lt;polygon&gt;</a> <span class="n">100</span></li>
+  <li><a href="polyline.html">&lt;polyline&gt;</a> <span class="n">100</span></li>
+  <li><a href="radialGradient.html">&lt;radialGradient&gt;</a> <span class="n">123</span></li>
+  <li><a href="rect.html">&lt;rect&gt;</a> <span class="n">114</span></li>
   <li><a href="script.html">&lt;script&gt;</a> <span class="n">41</span></li>
-  <li><a href="set.html">&lt;set&gt;</a> <span class="n">129</span></li>
-  <li><a href="stop.html">&lt;stop&gt;</a> <span class="n">56</span></li>
+  <li><a href="set.html">&lt;set&gt;</a> <span class="n">109</span></li>
+  <li><a href="stop.html">&lt;stop&gt;</a> <span class="n">95</span></li>
   <li><a href="style.html">&lt;style&gt;</a> <span class="n">40</span></li>
-  <li><a href="svg.html">&lt;svg&gt;</a> <span class="n">85</span></li>
-  <li><a href="switch.html">&lt;switch&gt;</a> <span class="n">58</span></li>
-  <li><a href="symbol.html">&lt;symbol&gt;</a> <span class="n">88</span></li>
-  <li><a href="text.html">&lt;text&gt;</a> <span class="n">74</span></li>
-  <li><a href="textPath.html">&lt;textPath&gt;</a> <span class="n">80</span></li>
+  <li><a href="svg.html">&lt;svg&gt;</a> <span class="n">124</span></li>
+  <li><a href="switch.html">&lt;switch&gt;</a> <span class="n">97</span></li>
+  <li><a href="symbol.html">&lt;symbol&gt;</a> <span class="n">127</span></li>
+  <li><a href="text.html">&lt;text&gt;</a> <span class="n">108</span></li>
+  <li><a href="textPath.html">&lt;textPath&gt;</a> <span class="n">116</span></li>
   <li><a href="title.html">&lt;title&gt;</a> <span class="n">28</span></li>
-  <li><a href="tspan.html">&lt;tspan&gt;</a> <span class="n">74</span></li>
-  <li><a href="unknown.html">&lt;unknown&gt;</a> <span class="n">58</span></li>
-  <li><a href="use.html">&lt;use&gt;</a> <span class="n">75</span></li>
+  <li><a href="tspan.html">&lt;tspan&gt;</a> <span class="n">108</span></li>
+  <li><a href="unknown.html">&lt;unknown&gt;</a> <span class="n">97</span></li>
+  <li><a href="use.html">&lt;use&gt;</a> <span class="n">114</span></li>
   <li><a href="view.html">&lt;view&gt;</a> <span class="n">39</span></li>
 </ul></body></html>

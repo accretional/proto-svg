@@ -27,7 +27,7 @@ var reps = map[string][]string{
 	// ── length / percentage / coordinate ───────────────────────────────────
 	"LengthType":           {"10", "24px", "2em", "1.5rem", "50%", "12pt"},
 	"PercentageType":       {"50%", "100%", "25%", "0%", "80%"},
-	"LengthPercentageType": {"10", "24px", "2em", "50%", "100%"},
+	"LengthPercentageType": {"10", "24px", "2em", "50%", "75%"},
 	"CoordinateType":       {"0", "10", "-5.5", "100px", "50%", "2.5em"},
 
 	// ── angle / time ────────────────────────────────────────────────────────
@@ -35,7 +35,7 @@ var reps = map[string][]string{
 	"TimeType":  {"0s", "0.3s", "1s", "200ms", "2.5s"},
 
 	// ── color / paint references ────────────────────────────────────────────
-	"ColorType": {"#e94560", "red", "currentColor", "#16c79a", "#0f3460"},
+	"ColorType": {"#e94560", "#16c79a", "#4d8bff", "#f5a623", "currentColor", "#b06aff"},
 
 	// ── IRI / URL references ────────────────────────────────────────────────
 	"IriType": {"#ref1", "#grad1", "#marker1", "#clip1"},

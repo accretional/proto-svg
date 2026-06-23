@@ -19,9 +19,16 @@ CHROMERPC_GIT="${CHROMERPC_GIT:-https://github.com/accretional/chromerpc}"
 INPUT="${1:-}"
 OUTPUT="${2:-}"
 if [[ -z "$INPUT" || -z "$OUTPUT" ]]; then
-  echo "usage: $0 <input.html|dir|url> <output.png|dir>" >&2
+  echo "usage: $0 <input.html|dir|url> <output.png|dir> [width] [height]" >&2
   exit 1
 fi
+# Optional viewport sizing + full-page capture (for reviewing long gallery pages):
+#   W H positional args (default 1280x800); SNAP_SCALE (default 2);
+#   SNAP_FULLPAGE=1 captures the entire scrollable page (resizes viewport to fit).
+W="${3:-1280}"
+H="${4:-800}"
+SCALE="${SNAP_SCALE:-2}"
+FULLPAGE="${SNAP_FULLPAGE:-}"
 
 # ── cleanup ──────────────────────────────────────────────────────────────────
 WORK_DIR=""; CHROMERPC_PID=""; HTTP_PID=""; HTTP_PORT=""; CHROMERPC_ADDR=""
@@ -101,12 +108,18 @@ take_screenshot() {
   if [[ -n "${AUTOMATION:-}" && -f "${AUTOMATION:-}" ]]; then
     sed -e "s#{{URL}}#${url}#g" -e "s#{{OUT}}#${abs_out}#g" "$AUTOMATION" > "$textproto"
   else
+    local capture
+    if [[ -n "$FULLPAGE" ]]; then
+      capture="steps: { label: \"capture\" full_page_screenshot: { output_path: \"$abs_out\" } }"
+    else
+      capture="steps: { label: \"capture\" screenshot: { output_path: \"$abs_out\" format: \"png\" } }"
+    fi
     cat > "$textproto" <<PROTO
 name: "shot_${slug}"
-steps: { label: "viewport" set_viewport: { width: 1280 height: 800 device_scale_factor: 2 } }
+steps: { label: "viewport" set_viewport: { width: $W height: $H device_scale_factor: $SCALE } }
 steps: { label: "navigate" navigate: { url: "$url" } }
 steps: { label: "settle"   wait: { milliseconds: ${SNAP_WAIT_MS:-600} } }
-steps: { label: "capture"  screenshot: { output_path: "$abs_out" format: "png" } }
+$capture
 PROTO
   fi
   echo "snap: $url -> $abs_out"

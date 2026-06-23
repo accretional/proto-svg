@@ -307,18 +307,25 @@ func checkWellFormed(svg string) (bool, string) {
 		return false, "unclosed start tag <" + stack[len(stack)-1] + ">"
 	}
 
-	// (2) Attribute quoting: every `="` must be closed by a `"` before the
-	// enclosing tag ends. Walk attribute-opening tokens.
-	for k := 0; k+1 < len(svg); k++ {
+	// (2) Attribute quoting: every `="` must be closed by a later `"` before the
+	// enclosing tag ends. This scan is QUOTE-STATE-AWARE: once we open an
+	// attribute value at `="`, we advance to the matching closing `"` and treat
+	// everything in between (including `=` or `="`) as opaque value text, NOT as a
+	// new attribute opener. This is what makes base64 `data:` URIs valid — their
+	// padding ends in `=` right before the closing quote (`href="…Zz4="`), and a
+	// naive scan would misread that `="` as a new, unclosed attribute.
+	for k := 0; k+1 < len(svg); {
 		if svg[k] == '=' && svg[k+1] == '"' {
-			// find the closing quote
+			// We are now inside an attribute value; scan to the closing quote,
+			// skipping any `=`/`="` that appear within the value text.
 			closed := false
-			for q := k + 2; q < len(svg); q++ {
+			q := k + 2
+			for ; q < len(svg); q++ {
 				if svg[q] == '"' {
 					closed = true
 					break
 				}
-				// a `>` or `<` before the close quote means an unbalanced value
+				// a `<` before the close quote means an unbalanced value
 				if svg[q] == '<' {
 					break
 				}
@@ -327,7 +334,12 @@ func checkWellFormed(svg string) (bool, string) {
 				ctx := svg[k:min(k+24, len(svg))]
 				return false, `unclosed attribute quote near ` + ctx
 			}
+			// Resume scanning AFTER the closing quote so the value's interior
+			// (which may contain `="`, e.g. base64 padding) is not re-examined.
+			k = q + 1
+			continue
 		}
+		k++
 	}
 	return true, ""
 }

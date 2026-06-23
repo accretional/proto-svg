@@ -79,7 +79,7 @@ AriaBooleanUndefined = "true" | "false" | "undefined" ;
 AriaTristate         = "true" | "false" | "mixed" | "undefined" ;
 
 RoleAttr  = ' role="' , RoleValue , '"' ;
-RoleValue = RoleToken , { RoleToken } ;
+RoleValue = RoleToken , { " " , RoleToken } ;
 RoleToken = "alert" | "alertdialog" | "application" | "article" | "banner"
           | "blockquote" | "button" | "caption" | "cell" | "checkbox" | "code"
           | "columnheader" | "combobox" | "complementary" | "contentinfo"
@@ -111,7 +111,7 @@ AriaDescribedbyAttr      = ' aria-describedby="' , StringType , '"' ;
 AriaDetailsAttr          = ' aria-details="' , StringType , '"' ;
 AriaDisabledAttr         = ' aria-disabled="' , BooleanValue , '"' ;
 AriaDropeffectAttr       = ' aria-dropeffect="' , AriaDropeffectValue , '"' ;
-AriaDropeffectValue      = AriaDropeffectToken , { AriaDropeffectToken } ;
+AriaDropeffectValue      = AriaDropeffectToken , { " " , AriaDropeffectToken } ;
 AriaDropeffectToken      = "copy" | "execute" | "link" | "move" | "none" | "popup" ;
 AriaErrormessageAttr     = ' aria-errormessage="' , StringType , '"' ;
 AriaExpandedAttr         = ' aria-expanded="' , AriaBooleanUndefined , '"' ;
@@ -135,7 +135,7 @@ AriaPosinsetAttr         = ' aria-posinset="' , IntegerType , '"' ;
 AriaPressedAttr          = ' aria-pressed="' , AriaTristate , '"' ;
 AriaReadonlyAttr         = ' aria-readonly="' , BooleanValue , '"' ;
 AriaRelevantAttr         = ' aria-relevant="' , AriaRelevantValue , '"' ;
-AriaRelevantValue        = AriaRelevantToken , { AriaRelevantToken } ;
+AriaRelevantValue        = AriaRelevantToken , { " " , AriaRelevantToken } ;
 AriaRelevantToken        = "additions" | "all" | "removals" | "text" ;
 AriaRequiredAttr         = ' aria-required="' , BooleanValue , '"' ;
 AriaRoledescriptionAttr  = ' aria-roledescription="' , StringType , '"' ;

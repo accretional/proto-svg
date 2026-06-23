@@ -133,7 +133,7 @@ FilterHrefAttr = ' href="' , IriType , '"' ;
 
 
 (* ── 2.1  feBlend  (Filter Effects §15.7.3) ──────────────────────────────────
-   in, in2, mode (16-keyword <blend-mode>), no-composite (boolean presence).
+   in, in2, mode (16-keyword <blend-mode>).
    Content: descriptive + animate/script/set. *)
 
 SVGFEBlendElement = "<feBlend" , { FeBlendAttribute } , ">" , { FePrimitiveContent } , "</feBlend>" ;
@@ -141,7 +141,6 @@ SVGFEBlendElement = "<feBlend" , { FeBlendAttribute } , ">" , { FePrimitiveConte
 FeBlendAttribute = FeBlendInAttr
                  | FeBlendIn2Attr
                  | FeBlendModeAttr
-                 | FeBlendNoCompositeAttr
                  | FeBlendXAttr
                  | FeBlendYAttr
                  | FeBlendWidthAttr
@@ -160,9 +159,6 @@ FeBlendModeAttr = ' mode="' ,
     | "overlay" | "color-dodge" | "color-burn" | "hard-light"
     | "soft-light" | "difference" | "exclusion"
     | "hue" | "saturation" | "color" | "luminosity" ) , '"' ;
-
-(* no-composite: boolean-presence attribute (Level-1 extension; not animatable). *)
-FeBlendNoCompositeAttr = ' no-composite="' , BooleanValue , '"' ;
 
 FeBlendXAttr      = ' x="'      , LengthPercentageType , '"' ;
 FeBlendYAttr      = ' y="'      , LengthPercentageType , '"' ;
@@ -884,7 +880,7 @@ FeSpotLightLimitingConeAngleAttr = ' limitingConeAngle="' , NumberType , '"' ;
 
 FilterAttr = ' filter="' , ( "none" | FilterValueList ) , '"' ;
 
-FilterValueList = FilterValueItem , { FilterValueItem } ;
+FilterValueList = FilterValueItem , { " " , FilterValueItem } ;
 
 FilterValueItem = FilterFunction | UrlType ;
 

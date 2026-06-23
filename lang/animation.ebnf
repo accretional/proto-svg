@@ -155,7 +155,7 @@ KeyPointsList = NumberType , { ";" , NumberType } ;
 (* keySplines = semicolon-separated cubic-Bezier control-point sets; each set is
    four numbers (SVGwg-L2 §2.10: <number> ,? <number> ,? <number> ,? <number>).
    Renderer space-joins within a set; ";" separates sets. *)
-ControlPointSet = NumberType , NumberType , NumberType , NumberType ;
+ControlPointSet = NumberType , " " , NumberType , " " , NumberType , " " , NumberType ;
 KeySplinesList  = ControlPointSet , { ";" , ControlPointSet } ;
 
 (* ============================================================================
@@ -204,13 +204,13 @@ MotionValues = MotionCoordinatePair , { ";" , MotionCoordinatePair } ;
    ============================================================================ *)
 
 (* type="translate": <tx> [<ty>] *)
-AnimateTransformTranslateValue = NumberType , [ NumberType ] ;
+AnimateTransformTranslateValue = NumberType , [ " " , NumberType ] ;
 
 (* type="scale": <sx> [<sy>]  (sy defaults to sx — overlay) *)
-AnimateTransformScaleValue = NumberType , [ NumberType ] ;
+AnimateTransformScaleValue = NumberType , [ " " , NumberType ] ;
 
 (* type="rotate": <rotate-angle> [<cx> <cy>] *)
-AnimateTransformRotateValue = NumberType , [ NumberType , NumberType ] ;
+AnimateTransformRotateValue = NumberType , [ " " , NumberType , " " , NumberType ] ;
 
 (* type="skewX": <skew-angle> *)
 AnimateTransformSkewXValue = NumberType ;

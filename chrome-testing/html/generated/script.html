@@ -4,175 +4,182 @@ h1{color:#16c79a;font-size:18px;margin:0 0 4px}
 p.desc{color:#9aa;margin:0 0 20px}
 a{color:#4d8bff}
 .grid{display:flex;flex-wrap:wrap;gap:16px}
-.card{background:#0f1530;border:1px solid #26305a;border-radius:8px;padding:10px;width:160px}
+.card{background:#0f1530;border:1px solid #26305a;border-radius:8px;padding:10px;width:160px;min-width:160px;min-height:200px;box-sizing:border-box;display:flex;flex-direction:column}
 .card svg{display:block;background:#161c3a;border-radius:4px;width:140px;height:140px}
-.card .label{margin-top:8px;color:#f5a623;font-size:12px;word-break:break-all}
-.card .attr{color:#16c79a}</style></head><body>
+.card .label{margin-top:8px;color:#f5a623;font-size:12px;word-break:break-word;overflow-wrap:anywhere}
+.card .attr{color:#16c79a}
+details.meta{margin-top:28px}
+details.meta>summary{color:#9aa;font-size:13px;cursor:pointer;margin-bottom:12px}
+.card--meta{opacity:.5;border-style:dashed}</style></head><body>
 <h1>&lt;script&gt;</h1>
 <p class="desc">41 enumerated value-paths walked from the grammar. <a href="index.html">&larr; index</a></p>
 <div class="grid">
   <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
   <rect id="slot-target" x="10" y="10" width="80" height="80" fill="#444" rx="8"/>
-  <script type="label"></script>
+  <script type="label">(function(){var t=document.getElementById('slot-target');if(t){t.setAttribute('fill','#e94560');}})();</script>
 </svg><div class="label"><span class="attr">type</span>="label"</div></div>
   <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
   <rect id="slot-target" x="10" y="10" width="80" height="80" fill="#444" rx="8"/>
-  <script type="Aa"></script>
+  <script type="Aa">(function(){var t=document.getElementById('slot-target');if(t){t.setAttribute('fill','#e94560');}})();</script>
 </svg><div class="label"><span class="attr">type</span>="Aa"</div></div>
   <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
   <rect id="slot-target" x="10" y="10" width="80" height="80" fill="#444" rx="8"/>
-  <script type="sample"></script>
+  <script type="sample">(function(){var t=document.getElementById('slot-target');if(t){t.setAttribute('fill','#e94560');}})();</script>
 </svg><div class="label"><span class="attr">type</span>="sample"</div></div>
   <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
   <rect id="slot-target" x="10" y="10" width="80" height="80" fill="#444" rx="8"/>
-  <script type="specimen"></script>
+  <script type="specimen">(function(){var t=document.getElementById('slot-target');if(t){t.setAttribute('fill','#e94560');}})();</script>
 </svg><div class="label"><span class="attr">type</span>="specimen"</div></div>
   <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
   <rect id="slot-target" x="10" y="10" width="80" height="80" fill="#444" rx="8"/>
-  <script id="slot" href="#slot"></script>
+  <script id="slot" href="#slot">(function(){var t=document.getElementById('slot-target');if(t){t.setAttribute('fill','#e94560');}})();</script>
 </svg><div class="label"><span class="attr">href</span>="#slot"</div></div>
   <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
   <rect id="slot-target" x="10" y="10" width="80" height="80" fill="#444" rx="8"/>
-  <script crossorigin="anonymous"></script>
+  <script crossorigin="anonymous">(function(){var t=document.getElementById('slot-target');if(t){t.setAttribute('fill','#e94560');}})();</script>
 </svg><div class="label"><span class="attr">crossorigin</span>="anonymous"</div></div>
   <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
   <rect id="slot-target" x="10" y="10" width="80" height="80" fill="#444" rx="8"/>
-  <script crossorigin="use-credentials"></script>
+  <script crossorigin="use-credentials">(function(){var t=document.getElementById('slot-target');if(t){t.setAttribute('fill','#e94560');}})();</script>
 </svg><div class="label"><span class="attr">crossorigin</span>="use-credentials"</div></div>
   <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
   <rect id="slot-target" x="10" y="10" width="80" height="80" fill="#444" rx="8"/>
-  <script async="true"></script>
+  <script async="true">(function(){var t=document.getElementById('slot-target');if(t){t.setAttribute('fill','#e94560');}})();</script>
 </svg><div class="label"><span class="attr">async</span>="true"</div></div>
   <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
   <rect id="slot-target" x="10" y="10" width="80" height="80" fill="#444" rx="8"/>
-  <script async="false"></script>
+  <script async="false">(function(){var t=document.getElementById('slot-target');if(t){t.setAttribute('fill','#e94560');}})();</script>
 </svg><div class="label"><span class="attr">async</span>="false"</div></div>
   <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
   <rect id="slot-target" x="10" y="10" width="80" height="80" fill="#444" rx="8"/>
-  <script defer="true"></script>
+  <script defer="true">(function(){var t=document.getElementById('slot-target');if(t){t.setAttribute('fill','#e94560');}})();</script>
 </svg><div class="label"><span class="attr">defer</span>="true"</div></div>
   <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
   <rect id="slot-target" x="10" y="10" width="80" height="80" fill="#444" rx="8"/>
-  <script defer="false"></script>
+  <script defer="false">(function(){var t=document.getElementById('slot-target');if(t){t.setAttribute('fill','#e94560');}})();</script>
 </svg><div class="label"><span class="attr">defer</span>="false"</div></div>
   <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
   <rect id="slot-target" x="10" y="10" width="80" height="80" fill="#444" rx="8"/>
-  <script id="circle1"></script>
-</svg><div class="label"><span class="attr">id</span>="circle1"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <rect id="slot-target" x="10" y="10" width="80" height="80" fill="#444" rx="8"/>
-  <script id="grad-a"></script>
-</svg><div class="label"><span class="attr">id</span>="grad-a"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <rect id="slot-target" x="10" y="10" width="80" height="80" fill="#444" rx="8"/>
-  <script id="myId"></script>
-</svg><div class="label"><span class="attr">id</span>="myId"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <rect id="slot-target" x="10" y="10" width="80" height="80" fill="#444" rx="8"/>
-  <script id="node3"></script>
-</svg><div class="label"><span class="attr">id</span>="node3"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <rect id="slot-target" x="10" y="10" width="80" height="80" fill="#444" rx="8"/>
-  <script id="r1"></script>
-</svg><div class="label"><span class="attr">id</span>="r1"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <rect id="slot-target" x="10" y="10" width="80" height="80" fill="#444" rx="8"/>
-  <script tabindex="0"></script>
-</svg><div class="label"><span class="attr">tabindex</span>="0"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <rect id="slot-target" x="10" y="10" width="80" height="80" fill="#444" rx="8"/>
-  <script tabindex="1"></script>
-</svg><div class="label"><span class="attr">tabindex</span>="1"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <rect id="slot-target" x="10" y="10" width="80" height="80" fill="#444" rx="8"/>
-  <script tabindex="-1"></script>
-</svg><div class="label"><span class="attr">tabindex</span>="-1"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <rect id="slot-target" x="10" y="10" width="80" height="80" fill="#444" rx="8"/>
-  <script tabindex="100"></script>
-</svg><div class="label"><span class="attr">tabindex</span>="100"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <rect id="slot-target" x="10" y="10" width="80" height="80" fill="#444" rx="8"/>
-  <script tabindex="3"></script>
-</svg><div class="label"><span class="attr">tabindex</span>="3"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <rect id="slot-target" x="10" y="10" width="80" height="80" fill="#444" rx="8"/>
-  <script tabindex="10"></script>
-</svg><div class="label"><span class="attr">tabindex</span>="10"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <rect id="slot-target" x="10" y="10" width="80" height="80" fill="#444" rx="8"/>
-  <script autofocus="true"></script>
-</svg><div class="label"><span class="attr">autofocus</span>="true"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <rect id="slot-target" x="10" y="10" width="80" height="80" fill="#444" rx="8"/>
-  <script autofocus="false"></script>
-</svg><div class="label"><span class="attr">autofocus</span>="false"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <rect id="slot-target" x="10" y="10" width="80" height="80" fill="#444" rx="8"/>
-  <script lang="en"></script>
-</svg><div class="label"><span class="attr">lang</span>="en"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <rect id="slot-target" x="10" y="10" width="80" height="80" fill="#444" rx="8"/>
-  <script lang="fr-CA"></script>
-</svg><div class="label"><span class="attr">lang</span>="fr-CA"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <rect id="slot-target" x="10" y="10" width="80" height="80" fill="#444" rx="8"/>
-  <script lang="de"></script>
-</svg><div class="label"><span class="attr">lang</span>="de"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <rect id="slot-target" x="10" y="10" width="80" height="80" fill="#444" rx="8"/>
-  <script lang="zh-Hans"></script>
-</svg><div class="label"><span class="attr">lang</span>="zh-Hans"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <rect id="slot-target" x="10" y="10" width="80" height="80" fill="#444" rx="8"/>
-  <script lang="pt-BR"></script>
-</svg><div class="label"><span class="attr">lang</span>="pt-BR"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <rect id="slot-target" x="10" y="10" width="80" height="80" fill="#444" rx="8"/>
-  <script xml:lang="en"></script>
-</svg><div class="label"><span class="attr">xml:lang</span>="en"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <rect id="slot-target" x="10" y="10" width="80" height="80" fill="#444" rx="8"/>
-  <script xml:lang="fr-CA"></script>
-</svg><div class="label"><span class="attr">xml:lang</span>="fr-CA"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <rect id="slot-target" x="10" y="10" width="80" height="80" fill="#444" rx="8"/>
-  <script xml:lang="de"></script>
-</svg><div class="label"><span class="attr">xml:lang</span>="de"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <rect id="slot-target" x="10" y="10" width="80" height="80" fill="#444" rx="8"/>
-  <script xml:lang="zh-Hans"></script>
-</svg><div class="label"><span class="attr">xml:lang</span>="zh-Hans"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <rect id="slot-target" x="10" y="10" width="80" height="80" fill="#444" rx="8"/>
-  <script xml:lang="pt-BR"></script>
-</svg><div class="label"><span class="attr">xml:lang</span>="pt-BR"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <rect id="slot-target" x="10" y="10" width="80" height="80" fill="#444" rx="8"/>
-  <script xml:space="default"></script>
-</svg><div class="label"><span class="attr">xml:space</span>="default"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <rect id="slot-target" x="10" y="10" width="80" height="80" fill="#444" rx="8"/>
-  <script xml:space="preserve"></script>
-</svg><div class="label"><span class="attr">xml:space</span>="preserve"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <rect id="slot-target" x="10" y="10" width="80" height="80" fill="#444" rx="8"/>
-  <script oncancel="label"></script>
-</svg><div class="label"><span class="attr">oncancel</span>="label"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <rect id="slot-target" x="10" y="10" width="80" height="80" fill="#444" rx="8"/>
-  <script oncanplay="label"></script>
-</svg><div class="label"><span class="attr">oncanplay</span>="label"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <rect id="slot-target" x="10" y="10" width="80" height="80" fill="#444" rx="8"/>
-  <script oncopy="label"></script>
-</svg><div class="label"><span class="attr">oncopy</span>="label"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <rect id="slot-target" x="10" y="10" width="80" height="80" fill="#444" rx="8"/>
-  <script id="slot" xlink:href="#slot"></script>
+  <script id="slot" xlink:href="#slot">(function(){var t=document.getElementById('slot-target');if(t){t.setAttribute('fill','#e94560');}})();</script>
 </svg><div class="label"><span class="attr">xlink:href</span>="#slot"</div></div>
   <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
   <rect id="slot-target" x="10" y="10" width="80" height="80" fill="#444" rx="8"/>
-  <script xlink:title="label"></script>
+  <script xlink:title="label">(function(){var t=document.getElementById('slot-target');if(t){t.setAttribute('fill','#e94560');}})();</script>
 </svg><div class="label"><span class="attr">xlink:title</span>="label"</div></div>
-</div></body></html>
+</div>
+<details class="meta"><summary>Non-visual attributes (28) — accessibility / scripting / metadata, no rendering effect</summary>
+<div class="grid">
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect id="slot-target" x="10" y="10" width="80" height="80" fill="#444" rx="8"/>
+  <script id="circle1">(function(){var t=document.getElementById('slot-target');if(t){t.setAttribute('fill','#e94560');}})();</script>
+</svg><div class="label"><span class="attr">id</span>="circle1"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect id="slot-target" x="10" y="10" width="80" height="80" fill="#444" rx="8"/>
+  <script id="grad-a">(function(){var t=document.getElementById('slot-target');if(t){t.setAttribute('fill','#e94560');}})();</script>
+</svg><div class="label"><span class="attr">id</span>="grad-a"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect id="slot-target" x="10" y="10" width="80" height="80" fill="#444" rx="8"/>
+  <script id="myId">(function(){var t=document.getElementById('slot-target');if(t){t.setAttribute('fill','#e94560');}})();</script>
+</svg><div class="label"><span class="attr">id</span>="myId"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect id="slot-target" x="10" y="10" width="80" height="80" fill="#444" rx="8"/>
+  <script id="node3">(function(){var t=document.getElementById('slot-target');if(t){t.setAttribute('fill','#e94560');}})();</script>
+</svg><div class="label"><span class="attr">id</span>="node3"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect id="slot-target" x="10" y="10" width="80" height="80" fill="#444" rx="8"/>
+  <script id="r1">(function(){var t=document.getElementById('slot-target');if(t){t.setAttribute('fill','#e94560');}})();</script>
+</svg><div class="label"><span class="attr">id</span>="r1"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect id="slot-target" x="10" y="10" width="80" height="80" fill="#444" rx="8"/>
+  <script tabindex="0">(function(){var t=document.getElementById('slot-target');if(t){t.setAttribute('fill','#e94560');}})();</script>
+</svg><div class="label"><span class="attr">tabindex</span>="0"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect id="slot-target" x="10" y="10" width="80" height="80" fill="#444" rx="8"/>
+  <script tabindex="1">(function(){var t=document.getElementById('slot-target');if(t){t.setAttribute('fill','#e94560');}})();</script>
+</svg><div class="label"><span class="attr">tabindex</span>="1"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect id="slot-target" x="10" y="10" width="80" height="80" fill="#444" rx="8"/>
+  <script tabindex="-1">(function(){var t=document.getElementById('slot-target');if(t){t.setAttribute('fill','#e94560');}})();</script>
+</svg><div class="label"><span class="attr">tabindex</span>="-1"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect id="slot-target" x="10" y="10" width="80" height="80" fill="#444" rx="8"/>
+  <script tabindex="100">(function(){var t=document.getElementById('slot-target');if(t){t.setAttribute('fill','#e94560');}})();</script>
+</svg><div class="label"><span class="attr">tabindex</span>="100"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect id="slot-target" x="10" y="10" width="80" height="80" fill="#444" rx="8"/>
+  <script tabindex="3">(function(){var t=document.getElementById('slot-target');if(t){t.setAttribute('fill','#e94560');}})();</script>
+</svg><div class="label"><span class="attr">tabindex</span>="3"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect id="slot-target" x="10" y="10" width="80" height="80" fill="#444" rx="8"/>
+  <script tabindex="10">(function(){var t=document.getElementById('slot-target');if(t){t.setAttribute('fill','#e94560');}})();</script>
+</svg><div class="label"><span class="attr">tabindex</span>="10"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect id="slot-target" x="10" y="10" width="80" height="80" fill="#444" rx="8"/>
+  <script autofocus="true">(function(){var t=document.getElementById('slot-target');if(t){t.setAttribute('fill','#e94560');}})();</script>
+</svg><div class="label"><span class="attr">autofocus</span>="true"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect id="slot-target" x="10" y="10" width="80" height="80" fill="#444" rx="8"/>
+  <script autofocus="false">(function(){var t=document.getElementById('slot-target');if(t){t.setAttribute('fill','#e94560');}})();</script>
+</svg><div class="label"><span class="attr">autofocus</span>="false"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect id="slot-target" x="10" y="10" width="80" height="80" fill="#444" rx="8"/>
+  <script lang="en">(function(){var t=document.getElementById('slot-target');if(t){t.setAttribute('fill','#e94560');}})();</script>
+</svg><div class="label"><span class="attr">lang</span>="en"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect id="slot-target" x="10" y="10" width="80" height="80" fill="#444" rx="8"/>
+  <script lang="fr-CA">(function(){var t=document.getElementById('slot-target');if(t){t.setAttribute('fill','#e94560');}})();</script>
+</svg><div class="label"><span class="attr">lang</span>="fr-CA"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect id="slot-target" x="10" y="10" width="80" height="80" fill="#444" rx="8"/>
+  <script lang="de">(function(){var t=document.getElementById('slot-target');if(t){t.setAttribute('fill','#e94560');}})();</script>
+</svg><div class="label"><span class="attr">lang</span>="de"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect id="slot-target" x="10" y="10" width="80" height="80" fill="#444" rx="8"/>
+  <script lang="zh-Hans">(function(){var t=document.getElementById('slot-target');if(t){t.setAttribute('fill','#e94560');}})();</script>
+</svg><div class="label"><span class="attr">lang</span>="zh-Hans"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect id="slot-target" x="10" y="10" width="80" height="80" fill="#444" rx="8"/>
+  <script lang="pt-BR">(function(){var t=document.getElementById('slot-target');if(t){t.setAttribute('fill','#e94560');}})();</script>
+</svg><div class="label"><span class="attr">lang</span>="pt-BR"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect id="slot-target" x="10" y="10" width="80" height="80" fill="#444" rx="8"/>
+  <script xml:lang="en">(function(){var t=document.getElementById('slot-target');if(t){t.setAttribute('fill','#e94560');}})();</script>
+</svg><div class="label"><span class="attr">xml:lang</span>="en"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect id="slot-target" x="10" y="10" width="80" height="80" fill="#444" rx="8"/>
+  <script xml:lang="fr-CA">(function(){var t=document.getElementById('slot-target');if(t){t.setAttribute('fill','#e94560');}})();</script>
+</svg><div class="label"><span class="attr">xml:lang</span>="fr-CA"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect id="slot-target" x="10" y="10" width="80" height="80" fill="#444" rx="8"/>
+  <script xml:lang="de">(function(){var t=document.getElementById('slot-target');if(t){t.setAttribute('fill','#e94560');}})();</script>
+</svg><div class="label"><span class="attr">xml:lang</span>="de"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect id="slot-target" x="10" y="10" width="80" height="80" fill="#444" rx="8"/>
+  <script xml:lang="zh-Hans">(function(){var t=document.getElementById('slot-target');if(t){t.setAttribute('fill','#e94560');}})();</script>
+</svg><div class="label"><span class="attr">xml:lang</span>="zh-Hans"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect id="slot-target" x="10" y="10" width="80" height="80" fill="#444" rx="8"/>
+  <script xml:lang="pt-BR">(function(){var t=document.getElementById('slot-target');if(t){t.setAttribute('fill','#e94560');}})();</script>
+</svg><div class="label"><span class="attr">xml:lang</span>="pt-BR"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect id="slot-target" x="10" y="10" width="80" height="80" fill="#444" rx="8"/>
+  <script xml:space="default">(function(){var t=document.getElementById('slot-target');if(t){t.setAttribute('fill','#e94560');}})();</script>
+</svg><div class="label"><span class="attr">xml:space</span>="default"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect id="slot-target" x="10" y="10" width="80" height="80" fill="#444" rx="8"/>
+  <script xml:space="preserve">(function(){var t=document.getElementById('slot-target');if(t){t.setAttribute('fill','#e94560');}})();</script>
+</svg><div class="label"><span class="attr">xml:space</span>="preserve"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect id="slot-target" x="10" y="10" width="80" height="80" fill="#444" rx="8"/>
+  <script oncancel="label">(function(){var t=document.getElementById('slot-target');if(t){t.setAttribute('fill','#e94560');}})();</script>
+</svg><div class="label"><span class="attr">oncancel</span>="label"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect id="slot-target" x="10" y="10" width="80" height="80" fill="#444" rx="8"/>
+  <script oncanplay="label">(function(){var t=document.getElementById('slot-target');if(t){t.setAttribute('fill','#e94560');}})();</script>
+</svg><div class="label"><span class="attr">oncanplay</span>="label"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect id="slot-target" x="10" y="10" width="80" height="80" fill="#444" rx="8"/>
+  <script oncopy="label">(function(){var t=document.getElementById('slot-target');if(t){t.setAttribute('fill','#e94560');}})();</script>
+</svg><div class="label"><span class="attr">oncopy</span>="label"</div></div>
+</div></details>
+</body></html>

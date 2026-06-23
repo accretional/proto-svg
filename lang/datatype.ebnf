@@ -101,16 +101,16 @@ XmlNameType = name ;
 Bcp47Type = name , { "-" , name } ;
 
 (* whitespace/comma separated number list (feColorMatrix values, rotate, …) *)
-ListOfNumbersType = NumberType , { NumberType } ;
+ListOfNumbersType = NumberType , { " " , NumberType } ;
 
 (* length/percentage list *)
-ListOfLengthsType = LengthPercentageType , { LengthPercentageType } ;
+ListOfLengthsType = LengthPercentageType , { " " , LengthPercentageType } ;
 
 (* <number-optional-number> (stdDeviation, baseFrequency, order, radius, …) *)
-NumberOptionalNumberType = NumberType , [ NumberType ] ;
+NumberOptionalNumberType = NumberType , [ " " , NumberType ] ;
 
 (* stroke-dasharray list *)
-DasharrayType = LengthPercentageType , { LengthPercentageType } ;
+DasharrayType = LengthPercentageType , { " " , LengthPercentageType } ;
 
 (* SMIL event symbol (begin/end event-value) *)
 EventSymbolType = name ;
@@ -137,7 +137,7 @@ PaintRef      = UrlType , [ PaintFallback ] ;
 PaintFallback = "none" | "currentColor" | ColorType ;
 
 (* viewBox = min-x min-y width height (renderer space-joins the four numbers) *)
-ViewBox = NumberType , NumberType , NumberType , NumberType ;
+ViewBox = NumberType , " " , NumberType , " " , NumberType , " " , NumberType ;
 
 (* preserveAspectRatio = <align> [<meetOrSlice>] *)
 PreserveAspectRatio = Align , [ MeetOrSlice ] ;

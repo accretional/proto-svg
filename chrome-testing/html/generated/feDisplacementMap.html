@@ -4,18 +4,21 @@ h1{color:#16c79a;font-size:18px;margin:0 0 4px}
 p.desc{color:#9aa;margin:0 0 20px}
 a{color:#4d8bff}
 .grid{display:flex;flex-wrap:wrap;gap:16px}
-.card{background:#0f1530;border:1px solid #26305a;border-radius:8px;padding:10px;width:160px}
+.card{background:#0f1530;border:1px solid #26305a;border-radius:8px;padding:10px;width:160px;min-width:160px;min-height:200px;box-sizing:border-box;display:flex;flex-direction:column}
 .card svg{display:block;background:#161c3a;border-radius:4px;width:140px;height:140px}
-.card .label{margin-top:8px;color:#f5a623;font-size:12px;word-break:break-all}
-.card .attr{color:#16c79a}</style></head><body>
+.card .label{margin-top:8px;color:#f5a623;font-size:12px;word-break:break-word;overflow-wrap:anywhere}
+.card .attr{color:#16c79a}
+details.meta{margin-top:28px}
+details.meta>summary{color:#9aa;font-size:13px;cursor:pointer;margin-bottom:12px}
+.card--meta{opacity:.5;border-style:dashed}</style></head><body>
 <h1>&lt;feDisplacementMap&gt;</h1>
-<p class="desc">96 enumerated value-paths walked from the grammar. <a href="index.html">&larr; index</a></p>
+<p class="desc">135 enumerated value-paths walked from the grammar. <a href="index.html">&larr; index</a></p>
 <div class="grid">
   <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
   <defs>
     <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
       <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
-      <feDisplacementMap in="SourceGraphic"></feDisplacementMap>
+      <feDisplacementMap in2="noiseMap" scale="20" in="SourceGraphic"></feDisplacementMap>
     </filter>
   </defs>
   <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
@@ -24,7 +27,7 @@ a{color:#4d8bff}
   <defs>
     <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
       <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
-      <feDisplacementMap in="SourceAlpha"></feDisplacementMap>
+      <feDisplacementMap in2="noiseMap" scale="20" in="SourceAlpha"></feDisplacementMap>
     </filter>
   </defs>
   <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
@@ -33,7 +36,7 @@ a{color:#4d8bff}
   <defs>
     <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
       <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
-      <feDisplacementMap in="BackgroundImage"></feDisplacementMap>
+      <feDisplacementMap in2="noiseMap" scale="20" in="BackgroundImage"></feDisplacementMap>
     </filter>
   </defs>
   <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
@@ -42,7 +45,7 @@ a{color:#4d8bff}
   <defs>
     <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
       <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
-      <feDisplacementMap in="BackgroundAlpha"></feDisplacementMap>
+      <feDisplacementMap in2="noiseMap" scale="20" in="BackgroundAlpha"></feDisplacementMap>
     </filter>
   </defs>
   <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
@@ -51,7 +54,7 @@ a{color:#4d8bff}
   <defs>
     <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
       <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
-      <feDisplacementMap in="FillPaint"></feDisplacementMap>
+      <feDisplacementMap in2="noiseMap" scale="20" in="FillPaint"></feDisplacementMap>
     </filter>
   </defs>
   <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
@@ -60,7 +63,7 @@ a{color:#4d8bff}
   <defs>
     <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
       <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
-      <feDisplacementMap in="StrokePaint"></feDisplacementMap>
+      <feDisplacementMap in2="noiseMap" scale="20" in="StrokePaint"></feDisplacementMap>
     </filter>
   </defs>
   <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
@@ -69,7 +72,7 @@ a{color:#4d8bff}
   <defs>
     <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
       <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
-      <feDisplacementMap in="blur1"></feDisplacementMap>
+      <feDisplacementMap in2="noiseMap" scale="20" in="blur1"></feDisplacementMap>
     </filter>
   </defs>
   <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
@@ -78,7 +81,7 @@ a{color:#4d8bff}
   <defs>
     <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
       <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
-      <feDisplacementMap in="result1"></feDisplacementMap>
+      <feDisplacementMap in2="noiseMap" scale="20" in="result1"></feDisplacementMap>
     </filter>
   </defs>
   <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
@@ -87,7 +90,7 @@ a{color:#4d8bff}
   <defs>
     <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
       <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
-      <feDisplacementMap in2="SourceGraphic"></feDisplacementMap>
+      <feDisplacementMap in="SourceGraphic" scale="20" in2="SourceGraphic"></feDisplacementMap>
     </filter>
   </defs>
   <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
@@ -96,7 +99,7 @@ a{color:#4d8bff}
   <defs>
     <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
       <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
-      <feDisplacementMap in2="SourceAlpha"></feDisplacementMap>
+      <feDisplacementMap in="SourceGraphic" scale="20" in2="SourceAlpha"></feDisplacementMap>
     </filter>
   </defs>
   <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
@@ -105,7 +108,7 @@ a{color:#4d8bff}
   <defs>
     <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
       <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
-      <feDisplacementMap in2="BackgroundImage"></feDisplacementMap>
+      <feDisplacementMap in="SourceGraphic" scale="20" in2="BackgroundImage"></feDisplacementMap>
     </filter>
   </defs>
   <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
@@ -114,7 +117,7 @@ a{color:#4d8bff}
   <defs>
     <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
       <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
-      <feDisplacementMap in2="BackgroundAlpha"></feDisplacementMap>
+      <feDisplacementMap in="SourceGraphic" scale="20" in2="BackgroundAlpha"></feDisplacementMap>
     </filter>
   </defs>
   <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
@@ -123,7 +126,7 @@ a{color:#4d8bff}
   <defs>
     <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
       <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
-      <feDisplacementMap in2="FillPaint"></feDisplacementMap>
+      <feDisplacementMap in="SourceGraphic" scale="20" in2="FillPaint"></feDisplacementMap>
     </filter>
   </defs>
   <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
@@ -132,7 +135,7 @@ a{color:#4d8bff}
   <defs>
     <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
       <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
-      <feDisplacementMap in2="StrokePaint"></feDisplacementMap>
+      <feDisplacementMap in="SourceGraphic" scale="20" in2="StrokePaint"></feDisplacementMap>
     </filter>
   </defs>
   <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
@@ -141,7 +144,7 @@ a{color:#4d8bff}
   <defs>
     <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
       <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
-      <feDisplacementMap in2="blur1"></feDisplacementMap>
+      <feDisplacementMap in="SourceGraphic" scale="20" in2="blur1"></feDisplacementMap>
     </filter>
   </defs>
   <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
@@ -150,7 +153,7 @@ a{color:#4d8bff}
   <defs>
     <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
       <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
-      <feDisplacementMap in2="result1"></feDisplacementMap>
+      <feDisplacementMap in="SourceGraphic" scale="20" in2="result1"></feDisplacementMap>
     </filter>
   </defs>
   <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
@@ -159,7 +162,7 @@ a{color:#4d8bff}
   <defs>
     <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
       <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
-      <feDisplacementMap scale="0"></feDisplacementMap>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="0"></feDisplacementMap>
     </filter>
   </defs>
   <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
@@ -168,7 +171,7 @@ a{color:#4d8bff}
   <defs>
     <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
       <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
-      <feDisplacementMap scale="1"></feDisplacementMap>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="1"></feDisplacementMap>
     </filter>
   </defs>
   <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
@@ -177,7 +180,7 @@ a{color:#4d8bff}
   <defs>
     <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
       <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
-      <feDisplacementMap scale="-1"></feDisplacementMap>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="-1"></feDisplacementMap>
     </filter>
   </defs>
   <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
@@ -186,7 +189,7 @@ a{color:#4d8bff}
   <defs>
     <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
       <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
-      <feDisplacementMap scale="3.14"></feDisplacementMap>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="3.14"></feDisplacementMap>
     </filter>
   </defs>
   <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
@@ -195,7 +198,7 @@ a{color:#4d8bff}
   <defs>
     <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
       <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
-      <feDisplacementMap scale="0.5"></feDisplacementMap>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="0.5"></feDisplacementMap>
     </filter>
   </defs>
   <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
@@ -204,7 +207,7 @@ a{color:#4d8bff}
   <defs>
     <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
       <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
-      <feDisplacementMap scale="2"></feDisplacementMap>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="2"></feDisplacementMap>
     </filter>
   </defs>
   <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
@@ -213,7 +216,7 @@ a{color:#4d8bff}
   <defs>
     <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
       <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
-      <feDisplacementMap xChannelSelector="R"></feDisplacementMap>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" xChannelSelector="R"></feDisplacementMap>
     </filter>
   </defs>
   <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
@@ -222,7 +225,7 @@ a{color:#4d8bff}
   <defs>
     <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
       <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
-      <feDisplacementMap xChannelSelector="G"></feDisplacementMap>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" xChannelSelector="G"></feDisplacementMap>
     </filter>
   </defs>
   <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
@@ -231,7 +234,7 @@ a{color:#4d8bff}
   <defs>
     <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
       <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
-      <feDisplacementMap xChannelSelector="B"></feDisplacementMap>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" xChannelSelector="B"></feDisplacementMap>
     </filter>
   </defs>
   <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
@@ -240,7 +243,7 @@ a{color:#4d8bff}
   <defs>
     <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
       <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
-      <feDisplacementMap xChannelSelector="A"></feDisplacementMap>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" xChannelSelector="A"></feDisplacementMap>
     </filter>
   </defs>
   <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
@@ -249,7 +252,7 @@ a{color:#4d8bff}
   <defs>
     <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
       <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
-      <feDisplacementMap yChannelSelector="R"></feDisplacementMap>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" yChannelSelector="R"></feDisplacementMap>
     </filter>
   </defs>
   <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
@@ -258,7 +261,7 @@ a{color:#4d8bff}
   <defs>
     <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
       <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
-      <feDisplacementMap yChannelSelector="G"></feDisplacementMap>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" yChannelSelector="G"></feDisplacementMap>
     </filter>
   </defs>
   <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
@@ -267,7 +270,7 @@ a{color:#4d8bff}
   <defs>
     <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
       <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
-      <feDisplacementMap yChannelSelector="B"></feDisplacementMap>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" yChannelSelector="B"></feDisplacementMap>
     </filter>
   </defs>
   <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
@@ -276,7 +279,7 @@ a{color:#4d8bff}
   <defs>
     <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
       <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
-      <feDisplacementMap yChannelSelector="A"></feDisplacementMap>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" yChannelSelector="A"></feDisplacementMap>
     </filter>
   </defs>
   <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
@@ -285,7 +288,7 @@ a{color:#4d8bff}
   <defs>
     <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
       <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
-      <feDisplacementMap x="10"></feDisplacementMap>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" x="10"></feDisplacementMap>
     </filter>
   </defs>
   <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
@@ -294,7 +297,7 @@ a{color:#4d8bff}
   <defs>
     <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
       <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
-      <feDisplacementMap x="24px"></feDisplacementMap>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" x="24px"></feDisplacementMap>
     </filter>
   </defs>
   <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
@@ -303,7 +306,7 @@ a{color:#4d8bff}
   <defs>
     <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
       <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
-      <feDisplacementMap x="2em"></feDisplacementMap>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" x="2em"></feDisplacementMap>
     </filter>
   </defs>
   <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
@@ -312,7 +315,7 @@ a{color:#4d8bff}
   <defs>
     <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
       <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
-      <feDisplacementMap x="50%"></feDisplacementMap>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" x="50%"></feDisplacementMap>
     </filter>
   </defs>
   <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
@@ -321,16 +324,16 @@ a{color:#4d8bff}
   <defs>
     <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
       <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
-      <feDisplacementMap x="100%"></feDisplacementMap>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" x="75%"></feDisplacementMap>
     </filter>
   </defs>
   <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
-</svg><div class="label"><span class="attr">x</span>="100%"</div></div>
+</svg><div class="label"><span class="attr">x</span>="75%"</div></div>
   <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
   <defs>
     <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
       <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
-      <feDisplacementMap y="10"></feDisplacementMap>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" y="10"></feDisplacementMap>
     </filter>
   </defs>
   <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
@@ -339,7 +342,7 @@ a{color:#4d8bff}
   <defs>
     <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
       <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
-      <feDisplacementMap y="24px"></feDisplacementMap>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" y="24px"></feDisplacementMap>
     </filter>
   </defs>
   <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
@@ -348,7 +351,7 @@ a{color:#4d8bff}
   <defs>
     <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
       <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
-      <feDisplacementMap y="2em"></feDisplacementMap>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" y="2em"></feDisplacementMap>
     </filter>
   </defs>
   <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
@@ -357,7 +360,7 @@ a{color:#4d8bff}
   <defs>
     <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
       <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
-      <feDisplacementMap y="50%"></feDisplacementMap>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" y="50%"></feDisplacementMap>
     </filter>
   </defs>
   <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
@@ -366,16 +369,16 @@ a{color:#4d8bff}
   <defs>
     <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
       <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
-      <feDisplacementMap y="100%"></feDisplacementMap>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" y="75%"></feDisplacementMap>
     </filter>
   </defs>
   <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
-</svg><div class="label"><span class="attr">y</span>="100%"</div></div>
+</svg><div class="label"><span class="attr">y</span>="75%"</div></div>
   <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
   <defs>
     <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
       <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
-      <feDisplacementMap width="20"></feDisplacementMap>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" width="20"></feDisplacementMap>
     </filter>
   </defs>
   <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
@@ -384,7 +387,7 @@ a{color:#4d8bff}
   <defs>
     <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
       <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
-      <feDisplacementMap height="20"></feDisplacementMap>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" height="20"></feDisplacementMap>
     </filter>
   </defs>
   <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
@@ -393,7 +396,7 @@ a{color:#4d8bff}
   <defs>
     <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
       <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
-      <feDisplacementMap result="blur1"></feDisplacementMap>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" result="blur1"></feDisplacementMap>
     </filter>
   </defs>
   <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
@@ -402,7 +405,7 @@ a{color:#4d8bff}
   <defs>
     <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
       <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
-      <feDisplacementMap result="result1"></feDisplacementMap>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" result="result1"></feDisplacementMap>
     </filter>
   </defs>
   <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
@@ -411,7 +414,7 @@ a{color:#4d8bff}
   <defs>
     <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
       <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
-      <feDisplacementMap result="myFilter"></feDisplacementMap>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" result="myFilter"></feDisplacementMap>
     </filter>
   </defs>
   <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
@@ -420,7 +423,7 @@ a{color:#4d8bff}
   <defs>
     <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
       <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
-      <feDisplacementMap result="shadow"></feDisplacementMap>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" result="shadow"></feDisplacementMap>
     </filter>
   </defs>
   <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
@@ -429,7 +432,7 @@ a{color:#4d8bff}
   <defs>
     <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
       <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
-      <feDisplacementMap result="out"></feDisplacementMap>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" result="out"></feDisplacementMap>
     </filter>
   </defs>
   <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
@@ -438,441 +441,796 @@ a{color:#4d8bff}
   <defs>
     <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
       <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
-      <feDisplacementMap id="circle1"></feDisplacementMap>
-    </filter>
-  </defs>
-  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
-</svg><div class="label"><span class="attr">id</span>="circle1"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <defs>
-    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
-      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
-      <feDisplacementMap id="grad-a"></feDisplacementMap>
-    </filter>
-  </defs>
-  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
-</svg><div class="label"><span class="attr">id</span>="grad-a"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <defs>
-    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
-      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
-      <feDisplacementMap id="myId"></feDisplacementMap>
-    </filter>
-  </defs>
-  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
-</svg><div class="label"><span class="attr">id</span>="myId"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <defs>
-    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
-      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
-      <feDisplacementMap id="node3"></feDisplacementMap>
-    </filter>
-  </defs>
-  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
-</svg><div class="label"><span class="attr">id</span>="node3"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <defs>
-    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
-      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
-      <feDisplacementMap id="r1"></feDisplacementMap>
-    </filter>
-  </defs>
-  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
-</svg><div class="label"><span class="attr">id</span>="r1"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <defs>
-    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
-      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
-      <feDisplacementMap tabindex="0"></feDisplacementMap>
-    </filter>
-  </defs>
-  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
-</svg><div class="label"><span class="attr">tabindex</span>="0"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <defs>
-    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
-      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
-      <feDisplacementMap tabindex="1"></feDisplacementMap>
-    </filter>
-  </defs>
-  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
-</svg><div class="label"><span class="attr">tabindex</span>="1"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <defs>
-    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
-      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
-      <feDisplacementMap tabindex="-1"></feDisplacementMap>
-    </filter>
-  </defs>
-  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
-</svg><div class="label"><span class="attr">tabindex</span>="-1"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <defs>
-    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
-      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
-      <feDisplacementMap tabindex="100"></feDisplacementMap>
-    </filter>
-  </defs>
-  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
-</svg><div class="label"><span class="attr">tabindex</span>="100"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <defs>
-    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
-      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
-      <feDisplacementMap tabindex="3"></feDisplacementMap>
-    </filter>
-  </defs>
-  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
-</svg><div class="label"><span class="attr">tabindex</span>="3"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <defs>
-    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
-      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
-      <feDisplacementMap tabindex="10"></feDisplacementMap>
-    </filter>
-  </defs>
-  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
-</svg><div class="label"><span class="attr">tabindex</span>="10"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <defs>
-    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
-      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
-      <feDisplacementMap autofocus="true"></feDisplacementMap>
-    </filter>
-  </defs>
-  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
-</svg><div class="label"><span class="attr">autofocus</span>="true"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <defs>
-    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
-      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
-      <feDisplacementMap autofocus="false"></feDisplacementMap>
-    </filter>
-  </defs>
-  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
-</svg><div class="label"><span class="attr">autofocus</span>="false"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <defs>
-    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
-      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
-      <feDisplacementMap lang="en"></feDisplacementMap>
-    </filter>
-  </defs>
-  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
-</svg><div class="label"><span class="attr">lang</span>="en"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <defs>
-    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
-      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
-      <feDisplacementMap lang="fr-CA"></feDisplacementMap>
-    </filter>
-  </defs>
-  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
-</svg><div class="label"><span class="attr">lang</span>="fr-CA"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <defs>
-    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
-      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
-      <feDisplacementMap lang="de"></feDisplacementMap>
-    </filter>
-  </defs>
-  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
-</svg><div class="label"><span class="attr">lang</span>="de"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <defs>
-    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
-      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
-      <feDisplacementMap lang="zh-Hans"></feDisplacementMap>
-    </filter>
-  </defs>
-  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
-</svg><div class="label"><span class="attr">lang</span>="zh-Hans"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <defs>
-    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
-      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
-      <feDisplacementMap lang="pt-BR"></feDisplacementMap>
-    </filter>
-  </defs>
-  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
-</svg><div class="label"><span class="attr">lang</span>="pt-BR"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <defs>
-    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
-      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
-      <feDisplacementMap xml:lang="en"></feDisplacementMap>
-    </filter>
-  </defs>
-  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
-</svg><div class="label"><span class="attr">xml:lang</span>="en"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <defs>
-    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
-      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
-      <feDisplacementMap xml:lang="fr-CA"></feDisplacementMap>
-    </filter>
-  </defs>
-  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
-</svg><div class="label"><span class="attr">xml:lang</span>="fr-CA"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <defs>
-    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
-      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
-      <feDisplacementMap xml:lang="de"></feDisplacementMap>
-    </filter>
-  </defs>
-  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
-</svg><div class="label"><span class="attr">xml:lang</span>="de"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <defs>
-    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
-      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
-      <feDisplacementMap xml:lang="zh-Hans"></feDisplacementMap>
-    </filter>
-  </defs>
-  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
-</svg><div class="label"><span class="attr">xml:lang</span>="zh-Hans"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <defs>
-    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
-      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
-      <feDisplacementMap xml:lang="pt-BR"></feDisplacementMap>
-    </filter>
-  </defs>
-  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
-</svg><div class="label"><span class="attr">xml:lang</span>="pt-BR"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <defs>
-    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
-      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
-      <feDisplacementMap xml:space="default"></feDisplacementMap>
-    </filter>
-  </defs>
-  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
-</svg><div class="label"><span class="attr">xml:space</span>="default"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <defs>
-    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
-      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
-      <feDisplacementMap xml:space="preserve"></feDisplacementMap>
-    </filter>
-  </defs>
-  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
-</svg><div class="label"><span class="attr">xml:space</span>="preserve"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <defs>
-    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
-      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
-      <feDisplacementMap fill="none"></feDisplacementMap>
-    </filter>
-  </defs>
-  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
-</svg><div class="label"><span class="attr">fill</span>="none"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <defs>
-    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
-      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
-      <feDisplacementMap fill-rule="nonzero"></feDisplacementMap>
-    </filter>
-  </defs>
-  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
-</svg><div class="label"><span class="attr">fill-rule</span>="nonzero"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <defs>
-    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
-      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
-      <feDisplacementMap fill-opacity="0.5"></feDisplacementMap>
-    </filter>
-  </defs>
-  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
-</svg><div class="label"><span class="attr">fill-opacity</span>="0.5"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <defs>
-    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
-      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
-      <feDisplacementMap stroke="none"></feDisplacementMap>
-    </filter>
-  </defs>
-  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
-</svg><div class="label"><span class="attr">stroke</span>="none"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <defs>
-    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
-      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
-      <feDisplacementMap stroke-opacity="0.5"></feDisplacementMap>
-    </filter>
-  </defs>
-  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
-</svg><div class="label"><span class="attr">stroke-opacity</span>="0.5"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <defs>
-    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
-      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
-      <feDisplacementMap stroke-width="20"></feDisplacementMap>
-    </filter>
-  </defs>
-  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
-</svg><div class="label"><span class="attr">stroke-width</span>="20"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <defs>
-    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
-      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
-      <feDisplacementMap stroke-linecap="butt"></feDisplacementMap>
-    </filter>
-  </defs>
-  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
-</svg><div class="label"><span class="attr">stroke-linecap</span>="butt"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <defs>
-    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
-      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
-      <feDisplacementMap stroke-linejoin="miter"></feDisplacementMap>
-    </filter>
-  </defs>
-  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
-</svg><div class="label"><span class="attr">stroke-linejoin</span>="miter"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <defs>
-    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
-      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
-      <feDisplacementMap stroke-miterlimit="0"></feDisplacementMap>
-    </filter>
-  </defs>
-  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
-</svg><div class="label"><span class="attr">stroke-miterlimit</span>="0"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <defs>
-    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
-      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
-      <feDisplacementMap stroke-dasharray="none"></feDisplacementMap>
-    </filter>
-  </defs>
-  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
-</svg><div class="label"><span class="attr">stroke-dasharray</span>="none"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <defs>
-    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
-      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
-      <feDisplacementMap stroke-dashoffset="20"></feDisplacementMap>
-    </filter>
-  </defs>
-  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
-</svg><div class="label"><span class="attr">stroke-dashoffset</span>="20"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <defs>
-    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
-      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
-      <feDisplacementMap paint-order="normal"></feDisplacementMap>
-    </filter>
-  </defs>
-  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
-</svg><div class="label"><span class="attr">paint-order</span>="normal"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <defs>
-    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
-      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
-      <feDisplacementMap marker="none"></feDisplacementMap>
-    </filter>
-  </defs>
-  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
-</svg><div class="label"><span class="attr">marker</span>="none"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <defs>
-    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
-      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
-      <feDisplacementMap marker-start="none"></feDisplacementMap>
-    </filter>
-  </defs>
-  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
-</svg><div class="label"><span class="attr">marker-start</span>="none"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <defs>
-    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
-      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
-      <feDisplacementMap marker-mid="none"></feDisplacementMap>
-    </filter>
-  </defs>
-  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
-</svg><div class="label"><span class="attr">marker-mid</span>="none"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <defs>
-    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
-      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
-      <feDisplacementMap marker-end="none"></feDisplacementMap>
-    </filter>
-  </defs>
-  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
-</svg><div class="label"><span class="attr">marker-end</span>="none"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <defs>
-    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
-      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
-      <feDisplacementMap color="#e94560"></feDisplacementMap>
-    </filter>
-  </defs>
-  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
-</svg><div class="label"><span class="attr">color</span>="#e94560"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <defs>
-    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
-      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
-      <feDisplacementMap color-interpolation="auto"></feDisplacementMap>
-    </filter>
-  </defs>
-  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
-</svg><div class="label"><span class="attr">color-interpolation</span>="auto"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <defs>
-    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
-      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
-      <feDisplacementMap color-rendering="auto"></feDisplacementMap>
-    </filter>
-  </defs>
-  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
-</svg><div class="label"><span class="attr">color-rendering</span>="auto"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <defs>
-    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
-      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
-      <feDisplacementMap shape-rendering="auto"></feDisplacementMap>
-    </filter>
-  </defs>
-  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
-</svg><div class="label"><span class="attr">shape-rendering</span>="auto"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <defs>
-    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
-      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
-      <feDisplacementMap vector-effect="none"></feDisplacementMap>
-    </filter>
-  </defs>
-  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
-</svg><div class="label"><span class="attr">vector-effect</span>="none"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <defs>
-    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
-      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
-      <feDisplacementMap filter="none"></feDisplacementMap>
-    </filter>
-  </defs>
-  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
-</svg><div class="label"><span class="attr">filter</span>="none"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <defs>
-    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
-      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
-      <feDisplacementMap color-interpolation-filters="auto"></feDisplacementMap>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" color-interpolation-filters="auto"></feDisplacementMap>
     </filter>
   </defs>
   <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
 </svg><div class="label"><span class="attr">color-interpolation-filters</span>="auto"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+</div>
+<details class="meta"><summary>Non-visual attributes (87) — accessibility / scripting / metadata, no rendering effect</summary>
+<div class="grid">
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
   <defs>
     <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
       <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
-      <feDisplacementMap flood-color="currentColor"></feDisplacementMap>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" id="circle1"></feDisplacementMap>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">id</span>="circle1"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
+      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" id="grad-a"></feDisplacementMap>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">id</span>="grad-a"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
+      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" id="myId"></feDisplacementMap>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">id</span>="myId"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
+      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" id="node3"></feDisplacementMap>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">id</span>="node3"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
+      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" id="r1"></feDisplacementMap>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">id</span>="r1"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
+      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" tabindex="0"></feDisplacementMap>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">tabindex</span>="0"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
+      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" tabindex="1"></feDisplacementMap>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">tabindex</span>="1"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
+      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" tabindex="-1"></feDisplacementMap>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">tabindex</span>="-1"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
+      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" tabindex="100"></feDisplacementMap>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">tabindex</span>="100"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
+      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" tabindex="3"></feDisplacementMap>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">tabindex</span>="3"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
+      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" tabindex="10"></feDisplacementMap>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">tabindex</span>="10"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
+      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" autofocus="true"></feDisplacementMap>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">autofocus</span>="true"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
+      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" autofocus="false"></feDisplacementMap>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">autofocus</span>="false"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
+      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" lang="en"></feDisplacementMap>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">lang</span>="en"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
+      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" lang="fr-CA"></feDisplacementMap>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">lang</span>="fr-CA"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
+      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" lang="de"></feDisplacementMap>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">lang</span>="de"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
+      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" lang="zh-Hans"></feDisplacementMap>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">lang</span>="zh-Hans"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
+      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" lang="pt-BR"></feDisplacementMap>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">lang</span>="pt-BR"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
+      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" xml:lang="en"></feDisplacementMap>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">xml:lang</span>="en"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
+      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" xml:lang="fr-CA"></feDisplacementMap>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">xml:lang</span>="fr-CA"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
+      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" xml:lang="de"></feDisplacementMap>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">xml:lang</span>="de"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
+      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" xml:lang="zh-Hans"></feDisplacementMap>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">xml:lang</span>="zh-Hans"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
+      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" xml:lang="pt-BR"></feDisplacementMap>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">xml:lang</span>="pt-BR"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
+      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" xml:space="default"></feDisplacementMap>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">xml:space</span>="default"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
+      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" xml:space="preserve"></feDisplacementMap>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">xml:space</span>="preserve"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
+      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" fill="none"></feDisplacementMap>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">fill</span>="none"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
+      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" fill-rule="nonzero"></feDisplacementMap>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">fill-rule</span>="nonzero"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
+      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" fill-opacity="0.5"></feDisplacementMap>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">fill-opacity</span>="0.5"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
+      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" stroke="none"></feDisplacementMap>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">stroke</span>="none"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
+      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" stroke-opacity="0.5"></feDisplacementMap>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">stroke-opacity</span>="0.5"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
+      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" stroke-width="20"></feDisplacementMap>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">stroke-width</span>="20"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
+      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" stroke-linecap="butt"></feDisplacementMap>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">stroke-linecap</span>="butt"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
+      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" stroke-linejoin="miter"></feDisplacementMap>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">stroke-linejoin</span>="miter"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
+      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" stroke-miterlimit="4"></feDisplacementMap>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">stroke-miterlimit</span>="4"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
+      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" stroke-dasharray="none"></feDisplacementMap>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">stroke-dasharray</span>="none"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
+      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" stroke-dashoffset="20"></feDisplacementMap>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">stroke-dashoffset</span>="20"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
+      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" paint-order="normal"></feDisplacementMap>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">paint-order</span>="normal"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
+      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" marker="none"></feDisplacementMap>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">marker</span>="none"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
+      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" marker-start="none"></feDisplacementMap>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">marker-start</span>="none"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
+      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" marker-mid="none"></feDisplacementMap>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">marker-mid</span>="none"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
+      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" marker-end="none"></feDisplacementMap>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">marker-end</span>="none"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
+      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" color="#e94560"></feDisplacementMap>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">color</span>="#e94560"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
+      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" color-interpolation="auto"></feDisplacementMap>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">color-interpolation</span>="auto"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
+      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" color-rendering="auto"></feDisplacementMap>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">color-rendering</span>="auto"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
+      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" shape-rendering="auto"></feDisplacementMap>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">shape-rendering</span>="auto"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
+      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" vector-effect="none"></feDisplacementMap>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">vector-effect</span>="none"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
+      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" filter="none"></feDisplacementMap>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">filter</span>="none"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
+      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" flood-color="currentColor"></feDisplacementMap>
     </filter>
   </defs>
   <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
 </svg><div class="label"><span class="attr">flood-color</span>="currentColor"</div></div>
-</div></body></html>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
+      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" flood-opacity="0.5"></feDisplacementMap>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">flood-opacity</span>="0.5"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
+      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" lighting-color="currentColor"></feDisplacementMap>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">lighting-color</span>="currentColor"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
+      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" image-rendering="auto"></feDisplacementMap>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">image-rendering</span>="auto"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
+      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" clip-path="none"></feDisplacementMap>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">clip-path</span>="none"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
+      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" clip-rule="nonzero"></feDisplacementMap>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">clip-rule</span>="nonzero"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
+      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" clip="auto"></feDisplacementMap>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">clip</span>="auto"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
+      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" mask="none"></feDisplacementMap>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">mask</span>="none"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
+      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" text-anchor="start"></feDisplacementMap>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">text-anchor</span>="start"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
+      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" dominant-baseline="auto"></feDisplacementMap>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">dominant-baseline</span>="auto"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
+      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" alignment-baseline="baseline"></feDisplacementMap>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">alignment-baseline</span>="baseline"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
+      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" baseline-shift="sub"></feDisplacementMap>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">baseline-shift</span>="sub"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
+      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" direction="ltr"></feDisplacementMap>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">direction</span>="ltr"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
+      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" unicode-bidi="normal"></feDisplacementMap>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">unicode-bidi</span>="normal"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
+      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" writing-mode="horizontal-tb"></feDisplacementMap>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">writing-mode</span>="horizontal-tb"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
+      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" letter-spacing="normal"></feDisplacementMap>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">letter-spacing</span>="normal"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
+      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" word-spacing="normal"></feDisplacementMap>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">word-spacing</span>="normal"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
+      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" text-decoration="none"></feDisplacementMap>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">text-decoration</span>="none"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
+      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" text-overflow="clip"></feDisplacementMap>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">text-overflow</span>="clip"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
+      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" text-rendering="auto"></feDisplacementMap>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">text-rendering</span>="auto"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
+      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" white-space="normal"></feDisplacementMap>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">white-space</span>="normal"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
+      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" font-family="label"></feDisplacementMap>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">font-family</span>="label"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
+      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" font-size="xx-small"></feDisplacementMap>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">font-size</span>="xx-small"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
+      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" font-size-adjust="none"></feDisplacementMap>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">font-size-adjust</span>="none"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
+      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" font-style="normal"></feDisplacementMap>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">font-style</span>="normal"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
+      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" font-variant="normal"></feDisplacementMap>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">font-variant</span>="normal"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
+      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" font-weight="normal"></feDisplacementMap>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">font-weight</span>="normal"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
+      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" font-stretch="normal"></feDisplacementMap>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">font-stretch</span>="normal"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
+      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" inline-size="auto"></feDisplacementMap>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">inline-size</span>="auto"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
+      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" glyph-orientation-vertical="auto"></feDisplacementMap>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">glyph-orientation-vertical</span>="auto"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
+      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" pointer-events="bounding-box"></feDisplacementMap>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">pointer-events</span>="bounding-box"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
+      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" stop-color="currentColor"></feDisplacementMap>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">stop-color</span>="currentColor"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
+      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" stop-opacity="0.5"></feDisplacementMap>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">stop-opacity</span>="0.5"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
+      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" display="none"></feDisplacementMap>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">display</span>="none"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
+      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" visibility="visible"></feDisplacementMap>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">visibility</span>="visible"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
+      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" overflow="visible"></feDisplacementMap>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">overflow</span>="visible"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
+      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" opacity="0.5"></feDisplacementMap>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">opacity</span>="0.5"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
+      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" cursor="auto"></feDisplacementMap>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">cursor</span>="auto"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
+      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" transform="translate(20 10)"></feDisplacementMap>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">transform</span>="translate(20 10)"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs>
+    <filter id="slot" x="-15%" y="-15%" width="130%" height="130%">
+      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="noiseMap"/>
+      <feDisplacementMap in="SourceGraphic" in2="noiseMap" scale="20" transform-origin="inherit"></feDisplacementMap>
+    </filter>
+  </defs>
+  <rect x="5" y="5" width="90" height="90" fill="#f5a623" filter="url(#slot)"/>
+</svg><div class="label"><span class="attr">transform-origin</span>="inherit"</div></div>
+</div></details>
+</body></html>

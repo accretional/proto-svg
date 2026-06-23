@@ -103,7 +103,7 @@ StrokeDashoffsetAttr = ' stroke-dashoffset="' , ( LengthPercentageType | NumberT
 
 (* paint-order: normal (keyword) or ordered token list of fill/stroke/markers *)
 PaintOrderAttr  = ' paint-order="' , ( "normal" | PaintOrderList ) , '"' ;
-PaintOrderList  = PaintOrderToken , { PaintOrderToken } ;
+PaintOrderList  = PaintOrderToken , { " " , PaintOrderToken } ;
 PaintOrderToken = "fill" | "stroke" | "markers" ;
 
 (* ── Marker references ─────────────────────────────────────────────────────── *)

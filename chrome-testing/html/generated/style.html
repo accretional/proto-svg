@@ -4,211 +4,218 @@ h1{color:#16c79a;font-size:18px;margin:0 0 4px}
 p.desc{color:#9aa;margin:0 0 20px}
 a{color:#4d8bff}
 .grid{display:flex;flex-wrap:wrap;gap:16px}
-.card{background:#0f1530;border:1px solid #26305a;border-radius:8px;padding:10px;width:160px}
+.card{background:#0f1530;border:1px solid #26305a;border-radius:8px;padding:10px;width:160px;min-width:160px;min-height:200px;box-sizing:border-box;display:flex;flex-direction:column}
 .card svg{display:block;background:#161c3a;border-radius:4px;width:140px;height:140px}
-.card .label{margin-top:8px;color:#f5a623;font-size:12px;word-break:break-all}
-.card .attr{color:#16c79a}</style></head><body>
+.card .label{margin-top:8px;color:#f5a623;font-size:12px;word-break:break-word;overflow-wrap:anywhere}
+.card .attr{color:#16c79a}
+details.meta{margin-top:28px}
+details.meta>summary{color:#9aa;font-size:13px;cursor:pointer;margin-bottom:12px}
+.card--meta{opacity:.5;border-style:dashed}</style></head><body>
 <h1>&lt;style&gt;</h1>
 <p class="desc">40 enumerated value-paths walked from the grammar. <a href="index.html">&larr; index</a></p>
 <div class="grid">
   <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <style type="label"></style>
+  <style type="label">.slot{fill:#e94560;stroke:#16c79a;stroke-width:3}</style>
   <rect class="slot" x="10" y="10" width="80" height="80" rx="8"/>
   <circle class="slot" cx="50" cy="50" r="30"/>
 </svg><div class="label"><span class="attr">type</span>="label"</div></div>
   <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <style type="Aa"></style>
+  <style type="Aa">.slot{fill:#e94560;stroke:#16c79a;stroke-width:3}</style>
   <rect class="slot" x="10" y="10" width="80" height="80" rx="8"/>
   <circle class="slot" cx="50" cy="50" r="30"/>
 </svg><div class="label"><span class="attr">type</span>="Aa"</div></div>
   <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <style type="sample"></style>
+  <style type="sample">.slot{fill:#e94560;stroke:#16c79a;stroke-width:3}</style>
   <rect class="slot" x="10" y="10" width="80" height="80" rx="8"/>
   <circle class="slot" cx="50" cy="50" r="30"/>
 </svg><div class="label"><span class="attr">type</span>="sample"</div></div>
   <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <style type="specimen"></style>
+  <style type="specimen">.slot{fill:#e94560;stroke:#16c79a;stroke-width:3}</style>
   <rect class="slot" x="10" y="10" width="80" height="80" rx="8"/>
   <circle class="slot" cx="50" cy="50" r="30"/>
 </svg><div class="label"><span class="attr">type</span>="specimen"</div></div>
   <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <style media="label"></style>
+  <style media="label">.slot{fill:#e94560;stroke:#16c79a;stroke-width:3}</style>
   <rect class="slot" x="10" y="10" width="80" height="80" rx="8"/>
   <circle class="slot" cx="50" cy="50" r="30"/>
 </svg><div class="label"><span class="attr">media</span>="label"</div></div>
   <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <style media="Aa"></style>
+  <style media="Aa">.slot{fill:#e94560;stroke:#16c79a;stroke-width:3}</style>
   <rect class="slot" x="10" y="10" width="80" height="80" rx="8"/>
   <circle class="slot" cx="50" cy="50" r="30"/>
 </svg><div class="label"><span class="attr">media</span>="Aa"</div></div>
   <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <style media="sample"></style>
+  <style media="sample">.slot{fill:#e94560;stroke:#16c79a;stroke-width:3}</style>
   <rect class="slot" x="10" y="10" width="80" height="80" rx="8"/>
   <circle class="slot" cx="50" cy="50" r="30"/>
 </svg><div class="label"><span class="attr">media</span>="sample"</div></div>
   <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <style media="specimen"></style>
+  <style media="specimen">.slot{fill:#e94560;stroke:#16c79a;stroke-width:3}</style>
   <rect class="slot" x="10" y="10" width="80" height="80" rx="8"/>
   <circle class="slot" cx="50" cy="50" r="30"/>
 </svg><div class="label"><span class="attr">media</span>="specimen"</div></div>
   <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <style title="label"></style>
+  <style title="label">.slot{fill:#e94560;stroke:#16c79a;stroke-width:3}</style>
   <rect class="slot" x="10" y="10" width="80" height="80" rx="8"/>
   <circle class="slot" cx="50" cy="50" r="30"/>
 </svg><div class="label"><span class="attr">title</span>="label"</div></div>
   <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <style title="Aa"></style>
+  <style title="Aa">.slot{fill:#e94560;stroke:#16c79a;stroke-width:3}</style>
   <rect class="slot" x="10" y="10" width="80" height="80" rx="8"/>
   <circle class="slot" cx="50" cy="50" r="30"/>
 </svg><div class="label"><span class="attr">title</span>="Aa"</div></div>
   <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <style title="sample"></style>
+  <style title="sample">.slot{fill:#e94560;stroke:#16c79a;stroke-width:3}</style>
   <rect class="slot" x="10" y="10" width="80" height="80" rx="8"/>
   <circle class="slot" cx="50" cy="50" r="30"/>
 </svg><div class="label"><span class="attr">title</span>="sample"</div></div>
   <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <style title="specimen"></style>
+  <style title="specimen">.slot{fill:#e94560;stroke:#16c79a;stroke-width:3}</style>
   <rect class="slot" x="10" y="10" width="80" height="80" rx="8"/>
   <circle class="slot" cx="50" cy="50" r="30"/>
 </svg><div class="label"><span class="attr">title</span>="specimen"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <style id="circle1"></style>
+</div>
+<details class="meta"><summary>Non-visual attributes (28) — accessibility / scripting / metadata, no rendering effect</summary>
+<div class="grid">
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <style id="circle1">.slot{fill:#e94560;stroke:#16c79a;stroke-width:3}</style>
   <rect class="slot" x="10" y="10" width="80" height="80" rx="8"/>
   <circle class="slot" cx="50" cy="50" r="30"/>
 </svg><div class="label"><span class="attr">id</span>="circle1"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <style id="grad-a"></style>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <style id="grad-a">.slot{fill:#e94560;stroke:#16c79a;stroke-width:3}</style>
   <rect class="slot" x="10" y="10" width="80" height="80" rx="8"/>
   <circle class="slot" cx="50" cy="50" r="30"/>
 </svg><div class="label"><span class="attr">id</span>="grad-a"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <style id="myId"></style>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <style id="myId">.slot{fill:#e94560;stroke:#16c79a;stroke-width:3}</style>
   <rect class="slot" x="10" y="10" width="80" height="80" rx="8"/>
   <circle class="slot" cx="50" cy="50" r="30"/>
 </svg><div class="label"><span class="attr">id</span>="myId"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <style id="node3"></style>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <style id="node3">.slot{fill:#e94560;stroke:#16c79a;stroke-width:3}</style>
   <rect class="slot" x="10" y="10" width="80" height="80" rx="8"/>
   <circle class="slot" cx="50" cy="50" r="30"/>
 </svg><div class="label"><span class="attr">id</span>="node3"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <style id="r1"></style>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <style id="r1">.slot{fill:#e94560;stroke:#16c79a;stroke-width:3}</style>
   <rect class="slot" x="10" y="10" width="80" height="80" rx="8"/>
   <circle class="slot" cx="50" cy="50" r="30"/>
 </svg><div class="label"><span class="attr">id</span>="r1"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <style tabindex="0"></style>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <style tabindex="0">.slot{fill:#e94560;stroke:#16c79a;stroke-width:3}</style>
   <rect class="slot" x="10" y="10" width="80" height="80" rx="8"/>
   <circle class="slot" cx="50" cy="50" r="30"/>
 </svg><div class="label"><span class="attr">tabindex</span>="0"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <style tabindex="1"></style>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <style tabindex="1">.slot{fill:#e94560;stroke:#16c79a;stroke-width:3}</style>
   <rect class="slot" x="10" y="10" width="80" height="80" rx="8"/>
   <circle class="slot" cx="50" cy="50" r="30"/>
 </svg><div class="label"><span class="attr">tabindex</span>="1"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <style tabindex="-1"></style>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <style tabindex="-1">.slot{fill:#e94560;stroke:#16c79a;stroke-width:3}</style>
   <rect class="slot" x="10" y="10" width="80" height="80" rx="8"/>
   <circle class="slot" cx="50" cy="50" r="30"/>
 </svg><div class="label"><span class="attr">tabindex</span>="-1"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <style tabindex="100"></style>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <style tabindex="100">.slot{fill:#e94560;stroke:#16c79a;stroke-width:3}</style>
   <rect class="slot" x="10" y="10" width="80" height="80" rx="8"/>
   <circle class="slot" cx="50" cy="50" r="30"/>
 </svg><div class="label"><span class="attr">tabindex</span>="100"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <style tabindex="3"></style>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <style tabindex="3">.slot{fill:#e94560;stroke:#16c79a;stroke-width:3}</style>
   <rect class="slot" x="10" y="10" width="80" height="80" rx="8"/>
   <circle class="slot" cx="50" cy="50" r="30"/>
 </svg><div class="label"><span class="attr">tabindex</span>="3"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <style tabindex="10"></style>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <style tabindex="10">.slot{fill:#e94560;stroke:#16c79a;stroke-width:3}</style>
   <rect class="slot" x="10" y="10" width="80" height="80" rx="8"/>
   <circle class="slot" cx="50" cy="50" r="30"/>
 </svg><div class="label"><span class="attr">tabindex</span>="10"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <style autofocus="true"></style>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <style autofocus="true">.slot{fill:#e94560;stroke:#16c79a;stroke-width:3}</style>
   <rect class="slot" x="10" y="10" width="80" height="80" rx="8"/>
   <circle class="slot" cx="50" cy="50" r="30"/>
 </svg><div class="label"><span class="attr">autofocus</span>="true"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <style autofocus="false"></style>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <style autofocus="false">.slot{fill:#e94560;stroke:#16c79a;stroke-width:3}</style>
   <rect class="slot" x="10" y="10" width="80" height="80" rx="8"/>
   <circle class="slot" cx="50" cy="50" r="30"/>
 </svg><div class="label"><span class="attr">autofocus</span>="false"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <style lang="en"></style>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <style lang="en">.slot{fill:#e94560;stroke:#16c79a;stroke-width:3}</style>
   <rect class="slot" x="10" y="10" width="80" height="80" rx="8"/>
   <circle class="slot" cx="50" cy="50" r="30"/>
 </svg><div class="label"><span class="attr">lang</span>="en"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <style lang="fr-CA"></style>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <style lang="fr-CA">.slot{fill:#e94560;stroke:#16c79a;stroke-width:3}</style>
   <rect class="slot" x="10" y="10" width="80" height="80" rx="8"/>
   <circle class="slot" cx="50" cy="50" r="30"/>
 </svg><div class="label"><span class="attr">lang</span>="fr-CA"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <style lang="de"></style>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <style lang="de">.slot{fill:#e94560;stroke:#16c79a;stroke-width:3}</style>
   <rect class="slot" x="10" y="10" width="80" height="80" rx="8"/>
   <circle class="slot" cx="50" cy="50" r="30"/>
 </svg><div class="label"><span class="attr">lang</span>="de"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <style lang="zh-Hans"></style>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <style lang="zh-Hans">.slot{fill:#e94560;stroke:#16c79a;stroke-width:3}</style>
   <rect class="slot" x="10" y="10" width="80" height="80" rx="8"/>
   <circle class="slot" cx="50" cy="50" r="30"/>
 </svg><div class="label"><span class="attr">lang</span>="zh-Hans"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <style lang="pt-BR"></style>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <style lang="pt-BR">.slot{fill:#e94560;stroke:#16c79a;stroke-width:3}</style>
   <rect class="slot" x="10" y="10" width="80" height="80" rx="8"/>
   <circle class="slot" cx="50" cy="50" r="30"/>
 </svg><div class="label"><span class="attr">lang</span>="pt-BR"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <style xml:lang="en"></style>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <style xml:lang="en">.slot{fill:#e94560;stroke:#16c79a;stroke-width:3}</style>
   <rect class="slot" x="10" y="10" width="80" height="80" rx="8"/>
   <circle class="slot" cx="50" cy="50" r="30"/>
 </svg><div class="label"><span class="attr">xml:lang</span>="en"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <style xml:lang="fr-CA"></style>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <style xml:lang="fr-CA">.slot{fill:#e94560;stroke:#16c79a;stroke-width:3}</style>
   <rect class="slot" x="10" y="10" width="80" height="80" rx="8"/>
   <circle class="slot" cx="50" cy="50" r="30"/>
 </svg><div class="label"><span class="attr">xml:lang</span>="fr-CA"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <style xml:lang="de"></style>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <style xml:lang="de">.slot{fill:#e94560;stroke:#16c79a;stroke-width:3}</style>
   <rect class="slot" x="10" y="10" width="80" height="80" rx="8"/>
   <circle class="slot" cx="50" cy="50" r="30"/>
 </svg><div class="label"><span class="attr">xml:lang</span>="de"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <style xml:lang="zh-Hans"></style>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <style xml:lang="zh-Hans">.slot{fill:#e94560;stroke:#16c79a;stroke-width:3}</style>
   <rect class="slot" x="10" y="10" width="80" height="80" rx="8"/>
   <circle class="slot" cx="50" cy="50" r="30"/>
 </svg><div class="label"><span class="attr">xml:lang</span>="zh-Hans"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <style xml:lang="pt-BR"></style>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <style xml:lang="pt-BR">.slot{fill:#e94560;stroke:#16c79a;stroke-width:3}</style>
   <rect class="slot" x="10" y="10" width="80" height="80" rx="8"/>
   <circle class="slot" cx="50" cy="50" r="30"/>
 </svg><div class="label"><span class="attr">xml:lang</span>="pt-BR"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <style xml:space="default"></style>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <style xml:space="default">.slot{fill:#e94560;stroke:#16c79a;stroke-width:3}</style>
   <rect class="slot" x="10" y="10" width="80" height="80" rx="8"/>
   <circle class="slot" cx="50" cy="50" r="30"/>
 </svg><div class="label"><span class="attr">xml:space</span>="default"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <style xml:space="preserve"></style>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <style xml:space="preserve">.slot{fill:#e94560;stroke:#16c79a;stroke-width:3}</style>
   <rect class="slot" x="10" y="10" width="80" height="80" rx="8"/>
   <circle class="slot" cx="50" cy="50" r="30"/>
 </svg><div class="label"><span class="attr">xml:space</span>="preserve"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <style oncancel="label"></style>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <style oncancel="label">.slot{fill:#e94560;stroke:#16c79a;stroke-width:3}</style>
   <rect class="slot" x="10" y="10" width="80" height="80" rx="8"/>
   <circle class="slot" cx="50" cy="50" r="30"/>
 </svg><div class="label"><span class="attr">oncancel</span>="label"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <style oncanplay="label"></style>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <style oncanplay="label">.slot{fill:#e94560;stroke:#16c79a;stroke-width:3}</style>
   <rect class="slot" x="10" y="10" width="80" height="80" rx="8"/>
   <circle class="slot" cx="50" cy="50" r="30"/>
 </svg><div class="label"><span class="attr">oncanplay</span>="label"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <style oncopy="label"></style>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <style oncopy="label">.slot{fill:#e94560;stroke:#16c79a;stroke-width:3}</style>
   <rect class="slot" x="10" y="10" width="80" height="80" rx="8"/>
   <circle class="slot" cx="50" cy="50" r="30"/>
 </svg><div class="label"><span class="attr">oncopy</span>="label"</div></div>
-</div></body></html>
+</div></details>
+</body></html>

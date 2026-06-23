@@ -4,10 +4,13 @@ h1{color:#16c79a;font-size:18px;margin:0 0 4px}
 p.desc{color:#9aa;margin:0 0 20px}
 a{color:#4d8bff}
 .grid{display:flex;flex-wrap:wrap;gap:16px}
-.card{background:#0f1530;border:1px solid #26305a;border-radius:8px;padding:10px;width:160px}
+.card{background:#0f1530;border:1px solid #26305a;border-radius:8px;padding:10px;width:160px;min-width:160px;min-height:200px;box-sizing:border-box;display:flex;flex-direction:column}
 .card svg{display:block;background:#161c3a;border-radius:4px;width:140px;height:140px}
-.card .label{margin-top:8px;color:#f5a623;font-size:12px;word-break:break-all}
-.card .attr{color:#16c79a}</style></head><body>
+.card .label{margin-top:8px;color:#f5a623;font-size:12px;word-break:break-word;overflow-wrap:anywhere}
+.card .attr{color:#16c79a}
+details.meta{margin-top:28px}
+details.meta>summary{color:#9aa;font-size:13px;cursor:pointer;margin-bottom:12px}
+.card--meta{opacity:.5;border-style:dashed}</style></head><body>
 <h1>&lt;view&gt;</h1>
 <p class="desc">39 enumerated value-paths walked from the grammar. <a href="index.html">&larr; index</a></p>
 <div class="grid">
@@ -59,190 +62,194 @@ a{color:#4d8bff}
   <rect x="55" y="10" width="30" height="30" fill="#16c79a" rx="4"/>
   <polygon points="50,60 35,90 65,90" fill="#f5a623"/>
 </svg><div class="label"><span class="attr">zoomAndPan</span>="magnify"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+</div>
+<details class="meta"><summary>Non-visual attributes (31) — accessibility / scripting / metadata, no rendering effect</summary>
+<div class="grid">
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
   <defs><view id="circle1"></view></defs>
   <circle cx="20" cy="20" r="15" fill="#e94560"/>
   <rect x="55" y="10" width="30" height="30" fill="#16c79a" rx="4"/>
   <polygon points="50,60 35,90 65,90" fill="#f5a623"/>
 </svg><div class="label"><span class="attr">id</span>="circle1"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
   <defs><view id="grad-a"></view></defs>
   <circle cx="20" cy="20" r="15" fill="#e94560"/>
   <rect x="55" y="10" width="30" height="30" fill="#16c79a" rx="4"/>
   <polygon points="50,60 35,90 65,90" fill="#f5a623"/>
 </svg><div class="label"><span class="attr">id</span>="grad-a"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
   <defs><view id="myId"></view></defs>
   <circle cx="20" cy="20" r="15" fill="#e94560"/>
   <rect x="55" y="10" width="30" height="30" fill="#16c79a" rx="4"/>
   <polygon points="50,60 35,90 65,90" fill="#f5a623"/>
 </svg><div class="label"><span class="attr">id</span>="myId"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
   <defs><view id="node3"></view></defs>
   <circle cx="20" cy="20" r="15" fill="#e94560"/>
   <rect x="55" y="10" width="30" height="30" fill="#16c79a" rx="4"/>
   <polygon points="50,60 35,90 65,90" fill="#f5a623"/>
 </svg><div class="label"><span class="attr">id</span>="node3"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
   <defs><view id="r1"></view></defs>
   <circle cx="20" cy="20" r="15" fill="#e94560"/>
   <rect x="55" y="10" width="30" height="30" fill="#16c79a" rx="4"/>
   <polygon points="50,60 35,90 65,90" fill="#f5a623"/>
 </svg><div class="label"><span class="attr">id</span>="r1"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
   <defs><view tabindex="0"></view></defs>
   <circle cx="20" cy="20" r="15" fill="#e94560"/>
   <rect x="55" y="10" width="30" height="30" fill="#16c79a" rx="4"/>
   <polygon points="50,60 35,90 65,90" fill="#f5a623"/>
 </svg><div class="label"><span class="attr">tabindex</span>="0"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
   <defs><view tabindex="1"></view></defs>
   <circle cx="20" cy="20" r="15" fill="#e94560"/>
   <rect x="55" y="10" width="30" height="30" fill="#16c79a" rx="4"/>
   <polygon points="50,60 35,90 65,90" fill="#f5a623"/>
 </svg><div class="label"><span class="attr">tabindex</span>="1"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
   <defs><view tabindex="-1"></view></defs>
   <circle cx="20" cy="20" r="15" fill="#e94560"/>
   <rect x="55" y="10" width="30" height="30" fill="#16c79a" rx="4"/>
   <polygon points="50,60 35,90 65,90" fill="#f5a623"/>
 </svg><div class="label"><span class="attr">tabindex</span>="-1"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
   <defs><view tabindex="100"></view></defs>
   <circle cx="20" cy="20" r="15" fill="#e94560"/>
   <rect x="55" y="10" width="30" height="30" fill="#16c79a" rx="4"/>
   <polygon points="50,60 35,90 65,90" fill="#f5a623"/>
 </svg><div class="label"><span class="attr">tabindex</span>="100"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
   <defs><view tabindex="3"></view></defs>
   <circle cx="20" cy="20" r="15" fill="#e94560"/>
   <rect x="55" y="10" width="30" height="30" fill="#16c79a" rx="4"/>
   <polygon points="50,60 35,90 65,90" fill="#f5a623"/>
 </svg><div class="label"><span class="attr">tabindex</span>="3"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
   <defs><view tabindex="10"></view></defs>
   <circle cx="20" cy="20" r="15" fill="#e94560"/>
   <rect x="55" y="10" width="30" height="30" fill="#16c79a" rx="4"/>
   <polygon points="50,60 35,90 65,90" fill="#f5a623"/>
 </svg><div class="label"><span class="attr">tabindex</span>="10"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
   <defs><view autofocus="true"></view></defs>
   <circle cx="20" cy="20" r="15" fill="#e94560"/>
   <rect x="55" y="10" width="30" height="30" fill="#16c79a" rx="4"/>
   <polygon points="50,60 35,90 65,90" fill="#f5a623"/>
 </svg><div class="label"><span class="attr">autofocus</span>="true"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
   <defs><view autofocus="false"></view></defs>
   <circle cx="20" cy="20" r="15" fill="#e94560"/>
   <rect x="55" y="10" width="30" height="30" fill="#16c79a" rx="4"/>
   <polygon points="50,60 35,90 65,90" fill="#f5a623"/>
 </svg><div class="label"><span class="attr">autofocus</span>="false"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
   <defs><view lang="en"></view></defs>
   <circle cx="20" cy="20" r="15" fill="#e94560"/>
   <rect x="55" y="10" width="30" height="30" fill="#16c79a" rx="4"/>
   <polygon points="50,60 35,90 65,90" fill="#f5a623"/>
 </svg><div class="label"><span class="attr">lang</span>="en"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
   <defs><view lang="fr-CA"></view></defs>
   <circle cx="20" cy="20" r="15" fill="#e94560"/>
   <rect x="55" y="10" width="30" height="30" fill="#16c79a" rx="4"/>
   <polygon points="50,60 35,90 65,90" fill="#f5a623"/>
 </svg><div class="label"><span class="attr">lang</span>="fr-CA"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
   <defs><view lang="de"></view></defs>
   <circle cx="20" cy="20" r="15" fill="#e94560"/>
   <rect x="55" y="10" width="30" height="30" fill="#16c79a" rx="4"/>
   <polygon points="50,60 35,90 65,90" fill="#f5a623"/>
 </svg><div class="label"><span class="attr">lang</span>="de"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
   <defs><view lang="zh-Hans"></view></defs>
   <circle cx="20" cy="20" r="15" fill="#e94560"/>
   <rect x="55" y="10" width="30" height="30" fill="#16c79a" rx="4"/>
   <polygon points="50,60 35,90 65,90" fill="#f5a623"/>
 </svg><div class="label"><span class="attr">lang</span>="zh-Hans"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
   <defs><view lang="pt-BR"></view></defs>
   <circle cx="20" cy="20" r="15" fill="#e94560"/>
   <rect x="55" y="10" width="30" height="30" fill="#16c79a" rx="4"/>
   <polygon points="50,60 35,90 65,90" fill="#f5a623"/>
 </svg><div class="label"><span class="attr">lang</span>="pt-BR"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
   <defs><view xml:lang="en"></view></defs>
   <circle cx="20" cy="20" r="15" fill="#e94560"/>
   <rect x="55" y="10" width="30" height="30" fill="#16c79a" rx="4"/>
   <polygon points="50,60 35,90 65,90" fill="#f5a623"/>
 </svg><div class="label"><span class="attr">xml:lang</span>="en"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
   <defs><view xml:lang="fr-CA"></view></defs>
   <circle cx="20" cy="20" r="15" fill="#e94560"/>
   <rect x="55" y="10" width="30" height="30" fill="#16c79a" rx="4"/>
   <polygon points="50,60 35,90 65,90" fill="#f5a623"/>
 </svg><div class="label"><span class="attr">xml:lang</span>="fr-CA"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
   <defs><view xml:lang="de"></view></defs>
   <circle cx="20" cy="20" r="15" fill="#e94560"/>
   <rect x="55" y="10" width="30" height="30" fill="#16c79a" rx="4"/>
   <polygon points="50,60 35,90 65,90" fill="#f5a623"/>
 </svg><div class="label"><span class="attr">xml:lang</span>="de"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
   <defs><view xml:lang="zh-Hans"></view></defs>
   <circle cx="20" cy="20" r="15" fill="#e94560"/>
   <rect x="55" y="10" width="30" height="30" fill="#16c79a" rx="4"/>
   <polygon points="50,60 35,90 65,90" fill="#f5a623"/>
 </svg><div class="label"><span class="attr">xml:lang</span>="zh-Hans"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
   <defs><view xml:lang="pt-BR"></view></defs>
   <circle cx="20" cy="20" r="15" fill="#e94560"/>
   <rect x="55" y="10" width="30" height="30" fill="#16c79a" rx="4"/>
   <polygon points="50,60 35,90 65,90" fill="#f5a623"/>
 </svg><div class="label"><span class="attr">xml:lang</span>="pt-BR"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
   <defs><view xml:space="default"></view></defs>
   <circle cx="20" cy="20" r="15" fill="#e94560"/>
   <rect x="55" y="10" width="30" height="30" fill="#16c79a" rx="4"/>
   <polygon points="50,60 35,90 65,90" fill="#f5a623"/>
 </svg><div class="label"><span class="attr">xml:space</span>="default"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
   <defs><view xml:space="preserve"></view></defs>
   <circle cx="20" cy="20" r="15" fill="#e94560"/>
   <rect x="55" y="10" width="30" height="30" fill="#16c79a" rx="4"/>
   <polygon points="50,60 35,90 65,90" fill="#f5a623"/>
 </svg><div class="label"><span class="attr">xml:space</span>="preserve"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <defs><view role="rowgroup rowheaderscrollbar"></view></defs>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <defs><view role="rowgroup rowheader scrollbar"></view></defs>
   <circle cx="20" cy="20" r="15" fill="#e94560"/>
   <rect x="55" y="10" width="30" height="30" fill="#16c79a" rx="4"/>
   <polygon points="50,60 35,90 65,90" fill="#f5a623"/>
-</svg><div class="label"><span class="attr">role</span>="rowgroup rowheaderscrollbar"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+</svg><div class="label"><span class="attr">role</span>="rowgroup rowheader scrollbar"</div></div>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
   <defs><view aria-activedescendant="circle1"></view></defs>
   <circle cx="20" cy="20" r="15" fill="#e94560"/>
   <rect x="55" y="10" width="30" height="30" fill="#16c79a" rx="4"/>
   <polygon points="50,60 35,90 65,90" fill="#f5a623"/>
 </svg><div class="label"><span class="attr">aria-activedescendant</span>="circle1"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
   <defs><view aria-atomic="true"></view></defs>
   <circle cx="20" cy="20" r="15" fill="#e94560"/>
   <rect x="55" y="10" width="30" height="30" fill="#16c79a" rx="4"/>
   <polygon points="50,60 35,90 65,90" fill="#f5a623"/>
 </svg><div class="label"><span class="attr">aria-atomic</span>="true"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
   <defs><view oncancel="label"></view></defs>
   <circle cx="20" cy="20" r="15" fill="#e94560"/>
   <rect x="55" y="10" width="30" height="30" fill="#16c79a" rx="4"/>
   <polygon points="50,60 35,90 65,90" fill="#f5a623"/>
 </svg><div class="label"><span class="attr">oncancel</span>="label"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
   <defs><view oncanplay="label"></view></defs>
   <circle cx="20" cy="20" r="15" fill="#e94560"/>
   <rect x="55" y="10" width="30" height="30" fill="#16c79a" rx="4"/>
   <polygon points="50,60 35,90 65,90" fill="#f5a623"/>
 </svg><div class="label"><span class="attr">oncanplay</span>="label"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
   <defs><view oncopy="label"></view></defs>
   <circle cx="20" cy="20" r="15" fill="#e94560"/>
   <rect x="55" y="10" width="30" height="30" fill="#16c79a" rx="4"/>
   <polygon points="50,60 35,90 65,90" fill="#f5a623"/>
 </svg><div class="label"><span class="attr">oncopy</span>="label"</div></div>
-</div></body></html>
+</div></details>
+</body></html>

@@ -145,8 +145,14 @@ var sharedGroupMemberCap = map[string]int{
 	"DocumentEventAttribute":         1,
 	"AnimationEventAttribute":        1,
 	"ConditionalProcessingAttribute": 2,
-	"PresentationAttribute":          24,
-	"CoreAttribute":                  6,
+	// PresentationAttribute holds ~52 members; the painting attrs fill positions
+	// 1-24, so a low cap cut off opacity/transform/transform-origin/display/
+	// visibility/clip-path/mask for container elements (g/defs/switch/a/symbol) —
+	// QA round2. Raise the cap to 64 so every presentation attr is enumerated and
+	// the visually-important ones reach the main grid. FIX 1's tag-aware grouping
+	// collapses the no-effect ones, so enumerating them all is safe.
+	"PresentationAttribute": 64,
+	"CoreAttribute":         6,
 }
 
 func (e *Enumerator) enumerateGroup(el element, groupFQN string) []Variant {

@@ -44,7 +44,16 @@ func runGalleryPass(byFQN map[string]*descriptorpb.DescriptorProto, kw map[strin
 
 		for i := range variants {
 			markup := variants[i].Markup
-			if (bpRefsSlot && slotIsElement) || variants[i].NeedsID {
+			// id-shadow guard: when the VARIED attribute is `id` itself, the markup
+			// already carries that id; injecting id="slot" too would produce an
+			// invalid duplicate (`id="slot" id="circle1"`). Skip the injected id for
+			// that one card (its url(#slot)/href reference simply won't resolve — an
+			// acceptable edge for the id-variation card; all other cards are fine).
+			injectSlot := (bpRefsSlot && slotIsElement) || variants[i].NeedsID
+			if variants[i].Attr == "id" {
+				injectSlot = false
+			}
+			if injectSlot {
 				markup = ensureSlotID(markup, el.tag)
 			}
 			variants[i].WrappedSVG = inject(blueprint, markup)
@@ -93,6 +102,12 @@ func runGalleryPass(byFQN map[string]*descriptorpb.DescriptorProto, kw map[strin
 func blueprintSlotNeedsID(blueprint, tag string) bool {
 	switch category(tag) {
 	case catGradient, catPattern, catMarker, catClip, catMask, catFilter:
+		return true
+	}
+	// defs and symbol are catSelf but their blueprints reference the injected
+	// element via <use href="#slot">, so the element must carry id="slot"
+	// (otherwise every defs/symbol card is blank — QA round1).
+	if tag == "defs" || tag == "symbol" {
 		return true
 	}
 	return false

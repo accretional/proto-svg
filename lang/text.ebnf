@@ -57,10 +57,10 @@ TextLengthAttr       = ' textLength="'   , ( LengthPercentageType | NumberType )
 TextLengthAdjustAttr = ' lengthAdjust="' , ( "spacing" | "spacingAndGlyphs" ) , '"' ;
 
 (* One or more space-separated length-percentage or unitless numbers. *)
-TextPositionList = ( LengthPercentageType | NumberType ) , { ( LengthPercentageType | NumberType ) } ;
+TextPositionList = ( LengthPercentageType | NumberType ) , { " " , ( LengthPercentageType | NumberType ) } ;
 
 (* One or more space-separated numbers (rotation angles per character). *)
-TextRotateList = NumberType , { NumberType } ;
+TextRotateList = NumberType , { " " , NumberType } ;
 
 TextContent = CharacterDataType
             | AnimationElement

@@ -4,95 +4,99 @@ h1{color:#16c79a;font-size:18px;margin:0 0 4px}
 p.desc{color:#9aa;margin:0 0 20px}
 a{color:#4d8bff}
 .grid{display:flex;flex-wrap:wrap;gap:16px}
-.card{background:#0f1530;border:1px solid #26305a;border-radius:8px;padding:10px;width:160px}
+.card{background:#0f1530;border:1px solid #26305a;border-radius:8px;padding:10px;width:160px;min-width:160px;min-height:200px;box-sizing:border-box;display:flex;flex-direction:column}
 .card svg{display:block;background:#161c3a;border-radius:4px;width:140px;height:140px}
-.card .label{margin-top:8px;color:#f5a623;font-size:12px;word-break:break-all}
-.card .attr{color:#16c79a}</style></head><body>
+.card .label{margin-top:8px;color:#f5a623;font-size:12px;word-break:break-word;overflow-wrap:anywhere}
+.card .attr{color:#16c79a}
+details.meta{margin-top:28px}
+details.meta>summary{color:#9aa;font-size:13px;cursor:pointer;margin-bottom:12px}
+.card--meta{opacity:.5;border-style:dashed}</style></head><body>
 <h1>&lt;discard&gt;</h1>
-<p class="desc">28 enumerated value-paths walked from the grammar. <a href="index.html">&larr; index</a></p>
+<p class="desc">27 enumerated value-paths walked from the grammar. <a href="index.html">&larr; index</a></p>
 <div class="grid">
   <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <rect width="40" height="40" fill="#4d8bff"><discard href="#target"></discard></rect>
+  <rect width="40" height="40" fill="#4d8bff"><discard begin="60s" href="#target"></discard></rect>
 </svg><div class="label"><span class="attr">href</span>="#target"</div></div>
   <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <rect width="40" height="40" fill="#4d8bff"><discard begin="accessKey(specimen)+0:1.-1;wallclock(100-3-10T0:1Z);indefinite"></discard></rect>
-</svg><div class="label"><span class="attr">begin</span>="accessKey(specimen)+0:1.-1;wallclock(100-3-10T0:1Z);indefinite"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <rect width="40" height="40" fill="#4d8bff"><discard begin="+-1.100min;circle1.begin+3:10:0.1;grad-a.click+-1:100.3"></discard></rect>
-</svg><div class="label"><span class="attr">begin</span>="+-1.100min;circle1.begin+3:10:0.1;grad-a.click+-1:100.3"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <rect width="40" height="40" fill="#4d8bff"><discard id="circle1"></discard></rect>
+  <rect width="40" height="40" fill="#4d8bff"><discard begin="0s"></discard></rect>
+</svg><div class="label"><span class="attr">begin</span>="0s"</div></div>
+</div>
+<details class="meta"><summary>Non-visual attributes (25) — accessibility / scripting / metadata, no rendering effect</summary>
+<div class="grid">
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><discard begin="60s" id="circle1"></discard></rect>
 </svg><div class="label"><span class="attr">id</span>="circle1"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <rect width="40" height="40" fill="#4d8bff"><discard id="grad-a"></discard></rect>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><discard begin="60s" id="grad-a"></discard></rect>
 </svg><div class="label"><span class="attr">id</span>="grad-a"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <rect width="40" height="40" fill="#4d8bff"><discard id="myId"></discard></rect>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><discard begin="60s" id="myId"></discard></rect>
 </svg><div class="label"><span class="attr">id</span>="myId"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <rect width="40" height="40" fill="#4d8bff"><discard id="node3"></discard></rect>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><discard begin="60s" id="node3"></discard></rect>
 </svg><div class="label"><span class="attr">id</span>="node3"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <rect width="40" height="40" fill="#4d8bff"><discard id="r1"></discard></rect>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><discard begin="60s" id="r1"></discard></rect>
 </svg><div class="label"><span class="attr">id</span>="r1"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <rect width="40" height="40" fill="#4d8bff"><discard tabindex="0"></discard></rect>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><discard begin="60s" tabindex="0"></discard></rect>
 </svg><div class="label"><span class="attr">tabindex</span>="0"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <rect width="40" height="40" fill="#4d8bff"><discard tabindex="1"></discard></rect>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><discard begin="60s" tabindex="1"></discard></rect>
 </svg><div class="label"><span class="attr">tabindex</span>="1"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <rect width="40" height="40" fill="#4d8bff"><discard tabindex="-1"></discard></rect>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><discard begin="60s" tabindex="-1"></discard></rect>
 </svg><div class="label"><span class="attr">tabindex</span>="-1"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <rect width="40" height="40" fill="#4d8bff"><discard tabindex="100"></discard></rect>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><discard begin="60s" tabindex="100"></discard></rect>
 </svg><div class="label"><span class="attr">tabindex</span>="100"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <rect width="40" height="40" fill="#4d8bff"><discard tabindex="3"></discard></rect>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><discard begin="60s" tabindex="3"></discard></rect>
 </svg><div class="label"><span class="attr">tabindex</span>="3"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <rect width="40" height="40" fill="#4d8bff"><discard tabindex="10"></discard></rect>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><discard begin="60s" tabindex="10"></discard></rect>
 </svg><div class="label"><span class="attr">tabindex</span>="10"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <rect width="40" height="40" fill="#4d8bff"><discard autofocus="true"></discard></rect>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><discard begin="60s" autofocus="true"></discard></rect>
 </svg><div class="label"><span class="attr">autofocus</span>="true"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <rect width="40" height="40" fill="#4d8bff"><discard autofocus="false"></discard></rect>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><discard begin="60s" autofocus="false"></discard></rect>
 </svg><div class="label"><span class="attr">autofocus</span>="false"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <rect width="40" height="40" fill="#4d8bff"><discard lang="en"></discard></rect>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><discard begin="60s" lang="en"></discard></rect>
 </svg><div class="label"><span class="attr">lang</span>="en"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <rect width="40" height="40" fill="#4d8bff"><discard lang="fr-CA"></discard></rect>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><discard begin="60s" lang="fr-CA"></discard></rect>
 </svg><div class="label"><span class="attr">lang</span>="fr-CA"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <rect width="40" height="40" fill="#4d8bff"><discard lang="de"></discard></rect>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><discard begin="60s" lang="de"></discard></rect>
 </svg><div class="label"><span class="attr">lang</span>="de"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <rect width="40" height="40" fill="#4d8bff"><discard lang="zh-Hans"></discard></rect>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><discard begin="60s" lang="zh-Hans"></discard></rect>
 </svg><div class="label"><span class="attr">lang</span>="zh-Hans"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <rect width="40" height="40" fill="#4d8bff"><discard lang="pt-BR"></discard></rect>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><discard begin="60s" lang="pt-BR"></discard></rect>
 </svg><div class="label"><span class="attr">lang</span>="pt-BR"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <rect width="40" height="40" fill="#4d8bff"><discard xml:lang="en"></discard></rect>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><discard begin="60s" xml:lang="en"></discard></rect>
 </svg><div class="label"><span class="attr">xml:lang</span>="en"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <rect width="40" height="40" fill="#4d8bff"><discard xml:lang="fr-CA"></discard></rect>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><discard begin="60s" xml:lang="fr-CA"></discard></rect>
 </svg><div class="label"><span class="attr">xml:lang</span>="fr-CA"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <rect width="40" height="40" fill="#4d8bff"><discard xml:lang="de"></discard></rect>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><discard begin="60s" xml:lang="de"></discard></rect>
 </svg><div class="label"><span class="attr">xml:lang</span>="de"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <rect width="40" height="40" fill="#4d8bff"><discard xml:lang="zh-Hans"></discard></rect>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><discard begin="60s" xml:lang="zh-Hans"></discard></rect>
 </svg><div class="label"><span class="attr">xml:lang</span>="zh-Hans"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <rect width="40" height="40" fill="#4d8bff"><discard xml:lang="pt-BR"></discard></rect>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><discard begin="60s" xml:lang="pt-BR"></discard></rect>
 </svg><div class="label"><span class="attr">xml:lang</span>="pt-BR"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <rect width="40" height="40" fill="#4d8bff"><discard xml:space="default"></discard></rect>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><discard begin="60s" xml:space="default"></discard></rect>
 </svg><div class="label"><span class="attr">xml:space</span>="default"</div></div>
-  <div class="card"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
-  <rect width="40" height="40" fill="#4d8bff"><discard xml:space="preserve"></discard></rect>
+  <div class="card card--meta"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100">
+  <rect width="40" height="40" fill="#4d8bff"><discard begin="60s" xml:space="preserve"></discard></rect>
 </svg><div class="label"><span class="attr">xml:space</span>="preserve"</div></div>
-</div></body></html>
+</div></details>
+</body></html>

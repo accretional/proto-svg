@@ -24,18 +24,33 @@ var reps = map[string][]string{
 	"NumberType":  {"0", "1", "-1", "3.14", "0.5", "2"},
 	"IntegerType": {"0", "1", "-1", "100", "3", "10"},
 
+	// non-negative / positive numeric leaves (sign constraint is structural;
+	// these sample sets carry no negative — and PositiveInteger no zero — so the
+	// overlay never has to clamp). MiterLimit floors at 1 (SVG default 4 first).
+	"NonNegativeNumberType":  {"0", "1", "2", "0.5", "3.14", "10"},
+	"NonNegativeIntegerType": {"0", "1", "2", "3", "5", "10"},
+	"PositiveIntegerType":    {"3", "1", "2", "5", "9"},
+	"MiterLimitType":         {"4", "1", "10", "2.5", "8"},
+	"AlphaValue":             {"0.5", "0", "1", "0.25", "0.75"},
+
 	// ── length / percentage / coordinate ───────────────────────────────────
-	"LengthType":           {"10", "24px", "2em", "1.5rem", "50%", "12pt"},
-	"PercentageType":       {"50%", "100%", "25%", "0%", "80%"},
-	"LengthPercentageType": {"10", "24px", "2em", "50%", "75%"},
-	"CoordinateType":       {"0", "10", "-5.5", "100px", "50%", "2.5em"},
+	"LengthType":                      {"10", "24px", "2em", "1.5rem", "50%", "12pt"},
+	"NonNegativeLengthType":           {"10", "24px", "2em", "1.5rem", "8", "12pt"},
+	"PercentageType":                  {"50%", "100%", "25%", "0%", "80%"},
+	"LengthPercentageType":            {"10", "24px", "2em", "50%", "75%"},
+	"NonNegativeLengthPercentageType": {"10", "24px", "2em", "50%", "75%"},
+	"CoordinateType":                  {"0", "10", "-5.5", "100px", "50%", "2.5em"},
 
 	// ── angle / time ────────────────────────────────────────────────────────
 	"AngleType": {"0deg", "45deg", "90deg", "180deg", "0.25turn"},
 	"TimeType":  {"0s", "0.3s", "1s", "200ms", "2.5s"},
 
 	// ── color / paint references ────────────────────────────────────────────
-	"ColorType": {"#e94560", "#16c79a", "#4d8bff", "#f5a623", "currentColor", "#b06aff"},
+	// ColorType is now a structured oneof (HexColor | FunctionalColor | NamedColor)
+	// walked by the renderer; only its two open arms are leaves. NamedColor's 148
+	// keywords come from the grammar.
+	"HexColor":        {"#e94560", "#16c79a", "#4d8bff", "#f5a623", "#b06aff", "#222"},
+	"FunctionalColor": {"rgb(233, 69, 96)", "rgba(22, 199, 154, 0.85)", "hsl(210, 80%, 62%)", "hsla(28, 90%, 55%, 0.8)"},
 
 	// ── IRI / URL references ────────────────────────────────────────────────
 	"IriType": {"#ref1", "#grad1", "#marker1", "#clip1"},
@@ -43,15 +58,15 @@ var reps = map[string][]string{
 
 	// ── strings / identifiers / names ───────────────────────────────────────
 	"StringType":      {"label", "Aa", "sample", "specimen"},
+	"CharType":        {"a", "s", "x", "Enter"},
 	"CustomIdentType": {"blur1", "result1", "myFilter", "shadow", "out"},
 	"XmlNameType":     {"circle1", "grad-a", "myId", "node3", "r1"},
 	"Bcp47type":       {"en", "fr-CA", "de", "zh-Hans", "pt-BR"},
 
-	// ── number / length lists (rendered inside one attribute value) ─────────
-	"ListOfNumbersType":        {"1 2 3 4", "0 1 0 0", "1 0.5", "0 0 1 1 0", "2 4 6"},
-	"ListOfLengthsType":        {"10px 20px", "5% 10%", "1em 2em 3em", "0 4px"},
-	"NumberOptionalNumberType": {"2", "2 3", "0.5", "3 3", "1 2"},
-	"DasharrayType":            {"5 3", "10 5 2", "4", "5% 10%", "8 4 2 4"},
+	// (ListOfNumbersType / NumberOptionalNumberType / DasharrayType are no longer
+	// leaves — they are structured `repeated` fields the renderer walks. Curated
+	// example lists for the few attrs that need specific shapes live in
+	// distinctValueSet, not here.)
 
 	// ── SMIL event symbols (begin/end value) ────────────────────────────────
 	"EventSymbolType": {"click", "mouseenter", "focus", "beginEvent", "endEvent", "load"},

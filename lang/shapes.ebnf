@@ -59,7 +59,7 @@ PathContent     = AnimationElement | DescriptiveElement | PaintServerElement
 
 (* ── Shared pathLength attribute (identical across all 7 elements; referenced 7×) *)
 
-PathLengthAttr = ' pathLength="' , NumberType , '"' ;
+PathLengthAttr = ' pathLength="' , NonNegativeNumberType , '"' ;
 
 (* ============================================================================
    10.2 rect
@@ -77,10 +77,10 @@ RectAttribute = RectXAttr | RectYAttr | RectWidthAttr | RectHeightAttr
 
 RectXAttr      = ' x="'      , LengthPercentageType , '"' ;
 RectYAttr      = ' y="'      , LengthPercentageType , '"' ;
-RectWidthAttr  = ' width="'  , LengthPercentageType , '"' ;
-RectHeightAttr = ' height="' , LengthPercentageType , '"' ;
-RectRxAttr     = ' rx="'     , ( "auto" | LengthPercentageType ) , '"' ;
-RectRyAttr     = ' ry="'     , ( "auto" | LengthPercentageType ) , '"' ;
+RectWidthAttr  = ' width="'  , NonNegativeLengthPercentageType , '"' ;
+RectHeightAttr = ' height="' , NonNegativeLengthPercentageType , '"' ;
+RectRxAttr     = ' rx="'     , ( "auto" | NonNegativeLengthPercentageType ) , '"' ;
+RectRyAttr     = ' ry="'     , ( "auto" | NonNegativeLengthPercentageType ) , '"' ;
 
 (* ============================================================================
    10.3 circle
@@ -97,7 +97,7 @@ CircleAttribute = CircleCxAttr | CircleCyAttr | CircleRAttr | PathLengthAttr
 
 CircleCxAttr = ' cx="' , LengthPercentageType , '"' ;
 CircleCyAttr = ' cy="' , LengthPercentageType , '"' ;
-CircleRAttr  = ' r="'  , LengthPercentageType , '"' ;
+CircleRAttr  = ' r="'  , NonNegativeLengthPercentageType , '"' ;
 
 (* ============================================================================
    10.4 ellipse
@@ -115,8 +115,8 @@ EllipseAttribute = EllipseCxAttr | EllipseCyAttr | EllipseRxAttr | EllipseRyAttr
 
 EllipseCxAttr = ' cx="' , LengthPercentageType , '"' ;
 EllipseCyAttr = ' cy="' , LengthPercentageType , '"' ;
-EllipseRxAttr = ' rx="' , ( "auto" | LengthPercentageType ) , '"' ;
-EllipseRyAttr = ' ry="' , ( "auto" | LengthPercentageType ) , '"' ;
+EllipseRxAttr = ' rx="' , ( "auto" | NonNegativeLengthPercentageType ) , '"' ;
+EllipseRyAttr = ' ry="' , ( "auto" | NonNegativeLengthPercentageType ) , '"' ;
 
 (* ============================================================================
    10.5 line

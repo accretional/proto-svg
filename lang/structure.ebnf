@@ -61,8 +61,8 @@ SymbolRefYAttr = ' refY="' , ( LengthType | "top"  | "center" | "bottom" ) , '"'
 (* Geometry properties (§4.2; unitless number included via LengthPercentageType) *)
 SymbolXAttr      = ' x="'      , LengthPercentageType , '"' ;
 SymbolYAttr      = ' y="'      , LengthPercentageType , '"' ;
-SymbolWidthAttr  = ' width="'  , ( "auto" | LengthPercentageType ) , '"' ;
-SymbolHeightAttr = ' height="' , ( "auto" | LengthPercentageType ) , '"' ;
+SymbolWidthAttr  = ' width="'  , ( "auto" | NonNegativeLengthPercentageType ) , '"' ;
+SymbolHeightAttr = ' height="' , ( "auto" | NonNegativeLengthPercentageType ) , '"' ;
 
 (* ── Use (§5.6) ───────────────────────────────────────────────────────────────
    Categories: graphics referencing element, renderable, structural, structurally
@@ -92,8 +92,8 @@ UseAttribute =
 UseHrefAttr   = ' href="'   , IriType , '"' ;
 UseXAttr      = ' x="'      , LengthPercentageType , '"' ;
 UseYAttr      = ' y="'      , LengthPercentageType , '"' ;
-UseWidthAttr  = ' width="'  , ( "auto" | LengthPercentageType ) , '"' ;
-UseHeightAttr = ' height="' , ( "auto" | LengthPercentageType ) , '"' ;
+UseWidthAttr  = ' width="'  , ( "auto" | NonNegativeLengthPercentageType ) , '"' ;
+UseHeightAttr = ' height="' , ( "auto" | NonNegativeLengthPercentageType ) , '"' ;
 
 (* Spec §5.6 content model: animation elements, descriptive elements,
    clipPath, mask, script, style.  Named UseContent to avoid collision. *)

@@ -84,8 +84,8 @@ MaskContentUnitsAttr = ' maskContentUnits="' , UnitType , '"' ;
 (* Geometry attributes on mask (distinct per-element productions per §b):      *)
 MaskXAttr      = ' x="' , LengthPercentageType , '"' ;
 MaskYAttr      = ' y="' , LengthPercentageType , '"' ;
-MaskWidthAttr  = ' width="' , LengthPercentageType , '"' ;
-MaskHeightAttr = ' height="' , LengthPercentageType , '"' ;
+MaskWidthAttr  = ' width="' , NonNegativeLengthPercentageType , '"' ;
+MaskHeightAttr = ' height="' , NonNegativeLengthPercentageType , '"' ;
 
 (* mask-type: applies to mask element only (also listed in PresentationAttribute
    longhands below for completeness; value set is a closed 2-keyword set)       *)
@@ -167,8 +167,14 @@ RadialSize = LengthPercentageType
            | "closest-side"
            | "farthest-side" ;
 
-(* <position>: open datatype (CSS background-position syntax); modelled as leaf *)
-CssPosition = StringType ;
+(* <position> — CSS background-position grammar (css-values-4 §<position>),
+   STRUCTURED (the keyword set is closed; only the offset is an open
+   length-percentage).  Over-approximates the 1-to-4-token forms as a horizontal
+   component and an optional vertical component: each is a closed edge keyword or
+   a <length-percentage>.  This replaces the former opaque StringType leaf. *)
+CssPosition = CssPositionH , [ " " , CssPositionV ] ;
+CssPositionH = "left" | "center" | "right" | LengthPercentageType ;
+CssPositionV = "top" | "center" | "bottom" | LengthPercentageType ;
 
 (* polygon([<fill-rule>? ,] [round <length>]? [<length-percentage> <length-percentage>]#)
    CSS Shapes L2: optional "round <length>" for rounded vertices.               *)

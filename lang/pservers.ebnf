@@ -133,10 +133,10 @@ RadialGradientTransformAttr = ' gradientTransform="' , TransformList , '"' ;
    fr is SVG-2-new (D4) and is safe to include without a browser caveat. *)
 RadialGradientCxAttr = ' cx="' , ( LengthPercentageType | NumberType ) , '"' ;
 RadialGradientCyAttr = ' cy="' , ( LengthPercentageType | NumberType ) , '"' ;
-RadialGradientRAttr  = ' r="'  , ( LengthPercentageType | NumberType ) , '"' ;
+RadialGradientRAttr  = ' r="'  , NonNegativeLengthPercentageType , '"' ;
 RadialGradientFxAttr = ' fx="' , ( LengthPercentageType | NumberType ) , '"' ;
 RadialGradientFyAttr = ' fy="' , ( LengthPercentageType | NumberType ) , '"' ;
-RadialGradientFrAttr = ' fr="' , ( LengthPercentageType | NumberType ) , '"' ;
+RadialGradientFrAttr = ' fr="' , NonNegativeLengthPercentageType , '"' ;
 
 (* href: per-element; targets linearGradient or radialGradient templates. *)
 RadialGradientHrefAttr = ' href="' , IriType , '"' ;
@@ -232,8 +232,8 @@ PatternTransformAttr = ' patternTransform="' , TransformList , '"' ;
    overlay. *)
 PatternXAttr      = ' x="'      , LengthType , '"' ;
 PatternYAttr      = ' y="'      , LengthType , '"' ;
-PatternWidthAttr  = ' width="'  , LengthType , '"' ;
-PatternHeightAttr = ' height="' , LengthType , '"' ;
+PatternWidthAttr  = ' width="'  , NonNegativeLengthType , '"' ;
+PatternHeightAttr = ' height="' , NonNegativeLengthType , '"' ;
 
 PatternViewBoxAttr             = ' viewBox="'             , ViewBox , '"' ;
 PatternPreserveAspectRatioAttr = ' preserveAspectRatio="' , PreserveAspectRatio , '"' ;

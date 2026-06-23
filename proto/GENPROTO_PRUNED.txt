@@ -1,8 +1,7 @@
 # rules unreachable from SvgDocument (pruned)
-# count: 47
+# count: 45
 
 CoordinateType
-ListOfLengthsType
 MaskClipAttr
 MaskClipList
 MaskCompositeAttr
@@ -19,6 +18,7 @@ MaskRepeatAttr
 MaskRepeatList
 MaskSizeAttr
 MaskSizeList
+PositiveIntegerType
 SVGUnknownElement
 TimeType
 UnknownAttribute
@@ -26,7 +26,6 @@ angle_unit
 digit
 exponent
 fraction
-hex_color
 hex_digit
 length_unit
 letter
@@ -34,7 +33,6 @@ lowercase_letter
 name
 name_char
 name_start_char
-named_color
 non_zero
 number
 path_comma_wsp

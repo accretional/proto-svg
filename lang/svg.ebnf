@@ -273,8 +273,8 @@ SvgPreserveAspectRatioAttr = ' preserveAspectRatio="' , PreserveAspectRatio , '"
 SvgZoomAndPanAttr          = ' zoomAndPan="' , ( "disable" | "magnify" ) , '"' ;
 SvgXAttr      = ' x="' , LengthPercentageType , '"' ;
 SvgYAttr      = ' y="' , LengthPercentageType , '"' ;
-SvgWidthAttr  = ' width="' , ( "auto" | LengthPercentageType ) , '"' ;
-SvgHeightAttr = ' height="' , ( "auto" | LengthPercentageType ) , '"' ;
+SvgWidthAttr  = ' width="' , ( "auto" | NonNegativeLengthPercentageType ) , '"' ;
+SvgHeightAttr = ' height="' , ( "auto" | NonNegativeLengthPercentageType ) , '"' ;
 SvgTransformAttr = ' transform="' , TransformList , '"' ;
 
 SVGGElement = "<g" , { GAttribute } , ">" , { ContainerContent } , "</g>" ;

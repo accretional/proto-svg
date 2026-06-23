@@ -66,9 +66,36 @@ When a constraint is not context-free, the grammar still carries a superset so t
 | CFG accepts (the superset) | Overlay tightens it to |
 | --- | --- |
 | `AnimationValue = LengthType \| NumberType \| ColorType \| PaintType \| ...`, the union of every animatable value type | the single arm matching the resolved `attributeName` type |
-| any number where a range applies (`opacity`, `keyTimes` entries, the magnitude of non-negative lengths) | clamp or reject outside the range, and enforce monotonicity |
 | `{ Attr }`, meaning any attribute in any order at any multiplicity | each attribute at most once, with required attributes present |
 | `href = IRI`, any reference token | a referent that exists and has the required type |
+
+### What MOVED into the CFG (grammar refactor)
+
+Several bounds that were previously over-approximated and clamped in the overlay
+are now **structural** — a bounded-decimal interval and a sign restriction are
+regular (hence context-free) languages, so they belong in the grammar (Rule 1):
+
+| Was overlay (clamp) | Now structural (grammar) |
+| --- | --- |
+| `opacity`/`*-opacity` clamped to [0,1] | `AlphaValue` — a bounded-decimal leaf (integer part exactly `0` or `1`) |
+| non-negative magnitudes (`width`, `height`, `r`, `rx`, `ry`, `stroke-width`, `markerWidth/Height`, radial `r`/`fr`, `pathLength`, …) | `NonNegativeNumberType` / `NonNegativeLengthType` / `NonNegativeLengthPercentageType` (no leading minus) |
+| `stroke-miterlimit ≥ 1`; `numOctaves ≥ 0` | `MiterLimitType`; `NonNegativeIntegerType` |
+| malformed SMIL clocks with negative components (`-1:100.-1`) | clock components are `NonNegativeIntegerType`; `repeatCount` is non-negative — `dur`/`min`/`max`/`repeatDur` are valid by construction (no pin) |
+| `named_color = letter+` (accepted any word) | `NamedColor` — the 148 CSS Color L4 names enumerated in full; `ColorType` is a structured `HexColor \| FunctionalColor \| NamedColor` oneof |
+| `feColorMatrix values` as a generic number list | a per-`type` union (`FeColorMatrixMatrixValues` = 20 numbers \| scalar), like animateTransform |
+| list values (`stroke-dasharray`, `stdDeviation`, `tableValues`, `kernelMatrix`) as opaque string leaves | structured `repeated` fields (the list structure is context-free) |
+| `<position>` (`CssPosition`) as `StringType` | a structured edge-keyword + length-percentage grammar |
+
+What STAYS overlay (genuinely non-context-free): list **monotonicity**
+(`keyTimes` non-decreasing — a relation between unbounded list elements);
+**cross-list cardinality** (`values`↔`keyTimes`↔`keySplines` counts; `kernelMatrix`
+length `== order²`); the type→arm **selection** for dependent value unions
+(`animateTransform`, `feColorMatrix`); attribute-**presence** dependencies
+(`feComposite` `k1-4` require `operator="arithmetic"`; `feFunc` params keyed by
+`type`) — these gate *separate sibling attributes* on an enum, which the per-
+attribute generator resolves by companion injection rather than by binding them
+into one ordered production (that would forfeit the free `{ Attr }` model);
+syncbase/event timing reference resolution (`begin`/`end`); and IDREF resolution.
 
 Over-approximation is a feature. It keeps the proto reflection surface complete, so the renderer can always produce a value, and it confines the non-CFG logic to a thin predicate.
 

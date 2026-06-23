@@ -27,24 +27,36 @@ import (
 // ColorType/UrlType/NumberType sub-parts) and must be rendered, not scalarized.
 var leafTypes = normSet(
 	"number_type",
+	"non_negative_number_type",
 	"integer_type",
+	"non_negative_integer_type",
+	"positive_integer_type",
 	"length_type",
+	"non_negative_length_type",
 	"percentage_type",
 	"length_percentage_type",
+	"non_negative_length_percentage_type",
+	"miter_limit_type",
+	"alpha_value",
 	"coordinate_type",
 	"angle_type",
 	"time_type",
-	"color_type",
+	// color_type is NOT a leaf — it is a structured oneof (HexColor |
+	// FunctionalColor | NamedColor). Its two open arms ARE leaves; NamedColor is
+	// the closed 148-keyword enum, walked as a oneof.
+	"hex_color",
+	"functional_color",
 	"iri_type",
 	"url_type",
 	"string_type",
+	"char_type",
 	"custom_ident_type",
 	"xml_name_type",
 	"bcp47_type",
-	"list_of_numbers_type",
-	"list_of_lengths_type",
-	"number_optional_number_type",
-	"dasharray_type",
+	// list value types are NO LONGER leaves — they are structured `repeated`
+	// fields the renderer walks (list_of_numbers_type, number_optional_number_type,
+	// dasharray_type). list_of_lengths_type was dead (zero grammar consumers) and
+	// has been deleted from datatype.ebnf.
 	"event_symbol_type",
 	"character_data_type",
 )

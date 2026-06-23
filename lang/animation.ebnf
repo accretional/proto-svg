@@ -88,11 +88,15 @@ FullClockValue    = Hours , ":" , Minutes , ":" , Seconds , [ "." , ClockFractio
 PartialClockValue = Minutes , ":" , Seconds , [ "." , ClockFraction ] ;
 TimecountValue    = Timecount , [ "." , ClockFraction ] , [ Metric ] ;
 Metric            = "h" | "min" | "s" | "ms" ;
-Hours             = IntegerType ;   (* any positive integer; range overlay *)
-Minutes           = IntegerType ;   (* 00-59, range overlay *)
-Seconds           = IntegerType ;   (* 00-59, range overlay *)
-ClockFraction     = IntegerType ;   (* renamed from Fraction: norm-collides with datatype.ebnf `fraction` (§b) *)
-Timecount         = IntegerType ;
+(* Clock COMPONENTS are non-negative by construction (a clock field never carries
+   a leading minus — the only legal sign in SMIL timing is OffsetValue's leading
+   "+"|"-").  Making them NonNegativeIntegerType moves clock well-formedness into
+   the grammar (no more "-1:100.-1"); the 00-59 / hour ranges remain overlay. *)
+Hours             = NonNegativeIntegerType ;   (* any non-negative integer; range overlay *)
+Minutes           = NonNegativeIntegerType ;   (* 00-59, range overlay *)
+Seconds           = NonNegativeIntegerType ;   (* 00-59, range overlay *)
+ClockFraction     = NonNegativeIntegerType ;   (* renamed from Fraction: norm-collides with datatype.ebnf `fraction` (§b) *)
+Timecount         = NonNegativeIntegerType ;
 
 (* ── Offset value: optional leading sign, then a clock value *)
 OffsetValue = [ "+" | "-" ] , ClockValue ;
@@ -112,7 +116,7 @@ RepeatValue = [ XmlNameType , "." ] , "repeat(" , IntegerType , ")" ,
 
 (* ── AccessKey value: accessKey(<char>) [(+|-) clock].  The character is an
    open single-code-point leaf modeled as StringType. *)
-AccessKeyValue = "accessKey(" , StringType , ")" ,
+AccessKeyValue = "accessKey(" , CharType , ")" ,
                  [ ( "+" | "-" ) , ClockValue ] ;
 
 (* ── Wallclock value: wallclock( <DateTime> | <WallTime> ).  Syntactically
@@ -123,10 +127,10 @@ Date           = Years , "-" , Months , "-" , Days ;
 WallTime       = ( HhmmTime | HhmmssTime ) , [ Tzd ] ;
 HhmmTime       = Hours24 , ":" , Minutes ;
 HhmmssTime     = Hours24 , ":" , Minutes , ":" , Seconds , [ "." , ClockFraction ] ;
-Years          = IntegerType ;   (* 4 digits; overlay *)
-Months         = IntegerType ;   (* 01-12, range overlay *)
-Days           = IntegerType ;   (* 01-31, range overlay *)
-Hours24        = IntegerType ;   (* 00-23, range overlay *)
+Years          = NonNegativeIntegerType ;   (* 4 digits; overlay *)
+Months         = NonNegativeIntegerType ;   (* 01-12, range overlay *)
+Days           = NonNegativeIntegerType ;   (* 01-31, range overlay *)
+Hours24        = NonNegativeIntegerType ;   (* 00-23, range overlay *)
 Tzd            = "Z" | ( ( "+" | "-" ) , Hours24 , ":" , Minutes ) ;
 
 (* ── begin / end value lists.  ";" is a terminal so the renderer/CollapseComma-
@@ -260,7 +264,7 @@ AnimateDurAttr         = ' dur="' , ( ClockValue | "media" | "indefinite" ) , '"
 AnimateMinAttr         = ' min="' , ( ClockValue | "media" ) , '"' ;
 AnimateMaxAttr         = ' max="' , ( ClockValue | "media" ) , '"' ;
 AnimateRestartAttr     = ' restart="' , ( "always" | "whenNotActive" | "never" ) , '"' ;
-AnimateRepeatCountAttr = ' repeatCount="' , ( NumberType | "indefinite" ) , '"' ;
+AnimateRepeatCountAttr = ' repeatCount="' , ( NonNegativeNumberType | "indefinite" ) , '"' ;
 AnimateRepeatDurAttr   = ' repeatDur="' , ( ClockValue | "media" | "indefinite" ) , '"' ;
 (* animation fill — "freeze"|"remove"; positional, NOT paint FillAttr (§b.2) *)
 AnimateFillAttr        = ' fill="' , ( "freeze" | "remove" ) , '"' ;
@@ -302,7 +306,7 @@ SetDurAttr         = ' dur="' , ( ClockValue | "media" | "indefinite" ) , '"' ;
 SetMinAttr         = ' min="' , ( ClockValue | "media" ) , '"' ;
 SetMaxAttr         = ' max="' , ( ClockValue | "media" ) , '"' ;
 SetRestartAttr     = ' restart="' , ( "always" | "whenNotActive" | "never" ) , '"' ;
-SetRepeatCountAttr = ' repeatCount="' , ( NumberType | "indefinite" ) , '"' ;
+SetRepeatCountAttr = ' repeatCount="' , ( NonNegativeNumberType | "indefinite" ) , '"' ;
 SetRepeatDurAttr   = ' repeatDur="' , ( ClockValue | "media" | "indefinite" ) , '"' ;
 SetFillAttr        = ' fill="' , ( "freeze" | "remove" ) , '"' ;
 SetToAttr          = ' to="' , AnimationValue , '"' ;
@@ -341,7 +345,7 @@ AnimateMotionDurAttr         = ' dur="' , ( ClockValue | "media" | "indefinite" 
 AnimateMotionMinAttr         = ' min="' , ( ClockValue | "media" ) , '"' ;
 AnimateMotionMaxAttr         = ' max="' , ( ClockValue | "media" ) , '"' ;
 AnimateMotionRestartAttr     = ' restart="' , ( "always" | "whenNotActive" | "never" ) , '"' ;
-AnimateMotionRepeatCountAttr = ' repeatCount="' , ( NumberType | "indefinite" ) , '"' ;
+AnimateMotionRepeatCountAttr = ' repeatCount="' , ( NonNegativeNumberType | "indefinite" ) , '"' ;
 AnimateMotionRepeatDurAttr   = ' repeatDur="' , ( ClockValue | "media" | "indefinite" ) , '"' ;
 AnimateMotionFillAttr        = ' fill="' , ( "freeze" | "remove" ) , '"' ;
 AnimateMotionCalcModeAttr    = ' calcMode="' , ( "discrete" | "linear" | "paced" | "spline" ) , '"' ;
@@ -390,7 +394,7 @@ AnimateTransformDurAttr         = ' dur="' , ( ClockValue | "media" | "indefinit
 AnimateTransformMinAttr         = ' min="' , ( ClockValue | "media" ) , '"' ;
 AnimateTransformMaxAttr         = ' max="' , ( ClockValue | "media" ) , '"' ;
 AnimateTransformRestartAttr     = ' restart="' , ( "always" | "whenNotActive" | "never" ) , '"' ;
-AnimateTransformRepeatCountAttr = ' repeatCount="' , ( NumberType | "indefinite" ) , '"' ;
+AnimateTransformRepeatCountAttr = ' repeatCount="' , ( NonNegativeNumberType | "indefinite" ) , '"' ;
 AnimateTransformRepeatDurAttr   = ' repeatDur="' , ( ClockValue | "media" | "indefinite" ) , '"' ;
 AnimateTransformFillAttr        = ' fill="' , ( "freeze" | "remove" ) , '"' ;
 AnimateTransformCalcModeAttr    = ' calcMode="' , ( "discrete" | "linear" | "paced" | "spline" ) , '"' ;

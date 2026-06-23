@@ -124,9 +124,7 @@ func overlaySample(tag, attrName, valueKind string) (string, bool) {
 	case "requiredextensions":
 		return "", true // empty list = no required extension → never hidden
 
-	// Stroke miter limit must be >= 1 (was "0", invalid). 4 is the SVG default.
-	case "stroke-miterlimit":
-		return "4", true
+	// (stroke-miterlimit ≥ 1 is now structural — MiterLimitType in the grammar.)
 
 	// Path data: "none" renders blank; give visible geometry.
 	case "d":
@@ -152,9 +150,9 @@ func overlaySample(tag, attrName, valueKind string) (string, bool) {
 	case "surfacescale":
 		return "5", true
 
-	// feTurbulence: numOctaves is a non-negative int; seed a stable value.
-	case "numoctaves":
-		return "3", true
+	// (numOctaves ≥ 0 is now structural — NonNegativeIntegerType in the grammar.)
+	// feTurbulence seed: pin a stable value so non-seed cards share one noise field
+	// (pure visual-stability choice; any number is valid).
 	case "seed":
 		return "5", true
 
@@ -162,20 +160,16 @@ func overlaySample(tag, attrName, valueKind string) (string, bool) {
 	case "order":
 		return "3", true
 
-	// SMIL clock values: the grammar yields malformed clocks with negative
-	// components (e.g. "-1:100.3", "10:0:1.-1"). Override with simple valid
-	// unsigned clock values so the timing is always well-formed.
-	case "dur":
-		return "2s", true
+	// SMIL clock well-formedness is now STRUCTURAL: clock components are
+	// NonNegativeIntegerType in the grammar, so dur/min/max/repeatDur (pure clock
+	// values, no references) are valid by construction and need no overlay pin.
+	// begin/end stay pinned because their value lists carry SYNCBASE/EVENT
+	// references (`other.begin±clock`, `other.click`) whose referent resolution is
+	// genuinely non-context-free (CONTEXT_SENSITIVITY item 9) — a fixed offset
+	// clock keeps them resolvable by construction.
 	case "begin":
 		return "0s", true
 	case "end":
-		return "4s", true
-	case "min":
-		return "0s", true
-	case "max":
-		return "indefinite", true
-	case "repeatdur":
 		return "4s", true
 
 	// Animation value typing. The host baseline fixes attributeName="x" (a length
@@ -206,25 +200,17 @@ func overlaySample(tag, attrName, valueKind string) (string, bool) {
 		return animValues(tag), true
 	}
 
-	// 3. Numeric ranges & monotonicity.
+	// 3. Numeric ranges & monotonicity that remain NON-context-free (the bounded
+	//    single-value ranges — alpha ∈ [0,1], non-negative magnitudes — are now
+	//    structural leaves in the grammar; what stays here is list MONOTONICITY,
+	//    which a CFG provably cannot express).
 	switch {
-	case isAlphaAttr(an): // opacity / *-opacity ∈ [0,1]
-		return "0.5", true
 	case an == "keytimes":
 		return "0; 0.5; 1", true // non-decreasing, [0,1], first 0, last 1
 	case an == "keypoints":
 		return "0; 0.5; 1", true
 	case an == "keysplines":
-		return "0 0 1 1", true // one control-point set ∈ [0,1]
-	case isNonNegativeAttr(an):
-		switch valueKind {
-		case "NumberType":
-			return "2", true
-		case "LengthPercentageType", "LengthType":
-			return "20", true
-		case "NumberOptionalNumberType":
-			return "2", true
-		}
+		return "0 0 1 1", true // one control-point set ∈ [0,1], count == values-1
 	}
 
 	return "", false
@@ -250,24 +236,6 @@ func isRefAttr(an string) bool {
 		return false // handled per-value-kind, not per-name, to keep keyword arms intact
 	}
 	return strings.HasSuffix(an, "href")
-}
-
-// isAlphaAttr reports whether the attribute's value is an <alpha-value> in [0,1].
-func isAlphaAttr(an string) bool {
-	return an == "opacity" || strings.HasSuffix(an, "-opacity")
-}
-
-// isNonNegativeAttr reports whether the attribute requires a non-negative value
-// (a magnitude). These are the ones the overlay must keep ≥ 0 because the CFG
-// over-approximates with a signed NumberType.
-func isNonNegativeAttr(an string) bool {
-	switch an {
-	case "width", "height", "r", "rx", "ry", "stroke-width", "stroke-dashoffset",
-		"stddeviation", "stdeviation", "radius", "markerwidth", "markerheight",
-		"font-size", "numoctaves", "pathlength", "fr":
-		return true
-	}
-	return false
 }
 
 // animationValueFor returns a value of the correct type for an animation

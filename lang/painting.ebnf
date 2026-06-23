@@ -41,9 +41,9 @@ MarkerAttribute = MarkerMarkerUnitsAttr
 (* markerUnits: closed keyword set — strokeWidth | userSpaceOnUse *)
 MarkerMarkerUnitsAttr = ' markerUnits="' , ( "strokeWidth" | "userSpaceOnUse" ) , '"' ;
 
-(* markerWidth / markerHeight: open length/number values *)
-MarkerWidthAttr  = ' markerWidth="'  , ( LengthPercentageType | NumberType ) , '"' ;
-MarkerHeightAttr = ' markerHeight="' , ( LengthPercentageType | NumberType ) , '"' ;
+(* markerWidth / markerHeight: non-negative length/number values *)
+MarkerWidthAttr  = ' markerWidth="'  , NonNegativeLengthPercentageType , '"' ;
+MarkerHeightAttr = ' markerHeight="' , NonNegativeLengthPercentageType , '"' ;
 
 (* refX: open + closed keyword set *)
 MarkerRefXAttr = ' refX="' , ( LengthPercentageType | NumberType | "left" | "center" | "right" ) , '"' ;
@@ -81,8 +81,8 @@ StrokeAttr = ' stroke="' , PaintType , '"' ;
 (* stroke-opacity: structured AlphaValue *)
 StrokeOpacityAttr = ' stroke-opacity="' , AlphaValue , '"' ;
 
-(* stroke-width: open length-percentage or unitless number *)
-StrokeWidthAttr = ' stroke-width="' , ( LengthPercentageType | NumberType ) , '"' ;
+(* stroke-width: non-negative length-percentage or unitless number *)
+StrokeWidthAttr = ' stroke-width="' , NonNegativeLengthPercentageType , '"' ;
 
 (* stroke-linecap: closed keyword set — butt | round | square *)
 StrokeLinecapAttr = ' stroke-linecap="' , ( "butt" | "round" | "square" ) , '"' ;
@@ -90,8 +90,8 @@ StrokeLinecapAttr = ' stroke-linecap="' , ( "butt" | "round" | "square" ) , '"' 
 (* stroke-linejoin: closed keyword set — miter | miter-clip | round | bevel | arcs *)
 StrokeLinejoinAttr = ' stroke-linejoin="' , ( "miter" | "miter-clip" | "round" | "bevel" | "arcs" ) , '"' ;
 
-(* stroke-miterlimit: open number value *)
-StrokeMiterlimitAttr = ' stroke-miterlimit="' , NumberType , '"' ;
+(* stroke-miterlimit: a <number> ≥ 1 (MiterLimitType carries the ≥1 floor) *)
+StrokeMiterlimitAttr = ' stroke-miterlimit="' , MiterLimitType , '"' ;
 
 (* stroke-dasharray: none (keyword) or structured dasharray list *)
 StrokeDasharrayAttr = ' stroke-dasharray="' , ( "none" | DasharrayType ) , '"' ;

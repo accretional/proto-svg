@@ -110,6 +110,24 @@ var universalNonVisual = map[string]bool{
 	"requiredExtensions": true, "systemLanguage": true,
 }
 
+// smilTimingNonVisual is the set of SMIL timing/control attributes (animation
+// elements only). They modulate WHEN an animation runs, HOW LONG, and whether it
+// repeats/freezes — never the appearance of any single frame, so a per-value
+// specimen capture cannot tell them apart (every card already shows the host
+// animating). They render valid values by construction (the clock grammar is
+// unsigned; repeatCount is non-negative) but carry no distinct still/GIF, so they
+// belong in the collapsed Non-visual section. `restart`/`fill`(freeze|remove)/
+// `additive`/`accumulate`/`attributeType` are likewise control-only.
+var smilTimingNonVisual = map[string]bool{
+	"dur": true, "begin": true, "end": true, "min": true, "max": true,
+	"repeatDur": true, "repeatCount": true, "restart": true,
+	"additive": true, "accumulate": true, "attributeType": true,
+	// `fill` on an animation element is the fill-MODE (freeze|remove): it controls
+	// what happens AFTER the animation ends, not any single frame — non-visual.
+	// (On a shape, `fill` is paint and stays visual; this is animation-gated.)
+	"fill": true,
+}
+
 // aNonVisual is the set of <a>-specific navigation-semantics attrs (no visual
 // rendering effect — they only control link behavior). href/target (and their
 // xlink: aliases) merely set the link destination/framing; like download/ping/
@@ -378,6 +396,11 @@ func nonVisualAttr(attr, tag string) bool {
 	// 1b. Attributes with no distinct STATIC display (hints / interaction / dash-
 	//     only / transform-only) — valid but never a unique still render.
 	if staticallyInertProps[attr] {
+		return true
+	}
+	// 1b-ii. SMIL timing/control on animation elements — modulates timing, not
+	//        appearance; no distinct per-value capture.
+	if smilTimingNonVisual[attr] && isAnimationTag(tag) {
 		return true
 	}
 	// 1c. Tag-specific loading / scripting / interaction attrs with no visual

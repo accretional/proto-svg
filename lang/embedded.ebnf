@@ -40,8 +40,8 @@ ImageCrossoriginAttr         = ' crossorigin="' , ( "anonymous" | "use-credentia
 ImagePreserveAspectRatioAttr = ' preserveAspectRatio="' , PreserveAspectRatio , '"' ;
 ImageXAttr                   = ' x="' , LengthPercentageType , '"' ;
 ImageYAttr                   = ' y="' , LengthPercentageType , '"' ;
-ImageWidthAttr               = ' width="' , ( "auto" | LengthPercentageType ) , '"' ;
-ImageHeightAttr              = ' height="' , ( "auto" | LengthPercentageType ) , '"' ;
+ImageWidthAttr               = ' width="' , ( "auto" | NonNegativeLengthPercentageType ) , '"' ;
+ImageHeightAttr              = ' height="' , ( "auto" | NonNegativeLengthPercentageType ) , '"' ;
 ImageDecodingAttr            = ' decoding="' , ( "sync" | "async" | "auto" ) , '"' ;
 
 ImageContent = AnimationElement | DescriptiveElement
@@ -61,8 +61,8 @@ ForeignObjectAttribute = ForeignObjectXAttr | ForeignObjectYAttr
 
 ForeignObjectXAttr      = ' x="' , LengthPercentageType , '"' ;
 ForeignObjectYAttr      = ' y="' , LengthPercentageType , '"' ;
-ForeignObjectWidthAttr  = ' width="' , ( "auto" | LengthPercentageType ) , '"' ;
-ForeignObjectHeightAttr = ' height="' , ( "auto" | LengthPercentageType ) , '"' ;
+ForeignObjectWidthAttr  = ' width="' , ( "auto" | NonNegativeLengthPercentageType ) , '"' ;
+ForeignObjectHeightAttr = ' height="' , ( "auto" | NonNegativeLengthPercentageType ) , '"' ;
 
 (* Content model: any foreign-namespace content or character data; modelled as
    the CharacterDataType leaf (over-approximation per CONTEXT_SENSITIVITY Rule 2). *)

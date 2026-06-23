@@ -178,13 +178,20 @@ func isLetter(c byte) bool {
 // numericLeaf is the set of leaf *Type messages that render as bare numeric
 // tokens (viewBox numbers, coordinate pairs, number lists).
 var numericLeaf = map[string]bool{
-	"NumberType":           true,
-	"IntegerType":          true,
-	"CoordinateType":       true,
-	"LengthType":           true,
-	"PercentageType":       true,
-	"LengthPercentageType": true,
-	"AngleType":            true,
+	"NumberType":                      true,
+	"NonNegativeNumberType":           true,
+	"IntegerType":                     true,
+	"NonNegativeIntegerType":          true,
+	"PositiveIntegerType":             true,
+	"MiterLimitType":                  true,
+	"AlphaValue":                      true,
+	"CoordinateType":                  true,
+	"LengthType":                      true,
+	"NonNegativeLengthType":           true,
+	"PercentageType":                  true,
+	"LengthPercentageType":            true,
+	"NonNegativeLengthPercentageType": true,
+	"AngleType":                       true,
 }
 
 // renderField renders one field of the message at parentFQN.

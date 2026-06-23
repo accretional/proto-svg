@@ -1687,7 +1687,7 @@ message SvgWidthAttr {
     oneof value {
       AutoKeyword auto_keyword = 1;
 
-      LengthPercentageType length_percentage_type = 2;
+      NonNegativeLengthPercentageType non_negative_length_percentage_type = 2;
     }
   }
 }
@@ -1701,7 +1701,7 @@ message SvgHeightAttr {
     oneof value {
       AutoKeyword auto_keyword = 1;
 
-      LengthPercentageType length_percentage_type = 2;
+      NonNegativeLengthPercentageType non_negative_length_percentage_type = 2;
     }
   }
 }
@@ -2015,23 +2015,23 @@ message Metric {
 }
 
 message Hours {
-  IntegerType integer_type = 1;
+  NonNegativeIntegerType non_negative_integer_type = 1;
 }
 
 message Minutes {
-  IntegerType integer_type = 1;
+  NonNegativeIntegerType non_negative_integer_type = 1;
 }
 
 message Seconds {
-  IntegerType integer_type = 1;
+  NonNegativeIntegerType non_negative_integer_type = 1;
 }
 
 message ClockFraction {
-  IntegerType integer_type = 1;
+  NonNegativeIntegerType non_negative_integer_type = 1;
 }
 
 message Timecount {
-  IntegerType integer_type = 1;
+  NonNegativeIntegerType non_negative_integer_type = 1;
 }
 
 message OffsetValue {
@@ -2141,7 +2141,7 @@ message RepeatValue {
 }
 
 message AccessKeyValue {
-  StringType string_type = 1;
+  CharType char_type = 1;
 
   RightParenthesisKeyword right_parenthesis_keyword = 2;
 
@@ -2237,19 +2237,19 @@ message HhmmssTime {
 }
 
 message Years {
-  IntegerType integer_type = 1;
+  NonNegativeIntegerType non_negative_integer_type = 1;
 }
 
 message Months {
-  IntegerType integer_type = 1;
+  NonNegativeIntegerType non_negative_integer_type = 1;
 }
 
 message Days {
-  IntegerType integer_type = 1;
+  NonNegativeIntegerType non_negative_integer_type = 1;
 }
 
 message Hours24 {
-  IntegerType integer_type = 1;
+  NonNegativeIntegerType non_negative_integer_type = 1;
 }
 
 message Tzd {
@@ -2619,7 +2619,7 @@ message AnimateRepeatCountAttr {
 
   message Alt1 {
     oneof value {
-      NumberType number_type = 1;
+      NonNegativeNumberType non_negative_number_type = 1;
 
       IndefiniteKeyword indefinite_keyword = 2;
     }
@@ -2885,7 +2885,7 @@ message SetRepeatCountAttr {
 
   message Alt1 {
     oneof value {
-      NumberType number_type = 1;
+      NonNegativeNumberType non_negative_number_type = 1;
 
       IndefiniteKeyword indefinite_keyword = 2;
     }
@@ -3093,7 +3093,7 @@ message AnimateMotionRepeatCountAttr {
 
   message Alt1 {
     oneof value {
-      NumberType number_type = 1;
+      NonNegativeNumberType non_negative_number_type = 1;
 
       IndefiniteKeyword indefinite_keyword = 2;
     }
@@ -3408,7 +3408,7 @@ message AnimateTransformRepeatCountAttr {
 
   message Alt1 {
     oneof value {
-      NumberType number_type = 1;
+      NonNegativeNumberType non_negative_number_type = 1;
 
       IndefiniteKeyword indefinite_keyword = 2;
     }
@@ -3627,11 +3627,23 @@ message NumberType {
   string value = 1;
 }
 
+message NonNegativeNumberType {
+  string value = 1;
+}
+
 message IntegerType {
   string value = 1;
 }
 
+message NonNegativeIntegerType {
+  string value = 1;
+}
+
 message LengthType {
+  string value = 1;
+}
+
+message NonNegativeLengthType {
   string value = 1;
 }
 
@@ -3643,12 +3655,334 @@ message LengthPercentageType {
   string value = 1;
 }
 
+message NonNegativeLengthPercentageType {
+  string value = 1;
+}
+
+message MiterLimitType {
+  string value = 1;
+}
+
 message AngleType {
   string value = 1;
 }
 
 message ColorType {
+  oneof value {
+    HexColor hex_color = 1;
+
+    FunctionalColor functional_color = 2;
+
+    NamedColor named_color = 3;
+  }
+}
+
+message HexColor {
   string value = 1;
+}
+
+message FunctionalColor {
+  string value = 1;
+}
+
+message NamedColor {
+  oneof value {
+    AliceblueKeyword aliceblue_keyword = 1;
+
+    AntiquewhiteKeyword antiquewhite_keyword = 2;
+
+    AquaKeyword aqua_keyword = 3;
+
+    AquamarineKeyword aquamarine_keyword = 4;
+
+    AzureKeyword azure_keyword = 5;
+
+    BeigeKeyword beige_keyword = 6;
+
+    BisqueKeyword bisque_keyword = 7;
+
+    BlackKeyword black_keyword = 8;
+
+    BlanchedalmondKeyword blanchedalmond_keyword = 9;
+
+    BlueKeyword blue_keyword = 10;
+
+    BluevioletKeyword blueviolet_keyword = 11;
+
+    BrownKeyword brown_keyword = 12;
+
+    BurlywoodKeyword burlywood_keyword = 13;
+
+    CadetblueKeyword cadetblue_keyword = 14;
+
+    ChartreuseKeyword chartreuse_keyword = 15;
+
+    ChocolateKeyword chocolate_keyword = 16;
+
+    CoralKeyword coral_keyword = 17;
+
+    CornflowerblueKeyword cornflowerblue_keyword = 18;
+
+    CornsilkKeyword cornsilk_keyword = 19;
+
+    CrimsonKeyword crimson_keyword = 20;
+
+    CyanKeyword cyan_keyword = 21;
+
+    DarkblueKeyword darkblue_keyword = 22;
+
+    DarkcyanKeyword darkcyan_keyword = 23;
+
+    DarkgoldenrodKeyword darkgoldenrod_keyword = 24;
+
+    DarkgrayKeyword darkgray_keyword = 25;
+
+    DarkgreenKeyword darkgreen_keyword = 26;
+
+    DarkgreyKeyword darkgrey_keyword = 27;
+
+    DarkkhakiKeyword darkkhaki_keyword = 28;
+
+    DarkmagentaKeyword darkmagenta_keyword = 29;
+
+    DarkolivegreenKeyword darkolivegreen_keyword = 30;
+
+    DarkorangeKeyword darkorange_keyword = 31;
+
+    DarkorchidKeyword darkorchid_keyword = 32;
+
+    DarkredKeyword darkred_keyword = 33;
+
+    DarksalmonKeyword darksalmon_keyword = 34;
+
+    DarkseagreenKeyword darkseagreen_keyword = 35;
+
+    DarkslateblueKeyword darkslateblue_keyword = 36;
+
+    DarkslategrayKeyword darkslategray_keyword = 37;
+
+    DarkslategreyKeyword darkslategrey_keyword = 38;
+
+    DarkturquoiseKeyword darkturquoise_keyword = 39;
+
+    DarkvioletKeyword darkviolet_keyword = 40;
+
+    DeeppinkKeyword deeppink_keyword = 41;
+
+    DeepskyblueKeyword deepskyblue_keyword = 42;
+
+    DimgrayKeyword dimgray_keyword = 43;
+
+    DimgreyKeyword dimgrey_keyword = 44;
+
+    DodgerblueKeyword dodgerblue_keyword = 45;
+
+    FirebrickKeyword firebrick_keyword = 46;
+
+    FloralwhiteKeyword floralwhite_keyword = 47;
+
+    ForestgreenKeyword forestgreen_keyword = 48;
+
+    FuchsiaKeyword fuchsia_keyword = 49;
+
+    GainsboroKeyword gainsboro_keyword = 50;
+
+    GhostwhiteKeyword ghostwhite_keyword = 51;
+
+    GoldKeyword gold_keyword = 52;
+
+    GoldenrodKeyword goldenrod_keyword = 53;
+
+    GrayKeyword gray_keyword = 54;
+
+    GreenKeyword green_keyword = 55;
+
+    GreenyellowKeyword greenyellow_keyword = 56;
+
+    GreyKeyword grey_keyword = 57;
+
+    HoneydewKeyword honeydew_keyword = 58;
+
+    HotpinkKeyword hotpink_keyword = 59;
+
+    IndianredKeyword indianred_keyword = 60;
+
+    IndigoKeyword indigo_keyword = 61;
+
+    IvoryKeyword ivory_keyword = 62;
+
+    KhakiKeyword khaki_keyword = 63;
+
+    LavenderKeyword lavender_keyword = 64;
+
+    LavenderblushKeyword lavenderblush_keyword = 65;
+
+    LawngreenKeyword lawngreen_keyword = 66;
+
+    LemonchiffonKeyword lemonchiffon_keyword = 67;
+
+    LightblueKeyword lightblue_keyword = 68;
+
+    LightcoralKeyword lightcoral_keyword = 69;
+
+    LightcyanKeyword lightcyan_keyword = 70;
+
+    LightgoldenrodyellowKeyword lightgoldenrodyellow_keyword = 71;
+
+    LightgrayKeyword lightgray_keyword = 72;
+
+    LightgreenKeyword lightgreen_keyword = 73;
+
+    LightgreyKeyword lightgrey_keyword = 74;
+
+    LightpinkKeyword lightpink_keyword = 75;
+
+    LightsalmonKeyword lightsalmon_keyword = 76;
+
+    LightseagreenKeyword lightseagreen_keyword = 77;
+
+    LightskyblueKeyword lightskyblue_keyword = 78;
+
+    LightslategrayKeyword lightslategray_keyword = 79;
+
+    LightslategreyKeyword lightslategrey_keyword = 80;
+
+    LightsteelblueKeyword lightsteelblue_keyword = 81;
+
+    LightyellowKeyword lightyellow_keyword = 82;
+
+    LimeKeyword lime_keyword = 83;
+
+    LimegreenKeyword limegreen_keyword = 84;
+
+    LinenKeyword linen_keyword = 85;
+
+    MagentaKeyword magenta_keyword = 86;
+
+    MaroonKeyword maroon_keyword = 87;
+
+    MediumaquamarineKeyword mediumaquamarine_keyword = 88;
+
+    MediumblueKeyword mediumblue_keyword = 89;
+
+    MediumorchidKeyword mediumorchid_keyword = 90;
+
+    MediumpurpleKeyword mediumpurple_keyword = 91;
+
+    MediumseagreenKeyword mediumseagreen_keyword = 92;
+
+    MediumslateblueKeyword mediumslateblue_keyword = 93;
+
+    MediumspringgreenKeyword mediumspringgreen_keyword = 94;
+
+    MediumturquoiseKeyword mediumturquoise_keyword = 95;
+
+    MediumvioletredKeyword mediumvioletred_keyword = 96;
+
+    MidnightblueKeyword midnightblue_keyword = 97;
+
+    MintcreamKeyword mintcream_keyword = 98;
+
+    MistyroseKeyword mistyrose_keyword = 99;
+
+    MoccasinKeyword moccasin_keyword = 100;
+
+    NavajowhiteKeyword navajowhite_keyword = 101;
+
+    NavyKeyword navy_keyword = 102;
+
+    OldlaceKeyword oldlace_keyword = 103;
+
+    OliveKeyword olive_keyword = 104;
+
+    OlivedrabKeyword olivedrab_keyword = 105;
+
+    OrangeKeyword orange_keyword = 106;
+
+    OrangeredKeyword orangered_keyword = 107;
+
+    OrchidKeyword orchid_keyword = 108;
+
+    PalegoldenrodKeyword palegoldenrod_keyword = 109;
+
+    PalegreenKeyword palegreen_keyword = 110;
+
+    PaleturquoiseKeyword paleturquoise_keyword = 111;
+
+    PalevioletredKeyword palevioletred_keyword = 112;
+
+    PapayawhipKeyword papayawhip_keyword = 113;
+
+    PeachpuffKeyword peachpuff_keyword = 114;
+
+    PeruKeyword peru_keyword = 115;
+
+    PinkKeyword pink_keyword = 116;
+
+    PlumKeyword plum_keyword = 117;
+
+    PowderblueKeyword powderblue_keyword = 118;
+
+    PurpleKeyword purple_keyword = 119;
+
+    RebeccapurpleKeyword rebeccapurple_keyword = 120;
+
+    RedKeyword red_keyword = 121;
+
+    RosybrownKeyword rosybrown_keyword = 122;
+
+    RoyalblueKeyword royalblue_keyword = 123;
+
+    SaddlebrownKeyword saddlebrown_keyword = 124;
+
+    SalmonKeyword salmon_keyword = 125;
+
+    SandybrownKeyword sandybrown_keyword = 126;
+
+    SeagreenKeyword seagreen_keyword = 127;
+
+    SeashellKeyword seashell_keyword = 128;
+
+    SiennaKeyword sienna_keyword = 129;
+
+    SilverKeyword silver_keyword = 130;
+
+    SkyblueKeyword skyblue_keyword = 131;
+
+    SlateblueKeyword slateblue_keyword = 132;
+
+    SlategrayKeyword slategray_keyword = 133;
+
+    SlategreyKeyword slategrey_keyword = 134;
+
+    SnowKeyword snow_keyword = 135;
+
+    SpringgreenKeyword springgreen_keyword = 136;
+
+    SteelblueKeyword steelblue_keyword = 137;
+
+    TanKeyword tan_keyword = 138;
+
+    TealKeyword teal_keyword = 139;
+
+    ThistleKeyword thistle_keyword = 140;
+
+    TomatoKeyword tomato_keyword = 141;
+
+    TurquoiseKeyword turquoise_keyword = 142;
+
+    VioletKeyword violet_keyword = 143;
+
+    WheatKeyword wheat_keyword = 144;
+
+    WhiteKeyword white_keyword = 145;
+
+    WhitesmokeKeyword whitesmoke_keyword = 146;
+
+    YellowKeyword yellow_keyword = 147;
+
+    YellowgreenKeyword yellowgreen_keyword = 148;
+  }
 }
 
 message IriType {
@@ -3660,6 +3994,10 @@ message UrlType {
 }
 
 message StringType {
+  string value = 1;
+}
+
+message CharType {
   string value = 1;
 }
 
@@ -3676,15 +4014,21 @@ message Bcp47type {
 }
 
 message ListOfNumbersType {
-  string value = 1;
+  repeated NumberType number_type = 1;
 }
 
 message NumberOptionalNumberType {
-  string value = 1;
+  NonNegativeNumberType non_negative_number_type = 1;
+
+  Space space = 2;
+
+  message Space {
+    NonNegativeNumberType non_negative_number_type = 1;
+  }
 }
 
 message DasharrayType {
-  string value = 1;
+  repeated NonNegativeLengthPercentageType non_negative_length_percentage_type = 1;
 }
 
 message EventSymbolType {
@@ -3696,11 +4040,7 @@ message CharacterDataType {
 }
 
 message AlphaValue {
-  oneof value {
-    NumberType number_type = 1;
-
-    PercentageType percentage_type = 2;
-  }
+  string value = 1;
 }
 
 message UnitType {
@@ -3898,7 +4238,7 @@ message ImageWidthAttr {
     oneof value {
       AutoKeyword auto_keyword = 1;
 
-      LengthPercentageType length_percentage_type = 2;
+      NonNegativeLengthPercentageType non_negative_length_percentage_type = 2;
     }
   }
 }
@@ -3912,7 +4252,7 @@ message ImageHeightAttr {
     oneof value {
       AutoKeyword auto_keyword = 1;
 
-      LengthPercentageType length_percentage_type = 2;
+      NonNegativeLengthPercentageType non_negative_length_percentage_type = 2;
     }
   }
 }
@@ -4006,7 +4346,7 @@ message ForeignObjectWidthAttr {
     oneof value {
       AutoKeyword auto_keyword = 1;
 
-      LengthPercentageType length_percentage_type = 2;
+      NonNegativeLengthPercentageType non_negative_length_percentage_type = 2;
     }
   }
 }
@@ -4020,7 +4360,7 @@ message ForeignObjectHeightAttr {
     oneof value {
       AutoKeyword auto_keyword = 1;
 
-      LengthPercentageType length_percentage_type = 2;
+      NonNegativeLengthPercentageType non_negative_length_percentage_type = 2;
     }
   }
 }
@@ -4344,13 +4684,13 @@ message FilterYattr {
 }
 
 message FilterWidthAttr {
-  LengthPercentageType length_percentage_type = 1;
+  NonNegativeLengthPercentageType non_negative_length_percentage_type = 1;
 
   QuotationMarkKeyword quotation_mark_keyword = 2;
 }
 
 message FilterHeightAttr {
-  LengthPercentageType length_percentage_type = 1;
+  NonNegativeLengthPercentageType non_negative_length_percentage_type = 1;
 
   QuotationMarkKeyword quotation_mark_keyword = 2;
 }
@@ -4462,13 +4802,13 @@ message FeBlendYattr {
 }
 
 message FeBlendWidthAttr {
-  LengthPercentageType length_percentage_type = 1;
+  NonNegativeLengthPercentageType non_negative_length_percentage_type = 1;
 
   QuotationMarkKeyword quotation_mark_keyword = 2;
 }
 
 message FeBlendHeightAttr {
-  LengthPercentageType length_percentage_type = 1;
+  NonNegativeLengthPercentageType non_negative_length_percentage_type = 1;
 
   QuotationMarkKeyword quotation_mark_keyword = 2;
 }
@@ -4538,9 +4878,63 @@ message FeColorMatrixTypeAttr {
 }
 
 message FeColorMatrixValuesAttr {
-  ListOfNumbersType list_of_numbers_type = 1;
+  FeColorMatrixValuesType fe_color_matrix_values_type = 1;
 
   QuotationMarkKeyword quotation_mark_keyword = 2;
+}
+
+message FeColorMatrixValuesType {
+  oneof value {
+    FeColorMatrixMatrixValues fe_color_matrix_matrix_values = 1;
+
+    FeColorMatrixScalarValue fe_color_matrix_scalar_value = 2;
+  }
+}
+
+message FeColorMatrixScalarValue {
+  NumberType number_type = 1;
+}
+
+message FeColorMatrixMatrixValues {
+  NumberType number_type = 1;
+
+  NumberType number_type_2 = 2;
+
+  NumberType number_type_3 = 3;
+
+  NumberType number_type_4 = 4;
+
+  NumberType number_type_5 = 5;
+
+  NumberType number_type_6 = 6;
+
+  NumberType number_type_7 = 7;
+
+  NumberType number_type_8 = 8;
+
+  NumberType number_type_9 = 9;
+
+  NumberType number_type_10 = 10;
+
+  NumberType number_type_11 = 11;
+
+  NumberType number_type_12 = 12;
+
+  NumberType number_type_13 = 13;
+
+  NumberType number_type_14 = 14;
+
+  NumberType number_type_15 = 15;
+
+  NumberType number_type_16 = 16;
+
+  NumberType number_type_17 = 17;
+
+  NumberType number_type_18 = 18;
+
+  NumberType number_type_19 = 19;
+
+  NumberType number_type_20 = 20;
 }
 
 message FeColorMatrixXattr {
@@ -4556,13 +4950,13 @@ message FeColorMatrixYattr {
 }
 
 message FeColorMatrixWidthAttr {
-  LengthPercentageType length_percentage_type = 1;
+  NonNegativeLengthPercentageType non_negative_length_percentage_type = 1;
 
   QuotationMarkKeyword quotation_mark_keyword = 2;
 }
 
 message FeColorMatrixHeightAttr {
-  LengthPercentageType length_percentage_type = 1;
+  NonNegativeLengthPercentageType non_negative_length_percentage_type = 1;
 
   QuotationMarkKeyword quotation_mark_keyword = 2;
 }
@@ -4632,13 +5026,13 @@ message FeComponentTransferYattr {
 }
 
 message FeComponentTransferWidthAttr {
-  LengthPercentageType length_percentage_type = 1;
+  NonNegativeLengthPercentageType non_negative_length_percentage_type = 1;
 
   QuotationMarkKeyword quotation_mark_keyword = 2;
 }
 
 message FeComponentTransferHeightAttr {
-  LengthPercentageType length_percentage_type = 1;
+  NonNegativeLengthPercentageType non_negative_length_percentage_type = 1;
 
   QuotationMarkKeyword quotation_mark_keyword = 2;
 }
@@ -4764,13 +5158,13 @@ message FeCompositeYattr {
 }
 
 message FeCompositeWidthAttr {
-  LengthPercentageType length_percentage_type = 1;
+  NonNegativeLengthPercentageType non_negative_length_percentage_type = 1;
 
   QuotationMarkKeyword quotation_mark_keyword = 2;
 }
 
 message FeCompositeHeightAttr {
-  LengthPercentageType length_percentage_type = 1;
+  NonNegativeLengthPercentageType non_negative_length_percentage_type = 1;
 
   QuotationMarkKeyword quotation_mark_keyword = 2;
 }
@@ -4912,13 +5306,13 @@ message FeConvolveMatrixYattr {
 }
 
 message FeConvolveMatrixWidthAttr {
-  LengthPercentageType length_percentage_type = 1;
+  NonNegativeLengthPercentageType non_negative_length_percentage_type = 1;
 
   QuotationMarkKeyword quotation_mark_keyword = 2;
 }
 
 message FeConvolveMatrixHeightAttr {
-  LengthPercentageType length_percentage_type = 1;
+  NonNegativeLengthPercentageType non_negative_length_percentage_type = 1;
 
   QuotationMarkKeyword quotation_mark_keyword = 2;
 }
@@ -5012,13 +5406,13 @@ message FeDiffuseLightingYattr {
 }
 
 message FeDiffuseLightingWidthAttr {
-  LengthPercentageType length_percentage_type = 1;
+  NonNegativeLengthPercentageType non_negative_length_percentage_type = 1;
 
   QuotationMarkKeyword quotation_mark_keyword = 2;
 }
 
 message FeDiffuseLightingHeightAttr {
-  LengthPercentageType length_percentage_type = 1;
+  NonNegativeLengthPercentageType non_negative_length_percentage_type = 1;
 
   QuotationMarkKeyword quotation_mark_keyword = 2;
 }
@@ -5134,13 +5528,13 @@ message FeDisplacementMapYattr {
 }
 
 message FeDisplacementMapWidthAttr {
-  LengthPercentageType length_percentage_type = 1;
+  NonNegativeLengthPercentageType non_negative_length_percentage_type = 1;
 
   QuotationMarkKeyword quotation_mark_keyword = 2;
 }
 
 message FeDisplacementMapHeightAttr {
-  LengthPercentageType length_percentage_type = 1;
+  NonNegativeLengthPercentageType non_negative_length_percentage_type = 1;
 
   QuotationMarkKeyword quotation_mark_keyword = 2;
 }
@@ -5224,13 +5618,13 @@ message FeDropShadowYattr {
 }
 
 message FeDropShadowWidthAttr {
-  LengthPercentageType length_percentage_type = 1;
+  NonNegativeLengthPercentageType non_negative_length_percentage_type = 1;
 
   QuotationMarkKeyword quotation_mark_keyword = 2;
 }
 
 message FeDropShadowHeightAttr {
-  LengthPercentageType length_percentage_type = 1;
+  NonNegativeLengthPercentageType non_negative_length_percentage_type = 1;
 
   QuotationMarkKeyword quotation_mark_keyword = 2;
 }
@@ -5282,13 +5676,13 @@ message FeFloodYattr {
 }
 
 message FeFloodWidthAttr {
-  LengthPercentageType length_percentage_type = 1;
+  NonNegativeLengthPercentageType non_negative_length_percentage_type = 1;
 
   QuotationMarkKeyword quotation_mark_keyword = 2;
 }
 
 message FeFloodHeightAttr {
-  LengthPercentageType length_percentage_type = 1;
+  NonNegativeLengthPercentageType non_negative_length_percentage_type = 1;
 
   QuotationMarkKeyword quotation_mark_keyword = 2;
 }
@@ -5374,13 +5768,13 @@ message FeGaussianBlurYattr {
 }
 
 message FeGaussianBlurWidthAttr {
-  LengthPercentageType length_percentage_type = 1;
+  NonNegativeLengthPercentageType non_negative_length_percentage_type = 1;
 
   QuotationMarkKeyword quotation_mark_keyword = 2;
 }
 
 message FeGaussianBlurHeightAttr {
-  LengthPercentageType length_percentage_type = 1;
+  NonNegativeLengthPercentageType non_negative_length_percentage_type = 1;
 
   QuotationMarkKeyword quotation_mark_keyword = 2;
 }
@@ -5480,13 +5874,13 @@ message FeImageYattr {
 }
 
 message FeImageWidthAttr {
-  LengthPercentageType length_percentage_type = 1;
+  NonNegativeLengthPercentageType non_negative_length_percentage_type = 1;
 
   QuotationMarkKeyword quotation_mark_keyword = 2;
 }
 
 message FeImageHeightAttr {
-  LengthPercentageType length_percentage_type = 1;
+  NonNegativeLengthPercentageType non_negative_length_percentage_type = 1;
 
   QuotationMarkKeyword quotation_mark_keyword = 2;
 }
@@ -5548,13 +5942,13 @@ message FeMergeYattr {
 }
 
 message FeMergeWidthAttr {
-  LengthPercentageType length_percentage_type = 1;
+  NonNegativeLengthPercentageType non_negative_length_percentage_type = 1;
 
   QuotationMarkKeyword quotation_mark_keyword = 2;
 }
 
 message FeMergeHeightAttr {
-  LengthPercentageType length_percentage_type = 1;
+  NonNegativeLengthPercentageType non_negative_length_percentage_type = 1;
 
   QuotationMarkKeyword quotation_mark_keyword = 2;
 }
@@ -5638,13 +6032,13 @@ message FeMorphologyYattr {
 }
 
 message FeMorphologyWidthAttr {
-  LengthPercentageType length_percentage_type = 1;
+  NonNegativeLengthPercentageType non_negative_length_percentage_type = 1;
 
   QuotationMarkKeyword quotation_mark_keyword = 2;
 }
 
 message FeMorphologyHeightAttr {
-  LengthPercentageType length_percentage_type = 1;
+  NonNegativeLengthPercentageType non_negative_length_percentage_type = 1;
 
   QuotationMarkKeyword quotation_mark_keyword = 2;
 }
@@ -5720,13 +6114,13 @@ message FeOffsetYattr {
 }
 
 message FeOffsetWidthAttr {
-  LengthPercentageType length_percentage_type = 1;
+  NonNegativeLengthPercentageType non_negative_length_percentage_type = 1;
 
   QuotationMarkKeyword quotation_mark_keyword = 2;
 }
 
 message FeOffsetHeightAttr {
-  LengthPercentageType length_percentage_type = 1;
+  NonNegativeLengthPercentageType non_negative_length_percentage_type = 1;
 
   QuotationMarkKeyword quotation_mark_keyword = 2;
 }
@@ -5828,13 +6222,13 @@ message FeSpecularLightingYattr {
 }
 
 message FeSpecularLightingWidthAttr {
-  LengthPercentageType length_percentage_type = 1;
+  NonNegativeLengthPercentageType non_negative_length_percentage_type = 1;
 
   QuotationMarkKeyword quotation_mark_keyword = 2;
 }
 
 message FeSpecularLightingHeightAttr {
-  LengthPercentageType length_percentage_type = 1;
+  NonNegativeLengthPercentageType non_negative_length_percentage_type = 1;
 
   QuotationMarkKeyword quotation_mark_keyword = 2;
 }
@@ -5894,13 +6288,13 @@ message FeTileYattr {
 }
 
 message FeTileWidthAttr {
-  LengthPercentageType length_percentage_type = 1;
+  NonNegativeLengthPercentageType non_negative_length_percentage_type = 1;
 
   QuotationMarkKeyword quotation_mark_keyword = 2;
 }
 
 message FeTileHeightAttr {
-  LengthPercentageType length_percentage_type = 1;
+  NonNegativeLengthPercentageType non_negative_length_percentage_type = 1;
 
   QuotationMarkKeyword quotation_mark_keyword = 2;
 }
@@ -5956,7 +6350,7 @@ message FeTurbulenceBaseFrequencyAttr {
 }
 
 message FeTurbulenceNumOctavesAttr {
-  IntegerType integer_type = 1;
+  NonNegativeIntegerType non_negative_integer_type = 1;
 
   QuotationMarkKeyword quotation_mark_keyword = 2;
 }
@@ -6008,13 +6402,13 @@ message FeTurbulenceYattr {
 }
 
 message FeTurbulenceWidthAttr {
-  LengthPercentageType length_percentage_type = 1;
+  NonNegativeLengthPercentageType non_negative_length_percentage_type = 1;
 
   QuotationMarkKeyword quotation_mark_keyword = 2;
 }
 
 message FeTurbulenceHeightAttr {
-  LengthPercentageType length_percentage_type = 1;
+  NonNegativeLengthPercentageType non_negative_length_percentage_type = 1;
 
   QuotationMarkKeyword quotation_mark_keyword = 2;
 }
@@ -6936,13 +7330,13 @@ message MaskYattr {
 }
 
 message MaskWidthAttr {
-  LengthPercentageType length_percentage_type = 1;
+  NonNegativeLengthPercentageType non_negative_length_percentage_type = 1;
 
   QuotationMarkKeyword quotation_mark_keyword = 2;
 }
 
 message MaskHeightAttr {
-  LengthPercentageType length_percentage_type = 1;
+  NonNegativeLengthPercentageType non_negative_length_percentage_type = 1;
 
   QuotationMarkKeyword quotation_mark_keyword = 2;
 }
@@ -7158,7 +7552,37 @@ message RadialSize {
 }
 
 message CssPosition {
-  StringType string_type = 1;
+  CssPositionH css_position_h = 1;
+
+  Space space = 2;
+
+  message Space {
+    CssPositionV css_position_v = 1;
+  }
+}
+
+message CssPositionH {
+  oneof value {
+    LeftKeyword left_keyword = 1;
+
+    CenterKeyword center_keyword = 2;
+
+    RightKeyword right_keyword = 3;
+
+    LengthPercentageType length_percentage_type = 4;
+  }
+}
+
+message CssPositionV {
+  oneof value {
+    TopKeyword top_keyword = 1;
+
+    CenterKeyword center_keyword = 2;
+
+    BottomKeyword bottom_keyword = 3;
+
+    LengthPercentageType length_percentage_type = 4;
+  }
 }
 
 message PolygonFn {
@@ -7566,31 +7990,15 @@ message MarkerMarkerUnitsAttr {
 }
 
 message MarkerWidthAttr {
-  Alt1 alt1 = 1;
+  NonNegativeLengthPercentageType non_negative_length_percentage_type = 1;
 
   QuotationMarkKeyword quotation_mark_keyword = 2;
-
-  message Alt1 {
-    oneof value {
-      LengthPercentageType length_percentage_type = 1;
-
-      NumberType number_type = 2;
-    }
-  }
 }
 
 message MarkerHeightAttr {
-  Alt1 alt1 = 1;
+  NonNegativeLengthPercentageType non_negative_length_percentage_type = 1;
 
   QuotationMarkKeyword quotation_mark_keyword = 2;
-
-  message Alt1 {
-    oneof value {
-      LengthPercentageType length_percentage_type = 1;
-
-      NumberType number_type = 2;
-    }
-  }
 }
 
 message MarkerRefXattr {
@@ -7702,17 +8110,9 @@ message StrokeOpacityAttr {
 }
 
 message StrokeWidthAttr {
-  Alt1 alt1 = 1;
+  NonNegativeLengthPercentageType non_negative_length_percentage_type = 1;
 
   QuotationMarkKeyword quotation_mark_keyword = 2;
-
-  message Alt1 {
-    oneof value {
-      LengthPercentageType length_percentage_type = 1;
-
-      NumberType number_type = 2;
-    }
-  }
 }
 
 message StrokeLinecapAttr {
@@ -7752,7 +8152,7 @@ message StrokeLinejoinAttr {
 }
 
 message StrokeMiterlimitAttr {
-  NumberType number_type = 1;
+  MiterLimitType miter_limit_type = 1;
 
   QuotationMarkKeyword quotation_mark_keyword = 2;
 }
@@ -8436,17 +8836,9 @@ message RadialGradientCyAttr {
 }
 
 message RadialGradientRattr {
-  Alt1 alt1 = 1;
+  NonNegativeLengthPercentageType non_negative_length_percentage_type = 1;
 
   QuotationMarkKeyword quotation_mark_keyword = 2;
-
-  message Alt1 {
-    oneof value {
-      LengthPercentageType length_percentage_type = 1;
-
-      NumberType number_type = 2;
-    }
-  }
 }
 
 message RadialGradientFxAttr {
@@ -8478,17 +8870,9 @@ message RadialGradientFyAttr {
 }
 
 message RadialGradientFrAttr {
-  Alt1 alt1 = 1;
+  NonNegativeLengthPercentageType non_negative_length_percentage_type = 1;
 
   QuotationMarkKeyword quotation_mark_keyword = 2;
-
-  message Alt1 {
-    oneof value {
-      LengthPercentageType length_percentage_type = 1;
-
-      NumberType number_type = 2;
-    }
-  }
 }
 
 message RadialGradientHrefAttr {
@@ -8666,13 +9050,13 @@ message PatternYattr {
 }
 
 message PatternWidthAttr {
-  LengthType length_type = 1;
+  NonNegativeLengthType non_negative_length_type = 1;
 
   QuotationMarkKeyword quotation_mark_keyword = 2;
 }
 
 message PatternHeightAttr {
-  LengthType length_type = 1;
+  NonNegativeLengthType non_negative_length_type = 1;
 
   QuotationMarkKeyword quotation_mark_keyword = 2;
 }
@@ -8836,7 +9220,7 @@ message PathContent {
 }
 
 message PathLengthAttr {
-  NumberType number_type = 1;
+  NonNegativeNumberType non_negative_number_type = 1;
 
   QuotationMarkKeyword quotation_mark_keyword = 2;
 }
@@ -8896,13 +9280,13 @@ message RectYattr {
 }
 
 message RectWidthAttr {
-  LengthPercentageType length_percentage_type = 1;
+  NonNegativeLengthPercentageType non_negative_length_percentage_type = 1;
 
   QuotationMarkKeyword quotation_mark_keyword = 2;
 }
 
 message RectHeightAttr {
-  LengthPercentageType length_percentage_type = 1;
+  NonNegativeLengthPercentageType non_negative_length_percentage_type = 1;
 
   QuotationMarkKeyword quotation_mark_keyword = 2;
 }
@@ -8916,7 +9300,7 @@ message RectRxAttr {
     oneof value {
       AutoKeyword auto_keyword = 1;
 
-      LengthPercentageType length_percentage_type = 2;
+      NonNegativeLengthPercentageType non_negative_length_percentage_type = 2;
     }
   }
 }
@@ -8930,7 +9314,7 @@ message RectRyAttr {
     oneof value {
       AutoKeyword auto_keyword = 1;
 
-      LengthPercentageType length_percentage_type = 2;
+      NonNegativeLengthPercentageType non_negative_length_percentage_type = 2;
     }
   }
 }
@@ -8984,7 +9368,7 @@ message CircleCyAttr {
 }
 
 message CircleRattr {
-  LengthPercentageType length_percentage_type = 1;
+  NonNegativeLengthPercentageType non_negative_length_percentage_type = 1;
 
   QuotationMarkKeyword quotation_mark_keyword = 2;
 }
@@ -9048,7 +9432,7 @@ message EllipseRxAttr {
     oneof value {
       AutoKeyword auto_keyword = 1;
 
-      LengthPercentageType length_percentage_type = 2;
+      NonNegativeLengthPercentageType non_negative_length_percentage_type = 2;
     }
   }
 }
@@ -9062,7 +9446,7 @@ message EllipseRyAttr {
     oneof value {
       AutoKeyword auto_keyword = 1;
 
-      LengthPercentageType length_percentage_type = 2;
+      NonNegativeLengthPercentageType non_negative_length_percentage_type = 2;
     }
   }
 }
@@ -9408,7 +9792,7 @@ message SymbolWidthAttr {
     oneof value {
       AutoKeyword auto_keyword = 1;
 
-      LengthPercentageType length_percentage_type = 2;
+      NonNegativeLengthPercentageType non_negative_length_percentage_type = 2;
     }
   }
 }
@@ -9422,7 +9806,7 @@ message SymbolHeightAttr {
     oneof value {
       AutoKeyword auto_keyword = 1;
 
-      LengthPercentageType length_percentage_type = 2;
+      NonNegativeLengthPercentageType non_negative_length_percentage_type = 2;
     }
   }
 }
@@ -9494,7 +9878,7 @@ message UseWidthAttr {
     oneof value {
       AutoKeyword auto_keyword = 1;
 
-      LengthPercentageType length_percentage_type = 2;
+      NonNegativeLengthPercentageType non_negative_length_percentage_type = 2;
     }
   }
 }
@@ -9508,7 +9892,7 @@ message UseHeightAttr {
     oneof value {
       AutoKeyword auto_keyword = 1;
 
-      LengthPercentageType length_percentage_type = 2;
+      NonNegativeLengthPercentageType non_negative_length_percentage_type = 2;
     }
   }
 }
@@ -11179,6 +11563,9 @@ message AlertdialogKeyword {
 message AliasKeyword {
 }
 
+message AliceblueKeyword {
+}
+
 message AlignKeyword {
 }
 
@@ -11209,7 +11596,16 @@ message AnnotationKeyword {
 message AnonymousKeyword {
 }
 
+message AntiquewhiteKeyword {
+}
+
 message ApplicationKeyword {
+}
+
+message AquaKeyword {
+}
+
+message AquamarineKeyword {
 }
 
 message ArcsKeyword {
@@ -11242,6 +11638,9 @@ message AutoHyphenMinusStartHyphenMinusReverseKeyword {
 message AutoKeyword {
 }
 
+message AzureKeyword {
+}
+
 message BKeyword {
 }
 
@@ -11260,10 +11659,22 @@ message BaselineKeyword {
 message BeginKeyword {
 }
 
+message BeigeKeyword {
+}
+
 message BevelKeyword {
 }
 
 message BidiHyphenMinusOverrideKeyword {
+}
+
+message BisqueKeyword {
+}
+
+message BlackKeyword {
+}
+
+message BlanchedalmondKeyword {
 }
 
 message BlankKeyword {
@@ -11276,6 +11687,12 @@ message BlockKeyword {
 }
 
 message BlockquoteKeyword {
+}
+
+message BlueKeyword {
+}
+
+message BluevioletKeyword {
 }
 
 message BoldKeyword {
@@ -11299,6 +11716,12 @@ message BoundingHyphenMinusBoxKeyword {
 message BreakHyphenMinusSpacesKeyword {
 }
 
+message BrownKeyword {
+}
+
+message BurlywoodKeyword {
+}
+
 message ButtKeyword {
 }
 
@@ -11306,6 +11729,9 @@ message ButtonKeyword {
 }
 
 message CKeyword {
+}
+
+message CadetblueKeyword {
 }
 
 message CaptionKeyword {
@@ -11323,7 +11749,13 @@ message CentralKeyword {
 message CharacterHyphenMinusVariantKeyword {
 }
 
+message ChartreuseKeyword {
+}
+
 message CheckboxKeyword {
+}
+
+message ChocolateKeyword {
 }
 
 message ClipKeyword {
@@ -11398,7 +11830,19 @@ message ContextualKeyword {
 message CopyKeyword {
 }
 
+message CoralKeyword {
+}
+
+message CornflowerblueKeyword {
+}
+
+message CornsilkKeyword {
+}
+
 message CoverKeyword {
+}
+
+message CrimsonKeyword {
 }
 
 message CrispEdgesKeyword {
@@ -11413,13 +11857,79 @@ message CrosshairKeyword {
 message CurrentColorKeyword {
 }
 
+message CyanKeyword {
+}
+
+message DarkblueKeyword {
+}
+
+message DarkcyanKeyword {
+}
+
 message DarkenKeyword {
+}
+
+message DarkgoldenrodKeyword {
+}
+
+message DarkgrayKeyword {
+}
+
+message DarkgreenKeyword {
+}
+
+message DarkgreyKeyword {
+}
+
+message DarkkhakiKeyword {
+}
+
+message DarkmagentaKeyword {
+}
+
+message DarkolivegreenKeyword {
+}
+
+message DarkorangeKeyword {
+}
+
+message DarkorchidKeyword {
+}
+
+message DarkredKeyword {
+}
+
+message DarksalmonKeyword {
+}
+
+message DarkseagreenKeyword {
+}
+
+message DarkslateblueKeyword {
+}
+
+message DarkslategrayKeyword {
+}
+
+message DarkslategreyKeyword {
+}
+
+message DarkturquoiseKeyword {
+}
+
+message DarkvioletKeyword {
 }
 
 message DashedKeyword {
 }
 
 message DateKeyword {
+}
+
+message DeeppinkKeyword {
+}
+
+message DeepskyblueKeyword {
 }
 
 message DefaultKeyword {
@@ -11452,6 +11962,12 @@ message DigitZeroKeyword {
 message DilateKeyword {
 }
 
+message DimgrayKeyword {
+}
+
+message DimgreyKeyword {
+}
+
 message DirectoryKeyword {
 }
 
@@ -11465,6 +11981,9 @@ message DiscretionaryHyphenMinusLigaturesKeyword {
 }
 
 message DocumentKeyword {
+}
+
+message DodgerblueKeyword {
 }
 
 message DottedKeyword {
@@ -11542,16 +12061,25 @@ message FillKeyword {
 message FillPaintKeyword {
 }
 
+message FirebrickKeyword {
+}
+
 message FixedHyphenMinusPositionKeyword {
 }
 
 message FlexKeyword {
 }
 
+message FloralwhiteKeyword {
+}
+
 message FlowHyphenMinusRootKeyword {
 }
 
 message FlowKeyword {
+}
+
+message ForestgreenKeyword {
 }
 
 message FormKeyword {
@@ -11566,6 +12094,9 @@ message FreezeKeyword {
 message FromSpaceKeyword {
 }
 
+message FuchsiaKeyword {
+}
+
 message FullHyphenMinusWidthKeyword {
 }
 
@@ -11573,6 +12104,9 @@ message FullStopKeyword {
 }
 
 message GKeyword {
+}
+
+message GainsboroKeyword {
 }
 
 message GammaKeyword {
@@ -11584,6 +12118,15 @@ message GenericKeyword {
 message GeometricPrecisionKeyword {
 }
 
+message GhostwhiteKeyword {
+}
+
+message GoldKeyword {
+}
+
+message GoldenrodKeyword {
+}
+
 message GrabKeyword {
 }
 
@@ -11593,7 +12136,19 @@ message GrabbingKeyword {
 message GrammarKeyword {
 }
 
+message GrayKeyword {
+}
+
 message GreaterThanSignKeyword {
+}
+
+message GreenKeyword {
+}
+
+message GreenyellowKeyword {
+}
+
+message GreyKeyword {
 }
 
 message GridKeyword {
@@ -11629,10 +12184,16 @@ message HistoricalHyphenMinusFormsKeyword {
 message HistoricalHyphenMinusLigaturesKeyword {
 }
 
+message HoneydewKeyword {
+}
+
 message HorizontalHyphenMinusTbKeyword {
 }
 
 message HorizontalKeyword {
+}
+
+message HotpinkKeyword {
 }
 
 message HueKeyword {
@@ -11657,6 +12218,12 @@ message InKeyword {
 }
 
 message IndefiniteKeyword {
+}
+
+message IndianredKeyword {
+}
+
+message IndigoKeyword {
 }
 
 message InheritKeyword {
@@ -11695,6 +12262,9 @@ message IsolateKeyword {
 message ItalicKeyword {
 }
 
+message IvoryKeyword {
+}
+
 message Jis04Keyword {
 }
 
@@ -11707,6 +12277,9 @@ message Jis83Keyword {
 message Jis90Keyword {
 }
 
+message KhakiKeyword {
+}
+
 message LKeyword {
 }
 
@@ -11716,7 +12289,19 @@ message LargeKeyword {
 message LargerKeyword {
 }
 
+message LavenderKeyword {
+}
+
+message LavenderblushKeyword {
+}
+
+message LawngreenKeyword {
+}
+
 message LeftKeyword {
+}
+
+message LemonchiffonKeyword {
 }
 
 message LessThanSignSolidusAGreaterThanSignKeyword {
@@ -11911,10 +12496,61 @@ message LessThanSignSolidusUseGreaterThanSignKeyword {
 message LessThanSignSolidusViewGreaterThanSignKeyword {
 }
 
+message LightblueKeyword {
+}
+
+message LightcoralKeyword {
+}
+
+message LightcyanKeyword {
+}
+
 message LightenKeyword {
 }
 
 message LighterKeyword {
+}
+
+message LightgoldenrodyellowKeyword {
+}
+
+message LightgrayKeyword {
+}
+
+message LightgreenKeyword {
+}
+
+message LightgreyKeyword {
+}
+
+message LightpinkKeyword {
+}
+
+message LightsalmonKeyword {
+}
+
+message LightseagreenKeyword {
+}
+
+message LightskyblueKeyword {
+}
+
+message LightslategrayKeyword {
+}
+
+message LightslategreyKeyword {
+}
+
+message LightsteelblueKeyword {
+}
+
+message LightyellowKeyword {
+}
+
+message LimeKeyword {
+}
+
+message LimegreenKeyword {
 }
 
 message LineHyphenMinusThroughKeyword {
@@ -11924,6 +12560,9 @@ message LinearKeyword {
 }
 
 message LinearRgbKeyword {
+}
+
+message LinenKeyword {
 }
 
 message LiningHyphenMinusNumsKeyword {
@@ -11971,6 +12610,9 @@ message LuminosityKeyword {
 message MKeyword {
 }
 
+message MagentaKeyword {
+}
+
 message MagnifyKeyword {
 }
 
@@ -11981,6 +12623,9 @@ message MarginHyphenMinusBoxKeyword {
 }
 
 message MarkersKeyword {
+}
+
+message MaroonKeyword {
 }
 
 message MarqueeKeyword {
@@ -12002,6 +12647,33 @@ message MediaKeyword {
 }
 
 message MediumKeyword {
+}
+
+message MediumaquamarineKeyword {
+}
+
+message MediumblueKeyword {
+}
+
+message MediumorchidKeyword {
+}
+
+message MediumpurpleKeyword {
+}
+
+message MediumseagreenKeyword {
+}
+
+message MediumslateblueKeyword {
+}
+
+message MediumspringgreenKeyword {
+}
+
+message MediumturquoiseKeyword {
+}
+
+message MediumvioletredKeyword {
 }
 
 message MeetKeyword {
@@ -12028,7 +12700,16 @@ message MeterKeyword {
 message MiddleKeyword {
 }
 
+message MidnightblueKeyword {
+}
+
 message MinKeyword {
+}
+
+message MintcreamKeyword {
+}
+
+message MistyroseKeyword {
 }
 
 message MiterHyphenMinusClipKeyword {
@@ -12038,6 +12719,9 @@ message MiterKeyword {
 }
 
 message MixedKeyword {
+}
+
+message MoccasinKeyword {
 }
 
 message MoveKeyword {
@@ -12052,7 +12736,13 @@ message MultiplyKeyword {
 message NHyphenMinusResizeKeyword {
 }
 
+message NavajowhiteKeyword {
+}
+
 message NavigationKeyword {
+}
+
+message NavyKeyword {
 }
 
 message NeHyphenMinusResizeKeyword {
@@ -12136,7 +12826,16 @@ message ObjectBoundingBoxKeyword {
 message OffKeyword {
 }
 
+message OldlaceKeyword {
+}
+
 message OldstyleHyphenMinusNumsKeyword {
+}
+
+message OliveKeyword {
+}
+
+message OlivedrabKeyword {
 }
 
 message OptimizeLegibilityKeyword {
@@ -12149,6 +12848,15 @@ message OptimizeSpeedKeyword {
 }
 
 message OptionKeyword {
+}
+
+message OrangeKeyword {
+}
+
+message OrangeredKeyword {
+}
+
+message OrchidKeyword {
 }
 
 message OrdinalKeyword {
@@ -12193,19 +12901,46 @@ message PageKeyword {
 message PaintedKeyword {
 }
 
+message PalegoldenrodKeyword {
+}
+
+message PalegreenKeyword {
+}
+
+message PaleturquoiseKeyword {
+}
+
+message PalevioletredKeyword {
+}
+
+message PapayawhipKeyword {
+}
+
 message ParagraphKeyword {
 }
 
 message ParentKeyword {
 }
 
+message PeachpuffKeyword {
+}
+
+message PeruKeyword {
+}
+
 message PetiteHyphenMinusCapsKeyword {
+}
+
+message PinkKeyword {
 }
 
 message PixelatedKeyword {
 }
 
 message PlaintextKeyword {
+}
+
+message PlumKeyword {
 }
 
 message PlusSignKeyword {
@@ -12218,6 +12953,9 @@ message PoliteKeyword {
 }
 
 message PopupKeyword {
+}
+
+message PowderblueKeyword {
 }
 
 message PreHyphenMinusLineKeyword {
@@ -12247,6 +12985,9 @@ message ProportionalHyphenMinusNumsKeyword {
 message ProportionalHyphenMinusWidthKeyword {
 }
 
+message PurpleKeyword {
+}
+
 message QKeyword {
 }
 
@@ -12260,6 +13001,12 @@ message RadioKeyword {
 }
 
 message RadiogroupKeyword {
+}
+
+message RebeccapurpleKeyword {
+}
+
+message RedKeyword {
 }
 
 message ReflectKeyword {
@@ -12304,6 +13051,9 @@ message RlHyphenMinusTbKeyword {
 message RlKeyword {
 }
 
+message RosybrownKeyword {
+}
+
 message RotateKeyword {
 }
 
@@ -12320,6 +13070,9 @@ message RowgroupKeyword {
 }
 
 message RowheaderKeyword {
+}
+
+message RoyalblueKeyword {
 }
 
 message RtlKeyword {
@@ -12352,7 +13105,16 @@ message SKeyword {
 message SRgbKeyword {
 }
 
+message SaddlebrownKeyword {
+}
+
+message SalmonKeyword {
+}
+
 message SameHyphenMinusOriginKeyword {
+}
+
+message SandybrownKeyword {
 }
 
 message SaturateKeyword {
@@ -12376,10 +13138,16 @@ message ScrollbarKeyword {
 message SeHyphenMinusResizeKeyword {
 }
 
+message SeagreenKeyword {
+}
+
 message SearchKeyword {
 }
 
 message SearchboxKeyword {
+}
+
+message SeashellKeyword {
 }
 
 message SelfKeyword {
@@ -12400,6 +13168,12 @@ message SidewaysHyphenMinusLrKeyword {
 message SidewaysHyphenMinusRlKeyword {
 }
 
+message SiennaKeyword {
+}
+
+message SilverKeyword {
+}
+
 message SimplifiedKeyword {
 }
 
@@ -12409,7 +13183,19 @@ message SkewXKeyword {
 message SkewYKeyword {
 }
 
+message SkyblueKeyword {
+}
+
 message SlashedHyphenMinusZeroKeyword {
+}
+
+message SlateblueKeyword {
+}
+
+message SlategrayKeyword {
+}
+
+message SlategreyKeyword {
 }
 
 message SliceKeyword {
@@ -12425,6 +13211,9 @@ message SmallKeyword {
 }
 
 message SmallerKeyword {
+}
+
+message SnowKeyword {
 }
 
 message SoftHyphenMinusLightKeyword {
@@ -12457,6 +13246,9 @@ message SpinbuttonKeyword {
 message SplineKeyword {
 }
 
+message SpringgreenKeyword {
+}
+
 message SquareKeyword {
 }
 
@@ -12467,6 +13259,9 @@ message StartKeyword {
 }
 
 message StatusKeyword {
+}
+
+message SteelblueKeyword {
 }
 
 message StepKeyword {
@@ -12577,10 +13372,16 @@ message TabpanelKeyword {
 message TabularHyphenMinusNumsKeyword {
 }
 
+message TanKeyword {
+}
+
 message TbHyphenMinusRlKeyword {
 }
 
 message TbKeyword {
+}
+
+message TealKeyword {
 }
 
 message TermKeyword {
@@ -12598,6 +13399,9 @@ message TextKeyword {
 message TextboxKeyword {
 }
 
+message ThistleKeyword {
+}
+
 message TimeKeyword {
 }
 
@@ -12605,6 +13409,9 @@ message TimerKeyword {
 }
 
 message TitlingHyphenMinusCapsKeyword {
+}
+
+message TomatoKeyword {
 }
 
 message ToolbarKeyword {
@@ -12635,6 +13442,9 @@ message TrueKeyword {
 }
 
 message TurbulenceKeyword {
+}
+
+message TurquoiseKeyword {
 }
 
 message UltraHyphenMinusCondensedKeyword {
@@ -12682,6 +13492,9 @@ message VerticalKeyword {
 message ViewHyphenMinusBoxKeyword {
 }
 
+message VioletKeyword {
+}
+
 message VisibleFillKeyword {
 }
 
@@ -12703,7 +13516,16 @@ message WaitKeyword {
 message WavyKeyword {
 }
 
+message WheatKeyword {
+}
+
 message WhenNotActiveKeyword {
+}
+
+message WhiteKeyword {
+}
+
+message WhitesmokeKeyword {
 }
 
 message WrapKeyword {
@@ -12752,6 +13574,12 @@ message XxHyphenMinusSmallKeyword {
 }
 
 message XxxHyphenMinusLargeKeyword {
+}
+
+message YellowKeyword {
+}
+
+message YellowgreenKeyword {
 }
 
 message ZKeyword {

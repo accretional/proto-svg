@@ -286,7 +286,7 @@
     },
     {
       "attr": "stroke-width",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "stroke-linecap",
@@ -306,7 +306,7 @@
     },
     {
       "attr": "stroke-dashoffset",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "paint-order",
@@ -560,15 +560,91 @@
     },
     {
       "attr": "dur",
-      "value": "2s"
+      "value": "0:1:2.3"
+    },
+    {
+      "attr": "dur",
+      "value": "5:10:0.1"
+    },
+    {
+      "attr": "dur",
+      "value": "2:3.5"
+    },
+    {
+      "attr": "dur",
+      "value": "10:0.1"
+    },
+    {
+      "attr": "dur",
+      "value": "2.3h"
+    },
+    {
+      "attr": "dur",
+      "value": "5.10min"
+    },
+    {
+      "attr": "dur",
+      "value": "media"
+    },
+    {
+      "attr": "dur",
+      "value": "indefinite"
     },
     {
       "attr": "min",
-      "value": "0s"
+      "value": "0:1:2.3"
+    },
+    {
+      "attr": "min",
+      "value": "5:10:0.1"
+    },
+    {
+      "attr": "min",
+      "value": "2:3.5"
+    },
+    {
+      "attr": "min",
+      "value": "10:0.1"
+    },
+    {
+      "attr": "min",
+      "value": "2.3s"
+    },
+    {
+      "attr": "min",
+      "value": "5.10ms"
+    },
+    {
+      "attr": "min",
+      "value": "media"
     },
     {
       "attr": "max",
-      "value": "indefinite"
+      "value": "0:1:2.3"
+    },
+    {
+      "attr": "max",
+      "value": "5:10:0.1"
+    },
+    {
+      "attr": "max",
+      "value": "2:3.5"
+    },
+    {
+      "attr": "max",
+      "value": "10:0.1"
+    },
+    {
+      "attr": "max",
+      "value": "2.3h"
+    },
+    {
+      "attr": "max",
+      "value": "5.10min"
+    },
+    {
+      "attr": "max",
+      "value": "media"
     },
     {
       "attr": "restart",
@@ -596,7 +672,35 @@
     },
     {
       "attr": "repeatDur",
-      "value": "4s"
+      "value": "0:1:2.3"
+    },
+    {
+      "attr": "repeatDur",
+      "value": "5:10:0.1"
+    },
+    {
+      "attr": "repeatDur",
+      "value": "2:3.5"
+    },
+    {
+      "attr": "repeatDur",
+      "value": "10:0.1"
+    },
+    {
+      "attr": "repeatDur",
+      "value": "2.3s"
+    },
+    {
+      "attr": "repeatDur",
+      "value": "5.10ms"
+    },
+    {
+      "attr": "repeatDur",
+      "value": "media"
+    },
+    {
+      "attr": "repeatDur",
+      "value": "indefinite"
     },
     {
       "attr": "fill",
@@ -796,7 +900,7 @@
     },
     {
       "attr": "stroke-width",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "stroke-linecap",
@@ -816,7 +920,7 @@
     },
     {
       "attr": "stroke-dashoffset",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "paint-order",
@@ -1042,15 +1146,91 @@
     },
     {
       "attr": "dur",
-      "value": "2s"
+      "value": "0:1:2.3"
+    },
+    {
+      "attr": "dur",
+      "value": "5:10:0.1"
+    },
+    {
+      "attr": "dur",
+      "value": "2:3.5"
+    },
+    {
+      "attr": "dur",
+      "value": "10:0.1"
+    },
+    {
+      "attr": "dur",
+      "value": "2.3h"
+    },
+    {
+      "attr": "dur",
+      "value": "5.10min"
+    },
+    {
+      "attr": "dur",
+      "value": "media"
+    },
+    {
+      "attr": "dur",
+      "value": "indefinite"
     },
     {
       "attr": "min",
-      "value": "0s"
+      "value": "0:1:2.3"
+    },
+    {
+      "attr": "min",
+      "value": "5:10:0.1"
+    },
+    {
+      "attr": "min",
+      "value": "2:3.5"
+    },
+    {
+      "attr": "min",
+      "value": "10:0.1"
+    },
+    {
+      "attr": "min",
+      "value": "2.3s"
+    },
+    {
+      "attr": "min",
+      "value": "5.10ms"
+    },
+    {
+      "attr": "min",
+      "value": "media"
     },
     {
       "attr": "max",
-      "value": "indefinite"
+      "value": "0:1:2.3"
+    },
+    {
+      "attr": "max",
+      "value": "5:10:0.1"
+    },
+    {
+      "attr": "max",
+      "value": "2:3.5"
+    },
+    {
+      "attr": "max",
+      "value": "10:0.1"
+    },
+    {
+      "attr": "max",
+      "value": "2.3h"
+    },
+    {
+      "attr": "max",
+      "value": "5.10min"
+    },
+    {
+      "attr": "max",
+      "value": "media"
     },
     {
       "attr": "restart",
@@ -1078,7 +1258,35 @@
     },
     {
       "attr": "repeatDur",
-      "value": "4s"
+      "value": "0:1:2.3"
+    },
+    {
+      "attr": "repeatDur",
+      "value": "5:10:0.1"
+    },
+    {
+      "attr": "repeatDur",
+      "value": "2:3.5"
+    },
+    {
+      "attr": "repeatDur",
+      "value": "10:0.1"
+    },
+    {
+      "attr": "repeatDur",
+      "value": "2.3s"
+    },
+    {
+      "attr": "repeatDur",
+      "value": "5.10ms"
+    },
+    {
+      "attr": "repeatDur",
+      "value": "media"
+    },
+    {
+      "attr": "repeatDur",
+      "value": "indefinite"
     },
     {
       "attr": "fill",
@@ -1314,7 +1522,7 @@
     },
     {
       "attr": "stroke-width",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "stroke-linecap",
@@ -1334,7 +1542,7 @@
     },
     {
       "attr": "stroke-dashoffset",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "paint-order",
@@ -1564,15 +1772,91 @@
     },
     {
       "attr": "dur",
-      "value": "2s"
+      "value": "0:1:2.3"
+    },
+    {
+      "attr": "dur",
+      "value": "5:10:0.1"
+    },
+    {
+      "attr": "dur",
+      "value": "2:3.5"
+    },
+    {
+      "attr": "dur",
+      "value": "10:0.1"
+    },
+    {
+      "attr": "dur",
+      "value": "2.3h"
+    },
+    {
+      "attr": "dur",
+      "value": "5.10min"
+    },
+    {
+      "attr": "dur",
+      "value": "media"
+    },
+    {
+      "attr": "dur",
+      "value": "indefinite"
     },
     {
       "attr": "min",
-      "value": "0s"
+      "value": "0:1:2.3"
+    },
+    {
+      "attr": "min",
+      "value": "5:10:0.1"
+    },
+    {
+      "attr": "min",
+      "value": "2:3.5"
+    },
+    {
+      "attr": "min",
+      "value": "10:0.1"
+    },
+    {
+      "attr": "min",
+      "value": "2.3s"
+    },
+    {
+      "attr": "min",
+      "value": "5.10ms"
+    },
+    {
+      "attr": "min",
+      "value": "media"
     },
     {
       "attr": "max",
-      "value": "indefinite"
+      "value": "0:1:2.3"
+    },
+    {
+      "attr": "max",
+      "value": "5:10:0.1"
+    },
+    {
+      "attr": "max",
+      "value": "2:3.5"
+    },
+    {
+      "attr": "max",
+      "value": "10:0.1"
+    },
+    {
+      "attr": "max",
+      "value": "2.3h"
+    },
+    {
+      "attr": "max",
+      "value": "5.10min"
+    },
+    {
+      "attr": "max",
+      "value": "media"
     },
     {
       "attr": "restart",
@@ -1600,7 +1884,35 @@
     },
     {
       "attr": "repeatDur",
-      "value": "4s"
+      "value": "0:1:2.3"
+    },
+    {
+      "attr": "repeatDur",
+      "value": "5:10:0.1"
+    },
+    {
+      "attr": "repeatDur",
+      "value": "2:3.5"
+    },
+    {
+      "attr": "repeatDur",
+      "value": "10:0.1"
+    },
+    {
+      "attr": "repeatDur",
+      "value": "2.3s"
+    },
+    {
+      "attr": "repeatDur",
+      "value": "5.10ms"
+    },
+    {
+      "attr": "repeatDur",
+      "value": "media"
+    },
+    {
+      "attr": "repeatDur",
+      "value": "indefinite"
     },
     {
       "attr": "fill",
@@ -1820,7 +2132,7 @@
     },
     {
       "attr": "stroke-width",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "stroke-linecap",
@@ -1840,7 +2152,7 @@
     },
     {
       "attr": "stroke-dashoffset",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "paint-order",
@@ -2094,11 +2406,47 @@
     },
     {
       "attr": "r",
-      "value": "20"
+      "value": "10"
+    },
+    {
+      "attr": "r",
+      "value": "24px"
+    },
+    {
+      "attr": "r",
+      "value": "2em"
+    },
+    {
+      "attr": "r",
+      "value": "50%"
+    },
+    {
+      "attr": "r",
+      "value": "75%"
+    },
+    {
+      "attr": "pathLength",
+      "value": "0"
+    },
+    {
+      "attr": "pathLength",
+      "value": "1"
     },
     {
       "attr": "pathLength",
       "value": "2"
+    },
+    {
+      "attr": "pathLength",
+      "value": "0.5"
+    },
+    {
+      "attr": "pathLength",
+      "value": "3.14"
+    },
+    {
+      "attr": "pathLength",
+      "value": "10"
     },
     {
       "attr": "id",
@@ -2242,7 +2590,7 @@
     },
     {
       "attr": "stroke-width",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "stroke-linecap",
@@ -2262,7 +2610,7 @@
     },
     {
       "attr": "stroke-dashoffset",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "paint-order",
@@ -2656,7 +3004,7 @@
     },
     {
       "attr": "stroke-width",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "stroke-linecap",
@@ -2676,7 +3024,7 @@
     },
     {
       "attr": "stroke-dashoffset",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "paint-order",
@@ -3034,7 +3382,7 @@
     },
     {
       "attr": "stroke-width",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "stroke-linecap",
@@ -3054,7 +3402,7 @@
     },
     {
       "attr": "stroke-dashoffset",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "paint-order",
@@ -3580,7 +3928,27 @@
     },
     {
       "attr": "pathLength",
+      "value": "0"
+    },
+    {
+      "attr": "pathLength",
+      "value": "1"
+    },
+    {
+      "attr": "pathLength",
       "value": "2"
+    },
+    {
+      "attr": "pathLength",
+      "value": "0.5"
+    },
+    {
+      "attr": "pathLength",
+      "value": "3.14"
+    },
+    {
+      "attr": "pathLength",
+      "value": "10"
     },
     {
       "attr": "id",
@@ -3724,7 +4092,7 @@
     },
     {
       "attr": "stroke-width",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "stroke-linecap",
@@ -3744,7 +4112,7 @@
     },
     {
       "attr": "stroke-dashoffset",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "paint-order",
@@ -4142,11 +4510,43 @@
     },
     {
       "attr": "width",
-      "value": "20"
+      "value": "10"
+    },
+    {
+      "attr": "width",
+      "value": "24px"
+    },
+    {
+      "attr": "width",
+      "value": "2em"
+    },
+    {
+      "attr": "width",
+      "value": "50%"
+    },
+    {
+      "attr": "width",
+      "value": "75%"
     },
     {
       "attr": "height",
-      "value": "20"
+      "value": "10"
+    },
+    {
+      "attr": "height",
+      "value": "24px"
+    },
+    {
+      "attr": "height",
+      "value": "2em"
+    },
+    {
+      "attr": "height",
+      "value": "50%"
+    },
+    {
+      "attr": "height",
+      "value": "75%"
     },
     {
       "attr": "result",
@@ -4290,7 +4690,7 @@
     },
     {
       "attr": "stroke-width",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "stroke-linecap",
@@ -4310,7 +4710,7 @@
     },
     {
       "attr": "stroke-dashoffset",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "paint-order",
@@ -4616,11 +5016,43 @@
     },
     {
       "attr": "width",
-      "value": "20"
+      "value": "10"
+    },
+    {
+      "attr": "width",
+      "value": "24px"
+    },
+    {
+      "attr": "width",
+      "value": "2em"
+    },
+    {
+      "attr": "width",
+      "value": "50%"
+    },
+    {
+      "attr": "width",
+      "value": "75%"
     },
     {
       "attr": "height",
-      "value": "20"
+      "value": "10"
+    },
+    {
+      "attr": "height",
+      "value": "24px"
+    },
+    {
+      "attr": "height",
+      "value": "2em"
+    },
+    {
+      "attr": "height",
+      "value": "50%"
+    },
+    {
+      "attr": "height",
+      "value": "75%"
     },
     {
       "attr": "result",
@@ -4764,7 +5196,7 @@
     },
     {
       "attr": "stroke-width",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "stroke-linecap",
@@ -4784,7 +5216,7 @@
     },
     {
       "attr": "stroke-dashoffset",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "paint-order",
@@ -5070,11 +5502,43 @@
     },
     {
       "attr": "width",
-      "value": "20"
+      "value": "10"
+    },
+    {
+      "attr": "width",
+      "value": "24px"
+    },
+    {
+      "attr": "width",
+      "value": "2em"
+    },
+    {
+      "attr": "width",
+      "value": "50%"
+    },
+    {
+      "attr": "width",
+      "value": "75%"
     },
     {
       "attr": "height",
-      "value": "20"
+      "value": "10"
+    },
+    {
+      "attr": "height",
+      "value": "24px"
+    },
+    {
+      "attr": "height",
+      "value": "2em"
+    },
+    {
+      "attr": "height",
+      "value": "50%"
+    },
+    {
+      "attr": "height",
+      "value": "75%"
     },
     {
       "attr": "result",
@@ -5218,7 +5682,7 @@
     },
     {
       "attr": "stroke-width",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "stroke-linecap",
@@ -5238,7 +5702,7 @@
     },
     {
       "attr": "stroke-dashoffset",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "paint-order",
@@ -5680,11 +6144,43 @@
     },
     {
       "attr": "width",
-      "value": "20"
+      "value": "10"
+    },
+    {
+      "attr": "width",
+      "value": "24px"
+    },
+    {
+      "attr": "width",
+      "value": "2em"
+    },
+    {
+      "attr": "width",
+      "value": "50%"
+    },
+    {
+      "attr": "width",
+      "value": "75%"
     },
     {
       "attr": "height",
-      "value": "20"
+      "value": "10"
+    },
+    {
+      "attr": "height",
+      "value": "24px"
+    },
+    {
+      "attr": "height",
+      "value": "2em"
+    },
+    {
+      "attr": "height",
+      "value": "50%"
+    },
+    {
+      "attr": "height",
+      "value": "75%"
     },
     {
       "attr": "result",
@@ -5828,7 +6324,7 @@
     },
     {
       "attr": "stroke-width",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "stroke-linecap",
@@ -5848,7 +6344,7 @@
     },
     {
       "attr": "stroke-dashoffset",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "paint-order",
@@ -6226,23 +6722,11 @@
     },
     {
       "attr": "kernelUnitLength",
-      "value": "2"
+      "value": "0 1"
     },
     {
       "attr": "kernelUnitLength",
-      "value": "2 3"
-    },
-    {
-      "attr": "kernelUnitLength",
-      "value": "0.5"
-    },
-    {
-      "attr": "kernelUnitLength",
-      "value": "3 3"
-    },
-    {
-      "attr": "kernelUnitLength",
-      "value": "1 2"
+      "value": "2 0.5"
     },
     {
       "attr": "preserveAlpha",
@@ -6294,11 +6778,43 @@
     },
     {
       "attr": "width",
-      "value": "20"
+      "value": "10"
+    },
+    {
+      "attr": "width",
+      "value": "24px"
+    },
+    {
+      "attr": "width",
+      "value": "2em"
+    },
+    {
+      "attr": "width",
+      "value": "50%"
+    },
+    {
+      "attr": "width",
+      "value": "75%"
     },
     {
       "attr": "height",
-      "value": "20"
+      "value": "10"
+    },
+    {
+      "attr": "height",
+      "value": "24px"
+    },
+    {
+      "attr": "height",
+      "value": "2em"
+    },
+    {
+      "attr": "height",
+      "value": "50%"
+    },
+    {
+      "attr": "height",
+      "value": "75%"
     },
     {
       "attr": "result",
@@ -6442,7 +6958,7 @@
     },
     {
       "attr": "stroke-width",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "stroke-linecap",
@@ -6462,7 +6978,7 @@
     },
     {
       "attr": "stroke-dashoffset",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "paint-order",
@@ -6736,23 +7252,11 @@
     },
     {
       "attr": "kernelUnitLength",
-      "value": "2"
+      "value": "3.14 10"
     },
     {
       "attr": "kernelUnitLength",
-      "value": "2 3"
-    },
-    {
-      "attr": "kernelUnitLength",
-      "value": "0.5"
-    },
-    {
-      "attr": "kernelUnitLength",
-      "value": "3 3"
-    },
-    {
-      "attr": "kernelUnitLength",
-      "value": "1 2"
+      "value": "0 1"
     },
     {
       "attr": "x",
@@ -6796,11 +7300,43 @@
     },
     {
       "attr": "width",
-      "value": "20"
+      "value": "10"
+    },
+    {
+      "attr": "width",
+      "value": "24px"
+    },
+    {
+      "attr": "width",
+      "value": "2em"
+    },
+    {
+      "attr": "width",
+      "value": "50%"
+    },
+    {
+      "attr": "width",
+      "value": "75%"
     },
     {
       "attr": "height",
-      "value": "20"
+      "value": "10"
+    },
+    {
+      "attr": "height",
+      "value": "24px"
+    },
+    {
+      "attr": "height",
+      "value": "2em"
+    },
+    {
+      "attr": "height",
+      "value": "50%"
+    },
+    {
+      "attr": "height",
+      "value": "75%"
     },
     {
       "attr": "result",
@@ -6944,7 +7480,7 @@
     },
     {
       "attr": "stroke-width",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "stroke-linecap",
@@ -6964,7 +7500,7 @@
     },
     {
       "attr": "stroke-dashoffset",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "paint-order",
@@ -7338,11 +7874,43 @@
     },
     {
       "attr": "width",
-      "value": "20"
+      "value": "10"
+    },
+    {
+      "attr": "width",
+      "value": "24px"
+    },
+    {
+      "attr": "width",
+      "value": "2em"
+    },
+    {
+      "attr": "width",
+      "value": "50%"
+    },
+    {
+      "attr": "width",
+      "value": "75%"
     },
     {
       "attr": "height",
-      "value": "20"
+      "value": "10"
+    },
+    {
+      "attr": "height",
+      "value": "24px"
+    },
+    {
+      "attr": "height",
+      "value": "2em"
+    },
+    {
+      "attr": "height",
+      "value": "50%"
+    },
+    {
+      "attr": "height",
+      "value": "75%"
     },
     {
       "attr": "result",
@@ -7486,7 +8054,7 @@
     },
     {
       "attr": "stroke-width",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "stroke-linecap",
@@ -7506,7 +8074,7 @@
     },
     {
       "attr": "stroke-dashoffset",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "paint-order",
@@ -7868,7 +8436,7 @@
     },
     {
       "attr": "stroke-width",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "stroke-linecap",
@@ -7888,7 +8456,7 @@
     },
     {
       "attr": "stroke-dashoffset",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "paint-order",
@@ -8182,7 +8750,11 @@
     },
     {
       "attr": "stdDeviation",
-      "value": "2"
+      "value": "2 0.5"
+    },
+    {
+      "attr": "stdDeviation",
+      "value": "3.14 10"
     },
     {
       "attr": "x",
@@ -8226,11 +8798,43 @@
     },
     {
       "attr": "width",
-      "value": "20"
+      "value": "10"
+    },
+    {
+      "attr": "width",
+      "value": "24px"
+    },
+    {
+      "attr": "width",
+      "value": "2em"
+    },
+    {
+      "attr": "width",
+      "value": "50%"
+    },
+    {
+      "attr": "width",
+      "value": "75%"
     },
     {
       "attr": "height",
-      "value": "20"
+      "value": "10"
+    },
+    {
+      "attr": "height",
+      "value": "24px"
+    },
+    {
+      "attr": "height",
+      "value": "2em"
+    },
+    {
+      "attr": "height",
+      "value": "50%"
+    },
+    {
+      "attr": "height",
+      "value": "75%"
     },
     {
       "attr": "result",
@@ -8374,7 +8978,7 @@
     },
     {
       "attr": "stroke-width",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "stroke-linecap",
@@ -8394,7 +8998,7 @@
     },
     {
       "attr": "stroke-dashoffset",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "paint-order",
@@ -8648,11 +9252,43 @@
     },
     {
       "attr": "width",
-      "value": "20"
+      "value": "10"
+    },
+    {
+      "attr": "width",
+      "value": "24px"
+    },
+    {
+      "attr": "width",
+      "value": "2em"
+    },
+    {
+      "attr": "width",
+      "value": "50%"
+    },
+    {
+      "attr": "width",
+      "value": "75%"
     },
     {
       "attr": "height",
-      "value": "20"
+      "value": "10"
+    },
+    {
+      "attr": "height",
+      "value": "24px"
+    },
+    {
+      "attr": "height",
+      "value": "2em"
+    },
+    {
+      "attr": "height",
+      "value": "50%"
+    },
+    {
+      "attr": "height",
+      "value": "75%"
     },
     {
       "attr": "result",
@@ -8796,7 +9432,7 @@
     },
     {
       "attr": "stroke-width",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "stroke-linecap",
@@ -8816,7 +9452,7 @@
     },
     {
       "attr": "stroke-dashoffset",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "paint-order",
@@ -9050,23 +9686,11 @@
     },
     {
       "attr": "tableValues",
-      "value": "1 2 3 4"
+      "value": "1 -1 3.14"
     },
     {
       "attr": "tableValues",
-      "value": "0 1 0 0"
-    },
-    {
-      "attr": "tableValues",
-      "value": "1 0.5"
-    },
-    {
-      "attr": "tableValues",
-      "value": "0 0 1 1 0"
-    },
-    {
-      "attr": "tableValues",
-      "value": "2 4 6"
+      "value": "0.5 2 0"
     },
     {
       "attr": "slope",
@@ -9310,7 +9934,7 @@
     },
     {
       "attr": "stroke-width",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "stroke-linecap",
@@ -9330,7 +9954,7 @@
     },
     {
       "attr": "stroke-dashoffset",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "paint-order",
@@ -9564,23 +10188,11 @@
     },
     {
       "attr": "tableValues",
-      "value": "1 2 3 4"
+      "value": "3.14 0.5 2"
     },
     {
       "attr": "tableValues",
-      "value": "0 1 0 0"
-    },
-    {
-      "attr": "tableValues",
-      "value": "1 0.5"
-    },
-    {
-      "attr": "tableValues",
-      "value": "0 0 1 1 0"
-    },
-    {
-      "attr": "tableValues",
-      "value": "2 4 6"
+      "value": "0 1 -1"
     },
     {
       "attr": "slope",
@@ -9824,7 +10436,7 @@
     },
     {
       "attr": "stroke-width",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "stroke-linecap",
@@ -9844,7 +10456,7 @@
     },
     {
       "attr": "stroke-dashoffset",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "paint-order",
@@ -10078,23 +10690,11 @@
     },
     {
       "attr": "tableValues",
-      "value": "1 2 3 4"
+      "value": "0.5 2 0"
     },
     {
       "attr": "tableValues",
-      "value": "0 1 0 0"
-    },
-    {
-      "attr": "tableValues",
-      "value": "1 0.5"
-    },
-    {
-      "attr": "tableValues",
-      "value": "0 0 1 1 0"
-    },
-    {
-      "attr": "tableValues",
-      "value": "2 4 6"
+      "value": "1 -1 3.14"
     },
     {
       "attr": "slope",
@@ -10338,7 +10938,7 @@
     },
     {
       "attr": "stroke-width",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "stroke-linecap",
@@ -10358,7 +10958,7 @@
     },
     {
       "attr": "stroke-dashoffset",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "paint-order",
@@ -10592,23 +11192,11 @@
     },
     {
       "attr": "tableValues",
-      "value": "1 2 3 4"
+      "value": "2 0 1"
     },
     {
       "attr": "tableValues",
-      "value": "0 1 0 0"
-    },
-    {
-      "attr": "tableValues",
-      "value": "1 0.5"
-    },
-    {
-      "attr": "tableValues",
-      "value": "0 0 1 1 0"
-    },
-    {
-      "attr": "tableValues",
-      "value": "2 4 6"
+      "value": "-1 3.14 0.5"
     },
     {
       "attr": "slope",
@@ -10852,7 +11440,7 @@
     },
     {
       "attr": "stroke-width",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "stroke-linecap",
@@ -10872,7 +11460,7 @@
     },
     {
       "attr": "stroke-dashoffset",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "paint-order",
@@ -11118,7 +11706,11 @@
     },
     {
       "attr": "stdDeviation",
-      "value": "2"
+      "value": "0 1"
+    },
+    {
+      "attr": "stdDeviation",
+      "value": "2 0.5"
     },
     {
       "attr": "edgeMode",
@@ -11174,11 +11766,43 @@
     },
     {
       "attr": "width",
-      "value": "20"
+      "value": "10"
+    },
+    {
+      "attr": "width",
+      "value": "24px"
+    },
+    {
+      "attr": "width",
+      "value": "2em"
+    },
+    {
+      "attr": "width",
+      "value": "50%"
+    },
+    {
+      "attr": "width",
+      "value": "75%"
     },
     {
       "attr": "height",
-      "value": "20"
+      "value": "10"
+    },
+    {
+      "attr": "height",
+      "value": "24px"
+    },
+    {
+      "attr": "height",
+      "value": "2em"
+    },
+    {
+      "attr": "height",
+      "value": "50%"
+    },
+    {
+      "attr": "height",
+      "value": "75%"
     },
     {
       "attr": "result",
@@ -11322,7 +11946,7 @@
     },
     {
       "attr": "stroke-width",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "stroke-linecap",
@@ -11342,7 +11966,7 @@
     },
     {
       "attr": "stroke-dashoffset",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "paint-order",
@@ -11620,11 +12244,43 @@
     },
     {
       "attr": "width",
-      "value": "20"
+      "value": "10"
+    },
+    {
+      "attr": "width",
+      "value": "24px"
+    },
+    {
+      "attr": "width",
+      "value": "2em"
+    },
+    {
+      "attr": "width",
+      "value": "50%"
+    },
+    {
+      "attr": "width",
+      "value": "75%"
     },
     {
       "attr": "height",
-      "value": "20"
+      "value": "10"
+    },
+    {
+      "attr": "height",
+      "value": "24px"
+    },
+    {
+      "attr": "height",
+      "value": "2em"
+    },
+    {
+      "attr": "height",
+      "value": "50%"
+    },
+    {
+      "attr": "height",
+      "value": "75%"
     },
     {
       "attr": "result",
@@ -11768,7 +12424,7 @@
     },
     {
       "attr": "stroke-width",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "stroke-linecap",
@@ -11788,7 +12444,7 @@
     },
     {
       "attr": "stroke-dashoffset",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "paint-order",
@@ -12050,11 +12706,43 @@
     },
     {
       "attr": "width",
-      "value": "20"
+      "value": "10"
+    },
+    {
+      "attr": "width",
+      "value": "24px"
+    },
+    {
+      "attr": "width",
+      "value": "2em"
+    },
+    {
+      "attr": "width",
+      "value": "50%"
+    },
+    {
+      "attr": "width",
+      "value": "75%"
     },
     {
       "attr": "height",
-      "value": "20"
+      "value": "10"
+    },
+    {
+      "attr": "height",
+      "value": "24px"
+    },
+    {
+      "attr": "height",
+      "value": "2em"
+    },
+    {
+      "attr": "height",
+      "value": "50%"
+    },
+    {
+      "attr": "height",
+      "value": "75%"
     },
     {
       "attr": "result",
@@ -12198,7 +12886,7 @@
     },
     {
       "attr": "stroke-width",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "stroke-linecap",
@@ -12218,7 +12906,7 @@
     },
     {
       "attr": "stroke-dashoffset",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "paint-order",
@@ -12584,7 +13272,7 @@
     },
     {
       "attr": "stroke-width",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "stroke-linecap",
@@ -12604,7 +13292,7 @@
     },
     {
       "attr": "stroke-dashoffset",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "paint-order",
@@ -12858,7 +13546,11 @@
     },
     {
       "attr": "radius",
-      "value": "2"
+      "value": "3.14 10"
+    },
+    {
+      "attr": "radius",
+      "value": "0 1"
     },
     {
       "attr": "x",
@@ -12902,11 +13594,43 @@
     },
     {
       "attr": "width",
-      "value": "20"
+      "value": "10"
+    },
+    {
+      "attr": "width",
+      "value": "24px"
+    },
+    {
+      "attr": "width",
+      "value": "2em"
+    },
+    {
+      "attr": "width",
+      "value": "50%"
+    },
+    {
+      "attr": "width",
+      "value": "75%"
     },
     {
       "attr": "height",
-      "value": "20"
+      "value": "10"
+    },
+    {
+      "attr": "height",
+      "value": "24px"
+    },
+    {
+      "attr": "height",
+      "value": "2em"
+    },
+    {
+      "attr": "height",
+      "value": "50%"
+    },
+    {
+      "attr": "height",
+      "value": "75%"
     },
     {
       "attr": "result",
@@ -13050,7 +13774,7 @@
     },
     {
       "attr": "stroke-width",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "stroke-linecap",
@@ -13070,7 +13794,7 @@
     },
     {
       "attr": "stroke-dashoffset",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "paint-order",
@@ -13404,11 +14128,43 @@
     },
     {
       "attr": "width",
-      "value": "20"
+      "value": "10"
+    },
+    {
+      "attr": "width",
+      "value": "24px"
+    },
+    {
+      "attr": "width",
+      "value": "2em"
+    },
+    {
+      "attr": "width",
+      "value": "50%"
+    },
+    {
+      "attr": "width",
+      "value": "75%"
     },
     {
       "attr": "height",
-      "value": "20"
+      "value": "10"
+    },
+    {
+      "attr": "height",
+      "value": "24px"
+    },
+    {
+      "attr": "height",
+      "value": "2em"
+    },
+    {
+      "attr": "height",
+      "value": "50%"
+    },
+    {
+      "attr": "height",
+      "value": "75%"
     },
     {
       "attr": "result",
@@ -13552,7 +14308,7 @@
     },
     {
       "attr": "stroke-width",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "stroke-linecap",
@@ -13572,7 +14328,7 @@
     },
     {
       "attr": "stroke-dashoffset",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "paint-order",
@@ -13958,7 +14714,7 @@
     },
     {
       "attr": "stroke-width",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "stroke-linecap",
@@ -13978,7 +14734,7 @@
     },
     {
       "attr": "stroke-dashoffset",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "paint-order",
@@ -14256,23 +15012,11 @@
     },
     {
       "attr": "kernelUnitLength",
-      "value": "2"
+      "value": "2 0.5"
     },
     {
       "attr": "kernelUnitLength",
-      "value": "2 3"
-    },
-    {
-      "attr": "kernelUnitLength",
-      "value": "0.5"
-    },
-    {
-      "attr": "kernelUnitLength",
-      "value": "3 3"
-    },
-    {
-      "attr": "kernelUnitLength",
-      "value": "1 2"
+      "value": "3.14 10"
     },
     {
       "attr": "x",
@@ -14316,11 +15060,43 @@
     },
     {
       "attr": "width",
-      "value": "20"
+      "value": "10"
+    },
+    {
+      "attr": "width",
+      "value": "24px"
+    },
+    {
+      "attr": "width",
+      "value": "2em"
+    },
+    {
+      "attr": "width",
+      "value": "50%"
+    },
+    {
+      "attr": "width",
+      "value": "75%"
     },
     {
       "attr": "height",
-      "value": "20"
+      "value": "10"
+    },
+    {
+      "attr": "height",
+      "value": "24px"
+    },
+    {
+      "attr": "height",
+      "value": "2em"
+    },
+    {
+      "attr": "height",
+      "value": "50%"
+    },
+    {
+      "attr": "height",
+      "value": "75%"
     },
     {
       "attr": "result",
@@ -14464,7 +15240,7 @@
     },
     {
       "attr": "stroke-width",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "stroke-linecap",
@@ -14484,7 +15260,7 @@
     },
     {
       "attr": "stroke-dashoffset",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "paint-order",
@@ -14950,7 +15726,7 @@
     },
     {
       "attr": "stroke-width",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "stroke-linecap",
@@ -14970,7 +15746,7 @@
     },
     {
       "attr": "stroke-dashoffset",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "paint-order",
@@ -15256,11 +16032,43 @@
     },
     {
       "attr": "width",
-      "value": "20"
+      "value": "10"
+    },
+    {
+      "attr": "width",
+      "value": "24px"
+    },
+    {
+      "attr": "width",
+      "value": "2em"
+    },
+    {
+      "attr": "width",
+      "value": "50%"
+    },
+    {
+      "attr": "width",
+      "value": "75%"
     },
     {
       "attr": "height",
-      "value": "20"
+      "value": "10"
+    },
+    {
+      "attr": "height",
+      "value": "24px"
+    },
+    {
+      "attr": "height",
+      "value": "2em"
+    },
+    {
+      "attr": "height",
+      "value": "50%"
+    },
+    {
+      "attr": "height",
+      "value": "75%"
     },
     {
       "attr": "result",
@@ -15404,7 +16212,7 @@
     },
     {
       "attr": "stroke-width",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "stroke-linecap",
@@ -15424,7 +16232,7 @@
     },
     {
       "attr": "stroke-dashoffset",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "paint-order",
@@ -15642,7 +16450,27 @@
     },
     {
       "attr": "numOctaves",
+      "value": "0"
+    },
+    {
+      "attr": "numOctaves",
+      "value": "1"
+    },
+    {
+      "attr": "numOctaves",
+      "value": "2"
+    },
+    {
+      "attr": "numOctaves",
       "value": "3"
+    },
+    {
+      "attr": "numOctaves",
+      "value": "5"
+    },
+    {
+      "attr": "numOctaves",
+      "value": "10"
     },
     {
       "attr": "seed",
@@ -15706,11 +16534,43 @@
     },
     {
       "attr": "width",
-      "value": "20"
+      "value": "10"
+    },
+    {
+      "attr": "width",
+      "value": "24px"
+    },
+    {
+      "attr": "width",
+      "value": "2em"
+    },
+    {
+      "attr": "width",
+      "value": "50%"
+    },
+    {
+      "attr": "width",
+      "value": "75%"
     },
     {
       "attr": "height",
-      "value": "20"
+      "value": "10"
+    },
+    {
+      "attr": "height",
+      "value": "24px"
+    },
+    {
+      "attr": "height",
+      "value": "2em"
+    },
+    {
+      "attr": "height",
+      "value": "50%"
+    },
+    {
+      "attr": "height",
+      "value": "75%"
     },
     {
       "attr": "result",
@@ -15854,7 +16714,7 @@
     },
     {
       "attr": "stroke-width",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "stroke-linecap",
@@ -15874,7 +16734,7 @@
     },
     {
       "attr": "stroke-dashoffset",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "paint-order",
@@ -16144,11 +17004,43 @@
     },
     {
       "attr": "width",
-      "value": "20"
+      "value": "10"
+    },
+    {
+      "attr": "width",
+      "value": "24px"
+    },
+    {
+      "attr": "width",
+      "value": "2em"
+    },
+    {
+      "attr": "width",
+      "value": "50%"
+    },
+    {
+      "attr": "width",
+      "value": "75%"
     },
     {
       "attr": "height",
-      "value": "20"
+      "value": "10"
+    },
+    {
+      "attr": "height",
+      "value": "24px"
+    },
+    {
+      "attr": "height",
+      "value": "2em"
+    },
+    {
+      "attr": "height",
+      "value": "50%"
+    },
+    {
+      "attr": "height",
+      "value": "75%"
     },
     {
       "attr": "href",
@@ -16276,7 +17168,7 @@
     },
     {
       "attr": "stroke-width",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "stroke-linecap",
@@ -16296,7 +17188,7 @@
     },
     {
       "attr": "stroke-dashoffset",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "paint-order",
@@ -16742,7 +17634,7 @@
     },
     {
       "attr": "stroke-width",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "stroke-linecap",
@@ -16762,7 +17654,7 @@
     },
     {
       "attr": "stroke-dashoffset",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "paint-order",
@@ -17132,7 +18024,7 @@
     },
     {
       "attr": "stroke-width",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "stroke-linecap",
@@ -17152,7 +18044,7 @@
     },
     {
       "attr": "stroke-dashoffset",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "paint-order",
@@ -17450,7 +18342,11 @@
     },
     {
       "attr": "width",
-      "value": "20"
+      "value": "10"
+    },
+    {
+      "attr": "width",
+      "value": "24px"
     },
     {
       "attr": "height",
@@ -17458,7 +18354,11 @@
     },
     {
       "attr": "height",
-      "value": "20"
+      "value": "10"
+    },
+    {
+      "attr": "height",
+      "value": "24px"
     },
     {
       "attr": "decoding",
@@ -17614,7 +18514,7 @@
     },
     {
       "attr": "stroke-width",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "stroke-linecap",
@@ -17634,7 +18534,7 @@
     },
     {
       "attr": "stroke-dashoffset",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "paint-order",
@@ -17936,7 +18836,27 @@
     },
     {
       "attr": "pathLength",
+      "value": "0"
+    },
+    {
+      "attr": "pathLength",
+      "value": "1"
+    },
+    {
+      "attr": "pathLength",
       "value": "2"
+    },
+    {
+      "attr": "pathLength",
+      "value": "0.5"
+    },
+    {
+      "attr": "pathLength",
+      "value": "3.14"
+    },
+    {
+      "attr": "pathLength",
+      "value": "10"
     },
     {
       "attr": "id",
@@ -18080,7 +19000,7 @@
     },
     {
       "attr": "stroke-width",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "stroke-linecap",
@@ -18100,7 +19020,7 @@
     },
     {
       "attr": "stroke-dashoffset",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "paint-order",
@@ -18554,7 +19474,7 @@
     },
     {
       "attr": "stroke-width",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "stroke-linecap",
@@ -18574,7 +19494,7 @@
     },
     {
       "attr": "stroke-dashoffset",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "paint-order",
@@ -18816,19 +19736,43 @@
     },
     {
       "attr": "markerWidth",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "markerWidth",
-      "value": "2"
+      "value": "24px"
+    },
+    {
+      "attr": "markerWidth",
+      "value": "2em"
+    },
+    {
+      "attr": "markerWidth",
+      "value": "50%"
+    },
+    {
+      "attr": "markerWidth",
+      "value": "75%"
     },
     {
       "attr": "markerHeight",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "markerHeight",
-      "value": "2"
+      "value": "24px"
+    },
+    {
+      "attr": "markerHeight",
+      "value": "2em"
+    },
+    {
+      "attr": "markerHeight",
+      "value": "50%"
+    },
+    {
+      "attr": "markerHeight",
+      "value": "75%"
     },
     {
       "attr": "refX",
@@ -19056,7 +20000,7 @@
     },
     {
       "attr": "stroke-width",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "stroke-linecap",
@@ -19076,7 +20020,7 @@
     },
     {
       "attr": "stroke-dashoffset",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "paint-order",
@@ -19358,11 +20302,43 @@
     },
     {
       "attr": "width",
-      "value": "20"
+      "value": "10"
+    },
+    {
+      "attr": "width",
+      "value": "24px"
+    },
+    {
+      "attr": "width",
+      "value": "2em"
+    },
+    {
+      "attr": "width",
+      "value": "50%"
+    },
+    {
+      "attr": "width",
+      "value": "75%"
     },
     {
       "attr": "height",
-      "value": "20"
+      "value": "10"
+    },
+    {
+      "attr": "height",
+      "value": "24px"
+    },
+    {
+      "attr": "height",
+      "value": "2em"
+    },
+    {
+      "attr": "height",
+      "value": "50%"
+    },
+    {
+      "attr": "height",
+      "value": "75%"
     },
     {
       "attr": "mask-type",
@@ -19514,7 +20490,7 @@
     },
     {
       "attr": "stroke-width",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "stroke-linecap",
@@ -19534,7 +20510,7 @@
     },
     {
       "attr": "stroke-dashoffset",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "paint-order",
@@ -20000,7 +20976,27 @@
     },
     {
       "attr": "pathLength",
+      "value": "0"
+    },
+    {
+      "attr": "pathLength",
+      "value": "1"
+    },
+    {
+      "attr": "pathLength",
       "value": "2"
+    },
+    {
+      "attr": "pathLength",
+      "value": "0.5"
+    },
+    {
+      "attr": "pathLength",
+      "value": "3.14"
+    },
+    {
+      "attr": "pathLength",
+      "value": "10"
     },
     {
       "attr": "id",
@@ -20144,7 +21140,7 @@
     },
     {
       "attr": "stroke-width",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "stroke-linecap",
@@ -20164,7 +21160,7 @@
     },
     {
       "attr": "stroke-dashoffset",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "paint-order",
@@ -20474,11 +21470,51 @@
     },
     {
       "attr": "width",
-      "value": "20"
+      "value": "10"
+    },
+    {
+      "attr": "width",
+      "value": "24px"
+    },
+    {
+      "attr": "width",
+      "value": "2em"
+    },
+    {
+      "attr": "width",
+      "value": "1.5rem"
+    },
+    {
+      "attr": "width",
+      "value": "8"
+    },
+    {
+      "attr": "width",
+      "value": "12pt"
     },
     {
       "attr": "height",
-      "value": "20"
+      "value": "10"
+    },
+    {
+      "attr": "height",
+      "value": "24px"
+    },
+    {
+      "attr": "height",
+      "value": "2em"
+    },
+    {
+      "attr": "height",
+      "value": "1.5rem"
+    },
+    {
+      "attr": "height",
+      "value": "8"
+    },
+    {
+      "attr": "height",
+      "value": "12pt"
     },
     {
       "attr": "viewBox",
@@ -20650,7 +21686,7 @@
     },
     {
       "attr": "stroke-width",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "stroke-linecap",
@@ -20670,7 +21706,7 @@
     },
     {
       "attr": "stroke-dashoffset",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "paint-order",
@@ -20916,7 +21952,27 @@
     },
     {
       "attr": "pathLength",
+      "value": "0"
+    },
+    {
+      "attr": "pathLength",
+      "value": "1"
+    },
+    {
+      "attr": "pathLength",
       "value": "2"
+    },
+    {
+      "attr": "pathLength",
+      "value": "0.5"
+    },
+    {
+      "attr": "pathLength",
+      "value": "3.14"
+    },
+    {
+      "attr": "pathLength",
+      "value": "10"
     },
     {
       "attr": "id",
@@ -21060,7 +22116,7 @@
     },
     {
       "attr": "stroke-width",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "stroke-linecap",
@@ -21080,7 +22136,7 @@
     },
     {
       "attr": "stroke-dashoffset",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "paint-order",
@@ -21318,7 +22374,27 @@
     },
     {
       "attr": "pathLength",
+      "value": "0"
+    },
+    {
+      "attr": "pathLength",
+      "value": "1"
+    },
+    {
+      "attr": "pathLength",
       "value": "2"
+    },
+    {
+      "attr": "pathLength",
+      "value": "0.5"
+    },
+    {
+      "attr": "pathLength",
+      "value": "3.14"
+    },
+    {
+      "attr": "pathLength",
+      "value": "10"
     },
     {
       "attr": "id",
@@ -21462,7 +22538,7 @@
     },
     {
       "attr": "stroke-width",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "stroke-linecap",
@@ -21482,7 +22558,7 @@
     },
     {
       "attr": "stroke-dashoffset",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "paint-order",
@@ -21768,11 +22844,23 @@
     },
     {
       "attr": "r",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "r",
-      "value": "2"
+      "value": "24px"
+    },
+    {
+      "attr": "r",
+      "value": "2em"
+    },
+    {
+      "attr": "r",
+      "value": "50%"
+    },
+    {
+      "attr": "r",
+      "value": "75%"
     },
     {
       "attr": "fx",
@@ -21808,11 +22896,23 @@
     },
     {
       "attr": "fr",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "fr",
-      "value": "2"
+      "value": "24px"
+    },
+    {
+      "attr": "fr",
+      "value": "2em"
+    },
+    {
+      "attr": "fr",
+      "value": "50%"
+    },
+    {
+      "attr": "fr",
+      "value": "75%"
     },
     {
       "attr": "spreadMethod",
@@ -21952,7 +23052,7 @@
     },
     {
       "attr": "stroke-width",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "stroke-linecap",
@@ -21972,7 +23072,7 @@
     },
     {
       "attr": "stroke-dashoffset",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "paint-order",
@@ -22246,11 +23346,43 @@
     },
     {
       "attr": "width",
-      "value": "20"
+      "value": "10"
+    },
+    {
+      "attr": "width",
+      "value": "24px"
+    },
+    {
+      "attr": "width",
+      "value": "2em"
+    },
+    {
+      "attr": "width",
+      "value": "50%"
+    },
+    {
+      "attr": "width",
+      "value": "75%"
     },
     {
       "attr": "height",
-      "value": "20"
+      "value": "10"
+    },
+    {
+      "attr": "height",
+      "value": "24px"
+    },
+    {
+      "attr": "height",
+      "value": "2em"
+    },
+    {
+      "attr": "height",
+      "value": "50%"
+    },
+    {
+      "attr": "height",
+      "value": "75%"
     },
     {
       "attr": "rx",
@@ -22258,7 +23390,11 @@
     },
     {
       "attr": "rx",
-      "value": "20"
+      "value": "10"
+    },
+    {
+      "attr": "rx",
+      "value": "24px"
     },
     {
       "attr": "ry",
@@ -22266,11 +23402,35 @@
     },
     {
       "attr": "ry",
-      "value": "20"
+      "value": "10"
+    },
+    {
+      "attr": "ry",
+      "value": "24px"
+    },
+    {
+      "attr": "pathLength",
+      "value": "0"
+    },
+    {
+      "attr": "pathLength",
+      "value": "1"
     },
     {
       "attr": "pathLength",
       "value": "2"
+    },
+    {
+      "attr": "pathLength",
+      "value": "0.5"
+    },
+    {
+      "attr": "pathLength",
+      "value": "3.14"
+    },
+    {
+      "attr": "pathLength",
+      "value": "10"
     },
     {
       "attr": "id",
@@ -22414,7 +23574,7 @@
     },
     {
       "attr": "stroke-width",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "stroke-linecap",
@@ -22434,7 +23594,7 @@
     },
     {
       "attr": "stroke-dashoffset",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "paint-order",
@@ -22846,15 +24006,91 @@
     },
     {
       "attr": "dur",
-      "value": "2s"
+      "value": "0:1:2.3"
+    },
+    {
+      "attr": "dur",
+      "value": "5:10:0.1"
+    },
+    {
+      "attr": "dur",
+      "value": "2:3.5"
+    },
+    {
+      "attr": "dur",
+      "value": "10:0.1"
+    },
+    {
+      "attr": "dur",
+      "value": "2.3h"
+    },
+    {
+      "attr": "dur",
+      "value": "5.10min"
+    },
+    {
+      "attr": "dur",
+      "value": "media"
+    },
+    {
+      "attr": "dur",
+      "value": "indefinite"
     },
     {
       "attr": "min",
-      "value": "0s"
+      "value": "0:1:2.3"
+    },
+    {
+      "attr": "min",
+      "value": "5:10:0.1"
+    },
+    {
+      "attr": "min",
+      "value": "2:3.5"
+    },
+    {
+      "attr": "min",
+      "value": "10:0.1"
+    },
+    {
+      "attr": "min",
+      "value": "2.3s"
+    },
+    {
+      "attr": "min",
+      "value": "5.10ms"
+    },
+    {
+      "attr": "min",
+      "value": "media"
     },
     {
       "attr": "max",
-      "value": "indefinite"
+      "value": "0:1:2.3"
+    },
+    {
+      "attr": "max",
+      "value": "5:10:0.1"
+    },
+    {
+      "attr": "max",
+      "value": "2:3.5"
+    },
+    {
+      "attr": "max",
+      "value": "10:0.1"
+    },
+    {
+      "attr": "max",
+      "value": "2.3h"
+    },
+    {
+      "attr": "max",
+      "value": "5.10min"
+    },
+    {
+      "attr": "max",
+      "value": "media"
     },
     {
       "attr": "restart",
@@ -22882,7 +24118,35 @@
     },
     {
       "attr": "repeatDur",
-      "value": "4s"
+      "value": "0:1:2.3"
+    },
+    {
+      "attr": "repeatDur",
+      "value": "5:10:0.1"
+    },
+    {
+      "attr": "repeatDur",
+      "value": "2:3.5"
+    },
+    {
+      "attr": "repeatDur",
+      "value": "10:0.1"
+    },
+    {
+      "attr": "repeatDur",
+      "value": "2.3s"
+    },
+    {
+      "attr": "repeatDur",
+      "value": "5.10ms"
+    },
+    {
+      "attr": "repeatDur",
+      "value": "media"
+    },
+    {
+      "attr": "repeatDur",
+      "value": "indefinite"
     },
     {
       "attr": "fill",
@@ -23030,7 +24294,7 @@
     },
     {
       "attr": "stroke-width",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "stroke-linecap",
@@ -23050,7 +24314,7 @@
     },
     {
       "attr": "stroke-dashoffset",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "paint-order",
@@ -23400,7 +24664,7 @@
     },
     {
       "attr": "stroke-width",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "stroke-linecap",
@@ -23420,7 +24684,7 @@
     },
     {
       "attr": "stroke-dashoffset",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "paint-order",
@@ -23884,7 +25148,11 @@
     },
     {
       "attr": "width",
-      "value": "20"
+      "value": "10"
+    },
+    {
+      "attr": "width",
+      "value": "24px"
     },
     {
       "attr": "height",
@@ -23892,7 +25160,11 @@
     },
     {
       "attr": "height",
-      "value": "20"
+      "value": "10"
+    },
+    {
+      "attr": "height",
+      "value": "24px"
     },
     {
       "attr": "transform",
@@ -24052,7 +25324,7 @@
     },
     {
       "attr": "stroke-width",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "stroke-linecap",
@@ -24072,7 +25344,7 @@
     },
     {
       "attr": "stroke-dashoffset",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "paint-order",
@@ -24442,7 +25714,7 @@
     },
     {
       "attr": "stroke-width",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "stroke-linecap",
@@ -24462,7 +25734,7 @@
     },
     {
       "attr": "stroke-dashoffset",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "paint-order",
@@ -24800,7 +26072,11 @@
     },
     {
       "attr": "width",
-      "value": "20"
+      "value": "10"
+    },
+    {
+      "attr": "width",
+      "value": "24px"
     },
     {
       "attr": "height",
@@ -24808,7 +26084,11 @@
     },
     {
       "attr": "height",
-      "value": "20"
+      "value": "10"
+    },
+    {
+      "attr": "height",
+      "value": "24px"
     },
     {
       "attr": "id",
@@ -24952,7 +26232,7 @@
     },
     {
       "attr": "stroke-width",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "stroke-linecap",
@@ -24972,7 +26252,7 @@
     },
     {
       "attr": "stroke-dashoffset",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "paint-order",
@@ -25202,19 +26482,19 @@
   "text": [
     {
       "attr": "x",
-      "value": "2em 50% 0"
+      "value": "75% 10 0"
     },
     {
       "attr": "x",
-      "value": "1 75% -1"
+      "value": "1 24px -1"
     },
     {
       "attr": "y",
-      "value": "10 24px 3.14"
+      "value": "2em 50% 3.14"
     },
     {
       "attr": "y",
-      "value": "0.5 2em 2"
+      "value": "0.5 75% 2"
     },
     {
       "attr": "dx",
@@ -25386,7 +26666,7 @@
     },
     {
       "attr": "stroke-width",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "stroke-linecap",
@@ -25406,7 +26686,7 @@
     },
     {
       "attr": "stroke-dashoffset",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "paint-order",
@@ -25844,7 +27124,7 @@
     },
     {
       "attr": "stroke-width",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "stroke-linecap",
@@ -25864,7 +27144,7 @@
     },
     {
       "attr": "stroke-dashoffset",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "paint-order",
@@ -26400,7 +27680,7 @@
     },
     {
       "attr": "stroke-width",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "stroke-linecap",
@@ -26420,7 +27700,7 @@
     },
     {
       "attr": "stroke-dashoffset",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "paint-order",
@@ -26790,7 +28070,7 @@
     },
     {
       "attr": "stroke-width",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "stroke-linecap",
@@ -26810,7 +28090,7 @@
     },
     {
       "attr": "stroke-dashoffset",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "paint-order",
@@ -27088,7 +28368,11 @@
     },
     {
       "attr": "width",
-      "value": "20"
+      "value": "10"
+    },
+    {
+      "attr": "width",
+      "value": "24px"
     },
     {
       "attr": "height",
@@ -27096,7 +28380,11 @@
     },
     {
       "attr": "height",
-      "value": "20"
+      "value": "10"
+    },
+    {
+      "attr": "height",
+      "value": "24px"
     },
     {
       "attr": "id",
@@ -27240,7 +28528,7 @@
     },
     {
       "attr": "stroke-width",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "stroke-linecap",
@@ -27260,7 +28548,7 @@
     },
     {
       "attr": "stroke-dashoffset",
-      "value": "20"
+      "value": "10"
     },
     {
       "attr": "paint-order",

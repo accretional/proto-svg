@@ -98,6 +98,14 @@ var builtinScaffoldWins = map[string]bool{
 	// (a narrow sliver). Force the built-in, which uses a small centered host so the
 	// whole from/to range keeps the shape fully visible.
 	"set": true,
+	// The on-disk animate/animateTransform/animateMotion blueprints host the
+	// animation on a bare <rect> with NO id="target", so the href="#target" preset
+	// (and the overlay's target resolution) dangles and the animation freezes.
+	// Force the built-in catAnimation scaffold, whose host carries id="target"
+	// (and a starting x=10), so every preset animates and href resolves.
+	"animate":          true,
+	"animateTransform": true,
+	"animateMotion":    true,
 	// FIX 2 (wrapper inheritance): the on-disk templates for these wrapper/
 	// container tags use a colorless root, so the child's fill="currentColor"
 	// resolves to black (invisible on the dark card) and paint set on the wrapper
@@ -316,9 +324,10 @@ func defaultScaffold(tag string) string {
 	case "tspan":
 		// FIX 3: the wrapping <text> carries NO fill, so the tspan's own
 		// fill="currentColor" (baselineFor) governs the glyph color and a varied
-		// `color`/`fill` recolors it. Root seeds a neutral color for the base card.
+		// `color`/`fill` recolors it. The parent run has visible neutral text around
+		// the {{ELEMENT}} slot so the tspan reads as a styled SUB-SPAN in context.
 		return svgOpenColor +
-			`<text x="10" y="55" font-size="18">{{ELEMENT}}</text></svg>`
+			`<text x="8" y="55" fill="#7b8a82" font-size="16">Hi {{ELEMENT}}!</text></svg>`
 	case "textPath":
 		// FIX 3: <path id="slot"> for href="#slot" to follow; the wrapping <text>
 		// carries no fill so the textPath's own fill="currentColor" (baselineFor)
@@ -505,7 +514,9 @@ func defaultScaffold(tag string) string {
 		// the instance and varying it on the <use> yields distinct cards; the neutral
 		// root color keeps the base instance visible.
 		return svgOpenColor +
-			`<defs><circle id="slot" cx="50" cy="50" r="32" fill="currentColor"/></defs>{{ELEMENT}}</svg>`
+			`<defs><circle id="slot" cx="30" cy="40" r="20" fill="currentColor"/></defs>` +
+			`<use href="#slot" opacity="0.3"/>` + // the faint ORIGINAL, so the <use> reads as a stamped COPY of it
+			`{{ELEMENT}}</svg>`
 	default: // shapes, text, image, g, svg, etc. — self-render
 		return svgOpen + `{{ELEMENT}}</svg>`
 	}
@@ -628,11 +639,17 @@ func baselineFor(tag, varyingPrefix, varyingValue string) (string, bool) {
 		return add([2]string{"points", "50,10 90,80 10,80"}, [2]string{"fill", "#16c79a"}, [2]string{"stroke", "#16c79a"}, [2]string{"stroke-width", "2"}), false
 	case "path":
 		// path baseline is stroke-only; the explicit stroke keeps fill="none" visible.
-		return add([2]string{"d", "M10 50 Q50 10 90 50 T90 90"}, [2]string{"fill", "none"}, [2]string{"stroke", "#16c79a"}, [2]string{"stroke-width", "2"}), false
-	case "text", "tspan":
+		return add([2]string{"d", "M8 62 Q30 18 52 54 T96 50"}, [2]string{"fill", "none"}, [2]string{"stroke", "#16c79a"}, [2]string{"stroke-width", "2"}), false
+	case "text":
 		// FIX 3: fill="currentColor" so a varied CSS `color` (or `fill`) recolors the
 		// glyphs; the scaffold root seeds a neutral color so the base card is visible.
 		return add([2]string{"x", "10"}, [2]string{"y", "55"}, [2]string{"fill", "currentColor"}, [2]string{"font-size", "20"}), false
+	case "tspan":
+		// NO baseline x/y: the tspan FLOWS inside its parent text run (the scaffold
+		// supplies surrounding "Hi …!" text) so it reads as a styled sub-span, not a
+		// detached label. When x/y ARE the varied attribute they reposition it,
+		// visibly demonstrating absolute tspan positioning.
+		return add([2]string{"fill", "currentColor"}, [2]string{"font-size", "22"}), false
 	case "textPath":
 		// textPath ignores x/y; it follows a referenced path. The blueprint defines
 		// <path id="slot"> in defs, so href="#slot" makes every card's text follow it.
@@ -738,14 +755,24 @@ func baselineFor(tag, varyingPrefix, varyingValue string) (string, bool) {
 			[2]string{"pointsAtX", "20"}, [2]string{"pointsAtY", "20"}, [2]string{"pointsAtZ", "0"},
 			[2]string{"specularExponent", "8"}, [2]string{"limitingConeAngle", "25"}), false
 	case "discard":
-		// begin="60s" so discard does not remove the host shape at t=0.
-		return add([2]string{"begin", "60s"}), false
-	case "animate", "set":
+		// begin="1s": the host shape is present in the first frame and DISCARDED in
+		// the later frames (the clock-stepped capture spans ~0–1.65s), so the GIF
+		// actually demonstrates the removal instead of a static shape.
+		return add([2]string{"begin", "1s"}), false
+	case "animate":
 		// A working animation baseline so the varied attribute is observable on a
 		// live animation; the overlay (animationValueFor) types from/to to the
 		// chosen attributeName ("x" here). values XOR from/to → use from/to.
 		return add([2]string{"attributeName", "x"}, [2]string{"from", "10"},
 			[2]string{"to", "60"}, [2]string{"dur", "2s"},
+			[2]string{"repeatCount", "indefinite"}), false
+	case "set":
+		// <set> applies a DISCRETE value for its active interval (no tween). begin=1s
+		// so the clock-stepped capture (~0–1.65s) catches the host at its original x
+		// in the early frames and SNAPPED to the set value in the later ones — the
+		// before→after jump that defines <set>. (from is ignored by set.)
+		return add([2]string{"attributeName", "x"}, [2]string{"to", "70"},
+			[2]string{"begin", "1s"}, [2]string{"dur", "2s"},
 			[2]string{"repeatCount", "indefinite"}), false
 	case "animateTransform":
 		return add([2]string{"attributeName", "transform"}, [2]string{"type", "rotate"},
@@ -917,34 +944,66 @@ func bodyFor(tag string) string {
 	case "linearGradient", "radialGradient":
 		return `<stop offset="0" stop-color="#e94560"/><stop offset="1" stop-color="#16c79a"/>`
 	case "pattern":
-		return `<circle cx="10" cy="10" r="6" fill="#f5a623"/>`
+		// A STRUCTURED, asymmetric tile (background + diagonal + dot) so that
+		// patternTransform (rotate/scale), patternUnits and viewBox visibly change the
+		// tiling — a single symmetric dot looks identical under every transform.
+		return `<rect width="20" height="20" fill="#11201c"/>` +
+			`<path d="M0 20 L20 0" stroke="#4ee39a" stroke-width="2.5"/>` +
+			`<circle cx="6" cy="6" r="3.5" fill="#f5a623"/>`
 	case "marker":
 		return `<path d="M0 0 L10 5 L0 10 Z" fill="#e94560"/>`
 	case "clipPath":
-		return `<circle cx="50" cy="50" r="35"/>`
+		// A STAR clip so the clipped host reads unmistakably as "clipped to a shape"
+		// (a circle clip is hard to tell from a plain circle).
+		return `<polygon points="50,6 61,38 95,38 67,58 78,92 50,72 22,92 33,58 5,38 39,38"/>`
 	case "mask":
-		return `<rect x="20" y="20" width="60" height="60" fill="#fff"/>`
+		// Concentric luminance bands (black bg → white → grey → white) so the mask
+		// REVEALS the host at varying opacity (a bullseye) — showing luminance
+		// masking, not just a hard rectangular cut-out. mask-type=luminance vs alpha
+		// then differ visibly.
+		return `<rect width="100" height="100" fill="#000"/>` +
+			`<circle cx="50" cy="50" r="44" fill="#fff"/>` +
+			`<circle cx="50" cy="50" r="30" fill="#888"/>` +
+			`<circle cx="50" cy="50" r="15" fill="#fff"/>`
 	case "filter":
 		return `<feGaussianBlur stdDeviation="3"/>`
-	case "g", "a", "svg", "symbol":
-		// FIX 2: the rendered child INHERITS paint from the wrapper via
-		// fill="currentColor", so presentation attrs varied on the wrapper element
-		// (fill via currentColor, color, opacity, transform) actually change the
-		// child and produce visibly distinct cards instead of identical ones. The
-		// scaffold root carries a neutral color (see colorRootScaffold) so the base
-		// card is visible. (Mirrors the <switch>/<g> approach.)
-		return `<rect x="20" y="20" width="60" height="60" fill="currentColor"/>`
+	case "g":
+		// MULTIPLE distinct children so grouping is self-evident: a transform /
+		// opacity / color set on the <g> propagates to all three shapes at once
+		// (they inherit paint via fill="currentColor"). One square cannot show what
+		// a group does.
+		return `<circle cx="32" cy="38" r="18" fill="currentColor"/>` +
+			`<rect x="50" y="20" width="34" height="34" rx="6" fill="currentColor"/>` +
+			`<polygon points="50,62 80,90 20,90" fill="currentColor"/>`
+	case "a":
+		// A link-like "button": a pill the wrapper recolours (currentColor) plus a
+		// dark caption, so the <a> reads as a clickable hyperlink, not a bare square.
+		return `<rect x="12" y="36" width="76" height="28" rx="14" fill="currentColor"/>` +
+			`<text x="50" y="55" text-anchor="middle" font-size="13" font-family="monospace" fill="#0c100e">link</text>`
+	case "svg":
+		// A NESTED viewport: a bordered box establishing its own coordinate system,
+		// with off-centre content the viewport crops — so viewBox / preserveAspectRatio
+		// visibly reframe it instead of looking like a plain square.
+		return `<rect x="3" y="3" width="94" height="94" fill="#0e1a17" stroke="currentColor" stroke-width="3"/>` +
+			`<circle cx="74" cy="74" r="36" fill="currentColor"/>`
+	case "symbol":
+		// Off-centre icon content (a circle + square) inside the symbol so that, once
+		// instantiated via <use>, its viewBox / preserveAspectRatio / refX / refY
+		// visibly reframe and anchor it.
+		return `<circle cx="34" cy="34" r="22" fill="currentColor"/>` +
+			`<rect x="52" y="52" width="34" height="34" rx="4" fill="currentColor"/>`
 	case "defs":
 		// <defs> never renders directly; its <use href="#defskid"> instantiates a
 		// fixed rect (the defs child can't inherit paint set on <defs>). Keep a
 		// concrete fill so the card is visible.
 		return `<rect x="20" y="20" width="60" height="60" fill="#4d8bff"/>`
 	case "switch":
-		// FIX 8: the rendered child uses fill="currentColor" so presentation attrs
-		// set on the <switch> parent (color/fill-opacity/opacity) actually propagate
-		// and produce visibly distinct cards. The first child whose conditional-
-		// processing attrs evaluate true renders; a bare rect always qualifies.
-		return `<rect x="20" y="20" width="60" height="60" fill="currentColor"/>`
+		// <switch> renders the FIRST child whose conditional-processing attrs pass; a
+		// bare child always qualifies. Wrapping in a labelled <g> (rendered as one
+		// child) makes the "selected child" reading clear instead of an anonymous
+		// square. fill="currentColor" still lets the <switch> parent's paint propagate.
+		return `<g><rect x="18" y="22" width="64" height="56" rx="8" fill="currentColor"/>` +
+			`<text x="50" y="55" text-anchor="middle" font-size="10" font-family="monospace" fill="#0c100e">switch</text></g>`
 	case "feMerge":
 		// Two nodes stacking colored blueprint layers so the merge is visible.
 		return `<feMergeNode in="layerA"/><feMergeNode in="layerB"/>`
@@ -970,8 +1029,12 @@ func bodyFor(tag string) string {
 	case "style":
 		// A CSS body that styles the blueprint's .slot shapes so cards differ.
 		return `.slot{fill:#e94560;stroke:#16c79a;stroke-width:3}`
-	case "text", "tspan", "textPath":
-		return `Ag`
+	case "text":
+		return `Text` // a real word so x/y/dx/dy/rotate/textLength visibly deform it
+	case "textPath":
+		return `Following` // long enough to trace and reveal the curved path
+	case "tspan":
+		return `Ag` // the scaffold wraps this in a surrounding parent text run
 	case "desc", "title", "metadata":
 		return `info`
 	}

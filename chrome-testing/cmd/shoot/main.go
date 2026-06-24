@@ -160,15 +160,24 @@ func (w *chunkWriter) static(hash, out string) {
 }
 
 // temporal sets the embed hash for an animated element and captures `frames`
-// screenshots spaced `frameWait` ms apart so the SMIL animation progresses. The
-// whole sequence stays in one chunk so the running animation is not reloaded.
+// screenshots. It STEPS the SVG document clock deterministically with
+// setCurrentTime() rather than relying on wall-clock waits — headless Chrome does
+// not reliably advance the compositor between rapid screenshots, so a plain
+// wait+screenshot loop captures the same frame repeatedly. Stepping the clock
+// guarantees distinct frames spanning the (≈2s) animation. The whole sequence
+// stays in one chunk so the SVG is not re-rendered between frames.
 func (w *chunkWriter) temporal(hash, framedir string, frames, frameWait int) {
 	if w.shots > 0 && w.shots+frames > w.perChunk {
 		w.rollover()
 	}
 	w.line(fmt.Sprintf("steps { evaluate_script { expression: %q } }", hash))
-	w.line("steps { wait { milliseconds: 250 } }")
+	w.line("steps { wait { milliseconds: 350 } }") // let the embed SVG mount
+	step := 0.33                                    // seconds of SVG time per frame (~1.65s span over a 2s dur)
 	for i := 0; i < frames; i++ {
+		t := float64(i) * step
+		set := fmt.Sprintf("var s=document.querySelector('#viewer svg');"+
+			"if(s&&s.setCurrentTime){if(s.pauseAnimations)s.pauseAnimations();s.setCurrentTime(%.2f);}void 0", t)
+		w.line(fmt.Sprintf("steps { evaluate_script { expression: %q } }", set))
 		w.line(fmt.Sprintf("steps { wait { milliseconds: %d } }", frameWait))
 		w.line(fmt.Sprintf("steps { screenshot { output_path: %q format: \"png\" } }",
 			filepath.Join(framedir, fmt.Sprintf("frame-%02d.png", i))))

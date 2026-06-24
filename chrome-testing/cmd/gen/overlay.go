@@ -126,9 +126,9 @@ func overlaySample(tag, attrName, valueKind string) (string, bool) {
 
 	// (stroke-miterlimit ≥ 1 is now structural — MiterLimitType in the grammar.)
 
-	// Path data: "none" renders blank; give visible geometry.
-	case "d":
-		return "M10 50 Q50 10 90 50", true
+	// (path `d` is no longer pinned — the grammar's SvgPath enumerates several
+	// distinct command mixes (L line, Q curve, H/V/Z closed) so the `d` presets
+	// actually demonstrate path's range instead of one fixed arc.)
 
 	// Text length: small values (0/1/10) collapse the glyphs.
 	case "textlength":

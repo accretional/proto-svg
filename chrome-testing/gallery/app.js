@@ -31,11 +31,14 @@
     var m = openRe.exec(out);
     if (m) {
       var tagStr = m[0];
-      el.attrs.forEach(function (a) {
-        if (a.key === '_content') return;
-        var v = vals[a.key];
-        if (v == null || v === '') { if (v !== '') return; }
-        tagStr = setAttrInTag(tagStr, a.key, String(vals[a.key]));
+      // Apply EVERY value (controls AND preset-only attributes such as display /
+      // visibility), not just the trimmed control set — else a preset that sets a
+      // non-control attribute would be a no-op.
+      Object.keys(vals).forEach(function (key) {
+        if (key === '_content') return;
+        var v = vals[key];
+        if (v == null) return;
+        tagStr = setAttrInTag(tagStr, key, String(v));
       });
       out = out.slice(0, m.index) + tagStr + out.slice(m.index + m[0].length);
     }
@@ -165,9 +168,22 @@
   }
 
   // ---- nav rail ----
+  // namespaceIds rewrites every id (and #/url(#)/href="#" reference) in a
+  // thumbnail SVG to a unique prefix, so the many rail/home thumbnails don't
+  // collide on id="slot" with each other OR with the viewer's live SVG — a
+  // duplicate id="slot" would make url(#slot)/href="#slot" resolve to the wrong
+  // element (filters/gradients/patterns/textPath would silently break).
+  var _uid = 0;
+  function namespaceIds(svg, uid) {
+    return svg
+      .replace(/\bid="([^"]+)"/g, 'id="' + uid + '-$1"')
+      .replace(/url\(#([^)]+)\)/g, 'url(#' + uid + '-$1)')
+      .replace(/href="#([^"]+)"/g, 'href="#' + uid + '-$1"');
+  }
   function miniSvg(el) {
-    // small thumbnail: the element's default render, fit into 22px
-    var c = buildCode(el, el.defaults);
+    // small thumbnail: the element's default render, fit into 22px, with all ids
+    // namespaced so it never steals the viewer's #slot reference.
+    var c = namespaceIds(buildCode(el, el.defaults), 'm' + (_uid++));
     return c.replace(/<svg /, '<svg width="100%" height="100%" ');
   }
   function buildRail() {

@@ -48,8 +48,9 @@ type catControl struct {
 }
 
 type catPreset struct {
-	Name   string            `json:"name"`
-	Values map[string]string `json:"values"`
+	Name    string            `json:"name"`
+	Values  map[string]string `json:"values"`
+	Meaning string            `json:"meaning,omitempty"`
 }
 
 type catElement struct {
@@ -89,6 +90,7 @@ func runCataloguePass(en *Enumerator, bp *blueprintProvider, els []element, page
 		if needsID || blueprintSlotNeedsID(bp.blueprintFor(p.tag), p.tag) {
 			baseMarkup = ensureSlotID(baseMarkup, p.tag)
 		}
+		baseMarkup = markLabSlot(baseMarkup, p.tag)
 		base := inject(bp.blueprintFor(p.tag), baseMarkup)
 		baseAttrs := parseOpenTagAttrs(base, p.tag)
 
@@ -128,14 +130,38 @@ func runCataloguePass(en *Enumerator, bp *blueprintProvider, els []element, page
 				ce.Defaults[attr] = d
 			}
 		}
-		// presets: one per visual value-path (ALL attributes, control-worthy or not).
+		// presets: one per visual value-path, CURATED so each preset demonstrates
+		// the attribute's meaning (no-ops substituted, some attrs expanded) and
+		// carries a plain-language caption. Uncurated attrs fall back to the raw
+		// enumerated values captioned by meaningFor.
+		usesDemoDefs := false
 		for _, attr := range order {
-			for _, val := range dedupStr(vals[attr]) {
+			raw := dedupStr(vals[attr])
+			curated := curateAttr(p.tag, attr, raw)
+			if curated == nil {
+				for _, val := range raw {
+					curated = append(curated, demoPreset{
+						label:   val,
+						values:  map[string]string{attr: val},
+						meaning: meaningFor(p.tag, attr, val),
+					})
+				}
+			}
+			for _, dp := range curated {
+				for _, v := range dp.values {
+					if strings.Contains(v, "#fx-") {
+						usesDemoDefs = true
+					}
+				}
 				ce.Presets = append(ce.Presets, catPreset{
-					Name:   presetName(attr, val),
-					Values: map[string]string{attr: val},
+					Name:    presetName(attr, dp.label),
+					Values:  dp.values,
+					Meaning: dp.meaning,
 				})
 			}
+		}
+		if usesDemoDefs {
+			base = injectDemoDefs(base)
 		}
 		ce.Base = base
 		out.Elements = append(out.Elements, ce)
@@ -361,3 +387,24 @@ func presetName(attr, val string) string {
 }
 
 func labelFor(attr string) string { return attr }
+
+// markLabSlot tags the showcased element's open tag with data-lab so the gallery
+// (buildCode) mutates exactly THIS element. The base may contain other elements
+// of the same tag — a <rect> inside the demo mask, a <path> inside the demo
+// marker, the faint original <use> — which a bare first-match would hit instead.
+func markLabSlot(markup, tag string) string {
+	open := "<" + tag
+	i := strings.Index(markup, open)
+	if i < 0 {
+		return markup
+	}
+	j := i + len(open)
+	if j < len(markup) { // guard <line vs <linearGradient prefix overlap
+		switch markup[j] {
+		case ' ', '\t', '\n', '/', '>':
+		default:
+			return markup
+		}
+	}
+	return markup[:j] + ` data-lab=""` + markup[j:]
+}

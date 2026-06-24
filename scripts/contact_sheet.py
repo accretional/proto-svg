@@ -81,8 +81,10 @@ def sheet(el):
     for i, p in enumerate(el.get("presets", [])):
         base = "%02d-%s" % (i, slugify(p["name"]))
         png, gif = os.path.join(d, base + ".png"), os.path.join(d, base + ".gif")
+        strobe = os.path.join(d, base + ".strobe.png")
         temporal = os.path.exists(gif)
-        path = gif if temporal else png
+        # Prefer the onion-skin strobe for temporal presets (timing legible at a glance).
+        path = strobe if os.path.exists(strobe) else (gif if temporal else png)
         cells.append((load_thumb(path), ("▶ " if temporal else "") + p["name"]))
     if not cells:
         return None

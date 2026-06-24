@@ -37,6 +37,8 @@ var universalNonVisual = map[string]bool{
 	"class": true, "style": true, "role": true,
 	// conditional-processing flags — selection, not rendering (no visual diff).
 	"requiredExtensions": true, "systemLanguage": true,
+	// xlink:title is a tooltip/metadata string — never a visual difference.
+	"xlink:title": true,
 }
 
 // smilTimingNonVisual is the set of SMIL timing/control attributes (animation
@@ -246,6 +248,19 @@ var staticallyInertProps = map[string]bool{
 	"pointer-events": true, "color-rendering": true, "color-interpolation": true,
 	"clip-rule": true, "vector-effect": true, "pathLength": true,
 	"result": true, "kernelUnitLength": true,
+	// cursor is the mouse-pointer style (invisible in a still); clip is the
+	// deprecated rect() clip (no effect without an absolutely-positioned viewport).
+	"cursor": true, "clip": true,
+	// rendering-quality hints: change anti-aliasing/interpolation, not the value —
+	// no distinct per-value still (and color-interpolation-filters=auto is the
+	// imperceptible sRGB/linearRGB default).
+	"shape-rendering": true, "image-rendering": true,
+	"color-interpolation-filters": true, "buffered-rendering": true,
+	// HTML-ish text props with no visible effect on a short single-run SVG label.
+	"text-rendering": true, "text-overflow": true, "white-space": true,
+	"unicode-bidi": true, "word-spacing": true,
+	// niche / poorly-supported text props with no reliable visible effect.
+	"font-size-adjust": true, "inline-size": true,
 }
 
 // appliesTo reports whether presentation attr has a UNIQUE visual effect on

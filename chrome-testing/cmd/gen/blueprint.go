@@ -639,7 +639,10 @@ func baselineFor(tag, varyingPrefix, varyingValue string) (string, bool) {
 		return add([2]string{"points", "50,10 90,80 10,80"}, [2]string{"fill", "#16c79a"}, [2]string{"stroke", "#16c79a"}, [2]string{"stroke-width", "2"}), false
 	case "path":
 		// path baseline is stroke-only; the explicit stroke keeps fill="none" visible.
-		return add([2]string{"d", "M8 62 Q30 18 52 54 T96 50"}, [2]string{"fill", "none"}, [2]string{"stroke", "#16c79a"}, [2]string{"stroke-width", "2"}), false
+		// A zig-zag with sharp corners and open ends so stroke-linejoin / miterlimit
+		// (corners) and stroke-linecap (ends) have geometry to act on; the `d` presets
+		// still replace it with their own line / curve / closed shapes.
+		return add([2]string{"d", "M6 64 L28 22 L50 64 L72 22 L94 64"}, [2]string{"fill", "none"}, [2]string{"stroke", "#16c79a"}, [2]string{"stroke-width", "2"}), false
 	case "text":
 		// FIX 3: fill="currentColor" so a varied CSS `color` (or `fill`) recolors the
 		// glyphs; the scaffold root seeds a neutral color so the base card is visible.
@@ -664,9 +667,23 @@ func baselineFor(tag, varyingPrefix, varyingValue string) (string, bool) {
 		return add([2]string{"x", "5"}, [2]string{"y", "5"}, [2]string{"width", "90"}, [2]string{"height", "90"}), false
 	case "use":
 		// The blueprint's defs defines id="slot"; reference it (was "#ref" → dangling).
-		return add([2]string{"href", "#slot"}, [2]string{"x", "10"}, [2]string{"y", "10"}), false
-	case "g", "svg", "defs", "switch", "a", "symbol":
+		// Baseline stroke inherits to the referenced shape so the stroke-* family is
+		// demonstrable (the referenced shape carries no stroke of its own).
+		return add([2]string{"href", "#slot"}, [2]string{"x", "10"}, [2]string{"y", "10"},
+			[2]string{"stroke", "#0b3b2e"}, [2]string{"stroke-width", "3"}), false
+	case "g", "switch", "symbol":
+		// A baseline stroke INHERITS to the container's currentColor-filled children,
+		// so stroke / stroke-width / dasharray / opacity / paint-order have a visible
+		// outline to modulate instead of collapsing to identical strokeless tiles.
+		return add([2]string{"stroke", "#0b3b2e"}, [2]string{"stroke-width", "3"}), false
+	case "svg", "defs":
 		return "", false
+	case "a":
+		// A baseline stroke on the <a> wrapper INHERITS to the rendered pill (whose
+		// child carries no stroke of its own), so the stroke-* family (width / color /
+		// dasharray / opacity) and paint-order have a visible outline to modulate
+		// instead of all collapsing to the identical fill-only pill.
+		return add([2]string{"stroke", "#0b3b2e"}, [2]string{"stroke-width", "3"}), false
 	case "linearGradient":
 		// FIX 2(b): a non-zero x1 baseline so the x2="0" card still has a non-zero
 		// gradient vector (x1=0 default + x2=0 → zero-length → solid last-stop fill).
@@ -979,7 +996,7 @@ func bodyFor(tag string) string {
 		// A link-like "button": a pill the wrapper recolours (currentColor) plus a
 		// dark caption, so the <a> reads as a clickable hyperlink, not a bare square.
 		return `<rect x="12" y="36" width="76" height="28" rx="14" fill="currentColor"/>` +
-			`<text x="50" y="55" text-anchor="middle" font-size="13" font-family="monospace" fill="#0c100e">link</text>`
+			`<text x="50" y="55" text-anchor="middle" font-size="13" font-family="monospace" fill="#0c100e" stroke="none">link</text>`
 	case "svg":
 		// A NESTED viewport: a bordered box establishing its own coordinate system,
 		// with off-centre content the viewport crops — so viewBox / preserveAspectRatio

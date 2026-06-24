@@ -53,6 +53,8 @@ func main() {
 				mu.Unlock()
 				return
 			}
+			// Best-effort strobe still (onion-skin of the frames); never fatal.
+			_ = strobeFolder(folder)
 			mu.Lock()
 			done++
 			mu.Unlock()
@@ -98,6 +100,82 @@ func encodeFolder(folder string, delay int) error {
 	}
 	defer w.Close()
 	return gif.EncodeAll(w, g)
+}
+
+// strobeFolder composites the frame sequence into a single onion-skin "strobe"
+// still (<folder>.strobe.png): each frame is alpha-ramped (early → faint, late →
+// solid) and LIGHTENED onto the accumulator, so the moving shape leaves a trail
+// of stamps whose SPACING reveals the velocity profile at a glance — clustered
+// for calcMode=discrete, evenly spaced for linear, bunched at the ends for
+// spline. (Lighten suits the dark gallery canvas where shapes are brighter than
+// the background.)
+func strobeFolder(folder string) error {
+	entries, err := os.ReadDir(folder)
+	if err != nil {
+		return err
+	}
+	var frames []string
+	for _, e := range entries {
+		if strings.HasPrefix(e.Name(), "frame-") && strings.HasSuffix(e.Name(), ".png") {
+			frames = append(frames, filepath.Join(folder, e.Name()))
+		}
+	}
+	if len(frames) < 2 {
+		return fmt.Errorf("need ≥2 frames")
+	}
+	sort.Strings(frames)
+
+	imgs := make([]image.Image, 0, len(frames))
+	for _, fp := range frames {
+		img, err := loadPNG(fp)
+		if err != nil {
+			return err
+		}
+		imgs = append(imgs, img)
+	}
+	b := imgs[0].Bounds()
+	// Background = the top-left corner pixel of the first frame.
+	bgr, bgg, bgb, _ := imgs[0].At(b.Min.X, b.Min.Y).RGBA()
+	acc := image.NewRGBA(b)
+	for y := b.Min.Y; y < b.Max.Y; y++ {
+		for x := b.Min.X; x < b.Max.X; x++ {
+			acc.Set(x, y, color.RGBA{uint8(bgr >> 8), uint8(bgg >> 8), uint8(bgb >> 8), 255})
+		}
+	}
+	n := len(imgs)
+	for i, img := range imgs {
+		alpha := 0.30 + 0.70*float64(i)/float64(n-1)
+		for y := b.Min.Y; y < b.Max.Y; y++ {
+			for x := b.Min.X; x < b.Max.X; x++ {
+				fr, fg, fb, _ := img.At(x, y).RGBA()
+				// blend this frame toward the background by alpha
+				br := float64(bgr>>8) + (float64(fr>>8)-float64(bgr>>8))*alpha
+				bgn := float64(bgg>>8) + (float64(fg>>8)-float64(bgg>>8))*alpha
+				bb := float64(bgb>>8) + (float64(fb>>8)-float64(bgb>>8))*alpha
+				cur := acc.RGBAAt(x, y)
+				acc.SetRGBA(x, y, color.RGBA{
+					maxu8(cur.R, uint8(br)),
+					maxu8(cur.G, uint8(bgn)),
+					maxu8(cur.B, uint8(bb)),
+					255,
+				})
+			}
+		}
+	}
+	out := folder + ".strobe.png"
+	w, err := os.Create(out)
+	if err != nil {
+		return err
+	}
+	defer w.Close()
+	return png.Encode(w, downscale2x(acc))
+}
+
+func maxu8(a, b uint8) uint8 {
+	if a > b {
+		return a
+	}
+	return b
 }
 
 func loadPNG(p string) (image.Image, error) {

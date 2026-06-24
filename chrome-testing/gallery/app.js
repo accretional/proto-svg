@@ -27,8 +27,16 @@
 
   function buildCode(el, vals) {
     var out = el.base;
-    var openRe = new RegExp('<' + escRe(el.tag) + '(\\s[^>]*?)?\\/?>');
+    // Target the SHOWCASED element specifically via its data-lab marker — the base
+    // may contain other same-tag elements (a <rect> inside a demo mask, a <path>
+    // inside a demo marker, the faint original <use>), and a bare first-match would
+    // mutate the wrong one. Fall back to first-match for markerless bases.
+    var openRe = new RegExp('<' + escRe(el.tag) + '\\b[^>]*?\\bdata-lab\\b[^>]*?\\/?>');
     var m = openRe.exec(out);
+    if (!m) {
+      openRe = new RegExp('<' + escRe(el.tag) + '(\\s[^>]*?)?\\/?>');
+      m = openRe.exec(out);
+    }
     if (m) {
       var tagStr = m[0];
       // Apply EVERY value (controls AND preset-only attributes such as display /
@@ -155,16 +163,31 @@
     var p = $('presets'); p.innerHTML = '';
     (cur.presets || []).forEach(function (pr) {
       var b = document.createElement('button'); b.className = 'preset'; b.textContent = pr.name;
-      b.onclick = function () { applyPreset(pr.values); };
+      if (pr.meaning) b.title = pr.meaning;
+      b.onclick = function () { applyPreset(pr.values, pr.meaning); };
       p.appendChild(b);
     });
     var pc = $('preset-count'); if (pc) pc.textContent = (cur.presets || []).length ? '· ' + cur.presets.length : '';
   }
 
-  function applyPreset(vals) {
+  // showMeaning displays the active preset's plain-language caption above the
+  // preset list (created lazily so index.html needs no extra markup).
+  function showMeaning(meaning) {
+    var host = $('presets'); if (!host) return;
+    var el = $('preset-meaning');
+    if (!el) {
+      el = document.createElement('div'); el.id = 'preset-meaning';
+      el.style.cssText = 'font-size:12px;color:#9fb0a8;margin:2px 2px 8px;line-height:1.45;min-height:16px';
+      host.parentNode.insertBefore(el, host);
+    }
+    el.textContent = meaning || '';
+  }
+
+  function applyPreset(vals, meaning) {
     values = Object.assign({}, cur.defaults, vals);
     renderControls();
     regen();
+    showMeaning(meaning);
   }
 
   // ---- nav rail ----

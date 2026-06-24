@@ -106,6 +106,9 @@ var builtinScaffoldWins = map[string]bool{
 	"animate":          true,
 	"animateTransform": true,
 	"animateMotion":    true,
+	// <view> + <discard> use corrected built-in scaffolds (a fragment-driven crop
+	// image; a before/after composite) that the on-disk templates would shadow.
+	"view": true,
 	// FIX 2 (wrapper inheritance): the on-disk templates for these wrapper/
 	// container tags use a colorless root, so the child's fill="currentColor"
 	// resolves to black (invisible on the dark card) and paint set on the wrapper
@@ -291,13 +294,41 @@ func defaultScaffold(tag string) string {
 		return svgOpen +
 			`<rect id="target" x="10" y="41" width="18" height="18" fill="#4d8bff">{{ELEMENT}}</rect></svg>`
 	case "discard":
-		// FIX 10: <discard> removes its target after `begin`; the static snapshot is
-		// taken before the (60s, via baselineFor) discard fires, so the host should
-		// be present and clearly visible. Use a large, bright centered circle (r=20)
-		// instead of a tiny corner square. discard is a child of the target it
-		// removes; host it directly inside a rendered shape.
+		// <discard> removes its target after `begin` — a state change a still cannot
+		// capture (headless Chrome fires neither the real-time timer nor a
+		// setCurrentTime jump). So SHOW it as a labelled BEFORE/AFTER composite: the
+		// left panel holds the target (with the live {{ELEMENT}} discard; id="target"
+		// so an href preset resolves), the right panel is the same scene with the
+		// target already gone. In a real browser the left circle actually vanishes
+		// after `begin`, converging on the right panel.
 		return svgOpen +
-			`<circle id="target" cx="50" cy="50" r="20" fill="#4d8bff">{{ELEMENT}}</circle></svg>`
+			`<text x="4" y="12" font-family="monospace" font-size="8" fill="#9fb0a8">0s</text>` +
+			`<circle id="target" cx="24" cy="52" r="15" fill="#4d8bff">{{ELEMENT}}</circle>` +
+			`<rect x="9" y="76" width="30" height="12" rx="2" fill="#16c79a"/>` +
+			`<path d="M44 52 H58 M53 47 L58 52 L53 57" stroke="#4ee39a" stroke-width="2" fill="none"/>` +
+			`<text x="61" y="12" font-family="monospace" font-size="8" fill="#9fb0a8">after</text>` +
+			`<rect x="63" y="76" width="30" height="12" rx="2" fill="#16c79a"/>` +
+			`</svg>`
+	case "view":
+		// <view> only reframes when referenced by a fragment URL — it is invisible
+		// inline. DRIVE it for real: the live {{ELEMENT}} view supplies the viewBox /
+		// preserveAspectRatio, a hidden scene supplies the content, and the gallery
+		// (syncFragmentView in app.js) serializes both into a data: URI on the
+		// <image href="…#vw"> so the image shows the ACTUAL view crop. Changing the
+		// view's viewBox / preserveAspectRatio reframes the image.
+		return svgOpen +
+			`{{ELEMENT}}` +
+			`<g data-view-scene="" style="display:none">` +
+			`<rect width="100" height="100" fill="#0e1a17"/>` +
+			`<circle cx="26" cy="30" r="14" fill="#e94560"/>` +
+			`<rect x="54" y="18" width="30" height="30" rx="4" fill="#16c79a"/>` +
+			`<polygon points="50,58 66,86 34,86" fill="#f5a623"/>` +
+			`<line x1="0" y1="50" x2="100" y2="50" stroke="#22302b"/>` +
+			`<line x1="50" y1="0" x2="50" y2="100" stroke="#22302b"/>` +
+			`</g>` +
+			`<image data-view-out="" x="0" y="0" width="100" height="100"/>` +
+			`<rect x="0" y="0" width="100" height="100" fill="none" stroke="#2a3a34" stroke-width="1.5"/>` +
+			`</svg>`
 	case "script":
 		// FIX 9: pre-color the target rect so cards whose <script type="…"> is a
 		// non-JS MIME type (which the browser refuses to execute) are not a blank
@@ -676,6 +707,13 @@ func baselineFor(tag, varyingPrefix, varyingValue string) (string, bool) {
 		// so stroke / stroke-width / dasharray / opacity / paint-order have a visible
 		// outline to modulate instead of collapsing to identical strokeless tiles.
 		return add([2]string{"stroke", "#0b3b2e"}, [2]string{"stroke-width", "3"}), false
+	case "view":
+		// A WIDE (non-square) baseline viewBox so the fragment-driven image
+		// (syncFragmentView) shows a zoom by default AND the preserveAspectRatio
+		// presets visibly differ: fitting a 2:1 region into the square image makes
+		// meet letterbox, slice crop, and none stretch. The square viewBox presets
+		// supply their own box (this baseline is skipped when viewBox itself varies).
+		return add([2]string{"viewBox", "14 30 70 34"}, [2]string{"preserveAspectRatio", "xMidYMid meet"}), false
 	case "svg", "defs":
 		return "", false
 	case "a":

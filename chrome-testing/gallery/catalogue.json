@@ -1316,7 +1316,7 @@
     }
    ],
    "defaults": {},
-   "base": "\u003csvg xmlns=\"http://www.w3.org/2000/svg\" width=\"120\" height=\"120\" viewBox=\"0 0 100 100\"\u003e\u003ccircle id=\"target\" cx=\"50\" cy=\"50\" r=\"20\" fill=\"#4d8bff\"\u003e\u003cdiscard data-lab=\"\" begin=\"1s\"\u003e\u003c/discard\u003e\u003c/circle\u003e\u003c/svg\u003e",
+   "base": "\u003csvg xmlns=\"http://www.w3.org/2000/svg\" width=\"120\" height=\"120\" viewBox=\"0 0 100 100\"\u003e\u003ctext x=\"4\" y=\"12\" font-family=\"monospace\" font-size=\"8\" fill=\"#9fb0a8\"\u003e0s\u003c/text\u003e\u003ccircle id=\"target\" cx=\"24\" cy=\"52\" r=\"15\" fill=\"#4d8bff\"\u003e\u003cdiscard data-lab=\"\" begin=\"1s\"\u003e\u003c/discard\u003e\u003c/circle\u003e\u003crect x=\"9\" y=\"76\" width=\"30\" height=\"12\" rx=\"2\" fill=\"#16c79a\"/\u003e\u003cpath d=\"M44 52 H58 M53 47 L58 52 L53 57\" stroke=\"#4ee39a\" stroke-width=\"2\" fill=\"none\"/\u003e\u003ctext x=\"61\" y=\"12\" font-family=\"monospace\" font-size=\"8\" fill=\"#9fb0a8\"\u003eafter\u003c/text\u003e\u003crect x=\"63\" y=\"76\" width=\"30\" height=\"12\" rx=\"2\" fill=\"#16c79a\"/\u003e\u003c/svg\u003e",
    "presets": [
     {
      "name": "href=#target",
@@ -15449,8 +15449,11 @@
      ]
     }
    ],
-   "defaults": {},
-   "base": "\u003csvg xmlns=\"http://www.w3.org/2000/svg\" width=\"120\" height=\"120\" viewBox=\"0 0 100 100\"\u003e\n  \u003cdefs\u003e\u003cview data-lab=\"\"\u003e\u003c/view\u003e\u003c/defs\u003e\n  \u003ccircle cx=\"20\" cy=\"20\" r=\"15\" fill=\"#e94560\"/\u003e\n  \u003crect x=\"55\" y=\"10\" width=\"30\" height=\"30\" fill=\"#16c79a\" rx=\"4\"/\u003e\n  \u003cpolygon points=\"50,60 35,90 65,90\" fill=\"#f5a623\"/\u003e\n\u003c/svg\u003e",
+   "defaults": {
+    "preserveAspectRatio": "xMidYMid meet",
+    "viewBox": "14 30 70 34"
+   },
+   "base": "\u003csvg xmlns=\"http://www.w3.org/2000/svg\" width=\"120\" height=\"120\" viewBox=\"0 0 100 100\"\u003e\u003cview data-lab=\"\" viewBox=\"14 30 70 34\" preserveAspectRatio=\"xMidYMid meet\"\u003e\u003c/view\u003e\u003cg data-view-scene=\"\" style=\"display:none\"\u003e\u003crect width=\"100\" height=\"100\" fill=\"#0e1a17\"/\u003e\u003ccircle cx=\"26\" cy=\"30\" r=\"14\" fill=\"#e94560\"/\u003e\u003crect x=\"54\" y=\"18\" width=\"30\" height=\"30\" rx=\"4\" fill=\"#16c79a\"/\u003e\u003cpolygon points=\"50,58 66,86 34,86\" fill=\"#f5a623\"/\u003e\u003cline x1=\"0\" y1=\"50\" x2=\"100\" y2=\"50\" stroke=\"#22302b\"/\u003e\u003cline x1=\"50\" y1=\"0\" x2=\"50\" y2=\"100\" stroke=\"#22302b\"/\u003e\u003c/g\u003e\u003cimage data-view-out=\"\" x=\"0\" y=\"0\" width=\"100\" height=\"100\"/\u003e\u003crect x=\"0\" y=\"0\" width=\"100\" height=\"100\" fill=\"none\" stroke=\"#2a3a34\" stroke-width=\"1.5\"/\u003e\u003c/svg\u003e",
    "presets": [
     {
      "name": "viewBox=0 0 100 100",

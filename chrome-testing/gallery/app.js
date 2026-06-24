@@ -58,13 +58,35 @@
     return out;
   }
 
+  // syncFragmentView drives a <view> for real: it serializes the (hidden) scene plus
+  // the live view's viewBox/preserveAspectRatio into a data: URI on the companion
+  // <image href="…#vw">, so the image shows the actual fragment-referenced view crop.
+  // <view> renders nothing inline; this is the only way its reframing is visible.
+  function syncFragmentView(svg) {
+    var view = svg.querySelector('view');
+    var scene = svg.querySelector('[data-view-scene]');
+    var out = svg.querySelector('[data-view-out]');
+    if (!view || !scene || !out) return;
+    var vb = view.getAttribute('viewBox') || '0 0 100 100';
+    var par = view.getAttribute('preserveAspectRatio');
+    var doc = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">' +
+      '<view id="vw" viewBox="' + vb + '"' + (par ? ' preserveAspectRatio="' + par + '"' : '') + '/>' +
+      scene.innerHTML + '</svg>';
+    var uri = 'data:image/svg+xml,' + encodeURIComponent(doc) + '#vw';
+    out.setAttribute('href', uri);
+    out.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', uri);
+  }
+
   // ---- viewer ----
   function renderViewer() {
     var v = $('viewer');
     if (!v) return;
     v.innerHTML = code;
     var svg = v.querySelector('svg');
-    if (svg) { svg.setAttribute('width', '100%'); svg.setAttribute('height', '100%'); svg.style.display = 'block'; }
+    if (svg) {
+      svg.setAttribute('width', '100%'); svg.setAttribute('height', '100%'); svg.style.display = 'block';
+      syncFragmentView(svg);
+    }
     v.style.transform = 'translate(' + panX + 'px,' + panY + 'px) scale(' + zoom + ')';
     var cv = $('canvas');
     if (cv) cv.style.background = dark ? '#0c0f0e' : '#f4f7f5';
@@ -205,9 +227,14 @@
   }
   function miniSvg(el) {
     // small thumbnail: the element's default render, fit into 22px, with all ids
-    // namespaced so it never steals the viewer's #slot reference.
+    // namespaced so it never steals the viewer's #slot reference. Rendered through a
+    // detached node so syncFragmentView can fill a <view>'s crop image too.
     var c = namespaceIds(buildCode(el, el.defaults), 'm' + (_uid++));
-    return c.replace(/<svg /, '<svg width="100%" height="100%" ');
+    var tmp = document.createElement('div');
+    tmp.innerHTML = c;
+    var svg = tmp.querySelector('svg');
+    if (svg) { svg.setAttribute('width', '100%'); svg.setAttribute('height', '100%'); syncFragmentView(svg); }
+    return tmp.innerHTML;
   }
   function buildRail() {
     var rail = $('rail'); rail.innerHTML = '';

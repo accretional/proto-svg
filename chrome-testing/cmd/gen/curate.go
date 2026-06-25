@@ -59,26 +59,13 @@ func curateAttr(tag, attr string, vals []string) []demoPreset {
 	}
 
 	switch attr {
+	// mask / clip-path / marker references are resolved to real demo defs by the
+	// OVERLAY (overlaySample → #fx-mask / #fx-clip / #fx-marker) and surfaced by the
+	// enumeration's demonstrative-arm pick. `filter` is the exception: its grammar
+	// value (FilterValueList) samples a messy multi-item list with a dangling url()
+	// and no-op items, so select a single clean, grammar-legal url() reference.
 	case "filter":
-		// `none` is a no-op; show a real blur. (Filter elements/primitives keep
-		// their own meaningful url(#slot) handling.)
-		if tag == "filter" || isFilterPrimitiveTag(tag) {
-			return nil
-		}
-		return []demoPreset{one("filter", "url(#fx-blur)", "runs the element through a blur filter (vs none)")}
-	case "clip-path":
-		if tag == "clipPath" {
-			return nil
-		}
-		return []demoPreset{
-			one("clip-path", "circle(36% at 50% 50%)", "clips the element to a circle"),
-			one("clip-path", "polygon(50% 4%, 96% 96%, 4% 96%)", "clips the element to a triangle"),
-		}
-	case "mask":
-		if tag == "mask" {
-			return nil
-		}
-		return []demoPreset{one("mask", "url(#fx-mask)", "fades the element out left→right via a gradient mask")}
+		return []demoPreset{one("filter", "url(#fx-blur)", "runs the element through a blur filter")}
 	case "visibility":
 		return []demoPreset{one("visibility", "hidden", "hides the element (it still occupies its space)")}
 	case "display":
@@ -161,13 +148,6 @@ func curateAttr(tag, attr string, vals []string) []demoPreset {
 			out = append(out, one("d", v, "path geometry: "+pathKind(v)))
 		}
 		return out
-	case "marker", "marker-start", "marker-mid", "marker-end":
-		// `none` is the default (no markers); show a real arrowhead marker.
-		where := map[string]string{
-			"marker": "every vertex", "marker-start": "the start vertex",
-			"marker-mid": "each mid vertex", "marker-end": "the end vertex",
-		}
-		return []demoPreset{one(attr, "url(#fx-marker)", "draws an arrowhead at "+where[attr])}
 	case "width", "height":
 		if tag == "use" {
 			return dropAttr // only sizes referenced <svg>/<symbol>; a plain shape ref ignores it
@@ -213,41 +193,9 @@ func curateAttr(tag, attr string, vals []string) []demoPreset {
 			out = append(out, one(attr, v, meaningFor(tag, attr, v)))
 		}
 		return out
-	case "dx", "dy":
-		if tag == "feOffset" || tag == "feDropShadow" {
-			d := "horizontally"
-			if attr == "dy" {
-				d = "vertically"
-			}
-			return []demoPreset{
-				one(attr, "12", "shifts the result +12 "+d),
-				one(attr, "28", "shifts the result +28 "+d),
-				one(attr, "-14", "shifts the result -14 "+d+" (opposite)"),
-			}
-		}
-		return nil // text/tspan per-glyph dx/dy stay small (overlay-pinned)
-	case "scale":
-		if tag == "feDisplacementMap" {
-			return []demoPreset{
-				one("scale", "16", "warps pixels up to 16 units"),
-				one("scale", "46", "warps pixels up to 46 units (strong)"),
-			}
-		}
-		return nil
-	case "azimuth":
-		return []demoPreset{
-			one("azimuth", "0", "lights the surface from the right (0°)"),
-			one("azimuth", "120", "lights from the lower-left (120°)"),
-			one("azimuth", "240", "lights from the upper-left (240°)"),
-		}
+		// (dx/dy, scale, azimuth, light x/y, pointsAtX/Y are pinned to visible values
+		// by the OVERLAY now; k1-k4→operator=arithmetic by companionFor.)
 	case "x", "y":
-		if tag == "fePointLight" || tag == "feSpotLight" {
-			return []demoPreset{
-				one(attr, "15", "light "+attr+" near the start edge"),
-				one(attr, "50", "light "+attr+" centred"),
-				one(attr, "88", "light "+attr+" near the far edge"),
-			}
-		}
 		if tag == "pattern" {
 			return dropAttr // an origin phase-shift is invisible on a seamless tile
 		}
@@ -255,27 +203,6 @@ func curateAttr(tag, attr string, vals []string) []demoPreset {
 			return dropAttr // large region offsets push the filter region off-canvas → blank
 		}
 		return nil
-	case "pointsAtX", "pointsAtY":
-		d := strings.ToLower(strings.TrimPrefix(attr, "pointsAt"))
-		return []demoPreset{
-			one(attr, "15", "aims the spotlight "+d+" toward the start edge"),
-			one(attr, "50", "aims the spotlight "+d+" at the centre"),
-			one(attr, "88", "aims the spotlight "+d+" toward the far edge"),
-		}
-	case "k1", "k2", "k3", "k4":
-		mk := func(v, meaning string) demoPreset {
-			return demoPreset{label: v, values: map[string]string{"operator": "arithmetic", attr: v}, meaning: meaning}
-		}
-		switch attr {
-		case "k1":
-			return []demoPreset{mk("1", "arithmetic composite: product of the two inputs (k1·i1·i2)")}
-		case "k2":
-			return []demoPreset{mk("1", "arithmetic composite: adds input 1 (k2·i1)")}
-		case "k3":
-			return []demoPreset{mk("1", "arithmetic composite: adds input 2 (k3·i2)")}
-		default:
-			return []demoPreset{mk("0.4", "arithmetic composite: adds a constant wash (k4)")}
-		}
 
 	// ---- filter-primitive no-op / out-of-range pruning ----
 	case "numOctaves":
@@ -316,46 +243,9 @@ func curateAttr(tag, attr string, vals []string) []demoPreset {
 		}
 		return nil
 
-	// ---- transfer functions (feFuncR/G/B/A): each type/param preset is
-	//      self-contained so it actually transforms the channel ----
-	case "type":
-		if isFeFunc(tag) {
-			return []demoPreset{
-				{label: "linear", values: map[string]string{"type": "linear", "slope": "0.5", "intercept": "0.25"}, meaning: "linear channel remap (slope·in + intercept)"},
-				{label: "gamma", values: map[string]string{"type": "gamma", "amplitude": "1", "exponent": "0.45", "offset": "0"}, meaning: "gamma curve (amplitude·inᵉˣᵖ + offset)"},
-				{label: "table", values: map[string]string{"type": "table", "tableValues": "0 1 0"}, meaning: "interpolates the channel through a lookup table"},
-				{label: "discrete", values: map[string]string{"type": "discrete", "tableValues": "0 0.4 0.7 1"}, meaning: "steps the channel through discrete bands"},
-			}
-		}
-		return nil
-	case "slope", "intercept":
-		if isFeFunc(tag) {
-			v := first(vals, "0.5")
-			return []demoPreset{{label: v, values: map[string]string{"type": "linear", attr: v}, meaning: meaningFor(tag, attr, v)}}
-		}
-		return nil
-	case "amplitude", "exponent":
-		if isFeFunc(tag) {
-			v := first(vals, "1")
-			m := map[string]string{"type": "gamma", "amplitude": "1", "exponent": "0.5", "offset": "0"}
-			m[attr] = v
-			return []demoPreset{{label: v, values: m, meaning: meaningFor(tag, attr, v)}}
-		}
-		return nil
-	case "offset":
-		if isFeFunc(tag) {
-			v := first(vals, "0.3")
-			return []demoPreset{{label: v, values: map[string]string{"type": "gamma", "amplitude": "1", "exponent": "1", "offset": v}, meaning: "raises the channel floor by " + v}}
-		}
-		return nil // gradient stop offset handled by meaningFor
-	case "tableValues":
-		if isFeFunc(tag) {
-			return []demoPreset{
-				{label: "0 1 0", values: map[string]string{"type": "table", "tableValues": "0 1 0"}, meaning: "lookup table 0→1→0 (peaks the mid-tones)"},
-				{label: "1 0 1", values: map[string]string{"type": "table", "tableValues": "1 0 1"}, meaning: "lookup table 1→0→1 (inverts the mid-tones)"},
-			}
-		}
-		return nil
+	// (feFunc type / slope / amplitude / exponent / offset / tableValues are paired
+	// with the param that makes them visible by companionFor — the grammar's own
+	// value-path is kept; the blueprint supplies the companion type=gamma/table etc.)
 	case "kernelMatrix":
 		if tag == "feConvolveMatrix" {
 			return []demoPreset{
@@ -580,6 +470,27 @@ func meaningFor(tag, attr, val string) string {
 		return "outlines the shape in " + val
 	case "color":
 		return "the currentColor descendants inherit (" + val + ")"
+	case "filter":
+		if strings.Contains(val, "fx-blur") {
+			return "runs the element through a blur filter"
+		}
+		return "applies the filter " + val
+	case "mask":
+		if strings.Contains(val, "fx-mask") {
+			return "fades the element out left→right via a gradient mask"
+		}
+		return "masks the element with " + val
+	case "clip-path":
+		if strings.Contains(val, "fx-clip") {
+			return "clips the element to a star"
+		}
+		return "clips the element with " + val
+	case "marker", "marker-start", "marker-mid", "marker-end":
+		where := map[string]string{
+			"marker": "every vertex", "marker-start": "the start vertex",
+			"marker-mid": "each mid vertex", "marker-end": "the end vertex",
+		}
+		return "draws an arrowhead marker at " + where[a]
 	case "href", "xlink:href":
 		switch {
 		case tag == "use":
@@ -832,28 +743,6 @@ func pathKind(d string) string {
 	return d
 }
 
-// isFilterPrimitiveTag reports whether tag is an feXxx filter primitive.
-func isFilterPrimitiveTag(tag string) bool {
-	return strings.HasPrefix(tag, "fe")
-}
-
-// isFeFunc reports whether tag is a transfer-function element.
-func isFeFunc(tag string) bool {
-	switch tag {
-	case "feFuncR", "feFuncG", "feFuncB", "feFuncA":
-		return true
-	}
-	return false
-}
-
-// first returns the first value or a default.
-func first(vals []string, def string) string {
-	if len(vals) > 0 {
-		return vals[0]
-	}
-	return def
-}
-
 // demoDefs is a shared <defs> block of reusable demo resources that substituted
 // preset values (filter=url(#fx-blur), mask=url(#fx-mask), …) reference. It is
 // injected into an element's base only when a curated preset uses one.
@@ -863,6 +752,7 @@ func demoDefs() string {
 		`<linearGradient id="fx-maskgrad"><stop offset="0.15" stop-color="#fff"/><stop offset="1" stop-color="#000"/></linearGradient>` +
 		`<mask id="fx-mask"><rect x="0" y="0" width="100" height="100" fill="url(#fx-maskgrad)"/></mask>` +
 		`<marker id="fx-marker" markerWidth="7" markerHeight="7" refX="3.5" refY="3.5" orient="auto"><path d="M0 0 L7 3.5 L0 7 Z" fill="#f5a623"/></marker>` +
+		`<clipPath id="fx-clip"><polygon points="50,6 61,38 95,38 67,58 78,92 50,72 22,92 33,58 5,38 39,38"/></clipPath>` +
 		`</defs>`
 }
 

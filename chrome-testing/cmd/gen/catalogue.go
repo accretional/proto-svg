@@ -51,6 +51,11 @@ type catPreset struct {
 	Name    string            `json:"name"`
 	Values  map[string]string `json:"values"`
 	Meaning string            `json:"meaning,omitempty"`
+	// Prov is "grammar" when the preset is a raw enumerated value-path (leaf value
+	// sampled by the overlay, companions by companionFor) or "curated" when the
+	// curation layer selected a demonstrative value or expanded a showcase set —
+	// so the walkthrough-vs-showcase split is auditable.
+	Prov string `json:"prov,omitempty"`
 }
 
 type catElement struct {
@@ -130,15 +135,20 @@ func runCataloguePass(en *Enumerator, bp *blueprintProvider, els []element, page
 				ce.Defaults[attr] = d
 			}
 		}
-		// presets: one per visual value-path, CURATED so each preset demonstrates
-		// the attribute's meaning (no-ops substituted, some attrs expanded) and
-		// carries a plain-language caption. Uncurated attrs fall back to the raw
-		// enumerated values captioned by meaningFor.
+		// presets: one per visual value-path. The OVERLAY samples leaf values
+		// (refs→real defs, magnitudes→visible) so they're grammar-faithful; curate
+		// adds showcase EXPANSIONS, captions, and display pruning. Each preset's
+		// Values also gets companionFor's companions/overrides MERGED IN, so a varied
+		// attr that only acts in context (k1→operator=arithmetic, feFunc amplitude→
+		// type=gamma) carries that context into the gallery (which applies Values to
+		// the base, not a per-preset specimen).
 		usesDemoDefs := false
 		for _, attr := range order {
 			raw := dedupStr(vals[attr])
 			curated := curateAttr(p.tag, attr, raw)
+			prov := "curated"
 			if curated == nil {
+				prov = "grammar"
 				for _, val := range raw {
 					curated = append(curated, demoPreset{
 						label:   val,
@@ -148,15 +158,17 @@ func runCataloguePass(en *Enumerator, bp *blueprintProvider, els []element, page
 				}
 			}
 			for _, dp := range curated {
-				for _, v := range dp.values {
+				vals := withCompanions(p.tag, attr, dp.label, dp.values)
+				for _, v := range vals {
 					if strings.Contains(v, "#fx-") {
 						usesDemoDefs = true
 					}
 				}
 				ce.Presets = append(ce.Presets, catPreset{
 					Name:    presetName(attr, dp.label),
-					Values:  dp.values,
+					Values:  vals,
 					Meaning: dp.meaning,
+					Prov:    prov,
 				})
 			}
 		}
@@ -387,6 +399,27 @@ func presetName(attr, val string) string {
 }
 
 func labelFor(attr string) string { return attr }
+
+// withCompanions merges companionFor's companion attributes and overrides into a
+// preset's Values. The gallery applies Values to the base (not a per-preset
+// specimen), so a varied attr that only acts in context must carry that context
+// itself — k1→operator=arithmetic, feFunc amplitude→type=gamma, etc.
+func withCompanions(tag, attr, value string, base map[string]string) map[string]string {
+	comp, over := companionFor(tag, attr, value)
+	out := make(map[string]string, len(base))
+	for k, v := range base {
+		out[k] = v
+	}
+	for _, c := range comp {
+		if _, ok := out[c[0]]; !ok {
+			out[c[0]] = c[1]
+		}
+	}
+	for k, v := range over {
+		out[k] = v
+	}
+	return out
+}
 
 // markLabSlot tags the showcased element's open tag with data-lab so the gallery
 // (buildCode) mutates exactly THIS element. The base may contain other elements

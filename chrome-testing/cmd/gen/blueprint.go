@@ -901,13 +901,14 @@ func companionFor(tag, varied, value string) (companions [][2]string, overrides 
 			// channel-swap: R↔B (and keep G, A) — clearly distinct from hueRotate.
 			overrides["values"] = "0 0 1 0 0  0 1 0 0 0  1 0 0 0 0  0 0 0 1 0"
 		}
-		// The arithmetic coefficients k1-k4 are ignored in every mode but
-		// arithmetic, so flip the baseline operator when one of them is varied.
+	case "feComposite":
+		// The arithmetic coefficients k1-k4 are ignored in every operator but
+		// `arithmetic`, so flip the operator when one of them is varied and seed the
+		// OTHER coefficients (out = k1·i1·i2 + k2·i1 + k3·i2 + k4) so the varied k is
+		// not the lone non-zero term — a mid blend makes each k visibly distinct.
 		switch varied {
 		case "k1", "k2", "k3", "k4":
 			overrides["operator"] = "arithmetic"
-			// Seed the OTHER coefficients so the varied k is not the lone non-zero
-			// term (k1·i1·i2 + k2·i1 + k3·i2 + k4). A mid blend makes each k visible.
 			seed := map[string]string{"k1": "0.5", "k2": "0.5", "k3": "0.5", "k4": "0"}
 			delete(seed, varied)
 			for _, k := range []string{"k1", "k2", "k3", "k4"} {

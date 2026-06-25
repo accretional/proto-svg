@@ -72,6 +72,21 @@ func overlaySample(tag, attrName, valueKind string) (string, bool) {
 	//    points at an id the blueprint defines — never a dangling ref.
 	switch valueKind {
 	case "UrlType":
+		// Presentation references resolve to a real demo def the blueprint injects
+		// (injectDemoDefs guarantees these ids) — the same pattern as gradient
+		// href→#refgrad. Otherwise url(#slot) is the element's OWN id, a no-op /
+		// dangling reference for these properties, so the grammar's url() value-path
+		// would render nothing.
+		switch an {
+		case "filter":
+			return "url(#fx-blur)", true
+		case "mask":
+			return "url(#fx-mask)", true
+		case "clip-path":
+			return "url(#fx-clip)", true
+		case "marker", "marker-start", "marker-mid", "marker-end":
+			return "url(#fx-marker)", true
+		}
 		return "url(#" + refTarget + ")", true
 	case "IriType":
 		// href/xlink:href forms reference the target fragment.
@@ -108,7 +123,10 @@ func overlaySample(tag, attrName, valueKind string) (string, bool) {
 	// overridden here (they are handled by the baseline positioning).
 	case "dx", "dy":
 		if tag == "text" || tag == "tspan" {
-			return "4", true
+			return "4", true // per-glyph offsets stay within the card
+		}
+		if tag == "feOffset" || tag == "feDropShadow" {
+			return "16", true // a visible offset; the 0–3px samples are sub-threshold
 		}
 
 	// feTurbulence baseFrequency: defaults to 0 → uniform black output on every
@@ -149,6 +167,22 @@ func overlaySample(tag, attrName, valueKind string) (string, bool) {
 		return "20", true
 	case "surfacescale":
 		return "5", true
+	case "azimuth":
+		return "135", true // the generic 0–3° NumberType samples are indistinguishable
+	case "x", "y":
+		// Light SOURCE position: place it off-centre so its effect reads. (Geometry
+		// x/y on shapes and primitive-subregion x/y keep the grammar samples.)
+		if tag == "fePointLight" || tag == "feSpotLight" {
+			return "18", true
+		}
+	case "pointsatx", "pointsaty":
+		return "82", true // aim the spotlight off-axis so it's clearly directional
+
+	// feDisplacementMap scale: the 0–3 samples barely move pixels; pin a visible warp.
+	case "scale":
+		if tag == "feDisplacementMap" {
+			return "32", true
+		}
 
 	// (numOctaves ≥ 0 is now structural — NonNegativeIntegerType in the grammar.)
 	// feTurbulence seed: pin a stable value so non-seed cards share one noise field

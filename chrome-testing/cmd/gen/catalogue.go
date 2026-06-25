@@ -81,20 +81,26 @@ func interactivePresets(tag string) []catPreset {
 	if !eventRenderable[tag] {
 		return nil
 	}
+	// pointer-events:bounding-box makes the WHOLE bounding box a hit target, so the
+	// hover/click fires even on a container whose centre is empty (g/a/switch). The
+	// handlers touch fill+color+stroke so they recolor direct-fill shapes AND
+	// currentColor-filled container children.
 	return []catPreset{
 		{
 			Name: "onmouseover", Prov: "curated", Interactive: "hover",
 			Meaning: "ON HOVER the handler fades the element (event attributes are visual in context)",
 			Values: map[string]string{
-				"onmouseover": "this.style.opacity='0.3'",
-				"onmouseout":  "this.style.opacity='1'",
+				"onmouseover":    "this.style.opacity='0.3'",
+				"onmouseout":     "this.style.opacity='1'",
+				"pointer-events": "bounding-box",
 			},
 		},
 		{
 			Name: "onclick", Prov: "curated", Interactive: "click",
 			Meaning: "ON CLICK the handler recolors the element to orange",
 			Values: map[string]string{
-				"onclick": "this.setAttribute('fill','#f5a623');this.setAttribute('stroke','#f5a623')",
+				"onclick":        "this.style.fill='#f5a623';this.style.color='#f5a623';this.style.stroke='#f5a623'",
+				"pointer-events": "bounding-box",
 			},
 		},
 	}

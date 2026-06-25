@@ -70,10 +70,7 @@
     {
      "key": "stroke-dasharray",
      "label": "stroke-dasharray",
-     "control": "select",
-     "options": [
-      "none"
-     ]
+     "control": "text"
     },
     {
      "key": "stroke-dashoffset",
@@ -88,7 +85,7 @@
      "label": "paint-order",
      "control": "select",
      "options": [
-      "normal"
+      "fill stroke markers"
      ]
     },
     {
@@ -117,11 +114,11 @@
    "base": "\u003csvg xmlns=\"http://www.w3.org/2000/svg\" width=\"120\" height=\"120\" viewBox=\"0 0 100 100\" color=\"#16c79a\"\u003e\u003cdefs\u003e\u003cfilter id=\"fx-blur\" x=\"-40%\" y=\"-40%\" width=\"180%\" height=\"180%\"\u003e\u003cfeGaussianBlur stdDeviation=\"3.2\"/\u003e\u003c/filter\u003e\u003clinearGradient id=\"fx-maskgrad\"\u003e\u003cstop offset=\"0.15\" stop-color=\"#fff\"/\u003e\u003cstop offset=\"1\" stop-color=\"#000\"/\u003e\u003c/linearGradient\u003e\u003cmask id=\"fx-mask\"\u003e\u003crect x=\"0\" y=\"0\" width=\"100\" height=\"100\" fill=\"url(#fx-maskgrad)\"/\u003e\u003c/mask\u003e\u003cmarker id=\"fx-marker\" markerWidth=\"7\" markerHeight=\"7\" refX=\"3.5\" refY=\"3.5\" orient=\"auto\"\u003e\u003cpath d=\"M0 0 L7 3.5 L0 7 Z\" fill=\"#f5a623\"/\u003e\u003c/marker\u003e\u003cclipPath id=\"fx-clip\"\u003e\u003cpolygon points=\"50,6 61,38 95,38 67,58 78,92 50,72 22,92 33,58 5,38 39,38\"/\u003e\u003c/clipPath\u003e\u003c/defs\u003e\u003ca data-lab=\"\" stroke=\"#0b3b2e\" stroke-width=\"3\"\u003e\u003crect x=\"12\" y=\"36\" width=\"76\" height=\"28\" rx=\"14\" fill=\"currentColor\"/\u003e\u003ctext x=\"50\" y=\"55\" text-anchor=\"middle\" font-size=\"13\" font-family=\"monospace\" fill=\"#0c100e\" stroke=\"none\"\u003elink\u003c/text\u003e\u003c/a\u003e\u003c/svg\u003e",
    "presets": [
     {
-     "name": "fill=none",
+     "name": "fill=currentColor",
      "values": {
-      "fill": "none"
+      "fill": "currentColor"
      },
-     "meaning": "no fill — the interior is transparent",
+     "meaning": "fills the interior with currentColor",
      "prov": "grammar"
     },
     {
@@ -133,11 +130,11 @@
      "prov": "grammar"
     },
     {
-     "name": "stroke=none",
+     "name": "stroke=currentColor",
      "values": {
-      "stroke": "none"
+      "stroke": "currentColor"
      },
-     "meaning": "removes the outline stroke",
+     "meaning": "outlines the shape in currentColor",
      "prov": "grammar"
     },
     {
@@ -249,7 +246,8 @@
      "name": "onmouseover",
      "values": {
       "onmouseout": "this.style.opacity='1'",
-      "onmouseover": "this.style.opacity='0.3'"
+      "onmouseover": "this.style.opacity='0.3'",
+      "pointer-events": "bounding-box"
      },
      "meaning": "ON HOVER the handler fades the element (event attributes are visual in context)",
      "prov": "curated",
@@ -258,7 +256,8 @@
     {
      "name": "onclick",
      "values": {
-      "onclick": "this.setAttribute('fill','#f5a623');this.setAttribute('stroke','#f5a623')"
+      "onclick": "this.style.fill='#f5a623';this.style.color='#f5a623';this.style.stroke='#f5a623'",
+      "pointer-events": "bounding-box"
      },
      "meaning": "ON CLICK the handler recolors the element to orange",
      "prov": "curated",
@@ -1059,10 +1058,7 @@
     {
      "key": "stroke-dasharray",
      "label": "stroke-dasharray",
-     "control": "select",
-     "options": [
-      "none"
-     ]
+     "control": "text"
     },
     {
      "key": "stroke-dashoffset",
@@ -1077,7 +1073,7 @@
      "label": "paint-order",
      "control": "select",
      "options": [
-      "normal"
+      "fill stroke markers"
      ]
     },
     {
@@ -1230,11 +1226,11 @@
      "prov": "grammar"
     },
     {
-     "name": "fill=none",
+     "name": "fill=currentColor",
      "values": {
-      "fill": "none"
+      "fill": "currentColor"
      },
-     "meaning": "no fill — the interior is transparent",
+     "meaning": "fills the interior with currentColor",
      "prov": "grammar"
     },
     {
@@ -1246,11 +1242,11 @@
      "prov": "grammar"
     },
     {
-     "name": "stroke=none",
+     "name": "stroke=currentColor",
      "values": {
-      "stroke": "none"
+      "stroke": "currentColor"
      },
-     "meaning": "removes the outline stroke",
+     "meaning": "outlines the shape in currentColor",
      "prov": "grammar"
     },
     {
@@ -1362,7 +1358,8 @@
      "name": "onmouseover",
      "values": {
       "onmouseout": "this.style.opacity='1'",
-      "onmouseover": "this.style.opacity='0.3'"
+      "onmouseover": "this.style.opacity='0.3'",
+      "pointer-events": "bounding-box"
      },
      "meaning": "ON HOVER the handler fades the element (event attributes are visual in context)",
      "prov": "curated",
@@ -1371,7 +1368,8 @@
     {
      "name": "onclick",
      "values": {
-      "onclick": "this.setAttribute('fill','#f5a623');this.setAttribute('stroke','#f5a623')"
+      "onclick": "this.style.fill='#f5a623';this.style.color='#f5a623';this.style.stroke='#f5a623'",
+      "pointer-events": "bounding-box"
      },
      "meaning": "ON CLICK the handler recolors the element to orange",
      "prov": "curated",
@@ -1416,11 +1414,11 @@
      "prov": "grammar"
     },
     {
-     "name": "fill-rule=nonzero",
+     "name": "fill-rule=evenodd",
      "values": {
-      "fill-rule": "nonzero"
+      "fill-rule": "evenodd"
      },
-     "meaning": "nonzero rule for self-intersecting/overlapping subpaths",
+     "meaning": "evenodd rule for self-intersecting/overlapping subpaths",
      "prov": "grammar"
     }
    ]
@@ -1544,10 +1542,7 @@
     {
      "key": "stroke-dasharray",
      "label": "stroke-dasharray",
-     "control": "select",
-     "options": [
-      "none"
-     ]
+     "control": "text"
     },
     {
      "key": "stroke-dashoffset",
@@ -1562,7 +1557,7 @@
      "label": "paint-order",
      "control": "select",
      "options": [
-      "normal"
+      "fill stroke markers"
      ]
     },
     {
@@ -1740,11 +1735,11 @@
      "prov": "grammar"
     },
     {
-     "name": "fill=none",
+     "name": "fill=currentColor",
      "values": {
-      "fill": "none"
+      "fill": "currentColor"
      },
-     "meaning": "no fill — the interior is transparent",
+     "meaning": "fills the interior with currentColor",
      "prov": "grammar"
     },
     {
@@ -1756,11 +1751,11 @@
      "prov": "grammar"
     },
     {
-     "name": "stroke=none",
+     "name": "stroke=currentColor",
      "values": {
-      "stroke": "none"
+      "stroke": "currentColor"
      },
-     "meaning": "removes the outline stroke",
+     "meaning": "outlines the shape in currentColor",
      "prov": "grammar"
     },
     {
@@ -1872,7 +1867,8 @@
      "name": "onmouseover",
      "values": {
       "onmouseout": "this.style.opacity='1'",
-      "onmouseover": "this.style.opacity='0.3'"
+      "onmouseover": "this.style.opacity='0.3'",
+      "pointer-events": "bounding-box"
      },
      "meaning": "ON HOVER the handler fades the element (event attributes are visual in context)",
      "prov": "curated",
@@ -1881,7 +1877,8 @@
     {
      "name": "onclick",
      "values": {
-      "onclick": "this.setAttribute('fill','#f5a623');this.setAttribute('stroke','#f5a623')"
+      "onclick": "this.style.fill='#f5a623';this.style.color='#f5a623';this.style.stroke='#f5a623'",
+      "pointer-events": "bounding-box"
      },
      "meaning": "ON CLICK the handler recolors the element to orange",
      "prov": "curated",
@@ -2013,14 +2010,6 @@
      "prov": "curated"
     },
     {
-     "name": "in=result1",
-     "values": {
-      "in": "result1"
-     },
-     "meaning": "takes result1 as input",
-     "prov": "curated"
-    },
-    {
      "name": "in2=SourceGraphic",
      "values": {
       "in2": "SourceGraphic"
@@ -2042,14 +2031,6 @@
       "in2": "blur1"
      },
      "meaning": "takes blur1 as input",
-     "prov": "curated"
-    },
-    {
-     "name": "in2=result1",
-     "values": {
-      "in2": "result1"
-     },
-     "meaning": "takes result1 as input",
      "prov": "curated"
     },
     {
@@ -2447,14 +2428,6 @@
      "prov": "curated"
     },
     {
-     "name": "in=result1",
-     "values": {
-      "in": "result1"
-     },
-     "meaning": "takes result1 as input",
-     "prov": "curated"
-    },
-    {
      "name": "type=matrix",
      "values": {
       "type": "matrix",
@@ -2737,14 +2710,6 @@
       "in": "blur1"
      },
      "meaning": "takes blur1 as input",
-     "prov": "curated"
-    },
-    {
-     "name": "in=result1",
-     "values": {
-      "in": "result1"
-     },
-     "meaning": "takes result1 as input",
      "prov": "curated"
     },
     {
@@ -3057,14 +3022,6 @@
      "prov": "curated"
     },
     {
-     "name": "in=result1",
-     "values": {
-      "in": "result1"
-     },
-     "meaning": "takes result1 as input",
-     "prov": "curated"
-    },
-    {
      "name": "in2=SourceGraphic",
      "values": {
       "in2": "SourceGraphic"
@@ -3086,14 +3043,6 @@
       "in2": "blur1"
      },
      "meaning": "takes blur1 as input",
-     "prov": "curated"
-    },
-    {
-     "name": "in2=result1",
-     "values": {
-      "in2": "result1"
-     },
-     "meaning": "takes result1 as input",
      "prov": "curated"
     },
     {
@@ -3753,14 +3702,6 @@
      "prov": "curated"
     },
     {
-     "name": "in=result1",
-     "values": {
-      "in": "result1"
-     },
-     "meaning": "takes result1 as input",
-     "prov": "curated"
-    },
-    {
      "name": "kernelMatrix=edge",
      "values": {
       "bias": "0",
@@ -4135,14 +4076,6 @@
      "prov": "curated"
     },
     {
-     "name": "in=result1",
-     "values": {
-      "in": "result1"
-     },
-     "meaning": "takes result1 as input",
-     "prov": "curated"
-    },
-    {
      "name": "surfaceScale=5",
      "values": {
       "surfaceScale": "5"
@@ -4476,14 +4409,6 @@
      "prov": "curated"
     },
     {
-     "name": "in=result1",
-     "values": {
-      "in": "result1"
-     },
-     "meaning": "takes result1 as input",
-     "prov": "curated"
-    },
-    {
      "name": "in2=SourceGraphic",
      "values": {
       "in2": "SourceGraphic"
@@ -4505,14 +4430,6 @@
       "in2": "blur1"
      },
      "meaning": "takes blur1 as input",
-     "prov": "curated"
-    },
-    {
-     "name": "in2=result1",
-     "values": {
-      "in2": "result1"
-     },
-     "meaning": "takes result1 as input",
      "prov": "curated"
     },
     {
@@ -4914,14 +4831,6 @@
       "in": "blur1"
      },
      "meaning": "takes blur1 as input",
-     "prov": "curated"
-    },
-    {
-     "name": "in=result1",
-     "values": {
-      "in": "result1"
-     },
-     "meaning": "takes result1 as input",
      "prov": "curated"
     },
     {
@@ -7197,14 +7106,6 @@
      "prov": "curated"
     },
     {
-     "name": "in=result1",
-     "values": {
-      "in": "result1"
-     },
-     "meaning": "takes result1 as input",
-     "prov": "curated"
-    },
-    {
      "name": "stdDeviation=0 1",
      "values": {
       "stdDeviation": "0 1"
@@ -7889,14 +7790,6 @@
      },
      "meaning": "takes blur1 as input",
      "prov": "curated"
-    },
-    {
-     "name": "in=result1",
-     "values": {
-      "in": "result1"
-     },
-     "meaning": "takes result1 as input",
-     "prov": "curated"
     }
    ]
   },
@@ -8000,14 +7893,6 @@
       "in": "blur1"
      },
      "meaning": "takes blur1 as input",
-     "prov": "curated"
-    },
-    {
-     "name": "in=result1",
-     "values": {
-      "in": "result1"
-     },
-     "meaning": "takes result1 as input",
      "prov": "curated"
     },
     {
@@ -8303,14 +8188,6 @@
       "in": "blur1"
      },
      "meaning": "takes blur1 as input",
-     "prov": "curated"
-    },
-    {
-     "name": "in=result1",
-     "values": {
-      "in": "result1"
-     },
-     "meaning": "takes result1 as input",
      "prov": "curated"
     },
     {
@@ -8671,14 +8548,6 @@
       "in": "blur1"
      },
      "meaning": "takes blur1 as input",
-     "prov": "curated"
-    },
-    {
-     "name": "in=result1",
-     "values": {
-      "in": "result1"
-     },
-     "meaning": "takes result1 as input",
      "prov": "curated"
     },
     {
@@ -9187,14 +9056,6 @@
       "in": "blur1"
      },
      "meaning": "takes blur1 as input",
-     "prov": "curated"
-    },
-    {
-     "name": "in=result1",
-     "values": {
-      "in": "result1"
-     },
-     "meaning": "takes result1 as input",
      "prov": "curated"
     },
     {
@@ -10149,7 +10010,8 @@
      "name": "onmouseover",
      "values": {
       "onmouseout": "this.style.opacity='1'",
-      "onmouseover": "this.style.opacity='0.3'"
+      "onmouseover": "this.style.opacity='0.3'",
+      "pointer-events": "bounding-box"
      },
      "meaning": "ON HOVER the handler fades the element (event attributes are visual in context)",
      "prov": "curated",
@@ -10158,7 +10020,8 @@
     {
      "name": "onclick",
      "values": {
-      "onclick": "this.setAttribute('fill','#f5a623');this.setAttribute('stroke','#f5a623')"
+      "onclick": "this.style.fill='#f5a623';this.style.color='#f5a623';this.style.stroke='#f5a623'",
+      "pointer-events": "bounding-box"
      },
      "meaning": "ON CLICK the handler recolors the element to orange",
      "prov": "curated",
@@ -10226,10 +10089,7 @@
     {
      "key": "stroke-dasharray",
      "label": "stroke-dasharray",
-     "control": "select",
-     "options": [
-      "none"
-     ]
+     "control": "text"
     },
     {
      "key": "stroke-dashoffset",
@@ -10244,7 +10104,7 @@
      "label": "paint-order",
      "control": "select",
      "options": [
-      "normal"
+      "fill stroke markers"
      ]
     },
     {
@@ -10273,11 +10133,11 @@
    "base": "\u003csvg xmlns=\"http://www.w3.org/2000/svg\" width=\"120\" height=\"120\" viewBox=\"0 0 100 100\" color=\"#16c79a\"\u003e\u003cdefs\u003e\u003cfilter id=\"fx-blur\" x=\"-40%\" y=\"-40%\" width=\"180%\" height=\"180%\"\u003e\u003cfeGaussianBlur stdDeviation=\"3.2\"/\u003e\u003c/filter\u003e\u003clinearGradient id=\"fx-maskgrad\"\u003e\u003cstop offset=\"0.15\" stop-color=\"#fff\"/\u003e\u003cstop offset=\"1\" stop-color=\"#000\"/\u003e\u003c/linearGradient\u003e\u003cmask id=\"fx-mask\"\u003e\u003crect x=\"0\" y=\"0\" width=\"100\" height=\"100\" fill=\"url(#fx-maskgrad)\"/\u003e\u003c/mask\u003e\u003cmarker id=\"fx-marker\" markerWidth=\"7\" markerHeight=\"7\" refX=\"3.5\" refY=\"3.5\" orient=\"auto\"\u003e\u003cpath d=\"M0 0 L7 3.5 L0 7 Z\" fill=\"#f5a623\"/\u003e\u003c/marker\u003e\u003cclipPath id=\"fx-clip\"\u003e\u003cpolygon points=\"50,6 61,38 95,38 67,58 78,92 50,72 22,92 33,58 5,38 39,38\"/\u003e\u003c/clipPath\u003e\u003c/defs\u003e\u003cg data-lab=\"\" stroke=\"#0b3b2e\" stroke-width=\"3\"\u003e\u003ccircle cx=\"32\" cy=\"38\" r=\"18\" fill=\"currentColor\"/\u003e\u003crect x=\"50\" y=\"20\" width=\"34\" height=\"34\" rx=\"6\" fill=\"currentColor\"/\u003e\u003cpolygon points=\"50,62 80,90 20,90\" fill=\"currentColor\"/\u003e\u003c/g\u003e\u003c/svg\u003e",
    "presets": [
     {
-     "name": "fill=none",
+     "name": "fill=currentColor",
      "values": {
-      "fill": "none"
+      "fill": "currentColor"
      },
-     "meaning": "no fill — the interior is transparent",
+     "meaning": "fills the interior with currentColor",
      "prov": "grammar"
     },
     {
@@ -10289,11 +10149,11 @@
      "prov": "grammar"
     },
     {
-     "name": "stroke=none",
+     "name": "stroke=currentColor",
      "values": {
-      "stroke": "none"
+      "stroke": "currentColor"
      },
-     "meaning": "removes the outline stroke",
+     "meaning": "outlines the shape in currentColor",
      "prov": "grammar"
     },
     {
@@ -10405,7 +10265,8 @@
      "name": "onmouseover",
      "values": {
       "onmouseout": "this.style.opacity='1'",
-      "onmouseover": "this.style.opacity='0.3'"
+      "onmouseover": "this.style.opacity='0.3'",
+      "pointer-events": "bounding-box"
      },
      "meaning": "ON HOVER the handler fades the element (event attributes are visual in context)",
      "prov": "curated",
@@ -10414,7 +10275,8 @@
     {
      "name": "onclick",
      "values": {
-      "onclick": "this.setAttribute('fill','#f5a623');this.setAttribute('stroke','#f5a623')"
+      "onclick": "this.style.fill='#f5a623';this.style.color='#f5a623';this.style.stroke='#f5a623'",
+      "pointer-events": "bounding-box"
      },
      "meaning": "ON CLICK the handler recolors the element to orange",
      "prov": "curated",
@@ -10692,7 +10554,8 @@
      "name": "onmouseover",
      "values": {
       "onmouseout": "this.style.opacity='1'",
-      "onmouseover": "this.style.opacity='0.3'"
+      "onmouseover": "this.style.opacity='0.3'",
+      "pointer-events": "bounding-box"
      },
      "meaning": "ON HOVER the handler fades the element (event attributes are visual in context)",
      "prov": "curated",
@@ -10701,7 +10564,8 @@
     {
      "name": "onclick",
      "values": {
-      "onclick": "this.setAttribute('fill','#f5a623');this.setAttribute('stroke','#f5a623')"
+      "onclick": "this.style.fill='#f5a623';this.style.color='#f5a623';this.style.stroke='#f5a623'",
+      "pointer-events": "bounding-box"
      },
      "meaning": "ON CLICK the handler recolors the element to orange",
      "prov": "curated",
@@ -10801,10 +10665,7 @@
     {
      "key": "stroke-dasharray",
      "label": "stroke-dasharray",
-     "control": "select",
-     "options": [
-      "none"
-     ]
+     "control": "text"
     },
     {
      "key": "stroke-dashoffset",
@@ -10819,7 +10680,7 @@
      "label": "paint-order",
      "control": "select",
      "options": [
-      "normal"
+      "fill stroke markers"
      ]
     },
     {
@@ -10980,11 +10841,11 @@
      "prov": "grammar"
     },
     {
-     "name": "stroke=none",
+     "name": "stroke=currentColor",
      "values": {
-      "stroke": "none"
+      "stroke": "currentColor"
      },
-     "meaning": "removes the outline stroke",
+     "meaning": "outlines the shape in currentColor",
      "prov": "grammar"
     },
     {
@@ -11136,7 +10997,8 @@
      "name": "onmouseover",
      "values": {
       "onmouseout": "this.style.opacity='1'",
-      "onmouseover": "this.style.opacity='0.3'"
+      "onmouseover": "this.style.opacity='0.3'",
+      "pointer-events": "bounding-box"
      },
      "meaning": "ON HOVER the handler fades the element (event attributes are visual in context)",
      "prov": "curated",
@@ -11145,7 +11007,8 @@
     {
      "name": "onclick",
      "values": {
-      "onclick": "this.setAttribute('fill','#f5a623');this.setAttribute('stroke','#f5a623')"
+      "onclick": "this.style.fill='#f5a623';this.style.color='#f5a623';this.style.stroke='#f5a623'",
+      "pointer-events": "bounding-box"
      },
      "meaning": "ON CLICK the handler recolors the element to orange",
      "prov": "curated",
@@ -11572,10 +11435,7 @@
     {
      "key": "stroke-dasharray",
      "label": "stroke-dasharray",
-     "control": "select",
-     "options": [
-      "none"
-     ]
+     "control": "text"
     },
     {
      "key": "stroke-dashoffset",
@@ -11590,7 +11450,7 @@
      "label": "paint-order",
      "control": "select",
      "options": [
-      "normal"
+      "fill stroke markers"
      ]
     },
     {
@@ -11912,11 +11772,11 @@
      "prov": "grammar"
     },
     {
-     "name": "fill=none",
+     "name": "fill=currentColor",
      "values": {
-      "fill": "none"
+      "fill": "currentColor"
      },
-     "meaning": "no fill — the interior is transparent",
+     "meaning": "fills the interior with currentColor",
      "prov": "grammar"
     },
     {
@@ -11928,11 +11788,11 @@
      "prov": "grammar"
     },
     {
-     "name": "stroke=none",
+     "name": "stroke=currentColor",
      "values": {
-      "stroke": "none"
+      "stroke": "currentColor"
      },
-     "meaning": "removes the outline stroke",
+     "meaning": "outlines the shape in currentColor",
      "prov": "grammar"
     },
     {
@@ -12377,10 +12237,7 @@
     {
      "key": "stroke-dasharray",
      "label": "stroke-dasharray",
-     "control": "select",
-     "options": [
-      "none"
-     ]
+     "control": "text"
     },
     {
      "key": "stroke-dashoffset",
@@ -12395,7 +12252,7 @@
      "label": "paint-order",
      "control": "select",
      "options": [
-      "normal"
+      "fill stroke markers"
      ]
     },
     {
@@ -12450,19 +12307,19 @@
      "prov": "curated"
     },
     {
-     "name": "fill=none",
+     "name": "fill=currentColor",
      "values": {
-      "fill": "none"
+      "fill": "currentColor"
      },
-     "meaning": "no fill — the interior is transparent",
+     "meaning": "fills the interior with currentColor",
      "prov": "grammar"
     },
     {
-     "name": "stroke=none",
+     "name": "stroke=currentColor",
      "values": {
-      "stroke": "none"
+      "stroke": "currentColor"
      },
-     "meaning": "removes the outline stroke",
+     "meaning": "outlines the shape in currentColor",
      "prov": "grammar"
     },
     {
@@ -12638,7 +12495,8 @@
      "name": "onmouseover",
      "values": {
       "onmouseout": "this.style.opacity='1'",
-      "onmouseover": "this.style.opacity='0.3'"
+      "onmouseover": "this.style.opacity='0.3'",
+      "pointer-events": "bounding-box"
      },
      "meaning": "ON HOVER the handler fades the element (event attributes are visual in context)",
      "prov": "curated",
@@ -12647,7 +12505,8 @@
     {
      "name": "onclick",
      "values": {
-      "onclick": "this.setAttribute('fill','#f5a623');this.setAttribute('stroke','#f5a623')"
+      "onclick": "this.style.fill='#f5a623';this.style.color='#f5a623';this.style.stroke='#f5a623'",
+      "pointer-events": "bounding-box"
      },
      "meaning": "ON CLICK the handler recolors the element to orange",
      "prov": "curated",
@@ -12790,10 +12649,7 @@
     {
      "key": "stroke-dasharray",
      "label": "stroke-dasharray",
-     "control": "select",
-     "options": [
-      "none"
-     ]
+     "control": "text"
     },
     {
      "key": "stroke-dashoffset",
@@ -12808,7 +12664,7 @@
      "label": "paint-order",
      "control": "select",
      "options": [
-      "normal"
+      "fill stroke markers"
      ]
     },
     {
@@ -13014,11 +12870,11 @@
      "prov": "grammar"
     },
     {
-     "name": "fill=none",
+     "name": "fill=currentColor",
      "values": {
-      "fill": "none"
+      "fill": "currentColor"
      },
-     "meaning": "no fill — the interior is transparent",
+     "meaning": "fills the interior with currentColor",
      "prov": "grammar"
     },
     {
@@ -13030,11 +12886,11 @@
      "prov": "grammar"
     },
     {
-     "name": "stroke=none",
+     "name": "stroke=currentColor",
      "values": {
-      "stroke": "none"
+      "stroke": "currentColor"
      },
-     "meaning": "removes the outline stroke",
+     "meaning": "outlines the shape in currentColor",
      "prov": "grammar"
     },
     {
@@ -13161,10 +13017,7 @@
     {
      "key": "stroke-dasharray",
      "label": "stroke-dasharray",
-     "control": "select",
-     "options": [
-      "none"
-     ]
+     "control": "text"
     },
     {
      "key": "stroke-dashoffset",
@@ -13179,7 +13032,7 @@
      "label": "paint-order",
      "control": "select",
      "options": [
-      "normal"
+      "fill stroke markers"
      ]
     },
     {
@@ -13226,19 +13079,19 @@
      "prov": "grammar"
     },
     {
-     "name": "fill=none",
+     "name": "fill=currentColor",
      "values": {
-      "fill": "none"
+      "fill": "currentColor"
      },
-     "meaning": "no fill — the interior is transparent",
+     "meaning": "fills the interior with currentColor",
      "prov": "grammar"
     },
     {
-     "name": "fill-rule=nonzero",
+     "name": "fill-rule=evenodd",
      "values": {
-      "fill-rule": "nonzero"
+      "fill-rule": "evenodd"
      },
-     "meaning": "nonzero rule for self-intersecting/overlapping subpaths",
+     "meaning": "evenodd rule for self-intersecting/overlapping subpaths",
      "prov": "grammar"
     },
     {
@@ -13250,11 +13103,11 @@
      "prov": "grammar"
     },
     {
-     "name": "stroke=none",
+     "name": "stroke=currentColor",
      "values": {
-      "stroke": "none"
+      "stroke": "currentColor"
      },
-     "meaning": "removes the outline stroke",
+     "meaning": "outlines the shape in currentColor",
      "prov": "grammar"
     },
     {
@@ -13422,7 +13275,8 @@
      "name": "onmouseover",
      "values": {
       "onmouseout": "this.style.opacity='1'",
-      "onmouseover": "this.style.opacity='0.3'"
+      "onmouseover": "this.style.opacity='0.3'",
+      "pointer-events": "bounding-box"
      },
      "meaning": "ON HOVER the handler fades the element (event attributes are visual in context)",
      "prov": "curated",
@@ -13431,7 +13285,8 @@
     {
      "name": "onclick",
      "values": {
-      "onclick": "this.setAttribute('fill','#f5a623');this.setAttribute('stroke','#f5a623')"
+      "onclick": "this.style.fill='#f5a623';this.style.color='#f5a623';this.style.stroke='#f5a623'",
+      "pointer-events": "bounding-box"
      },
      "meaning": "ON CLICK the handler recolors the element to orange",
      "prov": "curated",
@@ -13504,10 +13359,7 @@
     {
      "key": "stroke-dasharray",
      "label": "stroke-dasharray",
-     "control": "select",
-     "options": [
-      "none"
-     ]
+     "control": "text"
     },
     {
      "key": "stroke-dashoffset",
@@ -13522,7 +13374,7 @@
      "label": "paint-order",
      "control": "select",
      "options": [
-      "normal"
+      "fill stroke markers"
      ]
     },
     {
@@ -13569,19 +13421,19 @@
      "prov": "grammar"
     },
     {
-     "name": "fill=none",
+     "name": "fill=currentColor",
      "values": {
-      "fill": "none"
+      "fill": "currentColor"
      },
-     "meaning": "no fill — the interior is transparent",
+     "meaning": "fills the interior with currentColor",
      "prov": "grammar"
     },
     {
-     "name": "stroke=none",
+     "name": "stroke=currentColor",
      "values": {
-      "stroke": "none"
+      "stroke": "currentColor"
      },
-     "meaning": "removes the outline stroke",
+     "meaning": "outlines the shape in currentColor",
      "prov": "grammar"
     },
     {
@@ -13757,7 +13609,8 @@
      "name": "onmouseover",
      "values": {
       "onmouseout": "this.style.opacity='1'",
-      "onmouseover": "this.style.opacity='0.3'"
+      "onmouseover": "this.style.opacity='0.3'",
+      "pointer-events": "bounding-box"
      },
      "meaning": "ON HOVER the handler fades the element (event attributes are visual in context)",
      "prov": "curated",
@@ -13766,7 +13619,8 @@
     {
      "name": "onclick",
      "values": {
-      "onclick": "this.setAttribute('fill','#f5a623');this.setAttribute('stroke','#f5a623')"
+      "onclick": "this.style.fill='#f5a623';this.style.color='#f5a623';this.style.stroke='#f5a623'",
+      "pointer-events": "bounding-box"
      },
      "meaning": "ON CLICK the handler recolors the element to orange",
      "prov": "curated",
@@ -14273,10 +14127,7 @@
     {
      "key": "stroke-dasharray",
      "label": "stroke-dasharray",
-     "control": "select",
-     "options": [
-      "none"
-     ]
+     "control": "text"
     },
     {
      "key": "stroke-dashoffset",
@@ -14291,7 +14142,7 @@
      "label": "paint-order",
      "control": "select",
      "options": [
-      "normal"
+      "fill stroke markers"
      ]
     },
     {
@@ -14533,11 +14384,11 @@
      "prov": "curated"
     },
     {
-     "name": "fill=none",
+     "name": "fill=currentColor",
      "values": {
-      "fill": "none"
+      "fill": "currentColor"
      },
-     "meaning": "no fill — the interior is transparent",
+     "meaning": "fills the interior with currentColor",
      "prov": "grammar"
     },
     {
@@ -14549,11 +14400,11 @@
      "prov": "grammar"
     },
     {
-     "name": "stroke=none",
+     "name": "stroke=currentColor",
      "values": {
-      "stroke": "none"
+      "stroke": "currentColor"
      },
-     "meaning": "removes the outline stroke",
+     "meaning": "outlines the shape in currentColor",
      "prov": "grammar"
     },
     {
@@ -14689,7 +14540,8 @@
      "name": "onmouseover",
      "values": {
       "onmouseout": "this.style.opacity='1'",
-      "onmouseover": "this.style.opacity='0.3'"
+      "onmouseover": "this.style.opacity='0.3'",
+      "pointer-events": "bounding-box"
      },
      "meaning": "ON HOVER the handler fades the element (event attributes are visual in context)",
      "prov": "curated",
@@ -14698,7 +14550,8 @@
     {
      "name": "onclick",
      "values": {
-      "onclick": "this.setAttribute('fill','#f5a623');this.setAttribute('stroke','#f5a623')"
+      "onclick": "this.style.fill='#f5a623';this.style.color='#f5a623';this.style.stroke='#f5a623'",
+      "pointer-events": "bounding-box"
      },
      "meaning": "ON CLICK the handler recolors the element to orange",
      "prov": "curated",
@@ -15007,10 +14860,7 @@
     {
      "key": "stroke-dasharray",
      "label": "stroke-dasharray",
-     "control": "select",
-     "options": [
-      "none"
-     ]
+     "control": "text"
     },
     {
      "key": "stroke-dashoffset",
@@ -15025,7 +14875,7 @@
      "label": "paint-order",
      "control": "select",
      "options": [
-      "normal"
+      "fill stroke markers"
      ]
     },
     {
@@ -15219,11 +15069,11 @@
      "prov": "grammar"
     },
     {
-     "name": "fill=none",
+     "name": "fill=currentColor",
      "values": {
-      "fill": "none"
+      "fill": "currentColor"
      },
-     "meaning": "no fill — the interior is transparent",
+     "meaning": "fills the interior with currentColor",
      "prov": "grammar"
     },
     {
@@ -15235,11 +15085,11 @@
      "prov": "grammar"
     },
     {
-     "name": "stroke=none",
+     "name": "stroke=currentColor",
      "values": {
-      "stroke": "none"
+      "stroke": "currentColor"
      },
-     "meaning": "removes the outline stroke",
+     "meaning": "outlines the shape in currentColor",
      "prov": "grammar"
     },
     {
@@ -15401,10 +15251,7 @@
     {
      "key": "stroke-dasharray",
      "label": "stroke-dasharray",
-     "control": "select",
-     "options": [
-      "none"
-     ]
+     "control": "text"
     },
     {
      "key": "stroke-dashoffset",
@@ -15419,7 +15266,7 @@
      "label": "paint-order",
      "control": "select",
      "options": [
-      "normal"
+      "fill stroke markers"
      ]
     },
     {
@@ -15448,11 +15295,11 @@
    "base": "\u003csvg xmlns=\"http://www.w3.org/2000/svg\" width=\"120\" height=\"120\" viewBox=\"0 0 100 100\" color=\"#16c79a\"\u003e\u003cdefs\u003e\u003cfilter id=\"fx-blur\" x=\"-40%\" y=\"-40%\" width=\"180%\" height=\"180%\"\u003e\u003cfeGaussianBlur stdDeviation=\"3.2\"/\u003e\u003c/filter\u003e\u003clinearGradient id=\"fx-maskgrad\"\u003e\u003cstop offset=\"0.15\" stop-color=\"#fff\"/\u003e\u003cstop offset=\"1\" stop-color=\"#000\"/\u003e\u003c/linearGradient\u003e\u003cmask id=\"fx-mask\"\u003e\u003crect x=\"0\" y=\"0\" width=\"100\" height=\"100\" fill=\"url(#fx-maskgrad)\"/\u003e\u003c/mask\u003e\u003cmarker id=\"fx-marker\" markerWidth=\"7\" markerHeight=\"7\" refX=\"3.5\" refY=\"3.5\" orient=\"auto\"\u003e\u003cpath d=\"M0 0 L7 3.5 L0 7 Z\" fill=\"#f5a623\"/\u003e\u003c/marker\u003e\u003cclipPath id=\"fx-clip\"\u003e\u003cpolygon points=\"50,6 61,38 95,38 67,58 78,92 50,72 22,92 33,58 5,38 39,38\"/\u003e\u003c/clipPath\u003e\u003c/defs\u003e\u003cswitch data-lab=\"\" stroke=\"#0b3b2e\" stroke-width=\"3\"\u003e\u003cg\u003e\u003crect x=\"18\" y=\"22\" width=\"64\" height=\"56\" rx=\"8\" fill=\"currentColor\"/\u003e\u003ctext x=\"50\" y=\"55\" text-anchor=\"middle\" font-size=\"10\" font-family=\"monospace\" fill=\"#0c100e\"\u003eswitch\u003c/text\u003e\u003c/g\u003e\u003c/switch\u003e\u003c/svg\u003e",
    "presets": [
     {
-     "name": "fill=none",
+     "name": "fill=currentColor",
      "values": {
-      "fill": "none"
+      "fill": "currentColor"
      },
-     "meaning": "no fill — the interior is transparent",
+     "meaning": "fills the interior with currentColor",
      "prov": "grammar"
     },
     {
@@ -15464,11 +15311,11 @@
      "prov": "grammar"
     },
     {
-     "name": "stroke=none",
+     "name": "stroke=currentColor",
      "values": {
-      "stroke": "none"
+      "stroke": "currentColor"
      },
-     "meaning": "removes the outline stroke",
+     "meaning": "outlines the shape in currentColor",
      "prov": "grammar"
     },
     {
@@ -15580,7 +15427,8 @@
      "name": "onmouseover",
      "values": {
       "onmouseout": "this.style.opacity='1'",
-      "onmouseover": "this.style.opacity='0.3'"
+      "onmouseover": "this.style.opacity='0.3'",
+      "pointer-events": "bounding-box"
      },
      "meaning": "ON HOVER the handler fades the element (event attributes are visual in context)",
      "prov": "curated",
@@ -15589,7 +15437,8 @@
     {
      "name": "onclick",
      "values": {
-      "onclick": "this.setAttribute('fill','#f5a623');this.setAttribute('stroke','#f5a623')"
+      "onclick": "this.style.fill='#f5a623';this.style.color='#f5a623';this.style.stroke='#f5a623'",
+      "pointer-events": "bounding-box"
      },
      "meaning": "ON CLICK the handler recolors the element to orange",
      "prov": "curated",
@@ -15720,10 +15569,7 @@
     {
      "key": "stroke-dasharray",
      "label": "stroke-dasharray",
-     "control": "select",
-     "options": [
-      "none"
-     ]
+     "control": "text"
     },
     {
      "key": "stroke-dashoffset",
@@ -15738,7 +15584,7 @@
      "label": "paint-order",
      "control": "select",
      "options": [
-      "normal"
+      "fill stroke markers"
      ]
     },
     {
@@ -15903,11 +15749,11 @@
      "prov": "curated"
     },
     {
-     "name": "fill=none",
+     "name": "fill=currentColor",
      "values": {
-      "fill": "none"
+      "fill": "currentColor"
      },
-     "meaning": "no fill — the interior is transparent",
+     "meaning": "fills the interior with currentColor",
      "prov": "grammar"
     },
     {
@@ -15919,11 +15765,11 @@
      "prov": "grammar"
     },
     {
-     "name": "stroke=none",
+     "name": "stroke=currentColor",
      "values": {
-      "stroke": "none"
+      "stroke": "currentColor"
      },
-     "meaning": "removes the outline stroke",
+     "meaning": "outlines the shape in currentColor",
      "prov": "grammar"
     },
     {
@@ -16141,10 +15987,7 @@
     {
      "key": "stroke-dasharray",
      "label": "stroke-dasharray",
-     "control": "select",
-     "options": [
-      "none"
-     ]
+     "control": "text"
     },
     {
      "key": "stroke-dashoffset",
@@ -16159,7 +16002,7 @@
      "label": "paint-order",
      "control": "select",
      "options": [
-      "normal"
+      "fill stroke markers"
      ]
     },
     {
@@ -16277,19 +16120,19 @@
      "prov": "grammar"
     },
     {
-     "name": "fill=none",
+     "name": "fill=currentColor",
      "values": {
-      "fill": "none"
+      "fill": "currentColor"
      },
-     "meaning": "no fill — the interior is transparent",
+     "meaning": "fills the interior with currentColor",
      "prov": "grammar"
     },
     {
-     "name": "fill-rule=nonzero",
+     "name": "fill-rule=evenodd",
      "values": {
-      "fill-rule": "nonzero"
+      "fill-rule": "evenodd"
      },
-     "meaning": "nonzero rule for self-intersecting/overlapping subpaths",
+     "meaning": "evenodd rule for self-intersecting/overlapping subpaths",
      "prov": "grammar"
     },
     {
@@ -16301,11 +16144,11 @@
      "prov": "grammar"
     },
     {
-     "name": "stroke=none",
+     "name": "stroke=currentColor",
      "values": {
-      "stroke": "none"
+      "stroke": "currentColor"
      },
-     "meaning": "removes the outline stroke",
+     "meaning": "outlines the shape in currentColor",
      "prov": "grammar"
     },
     {
@@ -16382,11 +16225,11 @@
      "prov": "grammar"
     },
     {
-     "name": "text-anchor=start",
+     "name": "text-anchor=middle",
      "values": {
-      "text-anchor": "start"
+      "text-anchor": "middle"
      },
-     "meaning": "anchors text to its start edge",
+     "meaning": "anchors text to its middle edge",
      "prov": "grammar"
     },
     {
@@ -16414,19 +16257,19 @@
      "prov": "grammar"
     },
     {
-     "name": "direction=ltr",
+     "name": "direction=rtl",
      "values": {
-      "direction": "ltr"
+      "direction": "rtl"
      },
-     "meaning": "ltr text direction",
+     "meaning": "rtl text direction",
      "prov": "grammar"
     },
     {
-     "name": "writing-mode=horizontal-tb",
+     "name": "writing-mode=vertical-rl",
      "values": {
-      "writing-mode": "horizontal-tb"
+      "writing-mode": "vertical-rl"
      },
-     "meaning": "horizontal-tb writing mode",
+     "meaning": "vertical-rl writing mode",
      "prov": "grammar"
     },
     {
@@ -16462,43 +16305,43 @@
      "prov": "grammar"
     },
     {
-     "name": "font-style=normal",
+     "name": "font-style=italic",
      "values": {
-      "font-style": "normal"
+      "font-style": "italic"
      },
-     "meaning": "normal text",
-     "prov": "grammar"
+     "meaning": "italic text",
+     "prov": "curated"
     },
     {
-     "name": "font-variant=normal",
+     "name": "font-variant=small-caps",
      "values": {
-      "font-variant": "normal"
+      "font-variant": "small-caps"
      },
-     "meaning": "the default font-variant (normal)",
-     "prov": "grammar"
+     "meaning": "sets font-variant to small-caps",
+     "prov": "curated"
     },
     {
-     "name": "font-weight=normal",
+     "name": "font-weight=bold",
      "values": {
-      "font-weight": "normal"
+      "font-weight": "bold"
      },
-     "meaning": "normal stroke weight text",
-     "prov": "grammar"
+     "meaning": "bold stroke weight text",
+     "prov": "curated"
     },
     {
-     "name": "font-stretch=normal",
+     "name": "font-stretch=ultra-condensed",
      "values": {
-      "font-stretch": "normal"
+      "font-stretch": "ultra-condensed"
      },
-     "meaning": "the default font-stretch (normal)",
-     "prov": "grammar"
+     "meaning": "sets font-stretch to ultra-condensed",
+     "prov": "curated"
     },
     {
-     "name": "glyph-orientation-vertical=auto",
+     "name": "glyph-orientation-vertical=0deg",
      "values": {
-      "glyph-orientation-vertical": "auto"
+      "glyph-orientation-vertical": "0deg"
      },
-     "meaning": "the default glyph-orientation-vertical (auto)",
+     "meaning": "sets glyph-orientation-vertical to 0deg",
      "prov": "grammar"
     },
     {
@@ -16537,7 +16380,8 @@
      "name": "onmouseover",
      "values": {
       "onmouseout": "this.style.opacity='1'",
-      "onmouseover": "this.style.opacity='0.3'"
+      "onmouseover": "this.style.opacity='0.3'",
+      "pointer-events": "bounding-box"
      },
      "meaning": "ON HOVER the handler fades the element (event attributes are visual in context)",
      "prov": "curated",
@@ -16546,7 +16390,8 @@
     {
      "name": "onclick",
      "values": {
-      "onclick": "this.setAttribute('fill','#f5a623');this.setAttribute('stroke','#f5a623')"
+      "onclick": "this.style.fill='#f5a623';this.style.color='#f5a623';this.style.stroke='#f5a623'",
+      "pointer-events": "bounding-box"
      },
      "meaning": "ON CLICK the handler recolors the element to orange",
      "prov": "curated",
@@ -16681,10 +16526,7 @@
     {
      "key": "stroke-dasharray",
      "label": "stroke-dasharray",
-     "control": "select",
-     "options": [
-      "none"
-     ]
+     "control": "text"
     },
     {
      "key": "stroke-dashoffset",
@@ -16699,7 +16541,7 @@
      "label": "paint-order",
      "control": "select",
      "options": [
-      "normal"
+      "fill stroke markers"
      ]
     },
     {
@@ -16869,19 +16711,19 @@
      "prov": "grammar"
     },
     {
-     "name": "fill=none",
+     "name": "fill=currentColor",
      "values": {
-      "fill": "none"
+      "fill": "currentColor"
      },
-     "meaning": "no fill — the interior is transparent",
+     "meaning": "fills the interior with currentColor",
      "prov": "grammar"
     },
     {
-     "name": "fill-rule=nonzero",
+     "name": "fill-rule=evenodd",
      "values": {
-      "fill-rule": "nonzero"
+      "fill-rule": "evenodd"
      },
-     "meaning": "nonzero rule for self-intersecting/overlapping subpaths",
+     "meaning": "evenodd rule for self-intersecting/overlapping subpaths",
      "prov": "grammar"
     },
     {
@@ -16893,11 +16735,11 @@
      "prov": "grammar"
     },
     {
-     "name": "stroke=none",
+     "name": "stroke=currentColor",
      "values": {
-      "stroke": "none"
+      "stroke": "currentColor"
      },
-     "meaning": "removes the outline stroke",
+     "meaning": "outlines the shape in currentColor",
      "prov": "grammar"
     },
     {
@@ -16974,11 +16816,11 @@
      "prov": "grammar"
     },
     {
-     "name": "text-anchor=start",
+     "name": "text-anchor=middle",
      "values": {
-      "text-anchor": "start"
+      "text-anchor": "middle"
      },
-     "meaning": "anchors text to its start edge",
+     "meaning": "anchors text to its middle edge",
      "prov": "grammar"
     },
     {
@@ -17006,19 +16848,19 @@
      "prov": "grammar"
     },
     {
-     "name": "direction=ltr",
+     "name": "direction=rtl",
      "values": {
-      "direction": "ltr"
+      "direction": "rtl"
      },
-     "meaning": "ltr text direction",
+     "meaning": "rtl text direction",
      "prov": "grammar"
     },
     {
-     "name": "writing-mode=horizontal-tb",
+     "name": "writing-mode=vertical-rl",
      "values": {
-      "writing-mode": "horizontal-tb"
+      "writing-mode": "vertical-rl"
      },
-     "meaning": "horizontal-tb writing mode",
+     "meaning": "vertical-rl writing mode",
      "prov": "grammar"
     },
     {
@@ -17054,43 +16896,43 @@
      "prov": "grammar"
     },
     {
-     "name": "font-style=normal",
+     "name": "font-style=italic",
      "values": {
-      "font-style": "normal"
+      "font-style": "italic"
      },
-     "meaning": "normal text",
-     "prov": "grammar"
+     "meaning": "italic text",
+     "prov": "curated"
     },
     {
-     "name": "font-variant=normal",
+     "name": "font-variant=small-caps",
      "values": {
-      "font-variant": "normal"
+      "font-variant": "small-caps"
      },
-     "meaning": "the default font-variant (normal)",
-     "prov": "grammar"
+     "meaning": "sets font-variant to small-caps",
+     "prov": "curated"
     },
     {
-     "name": "font-weight=normal",
+     "name": "font-weight=bold",
      "values": {
-      "font-weight": "normal"
+      "font-weight": "bold"
      },
-     "meaning": "normal stroke weight text",
-     "prov": "grammar"
+     "meaning": "bold stroke weight text",
+     "prov": "curated"
     },
     {
-     "name": "font-stretch=normal",
+     "name": "font-stretch=ultra-condensed",
      "values": {
-      "font-stretch": "normal"
+      "font-stretch": "ultra-condensed"
      },
-     "meaning": "the default font-stretch (normal)",
-     "prov": "grammar"
+     "meaning": "sets font-stretch to ultra-condensed",
+     "prov": "curated"
     },
     {
-     "name": "glyph-orientation-vertical=auto",
+     "name": "glyph-orientation-vertical=0deg",
      "values": {
-      "glyph-orientation-vertical": "auto"
+      "glyph-orientation-vertical": "0deg"
      },
-     "meaning": "the default glyph-orientation-vertical (auto)",
+     "meaning": "sets glyph-orientation-vertical to 0deg",
      "prov": "grammar"
     },
     {
@@ -17243,10 +17085,7 @@
     {
      "key": "stroke-dasharray",
      "label": "stroke-dasharray",
-     "control": "select",
-     "options": [
-      "none"
-     ]
+     "control": "text"
     },
     {
      "key": "stroke-dashoffset",
@@ -17261,7 +17100,7 @@
      "label": "paint-order",
      "control": "select",
      "options": [
-      "normal"
+      "fill stroke markers"
      ]
     },
     {
@@ -17377,19 +17216,19 @@
      "prov": "grammar"
     },
     {
-     "name": "fill=none",
+     "name": "fill=currentColor",
      "values": {
-      "fill": "none"
+      "fill": "currentColor"
      },
-     "meaning": "no fill — the interior is transparent",
+     "meaning": "fills the interior with currentColor",
      "prov": "grammar"
     },
     {
-     "name": "fill-rule=nonzero",
+     "name": "fill-rule=evenodd",
      "values": {
-      "fill-rule": "nonzero"
+      "fill-rule": "evenodd"
      },
-     "meaning": "nonzero rule for self-intersecting/overlapping subpaths",
+     "meaning": "evenodd rule for self-intersecting/overlapping subpaths",
      "prov": "grammar"
     },
     {
@@ -17401,11 +17240,11 @@
      "prov": "grammar"
     },
     {
-     "name": "stroke=none",
+     "name": "stroke=currentColor",
      "values": {
-      "stroke": "none"
+      "stroke": "currentColor"
      },
-     "meaning": "removes the outline stroke",
+     "meaning": "outlines the shape in currentColor",
      "prov": "grammar"
     },
     {
@@ -17482,11 +17321,11 @@
      "prov": "grammar"
     },
     {
-     "name": "text-anchor=start",
+     "name": "text-anchor=middle",
      "values": {
-      "text-anchor": "start"
+      "text-anchor": "middle"
      },
-     "meaning": "anchors text to its start edge",
+     "meaning": "anchors text to its middle edge",
      "prov": "grammar"
     },
     {
@@ -17514,19 +17353,19 @@
      "prov": "grammar"
     },
     {
-     "name": "direction=ltr",
+     "name": "direction=rtl",
      "values": {
-      "direction": "ltr"
+      "direction": "rtl"
      },
-     "meaning": "ltr text direction",
+     "meaning": "rtl text direction",
      "prov": "grammar"
     },
     {
-     "name": "writing-mode=horizontal-tb",
+     "name": "writing-mode=vertical-rl",
      "values": {
-      "writing-mode": "horizontal-tb"
+      "writing-mode": "vertical-rl"
      },
-     "meaning": "horizontal-tb writing mode",
+     "meaning": "vertical-rl writing mode",
      "prov": "grammar"
     },
     {
@@ -17562,43 +17401,43 @@
      "prov": "grammar"
     },
     {
-     "name": "font-style=normal",
+     "name": "font-style=italic",
      "values": {
-      "font-style": "normal"
+      "font-style": "italic"
      },
-     "meaning": "normal text",
-     "prov": "grammar"
+     "meaning": "italic text",
+     "prov": "curated"
     },
     {
-     "name": "font-variant=normal",
+     "name": "font-variant=small-caps",
      "values": {
-      "font-variant": "normal"
+      "font-variant": "small-caps"
      },
-     "meaning": "the default font-variant (normal)",
-     "prov": "grammar"
+     "meaning": "sets font-variant to small-caps",
+     "prov": "curated"
     },
     {
-     "name": "font-weight=normal",
+     "name": "font-weight=bold",
      "values": {
-      "font-weight": "normal"
+      "font-weight": "bold"
      },
-     "meaning": "normal stroke weight text",
-     "prov": "grammar"
+     "meaning": "bold stroke weight text",
+     "prov": "curated"
     },
     {
-     "name": "font-stretch=normal",
+     "name": "font-stretch=ultra-condensed",
      "values": {
-      "font-stretch": "normal"
+      "font-stretch": "ultra-condensed"
      },
-     "meaning": "the default font-stretch (normal)",
-     "prov": "grammar"
+     "meaning": "sets font-stretch to ultra-condensed",
+     "prov": "curated"
     },
     {
-     "name": "glyph-orientation-vertical=auto",
+     "name": "glyph-orientation-vertical=0deg",
      "values": {
-      "glyph-orientation-vertical": "auto"
+      "glyph-orientation-vertical": "0deg"
      },
-     "meaning": "the default glyph-orientation-vertical (auto)",
+     "meaning": "sets glyph-orientation-vertical to 0deg",
      "prov": "grammar"
     },
     {
@@ -17637,7 +17476,8 @@
      "name": "onmouseover",
      "values": {
       "onmouseout": "this.style.opacity='1'",
-      "onmouseover": "this.style.opacity='0.3'"
+      "onmouseover": "this.style.opacity='0.3'",
+      "pointer-events": "bounding-box"
      },
      "meaning": "ON HOVER the handler fades the element (event attributes are visual in context)",
      "prov": "curated",
@@ -17646,7 +17486,8 @@
     {
      "name": "onclick",
      "values": {
-      "onclick": "this.setAttribute('fill','#f5a623');this.setAttribute('stroke','#f5a623')"
+      "onclick": "this.style.fill='#f5a623';this.style.color='#f5a623';this.style.stroke='#f5a623'",
+      "pointer-events": "bounding-box"
      },
      "meaning": "ON CLICK the handler recolors the element to orange",
      "prov": "curated",
@@ -17751,10 +17592,7 @@
     {
      "key": "stroke-dasharray",
      "label": "stroke-dasharray",
-     "control": "select",
-     "options": [
-      "none"
-     ]
+     "control": "text"
     },
     {
      "key": "stroke-dashoffset",
@@ -17769,7 +17607,7 @@
      "label": "paint-order",
      "control": "select",
      "options": [
-      "normal"
+      "fill stroke markers"
      ]
     },
     {
@@ -17891,11 +17729,11 @@
      "prov": "grammar"
     },
     {
-     "name": "fill=none",
+     "name": "fill=currentColor",
      "values": {
-      "fill": "none"
+      "fill": "currentColor"
      },
-     "meaning": "no fill — the interior is transparent",
+     "meaning": "fills the interior with currentColor",
      "prov": "grammar"
     },
     {
@@ -17907,11 +17745,11 @@
      "prov": "grammar"
     },
     {
-     "name": "stroke=none",
+     "name": "stroke=currentColor",
      "values": {
-      "stroke": "none"
+      "stroke": "currentColor"
      },
-     "meaning": "removes the outline stroke",
+     "meaning": "outlines the shape in currentColor",
      "prov": "grammar"
     },
     {
@@ -18031,7 +17869,8 @@
      "name": "onmouseover",
      "values": {
       "onmouseout": "this.style.opacity='1'",
-      "onmouseover": "this.style.opacity='0.3'"
+      "onmouseover": "this.style.opacity='0.3'",
+      "pointer-events": "bounding-box"
      },
      "meaning": "ON HOVER the handler fades the element (event attributes are visual in context)",
      "prov": "curated",
@@ -18040,7 +17879,8 @@
     {
      "name": "onclick",
      "values": {
-      "onclick": "this.setAttribute('fill','#f5a623');this.setAttribute('stroke','#f5a623')"
+      "onclick": "this.style.fill='#f5a623';this.style.color='#f5a623';this.style.stroke='#f5a623'",
+      "pointer-events": "bounding-box"
      },
      "meaning": "ON CLICK the handler recolors the element to orange",
      "prov": "curated",

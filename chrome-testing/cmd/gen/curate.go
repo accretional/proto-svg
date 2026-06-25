@@ -188,7 +188,9 @@ func curateAttr(tag, attr string, vals []string) []demoPreset {
 		for _, v := range vals {
 			switch v {
 			case "BackgroundImage", "BackgroundAlpha", "FillPaint", "StrokePaint":
-				continue
+				continue // unsupported in browsers — render identically to the source
+			case "result1":
+				continue // a second handle on the same upstream result as blur1
 			}
 			out = append(out, one(attr, v, meaningFor(tag, attr, v)))
 		}

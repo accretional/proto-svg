@@ -173,25 +173,28 @@ var sharedGroupMemberCap = map[string]int{
 	"CoreAttribute":         6,
 }
 
-// refDemonstrativeAttrs are presentation reference properties whose FIRST grammar
-// arm is the no-op "none"; when collapsing a shared-group member to one value-path
-// we skip "none" and keep the next arm (a real url()/filter-function the overlay
-// resolves), so the kept path actually demonstrates the property.
-var refDemonstrativeAttrs = map[string]bool{
-	"filter": true, "mask": true, "clip-path": true,
-	"marker": true, "marker-start": true, "marker-mid": true, "marker-end": true,
+// defaultValueKeywords are values equal to a presentation attribute's INITIAL
+// value — they render identically to the base, so they demonstrate nothing. When
+// a shared-group member is collapsed to one value-path we skip these and keep the
+// first DEMONSTRATIVE arm instead (mask "none"→url(), font-style "normal"→italic,
+// direction "ltr"→rtl, text-anchor "start"→middle, fill-rule "nonzero"→evenodd, …).
+var defaultValueKeywords = map[string]bool{
+	"none": true, "normal": true, "auto": true, "visible": true,
+	"ltr": true, "horizontal-tb": true, "horizontal": true, "start": true,
+	"nonzero": true, "spacing": true, "align": true, "inherit": true,
+	"initial": true, "pad": true,
 }
 
-// pickValuePath keeps a single, demonstrative value-path from a member's variants.
+// pickValuePath keeps a single, demonstrative value-path from a member's variants:
+// the first whose value is NOT the attribute's no-op default (falling back to the
+// first path when every value is a default).
 func pickValuePath(vs []Variant) []Variant {
 	if len(vs) == 0 {
 		return vs
 	}
-	if refDemonstrativeAttrs[vs[0].Attr] {
-		for _, v := range vs {
-			if strings.TrimSpace(v.Value) != "none" {
-				return []Variant{v}
-			}
+	for _, v := range vs {
+		if !defaultValueKeywords[strings.TrimSpace(v.Value)] {
+			return []Variant{v}
 		}
 	}
 	return vs[:1]

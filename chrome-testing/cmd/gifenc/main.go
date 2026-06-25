@@ -134,6 +134,21 @@ func strobeFolder(folder string) error {
 		imgs = append(imgs, img)
 	}
 	b := imgs[0].Bounds()
+	// Interactive captures are exactly two frames (rest, reacted): a side-by-side
+	// reads far clearer than an onion-skin, so emit that.
+	if len(imgs) == 2 {
+		w, h := b.Dx(), b.Dy()
+		sxs := image.NewRGBA(image.Rect(0, 0, w*2, h))
+		draw.Draw(sxs, image.Rect(0, 0, w, h), imgs[0], b.Min, draw.Src)
+		draw.Draw(sxs, image.Rect(w, 0, w*2, h), imgs[1], b.Min, draw.Src)
+		out := folder + ".strobe.png"
+		f, err := os.Create(out)
+		if err != nil {
+			return err
+		}
+		defer f.Close()
+		return png.Encode(f, downscale2x(sxs))
+	}
 	// Background = the top-left corner pixel of the first frame.
 	bgr, bgg, bgb, _ := imgs[0].At(b.Min.X, b.Min.Y).RGBA()
 	acc := image.NewRGBA(b)

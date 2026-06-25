@@ -56,6 +56,48 @@ type catPreset struct {
 	// curation layer selected a demonstrative value or expanded a showcase set —
 	// so the walkthrough-vs-showcase split is auditable.
 	Prov string `json:"prov,omitempty"`
+	// Interactive marks a preset whose effect only appears under user input —
+	// "hover" or "click". The shoot drives a real mouse Hover/Click and captures the
+	// before/after, demonstrating that event attributes ARE visual in context.
+	Interactive string `json:"interactive,omitempty"`
+}
+
+// eventRenderable are directly-rendered elements where an event handler that
+// changes paint/opacity is visible. (Filter primitives, defs, gradients,
+// animation elements render nothing of their own, so events are pointless there.)
+var eventRenderable = map[string]bool{
+	"rect": true, "circle": true, "ellipse": true, "line": true,
+	"polyline": true, "polygon": true, "path": true,
+	"text": true, "tspan": true, "a": true, "g": true, "switch": true,
+	"image": true, "foreignObject": true, "use": true,
+}
+
+// interactivePresets adds showcase presets that demonstrate event ATTRIBUTES are
+// visual once they act on other attributes: on hover the handler fades the
+// element, on click it recolors it. (The grammar enumerates ~50 event attrs all
+// sampled to the meaningless StringType "label"; these select the demonstrable
+// ones with appearance-changing handlers — prov="curated".)
+func interactivePresets(tag string) []catPreset {
+	if !eventRenderable[tag] {
+		return nil
+	}
+	return []catPreset{
+		{
+			Name: "onmouseover", Prov: "curated", Interactive: "hover",
+			Meaning: "ON HOVER the handler fades the element (event attributes are visual in context)",
+			Values: map[string]string{
+				"onmouseover": "this.style.opacity='0.3'",
+				"onmouseout":  "this.style.opacity='1'",
+			},
+		},
+		{
+			Name: "onclick", Prov: "curated", Interactive: "click",
+			Meaning: "ON CLICK the handler recolors the element to orange",
+			Values: map[string]string{
+				"onclick": "this.setAttribute('fill','#f5a623');this.setAttribute('stroke','#f5a623')",
+			},
+		},
+	}
 }
 
 type catElement struct {
@@ -172,6 +214,8 @@ func runCataloguePass(en *Enumerator, bp *blueprintProvider, els []element, page
 				})
 			}
 		}
+		// interactivity: event-attribute presets demonstrated under real mouse input.
+		ce.Presets = append(ce.Presets, interactivePresets(p.tag)...)
 		if usesDemoDefs {
 			base = injectDemoDefs(base)
 		}

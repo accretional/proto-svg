@@ -23,7 +23,8 @@ import (
 )
 
 type catPreset struct {
-	Name string `json:"name"`
+	Name        string `json:"name"`
+	Interactive string `json:"interactive,omitempty"` // "hover" | "click"
 }
 type catElement struct {
 	Tag      string      `json:"tag"`
@@ -87,6 +88,22 @@ func main() {
 		for i, p := range el.Presets {
 			slug := fmt.Sprintf("%02d-%s", i, slugify(p.Name))
 			hash := fmt.Sprintf("location.hash='#/embed/%s/%d';void 0", el.Tag, i)
+			// Interactive presets: drive a real Hover/Click and capture before/after.
+			if p.Interactive != "" {
+				framedir := filepath.Join(dir, slug)
+				if resume {
+					if _, e := os.Stat(framedir + ".gif"); e == nil {
+						continue
+					}
+				}
+				if err := os.MkdirAll(framedir, 0o755); err != nil {
+					panic(err)
+				}
+				w.interactive(hash, framedir, p.Interactive)
+				shots += 2
+				temporal++
+				continue
+			}
 			if !el.Temporal {
 				out := filepath.Join(dir, slug+".png")
 				if resume {
@@ -183,6 +200,31 @@ func (w *chunkWriter) temporal(hash, framedir string, frames, frameWait int) {
 			filepath.Join(framedir, fmt.Sprintf("frame-%02d.png", i))))
 		w.shots++
 	}
+}
+
+// interactive captures an event-attribute preset under REAL user input: frame-00
+// is the resting state, then a Hover or Click fires the inline handler (which
+// fades / recolors the element), and frame-01 is the reacted state. gifenc turns
+// the two frames into a looping before↔after GIF (+ strobe). The showcased element
+// carries data-lab, so "#viewer [data-lab]" targets exactly it.
+func (w *chunkWriter) interactive(hash, framedir, kind string) {
+	if w.shots > 0 && w.shots+2 > w.perChunk {
+		w.rollover()
+	}
+	w.line(fmt.Sprintf("steps { evaluate_script { expression: %q } }", hash))
+	w.line("steps { wait { milliseconds: 350 } }")
+	w.line(fmt.Sprintf("steps { screenshot { output_path: %q format: \"png\" } }",
+		filepath.Join(framedir, "frame-00.png")))
+	const sel = "#viewer [data-lab]"
+	if kind == "click" {
+		w.line(fmt.Sprintf("steps { click { selector: %q } }", sel))
+	} else {
+		w.line(fmt.Sprintf("steps { hover { selector: %q } }", sel))
+	}
+	w.line("steps { wait { milliseconds: 220 } }")
+	w.line(fmt.Sprintf("steps { screenshot { output_path: %q format: \"png\" } }",
+		filepath.Join(framedir, "frame-01.png")))
+	w.shots += 2
 }
 
 func (w *chunkWriter) flush() {

@@ -244,6 +244,25 @@
      },
      "meaning": "applies the transform translate(20 10)",
      "prov": "grammar"
+    },
+    {
+     "name": "onmouseover",
+     "values": {
+      "onmouseout": "this.style.opacity='1'",
+      "onmouseover": "this.style.opacity='0.3'"
+     },
+     "meaning": "ON HOVER the handler fades the element (event attributes are visual in context)",
+     "prov": "curated",
+     "interactive": "hover"
+    },
+    {
+     "name": "onclick",
+     "values": {
+      "onclick": "this.setAttribute('fill','#f5a623');this.setAttribute('stroke','#f5a623')"
+     },
+     "meaning": "ON CLICK the handler recolors the element to orange",
+     "prov": "curated",
+     "interactive": "click"
     }
    ]
   },
@@ -1338,6 +1357,25 @@
      },
      "meaning": "applies the transform translate(20 10)",
      "prov": "grammar"
+    },
+    {
+     "name": "onmouseover",
+     "values": {
+      "onmouseout": "this.style.opacity='1'",
+      "onmouseover": "this.style.opacity='0.3'"
+     },
+     "meaning": "ON HOVER the handler fades the element (event attributes are visual in context)",
+     "prov": "curated",
+     "interactive": "hover"
+    },
+    {
+     "name": "onclick",
+     "values": {
+      "onclick": "this.setAttribute('fill','#f5a623');this.setAttribute('stroke','#f5a623')"
+     },
+     "meaning": "ON CLICK the handler recolors the element to orange",
+     "prov": "curated",
+     "interactive": "click"
     }
    ]
   },
@@ -1829,6 +1867,25 @@
      },
      "meaning": "applies the transform translate(20 10)",
      "prov": "grammar"
+    },
+    {
+     "name": "onmouseover",
+     "values": {
+      "onmouseout": "this.style.opacity='1'",
+      "onmouseover": "this.style.opacity='0.3'"
+     },
+     "meaning": "ON HOVER the handler fades the element (event attributes are visual in context)",
+     "prov": "curated",
+     "interactive": "hover"
+    },
+    {
+     "name": "onclick",
+     "values": {
+      "onclick": "this.setAttribute('fill','#f5a623');this.setAttribute('stroke','#f5a623')"
+     },
+     "meaning": "ON CLICK the handler recolors the element to orange",
+     "prov": "curated",
+     "interactive": "click"
     }
    ]
   },
@@ -10087,6 +10144,25 @@
      },
      "meaning": "applies the transform translate(20 10)",
      "prov": "grammar"
+    },
+    {
+     "name": "onmouseover",
+     "values": {
+      "onmouseout": "this.style.opacity='1'",
+      "onmouseover": "this.style.opacity='0.3'"
+     },
+     "meaning": "ON HOVER the handler fades the element (event attributes are visual in context)",
+     "prov": "curated",
+     "interactive": "hover"
+    },
+    {
+     "name": "onclick",
+     "values": {
+      "onclick": "this.setAttribute('fill','#f5a623');this.setAttribute('stroke','#f5a623')"
+     },
+     "meaning": "ON CLICK the handler recolors the element to orange",
+     "prov": "curated",
+     "interactive": "click"
     }
    ]
   },
@@ -10324,6 +10400,25 @@
      },
      "meaning": "applies the transform translate(20 10)",
      "prov": "grammar"
+    },
+    {
+     "name": "onmouseover",
+     "values": {
+      "onmouseout": "this.style.opacity='1'",
+      "onmouseover": "this.style.opacity='0.3'"
+     },
+     "meaning": "ON HOVER the handler fades the element (event attributes are visual in context)",
+     "prov": "curated",
+     "interactive": "hover"
+    },
+    {
+     "name": "onclick",
+     "values": {
+      "onclick": "this.setAttribute('fill','#f5a623');this.setAttribute('stroke','#f5a623')"
+     },
+     "meaning": "ON CLICK the handler recolors the element to orange",
+     "prov": "curated",
+     "interactive": "click"
     }
    ]
   },
@@ -10592,6 +10687,25 @@
      },
      "meaning": "loads the referenced image source",
      "prov": "grammar"
+    },
+    {
+     "name": "onmouseover",
+     "values": {
+      "onmouseout": "this.style.opacity='1'",
+      "onmouseover": "this.style.opacity='0.3'"
+     },
+     "meaning": "ON HOVER the handler fades the element (event attributes are visual in context)",
+     "prov": "curated",
+     "interactive": "hover"
+    },
+    {
+     "name": "onclick",
+     "values": {
+      "onclick": "this.setAttribute('fill','#f5a623');this.setAttribute('stroke','#f5a623')"
+     },
+     "meaning": "ON CLICK the handler recolors the element to orange",
+     "prov": "curated",
+     "interactive": "click"
     }
    ]
   },
@@ -11017,6 +11131,25 @@
      },
      "meaning": "applies the transform translate(20 10)",
      "prov": "grammar"
+    },
+    {
+     "name": "onmouseover",
+     "values": {
+      "onmouseout": "this.style.opacity='1'",
+      "onmouseover": "this.style.opacity='0.3'"
+     },
+     "meaning": "ON HOVER the handler fades the element (event attributes are visual in context)",
+     "prov": "curated",
+     "interactive": "hover"
+    },
+    {
+     "name": "onclick",
+     "values": {
+      "onclick": "this.setAttribute('fill','#f5a623');this.setAttribute('stroke','#f5a623')"
+     },
+     "meaning": "ON CLICK the handler recolors the element to orange",
+     "prov": "curated",
+     "interactive": "click"
     }
    ]
   },
@@ -12500,6 +12633,25 @@
      },
      "meaning": "applies the transform translate(20 10)",
      "prov": "grammar"
+    },
+    {
+     "name": "onmouseover",
+     "values": {
+      "onmouseout": "this.style.opacity='1'",
+      "onmouseover": "this.style.opacity='0.3'"
+     },
+     "meaning": "ON HOVER the handler fades the element (event attributes are visual in context)",
+     "prov": "curated",
+     "interactive": "hover"
+    },
+    {
+     "name": "onclick",
+     "values": {
+      "onclick": "this.setAttribute('fill','#f5a623');this.setAttribute('stroke','#f5a623')"
+     },
+     "meaning": "ON CLICK the handler recolors the element to orange",
+     "prov": "curated",
+     "interactive": "click"
     }
    ]
   },
@@ -13265,6 +13417,25 @@
      },
      "meaning": "applies the transform translate(20 10)",
      "prov": "grammar"
+    },
+    {
+     "name": "onmouseover",
+     "values": {
+      "onmouseout": "this.style.opacity='1'",
+      "onmouseover": "this.style.opacity='0.3'"
+     },
+     "meaning": "ON HOVER the handler fades the element (event attributes are visual in context)",
+     "prov": "curated",
+     "interactive": "hover"
+    },
+    {
+     "name": "onclick",
+     "values": {
+      "onclick": "this.setAttribute('fill','#f5a623');this.setAttribute('stroke','#f5a623')"
+     },
+     "meaning": "ON CLICK the handler recolors the element to orange",
+     "prov": "curated",
+     "interactive": "click"
     }
    ]
   },
@@ -13581,6 +13752,25 @@
      },
      "meaning": "applies the transform translate(20 10)",
      "prov": "grammar"
+    },
+    {
+     "name": "onmouseover",
+     "values": {
+      "onmouseout": "this.style.opacity='1'",
+      "onmouseover": "this.style.opacity='0.3'"
+     },
+     "meaning": "ON HOVER the handler fades the element (event attributes are visual in context)",
+     "prov": "curated",
+     "interactive": "hover"
+    },
+    {
+     "name": "onclick",
+     "values": {
+      "onclick": "this.setAttribute('fill','#f5a623');this.setAttribute('stroke','#f5a623')"
+     },
+     "meaning": "ON CLICK the handler recolors the element to orange",
+     "prov": "curated",
+     "interactive": "click"
     }
    ]
   },
@@ -14494,6 +14684,25 @@
      },
      "meaning": "applies the transform translate(20 10)",
      "prov": "grammar"
+    },
+    {
+     "name": "onmouseover",
+     "values": {
+      "onmouseout": "this.style.opacity='1'",
+      "onmouseover": "this.style.opacity='0.3'"
+     },
+     "meaning": "ON HOVER the handler fades the element (event attributes are visual in context)",
+     "prov": "curated",
+     "interactive": "hover"
+    },
+    {
+     "name": "onclick",
+     "values": {
+      "onclick": "this.setAttribute('fill','#f5a623');this.setAttribute('stroke','#f5a623')"
+     },
+     "meaning": "ON CLICK the handler recolors the element to orange",
+     "prov": "curated",
+     "interactive": "click"
     }
    ]
   },
@@ -15366,6 +15575,25 @@
      },
      "meaning": "applies the transform translate(20 10)",
      "prov": "grammar"
+    },
+    {
+     "name": "onmouseover",
+     "values": {
+      "onmouseout": "this.style.opacity='1'",
+      "onmouseover": "this.style.opacity='0.3'"
+     },
+     "meaning": "ON HOVER the handler fades the element (event attributes are visual in context)",
+     "prov": "curated",
+     "interactive": "hover"
+    },
+    {
+     "name": "onclick",
+     "values": {
+      "onclick": "this.setAttribute('fill','#f5a623');this.setAttribute('stroke','#f5a623')"
+     },
+     "meaning": "ON CLICK the handler recolors the element to orange",
+     "prov": "curated",
+     "interactive": "click"
     }
    ]
   },
@@ -16304,6 +16532,25 @@
      },
      "meaning": "applies the transform translate(20 10)",
      "prov": "grammar"
+    },
+    {
+     "name": "onmouseover",
+     "values": {
+      "onmouseout": "this.style.opacity='1'",
+      "onmouseover": "this.style.opacity='0.3'"
+     },
+     "meaning": "ON HOVER the handler fades the element (event attributes are visual in context)",
+     "prov": "curated",
+     "interactive": "hover"
+    },
+    {
+     "name": "onclick",
+     "values": {
+      "onclick": "this.setAttribute('fill','#f5a623');this.setAttribute('stroke','#f5a623')"
+     },
+     "meaning": "ON CLICK the handler recolors the element to orange",
+     "prov": "curated",
+     "interactive": "click"
     }
    ]
   },
@@ -17385,6 +17632,25 @@
      },
      "meaning": "applies the transform translate(20 10)",
      "prov": "grammar"
+    },
+    {
+     "name": "onmouseover",
+     "values": {
+      "onmouseout": "this.style.opacity='1'",
+      "onmouseover": "this.style.opacity='0.3'"
+     },
+     "meaning": "ON HOVER the handler fades the element (event attributes are visual in context)",
+     "prov": "curated",
+     "interactive": "hover"
+    },
+    {
+     "name": "onclick",
+     "values": {
+      "onclick": "this.setAttribute('fill','#f5a623');this.setAttribute('stroke','#f5a623')"
+     },
+     "meaning": "ON CLICK the handler recolors the element to orange",
+     "prov": "curated",
+     "interactive": "click"
     }
    ]
   },
@@ -17760,6 +18026,25 @@
      },
      "meaning": "clones the element with id #slot",
      "prov": "grammar"
+    },
+    {
+     "name": "onmouseover",
+     "values": {
+      "onmouseout": "this.style.opacity='1'",
+      "onmouseover": "this.style.opacity='0.3'"
+     },
+     "meaning": "ON HOVER the handler fades the element (event attributes are visual in context)",
+     "prov": "curated",
+     "interactive": "hover"
+    },
+    {
+     "name": "onclick",
+     "values": {
+      "onclick": "this.setAttribute('fill','#f5a623');this.setAttribute('stroke','#f5a623')"
+     },
+     "meaning": "ON CLICK the handler recolors the element to orange",
+     "prov": "curated",
+     "interactive": "click"
     }
    ]
   },

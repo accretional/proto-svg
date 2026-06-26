@@ -102,7 +102,13 @@
       var attrs = m[3].replace(/([\w:.-]+)(\s*=\s*)("[^"]*")?/g, function (_, n, eq, val) {
         return sp('#6fd3e8', n) + (eq ? sp('#5b6a64', eq) : '') + (val ? sp('#e8c98a', escXml(val)) : '');
       });
-      out += sp('#5b6a64', m[1]) + sp('#4ee39a', m[2]) + attrs + sp('#5b6a64', m[4]);
+      var tagHtml = sp('#5b6a64', m[1]) + sp('#4ee39a', m[2]) + attrs + sp('#5b6a64', m[4]);
+      // Highlight the SHOWCASED element (carries data-lab) so it's obvious which
+      // element this page is testing.
+      if (m[3].indexOf('data-lab') >= 0) {
+        tagHtml = '<span style="background:rgba(78,227,154,0.15);outline:1px solid rgba(78,227,154,0.4);border-radius:3px">' + tagHtml + '</span>';
+      }
+      out += tagHtml;
       last = m.index + m[0].length;
     }
     out += escXml(src.slice(last));

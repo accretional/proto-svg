@@ -118,9 +118,38 @@
     var lc = $('linecount'); if (lc) lc.textContent = lines.length + ' lines';
   }
 
+  // ---- pretty-print SVG for the editor ----
+  // Block-indents structural elements; keeps whitespace-sensitive content (text /
+  // tspan / textPath / foreignObject — anything with a direct text node) INLINE so
+  // the formatting never changes how the SVG renders.
+  function fmtNode(el, depth) {
+    var pad = new Array(depth + 1).join('  ');
+    var open = '<' + el.nodeName;
+    for (var i = 0; i < el.attributes.length; i++) {
+      open += ' ' + el.attributes[i].name + '="' + el.attributes[i].value + '"';
+    }
+    var elemKids = [], hasText = false;
+    for (var j = 0; j < el.childNodes.length; j++) {
+      var n = el.childNodes[j];
+      if (n.nodeType === 1) elemKids.push(n);
+      else if (n.nodeType === 3 && n.textContent.trim()) hasText = true;
+    }
+    if (!elemKids.length && !hasText) return pad + open + '/>';
+    if (hasText) return pad + open + '>' + el.innerHTML.trim() + '</' + el.nodeName + '>';
+    var inner = elemKids.map(function (n) { return fmtNode(n, depth + 1); }).join('\n');
+    return pad + open + '>\n' + inner + '\n' + pad + '</' + el.nodeName + '>';
+  }
+  function formatSvg(src) {
+    try {
+      var doc = new DOMParser().parseFromString(src, 'image/svg+xml');
+      if (!doc.documentElement || doc.getElementsByTagName('parsererror').length) return src;
+      return fmtNode(doc.documentElement, 0);
+    } catch (e) { return src; }
+  }
+
   // ---- regenerate from values (control/preset path) ----
   function regen() {
-    code = buildCode(cur, values);
+    code = formatSvg(buildCode(cur, values));
     renderViewer();
     paintEditor();
   }
@@ -365,6 +394,16 @@
     var ta = $('editor');
     ta.oninput = function () { code = ta.value; renderViewer(); paintEditor(); };
     ta.onscroll = function () { $('hl').scrollTop = ta.scrollTop; $('hl').scrollLeft = ta.scrollLeft; $('gutter').scrollTop = ta.scrollTop; };
+    // editor pane: draggable splitter — resize the editor height; the viewer takes the rest.
+    var rh = $('ed-resize'), pane = $('editorpane');
+    if (rh && pane) {
+      rh.onmousedown = function (e) {
+        var sy = e.clientY, sh = pane.offsetHeight; document.body.style.cursor = 'ns-resize';
+        function mv(ev) { pane.style.height = Math.max(90, Math.min(window.innerHeight - 180, sh + (sy - ev.clientY))) + 'px'; }
+        function up() { document.removeEventListener('mousemove', mv); document.removeEventListener('mouseup', up); document.body.style.cursor = ''; }
+        document.addEventListener('mousemove', mv); document.addEventListener('mouseup', up); e.preventDefault();
+      };
+    }
     // export
     $('b-copy').onclick = function () { try { navigator.clipboard.writeText(code); } catch (e) {} var b = $('b-copy'); b.textContent = 'copied'; setTimeout(function () { b.textContent = 'copy'; }, 1200); };
     $('b-svg').onclick = function () { save(new Blob([code], { type: 'image/svg+xml' }), (cur ? cur.id : 'svg') + '.svg'); };

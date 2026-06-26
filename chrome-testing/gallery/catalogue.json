@@ -164,7 +164,6 @@
     {
      "name": "stroke-dashoffset=10",
      "values": {
-      "stroke-dasharray": "8 6",
       "stroke-dashoffset": "10"
      },
      "meaning": "shifts the start of the dash pattern along the outline",
@@ -1276,7 +1275,6 @@
     {
      "name": "stroke-dashoffset=10",
      "values": {
-      "stroke-dasharray": "8 6",
       "stroke-dashoffset": "10"
      },
      "meaning": "shifts the start of the dash pattern along the outline",
@@ -1785,7 +1783,6 @@
     {
      "name": "stroke-dashoffset=10",
      "values": {
-      "stroke-dasharray": "8 6",
       "stroke-dashoffset": "10"
      },
      "meaning": "shifts the start of the dash pattern along the outline",
@@ -10091,7 +10088,6 @@
     {
      "name": "stroke-dashoffset=10",
      "values": {
-      "stroke-dasharray": "8 6",
       "stroke-dashoffset": "10"
      },
      "meaning": "shifts the start of the dash pattern along the outline",
@@ -10612,13 +10608,14 @@
    ],
    "defaults": {
     "stroke": "#4d8bff",
+    "stroke-dasharray": "10 6",
     "stroke-width": "4",
     "x1": "10",
     "x2": "90",
     "y1": "10",
     "y2": "90"
    },
-   "base": "\u003csvg xmlns=\"http://www.w3.org/2000/svg\" width=\"120\" height=\"120\" viewBox=\"0 0 100 100\"\u003e\u003cdefs\u003e\u003cfilter id=\"fx-blur\" x=\"-40%\" y=\"-40%\" width=\"180%\" height=\"180%\"\u003e\u003cfeGaussianBlur stdDeviation=\"3.2\"/\u003e\u003c/filter\u003e\u003clinearGradient id=\"fx-maskgrad\"\u003e\u003cstop offset=\"0.15\" stop-color=\"#fff\"/\u003e\u003cstop offset=\"1\" stop-color=\"#000\"/\u003e\u003c/linearGradient\u003e\u003cmask id=\"fx-mask\"\u003e\u003crect x=\"0\" y=\"0\" width=\"100\" height=\"100\" fill=\"url(#fx-maskgrad)\"/\u003e\u003c/mask\u003e\u003cmarker id=\"fx-marker\" markerWidth=\"7\" markerHeight=\"7\" refX=\"3.5\" refY=\"3.5\" orient=\"auto\"\u003e\u003cpath d=\"M0 0 L7 3.5 L0 7 Z\" fill=\"#f5a623\"/\u003e\u003c/marker\u003e\u003cclipPath id=\"fx-clip\"\u003e\u003cpolygon points=\"50,6 61,38 95,38 67,58 78,92 50,72 22,92 33,58 5,38 39,38\"/\u003e\u003c/clipPath\u003e\u003c/defs\u003e\u003cline data-lab=\"\" x1=\"10\" y1=\"10\" x2=\"90\" y2=\"90\" stroke=\"#4d8bff\" stroke-width=\"4\"\u003e\u003c/line\u003e\u003c/svg\u003e",
+   "base": "\u003csvg xmlns=\"http://www.w3.org/2000/svg\" width=\"120\" height=\"120\" viewBox=\"0 0 100 100\"\u003e\u003cdefs\u003e\u003cfilter id=\"fx-blur\" x=\"-40%\" y=\"-40%\" width=\"180%\" height=\"180%\"\u003e\u003cfeGaussianBlur stdDeviation=\"3.2\"/\u003e\u003c/filter\u003e\u003clinearGradient id=\"fx-maskgrad\"\u003e\u003cstop offset=\"0.15\" stop-color=\"#fff\"/\u003e\u003cstop offset=\"1\" stop-color=\"#000\"/\u003e\u003c/linearGradient\u003e\u003cmask id=\"fx-mask\"\u003e\u003crect x=\"0\" y=\"0\" width=\"100\" height=\"100\" fill=\"url(#fx-maskgrad)\"/\u003e\u003c/mask\u003e\u003cmarker id=\"fx-marker\" markerWidth=\"7\" markerHeight=\"7\" refX=\"3.5\" refY=\"3.5\" orient=\"auto\"\u003e\u003cpath d=\"M0 0 L7 3.5 L0 7 Z\" fill=\"#f5a623\"/\u003e\u003c/marker\u003e\u003cclipPath id=\"fx-clip\"\u003e\u003cpolygon points=\"50,6 61,38 95,38 67,58 78,92 50,72 22,92 33,58 5,38 39,38\"/\u003e\u003c/clipPath\u003e\u003c/defs\u003e\u003cline data-lab=\"\" x1=\"10\" y1=\"10\" x2=\"90\" y2=\"90\" stroke=\"#4d8bff\" stroke-width=\"4\" stroke-dasharray=\"10 6\"\u003e\u003c/line\u003e\u003c/svg\u003e",
    "presets": [
     {
      "name": "x1=10",
@@ -10799,7 +10796,6 @@
     {
      "name": "stroke-dashoffset=10",
      "values": {
-      "stroke-dasharray": "8 6",
       "stroke-dashoffset": "10"
      },
      "meaning": "shifts the start of the dash pattern along the outline",
@@ -11730,7 +11726,6 @@
     {
      "name": "stroke-dashoffset=10",
      "values": {
-      "stroke-dasharray": "8 6",
       "stroke-dashoffset": "10"
      },
      "meaning": "shifts the start of the dash pattern along the outline",
@@ -12297,7 +12292,6 @@
     {
      "name": "stroke-dashoffset=10",
      "values": {
-      "stroke-dasharray": "8 6",
       "stroke-dashoffset": "10"
      },
      "meaning": "shifts the start of the dash pattern along the outline",
@@ -12828,7 +12822,6 @@
     {
      "name": "stroke-dashoffset=10",
      "values": {
-      "stroke-dasharray": "8 6",
       "stroke-dashoffset": "10"
      },
      "meaning": "shifts the start of the dash pattern along the outline",
@@ -13069,7 +13062,6 @@
     {
      "name": "stroke-dashoffset=10",
      "values": {
-      "stroke-dasharray": "8 6",
       "stroke-dashoffset": "10"
      },
      "meaning": "shifts the start of the dash pattern along the outline",
@@ -13308,9 +13300,10 @@
     "fill": "none",
     "points": "10,80 40,20 70,60 90,10",
     "stroke": "#e94560",
+    "stroke-dasharray": "9 5",
     "stroke-width": "3"
    },
-   "base": "\u003csvg xmlns=\"http://www.w3.org/2000/svg\" width=\"120\" height=\"120\" viewBox=\"0 0 100 100\"\u003e\u003cdefs\u003e\u003cfilter id=\"fx-blur\" x=\"-40%\" y=\"-40%\" width=\"180%\" height=\"180%\"\u003e\u003cfeGaussianBlur stdDeviation=\"3.2\"/\u003e\u003c/filter\u003e\u003clinearGradient id=\"fx-maskgrad\"\u003e\u003cstop offset=\"0.15\" stop-color=\"#fff\"/\u003e\u003cstop offset=\"1\" stop-color=\"#000\"/\u003e\u003c/linearGradient\u003e\u003cmask id=\"fx-mask\"\u003e\u003crect x=\"0\" y=\"0\" width=\"100\" height=\"100\" fill=\"url(#fx-maskgrad)\"/\u003e\u003c/mask\u003e\u003cmarker id=\"fx-marker\" markerWidth=\"7\" markerHeight=\"7\" refX=\"3.5\" refY=\"3.5\" orient=\"auto\"\u003e\u003cpath d=\"M0 0 L7 3.5 L0 7 Z\" fill=\"#f5a623\"/\u003e\u003c/marker\u003e\u003cclipPath id=\"fx-clip\"\u003e\u003cpolygon points=\"50,6 61,38 95,38 67,58 78,92 50,72 22,92 33,58 5,38 39,38\"/\u003e\u003c/clipPath\u003e\u003c/defs\u003e\u003cpolyline data-lab=\"\" points=\"10,80 40,20 70,60 90,10\" fill=\"none\" stroke=\"#e94560\" stroke-width=\"3\"\u003e\u003c/polyline\u003e\u003c/svg\u003e",
+   "base": "\u003csvg xmlns=\"http://www.w3.org/2000/svg\" width=\"120\" height=\"120\" viewBox=\"0 0 100 100\"\u003e\u003cdefs\u003e\u003cfilter id=\"fx-blur\" x=\"-40%\" y=\"-40%\" width=\"180%\" height=\"180%\"\u003e\u003cfeGaussianBlur stdDeviation=\"3.2\"/\u003e\u003c/filter\u003e\u003clinearGradient id=\"fx-maskgrad\"\u003e\u003cstop offset=\"0.15\" stop-color=\"#fff\"/\u003e\u003cstop offset=\"1\" stop-color=\"#000\"/\u003e\u003c/linearGradient\u003e\u003cmask id=\"fx-mask\"\u003e\u003crect x=\"0\" y=\"0\" width=\"100\" height=\"100\" fill=\"url(#fx-maskgrad)\"/\u003e\u003c/mask\u003e\u003cmarker id=\"fx-marker\" markerWidth=\"7\" markerHeight=\"7\" refX=\"3.5\" refY=\"3.5\" orient=\"auto\"\u003e\u003cpath d=\"M0 0 L7 3.5 L0 7 Z\" fill=\"#f5a623\"/\u003e\u003c/marker\u003e\u003cclipPath id=\"fx-clip\"\u003e\u003cpolygon points=\"50,6 61,38 95,38 67,58 78,92 50,72 22,92 33,58 5,38 39,38\"/\u003e\u003c/clipPath\u003e\u003c/defs\u003e\u003cpolyline data-lab=\"\" points=\"10,80 40,20 70,60 90,10\" fill=\"none\" stroke=\"#e94560\" stroke-width=\"3\" stroke-dasharray=\"9 5\"\u003e\u003c/polyline\u003e\u003c/svg\u003e",
    "presets": [
     {
      "name": "points=20,20 80,20 50,…",
@@ -13411,7 +13404,6 @@
     {
      "name": "stroke-dashoffset=10",
      "values": {
-      "stroke-dasharray": "8 6",
       "stroke-dashoffset": "10"
      },
      "meaning": "shifts the start of the dash pattern along the outline",
@@ -14366,7 +14358,6 @@
     {
      "name": "stroke-dashoffset=10",
      "values": {
-      "stroke-dasharray": "8 6",
       "stroke-dashoffset": "10"
      },
      "meaning": "shifts the start of the dash pattern along the outline",
@@ -15027,7 +15018,6 @@
     {
      "name": "stroke-dashoffset=10",
      "values": {
-      "stroke-dasharray": "8 6",
       "stroke-dashoffset": "10"
      },
      "meaning": "shifts the start of the dash pattern along the outline",
@@ -15253,7 +15243,6 @@
     {
      "name": "stroke-dashoffset=10",
      "values": {
-      "stroke-dasharray": "8 6",
       "stroke-dashoffset": "10"
      },
      "meaning": "shifts the start of the dash pattern along the outline",
@@ -15707,7 +15696,6 @@
     {
      "name": "stroke-dashoffset=10",
      "values": {
-      "stroke-dasharray": "8 6",
       "stroke-dashoffset": "10"
      },
      "meaning": "shifts the start of the dash pattern along the outline",
@@ -15934,10 +15922,11 @@
    ],
    "defaults": {
     "fill": "currentColor",
+    "textLength": "78",
     "x": "10",
     "y": "55"
    },
-   "base": "\u003csvg xmlns=\"http://www.w3.org/2000/svg\" width=\"120\" height=\"120\" viewBox=\"0 0 100 100\" color=\"#16c79a\"\u003e\u003cdefs\u003e\u003cfilter id=\"fx-blur\" x=\"-40%\" y=\"-40%\" width=\"180%\" height=\"180%\"\u003e\u003cfeGaussianBlur stdDeviation=\"3.2\"/\u003e\u003c/filter\u003e\u003clinearGradient id=\"fx-maskgrad\"\u003e\u003cstop offset=\"0.15\" stop-color=\"#fff\"/\u003e\u003cstop offset=\"1\" stop-color=\"#000\"/\u003e\u003c/linearGradient\u003e\u003cmask id=\"fx-mask\"\u003e\u003crect x=\"0\" y=\"0\" width=\"100\" height=\"100\" fill=\"url(#fx-maskgrad)\"/\u003e\u003c/mask\u003e\u003cmarker id=\"fx-marker\" markerWidth=\"7\" markerHeight=\"7\" refX=\"3.5\" refY=\"3.5\" orient=\"auto\"\u003e\u003cpath d=\"M0 0 L7 3.5 L0 7 Z\" fill=\"#f5a623\"/\u003e\u003c/marker\u003e\u003cclipPath id=\"fx-clip\"\u003e\u003cpolygon points=\"50,6 61,38 95,38 67,58 78,92 50,72 22,92 33,58 5,38 39,38\"/\u003e\u003c/clipPath\u003e\u003c/defs\u003e\u003ctext data-lab=\"\" x=\"10\" y=\"55\" fill=\"currentColor\" font-size=\"20\"\u003eText\u003c/text\u003e\u003c/svg\u003e",
+   "base": "\u003csvg xmlns=\"http://www.w3.org/2000/svg\" width=\"120\" height=\"120\" viewBox=\"0 0 100 100\" color=\"#16c79a\"\u003e\u003cdefs\u003e\u003cfilter id=\"fx-blur\" x=\"-40%\" y=\"-40%\" width=\"180%\" height=\"180%\"\u003e\u003cfeGaussianBlur stdDeviation=\"3.2\"/\u003e\u003c/filter\u003e\u003clinearGradient id=\"fx-maskgrad\"\u003e\u003cstop offset=\"0.15\" stop-color=\"#fff\"/\u003e\u003cstop offset=\"1\" stop-color=\"#000\"/\u003e\u003c/linearGradient\u003e\u003cmask id=\"fx-mask\"\u003e\u003crect x=\"0\" y=\"0\" width=\"100\" height=\"100\" fill=\"url(#fx-maskgrad)\"/\u003e\u003c/mask\u003e\u003cmarker id=\"fx-marker\" markerWidth=\"7\" markerHeight=\"7\" refX=\"3.5\" refY=\"3.5\" orient=\"auto\"\u003e\u003cpath d=\"M0 0 L7 3.5 L0 7 Z\" fill=\"#f5a623\"/\u003e\u003c/marker\u003e\u003cclipPath id=\"fx-clip\"\u003e\u003cpolygon points=\"50,6 61,38 95,38 67,58 78,92 50,72 22,92 33,58 5,38 39,38\"/\u003e\u003c/clipPath\u003e\u003c/defs\u003e\u003ctext data-lab=\"\" x=\"10\" y=\"55\" fill=\"currentColor\" font-size=\"20\" textLength=\"78\"\u003eText\u003c/text\u003e\u003c/svg\u003e",
    "presets": [
     {
      "name": "x=75% 10 0",
@@ -16086,7 +16075,6 @@
     {
      "name": "stroke-dashoffset=10",
      "values": {
-      "stroke-dasharray": "8 6",
       "stroke-dashoffset": "10"
      },
      "meaning": "shifts the start of the dash pattern along the outline",
@@ -16478,9 +16466,10 @@
    ],
    "defaults": {
     "fill": "currentColor",
-    "href": "#slot"
+    "href": "#slot",
+    "textLength": "95"
    },
-   "base": "\u003csvg xmlns=\"http://www.w3.org/2000/svg\" width=\"120\" height=\"120\" viewBox=\"0 0 100 100\" color=\"#16c79a\"\u003e\u003cdefs\u003e\u003cfilter id=\"fx-blur\" x=\"-40%\" y=\"-40%\" width=\"180%\" height=\"180%\"\u003e\u003cfeGaussianBlur stdDeviation=\"3.2\"/\u003e\u003c/filter\u003e\u003clinearGradient id=\"fx-maskgrad\"\u003e\u003cstop offset=\"0.15\" stop-color=\"#fff\"/\u003e\u003cstop offset=\"1\" stop-color=\"#000\"/\u003e\u003c/linearGradient\u003e\u003cmask id=\"fx-mask\"\u003e\u003crect x=\"0\" y=\"0\" width=\"100\" height=\"100\" fill=\"url(#fx-maskgrad)\"/\u003e\u003c/mask\u003e\u003cmarker id=\"fx-marker\" markerWidth=\"7\" markerHeight=\"7\" refX=\"3.5\" refY=\"3.5\" orient=\"auto\"\u003e\u003cpath d=\"M0 0 L7 3.5 L0 7 Z\" fill=\"#f5a623\"/\u003e\u003c/marker\u003e\u003cclipPath id=\"fx-clip\"\u003e\u003cpolygon points=\"50,6 61,38 95,38 67,58 78,92 50,72 22,92 33,58 5,38 39,38\"/\u003e\u003c/clipPath\u003e\u003c/defs\u003e\u003cdefs\u003e\u003cpath id=\"slot\" d=\"M 5 70 Q 50 10 95 70\"/\u003e\u003c/defs\u003e\u003ctext font-size=\"20\"\u003e\u003ctextPath data-lab=\"\" href=\"#slot\" fill=\"currentColor\" font-size=\"20\"\u003eFollowing\u003c/textPath\u003e\u003c/text\u003e\u003c/svg\u003e",
+   "base": "\u003csvg xmlns=\"http://www.w3.org/2000/svg\" width=\"120\" height=\"120\" viewBox=\"0 0 100 100\" color=\"#16c79a\"\u003e\u003cdefs\u003e\u003cfilter id=\"fx-blur\" x=\"-40%\" y=\"-40%\" width=\"180%\" height=\"180%\"\u003e\u003cfeGaussianBlur stdDeviation=\"3.2\"/\u003e\u003c/filter\u003e\u003clinearGradient id=\"fx-maskgrad\"\u003e\u003cstop offset=\"0.15\" stop-color=\"#fff\"/\u003e\u003cstop offset=\"1\" stop-color=\"#000\"/\u003e\u003c/linearGradient\u003e\u003cmask id=\"fx-mask\"\u003e\u003crect x=\"0\" y=\"0\" width=\"100\" height=\"100\" fill=\"url(#fx-maskgrad)\"/\u003e\u003c/mask\u003e\u003cmarker id=\"fx-marker\" markerWidth=\"7\" markerHeight=\"7\" refX=\"3.5\" refY=\"3.5\" orient=\"auto\"\u003e\u003cpath d=\"M0 0 L7 3.5 L0 7 Z\" fill=\"#f5a623\"/\u003e\u003c/marker\u003e\u003cclipPath id=\"fx-clip\"\u003e\u003cpolygon points=\"50,6 61,38 95,38 67,58 78,92 50,72 22,92 33,58 5,38 39,38\"/\u003e\u003c/clipPath\u003e\u003c/defs\u003e\u003cdefs\u003e\u003cpath id=\"slot\" d=\"M 5 70 Q 50 10 95 70\"/\u003e\u003c/defs\u003e\u003ctext font-size=\"20\"\u003e\u003ctextPath data-lab=\"\" href=\"#slot\" fill=\"currentColor\" font-size=\"20\" textLength=\"95\"\u003eFollowing\u003c/textPath\u003e\u003c/text\u003e\u003c/svg\u003e",
    "presets": [
     {
      "name": "path=M10 10 L90 90",
@@ -16677,7 +16666,6 @@
     {
      "name": "stroke-dashoffset=10",
      "values": {
-      "stroke-dasharray": "8 6",
       "stroke-dashoffset": "10"
      },
      "meaning": "shifts the start of the dash pattern along the outline",
@@ -17031,9 +17019,10 @@
     }
    ],
    "defaults": {
-    "fill": "currentColor"
+    "fill": "currentColor",
+    "textLength": "46"
    },
-   "base": "\u003csvg xmlns=\"http://www.w3.org/2000/svg\" width=\"120\" height=\"120\" viewBox=\"0 0 100 100\" color=\"#16c79a\"\u003e\u003cdefs\u003e\u003cfilter id=\"fx-blur\" x=\"-40%\" y=\"-40%\" width=\"180%\" height=\"180%\"\u003e\u003cfeGaussianBlur stdDeviation=\"3.2\"/\u003e\u003c/filter\u003e\u003clinearGradient id=\"fx-maskgrad\"\u003e\u003cstop offset=\"0.15\" stop-color=\"#fff\"/\u003e\u003cstop offset=\"1\" stop-color=\"#000\"/\u003e\u003c/linearGradient\u003e\u003cmask id=\"fx-mask\"\u003e\u003crect x=\"0\" y=\"0\" width=\"100\" height=\"100\" fill=\"url(#fx-maskgrad)\"/\u003e\u003c/mask\u003e\u003cmarker id=\"fx-marker\" markerWidth=\"7\" markerHeight=\"7\" refX=\"3.5\" refY=\"3.5\" orient=\"auto\"\u003e\u003cpath d=\"M0 0 L7 3.5 L0 7 Z\" fill=\"#f5a623\"/\u003e\u003c/marker\u003e\u003cclipPath id=\"fx-clip\"\u003e\u003cpolygon points=\"50,6 61,38 95,38 67,58 78,92 50,72 22,92 33,58 5,38 39,38\"/\u003e\u003c/clipPath\u003e\u003c/defs\u003e\u003ctext x=\"8\" y=\"55\" fill=\"#7b8a82\" font-size=\"16\"\u003eHi \u003ctspan data-lab=\"\" fill=\"currentColor\" font-size=\"22\"\u003eAg\u003c/tspan\u003e!\u003c/text\u003e\u003c/svg\u003e",
+   "base": "\u003csvg xmlns=\"http://www.w3.org/2000/svg\" width=\"120\" height=\"120\" viewBox=\"0 0 100 100\" color=\"#16c79a\"\u003e\u003cdefs\u003e\u003cfilter id=\"fx-blur\" x=\"-40%\" y=\"-40%\" width=\"180%\" height=\"180%\"\u003e\u003cfeGaussianBlur stdDeviation=\"3.2\"/\u003e\u003c/filter\u003e\u003clinearGradient id=\"fx-maskgrad\"\u003e\u003cstop offset=\"0.15\" stop-color=\"#fff\"/\u003e\u003cstop offset=\"1\" stop-color=\"#000\"/\u003e\u003c/linearGradient\u003e\u003cmask id=\"fx-mask\"\u003e\u003crect x=\"0\" y=\"0\" width=\"100\" height=\"100\" fill=\"url(#fx-maskgrad)\"/\u003e\u003c/mask\u003e\u003cmarker id=\"fx-marker\" markerWidth=\"7\" markerHeight=\"7\" refX=\"3.5\" refY=\"3.5\" orient=\"auto\"\u003e\u003cpath d=\"M0 0 L7 3.5 L0 7 Z\" fill=\"#f5a623\"/\u003e\u003c/marker\u003e\u003cclipPath id=\"fx-clip\"\u003e\u003cpolygon points=\"50,6 61,38 95,38 67,58 78,92 50,72 22,92 33,58 5,38 39,38\"/\u003e\u003c/clipPath\u003e\u003c/defs\u003e\u003ctext x=\"8\" y=\"55\" fill=\"#7b8a82\" font-size=\"16\"\u003eHi \u003ctspan data-lab=\"\" fill=\"currentColor\" font-size=\"22\" textLength=\"46\"\u003eAg\u003c/tspan\u003e!\u003c/text\u003e\u003c/svg\u003e",
    "presets": [
     {
      "name": "x=24px 2em 3.14",
@@ -17182,7 +17171,6 @@
     {
      "name": "stroke-dashoffset=10",
      "values": {
-      "stroke-dasharray": "8 6",
       "stroke-dashoffset": "10"
      },
      "meaning": "shifts the start of the dash pattern along the outline",
@@ -17687,7 +17675,6 @@
     {
      "name": "stroke-dashoffset=10",
      "values": {
-      "stroke-dasharray": "8 6",
       "stroke-dashoffset": "10"
      },
      "meaning": "shifts the start of the dash pattern along the outline",

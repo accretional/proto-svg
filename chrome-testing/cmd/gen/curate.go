@@ -111,12 +111,10 @@ func curateAttr(tag, attr string, vals []string) []demoPreset {
 		// real dash pattern instead.
 		return []demoPreset{one("stroke-dasharray", "7 5", "dashes the outline (7 on, 5 off)")}
 	case "stroke-dashoffset":
-		// only meaningful with a dash pattern, so set one alongside the offset.
-		return []demoPreset{{
-			label:   "10",
-			values:  map[string]string{"stroke-dasharray": "8 6", "stroke-dashoffset": "10"},
-			meaning: "shifts the start of the dash pattern along the outline",
-		}}
+		// the open-stroke shapes (line/polyline) carry a base stroke-dasharray, so the
+		// offset shifts an EXISTING dash — a clean single terminal value. (On shapes
+		// with no base dash it's a no-op, explorable by adding a dasharray live.)
+		return []demoPreset{one("stroke-dashoffset", "10", "shifts the start of the dash pattern along the outline")}
 	case "stroke-linecap":
 		if !openStrokeTags[tag] {
 			return dropAttr // closed/filled shapes have no open stroke ends

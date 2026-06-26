@@ -663,9 +663,11 @@ func baselineFor(tag, varyingPrefix, varyingValue string) (string, bool) {
 	case "ellipse":
 		return add([2]string{"cx", "50"}, [2]string{"cy", "50"}, [2]string{"rx", "40"}, [2]string{"ry", "25"}, [2]string{"fill", "#f5a623"}, [2]string{"stroke", "#16c79a"}, [2]string{"stroke-width", "2"}), false
 	case "line":
-		return add([2]string{"x1", "10"}, [2]string{"y1", "10"}, [2]string{"x2", "90"}, [2]string{"y2", "90"}, [2]string{"stroke", "#4d8bff"}, [2]string{"stroke-width", "4"}), false
+		// TUNED BASE: a base stroke-dasharray so stroke-dashoffset is demonstrable
+		// (the offset shifts an existing dash pattern) — open stroke, dashing is natural.
+		return add([2]string{"x1", "10"}, [2]string{"y1", "10"}, [2]string{"x2", "90"}, [2]string{"y2", "90"}, [2]string{"stroke", "#4d8bff"}, [2]string{"stroke-width", "4"}, [2]string{"stroke-dasharray", "10 6"}), false
 	case "polyline":
-		return add([2]string{"points", "10,80 40,20 70,60 90,10"}, [2]string{"fill", "none"}, [2]string{"stroke", "#e94560"}, [2]string{"stroke-width", "3"}), false
+		return add([2]string{"points", "10,80 40,20 70,60 90,10"}, [2]string{"fill", "none"}, [2]string{"stroke", "#e94560"}, [2]string{"stroke-width", "3"}, [2]string{"stroke-dasharray", "9 5"}), false
 	case "polygon":
 		return add([2]string{"points", "50,10 90,80 10,80"}, [2]string{"fill", "#16c79a"}, [2]string{"stroke", "#16c79a"}, [2]string{"stroke-width", "2"}), false
 	case "path":
@@ -677,18 +679,21 @@ func baselineFor(tag, varyingPrefix, varyingValue string) (string, bool) {
 	case "text":
 		// FIX 3: fill="currentColor" so a varied CSS `color` (or `fill`) recolors the
 		// glyphs; the scaffold root seeds a neutral color so the base card is visible.
-		return add([2]string{"x", "10"}, [2]string{"y", "55"}, [2]string{"fill", "currentColor"}, [2]string{"font-size", "20"}), false
+		// TUNED BASE: a base textLength (wider than the natural word) so lengthAdjust
+		// is demonstrable — spacing spreads the gaps, spacingAndGlyphs stretches the
+		// glyphs; without a textLength it does nothing.
+		return add([2]string{"x", "10"}, [2]string{"y", "55"}, [2]string{"fill", "currentColor"}, [2]string{"font-size", "20"}, [2]string{"textLength", "78"}), false
 	case "tspan":
 		// NO baseline x/y: the tspan FLOWS inside its parent text run (the scaffold
 		// supplies surrounding "Hi …!" text) so it reads as a styled sub-span, not a
 		// detached label. When x/y ARE the varied attribute they reposition it,
 		// visibly demonstrating absolute tspan positioning.
-		return add([2]string{"fill", "currentColor"}, [2]string{"font-size", "22"}), false
+		return add([2]string{"fill", "currentColor"}, [2]string{"font-size", "22"}, [2]string{"textLength", "46"}), false
 	case "textPath":
 		// textPath ignores x/y; it follows a referenced path. The blueprint defines
 		// <path id="slot"> in defs, so href="#slot" makes every card's text follow it.
 		// FIX 3: fill="currentColor" so a varied `color`/`fill` recolors the glyphs.
-		return add([2]string{"href", "#slot"}, [2]string{"fill", "currentColor"}, [2]string{"font-size", "20"}), false
+		return add([2]string{"href", "#slot"}, [2]string{"fill", "currentColor"}, [2]string{"font-size", "20"}, [2]string{"textLength", "95"}), false
 	case "image":
 		// An inline data: URI so the image renders offline; omitted when href varies.
 		return add([2]string{"x", "10"}, [2]string{"y", "10"}, [2]string{"width", "80"}, [2]string{"height", "80"}, [2]string{"href", imageDataURI}), false

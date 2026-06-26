@@ -763,8 +763,14 @@ func baselineFor(tag, varyingPrefix, varyingValue string) (string, bool) {
 		// The blueprint supplies feFlood result="layer2"; wire it as the 2nd input.
 		return add([2]string{"in", "SourceGraphic"}, [2]string{"in2", "layer2"}), false
 	case "feComposite":
-		// The blueprint supplies feFlood result="layer1"/"layer2"; composite them.
-		return add([2]string{"in", "layer1"}, [2]string{"in2", "layer2"}, [2]string{"operator", "over"}), false
+		// TUNED REPRESENTATIVE BASE: operator="arithmetic" with seeded k-coefficients,
+		// so the k1-k4 controls are demonstrable from the base (they're ignored in
+		// every other operator) WITHOUT per-preset companion injection — and varying
+		// `operator` to over/in/… still works (the seeds are simply ignored there).
+		// The blueprint supplies feFlood result="layer1"/"layer2" to composite.
+		return add([2]string{"in", "layer1"}, [2]string{"in2", "layer2"},
+			[2]string{"operator", "arithmetic"},
+			[2]string{"k1", "0.5"}, [2]string{"k2", "0.5"}, [2]string{"k3", "0.5"}, [2]string{"k4", "0"}), false
 	case "feTile":
 		// The blueprint supplies a small feFlood result="patch"; tile it.
 		return add([2]string{"in", "patch"}), false
@@ -901,22 +907,8 @@ func companionFor(tag, varied, value string) (companions [][2]string, overrides 
 			// channel-swap: R↔B (and keep G, A) — clearly distinct from hueRotate.
 			overrides["values"] = "0 0 1 0 0  0 1 0 0 0  1 0 0 0 0  0 0 0 1 0"
 		}
-	case "feComposite":
-		// The arithmetic coefficients k1-k4 are ignored in every operator but
-		// `arithmetic`, so flip the operator when one of them is varied and seed the
-		// OTHER coefficients (out = k1·i1·i2 + k2·i1 + k3·i2 + k4) so the varied k is
-		// not the lone non-zero term — a mid blend makes each k visibly distinct.
-		switch varied {
-		case "k1", "k2", "k3", "k4":
-			overrides["operator"] = "arithmetic"
-			seed := map[string]string{"k1": "0.5", "k2": "0.5", "k3": "0.5", "k4": "0"}
-			delete(seed, varied)
-			for _, k := range []string{"k1", "k2", "k3", "k4"} {
-				if v, ok := seed[k]; ok {
-					companions = append(companions, [2]string{k, v})
-				}
-			}
-		}
+		// (feComposite k1-k4 ↔ operator="arithmetic" is now a TUNED BASE — baselineFor
+		// sets operator="arithmetic" + k-seeds — so no per-preset companion is needed.)
 	case "feFuncR", "feFuncG", "feFuncB", "feFuncA":
 		switch varied {
 		case "amplitude", "exponent", "offset":

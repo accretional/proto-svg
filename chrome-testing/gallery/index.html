@@ -9,6 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
   *{box-sizing:border-box}
+  .embed-hidden{display:none !important}
   html,body{margin:0;padding:0;background:#0a0d0c}
   body{height:100vh;overflow:hidden;color:#cdd6d2;font-family:'JetBrains Mono',monospace}
   ::-webkit-scrollbar{width:10px;height:10px}
@@ -112,7 +113,7 @@
 
         <div style="flex:1;display:flex;overflow:hidden">
           <!-- LEFT: viewer + editor -->
-          <div style="flex:1;min-width:0;display:flex;flex-direction:column">
+          <div style="flex:1;min-width:0;min-height:0;display:flex;flex-direction:column">
             <div id="viewerwrap" style="flex:1;position:relative;overflow:hidden;min-height:0">
               <div id="vieweroverlay" style="position:absolute;top:12px;right:12px;left:12px;display:flex;align-items:center;gap:8px;z-index:10">
                 <span style="font-size:11px;color:#56655e;letter-spacing:1.5px">VIEWER</span>
@@ -131,7 +132,7 @@
                 <div id="viewer" style="width:300px;height:300px;transform-origin:center;will-change:transform"></div>
               </div>
             </div>
-            <div id="editorpane" style="height:300px;flex:none;display:flex;flex-direction:column;background:#0b0f0d">
+            <div id="editorpane" style="height:300px;flex:none;display:flex;flex-direction:column;overflow:hidden;background:#0b0f0d">
               <div id="ed-resize" title="drag to resize" style="height:7px;flex:none;cursor:ns-resize;background:#11160f;border-top:1px solid #1c2422;border-bottom:1px solid #161c19"></div>
               <div style="display:flex;align-items:center;gap:10px;padding:0 14px;height:36px;border-bottom:1px solid #161c19;flex:none">
                 <span style="width:9px;height:9px;border-radius:50%;background:#4ee39a"></span>

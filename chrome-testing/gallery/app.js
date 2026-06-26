@@ -319,10 +319,13 @@
   // ---- embed mode (clean, chrome-free viewer for screenshots) ----
   function setEmbed(on) {
     embed = on;
-    var d = on ? 'none' : '';
-    document.querySelector('header').style.display = d;
-    document.querySelectorAll('aside')[0].style.display = d;   // nav rail
-    ['bcbar', 'editorpane', 'ctrlpanel', 'vieweroverlay'].forEach(function (id) { var e = $(id); if (e) e.style.display = on ? 'none' : (id === 'vieweroverlay' ? 'flex' : ''); });
+    // Hide via a class — NOT style.display — so the panes keep their inline
+    // display:flex (clearing it reverted #editorpane to block, breaking the flex
+    // layout that lets the editor scroll instead of overflowing past the viewport).
+    var hide = function (e) { if (e) e.classList.toggle('embed-hidden', on); };
+    hide(document.querySelector('header'));
+    hide(document.querySelectorAll('aside')[0]);   // nav rail
+    ['bcbar', 'editorpane', 'ctrlpanel', 'vieweroverlay'].forEach(function (id) { hide($(id)); });
     var v = $('viewer');
     if (on) { v.style.width = '440px'; v.style.height = '440px'; $('canvas').style.background = '#0c0f0e'; }
     else { v.style.width = '300px'; v.style.height = '300px'; }

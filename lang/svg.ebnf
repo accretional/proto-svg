@@ -267,7 +267,9 @@ XlinkTitleAttr = ' xlink:title="' , StringType , '"' ;
    xmlns is mandatory when an .svg file is opened directly (without it the browser
    does not recognise the markup as SVG). They are part of the grammar, not an
    optional attribute, because a real SVG root always carries them. *)
-SVGSVGElement = '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"' , { SvgAttribute } , ">" , { ContainerContent } , "</svg>" ;
+SVGSVGElement = '<svg ', SvgXmlnsAttr , { SvgAttribute } , ">" , { ContainerContent } , "</svg>" ;
+SvgXmlnsAttr = 'xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"' ;
+
 SvgAttribute = SvgViewBoxAttr | SvgPreserveAspectRatioAttr | SvgZoomAndPanAttr
              | SvgXAttr | SvgYAttr | SvgWidthAttr | SvgHeightAttr | SvgTransformAttr
              | CoreAttribute | ConditionalProcessingAttribute | AriaAttribute

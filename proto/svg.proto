@@ -1595,13 +1595,18 @@ message XlinkTitleAttr {
 }
 
 message Svgsvgelement {
-  repeated SvgAttribute svg_attribute = 1;
+  SvgXmlnsAttr svg_xmlns_attr = 1;
 
-  GreaterThanSignKeyword greater_than_sign_keyword = 2;
+  repeated SvgAttribute svg_attribute = 2;
 
-  repeated ContainerContent container_content = 3;
+  GreaterThanSignKeyword greater_than_sign_keyword = 3;
 
-  LessThanSignSolidusSvgGreaterThanSignKeyword less_than_sign_solidus_svg_greater_than_sign_keyword = 4;
+  repeated ContainerContent container_content = 4;
+
+  LessThanSignSolidusSvgGreaterThanSignKeyword less_than_sign_solidus_svg_greater_than_sign_keyword = 5;
+}
+
+message SvgXmlnsAttr {
 }
 
 message SvgAttribute {

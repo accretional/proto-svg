@@ -1,4 +1,5 @@
 svgsvgelement {
+  svg_xmlns_attr {}
   svg_attribute { svg_width_attr { alt1 { non_negative_length_percentage_type { value: "120" } } quotation_mark_keyword {} } }
   svg_attribute { svg_height_attr { alt1 { non_negative_length_percentage_type { value: "120" } } quotation_mark_keyword {} } }
   greater_than_sign_keyword {}

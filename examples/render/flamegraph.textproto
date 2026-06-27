@@ -14,6 +14,9 @@
 # the grammar (one line) so they fall out of the schema like every other terminal.
 
 svgsvgelement {
+  # the namespace declarations are their own grammar production (SvgXmlnsAttr),
+  # emitted right after the "<svg " open terminal — present it to emit them.
+  svg_xmlns_attr {}
   # --- root attributes: width / height / viewBox / onload ---
   svg_attribute { svg_width_attr { alt1 { non_negative_length_percentage_type { value: "1000" } } quotation_mark_keyword {} } }
   svg_attribute { svg_height_attr { alt1 { non_negative_length_percentage_type { value: "626" } } quotation_mark_keyword {} } }

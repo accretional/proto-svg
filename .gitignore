@@ -15,6 +15,12 @@
 # chrome-testing/shoot.sh (driving the SVG Lab gallery).
 /chrome-testing/screenshots/
 
+# Round-trip demo outputs: large and fully regenerable from examples/parse/
+# flamegraph.svg via `go run ./examples/parse` then `go run ./examples/render`
+# (the parsed proto is ~18MB; the re-render ~1MB). Kept on disk, out of history.
+/examples/parse/flamegraph.textproto
+/examples/parse/flamegraph_gen.svg
+
 # Temp
 **/temp/
 /tmp/

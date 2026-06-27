@@ -74,7 +74,7 @@ func (e *Enumerator) allElements() []element {
 		}
 		attrUnion, content := e.attrAndContent(m)
 		els = append(els, element{
-			tag:        strings.TrimPrefix(lit, "<"),
+			tag:        tagName(lit),
 			fqn:        fqn,
 			attrUnion:  attrUnion,
 			contentMsg: content,
@@ -82,6 +82,18 @@ func (e *Enumerator) allElements() []element {
 	}
 	sort.Slice(els, func(i, j int) bool { return els[i].tag < els[j].tag })
 	return els
+}
+
+// tagName extracts the bare element name from an open-tag literal. The literal
+// is normally "<rect", but the root carries baked namespace attributes
+// ("<svg xmlns=\"…\" version=\"1.1\""); the tag name is the token after "<" up
+// to the first space, so the close tag stays "</svg>" and lookups key on "svg".
+func tagName(openLit string) string {
+	t := strings.TrimPrefix(openLit, "<")
+	if i := strings.IndexByte(t, ' '); i >= 0 {
+		t = t[:i]
+	}
+	return t
 }
 
 // attrAndContent finds an element's attribute-union field (the FIRST repeated

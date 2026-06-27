@@ -1,0 +1,18 @@
+svgsvgelement {
+  svg_attribute { svg_width_attr { alt1 { non_negative_length_percentage_type { value: "120" } } quotation_mark_keyword {} } }
+  svg_attribute { svg_height_attr { alt1 { non_negative_length_percentage_type { value: "120" } } quotation_mark_keyword {} } }
+  greater_than_sign_keyword {}
+  container_content {
+    shape_element {
+      svgrect_element {
+        rect_attribute { rect_xattr { length_percentage_type { value: "10" } quotation_mark_keyword {} } }
+        rect_attribute { rect_yattr { length_percentage_type { value: "10" } quotation_mark_keyword {} } }
+        rect_attribute { rect_width_attr { non_negative_length_percentage_type { value: "100" } quotation_mark_keyword {} } }
+        rect_attribute { rect_height_attr { non_negative_length_percentage_type { value: "100" } quotation_mark_keyword {} } }
+        greater_than_sign_keyword {}
+        less_than_sign_solidus_rect_greater_than_sign_keyword {}
+      }
+    }
+  }
+  less_than_sign_solidus_svg_greater_than_sign_keyword {}
+}

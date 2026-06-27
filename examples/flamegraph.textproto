@@ -1,0 +1,324 @@
+# A Brendan-Gregg-style CPU flame graph, expressed entirely as an svg.SvgDocument
+# (the proto schema compiled from the SVG EBNF grammar). render.go walks this by
+# proto reflection — it has NO flame-graph knowledge — and emits the .svg.
+#
+# This is the "better structure" variant: every constant presentation property
+# (font, fill, rounded corners, hover outline, cursor) is pushed into ONE <style>
+# block instead of repeated on every <rect>/<text>, so each frame is just its
+# geometry + label + tooltip. The interactivity is real: hovering a frame shows
+# its function in the details line; clicking a frame zooms; "Reset Zoom" restores.
+#
+# NOTE (the one grammar gap): xmlns / xmlns:xlink / version are NOT modelled by
+# the grammar, so the rendered <svg> omits them. Inline in HTML that is fine; for
+# a standalone .svg opened directly, add them to the SvgsvgElement root prefix in
+# the grammar (one line) so they fall out of the schema like every other terminal.
+
+svgsvgelement {
+  # --- root attributes: width / height / viewBox / onload ---
+  svg_attribute { svg_width_attr { alt1 { non_negative_length_percentage_type { value: "1000" } } quotation_mark_keyword {} } }
+  svg_attribute { svg_height_attr { alt1 { non_negative_length_percentage_type { value: "626" } } quotation_mark_keyword {} } }
+  svg_attribute { svg_view_box_attr { view_box {
+    number_type   { value: "0" }    space_keyword   {}
+    number_type_2 { value: "0" }    space_keyword_2 {}
+    number_type_3 { value: "1000" } space_keyword_3 {}
+    number_type_4 { value: "626" }
+  } quotation_mark_keyword {} } }
+  svg_attribute { global_event_attribute { onload_attr { string_type { value: "init(evt)" } quotation_mark_keyword {} } } }
+  greater_than_sign_keyword {}
+
+  # --- <defs> : the background gradient ---
+  container_content { structural_element { svgdefs_element {
+    greater_than_sign_keyword {}
+    container_content { paint_server_element { svglinear_gradient_element {
+      linear_gradient_attribute { core_attribute { id_attr { xml_name_type { value: "background" } quotation_mark_keyword {} } } }
+      linear_gradient_attribute { linear_gradient_x1attr { alt1 { length_percentage_type { value: "0" } } quotation_mark_keyword {} } }
+      linear_gradient_attribute { linear_gradient_y1attr { alt1 { length_percentage_type { value: "0" } } quotation_mark_keyword {} } }
+      linear_gradient_attribute { linear_gradient_x2attr { alt1 { length_percentage_type { value: "0" } } quotation_mark_keyword {} } }
+      linear_gradient_attribute { linear_gradient_y2attr { alt1 { length_percentage_type { value: "1" } } quotation_mark_keyword {} } }
+      greater_than_sign_keyword {}
+      linear_gradient_content { svgstop_element {
+        stop_attribute { stop_offset_attr { alt1 { number_type { value: "0.05" } } quotation_mark_keyword {} } }
+        stop_attribute { presentation_attribute { stop_color_attr { alt1 { color_type { functional_color { value: "rgb(238,238,238)" } } } quotation_mark_keyword {} } } }
+        greater_than_sign_keyword {}
+        less_than_sign_solidus_stop_greater_than_sign_keyword {}
+      } }
+      linear_gradient_content { svgstop_element {
+        stop_attribute { stop_offset_attr { alt1 { number_type { value: "0.95" } } quotation_mark_keyword {} } }
+        stop_attribute { presentation_attribute { stop_color_attr { alt1 { color_type { functional_color { value: "rgb(238,238,176)" } } } quotation_mark_keyword {} } } }
+        greater_than_sign_keyword {}
+        less_than_sign_solidus_stop_greater_than_sign_keyword {}
+      } }
+      less_than_sign_solidus_linear_gradient_greater_than_sign_keyword {}
+    } } }
+    less_than_sign_solidus_defs_greater_than_sign_keyword {}
+  } } }
+
+  # --- <style> : all constant presentation, once ---
+  container_content { svgstyle_element {
+    style_attribute { style_type_attr { string_type { value: "text/css" } quotation_mark_keyword {} } }
+    greater_than_sign_keyword {}
+    style_content { character_data_type {
+      value:
+        "\n"
+        "  text { font-family:Verdana; font-size:12px; fill:rgb(0,0,0); cursor:default; }\n"
+        "  #title { font-size:17px; }\n"
+        "  .func_g rect { rx:2px; ry:2px; }\n"
+        "  .func_g:hover rect { stroke:black; stroke-width:0.5px; }\n"
+        "  #unzoom { cursor:pointer; opacity:0; }\n"
+    } }
+    less_than_sign_solidus_style_greater_than_sign_keyword {}
+  } }
+
+  # --- <script> : hover tooltip + click-to-zoom + reset (single-quoted JS, CDATA) ---
+  container_content { svgscript_element {
+    script_attribute { script_type_attr { string_type { value: "text/ecmascript" } quotation_mark_keyword {} } }
+    greater_than_sign_keyword {}
+    script_content { character_data_type {
+      value:
+        "<![CDATA[\n"
+        "var details, svg;\n"
+        "function init(evt){\n"
+        "  details = document.getElementById('details').firstChild;\n"
+        "  svg = document.getElementsByTagName('svg')[0];\n"
+        "}\n"
+        "function find_child(p, name){\n"
+        "  var ch = p.childNodes;\n"
+        "  for (var i=0; i<ch.length; i++){ if (ch[i].tagName == name) return ch[i]; }\n"
+        "  return null;\n"
+        "}\n"
+        "function g_to_text(e){ var t = find_child(e, 'title'); return t ? t.firstChild.nodeValue : ''; }\n"
+        "function s(node){ details.nodeValue = 'Function: ' + g_to_text(node); }\n"
+        "function c(){ details.nodeValue = ' '; }\n"
+        "function orig_save(e, a){\n"
+        "  if (e.attributes['_orig_'+a] != undefined) return;\n"
+        "  if (e.attributes[a] == undefined) return;\n"
+        "  e.setAttribute('_orig_'+a, e.attributes[a].value);\n"
+        "}\n"
+        "function orig_load(e, a){\n"
+        "  if (e.attributes['_orig_'+a] == undefined) return;\n"
+        "  e.attributes[a].value = e.attributes['_orig_'+a].value;\n"
+        "  e.removeAttribute('_orig_'+a);\n"
+        "}\n"
+        "function zoom(node){\n"
+        "  var ra = find_child(node, 'rect').attributes;\n"
+        "  var width = parseFloat(ra['width'].value);\n"
+        "  var xmin = parseFloat(ra['x'].value);\n"
+        "  var xmax = xmin + width;\n"
+        "  var ratio = (svg.width.baseVal.value - 20) / width;\n"
+        "  var el = document.getElementsByTagName('g');\n"
+        "  for (var i=0; i<el.length; i++){\n"
+        "    var e = el[i], r = find_child(e, 'rect');\n"
+        "    if (!r) continue;\n"
+        "    var ex = parseFloat(r.attributes['x'].value), ew = parseFloat(r.attributes['width'].value);\n"
+        "    if (ex >= xmin - 0.1 && ex + ew <= xmax + 0.1){\n"
+        "      orig_save(r, 'x'); orig_save(r, 'width');\n"
+        "      var nx = (ex - xmin) * ratio + 10;\n"
+        "      r.attributes['x'].value = nx;\n"
+        "      r.attributes['width'].value = ew * ratio;\n"
+        "      var t = find_child(e, 'text');\n"
+        "      if (t){ orig_save(t, 'x'); t.attributes['x'].value = nx + 3; }\n"
+        "      e.style['display'] = 'block';\n"
+        "    } else { e.style['display'] = 'none'; }\n"
+        "  }\n"
+        "  document.getElementById('unzoom').style['opacity'] = '1';\n"
+        "}\n"
+        "function unzoom(){\n"
+        "  var el = document.getElementsByTagName('g');\n"
+        "  for (var i=0; i<el.length; i++){\n"
+        "    var e = el[i]; e.style['display'] = 'block';\n"
+        "    var r = find_child(e, 'rect'); if (r){ orig_load(r, 'x'); orig_load(r, 'width'); }\n"
+        "    var t = find_child(e, 'text'); if (t){ orig_load(t, 'x'); }\n"
+        "  }\n"
+        "  document.getElementById('unzoom').style['opacity'] = '0';\n"
+        "}\n"
+        "]]>"
+    } }
+    less_than_sign_solidus_script_greater_than_sign_keyword {}
+  } }
+
+  # --- background rect ---
+  container_content { shape_element { svgrect_element {
+    rect_attribute { rect_xattr { length_percentage_type { value: "0" } quotation_mark_keyword {} } }
+    rect_attribute { rect_yattr { length_percentage_type { value: "0" } quotation_mark_keyword {} } }
+    rect_attribute { rect_width_attr { non_negative_length_percentage_type { value: "1000" } quotation_mark_keyword {} } }
+    rect_attribute { rect_height_attr { non_negative_length_percentage_type { value: "626" } quotation_mark_keyword {} } }
+    rect_attribute { presentation_attribute { fill_attr { paint_type { paint_ref { url_type { value: "url(#background)" } } } quotation_mark_keyword {} } } }
+    greater_than_sign_keyword {}
+    less_than_sign_solidus_rect_greater_than_sign_keyword {}
+  } } }
+
+  # --- chrome text: title / reset / details ---
+  container_content { svgtext_element {
+    text_attribute { core_attribute { id_attr { xml_name_type { value: "title" } quotation_mark_keyword {} } } }
+    text_attribute { presentation_attribute { text_anchor_attr { alt1 { middle_keyword {} } quotation_mark_keyword {} } } }
+    text_attribute { text_xattr { text_position_list { alt1 { length_percentage_type { value: "500" } } } quotation_mark_keyword {} } }
+    text_attribute { text_yattr { text_position_list { alt1 { length_percentage_type { value: "24" } } } quotation_mark_keyword {} } }
+    greater_than_sign_keyword {}
+    text_content { character_data_type { value: "Flame Graph" } }
+    less_than_sign_solidus_text_greater_than_sign_keyword {}
+  } }
+  container_content { svgtext_element {
+    text_attribute { core_attribute { id_attr { xml_name_type { value: "unzoom" } quotation_mark_keyword {} } } }
+    text_attribute { global_event_attribute { onclick_attr { string_type { value: "unzoom()" } quotation_mark_keyword {} } } }
+    text_attribute { text_xattr { text_position_list { alt1 { length_percentage_type { value: "10" } } } quotation_mark_keyword {} } }
+    text_attribute { text_yattr { text_position_list { alt1 { length_percentage_type { value: "24" } } } quotation_mark_keyword {} } }
+    greater_than_sign_keyword {}
+    text_content { character_data_type { value: "Reset Zoom" } }
+    less_than_sign_solidus_text_greater_than_sign_keyword {}
+  } }
+  container_content { svgtext_element {
+    text_attribute { core_attribute { id_attr { xml_name_type { value: "details" } quotation_mark_keyword {} } } }
+    text_attribute { text_xattr { text_position_list { alt1 { length_percentage_type { value: "10" } } } quotation_mark_keyword {} } }
+    text_attribute { text_yattr { text_position_list { alt1 { length_percentage_type { value: "609" } } } quotation_mark_keyword {} } }
+    greater_than_sign_keyword {}
+    text_content { character_data_type { value: " " } }
+    less_than_sign_solidus_text_greater_than_sign_keyword {}
+  } }
+
+  # ============================ frames ============================
+  # frame: main (root)
+  container_content { structural_element { svggelement {
+    gattribute { core_attribute { class_attr { string_type { value: "func_g" } quotation_mark_keyword {} } } }
+    gattribute { global_event_attribute { onmouseover_attr { string_type { value: "s(this)" } quotation_mark_keyword {} } } }
+    gattribute { global_event_attribute { onmouseout_attr { string_type { value: "c()" } quotation_mark_keyword {} } } }
+    gattribute { global_event_attribute { onclick_attr { string_type { value: "zoom(this)" } quotation_mark_keyword {} } } }
+    greater_than_sign_keyword {}
+    container_content { descriptive_element { svgtitle_element { greater_than_sign_keyword {} title_content { character_data_type { value: "main (1,000 samples, 100%)" } } less_than_sign_solidus_title_greater_than_sign_keyword {} } } }
+    container_content { shape_element { svgrect_element {
+      rect_attribute { rect_xattr { length_percentage_type { value: "10" } quotation_mark_keyword {} } }
+      rect_attribute { rect_yattr { length_percentage_type { value: "497" } quotation_mark_keyword {} } }
+      rect_attribute { rect_width_attr { non_negative_length_percentage_type { value: "980" } quotation_mark_keyword {} } }
+      rect_attribute { rect_height_attr { non_negative_length_percentage_type { value: "22" } quotation_mark_keyword {} } }
+      rect_attribute { presentation_attribute { fill_attr { paint_type { color_type { functional_color { value: "rgb(247,148,30)" } } } quotation_mark_keyword {} } } }
+      greater_than_sign_keyword {} less_than_sign_solidus_rect_greater_than_sign_keyword {}
+    } } }
+    container_content { svgtext_element {
+      text_attribute { text_xattr { text_position_list { alt1 { length_percentage_type { value: "13" } } } quotation_mark_keyword {} } }
+      text_attribute { text_yattr { text_position_list { alt1 { length_percentage_type { value: "513" } } } quotation_mark_keyword {} } }
+      greater_than_sign_keyword {} text_content { character_data_type { value: "main" } } less_than_sign_solidus_text_greater_than_sign_keyword {}
+    } }
+    less_than_sign_solidus_g_greater_than_sign_keyword {}
+  } } }
+
+  # frame: parse
+  container_content { structural_element { svggelement {
+    gattribute { core_attribute { class_attr { string_type { value: "func_g" } quotation_mark_keyword {} } } }
+    gattribute { global_event_attribute { onmouseover_attr { string_type { value: "s(this)" } quotation_mark_keyword {} } } }
+    gattribute { global_event_attribute { onmouseout_attr { string_type { value: "c()" } quotation_mark_keyword {} } } }
+    gattribute { global_event_attribute { onclick_attr { string_type { value: "zoom(this)" } quotation_mark_keyword {} } } }
+    greater_than_sign_keyword {}
+    container_content { descriptive_element { svgtitle_element { greater_than_sign_keyword {} title_content { character_data_type { value: "parse (500 samples, 50%)" } } less_than_sign_solidus_title_greater_than_sign_keyword {} } } }
+    container_content { shape_element { svgrect_element {
+      rect_attribute { rect_xattr { length_percentage_type { value: "10" } quotation_mark_keyword {} } }
+      rect_attribute { rect_yattr { length_percentage_type { value: "469" } quotation_mark_keyword {} } }
+      rect_attribute { rect_width_attr { non_negative_length_percentage_type { value: "500" } quotation_mark_keyword {} } }
+      rect_attribute { rect_height_attr { non_negative_length_percentage_type { value: "22" } quotation_mark_keyword {} } }
+      rect_attribute { presentation_attribute { fill_attr { paint_type { color_type { functional_color { value: "rgb(240,120,40)" } } } quotation_mark_keyword {} } } }
+      greater_than_sign_keyword {} less_than_sign_solidus_rect_greater_than_sign_keyword {}
+    } } }
+    container_content { svgtext_element {
+      text_attribute { text_xattr { text_position_list { alt1 { length_percentage_type { value: "13" } } } quotation_mark_keyword {} } }
+      text_attribute { text_yattr { text_position_list { alt1 { length_percentage_type { value: "485" } } } quotation_mark_keyword {} } }
+      greater_than_sign_keyword {} text_content { character_data_type { value: "parse" } } less_than_sign_solidus_text_greater_than_sign_keyword {}
+    } }
+    less_than_sign_solidus_g_greater_than_sign_keyword {}
+  } } }
+
+  # frame: execute
+  container_content { structural_element { svggelement {
+    gattribute { core_attribute { class_attr { string_type { value: "func_g" } quotation_mark_keyword {} } } }
+    gattribute { global_event_attribute { onmouseover_attr { string_type { value: "s(this)" } quotation_mark_keyword {} } } }
+    gattribute { global_event_attribute { onmouseout_attr { string_type { value: "c()" } quotation_mark_keyword {} } } }
+    gattribute { global_event_attribute { onclick_attr { string_type { value: "zoom(this)" } quotation_mark_keyword {} } } }
+    greater_than_sign_keyword {}
+    container_content { descriptive_element { svgtitle_element { greater_than_sign_keyword {} title_content { character_data_type { value: "execute (470 samples, 47%)" } } less_than_sign_solidus_title_greater_than_sign_keyword {} } } }
+    container_content { shape_element { svgrect_element {
+      rect_attribute { rect_xattr { length_percentage_type { value: "520" } quotation_mark_keyword {} } }
+      rect_attribute { rect_yattr { length_percentage_type { value: "469" } quotation_mark_keyword {} } }
+      rect_attribute { rect_width_attr { non_negative_length_percentage_type { value: "470" } quotation_mark_keyword {} } }
+      rect_attribute { rect_height_attr { non_negative_length_percentage_type { value: "22" } quotation_mark_keyword {} } }
+      rect_attribute { presentation_attribute { fill_attr { paint_type { color_type { functional_color { value: "rgb(230,90,30)" } } } quotation_mark_keyword {} } } }
+      greater_than_sign_keyword {} less_than_sign_solidus_rect_greater_than_sign_keyword {}
+    } } }
+    container_content { svgtext_element {
+      text_attribute { text_xattr { text_position_list { alt1 { length_percentage_type { value: "523" } } } quotation_mark_keyword {} } }
+      text_attribute { text_yattr { text_position_list { alt1 { length_percentage_type { value: "485" } } } quotation_mark_keyword {} } }
+      greater_than_sign_keyword {} text_content { character_data_type { value: "execute" } } less_than_sign_solidus_text_greater_than_sign_keyword {}
+    } }
+    less_than_sign_solidus_g_greater_than_sign_keyword {}
+  } } }
+
+  # frame: lex (child of parse)
+  container_content { structural_element { svggelement {
+    gattribute { core_attribute { class_attr { string_type { value: "func_g" } quotation_mark_keyword {} } } }
+    gattribute { global_event_attribute { onmouseover_attr { string_type { value: "s(this)" } quotation_mark_keyword {} } } }
+    gattribute { global_event_attribute { onmouseout_attr { string_type { value: "c()" } quotation_mark_keyword {} } } }
+    gattribute { global_event_attribute { onclick_attr { string_type { value: "zoom(this)" } quotation_mark_keyword {} } } }
+    greater_than_sign_keyword {}
+    container_content { descriptive_element { svgtitle_element { greater_than_sign_keyword {} title_content { character_data_type { value: "lex (300 samples, 30%)" } } less_than_sign_solidus_title_greater_than_sign_keyword {} } } }
+    container_content { shape_element { svgrect_element {
+      rect_attribute { rect_xattr { length_percentage_type { value: "10" } quotation_mark_keyword {} } }
+      rect_attribute { rect_yattr { length_percentage_type { value: "441" } quotation_mark_keyword {} } }
+      rect_attribute { rect_width_attr { non_negative_length_percentage_type { value: "300" } quotation_mark_keyword {} } }
+      rect_attribute { rect_height_attr { non_negative_length_percentage_type { value: "22" } quotation_mark_keyword {} } }
+      rect_attribute { presentation_attribute { fill_attr { paint_type { color_type { functional_color { value: "rgb(250,160,40)" } } } quotation_mark_keyword {} } } }
+      greater_than_sign_keyword {} less_than_sign_solidus_rect_greater_than_sign_keyword {}
+    } } }
+    container_content { svgtext_element {
+      text_attribute { text_xattr { text_position_list { alt1 { length_percentage_type { value: "13" } } } quotation_mark_keyword {} } }
+      text_attribute { text_yattr { text_position_list { alt1 { length_percentage_type { value: "457" } } } quotation_mark_keyword {} } }
+      greater_than_sign_keyword {} text_content { character_data_type { value: "lex" } } less_than_sign_solidus_text_greater_than_sign_keyword {}
+    } }
+    less_than_sign_solidus_g_greater_than_sign_keyword {}
+  } } }
+
+  # frame: optimize (child of execute)
+  container_content { structural_element { svggelement {
+    gattribute { core_attribute { class_attr { string_type { value: "func_g" } quotation_mark_keyword {} } } }
+    gattribute { global_event_attribute { onmouseover_attr { string_type { value: "s(this)" } quotation_mark_keyword {} } } }
+    gattribute { global_event_attribute { onmouseout_attr { string_type { value: "c()" } quotation_mark_keyword {} } } }
+    gattribute { global_event_attribute { onclick_attr { string_type { value: "zoom(this)" } quotation_mark_keyword {} } } }
+    greater_than_sign_keyword {}
+    container_content { descriptive_element { svgtitle_element { greater_than_sign_keyword {} title_content { character_data_type { value: "optimize (290 samples, 29%)" } } less_than_sign_solidus_title_greater_than_sign_keyword {} } } }
+    container_content { shape_element { svgrect_element {
+      rect_attribute { rect_xattr { length_percentage_type { value: "520" } quotation_mark_keyword {} } }
+      rect_attribute { rect_yattr { length_percentage_type { value: "441" } quotation_mark_keyword {} } }
+      rect_attribute { rect_width_attr { non_negative_length_percentage_type { value: "290" } quotation_mark_keyword {} } }
+      rect_attribute { rect_height_attr { non_negative_length_percentage_type { value: "22" } quotation_mark_keyword {} } }
+      rect_attribute { presentation_attribute { fill_attr { paint_type { color_type { functional_color { value: "rgb(235,110,25)" } } } quotation_mark_keyword {} } } }
+      greater_than_sign_keyword {} less_than_sign_solidus_rect_greater_than_sign_keyword {}
+    } } }
+    container_content { svgtext_element {
+      text_attribute { text_xattr { text_position_list { alt1 { length_percentage_type { value: "523" } } } quotation_mark_keyword {} } }
+      text_attribute { text_yattr { text_position_list { alt1 { length_percentage_type { value: "457" } } } quotation_mark_keyword {} } }
+      greater_than_sign_keyword {} text_content { character_data_type { value: "optimize" } } less_than_sign_solidus_text_greater_than_sign_keyword {}
+    } }
+    less_than_sign_solidus_g_greater_than_sign_keyword {}
+  } } }
+
+  # frame: emit (child of optimize)
+  container_content { structural_element { svggelement {
+    gattribute { core_attribute { class_attr { string_type { value: "func_g" } quotation_mark_keyword {} } } }
+    gattribute { global_event_attribute { onmouseover_attr { string_type { value: "s(this)" } quotation_mark_keyword {} } } }
+    gattribute { global_event_attribute { onmouseout_attr { string_type { value: "c()" } quotation_mark_keyword {} } } }
+    gattribute { global_event_attribute { onclick_attr { string_type { value: "zoom(this)" } quotation_mark_keyword {} } } }
+    greater_than_sign_keyword {}
+    container_content { descriptive_element { svgtitle_element { greater_than_sign_keyword {} title_content { character_data_type { value: "emit (180 samples, 18%)" } } less_than_sign_solidus_title_greater_than_sign_keyword {} } } }
+    container_content { shape_element { svgrect_element {
+      rect_attribute { rect_xattr { length_percentage_type { value: "520" } quotation_mark_keyword {} } }
+      rect_attribute { rect_yattr { length_percentage_type { value: "413" } quotation_mark_keyword {} } }
+      rect_attribute { rect_width_attr { non_negative_length_percentage_type { value: "180" } quotation_mark_keyword {} } }
+      rect_attribute { rect_height_attr { non_negative_length_percentage_type { value: "22" } quotation_mark_keyword {} } }
+      rect_attribute { presentation_attribute { fill_attr { paint_type { color_type { functional_color { value: "rgb(245,180,48)" } } } quotation_mark_keyword {} } } }
+      greater_than_sign_keyword {} less_than_sign_solidus_rect_greater_than_sign_keyword {}
+    } } }
+    container_content { svgtext_element {
+      text_attribute { text_xattr { text_position_list { alt1 { length_percentage_type { value: "523" } } } quotation_mark_keyword {} } }
+      text_attribute { text_yattr { text_position_list { alt1 { length_percentage_type { value: "429" } } } quotation_mark_keyword {} } }
+      greater_than_sign_keyword {} text_content { character_data_type { value: "emit" } } less_than_sign_solidus_text_greater_than_sign_keyword {}
+    } }
+    less_than_sign_solidus_g_greater_than_sign_keyword {}
+  } } }
+
+  less_than_sign_solidus_svg_greater_than_sign_keyword {}
+}

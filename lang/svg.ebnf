@@ -262,7 +262,12 @@ XlinkTitleAttr = ' xlink:title="' , StringType , '"' ;
    cross-file references resolved at concat time.
    ============================================================================ *)
 
-SVGSVGElement = "<svg" , { SvgAttribute } , ">" , { ContainerContent } , "</svg>" ;
+(* The SVG namespace declarations + version are baked into the open tag as fixed
+   terminals so every <svg> is a self-contained, standalone-renderable document:
+   xmlns is mandatory when an .svg file is opened directly (without it the browser
+   does not recognise the markup as SVG). They are part of the grammar, not an
+   optional attribute, because a real SVG root always carries them. *)
+SVGSVGElement = '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"' , { SvgAttribute } , ">" , { ContainerContent } , "</svg>" ;
 SvgAttribute = SvgViewBoxAttr | SvgPreserveAspectRatioAttr | SvgZoomAndPanAttr
              | SvgXAttr | SvgYAttr | SvgWidthAttr | SvgHeightAttr | SvgTransformAttr
              | CoreAttribute | ConditionalProcessingAttribute | AriaAttribute

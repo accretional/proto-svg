@@ -201,6 +201,25 @@ func (p *parser) parseOneof(input string, pos int, msg protoreflect.Message, od 
 		if fd.Kind() != protoreflect.MessageKind {
 			continue
 		}
+		// Foreign value seam (e.g. a css.ColorType alongside "none"/url() in a
+		// paint oneof): capture the value up to the stops and delegate to that
+		// grammar's parser. Preferred on ties (>= bestPos, vs local's strict >)
+		// because a real color is more specific than SVG's url() PaintRef, whose
+		// free scalar would otherwise greedily swallow any value like "red".
+		if pkg := string(fd.Message().ParentFile().Package()); pkg != localPackage {
+			parse, ok := foreignParsers[pkg]
+			if !ok {
+				continue
+			}
+			text, np := matchUntilAny(input, p.skipWS(input, pos), stops)
+			if text = strings.TrimSpace(text); text == "" {
+				continue
+			}
+			if sub, err := parse(text, string(fd.Message().FullName())); err == nil && np >= bestPos {
+				bestPos, bestFD, bestMsg = np, fd, sub.ProtoReflect()
+			}
+			continue
+		}
 		sub := newSub(fd.Message())
 		if sub == nil {
 			continue
@@ -310,6 +329,11 @@ func (p *parser) leadingTerminal(md protoreflect.MessageDescriptor) string {
 }
 
 func (p *parser) leadingTerminalSeen(md protoreflect.MessageDescriptor, seen map[protoreflect.FullName]bool) string {
+	// A foreign value seam (css.ColorType) has no fixed leading terminal and its
+	// schema isn't in this grammar's maps; don't descend into it.
+	if string(md.ParentFile().Package()) != localPackage {
+		return ""
+	}
 	fqn := "." + string(md.FullName())
 	if pfx, ok := p.prefix[fqn]; ok && len(pfx) > 0 {
 		return pfx[0]

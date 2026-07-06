@@ -73,6 +73,62 @@ func TestPlainSVG(t *testing.T) {
 	}
 }
 
+// TestPresentationColorSeam covers the presentation-attribute value seam: a
+// fill="red" value must parse into a structured css.ColorType (proto-css's
+// <color>), not an opaque SVG string, and round-trip.
+func TestPresentationColorSeam(t *testing.T) {
+	in := svgOpen + `<circle cx="60" cy="60" r="40" fill="red"></circle></svg>`
+
+	doc, err := Parse(in)
+	if err != nil {
+		t.Fatalf("Parse: %v", err)
+	}
+	if color := findByFullName(doc.ProtoReflect(), "css.ColorType"); color == nil {
+		t.Fatal("no css.ColorType embedded — the fill presentation-attribute color seam did not fire")
+	}
+	out, err := Render(doc)
+	if err != nil {
+		t.Fatalf("Render: %v", err)
+	}
+	t.Logf("render round-trip: %s", out)
+	if !strings.Contains(out, `fill="red"`) {
+		t.Errorf("rendered SVG missing fill=\"red\":\n%s", out)
+	}
+	if out != in {
+		t.Errorf("round-trip mismatch:\n in: %q\nout: %q", in, out)
+	}
+}
+
+func findByFullName(m protoreflect.Message, name string) protoreflect.Message {
+	var found protoreflect.Message
+	var walk func(protoreflect.Message)
+	walk = func(m protoreflect.Message) {
+		if found != nil {
+			return
+		}
+		if string(m.Descriptor().FullName()) == name {
+			found = m
+			return
+		}
+		m.Range(func(fd protoreflect.FieldDescriptor, v protoreflect.Value) bool {
+			if fd.Kind() != protoreflect.MessageKind && fd.Kind() != protoreflect.GroupKind {
+				return found == nil
+			}
+			if fd.IsList() {
+				l := v.List()
+				for i := 0; i < l.Len(); i++ {
+					walk(l.Get(i).Message())
+				}
+			} else {
+				walk(v.Message())
+			}
+			return found == nil
+		})
+	}
+	walk(m)
+	return found
+}
+
 func findCSSAST(m protoreflect.Message) *csspb.CssStyleSheet {
 	var found *csspb.CssStyleSheet
 	var walk func(protoreflect.Message)

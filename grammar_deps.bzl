@@ -26,7 +26,12 @@ GRAMMAR_DEPS = [
         proto_package = "css",
         go_package = "github.com/accretional/proto-css/proto/pb/css",
         external_rules = [
+            # <style> content — the full stylesheet.
             "CssStyleSheet",
+            # Presentation-attribute color values (fill / stroke / color /
+            # stop-color / flood-color / lighting-color). SVG's own structured
+            # ColorType is dropped in favour of proto-css's richer <color>.
+            "ColorType",
         ],
     ),
 ]

@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package svg;
 
-import "css.proto";
+import "google/protobuf/any.proto";
 
 option go_package = "github.com/accretional/proto-svg/proto/pb/svg;svgpb";
 
@@ -2369,7 +2369,7 @@ message AnimationValue {
 
     AngleType angle_type = 5;
 
-    css.ColorType color_type = 6;
+    google.protobuf.Any color_type = 6;
 
     PaintType paint_type = 7;
 
@@ -4058,7 +4058,7 @@ message PaintType {
 
     ContextHyphenMinusStrokeKeyword context_hyphen_minus_stroke_keyword = 4;
 
-    css.ColorType color_type = 5;
+    google.protobuf.Any color_type = 5;
 
     PaintRef paint_ref = 6;
   }
@@ -4076,7 +4076,7 @@ message PaintFallback {
 
     CurrentColorKeyword current_color_keyword = 2;
 
-    css.ColorType color_type = 3;
+    google.protobuf.Any color_type = 3;
   }
 }
 
@@ -4511,7 +4511,7 @@ message SvgstyleElement {
 
   GreaterThanSignKeyword greater_than_sign_keyword = 2;
 
-  css.CssStyleSheet css_style_sheet = 3;
+  google.protobuf.Any css_style_sheet = 3;
 
   LessThanSignSolidusStyleGreaterThanSignKeyword less_than_sign_solidus_style_greater_than_sign_keyword = 4;
 }
@@ -7029,7 +7029,7 @@ message ContrastFunction {
 }
 
 message DropShadowFunction {
-  css.ColorType color_type = 1;
+  google.protobuf.Any color_type = 1;
 
   LengthType length_type = 2;
 
@@ -7117,7 +7117,7 @@ message FloodColorAttr {
     oneof value {
       CurrentColorKeyword current_color_keyword = 1;
 
-      css.ColorType color_type = 2;
+      google.protobuf.Any color_type = 2;
     }
   }
 }
@@ -7137,7 +7137,7 @@ message LightingColorAttr {
     oneof value {
       CurrentColorKeyword current_color_keyword = 1;
 
-      css.ColorType color_type = 2;
+      google.protobuf.Any color_type = 2;
     }
   }
 }
@@ -8263,7 +8263,7 @@ message MarkerEndAttr {
 }
 
 message ColorAttr {
-  css.ColorType color_type = 1;
+  google.protobuf.Any color_type = 1;
 
   QuotationMarkKeyword quotation_mark_keyword = 2;
 }
@@ -8951,7 +8951,7 @@ message StopColorAttr {
     oneof value {
       CurrentColorKeyword current_color_keyword = 1;
 
-      css.ColorType color_type = 2;
+      google.protobuf.Any color_type = 2;
     }
   }
 }
@@ -11046,7 +11046,7 @@ message TextDecorationValue {
 
     SpaceKeyword space_keyword = 2;
 
-    css.ColorType color_type = 3;
+    google.protobuf.Any color_type = 3;
   }
 
   message Seq3 {
@@ -11054,7 +11054,7 @@ message TextDecorationValue {
 
     SpaceKeyword space_keyword = 2;
 
-    css.ColorType color_type = 3;
+    google.protobuf.Any color_type = 3;
   }
 
   message Seq4 {
@@ -11066,7 +11066,7 @@ message TextDecorationValue {
 
     SpaceKeyword space_keyword_2 = 4;
 
-    css.ColorType color_type = 5;
+    google.protobuf.Any color_type = 5;
   }
 }
 

@@ -7,9 +7,9 @@
 package svgpb
 
 import (
-	css "github.com/accretional/proto-css/proto/pb/css"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	anypb "google.golang.org/protobuf/types/known/anypb"
 	reflect "reflect"
 	sync "sync"
 	unsafe "unsafe"
@@ -17827,7 +17827,7 @@ func (x *AnimationValue) GetAngleType() *AngleType {
 	return nil
 }
 
-func (x *AnimationValue) GetColorType() *css.ColorType {
+func (x *AnimationValue) GetColorType() *anypb.Any {
 	if x != nil {
 		if x, ok := x.Value.(*AnimationValue_ColorType); ok {
 			return x.ColorType
@@ -17924,7 +17924,7 @@ type AnimationValue_AngleType struct {
 }
 
 type AnimationValue_ColorType struct {
-	ColorType *css.ColorType `protobuf:"bytes,6,opt,name=color_type,json=colorType,proto3,oneof"`
+	ColorType *anypb.Any `protobuf:"bytes,6,opt,name=color_type,json=colorType,proto3,oneof"`
 }
 
 type AnimationValue_PaintType struct {
@@ -29253,7 +29253,7 @@ func (x *PaintType) GetContextHyphenMinusStrokeKeyword() *ContextHyphenMinusStro
 	return nil
 }
 
-func (x *PaintType) GetColorType() *css.ColorType {
+func (x *PaintType) GetColorType() *anypb.Any {
 	if x != nil {
 		if x, ok := x.Value.(*PaintType_ColorType); ok {
 			return x.ColorType
@@ -29292,7 +29292,7 @@ type PaintType_ContextHyphenMinusStrokeKeyword struct {
 }
 
 type PaintType_ColorType struct {
-	ColorType *css.ColorType `protobuf:"bytes,5,opt,name=color_type,json=colorType,proto3,oneof"`
+	ColorType *anypb.Any `protobuf:"bytes,5,opt,name=color_type,json=colorType,proto3,oneof"`
 }
 
 type PaintType_PaintRef struct {
@@ -29430,7 +29430,7 @@ func (x *PaintFallback) GetCurrentColorKeyword() *CurrentColorKeyword {
 	return nil
 }
 
-func (x *PaintFallback) GetColorType() *css.ColorType {
+func (x *PaintFallback) GetColorType() *anypb.Any {
 	if x != nil {
 		if x, ok := x.Value.(*PaintFallback_ColorType); ok {
 			return x.ColorType
@@ -29452,7 +29452,7 @@ type PaintFallback_CurrentColorKeyword struct {
 }
 
 type PaintFallback_ColorType struct {
-	ColorType *css.ColorType `protobuf:"bytes,3,opt,name=color_type,json=colorType,proto3,oneof"`
+	ColorType *anypb.Any `protobuf:"bytes,3,opt,name=color_type,json=colorType,proto3,oneof"`
 }
 
 func (*PaintFallback_NoneKeyword) isPaintFallback_Value() {}
@@ -32531,7 +32531,7 @@ type SvgstyleElement struct {
 	state                                          protoimpl.MessageState                          `protogen:"open.v1"`
 	StyleAttribute                                 []*StyleAttribute                               `protobuf:"bytes,1,rep,name=style_attribute,json=styleAttribute,proto3" json:"style_attribute,omitempty"`
 	GreaterThanSignKeyword                         *GreaterThanSignKeyword                         `protobuf:"bytes,2,opt,name=greater_than_sign_keyword,json=greaterThanSignKeyword,proto3" json:"greater_than_sign_keyword,omitempty"`
-	CssStyleSheet                                  *css.CssStyleSheet                              `protobuf:"bytes,3,opt,name=css_style_sheet,json=cssStyleSheet,proto3" json:"css_style_sheet,omitempty"`
+	CssStyleSheet                                  *anypb.Any                                      `protobuf:"bytes,3,opt,name=css_style_sheet,json=cssStyleSheet,proto3" json:"css_style_sheet,omitempty"`
 	LessThanSignSolidusStyleGreaterThanSignKeyword *LessThanSignSolidusStyleGreaterThanSignKeyword `protobuf:"bytes,4,opt,name=less_than_sign_solidus_style_greater_than_sign_keyword,json=lessThanSignSolidusStyleGreaterThanSignKeyword,proto3" json:"less_than_sign_solidus_style_greater_than_sign_keyword,omitempty"`
 	unknownFields                                  protoimpl.UnknownFields
 	sizeCache                                      protoimpl.SizeCache
@@ -32581,7 +32581,7 @@ func (x *SvgstyleElement) GetGreaterThanSignKeyword() *GreaterThanSignKeyword {
 	return nil
 }
 
-func (x *SvgstyleElement) GetCssStyleSheet() *css.CssStyleSheet {
+func (x *SvgstyleElement) GetCssStyleSheet() *anypb.Any {
 	if x != nil {
 		return x.CssStyleSheet
 	}
@@ -51922,7 +51922,7 @@ func (x *ContrastFunction) GetRightParenthesisKeyword() *RightParenthesisKeyword
 
 type DropShadowFunction struct {
 	state                   protoimpl.MessageState   `protogen:"open.v1"`
-	ColorType               *css.ColorType           `protobuf:"bytes,1,opt,name=color_type,json=colorType,proto3" json:"color_type,omitempty"`
+	ColorType               *anypb.Any               `protobuf:"bytes,1,opt,name=color_type,json=colorType,proto3" json:"color_type,omitempty"`
 	LengthType              *LengthType              `protobuf:"bytes,2,opt,name=length_type,json=lengthType,proto3" json:"length_type,omitempty"`
 	LengthType_2            *LengthType              `protobuf:"bytes,3,opt,name=length_type_2,json=lengthType2,proto3" json:"length_type_2,omitempty"`
 	LengthType_3            *LengthType              `protobuf:"bytes,4,opt,name=length_type_3,json=lengthType3,proto3" json:"length_type_3,omitempty"`
@@ -51961,7 +51961,7 @@ func (*DropShadowFunction) Descriptor() ([]byte, []int) {
 	return file_svg_proto_rawDescGZIP(), []int{667}
 }
 
-func (x *DropShadowFunction) GetColorType() *css.ColorType {
+func (x *DropShadowFunction) GetColorType() *anypb.Any {
 	if x != nil {
 		return x.ColorType
 	}
@@ -59118,7 +59118,7 @@ func (x *MarkerEndAttr) GetQuotationMarkKeyword() *QuotationMarkKeyword {
 
 type ColorAttr struct {
 	state                protoimpl.MessageState `protogen:"open.v1"`
-	ColorType            *css.ColorType         `protobuf:"bytes,1,opt,name=color_type,json=colorType,proto3" json:"color_type,omitempty"`
+	ColorType            *anypb.Any             `protobuf:"bytes,1,opt,name=color_type,json=colorType,proto3" json:"color_type,omitempty"`
 	QuotationMarkKeyword *QuotationMarkKeyword  `protobuf:"bytes,2,opt,name=quotation_mark_keyword,json=quotationMarkKeyword,proto3" json:"quotation_mark_keyword,omitempty"`
 	unknownFields        protoimpl.UnknownFields
 	sizeCache            protoimpl.SizeCache
@@ -59154,7 +59154,7 @@ func (*ColorAttr) Descriptor() ([]byte, []int) {
 	return file_svg_proto_rawDescGZIP(), []int{762}
 }
 
-func (x *ColorAttr) GetColorType() *css.ColorType {
+func (x *ColorAttr) GetColorType() *anypb.Any {
 	if x != nil {
 		return x.ColorType
 	}
@@ -114746,7 +114746,7 @@ func (x *FloodColorAttr_Alt1) GetCurrentColorKeyword() *CurrentColorKeyword {
 	return nil
 }
 
-func (x *FloodColorAttr_Alt1) GetColorType() *css.ColorType {
+func (x *FloodColorAttr_Alt1) GetColorType() *anypb.Any {
 	if x != nil {
 		if x, ok := x.Value.(*FloodColorAttr_Alt1_ColorType); ok {
 			return x.ColorType
@@ -114764,7 +114764,7 @@ type FloodColorAttr_Alt1_CurrentColorKeyword struct {
 }
 
 type FloodColorAttr_Alt1_ColorType struct {
-	ColorType *css.ColorType `protobuf:"bytes,2,opt,name=color_type,json=colorType,proto3,oneof"`
+	ColorType *anypb.Any `protobuf:"bytes,2,opt,name=color_type,json=colorType,proto3,oneof"`
 }
 
 func (*FloodColorAttr_Alt1_CurrentColorKeyword) isFloodColorAttr_Alt1_Value() {}
@@ -114828,7 +114828,7 @@ func (x *LightingColorAttr_Alt1) GetCurrentColorKeyword() *CurrentColorKeyword {
 	return nil
 }
 
-func (x *LightingColorAttr_Alt1) GetColorType() *css.ColorType {
+func (x *LightingColorAttr_Alt1) GetColorType() *anypb.Any {
 	if x != nil {
 		if x, ok := x.Value.(*LightingColorAttr_Alt1_ColorType); ok {
 			return x.ColorType
@@ -114846,7 +114846,7 @@ type LightingColorAttr_Alt1_CurrentColorKeyword struct {
 }
 
 type LightingColorAttr_Alt1_ColorType struct {
-	ColorType *css.ColorType `protobuf:"bytes,2,opt,name=color_type,json=colorType,proto3,oneof"`
+	ColorType *anypb.Any `protobuf:"bytes,2,opt,name=color_type,json=colorType,proto3,oneof"`
 }
 
 func (*LightingColorAttr_Alt1_CurrentColorKeyword) isLightingColorAttr_Alt1_Value() {}
@@ -120561,7 +120561,7 @@ func (x *StopColorAttr_Alt1) GetCurrentColorKeyword() *CurrentColorKeyword {
 	return nil
 }
 
-func (x *StopColorAttr_Alt1) GetColorType() *css.ColorType {
+func (x *StopColorAttr_Alt1) GetColorType() *anypb.Any {
 	if x != nil {
 		if x, ok := x.Value.(*StopColorAttr_Alt1_ColorType); ok {
 			return x.ColorType
@@ -120579,7 +120579,7 @@ type StopColorAttr_Alt1_CurrentColorKeyword struct {
 }
 
 type StopColorAttr_Alt1_ColorType struct {
-	ColorType *css.ColorType `protobuf:"bytes,2,opt,name=color_type,json=colorType,proto3,oneof"`
+	ColorType *anypb.Any `protobuf:"bytes,2,opt,name=color_type,json=colorType,proto3,oneof"`
 }
 
 func (*StopColorAttr_Alt1_CurrentColorKeyword) isStopColorAttr_Alt1_Value() {}
@@ -124346,7 +124346,7 @@ type TextDecorationValue_Seq2 struct {
 	state              protoimpl.MessageState `protogen:"open.v1"`
 	TextDecorationLine *TextDecorationLine    `protobuf:"bytes,1,opt,name=text_decoration_line,json=textDecorationLine,proto3" json:"text_decoration_line,omitempty"`
 	SpaceKeyword       *SpaceKeyword          `protobuf:"bytes,2,opt,name=space_keyword,json=spaceKeyword,proto3" json:"space_keyword,omitempty"`
-	ColorType          *css.ColorType         `protobuf:"bytes,3,opt,name=color_type,json=colorType,proto3" json:"color_type,omitempty"`
+	ColorType          *anypb.Any             `protobuf:"bytes,3,opt,name=color_type,json=colorType,proto3" json:"color_type,omitempty"`
 	unknownFields      protoimpl.UnknownFields
 	sizeCache          protoimpl.SizeCache
 }
@@ -124395,7 +124395,7 @@ func (x *TextDecorationValue_Seq2) GetSpaceKeyword() *SpaceKeyword {
 	return nil
 }
 
-func (x *TextDecorationValue_Seq2) GetColorType() *css.ColorType {
+func (x *TextDecorationValue_Seq2) GetColorType() *anypb.Any {
 	if x != nil {
 		return x.ColorType
 	}
@@ -124406,7 +124406,7 @@ type TextDecorationValue_Seq3 struct {
 	state               protoimpl.MessageState `protogen:"open.v1"`
 	TextDecorationStyle *TextDecorationStyle   `protobuf:"bytes,1,opt,name=text_decoration_style,json=textDecorationStyle,proto3" json:"text_decoration_style,omitempty"`
 	SpaceKeyword        *SpaceKeyword          `protobuf:"bytes,2,opt,name=space_keyword,json=spaceKeyword,proto3" json:"space_keyword,omitempty"`
-	ColorType           *css.ColorType         `protobuf:"bytes,3,opt,name=color_type,json=colorType,proto3" json:"color_type,omitempty"`
+	ColorType           *anypb.Any             `protobuf:"bytes,3,opt,name=color_type,json=colorType,proto3" json:"color_type,omitempty"`
 	unknownFields       protoimpl.UnknownFields
 	sizeCache           protoimpl.SizeCache
 }
@@ -124455,7 +124455,7 @@ func (x *TextDecorationValue_Seq3) GetSpaceKeyword() *SpaceKeyword {
 	return nil
 }
 
-func (x *TextDecorationValue_Seq3) GetColorType() *css.ColorType {
+func (x *TextDecorationValue_Seq3) GetColorType() *anypb.Any {
 	if x != nil {
 		return x.ColorType
 	}
@@ -124468,7 +124468,7 @@ type TextDecorationValue_Seq4 struct {
 	SpaceKeyword        *SpaceKeyword          `protobuf:"bytes,2,opt,name=space_keyword,json=spaceKeyword,proto3" json:"space_keyword,omitempty"`
 	TextDecorationStyle *TextDecorationStyle   `protobuf:"bytes,3,opt,name=text_decoration_style,json=textDecorationStyle,proto3" json:"text_decoration_style,omitempty"`
 	SpaceKeyword_2      *SpaceKeyword          `protobuf:"bytes,4,opt,name=space_keyword_2,json=spaceKeyword2,proto3" json:"space_keyword_2,omitempty"`
-	ColorType           *css.ColorType         `protobuf:"bytes,5,opt,name=color_type,json=colorType,proto3" json:"color_type,omitempty"`
+	ColorType           *anypb.Any             `protobuf:"bytes,5,opt,name=color_type,json=colorType,proto3" json:"color_type,omitempty"`
 	unknownFields       protoimpl.UnknownFields
 	sizeCache           protoimpl.SizeCache
 }
@@ -124531,7 +124531,7 @@ func (x *TextDecorationValue_Seq4) GetSpaceKeyword_2() *SpaceKeyword {
 	return nil
 }
 
-func (x *TextDecorationValue_Seq4) GetColorType() *css.ColorType {
+func (x *TextDecorationValue_Seq4) GetColorType() *anypb.Any {
 	if x != nil {
 		return x.ColorType
 	}
@@ -125776,7 +125776,7 @@ var File_svg_proto protoreflect.FileDescriptor
 
 const file_svg_proto_rawDesc = "" +
 	"\n" +
-	"\tsvg.proto\x12\x03svg\x1a\tcss.proto\"G\n" +
+	"\tsvg.proto\x12\x03svg\x1a\x19google/protobuf/any.proto\"G\n" +
 	"\vSvgDocument\x128\n" +
 	"\rsvgsvgelement\x18\x01 \x01(\v2\x12.svg.SvgsvgelementR\rsvgsvgelement\"\xab\x03\n" +
 	"\x10AnimationElement\x12G\n" +
@@ -127106,7 +127106,7 @@ const file_svg_proto_rawDesc = "" +
 	"\x0fspace_keyword_3\x18\x06 \x01(\v2\x11.svg.SpaceKeywordR\rspaceKeyword3\x123\n" +
 	"\rnumber_type_4\x18\a \x01(\v2\x0f.svg.NumberTypeR\vnumberType4\"R\n" +
 	"\x0eKeySplinesList\x12@\n" +
-	"\x11control_point_set\x18\x01 \x03(\v2\x14.svg.ControlPointSetR\x0fcontrolPointSet\"\xe9\x05\n" +
+	"\x11control_point_set\x18\x01 \x03(\v2\x14.svg.ControlPointSetR\x0fcontrolPointSet\"\xef\x05\n" +
 	"\x0eAnimationValue\x122\n" +
 	"\vlength_type\x18\x01 \x01(\v2\x0f.svg.LengthTypeH\x00R\n" +
 	"lengthType\x122\n" +
@@ -127115,9 +127115,9 @@ const file_svg_proto_rawDesc = "" +
 	"\x0fpercentage_type\x18\x03 \x01(\v2\x13.svg.PercentageTypeH\x00R\x0epercentageType\x12Q\n" +
 	"\x16length_percentage_type\x18\x04 \x01(\v2\x19.svg.LengthPercentageTypeH\x00R\x14lengthPercentageType\x12/\n" +
 	"\n" +
-	"angle_type\x18\x05 \x01(\v2\x0e.svg.AngleTypeH\x00R\tangleType\x12/\n" +
+	"angle_type\x18\x05 \x01(\v2\x0e.svg.AngleTypeH\x00R\tangleType\x125\n" +
 	"\n" +
-	"color_type\x18\x06 \x01(\v2\x0e.css.ColorTypeH\x00R\tcolorType\x12/\n" +
+	"color_type\x18\x06 \x01(\v2\x14.google.protobuf.AnyH\x00R\tcolorType\x12/\n" +
 	"\n" +
 	"paint_type\x18\a \x01(\v2\x0e.svg.PaintTypeH\x00R\tpaintType\x12;\n" +
 	"\x0etransform_list\x18\b \x01(\v2\x12.svg.TransformListH\x00R\rtransformList\x12)\n" +
@@ -128013,24 +128013,24 @@ const file_svg_proto_rawDesc = "" +
 	"\bUnitType\x12V\n" +
 	"\x19user_space_on_use_keyword\x18\x01 \x01(\v2\x1a.svg.UserSpaceOnUseKeywordH\x00R\x15userSpaceOnUseKeyword\x12^\n" +
 	"\x1bobject_bounding_box_keyword\x18\x02 \x01(\v2\x1d.svg.ObjectBoundingBoxKeywordH\x00R\x18objectBoundingBoxKeywordB\a\n" +
-	"\x05value\"\xe0\x03\n" +
+	"\x05value\"\xe6\x03\n" +
 	"\tPaintType\x125\n" +
 	"\fnone_keyword\x18\x01 \x01(\v2\x10.svg.NoneKeywordH\x00R\vnoneKeyword\x12N\n" +
 	"\x15current_color_keyword\x18\x02 \x01(\v2\x18.svg.CurrentColorKeywordH\x00R\x13currentColorKeyword\x12n\n" +
 	"!context_hyphen_minus_fill_keyword\x18\x03 \x01(\v2\".svg.ContextHyphenMinusFillKeywordH\x00R\x1dcontextHyphenMinusFillKeyword\x12t\n" +
-	"#context_hyphen_minus_stroke_keyword\x18\x04 \x01(\v2$.svg.ContextHyphenMinusStrokeKeywordH\x00R\x1fcontextHyphenMinusStrokeKeyword\x12/\n" +
+	"#context_hyphen_minus_stroke_keyword\x18\x04 \x01(\v2$.svg.ContextHyphenMinusStrokeKeywordH\x00R\x1fcontextHyphenMinusStrokeKeyword\x125\n" +
 	"\n" +
-	"color_type\x18\x05 \x01(\v2\x0e.css.ColorTypeH\x00R\tcolorType\x12,\n" +
+	"color_type\x18\x05 \x01(\v2\x14.google.protobuf.AnyH\x00R\tcolorType\x12,\n" +
 	"\tpaint_ref\x18\x06 \x01(\v2\r.svg.PaintRefH\x00R\bpaintRefB\a\n" +
 	"\x05value\"n\n" +
 	"\bPaintRef\x12'\n" +
 	"\burl_type\x18\x01 \x01(\v2\f.svg.UrlTypeR\aurlType\x129\n" +
-	"\x0epaint_fallback\x18\x02 \x01(\v2\x12.svg.PaintFallbackR\rpaintFallback\"\xd0\x01\n" +
+	"\x0epaint_fallback\x18\x02 \x01(\v2\x12.svg.PaintFallbackR\rpaintFallback\"\xd6\x01\n" +
 	"\rPaintFallback\x125\n" +
 	"\fnone_keyword\x18\x01 \x01(\v2\x10.svg.NoneKeywordH\x00R\vnoneKeyword\x12N\n" +
-	"\x15current_color_keyword\x18\x02 \x01(\v2\x18.svg.CurrentColorKeywordH\x00R\x13currentColorKeyword\x12/\n" +
+	"\x15current_color_keyword\x18\x02 \x01(\v2\x18.svg.CurrentColorKeywordH\x00R\x13currentColorKeyword\x125\n" +
 	"\n" +
-	"color_type\x18\x03 \x01(\v2\x0e.css.ColorTypeH\x00R\tcolorTypeB\a\n" +
+	"color_type\x18\x03 \x01(\v2\x14.google.protobuf.AnyH\x00R\tcolorTypeB\a\n" +
 	"\x05value\"\x88\x03\n" +
 	"\aViewBox\x120\n" +
 	"\vnumber_type\x18\x01 \x01(\v2\x0f.svg.NumberTypeR\n" +
@@ -128254,11 +128254,11 @@ const file_svg_proto_rawDesc = "" +
 	"\rboolean_value\x18\x01 \x01(\v2\x11.svg.BooleanValueR\fbooleanValue\x12O\n" +
 	"\x16quotation_mark_keyword\x18\x02 \x01(\v2\x19.svg.QuotationMarkKeywordR\x14quotationMarkKeyword\"W\n" +
 	"\rScriptContent\x12F\n" +
-	"\x13character_data_type\x18\x01 \x01(\v2\x16.svg.CharacterDataTypeR\x11characterDataType\"\x89\x03\n" +
+	"\x13character_data_type\x18\x01 \x01(\v2\x16.svg.CharacterDataTypeR\x11characterDataType\"\x8b\x03\n" +
 	"\x0fSvgstyleElement\x12<\n" +
 	"\x0fstyle_attribute\x18\x01 \x03(\v2\x13.svg.StyleAttributeR\x0estyleAttribute\x12V\n" +
-	"\x19greater_than_sign_keyword\x18\x02 \x01(\v2\x1b.svg.GreaterThanSignKeywordR\x16greaterThanSignKeyword\x12:\n" +
-	"\x0fcss_style_sheet\x18\x03 \x01(\v2\x12.css.CssStyleSheetR\rcssStyleSheet\x12\xa3\x01\n" +
+	"\x19greater_than_sign_keyword\x18\x02 \x01(\v2\x1b.svg.GreaterThanSignKeywordR\x16greaterThanSignKeyword\x12<\n" +
+	"\x0fcss_style_sheet\x18\x03 \x01(\v2\x14.google.protobuf.AnyR\rcssStyleSheet\x12\xa3\x01\n" +
 	"6less_than_sign_solidus_style_greater_than_sign_keyword\x18\x04 \x01(\v23.svg.LessThanSignSolidusStyleGreaterThanSignKeywordR.lessThanSignSolidusStyleGreaterThanSignKeyword\"\xd8\x03\n" +
 	"\x0eStyleAttribute\x12<\n" +
 	"\x0fstyle_type_attr\x18\x01 \x01(\v2\x12.svg.StyleTypeAttrH\x00R\rstyleTypeAttr\x12?\n" +
@@ -129598,10 +129598,10 @@ const file_svg_proto_rawDesc = "" +
 	"\x19right_parenthesis_keyword\x18\x02 \x01(\v2\x1c.svg.RightParenthesisKeywordR\x17rightParenthesisKeyword\"\xb0\x01\n" +
 	"\x10ContrastFunction\x12B\n" +
 	"\x11number_percentage\x18\x01 \x01(\v2\x15.svg.NumberPercentageR\x10numberPercentage\x12X\n" +
-	"\x19right_parenthesis_keyword\x18\x02 \x01(\v2\x1c.svg.RightParenthesisKeywordR\x17rightParenthesisKeyword\"\xb9\x02\n" +
-	"\x12DropShadowFunction\x12-\n" +
+	"\x19right_parenthesis_keyword\x18\x02 \x01(\v2\x1c.svg.RightParenthesisKeywordR\x17rightParenthesisKeyword\"\xbf\x02\n" +
+	"\x12DropShadowFunction\x123\n" +
 	"\n" +
-	"color_type\x18\x01 \x01(\v2\x0e.css.ColorTypeR\tcolorType\x120\n" +
+	"color_type\x18\x01 \x01(\v2\x14.google.protobuf.AnyR\tcolorType\x120\n" +
 	"\vlength_type\x18\x02 \x01(\v2\x0f.svg.LengthTypeR\n" +
 	"lengthType\x123\n" +
 	"\rlength_type_2\x18\x03 \x01(\v2\x0f.svg.LengthTypeR\vlengthType2\x123\n" +
@@ -129643,26 +129643,26 @@ const file_svg_proto_rawDesc = "" +
 	"\fauto_keyword\x18\x01 \x01(\v2\x10.svg.AutoKeywordH\x00R\vautoKeyword\x126\n" +
 	"\rs_rgb_keyword\x18\x02 \x01(\v2\x10.svg.SRgbKeywordH\x00R\vsRgbKeyword\x12E\n" +
 	"\x12linear_rgb_keyword\x18\x03 \x01(\v2\x15.svg.LinearRgbKeywordH\x00R\x10linearRgbKeywordB\a\n" +
-	"\x05value\"\xa2\x02\n" +
+	"\x05value\"\xa8\x02\n" +
 	"\x0eFloodColorAttr\x12,\n" +
 	"\x04alt1\x18\x01 \x01(\v2\x18.svg.FloodColorAttr.Alt1R\x04alt1\x12O\n" +
-	"\x16quotation_mark_keyword\x18\x02 \x01(\v2\x19.svg.QuotationMarkKeywordR\x14quotationMarkKeyword\x1a\x90\x01\n" +
+	"\x16quotation_mark_keyword\x18\x02 \x01(\v2\x19.svg.QuotationMarkKeywordR\x14quotationMarkKeyword\x1a\x96\x01\n" +
 	"\x04Alt1\x12N\n" +
-	"\x15current_color_keyword\x18\x01 \x01(\v2\x18.svg.CurrentColorKeywordH\x00R\x13currentColorKeyword\x12/\n" +
+	"\x15current_color_keyword\x18\x01 \x01(\v2\x18.svg.CurrentColorKeywordH\x00R\x13currentColorKeyword\x125\n" +
 	"\n" +
-	"color_type\x18\x02 \x01(\v2\x0e.css.ColorTypeH\x00R\tcolorTypeB\a\n" +
+	"color_type\x18\x02 \x01(\v2\x14.google.protobuf.AnyH\x00R\tcolorTypeB\a\n" +
 	"\x05value\"\x95\x01\n" +
 	"\x10FloodOpacityAttr\x120\n" +
 	"\valpha_value\x18\x01 \x01(\v2\x0f.svg.AlphaValueR\n" +
 	"alphaValue\x12O\n" +
-	"\x16quotation_mark_keyword\x18\x02 \x01(\v2\x19.svg.QuotationMarkKeywordR\x14quotationMarkKeyword\"\xa8\x02\n" +
+	"\x16quotation_mark_keyword\x18\x02 \x01(\v2\x19.svg.QuotationMarkKeywordR\x14quotationMarkKeyword\"\xae\x02\n" +
 	"\x11LightingColorAttr\x12/\n" +
 	"\x04alt1\x18\x01 \x01(\v2\x1b.svg.LightingColorAttr.Alt1R\x04alt1\x12O\n" +
-	"\x16quotation_mark_keyword\x18\x02 \x01(\v2\x19.svg.QuotationMarkKeywordR\x14quotationMarkKeyword\x1a\x90\x01\n" +
+	"\x16quotation_mark_keyword\x18\x02 \x01(\v2\x19.svg.QuotationMarkKeywordR\x14quotationMarkKeyword\x1a\x96\x01\n" +
 	"\x04Alt1\x12N\n" +
-	"\x15current_color_keyword\x18\x01 \x01(\v2\x18.svg.CurrentColorKeywordH\x00R\x13currentColorKeyword\x12/\n" +
+	"\x15current_color_keyword\x18\x01 \x01(\v2\x18.svg.CurrentColorKeywordH\x00R\x13currentColorKeyword\x125\n" +
 	"\n" +
-	"color_type\x18\x02 \x01(\v2\x0e.css.ColorTypeH\x00R\tcolorTypeB\a\n" +
+	"color_type\x18\x02 \x01(\v2\x14.google.protobuf.AnyH\x00R\tcolorTypeB\a\n" +
 	"\x05value\"\xbf\x04\n" +
 	"\x12ImageRenderingAttr\x120\n" +
 	"\x04alt1\x18\x01 \x01(\v2\x1c.svg.ImageRenderingAttr.Alt1R\x04alt1\x12O\n" +
@@ -130260,10 +130260,10 @@ const file_svg_proto_rawDesc = "" +
 	"\x04Alt1\x125\n" +
 	"\fnone_keyword\x18\x01 \x01(\v2\x10.svg.NoneKeywordH\x00R\vnoneKeyword\x12)\n" +
 	"\burl_type\x18\x02 \x01(\v2\f.svg.UrlTypeH\x00R\aurlTypeB\a\n" +
-	"\x05value\"\x8b\x01\n" +
-	"\tColorAttr\x12-\n" +
+	"\x05value\"\x91\x01\n" +
+	"\tColorAttr\x123\n" +
 	"\n" +
-	"color_type\x18\x01 \x01(\v2\x0e.css.ColorTypeR\tcolorType\x12O\n" +
+	"color_type\x18\x01 \x01(\v2\x14.google.protobuf.AnyR\tcolorType\x12O\n" +
 	"\x16quotation_mark_keyword\x18\x02 \x01(\v2\x19.svg.QuotationMarkKeywordR\x14quotationMarkKeyword\"\xe7\x02\n" +
 	"\x16ColorInterpolationAttr\x124\n" +
 	"\x04alt1\x18\x01 \x01(\v2 .svg.ColorInterpolationAttr.Alt1R\x04alt1\x12O\n" +
@@ -130620,14 +130620,14 @@ const file_svg_proto_rawDesc = "" +
 	"\x0esvgset_element\x18\x02 \x01(\v2\x12.svg.SvgsetElementH\x00R\rsvgsetElement\x12D\n" +
 	"\x11svgscript_element\x18\x03 \x01(\v2\x15.svg.SvgscriptElementH\x00R\x10svgscriptElement\x12A\n" +
 	"\x10svgstyle_element\x18\x04 \x01(\v2\x14.svg.SvgstyleElementH\x00R\x0fsvgstyleElementB\a\n" +
-	"\x05value\"\xa0\x02\n" +
+	"\x05value\"\xa6\x02\n" +
 	"\rStopColorAttr\x12+\n" +
 	"\x04alt1\x18\x01 \x01(\v2\x17.svg.StopColorAttr.Alt1R\x04alt1\x12O\n" +
-	"\x16quotation_mark_keyword\x18\x02 \x01(\v2\x19.svg.QuotationMarkKeywordR\x14quotationMarkKeyword\x1a\x90\x01\n" +
+	"\x16quotation_mark_keyword\x18\x02 \x01(\v2\x19.svg.QuotationMarkKeywordR\x14quotationMarkKeyword\x1a\x96\x01\n" +
 	"\x04Alt1\x12N\n" +
-	"\x15current_color_keyword\x18\x01 \x01(\v2\x18.svg.CurrentColorKeywordH\x00R\x13currentColorKeyword\x12/\n" +
+	"\x15current_color_keyword\x18\x01 \x01(\v2\x18.svg.CurrentColorKeywordH\x00R\x13currentColorKeyword\x125\n" +
 	"\n" +
-	"color_type\x18\x02 \x01(\v2\x0e.css.ColorTypeH\x00R\tcolorTypeB\a\n" +
+	"color_type\x18\x02 \x01(\v2\x14.google.protobuf.AnyH\x00R\tcolorTypeB\a\n" +
 	"\x05value\"\x94\x01\n" +
 	"\x0fStopOpacityAttr\x120\n" +
 	"\valpha_value\x18\x01 \x01(\v2\x0f.svg.AlphaValueR\n" +
@@ -131736,7 +131736,7 @@ const file_svg_proto_rawDesc = "" +
 	"\x05value\"\xb3\x01\n" +
 	"\x12TextDecorationAttr\x12L\n" +
 	"\x15text_decoration_value\x18\x01 \x01(\v2\x18.svg.TextDecorationValueR\x13textDecorationValue\x12O\n" +
-	"\x16quotation_mark_keyword\x18\x02 \x01(\v2\x19.svg.QuotationMarkKeywordR\x14quotationMarkKeyword\"\xdd\n" +
+	"\x16quotation_mark_keyword\x18\x02 \x01(\v2\x19.svg.QuotationMarkKeywordR\x14quotationMarkKeyword\"\xef\n" +
 	"\n" +
 	"\x13TextDecorationValue\x125\n" +
 	"\fnone_keyword\x18\x01 \x01(\v2\x10.svg.NoneKeywordH\x00R\vnoneKeyword\x12K\n" +
@@ -131749,24 +131749,24 @@ const file_svg_proto_rawDesc = "" +
 	"\x04Seq1\x12I\n" +
 	"\x14text_decoration_line\x18\x01 \x01(\v2\x17.svg.TextDecorationLineR\x12textDecorationLine\x126\n" +
 	"\rspace_keyword\x18\x02 \x01(\v2\x11.svg.SpaceKeywordR\fspaceKeyword\x12L\n" +
-	"\x15text_decoration_style\x18\x03 \x01(\v2\x18.svg.TextDecorationStyleR\x13textDecorationStyle\x1a\xb8\x01\n" +
+	"\x15text_decoration_style\x18\x03 \x01(\v2\x18.svg.TextDecorationStyleR\x13textDecorationStyle\x1a\xbe\x01\n" +
 	"\x04Seq2\x12I\n" +
 	"\x14text_decoration_line\x18\x01 \x01(\v2\x17.svg.TextDecorationLineR\x12textDecorationLine\x126\n" +
-	"\rspace_keyword\x18\x02 \x01(\v2\x11.svg.SpaceKeywordR\fspaceKeyword\x12-\n" +
+	"\rspace_keyword\x18\x02 \x01(\v2\x11.svg.SpaceKeywordR\fspaceKeyword\x123\n" +
 	"\n" +
-	"color_type\x18\x03 \x01(\v2\x0e.css.ColorTypeR\tcolorType\x1a\xbb\x01\n" +
+	"color_type\x18\x03 \x01(\v2\x14.google.protobuf.AnyR\tcolorType\x1a\xc1\x01\n" +
 	"\x04Seq3\x12L\n" +
 	"\x15text_decoration_style\x18\x01 \x01(\v2\x18.svg.TextDecorationStyleR\x13textDecorationStyle\x126\n" +
-	"\rspace_keyword\x18\x02 \x01(\v2\x11.svg.SpaceKeywordR\fspaceKeyword\x12-\n" +
+	"\rspace_keyword\x18\x02 \x01(\v2\x11.svg.SpaceKeywordR\fspaceKeyword\x123\n" +
 	"\n" +
-	"color_type\x18\x03 \x01(\v2\x0e.css.ColorTypeR\tcolorType\x1a\xc1\x02\n" +
+	"color_type\x18\x03 \x01(\v2\x14.google.protobuf.AnyR\tcolorType\x1a\xc7\x02\n" +
 	"\x04Seq4\x12I\n" +
 	"\x14text_decoration_line\x18\x01 \x01(\v2\x17.svg.TextDecorationLineR\x12textDecorationLine\x126\n" +
 	"\rspace_keyword\x18\x02 \x01(\v2\x11.svg.SpaceKeywordR\fspaceKeyword\x12L\n" +
 	"\x15text_decoration_style\x18\x03 \x01(\v2\x18.svg.TextDecorationStyleR\x13textDecorationStyle\x129\n" +
-	"\x0fspace_keyword_2\x18\x04 \x01(\v2\x11.svg.SpaceKeywordR\rspaceKeyword2\x12-\n" +
+	"\x0fspace_keyword_2\x18\x04 \x01(\v2\x11.svg.SpaceKeywordR\rspaceKeyword2\x123\n" +
 	"\n" +
-	"color_type\x18\x05 \x01(\v2\x0e.css.ColorTypeR\tcolorTypeB\a\n" +
+	"color_type\x18\x05 \x01(\v2\x14.google.protobuf.AnyR\tcolorTypeB\a\n" +
 	"\x05value\"\xd0\x02\n" +
 	"\x12TextDecorationLine\x12D\n" +
 	"\x11underline_keyword\x18\x01 \x01(\v2\x15.svg.UnderlineKeywordH\x00R\x10underlineKeyword\x12A\n" +
@@ -134666,8 +134666,7 @@ var file_svg_proto_goTypes = []any{
 	(*Translate_Comma)(nil),                                                                // 1908: svg.Translate.Comma
 	(*Scale_Comma)(nil),                                                                    // 1909: svg.Scale.Comma
 	(*Rotate_Comma)(nil),                                                                   // 1910: svg.Rotate.Comma
-	(*css.ColorType)(nil),                                                                  // 1911: css.ColorType
-	(*css.CssStyleSheet)(nil),                                                              // 1912: css.CssStyleSheet
+	(*anypb.Any)(nil),                                                                      // 1911: google.protobuf.Any
 }
 var file_svg_proto_depIdxs = []int32{
 	159,  // 0: svg.SvgDocument.svgsvgelement:type_name -> svg.Svgsvgelement
@@ -135447,7 +135446,7 @@ var file_svg_proto_depIdxs = []int32{
 	335,  // 774: svg.AnimationValue.percentage_type:type_name -> svg.PercentageType
 	336,  // 775: svg.AnimationValue.length_percentage_type:type_name -> svg.LengthPercentageType
 	339,  // 776: svg.AnimationValue.angle_type:type_name -> svg.AngleType
-	1911, // 777: svg.AnimationValue.color_type:type_name -> css.ColorType
+	1911, // 777: svg.AnimationValue.color_type:type_name -> google.protobuf.Any
 	357,  // 778: svg.AnimationValue.paint_type:type_name -> svg.PaintType
 	987,  // 779: svg.AnimationValue.transform_list:type_name -> svg.TransformList
 	767,  // 780: svg.AnimationValue.svg_path:type_name -> svg.SvgPath
@@ -135928,13 +135927,13 @@ var file_svg_proto_depIdxs = []int32{
 	1098, // 1255: svg.PaintType.current_color_keyword:type_name -> svg.CurrentColorKeyword
 	1085, // 1256: svg.PaintType.context_hyphen_minus_fill_keyword:type_name -> svg.ContextHyphenMinusFillKeyword
 	1087, // 1257: svg.PaintType.context_hyphen_minus_stroke_keyword:type_name -> svg.ContextHyphenMinusStrokeKeyword
-	1911, // 1258: svg.PaintType.color_type:type_name -> css.ColorType
+	1911, // 1258: svg.PaintType.color_type:type_name -> google.protobuf.Any
 	358,  // 1259: svg.PaintType.paint_ref:type_name -> svg.PaintRef
 	344,  // 1260: svg.PaintRef.url_type:type_name -> svg.UrlType
 	359,  // 1261: svg.PaintRef.paint_fallback:type_name -> svg.PaintFallback
 	1411, // 1262: svg.PaintFallback.none_keyword:type_name -> svg.NoneKeyword
 	1098, // 1263: svg.PaintFallback.current_color_keyword:type_name -> svg.CurrentColorKeyword
-	1911, // 1264: svg.PaintFallback.color_type:type_name -> css.ColorType
+	1911, // 1264: svg.PaintFallback.color_type:type_name -> google.protobuf.Any
 	329,  // 1265: svg.ViewBox.number_type:type_name -> svg.NumberType
 	1556, // 1266: svg.ViewBox.space_keyword:type_name -> svg.SpaceKeyword
 	329,  // 1267: svg.ViewBox.number_type_2:type_name -> svg.NumberType
@@ -136071,7 +136070,7 @@ var file_svg_proto_depIdxs = []int32{
 	354,  // 1398: svg.ScriptContent.character_data_type:type_name -> svg.CharacterDataType
 	398,  // 1399: svg.SvgstyleElement.style_attribute:type_name -> svg.StyleAttribute
 	1193, // 1400: svg.SvgstyleElement.greater_than_sign_keyword:type_name -> svg.GreaterThanSignKeyword
-	1912, // 1401: svg.SvgstyleElement.css_style_sheet:type_name -> css.CssStyleSheet
+	1911, // 1401: svg.SvgstyleElement.css_style_sheet:type_name -> google.protobuf.Any
 	1302, // 1402: svg.SvgstyleElement.less_than_sign_solidus_style_greater_than_sign_keyword:type_name -> svg.LessThanSignSolidusStyleGreaterThanSignKeyword
 	399,  // 1403: svg.StyleAttribute.style_type_attr:type_name -> svg.StyleTypeAttr
 	400,  // 1404: svg.StyleAttribute.style_media_attr:type_name -> svg.StyleMediaAttr
@@ -136906,7 +136905,7 @@ var file_svg_proto_depIdxs = []int32{
 	1494, // 2233: svg.BrightnessFunction.right_parenthesis_keyword:type_name -> svg.RightParenthesisKeyword
 	674,  // 2234: svg.ContrastFunction.number_percentage:type_name -> svg.NumberPercentage
 	1494, // 2235: svg.ContrastFunction.right_parenthesis_keyword:type_name -> svg.RightParenthesisKeyword
-	1911, // 2236: svg.DropShadowFunction.color_type:type_name -> css.ColorType
+	1911, // 2236: svg.DropShadowFunction.color_type:type_name -> google.protobuf.Any
 	333,  // 2237: svg.DropShadowFunction.length_type:type_name -> svg.LengthType
 	333,  // 2238: svg.DropShadowFunction.length_type_2:type_name -> svg.LengthType
 	333,  // 2239: svg.DropShadowFunction.length_type_3:type_name -> svg.LengthType
@@ -137201,7 +137200,7 @@ var file_svg_proto_depIdxs = []int32{
 	1477, // 2528: svg.MarkerMidAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
 	1829, // 2529: svg.MarkerEndAttr.alt1:type_name -> svg.MarkerEndAttr.Alt1
 	1477, // 2530: svg.MarkerEndAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1911, // 2531: svg.ColorAttr.color_type:type_name -> css.ColorType
+	1911, // 2531: svg.ColorAttr.color_type:type_name -> google.protobuf.Any
 	1477, // 2532: svg.ColorAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
 	1830, // 2533: svg.ColorInterpolationAttr.alt1:type_name -> svg.ColorInterpolationAttr.Alt1
 	1477, // 2534: svg.ColorInterpolationAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
@@ -138466,9 +138465,9 @@ var file_svg_proto_depIdxs = []int32{
 	1514, // 3793: svg.ColorInterpolationFiltersAttr.Alt1.s_rgb_keyword:type_name -> svg.SRgbKeyword
 	1333, // 3794: svg.ColorInterpolationFiltersAttr.Alt1.linear_rgb_keyword:type_name -> svg.LinearRgbKeyword
 	1098, // 3795: svg.FloodColorAttr.Alt1.current_color_keyword:type_name -> svg.CurrentColorKeyword
-	1911, // 3796: svg.FloodColorAttr.Alt1.color_type:type_name -> css.ColorType
+	1911, // 3796: svg.FloodColorAttr.Alt1.color_type:type_name -> google.protobuf.Any
 	1098, // 3797: svg.LightingColorAttr.Alt1.current_color_keyword:type_name -> svg.CurrentColorKeyword
-	1911, // 3798: svg.LightingColorAttr.Alt1.color_type:type_name -> css.ColorType
+	1911, // 3798: svg.LightingColorAttr.Alt1.color_type:type_name -> google.protobuf.Any
 	1025, // 3799: svg.ImageRenderingAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
 	1428, // 3800: svg.ImageRenderingAttr.Alt1.optimize_speed_keyword:type_name -> svg.OptimizeSpeedKeyword
 	1427, // 3801: svg.ImageRenderingAttr.Alt1.optimize_quality_keyword:type_name -> svg.OptimizeQualityKeyword
@@ -138644,7 +138643,7 @@ var file_svg_proto_depIdxs = []int32{
 	329,  // 3971: svg.StopOffsetAttr.Alt1.number_type:type_name -> svg.NumberType
 	335,  // 3972: svg.StopOffsetAttr.Alt1.percentage_type:type_name -> svg.PercentageType
 	1098, // 3973: svg.StopColorAttr.Alt1.current_color_keyword:type_name -> svg.CurrentColorKeyword
-	1911, // 3974: svg.StopColorAttr.Alt1.color_type:type_name -> css.ColorType
+	1911, // 3974: svg.StopColorAttr.Alt1.color_type:type_name -> google.protobuf.Any
 	1025, // 3975: svg.RectRxAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
 	337,  // 3976: svg.RectRxAttr.Alt1.non_negative_length_percentage_type:type_name -> svg.NonNegativeLengthPercentageType
 	1025, // 3977: svg.RectRyAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
@@ -138764,15 +138763,15 @@ var file_svg_proto_depIdxs = []int32{
 	964,  // 4091: svg.TextDecorationValue.Seq1.text_decoration_style:type_name -> svg.TextDecorationStyle
 	963,  // 4092: svg.TextDecorationValue.Seq2.text_decoration_line:type_name -> svg.TextDecorationLine
 	1556, // 4093: svg.TextDecorationValue.Seq2.space_keyword:type_name -> svg.SpaceKeyword
-	1911, // 4094: svg.TextDecorationValue.Seq2.color_type:type_name -> css.ColorType
+	1911, // 4094: svg.TextDecorationValue.Seq2.color_type:type_name -> google.protobuf.Any
 	964,  // 4095: svg.TextDecorationValue.Seq3.text_decoration_style:type_name -> svg.TextDecorationStyle
 	1556, // 4096: svg.TextDecorationValue.Seq3.space_keyword:type_name -> svg.SpaceKeyword
-	1911, // 4097: svg.TextDecorationValue.Seq3.color_type:type_name -> css.ColorType
+	1911, // 4097: svg.TextDecorationValue.Seq3.color_type:type_name -> google.protobuf.Any
 	963,  // 4098: svg.TextDecorationValue.Seq4.text_decoration_line:type_name -> svg.TextDecorationLine
 	1556, // 4099: svg.TextDecorationValue.Seq4.space_keyword:type_name -> svg.SpaceKeyword
 	964,  // 4100: svg.TextDecorationValue.Seq4.text_decoration_style:type_name -> svg.TextDecorationStyle
 	1556, // 4101: svg.TextDecorationValue.Seq4.space_keyword_2:type_name -> svg.SpaceKeyword
-	1911, // 4102: svg.TextDecorationValue.Seq4.color_type:type_name -> css.ColorType
+	1911, // 4102: svg.TextDecorationValue.Seq4.color_type:type_name -> google.protobuf.Any
 	1066, // 4103: svg.TextOverflowAttr.Alt1.clip_keyword:type_name -> svg.ClipKeyword
 	1146, // 4104: svg.TextOverflowAttr.Alt1.ellipsis_keyword:type_name -> svg.EllipsisKeyword
 	1025, // 4105: svg.TextRenderingAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword

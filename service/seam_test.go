@@ -4,17 +4,18 @@ import (
 	"strings"
 	"testing"
 
+	"google.golang.org/protobuf/proto"
 	"google.golang.org/protobuf/reflect/protoreflect"
+	"google.golang.org/protobuf/types/known/anypb"
 
-	csspb "github.com/accretional/proto-css/proto/pb/css"
-	svgpb "github.com/accretional/proto-svg/proto/pb/svg"
+	// Link the CSS grammar so the codec can descend into SVG's css.* seams.
+	_ "github.com/accretional/proto-css/service"
 )
 
 const svgOpen = `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="120" height="120">`
 
-// TestStyleSeam is the crux: parsing an SVG whose <style> carries CSS must yield
-// an SvgDocument whose css_style_sheet is a structured css.CssStyleSheet subtree
-// (not an opaque string), and rendering it back must reproduce the markup + CSS.
+// TestStyleSeam: an SVG <style> parses into a google.protobuf.Any embedding a
+// structured css.CssStyleSheet, and round-trips.
 func TestStyleSeam(t *testing.T) {
 	in := svgOpen + `<style>circle{fill:red}</style><circle cx="60" cy="60" r="40"></circle></svg>`
 
@@ -22,12 +23,11 @@ func TestStyleSeam(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Parse: %v", err)
 	}
-
-	sheet := findCSSAST(doc.ProtoReflect())
+	sheet := findEmbedded(doc.ProtoReflect(), "css.CssStyleSheet")
 	if sheet == nil {
 		t.Fatal("no css.CssStyleSheet embedded — the SVG <style> seam produced no structured CSS AST")
 	}
-	if len(sheet.GetAlt1()) == 0 {
+	if fieldLen(sheet, "alt1") == 0 {
 		t.Fatal("embedded CSS AST has no rules — opaque, not structured")
 	}
 
@@ -35,29 +35,47 @@ func TestStyleSeam(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Render: %v", err)
 	}
-	t.Logf("render round-trip: %s", out)
+	t.Logf("round-trip: %s", out)
 	for _, want := range []string{"<svg ", "<style>", "circle", "fill:red", "</style>", "<circle ", "</svg>"} {
 		if !strings.Contains(out, want) {
 			t.Errorf("rendered SVG missing %q:\n%s", want, out)
 		}
 	}
-
-	// Idempotency: re-parse + re-render must be stable.
+	// idempotency
 	doc2, err := Parse(out)
 	if err != nil {
 		t.Fatalf("re-parse: %v", err)
 	}
-	out2, err := Render(doc2)
-	if err != nil {
-		t.Fatalf("re-render: %v", err)
-	}
+	out2, _ := Render(doc2)
 	if out != out2 {
-		t.Errorf("render not idempotent:\n out:  %q\n out2: %q", out, out2)
+		t.Errorf("render not idempotent:\n %q\n %q", out, out2)
 	}
 }
 
-// TestPlainSVG exercises the non-seam path (a plain shape) to confirm the SVG
-// engine itself round-trips.
+// TestPresentationColorSeam: fill="red" parses into an Any embedding a
+// structured css.ColorType.
+func TestPresentationColorSeam(t *testing.T) {
+	in := svgOpen + `<circle cx="60" cy="60" r="40" fill="red"></circle></svg>`
+	doc, err := Parse(in)
+	if err != nil {
+		t.Fatalf("Parse: %v", err)
+	}
+	if findEmbedded(doc.ProtoReflect(), "css.ColorType") == nil {
+		t.Fatal("no css.ColorType embedded — the fill presentation-attribute seam did not fire")
+	}
+	out, err := Render(doc)
+	if err != nil {
+		t.Fatalf("Render: %v", err)
+	}
+	if !strings.Contains(out, `fill="red"`) {
+		t.Errorf("rendered SVG missing fill=\"red\":\n%s", out)
+	}
+	if out != in {
+		t.Errorf("round-trip mismatch:\n in: %q\nout: %q", in, out)
+	}
+}
+
+// TestPlainSVG: the non-seam path round-trips exactly.
 func TestPlainSVG(t *testing.T) {
 	in := svgOpen + `<rect x="10" y="10" width="100" height="100"></rect></svg>`
 	doc, err := Parse(in)
@@ -73,92 +91,59 @@ func TestPlainSVG(t *testing.T) {
 	}
 }
 
-// TestPresentationColorSeam covers the presentation-attribute value seam: a
-// fill="red" value must parse into a structured css.ColorType (proto-css's
-// <color>), not an opaque SVG string, and round-trip.
-func TestPresentationColorSeam(t *testing.T) {
-	in := svgOpen + `<circle cx="60" cy="60" r="40" fill="red"></circle></svg>`
-
-	doc, err := Parse(in)
-	if err != nil {
-		t.Fatalf("Parse: %v", err)
+// findEmbedded walks a message tree (unpacking google.protobuf.Any seams) and
+// returns the first message with the given fully-qualified name.
+func findEmbedded(m protoreflect.Message, name string) protoreflect.Message {
+	if string(m.Descriptor().FullName()) == name {
+		return m
 	}
-	if color := findByFullName(doc.ProtoReflect(), "css.ColorType"); color == nil {
-		t.Fatal("no css.ColorType embedded — the fill presentation-attribute color seam did not fire")
+	if m.Descriptor().FullName() == "google.protobuf.Any" {
+		if sub := unpackAny(m); sub != nil {
+			return findEmbedded(sub, name)
+		}
+		return nil
 	}
-	out, err := Render(doc)
-	if err != nil {
-		t.Fatalf("Render: %v", err)
-	}
-	t.Logf("render round-trip: %s", out)
-	if !strings.Contains(out, `fill="red"`) {
-		t.Errorf("rendered SVG missing fill=\"red\":\n%s", out)
-	}
-	if out != in {
-		t.Errorf("round-trip mismatch:\n in: %q\nout: %q", in, out)
-	}
-}
-
-func findByFullName(m protoreflect.Message, name string) protoreflect.Message {
 	var found protoreflect.Message
-	var walk func(protoreflect.Message)
-	walk = func(m protoreflect.Message) {
-		if found != nil {
-			return
+	m.Range(func(fd protoreflect.FieldDescriptor, v protoreflect.Value) bool {
+		if fd.Kind() != protoreflect.MessageKind && fd.Kind() != protoreflect.GroupKind {
+			return true
 		}
-		if string(m.Descriptor().FullName()) == name {
-			found = m
-			return
+		if fd.IsList() {
+			l := v.List()
+			for i := 0; i < l.Len() && found == nil; i++ {
+				found = findEmbedded(l.Get(i).Message(), name)
+			}
+		} else {
+			found = findEmbedded(v.Message(), name)
 		}
-		m.Range(func(fd protoreflect.FieldDescriptor, v protoreflect.Value) bool {
-			if fd.Kind() != protoreflect.MessageKind && fd.Kind() != protoreflect.GroupKind {
-				return found == nil
-			}
-			if fd.IsList() {
-				l := v.List()
-				for i := 0; i < l.Len(); i++ {
-					walk(l.Get(i).Message())
-				}
-			} else {
-				walk(v.Message())
-			}
-			return found == nil
-		})
-	}
-	walk(m)
+		return found == nil
+	})
 	return found
 }
 
-func findCSSAST(m protoreflect.Message) *csspb.CssStyleSheet {
-	var found *csspb.CssStyleSheet
-	var walk func(protoreflect.Message)
-	walk = func(m protoreflect.Message) {
-		if found != nil {
-			return
+func unpackAny(m protoreflect.Message) protoreflect.Message {
+	a, ok := m.Interface().(*anypb.Any)
+	if !ok {
+		b, err := proto.Marshal(m.Interface())
+		if err != nil {
+			return nil
 		}
-		if m.Descriptor().FullName() == "css.CssStyleSheet" {
-			if s, ok := m.Interface().(*csspb.CssStyleSheet); ok {
-				found = s
-				return
-			}
+		a = &anypb.Any{}
+		if proto.Unmarshal(b, a) != nil {
+			return nil
 		}
-		m.Range(func(fd protoreflect.FieldDescriptor, v protoreflect.Value) bool {
-			if fd.Kind() != protoreflect.MessageKind && fd.Kind() != protoreflect.GroupKind {
-				return found == nil
-			}
-			if fd.IsList() {
-				l := v.List()
-				for i := 0; i < l.Len(); i++ {
-					walk(l.Get(i).Message())
-				}
-			} else {
-				walk(v.Message())
-			}
-			return found == nil
-		})
 	}
-	walk(m)
-	return found
+	sub, err := a.UnmarshalNew()
+	if err != nil {
+		return nil
+	}
+	return sub.ProtoReflect()
 }
 
-var _ = svgpb.SvgDocument{}
+func fieldLen(m protoreflect.Message, name string) int {
+	fd := m.Descriptor().Fields().ByName(protoreflect.Name(name))
+	if fd == nil || !fd.IsList() {
+		return 0
+	}
+	return m.Get(fd).List().Len()
+}

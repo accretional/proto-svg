@@ -520,8 +520,12 @@ func externalizeImports(fdp *descriptorpb.FileDescriptorProto, pkg string, deps 
 	importSet := map[string]bool{}
 	for _, d := range deps {
 		for _, rule := range d.ExternalRules {
-			remap["."+pkg+"."+rule] = "." + d.ProtoPackage + "." + rule
-			dropMsg[rule] = true
+			// external_rules name EBNF productions; match them against the proto
+			// message the compiler emits (PascalCase — an all-caps run like
+			// SVGSVGElement lowers to Svgsvgelement).
+			msg := compiler.PascalCase(rule)
+			remap["."+pkg+"."+msg] = "." + d.ProtoPackage + "." + msg
+			dropMsg[msg] = true
 			if d.Proto != "" {
 				importSet[d.Proto] = true
 			}

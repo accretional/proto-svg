@@ -225,8 +225,10 @@ PaintFallback = "none" | "currentColor" | ColorType ;
 (* viewBox = min-x min-y width height (renderer space-joins the four numbers) *)
 ViewBox = NumberType , " " , NumberType , " " , NumberType , " " , NumberType ;
 
-(* preserveAspectRatio = <align> [<meetOrSlice>] *)
-PreserveAspectRatio = Align , [ MeetOrSlice ] ;
+(* preserveAspectRatio = <align> [<meetOrSlice>] — a space separates align from
+   meetOrSlice ("xMidYMid meet"); bare "xMidYMid" is also valid, so the space
+   lives inside the optional group. *)
+PreserveAspectRatio = Align , [ " " , MeetOrSlice ] ;
 Align       = "none"
             | "xMinYMin" | "xMidYMin" | "xMaxYMin"
             | "xMinYMid" | "xMidYMid" | "xMaxYMid"

@@ -136,11 +136,11 @@ Tzd            = "Z" | ( ( "+" | "-" ) , Hours24 , ":" , Minutes ) ;
    (media-marker-value is EXCLUDED — SVG defines no media markers, 13.D10.) *)
 BeginValue = OffsetValue | SyncbaseValue | EventValue | RepeatValue
            | AccessKeyValue | WallclockValue | "indefinite" ;
-BeginValueList = BeginValue , { ";" , BeginValue } ;
+BeginValueList = BeginValue , { "; " ,BeginValue } ;
 
 EndValue = OffsetValue | SyncbaseValue | EventValue | RepeatValue
          | AccessKeyValue | WallclockValue | "indefinite" ;
-EndValueList = EndValue , { ";" , EndValue } ;
+EndValueList = EndValue , { "; " ,EndValue } ;
 
 (* ============================================================================
    Value lists for keyTimes / keySplines / keyPoints (context-free; lists only.
@@ -149,16 +149,16 @@ EndValueList = EndValue , { ";" , EndValue } ;
    ============================================================================ *)
 
 (* keyTimes = semicolon-separated <number> list *)
-KeyTimesList = NumberType , { ";" , NumberType } ;
+KeyTimesList = NumberType , { "; " ,NumberType } ;
 
 (* keyPoints = semicolon-separated <number> list (animateMotion) *)
-KeyPointsList = NumberType , { ";" , NumberType } ;
+KeyPointsList = NumberType , { "; " ,NumberType } ;
 
 (* keySplines = semicolon-separated cubic-Bezier control-point sets; each set is
    four numbers (SVGwg-L2 §2.10: <number> ,? <number> ,? <number> ,? <number>).
    Renderer space-joins within a set; ";" separates sets. *)
 ControlPointSet = NumberType , " " , NumberType , " " , NumberType , " " , NumberType ;
-KeySplinesList  = ControlPointSet , { ";" , ControlPointSet } ;
+KeySplinesList  = ControlPointSet , { "; " ,ControlPointSet } ;
 
 (* ============================================================================
    AnimationValue union (GRAMMAR_PLAN §h; CONTEXT_SENSITIVITY Rule 2 §6).
@@ -184,7 +184,7 @@ AnimationValue =
   ;
 
 (* values = semicolon-separated list of AnimationValue *)
-AnimationValueList = AnimationValue , { ";" , AnimationValue } ;
+AnimationValueList = AnimationValue , { "; " ,AnimationValue } ;
 
 (* ============================================================================
    animateMotion value grammar (13-animation.md "animateMotion special case").
@@ -194,7 +194,7 @@ AnimationValueList = AnimationValue , { ";" , AnimationValue } ;
    ============================================================================ *)
 
 MotionCoordinatePair = NumberType , [ "," ] , NumberType ;
-MotionValues = MotionCoordinatePair , { ";" , MotionCoordinatePair } ;
+MotionValues = MotionCoordinatePair , { "; " ,MotionCoordinatePair } ;
 
 (* ============================================================================
    animateTransform per-type value productions (CONTEXT_SENSITIVITY Rule 1;
@@ -230,7 +230,7 @@ AnimateTransformSingleValue =
 
 (* values = semicolon-separated list of single transform values *)
 AnimateTransformValues =
-    AnimateTransformSingleValue , { ";" , AnimateTransformSingleValue } ;
+    AnimateTransformSingleValue , { "; " ,AnimateTransformSingleValue } ;
 
 (* ============================================================================
    animate (SVG Animations Level 2 §2.13; SVGAnimateElement).

@@ -24,6 +24,13 @@ func runGalleryPass(byFQN map[string]*descriptorpb.DescriptorProto, kw map[strin
 	var unrendered []string
 
 	for _, el := range els {
+		// Skip elements pruned from the shipped grammar (present only in the gen's
+		// no-strip grammar, e.g. the non-rendering SVGUnknownElement): the codec
+		// can't render them and they aren't real gallery elements.
+		if !inShippedGrammar(el.tag) {
+			unrendered = append(unrendered, "<"+el.tag+"> (not in shipped grammar — skipped)")
+			continue
+		}
 		variants := en.enumerateElement(el)
 		if len(variants) == 0 {
 			unrendered = append(unrendered, "<"+el.tag+"> (no enumerable attributes)")
@@ -42,6 +49,10 @@ func runGalleryPass(byFQN map[string]*descriptorpb.DescriptorProto, kw map[strin
 
 		for i := range variants {
 			markup := variants[i].Markup
+			// Round-trip every walked path through the codec (the renderer of record):
+			// Parse structures the markup into the shipped AST (Any seams and all),
+			// Render re-emits it. Records any path the generators don't handle exactly.
+			checkPath(el.tag, variants[i].Attr, variants[i].Value, markup)
 			// id-shadow guard: when the VARIED attribute is `id` itself, the markup
 			// already carries that id; injecting id="slot" too would produce an
 			// invalid duplicate (`id="slot" id="circle1"`). Skip the injected id for
@@ -74,6 +85,10 @@ func runGalleryPass(byFQN map[string]*descriptorpb.DescriptorProto, kw map[strin
 	fmt.Printf("\n=== catalogue ===\n")
 	fmt.Printf("elements: %d / %d  variants: %d  (temporal: %d)  ->  %s/catalogue.json\n",
 		catEls, len(pages), total, catTemporal, catalogueDir)
+
+	// The codec is the renderer of record: report every walked path it did not
+	// round-trip faithfully (both Parse and Render exercised per path).
+	codecReport(total)
 	if len(unrendered) > 0 {
 		fmt.Printf("value-paths that did not render meaningfully (%d):\n", len(unrendered))
 		max := len(unrendered)

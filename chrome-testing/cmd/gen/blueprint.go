@@ -719,7 +719,13 @@ func baselineFor(tag, varyingPrefix, varyingValue string) (string, bool) {
 		// meet letterbox, slice crop, and none stretch. The square viewBox presets
 		// supply their own box (this baseline is skipped when viewBox itself varies).
 		return add([2]string{"viewBox", "14 30 70 34"}, [2]string{"preserveAspectRatio", "xMidYMid meet"}), false
-	case "svg", "defs":
+	case "svg":
+		// The root <svg> bakes the xmlns/xlink/version declaration into its open tag
+		// (grammar rule SvgXmlnsAttr, a fixed literal right after "<svg "). Emit it so
+		// the codec can parse the card, plus a bounded viewBox/size so the showcased
+		// root attributes (font-family, color, …) render in a visible box.
+		return ` xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="120" height="120" viewBox="0 0 100 100"`, false
+	case "defs":
 		return "", false
 	case "a":
 		// A baseline stroke on the <a> wrapper INHERITS to the rendered pill (whose

@@ -13,8 +13,10 @@ require (
 )
 
 require (
+	github.com/accretional/merge v0.0.0-00010101000000-000000000000
 	github.com/accretional/proto-css v0.0.0-00010101000000-000000000000
 	github.com/accretional/proto-expr v0.0.0-20260416071217-9a69001c59bb // indirect
+	github.com/accretional/proto-html v0.0.0-00010101000000-000000000000
 	github.com/golang/protobuf v1.5.4 // indirect
 	github.com/jhump/protoreflect/v2 v2.0.0-beta.1 // indirect
 	go.starlark.net v0.0.0-20260522144826-ec58d4b459e2 // indirect
@@ -26,3 +28,5 @@ require (
 )
 
 replace github.com/accretional/proto-css => ../proto-css
+
+replace github.com/accretional/proto-html => ../proto-html-css-seam

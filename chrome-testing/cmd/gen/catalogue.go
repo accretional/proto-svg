@@ -138,8 +138,12 @@ func runCataloguePass(en *Enumerator, bp *blueprintProvider, els []element, page
 	for _, p := range pages {
 		el := byTag[p.tag]
 
-		// base render: the element at baseline (no varied attribute).
+		// base render: the element at baseline (no varied attribute). Route the
+		// grammar element through the codec (renderer of record) BEFORE layering on
+		// harness annotations (id="slot"/data-lab) and the scaffold — so what the
+		// gallery shows is codec-emitted, while the harness chrome stays as-is.
 		baseMarkup, needsID := en.renderWithOneAttr(el, "", "", "")
+		baseMarkup = checkPath(p.tag, "", "", baseMarkup)
 		if needsID || blueprintSlotNeedsID(bp.blueprintFor(p.tag), p.tag) {
 			baseMarkup = ensureSlotID(baseMarkup, p.tag)
 		}

@@ -4099,7 +4099,11 @@ message ViewBox {
 message PreserveAspectRatio {
   Align align = 1;
 
-  MeetOrSlice meet_or_slice = 2;
+  Space space = 2;
+
+  message Space {
+    MeetOrSlice meet_or_slice = 1;
+  }
 }
 
 message Align {

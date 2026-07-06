@@ -29554,9 +29554,9 @@ func (x *ViewBox) GetNumberType_4() *NumberType {
 }
 
 type PreserveAspectRatio struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Align         *Align                 `protobuf:"bytes,1,opt,name=align,proto3" json:"align,omitempty"`
-	MeetOrSlice   *MeetOrSlice           `protobuf:"bytes,2,opt,name=meet_or_slice,json=meetOrSlice,proto3" json:"meet_or_slice,omitempty"`
+	state         protoimpl.MessageState     `protogen:"open.v1"`
+	Align         *Align                     `protobuf:"bytes,1,opt,name=align,proto3" json:"align,omitempty"`
+	Space         *PreserveAspectRatio_Space `protobuf:"bytes,2,opt,name=space,proto3" json:"space,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -29598,9 +29598,9 @@ func (x *PreserveAspectRatio) GetAlign() *Align {
 	return nil
 }
 
-func (x *PreserveAspectRatio) GetMeetOrSlice() *MeetOrSlice {
+func (x *PreserveAspectRatio) GetSpace() *PreserveAspectRatio_Space {
 	if x != nil {
-		return x.MeetOrSlice
+		return x.Space
 	}
 	return nil
 }
@@ -111616,6 +111616,50 @@ func (x *NumberOptionalNumberType_Space) GetNonNegativeNumberType() *NonNegative
 	return nil
 }
 
+type PreserveAspectRatio_Space struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	MeetOrSlice   *MeetOrSlice           `protobuf:"bytes,1,opt,name=meet_or_slice,json=meetOrSlice,proto3" json:"meet_or_slice,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *PreserveAspectRatio_Space) Reset() {
+	*x = PreserveAspectRatio_Space{}
+	mi := &file_svg_proto_msgTypes[1752]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PreserveAspectRatio_Space) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PreserveAspectRatio_Space) ProtoMessage() {}
+
+func (x *PreserveAspectRatio_Space) ProtoReflect() protoreflect.Message {
+	mi := &file_svg_proto_msgTypes[1752]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PreserveAspectRatio_Space.ProtoReflect.Descriptor instead.
+func (*PreserveAspectRatio_Space) Descriptor() ([]byte, []int) {
+	return file_svg_proto_rawDescGZIP(), []int{361, 0}
+}
+
+func (x *PreserveAspectRatio_Space) GetMeetOrSlice() *MeetOrSlice {
+	if x != nil {
+		return x.MeetOrSlice
+	}
+	return nil
+}
+
 type ImageCrossoriginAttr_Alt1 struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Types that are valid to be assigned to Value:
@@ -111629,7 +111673,7 @@ type ImageCrossoriginAttr_Alt1 struct {
 
 func (x *ImageCrossoriginAttr_Alt1) Reset() {
 	*x = ImageCrossoriginAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1752]
+	mi := &file_svg_proto_msgTypes[1753]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -111641,7 +111685,7 @@ func (x *ImageCrossoriginAttr_Alt1) String() string {
 func (*ImageCrossoriginAttr_Alt1) ProtoMessage() {}
 
 func (x *ImageCrossoriginAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1752]
+	mi := &file_svg_proto_msgTypes[1753]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -111712,7 +111756,7 @@ type ImageWidthAttr_Alt1 struct {
 
 func (x *ImageWidthAttr_Alt1) Reset() {
 	*x = ImageWidthAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1753]
+	mi := &file_svg_proto_msgTypes[1754]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -111724,7 +111768,7 @@ func (x *ImageWidthAttr_Alt1) String() string {
 func (*ImageWidthAttr_Alt1) ProtoMessage() {}
 
 func (x *ImageWidthAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1753]
+	mi := &file_svg_proto_msgTypes[1754]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -111794,7 +111838,7 @@ type ImageHeightAttr_Alt1 struct {
 
 func (x *ImageHeightAttr_Alt1) Reset() {
 	*x = ImageHeightAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1754]
+	mi := &file_svg_proto_msgTypes[1755]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -111806,7 +111850,7 @@ func (x *ImageHeightAttr_Alt1) String() string {
 func (*ImageHeightAttr_Alt1) ProtoMessage() {}
 
 func (x *ImageHeightAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1754]
+	mi := &file_svg_proto_msgTypes[1755]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -111877,7 +111921,7 @@ type ImageDecodingAttr_Alt1 struct {
 
 func (x *ImageDecodingAttr_Alt1) Reset() {
 	*x = ImageDecodingAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1755]
+	mi := &file_svg_proto_msgTypes[1756]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -111889,7 +111933,7 @@ func (x *ImageDecodingAttr_Alt1) String() string {
 func (*ImageDecodingAttr_Alt1) ProtoMessage() {}
 
 func (x *ImageDecodingAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1755]
+	mi := &file_svg_proto_msgTypes[1756]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -111974,7 +112018,7 @@ type ForeignObjectWidthAttr_Alt1 struct {
 
 func (x *ForeignObjectWidthAttr_Alt1) Reset() {
 	*x = ForeignObjectWidthAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1756]
+	mi := &file_svg_proto_msgTypes[1757]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -111986,7 +112030,7 @@ func (x *ForeignObjectWidthAttr_Alt1) String() string {
 func (*ForeignObjectWidthAttr_Alt1) ProtoMessage() {}
 
 func (x *ForeignObjectWidthAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1756]
+	mi := &file_svg_proto_msgTypes[1757]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -112057,7 +112101,7 @@ type ForeignObjectHeightAttr_Alt1 struct {
 
 func (x *ForeignObjectHeightAttr_Alt1) Reset() {
 	*x = ForeignObjectHeightAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1757]
+	mi := &file_svg_proto_msgTypes[1758]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -112069,7 +112113,7 @@ func (x *ForeignObjectHeightAttr_Alt1) String() string {
 func (*ForeignObjectHeightAttr_Alt1) ProtoMessage() {}
 
 func (x *ForeignObjectHeightAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1757]
+	mi := &file_svg_proto_msgTypes[1758]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -112140,7 +112184,7 @@ type ViewZoomAndPanAttr_Alt1 struct {
 
 func (x *ViewZoomAndPanAttr_Alt1) Reset() {
 	*x = ViewZoomAndPanAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1758]
+	mi := &file_svg_proto_msgTypes[1759]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -112152,7 +112196,7 @@ func (x *ViewZoomAndPanAttr_Alt1) String() string {
 func (*ViewZoomAndPanAttr_Alt1) ProtoMessage() {}
 
 func (x *ViewZoomAndPanAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1758]
+	mi := &file_svg_proto_msgTypes[1759]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -112222,7 +112266,7 @@ type ScriptCrossoriginAttr_Alt1 struct {
 
 func (x *ScriptCrossoriginAttr_Alt1) Reset() {
 	*x = ScriptCrossoriginAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1759]
+	mi := &file_svg_proto_msgTypes[1760]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -112234,7 +112278,7 @@ func (x *ScriptCrossoriginAttr_Alt1) String() string {
 func (*ScriptCrossoriginAttr_Alt1) ProtoMessage() {}
 
 func (x *ScriptCrossoriginAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1759]
+	mi := &file_svg_proto_msgTypes[1760]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -112314,7 +112358,7 @@ type PointerEventsAttr_Alt1 struct {
 
 func (x *PointerEventsAttr_Alt1) Reset() {
 	*x = PointerEventsAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1760]
+	mi := &file_svg_proto_msgTypes[1761]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -112326,7 +112370,7 @@ func (x *PointerEventsAttr_Alt1) String() string {
 func (*PointerEventsAttr_Alt1) ProtoMessage() {}
 
 func (x *PointerEventsAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1760]
+	mi := &file_svg_proto_msgTypes[1761]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -112545,7 +112589,7 @@ type FeBlendModeAttr_Alt1 struct {
 
 func (x *FeBlendModeAttr_Alt1) Reset() {
 	*x = FeBlendModeAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1761]
+	mi := &file_svg_proto_msgTypes[1762]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -112557,7 +112601,7 @@ func (x *FeBlendModeAttr_Alt1) String() string {
 func (*FeBlendModeAttr_Alt1) ProtoMessage() {}
 
 func (x *FeBlendModeAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1761]
+	mi := &file_svg_proto_msgTypes[1762]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -112839,7 +112883,7 @@ type FeColorMatrixTypeAttr_Alt1 struct {
 
 func (x *FeColorMatrixTypeAttr_Alt1) Reset() {
 	*x = FeColorMatrixTypeAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1762]
+	mi := &file_svg_proto_msgTypes[1763]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -112851,7 +112895,7 @@ func (x *FeColorMatrixTypeAttr_Alt1) String() string {
 func (*FeColorMatrixTypeAttr_Alt1) ProtoMessage() {}
 
 func (x *FeColorMatrixTypeAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1762]
+	mi := &file_svg_proto_msgTypes[1763]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -112956,7 +113000,7 @@ type FeCompositeOperatorAttr_Alt1 struct {
 
 func (x *FeCompositeOperatorAttr_Alt1) Reset() {
 	*x = FeCompositeOperatorAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1763]
+	mi := &file_svg_proto_msgTypes[1764]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -112968,7 +113012,7 @@ func (x *FeCompositeOperatorAttr_Alt1) String() string {
 func (*FeCompositeOperatorAttr_Alt1) ProtoMessage() {}
 
 func (x *FeCompositeOperatorAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1763]
+	mi := &file_svg_proto_msgTypes[1764]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -113114,7 +113158,7 @@ type FeConvolveMatrixEdgeModeAttr_Alt1 struct {
 
 func (x *FeConvolveMatrixEdgeModeAttr_Alt1) Reset() {
 	*x = FeConvolveMatrixEdgeModeAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1764]
+	mi := &file_svg_proto_msgTypes[1765]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -113126,7 +113170,7 @@ func (x *FeConvolveMatrixEdgeModeAttr_Alt1) String() string {
 func (*FeConvolveMatrixEdgeModeAttr_Alt1) ProtoMessage() {}
 
 func (x *FeConvolveMatrixEdgeModeAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1764]
+	mi := &file_svg_proto_msgTypes[1765]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -113214,7 +113258,7 @@ type FeDisplacementMapXchannelSelectorAttr_Alt1 struct {
 
 func (x *FeDisplacementMapXchannelSelectorAttr_Alt1) Reset() {
 	*x = FeDisplacementMapXchannelSelectorAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1765]
+	mi := &file_svg_proto_msgTypes[1766]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -113226,7 +113270,7 @@ func (x *FeDisplacementMapXchannelSelectorAttr_Alt1) String() string {
 func (*FeDisplacementMapXchannelSelectorAttr_Alt1) ProtoMessage() {}
 
 func (x *FeDisplacementMapXchannelSelectorAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1765]
+	mi := &file_svg_proto_msgTypes[1766]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -113332,7 +113376,7 @@ type FeDisplacementMapYchannelSelectorAttr_Alt1 struct {
 
 func (x *FeDisplacementMapYchannelSelectorAttr_Alt1) Reset() {
 	*x = FeDisplacementMapYchannelSelectorAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1766]
+	mi := &file_svg_proto_msgTypes[1767]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -113344,7 +113388,7 @@ func (x *FeDisplacementMapYchannelSelectorAttr_Alt1) String() string {
 func (*FeDisplacementMapYchannelSelectorAttr_Alt1) ProtoMessage() {}
 
 func (x *FeDisplacementMapYchannelSelectorAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1766]
+	mi := &file_svg_proto_msgTypes[1767]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -113449,7 +113493,7 @@ type FeGaussianBlurEdgeModeAttr_Alt1 struct {
 
 func (x *FeGaussianBlurEdgeModeAttr_Alt1) Reset() {
 	*x = FeGaussianBlurEdgeModeAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1767]
+	mi := &file_svg_proto_msgTypes[1768]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -113461,7 +113505,7 @@ func (x *FeGaussianBlurEdgeModeAttr_Alt1) String() string {
 func (*FeGaussianBlurEdgeModeAttr_Alt1) ProtoMessage() {}
 
 func (x *FeGaussianBlurEdgeModeAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1767]
+	mi := &file_svg_proto_msgTypes[1768]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -113546,7 +113590,7 @@ type FeImageCrossoriginAttr_Alt1 struct {
 
 func (x *FeImageCrossoriginAttr_Alt1) Reset() {
 	*x = FeImageCrossoriginAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1768]
+	mi := &file_svg_proto_msgTypes[1769]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -113558,7 +113602,7 @@ func (x *FeImageCrossoriginAttr_Alt1) String() string {
 func (*FeImageCrossoriginAttr_Alt1) ProtoMessage() {}
 
 func (x *FeImageCrossoriginAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1768]
+	mi := &file_svg_proto_msgTypes[1769]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -113629,7 +113673,7 @@ type FeMorphologyOperatorAttr_Alt1 struct {
 
 func (x *FeMorphologyOperatorAttr_Alt1) Reset() {
 	*x = FeMorphologyOperatorAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1769]
+	mi := &file_svg_proto_msgTypes[1770]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -113641,7 +113685,7 @@ func (x *FeMorphologyOperatorAttr_Alt1) String() string {
 func (*FeMorphologyOperatorAttr_Alt1) ProtoMessage() {}
 
 func (x *FeMorphologyOperatorAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1769]
+	mi := &file_svg_proto_msgTypes[1770]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -113711,7 +113755,7 @@ type FeTurbulenceStitchTilesAttr_Alt1 struct {
 
 func (x *FeTurbulenceStitchTilesAttr_Alt1) Reset() {
 	*x = FeTurbulenceStitchTilesAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1770]
+	mi := &file_svg_proto_msgTypes[1771]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -113723,7 +113767,7 @@ func (x *FeTurbulenceStitchTilesAttr_Alt1) String() string {
 func (*FeTurbulenceStitchTilesAttr_Alt1) ProtoMessage() {}
 
 func (x *FeTurbulenceStitchTilesAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1770]
+	mi := &file_svg_proto_msgTypes[1771]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -113793,7 +113837,7 @@ type FeTurbulenceTypeAttr_Alt1 struct {
 
 func (x *FeTurbulenceTypeAttr_Alt1) Reset() {
 	*x = FeTurbulenceTypeAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1771]
+	mi := &file_svg_proto_msgTypes[1772]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -113805,7 +113849,7 @@ func (x *FeTurbulenceTypeAttr_Alt1) String() string {
 func (*FeTurbulenceTypeAttr_Alt1) ProtoMessage() {}
 
 func (x *FeTurbulenceTypeAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1771]
+	mi := &file_svg_proto_msgTypes[1772]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -113878,7 +113922,7 @@ type FeFuncRtypeAttr_Alt1 struct {
 
 func (x *FeFuncRtypeAttr_Alt1) Reset() {
 	*x = FeFuncRtypeAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1772]
+	mi := &file_svg_proto_msgTypes[1773]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -113890,7 +113934,7 @@ func (x *FeFuncRtypeAttr_Alt1) String() string {
 func (*FeFuncRtypeAttr_Alt1) ProtoMessage() {}
 
 func (x *FeFuncRtypeAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1772]
+	mi := &file_svg_proto_msgTypes[1773]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -114008,7 +114052,7 @@ type FeFuncGtypeAttr_Alt1 struct {
 
 func (x *FeFuncGtypeAttr_Alt1) Reset() {
 	*x = FeFuncGtypeAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1773]
+	mi := &file_svg_proto_msgTypes[1774]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -114020,7 +114064,7 @@ func (x *FeFuncGtypeAttr_Alt1) String() string {
 func (*FeFuncGtypeAttr_Alt1) ProtoMessage() {}
 
 func (x *FeFuncGtypeAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1773]
+	mi := &file_svg_proto_msgTypes[1774]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -114138,7 +114182,7 @@ type FeFuncBtypeAttr_Alt1 struct {
 
 func (x *FeFuncBtypeAttr_Alt1) Reset() {
 	*x = FeFuncBtypeAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1774]
+	mi := &file_svg_proto_msgTypes[1775]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -114150,7 +114194,7 @@ func (x *FeFuncBtypeAttr_Alt1) String() string {
 func (*FeFuncBtypeAttr_Alt1) ProtoMessage() {}
 
 func (x *FeFuncBtypeAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1774]
+	mi := &file_svg_proto_msgTypes[1775]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -114268,7 +114312,7 @@ type FeFuncAtypeAttr_Alt1 struct {
 
 func (x *FeFuncAtypeAttr_Alt1) Reset() {
 	*x = FeFuncAtypeAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1775]
+	mi := &file_svg_proto_msgTypes[1776]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -114280,7 +114324,7 @@ func (x *FeFuncAtypeAttr_Alt1) String() string {
 func (*FeFuncAtypeAttr_Alt1) ProtoMessage() {}
 
 func (x *FeFuncAtypeAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1775]
+	mi := &file_svg_proto_msgTypes[1776]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -114395,7 +114439,7 @@ type FilterAttr_Alt1 struct {
 
 func (x *FilterAttr_Alt1) Reset() {
 	*x = FilterAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1776]
+	mi := &file_svg_proto_msgTypes[1777]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -114407,7 +114451,7 @@ func (x *FilterAttr_Alt1) String() string {
 func (*FilterAttr_Alt1) ProtoMessage() {}
 
 func (x *FilterAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1776]
+	mi := &file_svg_proto_msgTypes[1777]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -114477,7 +114521,7 @@ type HueRotateFunction_Alt1 struct {
 
 func (x *HueRotateFunction_Alt1) Reset() {
 	*x = HueRotateFunction_Alt1{}
-	mi := &file_svg_proto_msgTypes[1777]
+	mi := &file_svg_proto_msgTypes[1778]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -114489,7 +114533,7 @@ func (x *HueRotateFunction_Alt1) String() string {
 func (*HueRotateFunction_Alt1) ProtoMessage() {}
 
 func (x *HueRotateFunction_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1777]
+	mi := &file_svg_proto_msgTypes[1778]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -114560,7 +114604,7 @@ type ColorInterpolationFiltersAttr_Alt1 struct {
 
 func (x *ColorInterpolationFiltersAttr_Alt1) Reset() {
 	*x = ColorInterpolationFiltersAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1778]
+	mi := &file_svg_proto_msgTypes[1779]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -114572,7 +114616,7 @@ func (x *ColorInterpolationFiltersAttr_Alt1) String() string {
 func (*ColorInterpolationFiltersAttr_Alt1) ProtoMessage() {}
 
 func (x *ColorInterpolationFiltersAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1778]
+	mi := &file_svg_proto_msgTypes[1779]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -114658,7 +114702,7 @@ type FloodColorAttr_Alt1 struct {
 
 func (x *FloodColorAttr_Alt1) Reset() {
 	*x = FloodColorAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1779]
+	mi := &file_svg_proto_msgTypes[1780]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -114670,7 +114714,7 @@ func (x *FloodColorAttr_Alt1) String() string {
 func (*FloodColorAttr_Alt1) ProtoMessage() {}
 
 func (x *FloodColorAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1779]
+	mi := &file_svg_proto_msgTypes[1780]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -114740,7 +114784,7 @@ type LightingColorAttr_Alt1 struct {
 
 func (x *LightingColorAttr_Alt1) Reset() {
 	*x = LightingColorAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1780]
+	mi := &file_svg_proto_msgTypes[1781]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -114752,7 +114796,7 @@ func (x *LightingColorAttr_Alt1) String() string {
 func (*LightingColorAttr_Alt1) ProtoMessage() {}
 
 func (x *LightingColorAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1780]
+	mi := &file_svg_proto_msgTypes[1781]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -114825,7 +114869,7 @@ type ImageRenderingAttr_Alt1 struct {
 
 func (x *ImageRenderingAttr_Alt1) Reset() {
 	*x = ImageRenderingAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1781]
+	mi := &file_svg_proto_msgTypes[1782]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -114837,7 +114881,7 @@ func (x *ImageRenderingAttr_Alt1) String() string {
 func (*ImageRenderingAttr_Alt1) ProtoMessage() {}
 
 func (x *ImageRenderingAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1781]
+	mi := &file_svg_proto_msgTypes[1782]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -114952,7 +114996,7 @@ type MaskTypeAttr_Alt1 struct {
 
 func (x *MaskTypeAttr_Alt1) Reset() {
 	*x = MaskTypeAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1782]
+	mi := &file_svg_proto_msgTypes[1783]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -114964,7 +115008,7 @@ func (x *MaskTypeAttr_Alt1) String() string {
 func (*MaskTypeAttr_Alt1) ProtoMessage() {}
 
 func (x *MaskTypeAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1782]
+	mi := &file_svg_proto_msgTypes[1783]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -115037,7 +115081,7 @@ type ClipPathAttr_Alt1 struct {
 
 func (x *ClipPathAttr_Alt1) Reset() {
 	*x = ClipPathAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1783]
+	mi := &file_svg_proto_msgTypes[1784]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -115049,7 +115093,7 @@ func (x *ClipPathAttr_Alt1) String() string {
 func (*ClipPathAttr_Alt1) ProtoMessage() {}
 
 func (x *ClipPathAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1783]
+	mi := &file_svg_proto_msgTypes[1784]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -115161,7 +115205,7 @@ type ClipPathCombo_Seq1 struct {
 
 func (x *ClipPathCombo_Seq1) Reset() {
 	*x = ClipPathCombo_Seq1{}
-	mi := &file_svg_proto_msgTypes[1784]
+	mi := &file_svg_proto_msgTypes[1785]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -115173,7 +115217,7 @@ func (x *ClipPathCombo_Seq1) String() string {
 func (*ClipPathCombo_Seq1) ProtoMessage() {}
 
 func (x *ClipPathCombo_Seq1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1784]
+	mi := &file_svg_proto_msgTypes[1785]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -115213,7 +115257,7 @@ type ClipPathCombo_Seq2 struct {
 
 func (x *ClipPathCombo_Seq2) Reset() {
 	*x = ClipPathCombo_Seq2{}
-	mi := &file_svg_proto_msgTypes[1785]
+	mi := &file_svg_proto_msgTypes[1786]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -115225,7 +115269,7 @@ func (x *ClipPathCombo_Seq2) String() string {
 func (*ClipPathCombo_Seq2) ProtoMessage() {}
 
 func (x *ClipPathCombo_Seq2) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1785]
+	mi := &file_svg_proto_msgTypes[1786]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -115265,7 +115309,7 @@ type InsetFn_Space struct {
 
 func (x *InsetFn_Space) Reset() {
 	*x = InsetFn_Space{}
-	mi := &file_svg_proto_msgTypes[1786]
+	mi := &file_svg_proto_msgTypes[1787]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -115277,7 +115321,7 @@ func (x *InsetFn_Space) String() string {
 func (*InsetFn_Space) ProtoMessage() {}
 
 func (x *InsetFn_Space) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1786]
+	mi := &file_svg_proto_msgTypes[1787]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -115316,7 +115360,7 @@ type InsetFn_SpaceRoundSpace struct {
 
 func (x *InsetFn_SpaceRoundSpace) Reset() {
 	*x = InsetFn_SpaceRoundSpace{}
-	mi := &file_svg_proto_msgTypes[1787]
+	mi := &file_svg_proto_msgTypes[1788]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -115328,7 +115372,7 @@ func (x *InsetFn_SpaceRoundSpace) String() string {
 func (*InsetFn_SpaceRoundSpace) ProtoMessage() {}
 
 func (x *InsetFn_SpaceRoundSpace) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1787]
+	mi := &file_svg_proto_msgTypes[1788]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -115361,7 +115405,7 @@ type InsetFn_Space_Space struct {
 
 func (x *InsetFn_Space_Space) Reset() {
 	*x = InsetFn_Space_Space{}
-	mi := &file_svg_proto_msgTypes[1788]
+	mi := &file_svg_proto_msgTypes[1789]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -115373,7 +115417,7 @@ func (x *InsetFn_Space_Space) String() string {
 func (*InsetFn_Space_Space) ProtoMessage() {}
 
 func (x *InsetFn_Space_Space) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1788]
+	mi := &file_svg_proto_msgTypes[1789]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -115412,7 +115456,7 @@ type InsetFn_Space_Space_Space struct {
 
 func (x *InsetFn_Space_Space_Space) Reset() {
 	*x = InsetFn_Space_Space_Space{}
-	mi := &file_svg_proto_msgTypes[1789]
+	mi := &file_svg_proto_msgTypes[1790]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -115424,7 +115468,7 @@ func (x *InsetFn_Space_Space_Space) String() string {
 func (*InsetFn_Space_Space_Space) ProtoMessage() {}
 
 func (x *InsetFn_Space_Space_Space) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1789]
+	mi := &file_svg_proto_msgTypes[1790]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -115457,7 +115501,7 @@ type BorderRadius_Space struct {
 
 func (x *BorderRadius_Space) Reset() {
 	*x = BorderRadius_Space{}
-	mi := &file_svg_proto_msgTypes[1790]
+	mi := &file_svg_proto_msgTypes[1791]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -115469,7 +115513,7 @@ func (x *BorderRadius_Space) String() string {
 func (*BorderRadius_Space) ProtoMessage() {}
 
 func (x *BorderRadius_Space) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1790]
+	mi := &file_svg_proto_msgTypes[1791]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -115509,7 +115553,7 @@ type BorderRadius_Solidus struct {
 
 func (x *BorderRadius_Solidus) Reset() {
 	*x = BorderRadius_Solidus{}
-	mi := &file_svg_proto_msgTypes[1791]
+	mi := &file_svg_proto_msgTypes[1792]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -115521,7 +115565,7 @@ func (x *BorderRadius_Solidus) String() string {
 func (*BorderRadius_Solidus) ProtoMessage() {}
 
 func (x *BorderRadius_Solidus) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1791]
+	mi := &file_svg_proto_msgTypes[1792]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -115561,7 +115605,7 @@ type BorderRadius_Space_Space struct {
 
 func (x *BorderRadius_Space_Space) Reset() {
 	*x = BorderRadius_Space_Space{}
-	mi := &file_svg_proto_msgTypes[1792]
+	mi := &file_svg_proto_msgTypes[1793]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -115573,7 +115617,7 @@ func (x *BorderRadius_Space_Space) String() string {
 func (*BorderRadius_Space_Space) ProtoMessage() {}
 
 func (x *BorderRadius_Space_Space) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1792]
+	mi := &file_svg_proto_msgTypes[1793]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -115612,7 +115656,7 @@ type BorderRadius_Space_Space_Space struct {
 
 func (x *BorderRadius_Space_Space_Space) Reset() {
 	*x = BorderRadius_Space_Space_Space{}
-	mi := &file_svg_proto_msgTypes[1793]
+	mi := &file_svg_proto_msgTypes[1794]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -115624,7 +115668,7 @@ func (x *BorderRadius_Space_Space_Space) String() string {
 func (*BorderRadius_Space_Space_Space) ProtoMessage() {}
 
 func (x *BorderRadius_Space_Space_Space) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1793]
+	mi := &file_svg_proto_msgTypes[1794]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -115657,7 +115701,7 @@ type BorderRadius_Solidus_Space struct {
 
 func (x *BorderRadius_Solidus_Space) Reset() {
 	*x = BorderRadius_Solidus_Space{}
-	mi := &file_svg_proto_msgTypes[1794]
+	mi := &file_svg_proto_msgTypes[1795]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -115669,7 +115713,7 @@ func (x *BorderRadius_Solidus_Space) String() string {
 func (*BorderRadius_Solidus_Space) ProtoMessage() {}
 
 func (x *BorderRadius_Solidus_Space) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1794]
+	mi := &file_svg_proto_msgTypes[1795]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -115709,7 +115753,7 @@ type BorderRadius_Solidus_Space_Space struct {
 
 func (x *BorderRadius_Solidus_Space_Space) Reset() {
 	*x = BorderRadius_Solidus_Space_Space{}
-	mi := &file_svg_proto_msgTypes[1795]
+	mi := &file_svg_proto_msgTypes[1796]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -115721,7 +115765,7 @@ func (x *BorderRadius_Solidus_Space_Space) String() string {
 func (*BorderRadius_Solidus_Space_Space) ProtoMessage() {}
 
 func (x *BorderRadius_Solidus_Space_Space) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1795]
+	mi := &file_svg_proto_msgTypes[1796]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -115760,7 +115804,7 @@ type BorderRadius_Solidus_Space_Space_Space struct {
 
 func (x *BorderRadius_Solidus_Space_Space_Space) Reset() {
 	*x = BorderRadius_Solidus_Space_Space_Space{}
-	mi := &file_svg_proto_msgTypes[1796]
+	mi := &file_svg_proto_msgTypes[1797]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -115772,7 +115816,7 @@ func (x *BorderRadius_Solidus_Space_Space_Space) String() string {
 func (*BorderRadius_Solidus_Space_Space_Space) ProtoMessage() {}
 
 func (x *BorderRadius_Solidus_Space_Space_Space) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1796]
+	mi := &file_svg_proto_msgTypes[1797]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -115805,7 +115849,7 @@ type CircleFn_Seq1 struct {
 
 func (x *CircleFn_Seq1) Reset() {
 	*x = CircleFn_Seq1{}
-	mi := &file_svg_proto_msgTypes[1797]
+	mi := &file_svg_proto_msgTypes[1798]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -115817,7 +115861,7 @@ func (x *CircleFn_Seq1) String() string {
 func (*CircleFn_Seq1) ProtoMessage() {}
 
 func (x *CircleFn_Seq1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1797]
+	mi := &file_svg_proto_msgTypes[1798]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -115856,7 +115900,7 @@ type CircleFn_Seq1_SpaceAtSpace struct {
 
 func (x *CircleFn_Seq1_SpaceAtSpace) Reset() {
 	*x = CircleFn_Seq1_SpaceAtSpace{}
-	mi := &file_svg_proto_msgTypes[1798]
+	mi := &file_svg_proto_msgTypes[1799]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -115868,7 +115912,7 @@ func (x *CircleFn_Seq1_SpaceAtSpace) String() string {
 func (*CircleFn_Seq1_SpaceAtSpace) ProtoMessage() {}
 
 func (x *CircleFn_Seq1_SpaceAtSpace) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1798]
+	mi := &file_svg_proto_msgTypes[1799]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -115903,7 +115947,7 @@ type EllipseFn_Seq1 struct {
 
 func (x *EllipseFn_Seq1) Reset() {
 	*x = EllipseFn_Seq1{}
-	mi := &file_svg_proto_msgTypes[1799]
+	mi := &file_svg_proto_msgTypes[1800]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -115915,7 +115959,7 @@ func (x *EllipseFn_Seq1) String() string {
 func (*EllipseFn_Seq1) ProtoMessage() {}
 
 func (x *EllipseFn_Seq1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1799]
+	mi := &file_svg_proto_msgTypes[1800]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -115968,7 +116012,7 @@ type EllipseFn_Seq1_SpaceAtSpace struct {
 
 func (x *EllipseFn_Seq1_SpaceAtSpace) Reset() {
 	*x = EllipseFn_Seq1_SpaceAtSpace{}
-	mi := &file_svg_proto_msgTypes[1800]
+	mi := &file_svg_proto_msgTypes[1801]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -115980,7 +116024,7 @@ func (x *EllipseFn_Seq1_SpaceAtSpace) String() string {
 func (*EllipseFn_Seq1_SpaceAtSpace) ProtoMessage() {}
 
 func (x *EllipseFn_Seq1_SpaceAtSpace) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1800]
+	mi := &file_svg_proto_msgTypes[1801]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -116012,7 +116056,7 @@ type CssPosition_Space struct {
 
 func (x *CssPosition_Space) Reset() {
 	*x = CssPosition_Space{}
-	mi := &file_svg_proto_msgTypes[1801]
+	mi := &file_svg_proto_msgTypes[1802]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -116024,7 +116068,7 @@ func (x *CssPosition_Space) String() string {
 func (*CssPosition_Space) ProtoMessage() {}
 
 func (x *CssPosition_Space) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1801]
+	mi := &file_svg_proto_msgTypes[1802]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -116057,7 +116101,7 @@ type PolygonFn_Seq1 struct {
 
 func (x *PolygonFn_Seq1) Reset() {
 	*x = PolygonFn_Seq1{}
-	mi := &file_svg_proto_msgTypes[1802]
+	mi := &file_svg_proto_msgTypes[1803]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -116069,7 +116113,7 @@ func (x *PolygonFn_Seq1) String() string {
 func (*PolygonFn_Seq1) ProtoMessage() {}
 
 func (x *PolygonFn_Seq1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1802]
+	mi := &file_svg_proto_msgTypes[1803]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -116109,7 +116153,7 @@ type PolygonFn_SpaceRoundSpace struct {
 
 func (x *PolygonFn_SpaceRoundSpace) Reset() {
 	*x = PolygonFn_SpaceRoundSpace{}
-	mi := &file_svg_proto_msgTypes[1803]
+	mi := &file_svg_proto_msgTypes[1804]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -116121,7 +116165,7 @@ func (x *PolygonFn_SpaceRoundSpace) String() string {
 func (*PolygonFn_SpaceRoundSpace) ProtoMessage() {}
 
 func (x *PolygonFn_SpaceRoundSpace) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1803]
+	mi := &file_svg_proto_msgTypes[1804]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -116161,7 +116205,7 @@ type PathFn_Seq1 struct {
 
 func (x *PathFn_Seq1) Reset() {
 	*x = PathFn_Seq1{}
-	mi := &file_svg_proto_msgTypes[1804]
+	mi := &file_svg_proto_msgTypes[1805]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -116173,7 +116217,7 @@ func (x *PathFn_Seq1) String() string {
 func (*PathFn_Seq1) ProtoMessage() {}
 
 func (x *PathFn_Seq1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1804]
+	mi := &file_svg_proto_msgTypes[1805]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -116213,7 +116257,7 @@ type ShapeFn_Seq1 struct {
 
 func (x *ShapeFn_Seq1) Reset() {
 	*x = ShapeFn_Seq1{}
-	mi := &file_svg_proto_msgTypes[1805]
+	mi := &file_svg_proto_msgTypes[1806]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -116225,7 +116269,7 @@ func (x *ShapeFn_Seq1) String() string {
 func (*ShapeFn_Seq1) ProtoMessage() {}
 
 func (x *ShapeFn_Seq1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1805]
+	mi := &file_svg_proto_msgTypes[1806]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -116268,7 +116312,7 @@ type ClipRuleAttr_Alt1 struct {
 
 func (x *ClipRuleAttr_Alt1) Reset() {
 	*x = ClipRuleAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1806]
+	mi := &file_svg_proto_msgTypes[1807]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -116280,7 +116324,7 @@ func (x *ClipRuleAttr_Alt1) String() string {
 func (*ClipRuleAttr_Alt1) ProtoMessage() {}
 
 func (x *ClipRuleAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1806]
+	mi := &file_svg_proto_msgTypes[1807]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -116350,7 +116394,7 @@ type ClipAttr_Alt1 struct {
 
 func (x *ClipAttr_Alt1) Reset() {
 	*x = ClipAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1807]
+	mi := &file_svg_proto_msgTypes[1808]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -116362,7 +116406,7 @@ func (x *ClipAttr_Alt1) String() string {
 func (*ClipAttr_Alt1) ProtoMessage() {}
 
 func (x *ClipAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1807]
+	mi := &file_svg_proto_msgTypes[1808]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -116433,7 +116477,7 @@ type MaskAttr_Alt1 struct {
 
 func (x *MaskAttr_Alt1) Reset() {
 	*x = MaskAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1808]
+	mi := &file_svg_proto_msgTypes[1809]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -116445,7 +116489,7 @@ func (x *MaskAttr_Alt1) String() string {
 func (*MaskAttr_Alt1) ProtoMessage() {}
 
 func (x *MaskAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1808]
+	mi := &file_svg_proto_msgTypes[1809]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -116526,7 +116570,7 @@ type MaskLayerPosition_Solidus struct {
 
 func (x *MaskLayerPosition_Solidus) Reset() {
 	*x = MaskLayerPosition_Solidus{}
-	mi := &file_svg_proto_msgTypes[1809]
+	mi := &file_svg_proto_msgTypes[1810]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -116538,7 +116582,7 @@ func (x *MaskLayerPosition_Solidus) String() string {
 func (*MaskLayerPosition_Solidus) ProtoMessage() {}
 
 func (x *MaskLayerPosition_Solidus) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1809]
+	mi := &file_svg_proto_msgTypes[1810]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -116572,7 +116616,7 @@ type MaskBgSize_Seq1 struct {
 
 func (x *MaskBgSize_Seq1) Reset() {
 	*x = MaskBgSize_Seq1{}
-	mi := &file_svg_proto_msgTypes[1810]
+	mi := &file_svg_proto_msgTypes[1811]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -116584,7 +116628,7 @@ func (x *MaskBgSize_Seq1) String() string {
 func (*MaskBgSize_Seq1) ProtoMessage() {}
 
 func (x *MaskBgSize_Seq1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1810]
+	mi := &file_svg_proto_msgTypes[1811]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -116632,7 +116676,7 @@ type MaskRepeatValue_Seq1 struct {
 
 func (x *MaskRepeatValue_Seq1) Reset() {
 	*x = MaskRepeatValue_Seq1{}
-	mi := &file_svg_proto_msgTypes[1811]
+	mi := &file_svg_proto_msgTypes[1812]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -116644,7 +116688,7 @@ func (x *MaskRepeatValue_Seq1) String() string {
 func (*MaskRepeatValue_Seq1) ProtoMessage() {}
 
 func (x *MaskRepeatValue_Seq1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1811]
+	mi := &file_svg_proto_msgTypes[1812]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -116696,7 +116740,7 @@ type MaskRepeatValue_Seq1_Alt1 struct {
 
 func (x *MaskRepeatValue_Seq1_Alt1) Reset() {
 	*x = MaskRepeatValue_Seq1_Alt1{}
-	mi := &file_svg_proto_msgTypes[1812]
+	mi := &file_svg_proto_msgTypes[1813]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -116708,7 +116752,7 @@ func (x *MaskRepeatValue_Seq1_Alt1) String() string {
 func (*MaskRepeatValue_Seq1_Alt1) ProtoMessage() {}
 
 func (x *MaskRepeatValue_Seq1_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1812]
+	mi := &file_svg_proto_msgTypes[1813]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -116810,7 +116854,7 @@ type MaskRepeatValue_Seq1_Alt2 struct {
 
 func (x *MaskRepeatValue_Seq1_Alt2) Reset() {
 	*x = MaskRepeatValue_Seq1_Alt2{}
-	mi := &file_svg_proto_msgTypes[1813]
+	mi := &file_svg_proto_msgTypes[1814]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -116822,7 +116866,7 @@ func (x *MaskRepeatValue_Seq1_Alt2) String() string {
 func (*MaskRepeatValue_Seq1_Alt2) ProtoMessage() {}
 
 func (x *MaskRepeatValue_Seq1_Alt2) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1813]
+	mi := &file_svg_proto_msgTypes[1814]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -116920,7 +116964,7 @@ type MaskLayerOriginClip_Seq1 struct {
 
 func (x *MaskLayerOriginClip_Seq1) Reset() {
 	*x = MaskLayerOriginClip_Seq1{}
-	mi := &file_svg_proto_msgTypes[1814]
+	mi := &file_svg_proto_msgTypes[1815]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -116932,7 +116976,7 @@ func (x *MaskLayerOriginClip_Seq1) String() string {
 func (*MaskLayerOriginClip_Seq1) ProtoMessage() {}
 
 func (x *MaskLayerOriginClip_Seq1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1814]
+	mi := &file_svg_proto_msgTypes[1815]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -116982,7 +117026,7 @@ type MarkerMarkerUnitsAttr_Alt1 struct {
 
 func (x *MarkerMarkerUnitsAttr_Alt1) Reset() {
 	*x = MarkerMarkerUnitsAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1815]
+	mi := &file_svg_proto_msgTypes[1816]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -116994,7 +117038,7 @@ func (x *MarkerMarkerUnitsAttr_Alt1) String() string {
 func (*MarkerMarkerUnitsAttr_Alt1) ProtoMessage() {}
 
 func (x *MarkerMarkerUnitsAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1815]
+	mi := &file_svg_proto_msgTypes[1816]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -117067,7 +117111,7 @@ type MarkerRefXattr_Alt1 struct {
 
 func (x *MarkerRefXattr_Alt1) Reset() {
 	*x = MarkerRefXattr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1816]
+	mi := &file_svg_proto_msgTypes[1817]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -117079,7 +117123,7 @@ func (x *MarkerRefXattr_Alt1) String() string {
 func (*MarkerRefXattr_Alt1) ProtoMessage() {}
 
 func (x *MarkerRefXattr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1816]
+	mi := &file_svg_proto_msgTypes[1817]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -117197,7 +117241,7 @@ type MarkerRefYattr_Alt1 struct {
 
 func (x *MarkerRefYattr_Alt1) Reset() {
 	*x = MarkerRefYattr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1817]
+	mi := &file_svg_proto_msgTypes[1818]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -117209,7 +117253,7 @@ func (x *MarkerRefYattr_Alt1) String() string {
 func (*MarkerRefYattr_Alt1) ProtoMessage() {}
 
 func (x *MarkerRefYattr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1817]
+	mi := &file_svg_proto_msgTypes[1818]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -117326,7 +117370,7 @@ type MarkerOrientAttr_Alt1 struct {
 
 func (x *MarkerOrientAttr_Alt1) Reset() {
 	*x = MarkerOrientAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1818]
+	mi := &file_svg_proto_msgTypes[1819]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -117338,7 +117382,7 @@ func (x *MarkerOrientAttr_Alt1) String() string {
 func (*MarkerOrientAttr_Alt1) ProtoMessage() {}
 
 func (x *MarkerOrientAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1818]
+	mi := &file_svg_proto_msgTypes[1819]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -117439,7 +117483,7 @@ type FillRuleAttr_Alt1 struct {
 
 func (x *FillRuleAttr_Alt1) Reset() {
 	*x = FillRuleAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1819]
+	mi := &file_svg_proto_msgTypes[1820]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -117451,7 +117495,7 @@ func (x *FillRuleAttr_Alt1) String() string {
 func (*FillRuleAttr_Alt1) ProtoMessage() {}
 
 func (x *FillRuleAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1819]
+	mi := &file_svg_proto_msgTypes[1820]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -117522,7 +117566,7 @@ type StrokeLinecapAttr_Alt1 struct {
 
 func (x *StrokeLinecapAttr_Alt1) Reset() {
 	*x = StrokeLinecapAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1820]
+	mi := &file_svg_proto_msgTypes[1821]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -117534,7 +117578,7 @@ func (x *StrokeLinecapAttr_Alt1) String() string {
 func (*StrokeLinecapAttr_Alt1) ProtoMessage() {}
 
 func (x *StrokeLinecapAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1820]
+	mi := &file_svg_proto_msgTypes[1821]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -117622,7 +117666,7 @@ type StrokeLinejoinAttr_Alt1 struct {
 
 func (x *StrokeLinejoinAttr_Alt1) Reset() {
 	*x = StrokeLinejoinAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1821]
+	mi := &file_svg_proto_msgTypes[1822]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -117634,7 +117678,7 @@ func (x *StrokeLinejoinAttr_Alt1) String() string {
 func (*StrokeLinejoinAttr_Alt1) ProtoMessage() {}
 
 func (x *StrokeLinejoinAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1821]
+	mi := &file_svg_proto_msgTypes[1822]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -117749,7 +117793,7 @@ type StrokeDasharrayAttr_Alt1 struct {
 
 func (x *StrokeDasharrayAttr_Alt1) Reset() {
 	*x = StrokeDasharrayAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1822]
+	mi := &file_svg_proto_msgTypes[1823]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -117761,7 +117805,7 @@ func (x *StrokeDasharrayAttr_Alt1) String() string {
 func (*StrokeDasharrayAttr_Alt1) ProtoMessage() {}
 
 func (x *StrokeDasharrayAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1822]
+	mi := &file_svg_proto_msgTypes[1823]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -117831,7 +117875,7 @@ type StrokeDashoffsetAttr_Alt1 struct {
 
 func (x *StrokeDashoffsetAttr_Alt1) Reset() {
 	*x = StrokeDashoffsetAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1823]
+	mi := &file_svg_proto_msgTypes[1824]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -117843,7 +117887,7 @@ func (x *StrokeDashoffsetAttr_Alt1) String() string {
 func (*StrokeDashoffsetAttr_Alt1) ProtoMessage() {}
 
 func (x *StrokeDashoffsetAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1823]
+	mi := &file_svg_proto_msgTypes[1824]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -117913,7 +117957,7 @@ type PaintOrderAttr_Alt1 struct {
 
 func (x *PaintOrderAttr_Alt1) Reset() {
 	*x = PaintOrderAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1824]
+	mi := &file_svg_proto_msgTypes[1825]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -117925,7 +117969,7 @@ func (x *PaintOrderAttr_Alt1) String() string {
 func (*PaintOrderAttr_Alt1) ProtoMessage() {}
 
 func (x *PaintOrderAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1824]
+	mi := &file_svg_proto_msgTypes[1825]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -117995,7 +118039,7 @@ type MarkerAttr_Alt1 struct {
 
 func (x *MarkerAttr_Alt1) Reset() {
 	*x = MarkerAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1825]
+	mi := &file_svg_proto_msgTypes[1826]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -118007,7 +118051,7 @@ func (x *MarkerAttr_Alt1) String() string {
 func (*MarkerAttr_Alt1) ProtoMessage() {}
 
 func (x *MarkerAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1825]
+	mi := &file_svg_proto_msgTypes[1826]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -118077,7 +118121,7 @@ type MarkerStartAttr_Alt1 struct {
 
 func (x *MarkerStartAttr_Alt1) Reset() {
 	*x = MarkerStartAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1826]
+	mi := &file_svg_proto_msgTypes[1827]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -118089,7 +118133,7 @@ func (x *MarkerStartAttr_Alt1) String() string {
 func (*MarkerStartAttr_Alt1) ProtoMessage() {}
 
 func (x *MarkerStartAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1826]
+	mi := &file_svg_proto_msgTypes[1827]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -118159,7 +118203,7 @@ type MarkerMidAttr_Alt1 struct {
 
 func (x *MarkerMidAttr_Alt1) Reset() {
 	*x = MarkerMidAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1827]
+	mi := &file_svg_proto_msgTypes[1828]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -118171,7 +118215,7 @@ func (x *MarkerMidAttr_Alt1) String() string {
 func (*MarkerMidAttr_Alt1) ProtoMessage() {}
 
 func (x *MarkerMidAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1827]
+	mi := &file_svg_proto_msgTypes[1828]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -118241,7 +118285,7 @@ type MarkerEndAttr_Alt1 struct {
 
 func (x *MarkerEndAttr_Alt1) Reset() {
 	*x = MarkerEndAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1828]
+	mi := &file_svg_proto_msgTypes[1829]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -118253,7 +118297,7 @@ func (x *MarkerEndAttr_Alt1) String() string {
 func (*MarkerEndAttr_Alt1) ProtoMessage() {}
 
 func (x *MarkerEndAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1828]
+	mi := &file_svg_proto_msgTypes[1829]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -118324,7 +118368,7 @@ type ColorInterpolationAttr_Alt1 struct {
 
 func (x *ColorInterpolationAttr_Alt1) Reset() {
 	*x = ColorInterpolationAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1829]
+	mi := &file_svg_proto_msgTypes[1830]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -118336,7 +118380,7 @@ func (x *ColorInterpolationAttr_Alt1) String() string {
 func (*ColorInterpolationAttr_Alt1) ProtoMessage() {}
 
 func (x *ColorInterpolationAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1829]
+	mi := &file_svg_proto_msgTypes[1830]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -118422,7 +118466,7 @@ type ColorRenderingAttr_Alt1 struct {
 
 func (x *ColorRenderingAttr_Alt1) Reset() {
 	*x = ColorRenderingAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1830]
+	mi := &file_svg_proto_msgTypes[1831]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -118434,7 +118478,7 @@ func (x *ColorRenderingAttr_Alt1) String() string {
 func (*ColorRenderingAttr_Alt1) ProtoMessage() {}
 
 func (x *ColorRenderingAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1830]
+	mi := &file_svg_proto_msgTypes[1831]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -118521,7 +118565,7 @@ type ShapeRenderingAttr_Alt1 struct {
 
 func (x *ShapeRenderingAttr_Alt1) Reset() {
 	*x = ShapeRenderingAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1831]
+	mi := &file_svg_proto_msgTypes[1832]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -118533,7 +118577,7 @@ func (x *ShapeRenderingAttr_Alt1) String() string {
 func (*ShapeRenderingAttr_Alt1) ProtoMessage() {}
 
 func (x *ShapeRenderingAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1831]
+	mi := &file_svg_proto_msgTypes[1832]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -118636,7 +118680,7 @@ type VectorEffectAttr_Alt1 struct {
 
 func (x *VectorEffectAttr_Alt1) Reset() {
 	*x = VectorEffectAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1832]
+	mi := &file_svg_proto_msgTypes[1833]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -118648,7 +118692,7 @@ func (x *VectorEffectAttr_Alt1) String() string {
 func (*VectorEffectAttr_Alt1) ProtoMessage() {}
 
 func (x *VectorEffectAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1832]
+	mi := &file_svg_proto_msgTypes[1833]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -118762,7 +118806,7 @@ type SvgPath_Seq1 struct {
 
 func (x *SvgPath_Seq1) Reset() {
 	*x = SvgPath_Seq1{}
-	mi := &file_svg_proto_msgTypes[1833]
+	mi := &file_svg_proto_msgTypes[1834]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -118774,7 +118818,7 @@ func (x *SvgPath_Seq1) String() string {
 func (*SvgPath_Seq1) ProtoMessage() {}
 
 func (x *SvgPath_Seq1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1833]
+	mi := &file_svg_proto_msgTypes[1834]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -118817,7 +118861,7 @@ type MoveTo_Alt1 struct {
 
 func (x *MoveTo_Alt1) Reset() {
 	*x = MoveTo_Alt1{}
-	mi := &file_svg_proto_msgTypes[1834]
+	mi := &file_svg_proto_msgTypes[1835]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -118829,7 +118873,7 @@ func (x *MoveTo_Alt1) String() string {
 func (*MoveTo_Alt1) ProtoMessage() {}
 
 func (x *MoveTo_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1834]
+	mi := &file_svg_proto_msgTypes[1835]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -118899,7 +118943,7 @@ type ClosePath_Alt1 struct {
 
 func (x *ClosePath_Alt1) Reset() {
 	*x = ClosePath_Alt1{}
-	mi := &file_svg_proto_msgTypes[1835]
+	mi := &file_svg_proto_msgTypes[1836]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -118911,7 +118955,7 @@ func (x *ClosePath_Alt1) String() string {
 func (*ClosePath_Alt1) ProtoMessage() {}
 
 func (x *ClosePath_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1835]
+	mi := &file_svg_proto_msgTypes[1836]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -118981,7 +119025,7 @@ type LineTo_Alt1 struct {
 
 func (x *LineTo_Alt1) Reset() {
 	*x = LineTo_Alt1{}
-	mi := &file_svg_proto_msgTypes[1836]
+	mi := &file_svg_proto_msgTypes[1837]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -118993,7 +119037,7 @@ func (x *LineTo_Alt1) String() string {
 func (*LineTo_Alt1) ProtoMessage() {}
 
 func (x *LineTo_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1836]
+	mi := &file_svg_proto_msgTypes[1837]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -119063,7 +119107,7 @@ type HorizontalLineTo_Alt1 struct {
 
 func (x *HorizontalLineTo_Alt1) Reset() {
 	*x = HorizontalLineTo_Alt1{}
-	mi := &file_svg_proto_msgTypes[1837]
+	mi := &file_svg_proto_msgTypes[1838]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -119075,7 +119119,7 @@ func (x *HorizontalLineTo_Alt1) String() string {
 func (*HorizontalLineTo_Alt1) ProtoMessage() {}
 
 func (x *HorizontalLineTo_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1837]
+	mi := &file_svg_proto_msgTypes[1838]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -119145,7 +119189,7 @@ type VerticalLineTo_Alt1 struct {
 
 func (x *VerticalLineTo_Alt1) Reset() {
 	*x = VerticalLineTo_Alt1{}
-	mi := &file_svg_proto_msgTypes[1838]
+	mi := &file_svg_proto_msgTypes[1839]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -119157,7 +119201,7 @@ func (x *VerticalLineTo_Alt1) String() string {
 func (*VerticalLineTo_Alt1) ProtoMessage() {}
 
 func (x *VerticalLineTo_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1838]
+	mi := &file_svg_proto_msgTypes[1839]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -119227,7 +119271,7 @@ type CurveTo_Alt1 struct {
 
 func (x *CurveTo_Alt1) Reset() {
 	*x = CurveTo_Alt1{}
-	mi := &file_svg_proto_msgTypes[1839]
+	mi := &file_svg_proto_msgTypes[1840]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -119239,7 +119283,7 @@ func (x *CurveTo_Alt1) String() string {
 func (*CurveTo_Alt1) ProtoMessage() {}
 
 func (x *CurveTo_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1839]
+	mi := &file_svg_proto_msgTypes[1840]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -119309,7 +119353,7 @@ type SmoothCurveTo_Alt1 struct {
 
 func (x *SmoothCurveTo_Alt1) Reset() {
 	*x = SmoothCurveTo_Alt1{}
-	mi := &file_svg_proto_msgTypes[1840]
+	mi := &file_svg_proto_msgTypes[1841]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -119321,7 +119365,7 @@ func (x *SmoothCurveTo_Alt1) String() string {
 func (*SmoothCurveTo_Alt1) ProtoMessage() {}
 
 func (x *SmoothCurveTo_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1840]
+	mi := &file_svg_proto_msgTypes[1841]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -119391,7 +119435,7 @@ type QuadraticBezierCurveTo_Alt1 struct {
 
 func (x *QuadraticBezierCurveTo_Alt1) Reset() {
 	*x = QuadraticBezierCurveTo_Alt1{}
-	mi := &file_svg_proto_msgTypes[1841]
+	mi := &file_svg_proto_msgTypes[1842]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -119403,7 +119447,7 @@ func (x *QuadraticBezierCurveTo_Alt1) String() string {
 func (*QuadraticBezierCurveTo_Alt1) ProtoMessage() {}
 
 func (x *QuadraticBezierCurveTo_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1841]
+	mi := &file_svg_proto_msgTypes[1842]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -119473,7 +119517,7 @@ type SmoothQuadraticBezierCurveTo_Alt1 struct {
 
 func (x *SmoothQuadraticBezierCurveTo_Alt1) Reset() {
 	*x = SmoothQuadraticBezierCurveTo_Alt1{}
-	mi := &file_svg_proto_msgTypes[1842]
+	mi := &file_svg_proto_msgTypes[1843]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -119485,7 +119529,7 @@ func (x *SmoothQuadraticBezierCurveTo_Alt1) String() string {
 func (*SmoothQuadraticBezierCurveTo_Alt1) ProtoMessage() {}
 
 func (x *SmoothQuadraticBezierCurveTo_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1842]
+	mi := &file_svg_proto_msgTypes[1843]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -119555,7 +119599,7 @@ type EllipticalArc_Alt1 struct {
 
 func (x *EllipticalArc_Alt1) Reset() {
 	*x = EllipticalArc_Alt1{}
-	mi := &file_svg_proto_msgTypes[1843]
+	mi := &file_svg_proto_msgTypes[1844]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -119567,7 +119611,7 @@ func (x *EllipticalArc_Alt1) String() string {
 func (*EllipticalArc_Alt1) ProtoMessage() {}
 
 func (x *EllipticalArc_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1843]
+	mi := &file_svg_proto_msgTypes[1844]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -119638,7 +119682,7 @@ type SpreadMethodAttr_Alt1 struct {
 
 func (x *SpreadMethodAttr_Alt1) Reset() {
 	*x = SpreadMethodAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1844]
+	mi := &file_svg_proto_msgTypes[1845]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -119650,7 +119694,7 @@ func (x *SpreadMethodAttr_Alt1) String() string {
 func (*SpreadMethodAttr_Alt1) ProtoMessage() {}
 
 func (x *SpreadMethodAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1844]
+	mi := &file_svg_proto_msgTypes[1845]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -119735,7 +119779,7 @@ type LinearGradientX1Attr_Alt1 struct {
 
 func (x *LinearGradientX1Attr_Alt1) Reset() {
 	*x = LinearGradientX1Attr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1845]
+	mi := &file_svg_proto_msgTypes[1846]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -119747,7 +119791,7 @@ func (x *LinearGradientX1Attr_Alt1) String() string {
 func (*LinearGradientX1Attr_Alt1) ProtoMessage() {}
 
 func (x *LinearGradientX1Attr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1845]
+	mi := &file_svg_proto_msgTypes[1846]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -119817,7 +119861,7 @@ type LinearGradientY1Attr_Alt1 struct {
 
 func (x *LinearGradientY1Attr_Alt1) Reset() {
 	*x = LinearGradientY1Attr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1846]
+	mi := &file_svg_proto_msgTypes[1847]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -119829,7 +119873,7 @@ func (x *LinearGradientY1Attr_Alt1) String() string {
 func (*LinearGradientY1Attr_Alt1) ProtoMessage() {}
 
 func (x *LinearGradientY1Attr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1846]
+	mi := &file_svg_proto_msgTypes[1847]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -119899,7 +119943,7 @@ type LinearGradientX2Attr_Alt1 struct {
 
 func (x *LinearGradientX2Attr_Alt1) Reset() {
 	*x = LinearGradientX2Attr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1847]
+	mi := &file_svg_proto_msgTypes[1848]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -119911,7 +119955,7 @@ func (x *LinearGradientX2Attr_Alt1) String() string {
 func (*LinearGradientX2Attr_Alt1) ProtoMessage() {}
 
 func (x *LinearGradientX2Attr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1847]
+	mi := &file_svg_proto_msgTypes[1848]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -119981,7 +120025,7 @@ type LinearGradientY2Attr_Alt1 struct {
 
 func (x *LinearGradientY2Attr_Alt1) Reset() {
 	*x = LinearGradientY2Attr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1848]
+	mi := &file_svg_proto_msgTypes[1849]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -119993,7 +120037,7 @@ func (x *LinearGradientY2Attr_Alt1) String() string {
 func (*LinearGradientY2Attr_Alt1) ProtoMessage() {}
 
 func (x *LinearGradientY2Attr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1848]
+	mi := &file_svg_proto_msgTypes[1849]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -120063,7 +120107,7 @@ type RadialGradientCxAttr_Alt1 struct {
 
 func (x *RadialGradientCxAttr_Alt1) Reset() {
 	*x = RadialGradientCxAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1849]
+	mi := &file_svg_proto_msgTypes[1850]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -120075,7 +120119,7 @@ func (x *RadialGradientCxAttr_Alt1) String() string {
 func (*RadialGradientCxAttr_Alt1) ProtoMessage() {}
 
 func (x *RadialGradientCxAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1849]
+	mi := &file_svg_proto_msgTypes[1850]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -120145,7 +120189,7 @@ type RadialGradientCyAttr_Alt1 struct {
 
 func (x *RadialGradientCyAttr_Alt1) Reset() {
 	*x = RadialGradientCyAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1850]
+	mi := &file_svg_proto_msgTypes[1851]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -120157,7 +120201,7 @@ func (x *RadialGradientCyAttr_Alt1) String() string {
 func (*RadialGradientCyAttr_Alt1) ProtoMessage() {}
 
 func (x *RadialGradientCyAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1850]
+	mi := &file_svg_proto_msgTypes[1851]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -120227,7 +120271,7 @@ type RadialGradientFxAttr_Alt1 struct {
 
 func (x *RadialGradientFxAttr_Alt1) Reset() {
 	*x = RadialGradientFxAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1851]
+	mi := &file_svg_proto_msgTypes[1852]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -120239,7 +120283,7 @@ func (x *RadialGradientFxAttr_Alt1) String() string {
 func (*RadialGradientFxAttr_Alt1) ProtoMessage() {}
 
 func (x *RadialGradientFxAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1851]
+	mi := &file_svg_proto_msgTypes[1852]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -120309,7 +120353,7 @@ type RadialGradientFyAttr_Alt1 struct {
 
 func (x *RadialGradientFyAttr_Alt1) Reset() {
 	*x = RadialGradientFyAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1852]
+	mi := &file_svg_proto_msgTypes[1853]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -120321,7 +120365,7 @@ func (x *RadialGradientFyAttr_Alt1) String() string {
 func (*RadialGradientFyAttr_Alt1) ProtoMessage() {}
 
 func (x *RadialGradientFyAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1852]
+	mi := &file_svg_proto_msgTypes[1853]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -120391,7 +120435,7 @@ type StopOffsetAttr_Alt1 struct {
 
 func (x *StopOffsetAttr_Alt1) Reset() {
 	*x = StopOffsetAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1853]
+	mi := &file_svg_proto_msgTypes[1854]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -120403,7 +120447,7 @@ func (x *StopOffsetAttr_Alt1) String() string {
 func (*StopOffsetAttr_Alt1) ProtoMessage() {}
 
 func (x *StopOffsetAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1853]
+	mi := &file_svg_proto_msgTypes[1854]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -120473,7 +120517,7 @@ type StopColorAttr_Alt1 struct {
 
 func (x *StopColorAttr_Alt1) Reset() {
 	*x = StopColorAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1854]
+	mi := &file_svg_proto_msgTypes[1855]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -120485,7 +120529,7 @@ func (x *StopColorAttr_Alt1) String() string {
 func (*StopColorAttr_Alt1) ProtoMessage() {}
 
 func (x *StopColorAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1854]
+	mi := &file_svg_proto_msgTypes[1855]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -120555,7 +120599,7 @@ type RectRxAttr_Alt1 struct {
 
 func (x *RectRxAttr_Alt1) Reset() {
 	*x = RectRxAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1855]
+	mi := &file_svg_proto_msgTypes[1856]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -120567,7 +120611,7 @@ func (x *RectRxAttr_Alt1) String() string {
 func (*RectRxAttr_Alt1) ProtoMessage() {}
 
 func (x *RectRxAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1855]
+	mi := &file_svg_proto_msgTypes[1856]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -120637,7 +120681,7 @@ type RectRyAttr_Alt1 struct {
 
 func (x *RectRyAttr_Alt1) Reset() {
 	*x = RectRyAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1856]
+	mi := &file_svg_proto_msgTypes[1857]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -120649,7 +120693,7 @@ func (x *RectRyAttr_Alt1) String() string {
 func (*RectRyAttr_Alt1) ProtoMessage() {}
 
 func (x *RectRyAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1856]
+	mi := &file_svg_proto_msgTypes[1857]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -120719,7 +120763,7 @@ type EllipseRxAttr_Alt1 struct {
 
 func (x *EllipseRxAttr_Alt1) Reset() {
 	*x = EllipseRxAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1857]
+	mi := &file_svg_proto_msgTypes[1858]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -120731,7 +120775,7 @@ func (x *EllipseRxAttr_Alt1) String() string {
 func (*EllipseRxAttr_Alt1) ProtoMessage() {}
 
 func (x *EllipseRxAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1857]
+	mi := &file_svg_proto_msgTypes[1858]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -120801,7 +120845,7 @@ type EllipseRyAttr_Alt1 struct {
 
 func (x *EllipseRyAttr_Alt1) Reset() {
 	*x = EllipseRyAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1858]
+	mi := &file_svg_proto_msgTypes[1859]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -120813,7 +120857,7 @@ func (x *EllipseRyAttr_Alt1) String() string {
 func (*EllipseRyAttr_Alt1) ProtoMessage() {}
 
 func (x *EllipseRyAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1858]
+	mi := &file_svg_proto_msgTypes[1859]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -120883,7 +120927,7 @@ type LineX1Attr_Alt1 struct {
 
 func (x *LineX1Attr_Alt1) Reset() {
 	*x = LineX1Attr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1859]
+	mi := &file_svg_proto_msgTypes[1860]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -120895,7 +120939,7 @@ func (x *LineX1Attr_Alt1) String() string {
 func (*LineX1Attr_Alt1) ProtoMessage() {}
 
 func (x *LineX1Attr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1859]
+	mi := &file_svg_proto_msgTypes[1860]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -120965,7 +121009,7 @@ type LineY1Attr_Alt1 struct {
 
 func (x *LineY1Attr_Alt1) Reset() {
 	*x = LineY1Attr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1860]
+	mi := &file_svg_proto_msgTypes[1861]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -120977,7 +121021,7 @@ func (x *LineY1Attr_Alt1) String() string {
 func (*LineY1Attr_Alt1) ProtoMessage() {}
 
 func (x *LineY1Attr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1860]
+	mi := &file_svg_proto_msgTypes[1861]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -121047,7 +121091,7 @@ type LineX2Attr_Alt1 struct {
 
 func (x *LineX2Attr_Alt1) Reset() {
 	*x = LineX2Attr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1861]
+	mi := &file_svg_proto_msgTypes[1862]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -121059,7 +121103,7 @@ func (x *LineX2Attr_Alt1) String() string {
 func (*LineX2Attr_Alt1) ProtoMessage() {}
 
 func (x *LineX2Attr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1861]
+	mi := &file_svg_proto_msgTypes[1862]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -121129,7 +121173,7 @@ type LineY2Attr_Alt1 struct {
 
 func (x *LineY2Attr_Alt1) Reset() {
 	*x = LineY2Attr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1862]
+	mi := &file_svg_proto_msgTypes[1863]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -121141,7 +121185,7 @@ func (x *LineY2Attr_Alt1) String() string {
 func (*LineY2Attr_Alt1) ProtoMessage() {}
 
 func (x *LineY2Attr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1862]
+	mi := &file_svg_proto_msgTypes[1863]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -121211,7 +121255,7 @@ type PathDattr_Alt1 struct {
 
 func (x *PathDattr_Alt1) Reset() {
 	*x = PathDattr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1863]
+	mi := &file_svg_proto_msgTypes[1864]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -121223,7 +121267,7 @@ func (x *PathDattr_Alt1) String() string {
 func (*PathDattr_Alt1) ProtoMessage() {}
 
 func (x *PathDattr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1863]
+	mi := &file_svg_proto_msgTypes[1864]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -121295,7 +121339,7 @@ type SymbolRefXattr_Alt1 struct {
 
 func (x *SymbolRefXattr_Alt1) Reset() {
 	*x = SymbolRefXattr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1864]
+	mi := &file_svg_proto_msgTypes[1865]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -121307,7 +121351,7 @@ func (x *SymbolRefXattr_Alt1) String() string {
 func (*SymbolRefXattr_Alt1) ProtoMessage() {}
 
 func (x *SymbolRefXattr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1864]
+	mi := &file_svg_proto_msgTypes[1865]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -121409,7 +121453,7 @@ type SymbolRefYattr_Alt1 struct {
 
 func (x *SymbolRefYattr_Alt1) Reset() {
 	*x = SymbolRefYattr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1865]
+	mi := &file_svg_proto_msgTypes[1866]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -121421,7 +121465,7 @@ func (x *SymbolRefYattr_Alt1) String() string {
 func (*SymbolRefYattr_Alt1) ProtoMessage() {}
 
 func (x *SymbolRefYattr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1865]
+	mi := &file_svg_proto_msgTypes[1866]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -121521,7 +121565,7 @@ type SymbolWidthAttr_Alt1 struct {
 
 func (x *SymbolWidthAttr_Alt1) Reset() {
 	*x = SymbolWidthAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1866]
+	mi := &file_svg_proto_msgTypes[1867]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -121533,7 +121577,7 @@ func (x *SymbolWidthAttr_Alt1) String() string {
 func (*SymbolWidthAttr_Alt1) ProtoMessage() {}
 
 func (x *SymbolWidthAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1866]
+	mi := &file_svg_proto_msgTypes[1867]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -121603,7 +121647,7 @@ type SymbolHeightAttr_Alt1 struct {
 
 func (x *SymbolHeightAttr_Alt1) Reset() {
 	*x = SymbolHeightAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1867]
+	mi := &file_svg_proto_msgTypes[1868]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -121615,7 +121659,7 @@ func (x *SymbolHeightAttr_Alt1) String() string {
 func (*SymbolHeightAttr_Alt1) ProtoMessage() {}
 
 func (x *SymbolHeightAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1867]
+	mi := &file_svg_proto_msgTypes[1868]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -121685,7 +121729,7 @@ type UseWidthAttr_Alt1 struct {
 
 func (x *UseWidthAttr_Alt1) Reset() {
 	*x = UseWidthAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1868]
+	mi := &file_svg_proto_msgTypes[1869]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -121697,7 +121741,7 @@ func (x *UseWidthAttr_Alt1) String() string {
 func (*UseWidthAttr_Alt1) ProtoMessage() {}
 
 func (x *UseWidthAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1868]
+	mi := &file_svg_proto_msgTypes[1869]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -121767,7 +121811,7 @@ type UseHeightAttr_Alt1 struct {
 
 func (x *UseHeightAttr_Alt1) Reset() {
 	*x = UseHeightAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1869]
+	mi := &file_svg_proto_msgTypes[1870]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -121779,7 +121823,7 @@ func (x *UseHeightAttr_Alt1) String() string {
 func (*UseHeightAttr_Alt1) ProtoMessage() {}
 
 func (x *UseHeightAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1869]
+	mi := &file_svg_proto_msgTypes[1870]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -121851,7 +121895,7 @@ type VisibilityAttr_Alt1 struct {
 
 func (x *VisibilityAttr_Alt1) Reset() {
 	*x = VisibilityAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1870]
+	mi := &file_svg_proto_msgTypes[1871]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -121863,7 +121907,7 @@ func (x *VisibilityAttr_Alt1) String() string {
 func (*VisibilityAttr_Alt1) ProtoMessage() {}
 
 func (x *VisibilityAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1870]
+	mi := &file_svg_proto_msgTypes[1871]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -121966,7 +122010,7 @@ type OverflowAttr_Alt1 struct {
 
 func (x *OverflowAttr_Alt1) Reset() {
 	*x = OverflowAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1871]
+	mi := &file_svg_proto_msgTypes[1872]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -121978,7 +122022,7 @@ func (x *OverflowAttr_Alt1) String() string {
 func (*OverflowAttr_Alt1) ProtoMessage() {}
 
 func (x *OverflowAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1871]
+	mi := &file_svg_proto_msgTypes[1872]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -122090,7 +122134,7 @@ type TransformOriginPosition_Seq1 struct {
 
 func (x *TransformOriginPosition_Seq1) Reset() {
 	*x = TransformOriginPosition_Seq1{}
-	mi := &file_svg_proto_msgTypes[1872]
+	mi := &file_svg_proto_msgTypes[1873]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -122102,7 +122146,7 @@ func (x *TransformOriginPosition_Seq1) String() string {
 func (*TransformOriginPosition_Seq1) ProtoMessage() {}
 
 func (x *TransformOriginPosition_Seq1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1872]
+	mi := &file_svg_proto_msgTypes[1873]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -122145,7 +122189,7 @@ type TextLengthAttr_Alt1 struct {
 
 func (x *TextLengthAttr_Alt1) Reset() {
 	*x = TextLengthAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1873]
+	mi := &file_svg_proto_msgTypes[1874]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -122157,7 +122201,7 @@ func (x *TextLengthAttr_Alt1) String() string {
 func (*TextLengthAttr_Alt1) ProtoMessage() {}
 
 func (x *TextLengthAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1873]
+	mi := &file_svg_proto_msgTypes[1874]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -122227,7 +122271,7 @@ type TextLengthAdjustAttr_Alt1 struct {
 
 func (x *TextLengthAdjustAttr_Alt1) Reset() {
 	*x = TextLengthAdjustAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1874]
+	mi := &file_svg_proto_msgTypes[1875]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -122239,7 +122283,7 @@ func (x *TextLengthAdjustAttr_Alt1) String() string {
 func (*TextLengthAdjustAttr_Alt1) ProtoMessage() {}
 
 func (x *TextLengthAdjustAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1874]
+	mi := &file_svg_proto_msgTypes[1875]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -122309,7 +122353,7 @@ type TextPositionList_Alt1 struct {
 
 func (x *TextPositionList_Alt1) Reset() {
 	*x = TextPositionList_Alt1{}
-	mi := &file_svg_proto_msgTypes[1875]
+	mi := &file_svg_proto_msgTypes[1876]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -122321,7 +122365,7 @@ func (x *TextPositionList_Alt1) String() string {
 func (*TextPositionList_Alt1) ProtoMessage() {}
 
 func (x *TextPositionList_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1875]
+	mi := &file_svg_proto_msgTypes[1876]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -122391,7 +122435,7 @@ type TspanLengthAttr_Alt1 struct {
 
 func (x *TspanLengthAttr_Alt1) Reset() {
 	*x = TspanLengthAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1876]
+	mi := &file_svg_proto_msgTypes[1877]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -122403,7 +122447,7 @@ func (x *TspanLengthAttr_Alt1) String() string {
 func (*TspanLengthAttr_Alt1) ProtoMessage() {}
 
 func (x *TspanLengthAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1876]
+	mi := &file_svg_proto_msgTypes[1877]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -122473,7 +122517,7 @@ type TspanLengthAdjustAttr_Alt1 struct {
 
 func (x *TspanLengthAdjustAttr_Alt1) Reset() {
 	*x = TspanLengthAdjustAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1877]
+	mi := &file_svg_proto_msgTypes[1878]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -122485,7 +122529,7 @@ func (x *TspanLengthAdjustAttr_Alt1) String() string {
 func (*TspanLengthAdjustAttr_Alt1) ProtoMessage() {}
 
 func (x *TspanLengthAdjustAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1877]
+	mi := &file_svg_proto_msgTypes[1878]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -122555,7 +122599,7 @@ type TextPathStartOffsetAttr_Alt1 struct {
 
 func (x *TextPathStartOffsetAttr_Alt1) Reset() {
 	*x = TextPathStartOffsetAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1878]
+	mi := &file_svg_proto_msgTypes[1879]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -122567,7 +122611,7 @@ func (x *TextPathStartOffsetAttr_Alt1) String() string {
 func (*TextPathStartOffsetAttr_Alt1) ProtoMessage() {}
 
 func (x *TextPathStartOffsetAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1878]
+	mi := &file_svg_proto_msgTypes[1879]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -122637,7 +122681,7 @@ type TextPathMethodAttr_Alt1 struct {
 
 func (x *TextPathMethodAttr_Alt1) Reset() {
 	*x = TextPathMethodAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1879]
+	mi := &file_svg_proto_msgTypes[1880]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -122649,7 +122693,7 @@ func (x *TextPathMethodAttr_Alt1) String() string {
 func (*TextPathMethodAttr_Alt1) ProtoMessage() {}
 
 func (x *TextPathMethodAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1879]
+	mi := &file_svg_proto_msgTypes[1880]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -122719,7 +122763,7 @@ type TextPathSpacingAttr_Alt1 struct {
 
 func (x *TextPathSpacingAttr_Alt1) Reset() {
 	*x = TextPathSpacingAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1880]
+	mi := &file_svg_proto_msgTypes[1881]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -122731,7 +122775,7 @@ func (x *TextPathSpacingAttr_Alt1) String() string {
 func (*TextPathSpacingAttr_Alt1) ProtoMessage() {}
 
 func (x *TextPathSpacingAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1880]
+	mi := &file_svg_proto_msgTypes[1881]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -122801,7 +122845,7 @@ type TextPathSideAttr_Alt1 struct {
 
 func (x *TextPathSideAttr_Alt1) Reset() {
 	*x = TextPathSideAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1881]
+	mi := &file_svg_proto_msgTypes[1882]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -122813,7 +122857,7 @@ func (x *TextPathSideAttr_Alt1) String() string {
 func (*TextPathSideAttr_Alt1) ProtoMessage() {}
 
 func (x *TextPathSideAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1881]
+	mi := &file_svg_proto_msgTypes[1882]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -122883,7 +122927,7 @@ type TextPathLengthAttr_Alt1 struct {
 
 func (x *TextPathLengthAttr_Alt1) Reset() {
 	*x = TextPathLengthAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1882]
+	mi := &file_svg_proto_msgTypes[1883]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -122895,7 +122939,7 @@ func (x *TextPathLengthAttr_Alt1) String() string {
 func (*TextPathLengthAttr_Alt1) ProtoMessage() {}
 
 func (x *TextPathLengthAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1882]
+	mi := &file_svg_proto_msgTypes[1883]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -122965,7 +123009,7 @@ type TextPathLengthAdjustAttr_Alt1 struct {
 
 func (x *TextPathLengthAdjustAttr_Alt1) Reset() {
 	*x = TextPathLengthAdjustAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1883]
+	mi := &file_svg_proto_msgTypes[1884]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -122977,7 +123021,7 @@ func (x *TextPathLengthAdjustAttr_Alt1) String() string {
 func (*TextPathLengthAdjustAttr_Alt1) ProtoMessage() {}
 
 func (x *TextPathLengthAdjustAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1883]
+	mi := &file_svg_proto_msgTypes[1884]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -123049,7 +123093,7 @@ type TextAnchorAttr_Alt1 struct {
 
 func (x *TextAnchorAttr_Alt1) Reset() {
 	*x = TextAnchorAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1884]
+	mi := &file_svg_proto_msgTypes[1885]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -123061,7 +123105,7 @@ func (x *TextAnchorAttr_Alt1) String() string {
 func (*TextAnchorAttr_Alt1) ProtoMessage() {}
 
 func (x *TextAnchorAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1884]
+	mi := &file_svg_proto_msgTypes[1885]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -123153,7 +123197,7 @@ type DominantBaselineAttr_Alt1 struct {
 
 func (x *DominantBaselineAttr_Alt1) Reset() {
 	*x = DominantBaselineAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1885]
+	mi := &file_svg_proto_msgTypes[1886]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -123165,7 +123209,7 @@ func (x *DominantBaselineAttr_Alt1) String() string {
 func (*DominantBaselineAttr_Alt1) ProtoMessage() {}
 
 func (x *DominantBaselineAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1885]
+	mi := &file_svg_proto_msgTypes[1886]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -123347,7 +123391,7 @@ type AlignmentBaselineAttr_Alt1 struct {
 
 func (x *AlignmentBaselineAttr_Alt1) Reset() {
 	*x = AlignmentBaselineAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1886]
+	mi := &file_svg_proto_msgTypes[1887]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -123359,7 +123403,7 @@ func (x *AlignmentBaselineAttr_Alt1) String() string {
 func (*AlignmentBaselineAttr_Alt1) ProtoMessage() {}
 
 func (x *AlignmentBaselineAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1886]
+	mi := &file_svg_proto_msgTypes[1887]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -123536,7 +123580,7 @@ type BaselineShiftAttr_Alt1 struct {
 
 func (x *BaselineShiftAttr_Alt1) Reset() {
 	*x = BaselineShiftAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1887]
+	mi := &file_svg_proto_msgTypes[1888]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -123548,7 +123592,7 @@ func (x *BaselineShiftAttr_Alt1) String() string {
 func (*BaselineShiftAttr_Alt1) ProtoMessage() {}
 
 func (x *BaselineShiftAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1887]
+	mi := &file_svg_proto_msgTypes[1888]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -123633,7 +123677,7 @@ type DirectionAttr_Alt1 struct {
 
 func (x *DirectionAttr_Alt1) Reset() {
 	*x = DirectionAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1888]
+	mi := &file_svg_proto_msgTypes[1889]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -123645,7 +123689,7 @@ func (x *DirectionAttr_Alt1) String() string {
 func (*DirectionAttr_Alt1) ProtoMessage() {}
 
 func (x *DirectionAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1888]
+	mi := &file_svg_proto_msgTypes[1889]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -123719,7 +123763,7 @@ type UnicodeBidiAttr_Alt1 struct {
 
 func (x *UnicodeBidiAttr_Alt1) Reset() {
 	*x = UnicodeBidiAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1889]
+	mi := &file_svg_proto_msgTypes[1890]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -123731,7 +123775,7 @@ func (x *UnicodeBidiAttr_Alt1) String() string {
 func (*UnicodeBidiAttr_Alt1) ProtoMessage() {}
 
 func (x *UnicodeBidiAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1889]
+	mi := &file_svg_proto_msgTypes[1890]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -123870,7 +123914,7 @@ type WritingModeAttr_Alt1 struct {
 
 func (x *WritingModeAttr_Alt1) Reset() {
 	*x = WritingModeAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1890]
+	mi := &file_svg_proto_msgTypes[1891]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -123882,7 +123926,7 @@ func (x *WritingModeAttr_Alt1) String() string {
 func (*WritingModeAttr_Alt1) ProtoMessage() {}
 
 func (x *WritingModeAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1890]
+	mi := &file_svg_proto_msgTypes[1891]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -124087,7 +124131,7 @@ type LetterSpacingAttr_Alt1 struct {
 
 func (x *LetterSpacingAttr_Alt1) Reset() {
 	*x = LetterSpacingAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1891]
+	mi := &file_svg_proto_msgTypes[1892]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -124099,7 +124143,7 @@ func (x *LetterSpacingAttr_Alt1) String() string {
 func (*LetterSpacingAttr_Alt1) ProtoMessage() {}
 
 func (x *LetterSpacingAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1891]
+	mi := &file_svg_proto_msgTypes[1892]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -124169,7 +124213,7 @@ type WordSpacingAttr_Alt1 struct {
 
 func (x *WordSpacingAttr_Alt1) Reset() {
 	*x = WordSpacingAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1892]
+	mi := &file_svg_proto_msgTypes[1893]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -124181,7 +124225,7 @@ func (x *WordSpacingAttr_Alt1) String() string {
 func (*WordSpacingAttr_Alt1) ProtoMessage() {}
 
 func (x *WordSpacingAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1892]
+	mi := &file_svg_proto_msgTypes[1893]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -124249,7 +124293,7 @@ type TextDecorationValue_Seq1 struct {
 
 func (x *TextDecorationValue_Seq1) Reset() {
 	*x = TextDecorationValue_Seq1{}
-	mi := &file_svg_proto_msgTypes[1893]
+	mi := &file_svg_proto_msgTypes[1894]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -124261,7 +124305,7 @@ func (x *TextDecorationValue_Seq1) String() string {
 func (*TextDecorationValue_Seq1) ProtoMessage() {}
 
 func (x *TextDecorationValue_Seq1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1893]
+	mi := &file_svg_proto_msgTypes[1894]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -124309,7 +124353,7 @@ type TextDecorationValue_Seq2 struct {
 
 func (x *TextDecorationValue_Seq2) Reset() {
 	*x = TextDecorationValue_Seq2{}
-	mi := &file_svg_proto_msgTypes[1894]
+	mi := &file_svg_proto_msgTypes[1895]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -124321,7 +124365,7 @@ func (x *TextDecorationValue_Seq2) String() string {
 func (*TextDecorationValue_Seq2) ProtoMessage() {}
 
 func (x *TextDecorationValue_Seq2) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1894]
+	mi := &file_svg_proto_msgTypes[1895]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -124369,7 +124413,7 @@ type TextDecorationValue_Seq3 struct {
 
 func (x *TextDecorationValue_Seq3) Reset() {
 	*x = TextDecorationValue_Seq3{}
-	mi := &file_svg_proto_msgTypes[1895]
+	mi := &file_svg_proto_msgTypes[1896]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -124381,7 +124425,7 @@ func (x *TextDecorationValue_Seq3) String() string {
 func (*TextDecorationValue_Seq3) ProtoMessage() {}
 
 func (x *TextDecorationValue_Seq3) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1895]
+	mi := &file_svg_proto_msgTypes[1896]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -124431,7 +124475,7 @@ type TextDecorationValue_Seq4 struct {
 
 func (x *TextDecorationValue_Seq4) Reset() {
 	*x = TextDecorationValue_Seq4{}
-	mi := &file_svg_proto_msgTypes[1896]
+	mi := &file_svg_proto_msgTypes[1897]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -124443,7 +124487,7 @@ func (x *TextDecorationValue_Seq4) String() string {
 func (*TextDecorationValue_Seq4) ProtoMessage() {}
 
 func (x *TextDecorationValue_Seq4) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1896]
+	mi := &file_svg_proto_msgTypes[1897]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -124507,7 +124551,7 @@ type TextOverflowAttr_Alt1 struct {
 
 func (x *TextOverflowAttr_Alt1) Reset() {
 	*x = TextOverflowAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1897]
+	mi := &file_svg_proto_msgTypes[1898]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -124519,7 +124563,7 @@ func (x *TextOverflowAttr_Alt1) String() string {
 func (*TextOverflowAttr_Alt1) ProtoMessage() {}
 
 func (x *TextOverflowAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1897]
+	mi := &file_svg_proto_msgTypes[1898]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -124591,7 +124635,7 @@ type TextRenderingAttr_Alt1 struct {
 
 func (x *TextRenderingAttr_Alt1) Reset() {
 	*x = TextRenderingAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1898]
+	mi := &file_svg_proto_msgTypes[1899]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -124603,7 +124647,7 @@ func (x *TextRenderingAttr_Alt1) String() string {
 func (*TextRenderingAttr_Alt1) ProtoMessage() {}
 
 func (x *TextRenderingAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1898]
+	mi := &file_svg_proto_msgTypes[1899]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -124707,7 +124751,7 @@ type WhiteSpaceAttr_Alt1 struct {
 
 func (x *WhiteSpaceAttr_Alt1) Reset() {
 	*x = WhiteSpaceAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1899]
+	mi := &file_svg_proto_msgTypes[1900]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -124719,7 +124763,7 @@ func (x *WhiteSpaceAttr_Alt1) String() string {
 func (*WhiteSpaceAttr_Alt1) ProtoMessage() {}
 
 func (x *WhiteSpaceAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1899]
+	mi := &file_svg_proto_msgTypes[1900]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -124849,7 +124893,7 @@ type FontSizeAdjustAttr_Alt1 struct {
 
 func (x *FontSizeAdjustAttr_Alt1) Reset() {
 	*x = FontSizeAdjustAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1900]
+	mi := &file_svg_proto_msgTypes[1901]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -124861,7 +124905,7 @@ func (x *FontSizeAdjustAttr_Alt1) String() string {
 func (*FontSizeAdjustAttr_Alt1) ProtoMessage() {}
 
 func (x *FontSizeAdjustAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1900]
+	mi := &file_svg_proto_msgTypes[1901]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -124932,7 +124976,7 @@ type FontStyleAttr_Alt1 struct {
 
 func (x *FontStyleAttr_Alt1) Reset() {
 	*x = FontStyleAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1901]
+	mi := &file_svg_proto_msgTypes[1902]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -124944,7 +124988,7 @@ func (x *FontStyleAttr_Alt1) String() string {
 func (*FontStyleAttr_Alt1) ProtoMessage() {}
 
 func (x *FontStyleAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1901]
+	mi := &file_svg_proto_msgTypes[1902]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -125025,7 +125069,7 @@ type FontStyleOblique_Space struct {
 
 func (x *FontStyleOblique_Space) Reset() {
 	*x = FontStyleOblique_Space{}
-	mi := &file_svg_proto_msgTypes[1902]
+	mi := &file_svg_proto_msgTypes[1903]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -125037,7 +125081,7 @@ func (x *FontStyleOblique_Space) String() string {
 func (*FontStyleOblique_Space) ProtoMessage() {}
 
 func (x *FontStyleOblique_Space) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1902]
+	mi := &file_svg_proto_msgTypes[1903]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -125076,7 +125120,7 @@ type FontWeightAttr_Alt1 struct {
 
 func (x *FontWeightAttr_Alt1) Reset() {
 	*x = FontWeightAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1903]
+	mi := &file_svg_proto_msgTypes[1904]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -125088,7 +125132,7 @@ func (x *FontWeightAttr_Alt1) String() string {
 func (*FontWeightAttr_Alt1) ProtoMessage() {}
 
 func (x *FontWeightAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1903]
+	mi := &file_svg_proto_msgTypes[1904]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -125211,7 +125255,7 @@ type FontStretchAttr_Alt1 struct {
 
 func (x *FontStretchAttr_Alt1) Reset() {
 	*x = FontStretchAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1904]
+	mi := &file_svg_proto_msgTypes[1905]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -125223,7 +125267,7 @@ func (x *FontStretchAttr_Alt1) String() string {
 func (*FontStretchAttr_Alt1) ProtoMessage() {}
 
 func (x *FontStretchAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1904]
+	mi := &file_svg_proto_msgTypes[1905]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -125413,7 +125457,7 @@ type InlineSizeAttr_Alt1 struct {
 
 func (x *InlineSizeAttr_Alt1) Reset() {
 	*x = InlineSizeAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1905]
+	mi := &file_svg_proto_msgTypes[1906]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -125425,7 +125469,7 @@ func (x *InlineSizeAttr_Alt1) String() string {
 func (*InlineSizeAttr_Alt1) ProtoMessage() {}
 
 func (x *InlineSizeAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1905]
+	mi := &file_svg_proto_msgTypes[1906]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -125496,7 +125540,7 @@ type GlyphOrientationVerticalAttr_Alt1 struct {
 
 func (x *GlyphOrientationVerticalAttr_Alt1) Reset() {
 	*x = GlyphOrientationVerticalAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1906]
+	mi := &file_svg_proto_msgTypes[1907]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -125508,7 +125552,7 @@ func (x *GlyphOrientationVerticalAttr_Alt1) String() string {
 func (*GlyphOrientationVerticalAttr_Alt1) ProtoMessage() {}
 
 func (x *GlyphOrientationVerticalAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1906]
+	mi := &file_svg_proto_msgTypes[1907]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -125589,7 +125633,7 @@ type Translate_Comma struct {
 
 func (x *Translate_Comma) Reset() {
 	*x = Translate_Comma{}
-	mi := &file_svg_proto_msgTypes[1907]
+	mi := &file_svg_proto_msgTypes[1908]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -125601,7 +125645,7 @@ func (x *Translate_Comma) String() string {
 func (*Translate_Comma) ProtoMessage() {}
 
 func (x *Translate_Comma) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1907]
+	mi := &file_svg_proto_msgTypes[1908]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -125633,7 +125677,7 @@ type Scale_Comma struct {
 
 func (x *Scale_Comma) Reset() {
 	*x = Scale_Comma{}
-	mi := &file_svg_proto_msgTypes[1908]
+	mi := &file_svg_proto_msgTypes[1909]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -125645,7 +125689,7 @@ func (x *Scale_Comma) String() string {
 func (*Scale_Comma) ProtoMessage() {}
 
 func (x *Scale_Comma) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1908]
+	mi := &file_svg_proto_msgTypes[1909]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -125679,7 +125723,7 @@ type Rotate_Comma struct {
 
 func (x *Rotate_Comma) Reset() {
 	*x = Rotate_Comma{}
-	mi := &file_svg_proto_msgTypes[1909]
+	mi := &file_svg_proto_msgTypes[1910]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -125691,7 +125735,7 @@ func (x *Rotate_Comma) String() string {
 func (*Rotate_Comma) ProtoMessage() {}
 
 func (x *Rotate_Comma) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1909]
+	mi := &file_svg_proto_msgTypes[1910]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -127996,11 +128040,13 @@ const file_svg_proto_rawDesc = "" +
 	"\x0fspace_keyword_2\x18\x04 \x01(\v2\x11.svg.SpaceKeywordR\rspaceKeyword2\x123\n" +
 	"\rnumber_type_3\x18\x05 \x01(\v2\x0f.svg.NumberTypeR\vnumberType3\x129\n" +
 	"\x0fspace_keyword_3\x18\x06 \x01(\v2\x11.svg.SpaceKeywordR\rspaceKeyword3\x123\n" +
-	"\rnumber_type_4\x18\a \x01(\v2\x0f.svg.NumberTypeR\vnumberType4\"m\n" +
+	"\rnumber_type_4\x18\a \x01(\v2\x0f.svg.NumberTypeR\vnumberType4\"\xac\x01\n" +
 	"\x13PreserveAspectRatio\x12 \n" +
 	"\x05align\x18\x01 \x01(\v2\n" +
 	".svg.AlignR\x05align\x124\n" +
-	"\rmeet_or_slice\x18\x02 \x01(\v2\x10.svg.MeetOrSliceR\vmeetOrSlice\"\xb4\x05\n" +
+	"\x05space\x18\x02 \x01(\v2\x1e.svg.PreserveAspectRatio.SpaceR\x05space\x1a=\n" +
+	"\x05Space\x124\n" +
+	"\rmeet_or_slice\x18\x01 \x01(\v2\x10.svg.MeetOrSliceR\vmeetOrSlice\"\xb4\x05\n" +
 	"\x05Align\x125\n" +
 	"\fnone_keyword\x18\x01 \x01(\v2\x10.svg.NoneKeywordH\x00R\vnoneKeyword\x12C\n" +
 	"\x12x_min_ymin_keyword\x18\x02 \x01(\v2\x14.svg.XMinYminKeywordH\x00R\x0fxMinYminKeyword\x12C\n" +
@@ -132707,7 +132753,7 @@ func file_svg_proto_rawDescGZIP() []byte {
 	return file_svg_proto_rawDescData
 }
 
-var file_svg_proto_msgTypes = make([]protoimpl.MessageInfo, 1910)
+var file_svg_proto_msgTypes = make([]protoimpl.MessageInfo, 1911)
 var file_svg_proto_goTypes = []any{
 	(*SvgDocument)(nil),                                      // 0: svg.SvgDocument
 	(*AnimationElement)(nil),                                 // 1: svg.AnimationElement
@@ -134461,165 +134507,166 @@ var file_svg_proto_goTypes = []any{
 	(*AnimateTransformAdditiveAttr_Alt1)(nil),                                              // 1749: svg.AnimateTransformAdditiveAttr.Alt1
 	(*AnimateTransformAccumulateAttr_Alt1)(nil),                                            // 1750: svg.AnimateTransformAccumulateAttr.Alt1
 	(*NumberOptionalNumberType_Space)(nil),                                                 // 1751: svg.NumberOptionalNumberType.Space
-	(*ImageCrossoriginAttr_Alt1)(nil),                                                      // 1752: svg.ImageCrossoriginAttr.Alt1
-	(*ImageWidthAttr_Alt1)(nil),                                                            // 1753: svg.ImageWidthAttr.Alt1
-	(*ImageHeightAttr_Alt1)(nil),                                                           // 1754: svg.ImageHeightAttr.Alt1
-	(*ImageDecodingAttr_Alt1)(nil),                                                         // 1755: svg.ImageDecodingAttr.Alt1
-	(*ForeignObjectWidthAttr_Alt1)(nil),                                                    // 1756: svg.ForeignObjectWidthAttr.Alt1
-	(*ForeignObjectHeightAttr_Alt1)(nil),                                                   // 1757: svg.ForeignObjectHeightAttr.Alt1
-	(*ViewZoomAndPanAttr_Alt1)(nil),                                                        // 1758: svg.ViewZoomAndPanAttr.Alt1
-	(*ScriptCrossoriginAttr_Alt1)(nil),                                                     // 1759: svg.ScriptCrossoriginAttr.Alt1
-	(*PointerEventsAttr_Alt1)(nil),                                                         // 1760: svg.PointerEventsAttr.Alt1
-	(*FeBlendModeAttr_Alt1)(nil),                                                           // 1761: svg.FeBlendModeAttr.Alt1
-	(*FeColorMatrixTypeAttr_Alt1)(nil),                                                     // 1762: svg.FeColorMatrixTypeAttr.Alt1
-	(*FeCompositeOperatorAttr_Alt1)(nil),                                                   // 1763: svg.FeCompositeOperatorAttr.Alt1
-	(*FeConvolveMatrixEdgeModeAttr_Alt1)(nil),                                              // 1764: svg.FeConvolveMatrixEdgeModeAttr.Alt1
-	(*FeDisplacementMapXchannelSelectorAttr_Alt1)(nil),                                     // 1765: svg.FeDisplacementMapXchannelSelectorAttr.Alt1
-	(*FeDisplacementMapYchannelSelectorAttr_Alt1)(nil),                                     // 1766: svg.FeDisplacementMapYchannelSelectorAttr.Alt1
-	(*FeGaussianBlurEdgeModeAttr_Alt1)(nil),                                                // 1767: svg.FeGaussianBlurEdgeModeAttr.Alt1
-	(*FeImageCrossoriginAttr_Alt1)(nil),                                                    // 1768: svg.FeImageCrossoriginAttr.Alt1
-	(*FeMorphologyOperatorAttr_Alt1)(nil),                                                  // 1769: svg.FeMorphologyOperatorAttr.Alt1
-	(*FeTurbulenceStitchTilesAttr_Alt1)(nil),                                               // 1770: svg.FeTurbulenceStitchTilesAttr.Alt1
-	(*FeTurbulenceTypeAttr_Alt1)(nil),                                                      // 1771: svg.FeTurbulenceTypeAttr.Alt1
-	(*FeFuncRtypeAttr_Alt1)(nil),                                                           // 1772: svg.FeFuncRtypeAttr.Alt1
-	(*FeFuncGtypeAttr_Alt1)(nil),                                                           // 1773: svg.FeFuncGtypeAttr.Alt1
-	(*FeFuncBtypeAttr_Alt1)(nil),                                                           // 1774: svg.FeFuncBtypeAttr.Alt1
-	(*FeFuncAtypeAttr_Alt1)(nil),                                                           // 1775: svg.FeFuncAtypeAttr.Alt1
-	(*FilterAttr_Alt1)(nil),                                                                // 1776: svg.FilterAttr.Alt1
-	(*HueRotateFunction_Alt1)(nil),                                                         // 1777: svg.HueRotateFunction.Alt1
-	(*ColorInterpolationFiltersAttr_Alt1)(nil),                                             // 1778: svg.ColorInterpolationFiltersAttr.Alt1
-	(*FloodColorAttr_Alt1)(nil),                                                            // 1779: svg.FloodColorAttr.Alt1
-	(*LightingColorAttr_Alt1)(nil),                                                         // 1780: svg.LightingColorAttr.Alt1
-	(*ImageRenderingAttr_Alt1)(nil),                                                        // 1781: svg.ImageRenderingAttr.Alt1
-	(*MaskTypeAttr_Alt1)(nil),                                                              // 1782: svg.MaskTypeAttr.Alt1
-	(*ClipPathAttr_Alt1)(nil),                                                              // 1783: svg.ClipPathAttr.Alt1
-	(*ClipPathCombo_Seq1)(nil),                                                             // 1784: svg.ClipPathCombo.Seq1
-	(*ClipPathCombo_Seq2)(nil),                                                             // 1785: svg.ClipPathCombo.Seq2
-	(*InsetFn_Space)(nil),                                                                  // 1786: svg.InsetFn.Space
-	(*InsetFn_SpaceRoundSpace)(nil),                                                        // 1787: svg.InsetFn.SpaceRoundSpace
-	(*InsetFn_Space_Space)(nil),                                                            // 1788: svg.InsetFn.Space.Space
-	(*InsetFn_Space_Space_Space)(nil),                                                      // 1789: svg.InsetFn.Space.Space.Space
-	(*BorderRadius_Space)(nil),                                                             // 1790: svg.BorderRadius.Space
-	(*BorderRadius_Solidus)(nil),                                                           // 1791: svg.BorderRadius.Solidus
-	(*BorderRadius_Space_Space)(nil),                                                       // 1792: svg.BorderRadius.Space.Space
-	(*BorderRadius_Space_Space_Space)(nil),                                                 // 1793: svg.BorderRadius.Space.Space.Space
-	(*BorderRadius_Solidus_Space)(nil),                                                     // 1794: svg.BorderRadius.Solidus.Space
-	(*BorderRadius_Solidus_Space_Space)(nil),                                               // 1795: svg.BorderRadius.Solidus.Space.Space
-	(*BorderRadius_Solidus_Space_Space_Space)(nil),                                         // 1796: svg.BorderRadius.Solidus.Space.Space.Space
-	(*CircleFn_Seq1)(nil),                                                                  // 1797: svg.CircleFn.Seq1
-	(*CircleFn_Seq1_SpaceAtSpace)(nil),                                                     // 1798: svg.CircleFn.Seq1.SpaceAtSpace
-	(*EllipseFn_Seq1)(nil),                                                                 // 1799: svg.EllipseFn.Seq1
-	(*EllipseFn_Seq1_SpaceAtSpace)(nil),                                                    // 1800: svg.EllipseFn.Seq1.SpaceAtSpace
-	(*CssPosition_Space)(nil),                                                              // 1801: svg.CssPosition.Space
-	(*PolygonFn_Seq1)(nil),                                                                 // 1802: svg.PolygonFn.Seq1
-	(*PolygonFn_SpaceRoundSpace)(nil),                                                      // 1803: svg.PolygonFn.SpaceRoundSpace
-	(*PathFn_Seq1)(nil),                                                                    // 1804: svg.PathFn.Seq1
-	(*ShapeFn_Seq1)(nil),                                                                   // 1805: svg.ShapeFn.Seq1
-	(*ClipRuleAttr_Alt1)(nil),                                                              // 1806: svg.ClipRuleAttr.Alt1
-	(*ClipAttr_Alt1)(nil),                                                                  // 1807: svg.ClipAttr.Alt1
-	(*MaskAttr_Alt1)(nil),                                                                  // 1808: svg.MaskAttr.Alt1
-	(*MaskLayerPosition_Solidus)(nil),                                                      // 1809: svg.MaskLayerPosition.Solidus
-	(*MaskBgSize_Seq1)(nil),                                                                // 1810: svg.MaskBgSize.Seq1
-	(*MaskRepeatValue_Seq1)(nil),                                                           // 1811: svg.MaskRepeatValue.Seq1
-	(*MaskRepeatValue_Seq1_Alt1)(nil),                                                      // 1812: svg.MaskRepeatValue.Seq1.Alt1
-	(*MaskRepeatValue_Seq1_Alt2)(nil),                                                      // 1813: svg.MaskRepeatValue.Seq1.Alt2
-	(*MaskLayerOriginClip_Seq1)(nil),                                                       // 1814: svg.MaskLayerOriginClip.Seq1
-	(*MarkerMarkerUnitsAttr_Alt1)(nil),                                                     // 1815: svg.MarkerMarkerUnitsAttr.Alt1
-	(*MarkerRefXattr_Alt1)(nil),                                                            // 1816: svg.MarkerRefXattr.Alt1
-	(*MarkerRefYattr_Alt1)(nil),                                                            // 1817: svg.MarkerRefYattr.Alt1
-	(*MarkerOrientAttr_Alt1)(nil),                                                          // 1818: svg.MarkerOrientAttr.Alt1
-	(*FillRuleAttr_Alt1)(nil),                                                              // 1819: svg.FillRuleAttr.Alt1
-	(*StrokeLinecapAttr_Alt1)(nil),                                                         // 1820: svg.StrokeLinecapAttr.Alt1
-	(*StrokeLinejoinAttr_Alt1)(nil),                                                        // 1821: svg.StrokeLinejoinAttr.Alt1
-	(*StrokeDasharrayAttr_Alt1)(nil),                                                       // 1822: svg.StrokeDasharrayAttr.Alt1
-	(*StrokeDashoffsetAttr_Alt1)(nil),                                                      // 1823: svg.StrokeDashoffsetAttr.Alt1
-	(*PaintOrderAttr_Alt1)(nil),                                                            // 1824: svg.PaintOrderAttr.Alt1
-	(*MarkerAttr_Alt1)(nil),                                                                // 1825: svg.MarkerAttr.Alt1
-	(*MarkerStartAttr_Alt1)(nil),                                                           // 1826: svg.MarkerStartAttr.Alt1
-	(*MarkerMidAttr_Alt1)(nil),                                                             // 1827: svg.MarkerMidAttr.Alt1
-	(*MarkerEndAttr_Alt1)(nil),                                                             // 1828: svg.MarkerEndAttr.Alt1
-	(*ColorInterpolationAttr_Alt1)(nil),                                                    // 1829: svg.ColorInterpolationAttr.Alt1
-	(*ColorRenderingAttr_Alt1)(nil),                                                        // 1830: svg.ColorRenderingAttr.Alt1
-	(*ShapeRenderingAttr_Alt1)(nil),                                                        // 1831: svg.ShapeRenderingAttr.Alt1
-	(*VectorEffectAttr_Alt1)(nil),                                                          // 1832: svg.VectorEffectAttr.Alt1
-	(*SvgPath_Seq1)(nil),                                                                   // 1833: svg.SvgPath.Seq1
-	(*MoveTo_Alt1)(nil),                                                                    // 1834: svg.MoveTo.Alt1
-	(*ClosePath_Alt1)(nil),                                                                 // 1835: svg.ClosePath.Alt1
-	(*LineTo_Alt1)(nil),                                                                    // 1836: svg.LineTo.Alt1
-	(*HorizontalLineTo_Alt1)(nil),                                                          // 1837: svg.HorizontalLineTo.Alt1
-	(*VerticalLineTo_Alt1)(nil),                                                            // 1838: svg.VerticalLineTo.Alt1
-	(*CurveTo_Alt1)(nil),                                                                   // 1839: svg.CurveTo.Alt1
-	(*SmoothCurveTo_Alt1)(nil),                                                             // 1840: svg.SmoothCurveTo.Alt1
-	(*QuadraticBezierCurveTo_Alt1)(nil),                                                    // 1841: svg.QuadraticBezierCurveTo.Alt1
-	(*SmoothQuadraticBezierCurveTo_Alt1)(nil),                                              // 1842: svg.SmoothQuadraticBezierCurveTo.Alt1
-	(*EllipticalArc_Alt1)(nil),                                                             // 1843: svg.EllipticalArc.Alt1
-	(*SpreadMethodAttr_Alt1)(nil),                                                          // 1844: svg.SpreadMethodAttr.Alt1
-	(*LinearGradientX1Attr_Alt1)(nil),                                                      // 1845: svg.LinearGradientX1attr.Alt1
-	(*LinearGradientY1Attr_Alt1)(nil),                                                      // 1846: svg.LinearGradientY1attr.Alt1
-	(*LinearGradientX2Attr_Alt1)(nil),                                                      // 1847: svg.LinearGradientX2attr.Alt1
-	(*LinearGradientY2Attr_Alt1)(nil),                                                      // 1848: svg.LinearGradientY2attr.Alt1
-	(*RadialGradientCxAttr_Alt1)(nil),                                                      // 1849: svg.RadialGradientCxAttr.Alt1
-	(*RadialGradientCyAttr_Alt1)(nil),                                                      // 1850: svg.RadialGradientCyAttr.Alt1
-	(*RadialGradientFxAttr_Alt1)(nil),                                                      // 1851: svg.RadialGradientFxAttr.Alt1
-	(*RadialGradientFyAttr_Alt1)(nil),                                                      // 1852: svg.RadialGradientFyAttr.Alt1
-	(*StopOffsetAttr_Alt1)(nil),                                                            // 1853: svg.StopOffsetAttr.Alt1
-	(*StopColorAttr_Alt1)(nil),                                                             // 1854: svg.StopColorAttr.Alt1
-	(*RectRxAttr_Alt1)(nil),                                                                // 1855: svg.RectRxAttr.Alt1
-	(*RectRyAttr_Alt1)(nil),                                                                // 1856: svg.RectRyAttr.Alt1
-	(*EllipseRxAttr_Alt1)(nil),                                                             // 1857: svg.EllipseRxAttr.Alt1
-	(*EllipseRyAttr_Alt1)(nil),                                                             // 1858: svg.EllipseRyAttr.Alt1
-	(*LineX1Attr_Alt1)(nil),                                                                // 1859: svg.LineX1attr.Alt1
-	(*LineY1Attr_Alt1)(nil),                                                                // 1860: svg.LineY1attr.Alt1
-	(*LineX2Attr_Alt1)(nil),                                                                // 1861: svg.LineX2attr.Alt1
-	(*LineY2Attr_Alt1)(nil),                                                                // 1862: svg.LineY2attr.Alt1
-	(*PathDattr_Alt1)(nil),                                                                 // 1863: svg.PathDattr.Alt1
-	(*SymbolRefXattr_Alt1)(nil),                                                            // 1864: svg.SymbolRefXattr.Alt1
-	(*SymbolRefYattr_Alt1)(nil),                                                            // 1865: svg.SymbolRefYattr.Alt1
-	(*SymbolWidthAttr_Alt1)(nil),                                                           // 1866: svg.SymbolWidthAttr.Alt1
-	(*SymbolHeightAttr_Alt1)(nil),                                                          // 1867: svg.SymbolHeightAttr.Alt1
-	(*UseWidthAttr_Alt1)(nil),                                                              // 1868: svg.UseWidthAttr.Alt1
-	(*UseHeightAttr_Alt1)(nil),                                                             // 1869: svg.UseHeightAttr.Alt1
-	(*VisibilityAttr_Alt1)(nil),                                                            // 1870: svg.VisibilityAttr.Alt1
-	(*OverflowAttr_Alt1)(nil),                                                              // 1871: svg.OverflowAttr.Alt1
-	(*TransformOriginPosition_Seq1)(nil),                                                   // 1872: svg.TransformOriginPosition.Seq1
-	(*TextLengthAttr_Alt1)(nil),                                                            // 1873: svg.TextLengthAttr.Alt1
-	(*TextLengthAdjustAttr_Alt1)(nil),                                                      // 1874: svg.TextLengthAdjustAttr.Alt1
-	(*TextPositionList_Alt1)(nil),                                                          // 1875: svg.TextPositionList.Alt1
-	(*TspanLengthAttr_Alt1)(nil),                                                           // 1876: svg.TspanLengthAttr.Alt1
-	(*TspanLengthAdjustAttr_Alt1)(nil),                                                     // 1877: svg.TspanLengthAdjustAttr.Alt1
-	(*TextPathStartOffsetAttr_Alt1)(nil),                                                   // 1878: svg.TextPathStartOffsetAttr.Alt1
-	(*TextPathMethodAttr_Alt1)(nil),                                                        // 1879: svg.TextPathMethodAttr.Alt1
-	(*TextPathSpacingAttr_Alt1)(nil),                                                       // 1880: svg.TextPathSpacingAttr.Alt1
-	(*TextPathSideAttr_Alt1)(nil),                                                          // 1881: svg.TextPathSideAttr.Alt1
-	(*TextPathLengthAttr_Alt1)(nil),                                                        // 1882: svg.TextPathLengthAttr.Alt1
-	(*TextPathLengthAdjustAttr_Alt1)(nil),                                                  // 1883: svg.TextPathLengthAdjustAttr.Alt1
-	(*TextAnchorAttr_Alt1)(nil),                                                            // 1884: svg.TextAnchorAttr.Alt1
-	(*DominantBaselineAttr_Alt1)(nil),                                                      // 1885: svg.DominantBaselineAttr.Alt1
-	(*AlignmentBaselineAttr_Alt1)(nil),                                                     // 1886: svg.AlignmentBaselineAttr.Alt1
-	(*BaselineShiftAttr_Alt1)(nil),                                                         // 1887: svg.BaselineShiftAttr.Alt1
-	(*DirectionAttr_Alt1)(nil),                                                             // 1888: svg.DirectionAttr.Alt1
-	(*UnicodeBidiAttr_Alt1)(nil),                                                           // 1889: svg.UnicodeBidiAttr.Alt1
-	(*WritingModeAttr_Alt1)(nil),                                                           // 1890: svg.WritingModeAttr.Alt1
-	(*LetterSpacingAttr_Alt1)(nil),                                                         // 1891: svg.LetterSpacingAttr.Alt1
-	(*WordSpacingAttr_Alt1)(nil),                                                           // 1892: svg.WordSpacingAttr.Alt1
-	(*TextDecorationValue_Seq1)(nil),                                                       // 1893: svg.TextDecorationValue.Seq1
-	(*TextDecorationValue_Seq2)(nil),                                                       // 1894: svg.TextDecorationValue.Seq2
-	(*TextDecorationValue_Seq3)(nil),                                                       // 1895: svg.TextDecorationValue.Seq3
-	(*TextDecorationValue_Seq4)(nil),                                                       // 1896: svg.TextDecorationValue.Seq4
-	(*TextOverflowAttr_Alt1)(nil),                                                          // 1897: svg.TextOverflowAttr.Alt1
-	(*TextRenderingAttr_Alt1)(nil),                                                         // 1898: svg.TextRenderingAttr.Alt1
-	(*WhiteSpaceAttr_Alt1)(nil),                                                            // 1899: svg.WhiteSpaceAttr.Alt1
-	(*FontSizeAdjustAttr_Alt1)(nil),                                                        // 1900: svg.FontSizeAdjustAttr.Alt1
-	(*FontStyleAttr_Alt1)(nil),                                                             // 1901: svg.FontStyleAttr.Alt1
-	(*FontStyleOblique_Space)(nil),                                                         // 1902: svg.FontStyleOblique.Space
-	(*FontWeightAttr_Alt1)(nil),                                                            // 1903: svg.FontWeightAttr.Alt1
-	(*FontStretchAttr_Alt1)(nil),                                                           // 1904: svg.FontStretchAttr.Alt1
-	(*InlineSizeAttr_Alt1)(nil),                                                            // 1905: svg.InlineSizeAttr.Alt1
-	(*GlyphOrientationVerticalAttr_Alt1)(nil),                                              // 1906: svg.GlyphOrientationVerticalAttr.Alt1
-	(*Translate_Comma)(nil),                                                                // 1907: svg.Translate.Comma
-	(*Scale_Comma)(nil),                                                                    // 1908: svg.Scale.Comma
-	(*Rotate_Comma)(nil),                                                                   // 1909: svg.Rotate.Comma
-	(*anypb.Any)(nil),                                                                      // 1910: google.protobuf.Any
+	(*PreserveAspectRatio_Space)(nil),                                                      // 1752: svg.PreserveAspectRatio.Space
+	(*ImageCrossoriginAttr_Alt1)(nil),                                                      // 1753: svg.ImageCrossoriginAttr.Alt1
+	(*ImageWidthAttr_Alt1)(nil),                                                            // 1754: svg.ImageWidthAttr.Alt1
+	(*ImageHeightAttr_Alt1)(nil),                                                           // 1755: svg.ImageHeightAttr.Alt1
+	(*ImageDecodingAttr_Alt1)(nil),                                                         // 1756: svg.ImageDecodingAttr.Alt1
+	(*ForeignObjectWidthAttr_Alt1)(nil),                                                    // 1757: svg.ForeignObjectWidthAttr.Alt1
+	(*ForeignObjectHeightAttr_Alt1)(nil),                                                   // 1758: svg.ForeignObjectHeightAttr.Alt1
+	(*ViewZoomAndPanAttr_Alt1)(nil),                                                        // 1759: svg.ViewZoomAndPanAttr.Alt1
+	(*ScriptCrossoriginAttr_Alt1)(nil),                                                     // 1760: svg.ScriptCrossoriginAttr.Alt1
+	(*PointerEventsAttr_Alt1)(nil),                                                         // 1761: svg.PointerEventsAttr.Alt1
+	(*FeBlendModeAttr_Alt1)(nil),                                                           // 1762: svg.FeBlendModeAttr.Alt1
+	(*FeColorMatrixTypeAttr_Alt1)(nil),                                                     // 1763: svg.FeColorMatrixTypeAttr.Alt1
+	(*FeCompositeOperatorAttr_Alt1)(nil),                                                   // 1764: svg.FeCompositeOperatorAttr.Alt1
+	(*FeConvolveMatrixEdgeModeAttr_Alt1)(nil),                                              // 1765: svg.FeConvolveMatrixEdgeModeAttr.Alt1
+	(*FeDisplacementMapXchannelSelectorAttr_Alt1)(nil),                                     // 1766: svg.FeDisplacementMapXchannelSelectorAttr.Alt1
+	(*FeDisplacementMapYchannelSelectorAttr_Alt1)(nil),                                     // 1767: svg.FeDisplacementMapYchannelSelectorAttr.Alt1
+	(*FeGaussianBlurEdgeModeAttr_Alt1)(nil),                                                // 1768: svg.FeGaussianBlurEdgeModeAttr.Alt1
+	(*FeImageCrossoriginAttr_Alt1)(nil),                                                    // 1769: svg.FeImageCrossoriginAttr.Alt1
+	(*FeMorphologyOperatorAttr_Alt1)(nil),                                                  // 1770: svg.FeMorphologyOperatorAttr.Alt1
+	(*FeTurbulenceStitchTilesAttr_Alt1)(nil),                                               // 1771: svg.FeTurbulenceStitchTilesAttr.Alt1
+	(*FeTurbulenceTypeAttr_Alt1)(nil),                                                      // 1772: svg.FeTurbulenceTypeAttr.Alt1
+	(*FeFuncRtypeAttr_Alt1)(nil),                                                           // 1773: svg.FeFuncRtypeAttr.Alt1
+	(*FeFuncGtypeAttr_Alt1)(nil),                                                           // 1774: svg.FeFuncGtypeAttr.Alt1
+	(*FeFuncBtypeAttr_Alt1)(nil),                                                           // 1775: svg.FeFuncBtypeAttr.Alt1
+	(*FeFuncAtypeAttr_Alt1)(nil),                                                           // 1776: svg.FeFuncAtypeAttr.Alt1
+	(*FilterAttr_Alt1)(nil),                                                                // 1777: svg.FilterAttr.Alt1
+	(*HueRotateFunction_Alt1)(nil),                                                         // 1778: svg.HueRotateFunction.Alt1
+	(*ColorInterpolationFiltersAttr_Alt1)(nil),                                             // 1779: svg.ColorInterpolationFiltersAttr.Alt1
+	(*FloodColorAttr_Alt1)(nil),                                                            // 1780: svg.FloodColorAttr.Alt1
+	(*LightingColorAttr_Alt1)(nil),                                                         // 1781: svg.LightingColorAttr.Alt1
+	(*ImageRenderingAttr_Alt1)(nil),                                                        // 1782: svg.ImageRenderingAttr.Alt1
+	(*MaskTypeAttr_Alt1)(nil),                                                              // 1783: svg.MaskTypeAttr.Alt1
+	(*ClipPathAttr_Alt1)(nil),                                                              // 1784: svg.ClipPathAttr.Alt1
+	(*ClipPathCombo_Seq1)(nil),                                                             // 1785: svg.ClipPathCombo.Seq1
+	(*ClipPathCombo_Seq2)(nil),                                                             // 1786: svg.ClipPathCombo.Seq2
+	(*InsetFn_Space)(nil),                                                                  // 1787: svg.InsetFn.Space
+	(*InsetFn_SpaceRoundSpace)(nil),                                                        // 1788: svg.InsetFn.SpaceRoundSpace
+	(*InsetFn_Space_Space)(nil),                                                            // 1789: svg.InsetFn.Space.Space
+	(*InsetFn_Space_Space_Space)(nil),                                                      // 1790: svg.InsetFn.Space.Space.Space
+	(*BorderRadius_Space)(nil),                                                             // 1791: svg.BorderRadius.Space
+	(*BorderRadius_Solidus)(nil),                                                           // 1792: svg.BorderRadius.Solidus
+	(*BorderRadius_Space_Space)(nil),                                                       // 1793: svg.BorderRadius.Space.Space
+	(*BorderRadius_Space_Space_Space)(nil),                                                 // 1794: svg.BorderRadius.Space.Space.Space
+	(*BorderRadius_Solidus_Space)(nil),                                                     // 1795: svg.BorderRadius.Solidus.Space
+	(*BorderRadius_Solidus_Space_Space)(nil),                                               // 1796: svg.BorderRadius.Solidus.Space.Space
+	(*BorderRadius_Solidus_Space_Space_Space)(nil),                                         // 1797: svg.BorderRadius.Solidus.Space.Space.Space
+	(*CircleFn_Seq1)(nil),                                                                  // 1798: svg.CircleFn.Seq1
+	(*CircleFn_Seq1_SpaceAtSpace)(nil),                                                     // 1799: svg.CircleFn.Seq1.SpaceAtSpace
+	(*EllipseFn_Seq1)(nil),                                                                 // 1800: svg.EllipseFn.Seq1
+	(*EllipseFn_Seq1_SpaceAtSpace)(nil),                                                    // 1801: svg.EllipseFn.Seq1.SpaceAtSpace
+	(*CssPosition_Space)(nil),                                                              // 1802: svg.CssPosition.Space
+	(*PolygonFn_Seq1)(nil),                                                                 // 1803: svg.PolygonFn.Seq1
+	(*PolygonFn_SpaceRoundSpace)(nil),                                                      // 1804: svg.PolygonFn.SpaceRoundSpace
+	(*PathFn_Seq1)(nil),                                                                    // 1805: svg.PathFn.Seq1
+	(*ShapeFn_Seq1)(nil),                                                                   // 1806: svg.ShapeFn.Seq1
+	(*ClipRuleAttr_Alt1)(nil),                                                              // 1807: svg.ClipRuleAttr.Alt1
+	(*ClipAttr_Alt1)(nil),                                                                  // 1808: svg.ClipAttr.Alt1
+	(*MaskAttr_Alt1)(nil),                                                                  // 1809: svg.MaskAttr.Alt1
+	(*MaskLayerPosition_Solidus)(nil),                                                      // 1810: svg.MaskLayerPosition.Solidus
+	(*MaskBgSize_Seq1)(nil),                                                                // 1811: svg.MaskBgSize.Seq1
+	(*MaskRepeatValue_Seq1)(nil),                                                           // 1812: svg.MaskRepeatValue.Seq1
+	(*MaskRepeatValue_Seq1_Alt1)(nil),                                                      // 1813: svg.MaskRepeatValue.Seq1.Alt1
+	(*MaskRepeatValue_Seq1_Alt2)(nil),                                                      // 1814: svg.MaskRepeatValue.Seq1.Alt2
+	(*MaskLayerOriginClip_Seq1)(nil),                                                       // 1815: svg.MaskLayerOriginClip.Seq1
+	(*MarkerMarkerUnitsAttr_Alt1)(nil),                                                     // 1816: svg.MarkerMarkerUnitsAttr.Alt1
+	(*MarkerRefXattr_Alt1)(nil),                                                            // 1817: svg.MarkerRefXattr.Alt1
+	(*MarkerRefYattr_Alt1)(nil),                                                            // 1818: svg.MarkerRefYattr.Alt1
+	(*MarkerOrientAttr_Alt1)(nil),                                                          // 1819: svg.MarkerOrientAttr.Alt1
+	(*FillRuleAttr_Alt1)(nil),                                                              // 1820: svg.FillRuleAttr.Alt1
+	(*StrokeLinecapAttr_Alt1)(nil),                                                         // 1821: svg.StrokeLinecapAttr.Alt1
+	(*StrokeLinejoinAttr_Alt1)(nil),                                                        // 1822: svg.StrokeLinejoinAttr.Alt1
+	(*StrokeDasharrayAttr_Alt1)(nil),                                                       // 1823: svg.StrokeDasharrayAttr.Alt1
+	(*StrokeDashoffsetAttr_Alt1)(nil),                                                      // 1824: svg.StrokeDashoffsetAttr.Alt1
+	(*PaintOrderAttr_Alt1)(nil),                                                            // 1825: svg.PaintOrderAttr.Alt1
+	(*MarkerAttr_Alt1)(nil),                                                                // 1826: svg.MarkerAttr.Alt1
+	(*MarkerStartAttr_Alt1)(nil),                                                           // 1827: svg.MarkerStartAttr.Alt1
+	(*MarkerMidAttr_Alt1)(nil),                                                             // 1828: svg.MarkerMidAttr.Alt1
+	(*MarkerEndAttr_Alt1)(nil),                                                             // 1829: svg.MarkerEndAttr.Alt1
+	(*ColorInterpolationAttr_Alt1)(nil),                                                    // 1830: svg.ColorInterpolationAttr.Alt1
+	(*ColorRenderingAttr_Alt1)(nil),                                                        // 1831: svg.ColorRenderingAttr.Alt1
+	(*ShapeRenderingAttr_Alt1)(nil),                                                        // 1832: svg.ShapeRenderingAttr.Alt1
+	(*VectorEffectAttr_Alt1)(nil),                                                          // 1833: svg.VectorEffectAttr.Alt1
+	(*SvgPath_Seq1)(nil),                                                                   // 1834: svg.SvgPath.Seq1
+	(*MoveTo_Alt1)(nil),                                                                    // 1835: svg.MoveTo.Alt1
+	(*ClosePath_Alt1)(nil),                                                                 // 1836: svg.ClosePath.Alt1
+	(*LineTo_Alt1)(nil),                                                                    // 1837: svg.LineTo.Alt1
+	(*HorizontalLineTo_Alt1)(nil),                                                          // 1838: svg.HorizontalLineTo.Alt1
+	(*VerticalLineTo_Alt1)(nil),                                                            // 1839: svg.VerticalLineTo.Alt1
+	(*CurveTo_Alt1)(nil),                                                                   // 1840: svg.CurveTo.Alt1
+	(*SmoothCurveTo_Alt1)(nil),                                                             // 1841: svg.SmoothCurveTo.Alt1
+	(*QuadraticBezierCurveTo_Alt1)(nil),                                                    // 1842: svg.QuadraticBezierCurveTo.Alt1
+	(*SmoothQuadraticBezierCurveTo_Alt1)(nil),                                              // 1843: svg.SmoothQuadraticBezierCurveTo.Alt1
+	(*EllipticalArc_Alt1)(nil),                                                             // 1844: svg.EllipticalArc.Alt1
+	(*SpreadMethodAttr_Alt1)(nil),                                                          // 1845: svg.SpreadMethodAttr.Alt1
+	(*LinearGradientX1Attr_Alt1)(nil),                                                      // 1846: svg.LinearGradientX1attr.Alt1
+	(*LinearGradientY1Attr_Alt1)(nil),                                                      // 1847: svg.LinearGradientY1attr.Alt1
+	(*LinearGradientX2Attr_Alt1)(nil),                                                      // 1848: svg.LinearGradientX2attr.Alt1
+	(*LinearGradientY2Attr_Alt1)(nil),                                                      // 1849: svg.LinearGradientY2attr.Alt1
+	(*RadialGradientCxAttr_Alt1)(nil),                                                      // 1850: svg.RadialGradientCxAttr.Alt1
+	(*RadialGradientCyAttr_Alt1)(nil),                                                      // 1851: svg.RadialGradientCyAttr.Alt1
+	(*RadialGradientFxAttr_Alt1)(nil),                                                      // 1852: svg.RadialGradientFxAttr.Alt1
+	(*RadialGradientFyAttr_Alt1)(nil),                                                      // 1853: svg.RadialGradientFyAttr.Alt1
+	(*StopOffsetAttr_Alt1)(nil),                                                            // 1854: svg.StopOffsetAttr.Alt1
+	(*StopColorAttr_Alt1)(nil),                                                             // 1855: svg.StopColorAttr.Alt1
+	(*RectRxAttr_Alt1)(nil),                                                                // 1856: svg.RectRxAttr.Alt1
+	(*RectRyAttr_Alt1)(nil),                                                                // 1857: svg.RectRyAttr.Alt1
+	(*EllipseRxAttr_Alt1)(nil),                                                             // 1858: svg.EllipseRxAttr.Alt1
+	(*EllipseRyAttr_Alt1)(nil),                                                             // 1859: svg.EllipseRyAttr.Alt1
+	(*LineX1Attr_Alt1)(nil),                                                                // 1860: svg.LineX1attr.Alt1
+	(*LineY1Attr_Alt1)(nil),                                                                // 1861: svg.LineY1attr.Alt1
+	(*LineX2Attr_Alt1)(nil),                                                                // 1862: svg.LineX2attr.Alt1
+	(*LineY2Attr_Alt1)(nil),                                                                // 1863: svg.LineY2attr.Alt1
+	(*PathDattr_Alt1)(nil),                                                                 // 1864: svg.PathDattr.Alt1
+	(*SymbolRefXattr_Alt1)(nil),                                                            // 1865: svg.SymbolRefXattr.Alt1
+	(*SymbolRefYattr_Alt1)(nil),                                                            // 1866: svg.SymbolRefYattr.Alt1
+	(*SymbolWidthAttr_Alt1)(nil),                                                           // 1867: svg.SymbolWidthAttr.Alt1
+	(*SymbolHeightAttr_Alt1)(nil),                                                          // 1868: svg.SymbolHeightAttr.Alt1
+	(*UseWidthAttr_Alt1)(nil),                                                              // 1869: svg.UseWidthAttr.Alt1
+	(*UseHeightAttr_Alt1)(nil),                                                             // 1870: svg.UseHeightAttr.Alt1
+	(*VisibilityAttr_Alt1)(nil),                                                            // 1871: svg.VisibilityAttr.Alt1
+	(*OverflowAttr_Alt1)(nil),                                                              // 1872: svg.OverflowAttr.Alt1
+	(*TransformOriginPosition_Seq1)(nil),                                                   // 1873: svg.TransformOriginPosition.Seq1
+	(*TextLengthAttr_Alt1)(nil),                                                            // 1874: svg.TextLengthAttr.Alt1
+	(*TextLengthAdjustAttr_Alt1)(nil),                                                      // 1875: svg.TextLengthAdjustAttr.Alt1
+	(*TextPositionList_Alt1)(nil),                                                          // 1876: svg.TextPositionList.Alt1
+	(*TspanLengthAttr_Alt1)(nil),                                                           // 1877: svg.TspanLengthAttr.Alt1
+	(*TspanLengthAdjustAttr_Alt1)(nil),                                                     // 1878: svg.TspanLengthAdjustAttr.Alt1
+	(*TextPathStartOffsetAttr_Alt1)(nil),                                                   // 1879: svg.TextPathStartOffsetAttr.Alt1
+	(*TextPathMethodAttr_Alt1)(nil),                                                        // 1880: svg.TextPathMethodAttr.Alt1
+	(*TextPathSpacingAttr_Alt1)(nil),                                                       // 1881: svg.TextPathSpacingAttr.Alt1
+	(*TextPathSideAttr_Alt1)(nil),                                                          // 1882: svg.TextPathSideAttr.Alt1
+	(*TextPathLengthAttr_Alt1)(nil),                                                        // 1883: svg.TextPathLengthAttr.Alt1
+	(*TextPathLengthAdjustAttr_Alt1)(nil),                                                  // 1884: svg.TextPathLengthAdjustAttr.Alt1
+	(*TextAnchorAttr_Alt1)(nil),                                                            // 1885: svg.TextAnchorAttr.Alt1
+	(*DominantBaselineAttr_Alt1)(nil),                                                      // 1886: svg.DominantBaselineAttr.Alt1
+	(*AlignmentBaselineAttr_Alt1)(nil),                                                     // 1887: svg.AlignmentBaselineAttr.Alt1
+	(*BaselineShiftAttr_Alt1)(nil),                                                         // 1888: svg.BaselineShiftAttr.Alt1
+	(*DirectionAttr_Alt1)(nil),                                                             // 1889: svg.DirectionAttr.Alt1
+	(*UnicodeBidiAttr_Alt1)(nil),                                                           // 1890: svg.UnicodeBidiAttr.Alt1
+	(*WritingModeAttr_Alt1)(nil),                                                           // 1891: svg.WritingModeAttr.Alt1
+	(*LetterSpacingAttr_Alt1)(nil),                                                         // 1892: svg.LetterSpacingAttr.Alt1
+	(*WordSpacingAttr_Alt1)(nil),                                                           // 1893: svg.WordSpacingAttr.Alt1
+	(*TextDecorationValue_Seq1)(nil),                                                       // 1894: svg.TextDecorationValue.Seq1
+	(*TextDecorationValue_Seq2)(nil),                                                       // 1895: svg.TextDecorationValue.Seq2
+	(*TextDecorationValue_Seq3)(nil),                                                       // 1896: svg.TextDecorationValue.Seq3
+	(*TextDecorationValue_Seq4)(nil),                                                       // 1897: svg.TextDecorationValue.Seq4
+	(*TextOverflowAttr_Alt1)(nil),                                                          // 1898: svg.TextOverflowAttr.Alt1
+	(*TextRenderingAttr_Alt1)(nil),                                                         // 1899: svg.TextRenderingAttr.Alt1
+	(*WhiteSpaceAttr_Alt1)(nil),                                                            // 1900: svg.WhiteSpaceAttr.Alt1
+	(*FontSizeAdjustAttr_Alt1)(nil),                                                        // 1901: svg.FontSizeAdjustAttr.Alt1
+	(*FontStyleAttr_Alt1)(nil),                                                             // 1902: svg.FontStyleAttr.Alt1
+	(*FontStyleOblique_Space)(nil),                                                         // 1903: svg.FontStyleOblique.Space
+	(*FontWeightAttr_Alt1)(nil),                                                            // 1904: svg.FontWeightAttr.Alt1
+	(*FontStretchAttr_Alt1)(nil),                                                           // 1905: svg.FontStretchAttr.Alt1
+	(*InlineSizeAttr_Alt1)(nil),                                                            // 1906: svg.InlineSizeAttr.Alt1
+	(*GlyphOrientationVerticalAttr_Alt1)(nil),                                              // 1907: svg.GlyphOrientationVerticalAttr.Alt1
+	(*Translate_Comma)(nil),                                                                // 1908: svg.Translate.Comma
+	(*Scale_Comma)(nil),                                                                    // 1909: svg.Scale.Comma
+	(*Rotate_Comma)(nil),                                                                   // 1910: svg.Rotate.Comma
+	(*anypb.Any)(nil),                                                                      // 1911: google.protobuf.Any
 }
 var file_svg_proto_depIdxs = []int32{
 	159,  // 0: svg.SvgDocument.svgsvgelement:type_name -> svg.Svgsvgelement
@@ -135399,7 +135446,7 @@ var file_svg_proto_depIdxs = []int32{
 	335,  // 774: svg.AnimationValue.percentage_type:type_name -> svg.PercentageType
 	336,  // 775: svg.AnimationValue.length_percentage_type:type_name -> svg.LengthPercentageType
 	339,  // 776: svg.AnimationValue.angle_type:type_name -> svg.AngleType
-	1910, // 777: svg.AnimationValue.color_type:type_name -> google.protobuf.Any
+	1911, // 777: svg.AnimationValue.color_type:type_name -> google.protobuf.Any
 	357,  // 778: svg.AnimationValue.paint_type:type_name -> svg.PaintType
 	986,  // 779: svg.AnimationValue.transform_list:type_name -> svg.TransformList
 	766,  // 780: svg.AnimationValue.svg_path:type_name -> svg.SvgPath
@@ -135880,13 +135927,13 @@ var file_svg_proto_depIdxs = []int32{
 	1097, // 1255: svg.PaintType.current_color_keyword:type_name -> svg.CurrentColorKeyword
 	1084, // 1256: svg.PaintType.context_hyphen_minus_fill_keyword:type_name -> svg.ContextHyphenMinusFillKeyword
 	1086, // 1257: svg.PaintType.context_hyphen_minus_stroke_keyword:type_name -> svg.ContextHyphenMinusStrokeKeyword
-	1910, // 1258: svg.PaintType.color_type:type_name -> google.protobuf.Any
+	1911, // 1258: svg.PaintType.color_type:type_name -> google.protobuf.Any
 	358,  // 1259: svg.PaintType.paint_ref:type_name -> svg.PaintRef
 	344,  // 1260: svg.PaintRef.url_type:type_name -> svg.UrlType
 	359,  // 1261: svg.PaintRef.paint_fallback:type_name -> svg.PaintFallback
 	1410, // 1262: svg.PaintFallback.none_keyword:type_name -> svg.NoneKeyword
 	1097, // 1263: svg.PaintFallback.current_color_keyword:type_name -> svg.CurrentColorKeyword
-	1910, // 1264: svg.PaintFallback.color_type:type_name -> google.protobuf.Any
+	1911, // 1264: svg.PaintFallback.color_type:type_name -> google.protobuf.Any
 	329,  // 1265: svg.ViewBox.number_type:type_name -> svg.NumberType
 	1555, // 1266: svg.ViewBox.space_keyword:type_name -> svg.SpaceKeyword
 	329,  // 1267: svg.ViewBox.number_type_2:type_name -> svg.NumberType
@@ -135895,7 +135942,7 @@ var file_svg_proto_depIdxs = []int32{
 	1555, // 1270: svg.ViewBox.space_keyword_3:type_name -> svg.SpaceKeyword
 	329,  // 1271: svg.ViewBox.number_type_4:type_name -> svg.NumberType
 	362,  // 1272: svg.PreserveAspectRatio.align:type_name -> svg.Align
-	363,  // 1273: svg.PreserveAspectRatio.meet_or_slice:type_name -> svg.MeetOrSlice
+	1752, // 1273: svg.PreserveAspectRatio.space:type_name -> svg.PreserveAspectRatio.Space
 	1410, // 1274: svg.Align.none_keyword:type_name -> svg.NoneKeyword
 	1666, // 1275: svg.Align.x_min_ymin_keyword:type_name -> svg.XMinYminKeyword
 	1663, // 1276: svg.Align.x_mid_ymin_keyword:type_name -> svg.XMidYminKeyword
@@ -135932,7 +135979,7 @@ var file_svg_proto_depIdxs = []int32{
 	156,  // 1307: svg.ImageAttribute.xlink_attribute:type_name -> svg.XlinkAttribute
 	343,  // 1308: svg.ImageHrefAttr.iri_type:type_name -> svg.IriType
 	1476, // 1309: svg.ImageHrefAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1752, // 1310: svg.ImageCrossoriginAttr.alt1:type_name -> svg.ImageCrossoriginAttr.Alt1
+	1753, // 1310: svg.ImageCrossoriginAttr.alt1:type_name -> svg.ImageCrossoriginAttr.Alt1
 	1476, // 1311: svg.ImageCrossoriginAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
 	361,  // 1312: svg.ImagePreserveAspectRatioAttr.preserve_aspect_ratio:type_name -> svg.PreserveAspectRatio
 	1476, // 1313: svg.ImagePreserveAspectRatioAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
@@ -135940,11 +135987,11 @@ var file_svg_proto_depIdxs = []int32{
 	1476, // 1315: svg.ImageXattr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
 	336,  // 1316: svg.ImageYattr.length_percentage_type:type_name -> svg.LengthPercentageType
 	1476, // 1317: svg.ImageYattr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1753, // 1318: svg.ImageWidthAttr.alt1:type_name -> svg.ImageWidthAttr.Alt1
+	1754, // 1318: svg.ImageWidthAttr.alt1:type_name -> svg.ImageWidthAttr.Alt1
 	1476, // 1319: svg.ImageWidthAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1754, // 1320: svg.ImageHeightAttr.alt1:type_name -> svg.ImageHeightAttr.Alt1
+	1755, // 1320: svg.ImageHeightAttr.alt1:type_name -> svg.ImageHeightAttr.Alt1
 	1476, // 1321: svg.ImageHeightAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1755, // 1322: svg.ImageDecodingAttr.alt1:type_name -> svg.ImageDecodingAttr.Alt1
+	1756, // 1322: svg.ImageDecodingAttr.alt1:type_name -> svg.ImageDecodingAttr.Alt1
 	1476, // 1323: svg.ImageDecodingAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
 	1,    // 1324: svg.ImageContent.animation_element:type_name -> svg.AnimationElement
 	2,    // 1325: svg.ImageContent.descriptive_element:type_name -> svg.DescriptiveElement
@@ -135954,7 +136001,7 @@ var file_svg_proto_depIdxs = []int32{
 	396,  // 1329: svg.ImageContent.svgstyle_element:type_name -> svg.SvgstyleElement
 	377,  // 1330: svg.SvgforeignObjectElement.foreign_object_attribute:type_name -> svg.ForeignObjectAttribute
 	1192, // 1331: svg.SvgforeignObjectElement.greater_than_sign_keyword:type_name -> svg.GreaterThanSignKeyword
-	1910, // 1332: svg.SvgforeignObjectElement.flow_content:type_name -> google.protobuf.Any
+	1911, // 1332: svg.SvgforeignObjectElement.flow_content:type_name -> google.protobuf.Any
 	1283, // 1333: svg.SvgforeignObjectElement.less_than_sign_solidus_foreign_object_greater_than_sign_keyword:type_name -> svg.LessThanSignSolidusForeignObjectGreaterThanSignKeyword
 	378,  // 1334: svg.ForeignObjectAttribute.foreign_object_xattr:type_name -> svg.ForeignObjectXattr
 	379,  // 1335: svg.ForeignObjectAttribute.foreign_object_yattr:type_name -> svg.ForeignObjectYattr
@@ -135971,9 +136018,9 @@ var file_svg_proto_depIdxs = []int32{
 	1476, // 1346: svg.ForeignObjectXattr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
 	336,  // 1347: svg.ForeignObjectYattr.length_percentage_type:type_name -> svg.LengthPercentageType
 	1476, // 1348: svg.ForeignObjectYattr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1756, // 1349: svg.ForeignObjectWidthAttr.alt1:type_name -> svg.ForeignObjectWidthAttr.Alt1
+	1757, // 1349: svg.ForeignObjectWidthAttr.alt1:type_name -> svg.ForeignObjectWidthAttr.Alt1
 	1476, // 1350: svg.ForeignObjectWidthAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1757, // 1351: svg.ForeignObjectHeightAttr.alt1:type_name -> svg.ForeignObjectHeightAttr.Alt1
+	1758, // 1351: svg.ForeignObjectHeightAttr.alt1:type_name -> svg.ForeignObjectHeightAttr.Alt1
 	1476, // 1352: svg.ForeignObjectHeightAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
 	383,  // 1353: svg.SvgviewElement.view_attribute:type_name -> svg.ViewAttribute
 	1192, // 1354: svg.SvgviewElement.greater_than_sign_keyword:type_name -> svg.GreaterThanSignKeyword
@@ -135990,7 +136037,7 @@ var file_svg_proto_depIdxs = []int32{
 	1476, // 1365: svg.ViewViewBoxAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
 	361,  // 1366: svg.ViewPreserveAspectRatioAttr.preserve_aspect_ratio:type_name -> svg.PreserveAspectRatio
 	1476, // 1367: svg.ViewPreserveAspectRatioAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1758, // 1368: svg.ViewZoomAndPanAttr.alt1:type_name -> svg.ViewZoomAndPanAttr.Alt1
+	1759, // 1368: svg.ViewZoomAndPanAttr.alt1:type_name -> svg.ViewZoomAndPanAttr.Alt1
 	1476, // 1369: svg.ViewZoomAndPanAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
 	1,    // 1370: svg.ViewContent.animation_element:type_name -> svg.AnimationElement
 	2,    // 1371: svg.ViewContent.descriptive_element:type_name -> svg.DescriptiveElement
@@ -136013,7 +136060,7 @@ var file_svg_proto_depIdxs = []int32{
 	1476, // 1388: svg.ScriptTypeAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
 	343,  // 1389: svg.ScriptHrefAttr.iri_type:type_name -> svg.IriType
 	1476, // 1390: svg.ScriptHrefAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1759, // 1391: svg.ScriptCrossoriginAttr.alt1:type_name -> svg.ScriptCrossoriginAttr.Alt1
+	1760, // 1391: svg.ScriptCrossoriginAttr.alt1:type_name -> svg.ScriptCrossoriginAttr.Alt1
 	1476, // 1392: svg.ScriptCrossoriginAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
 	364,  // 1393: svg.ScriptAsyncAttr.boolean_value:type_name -> svg.BooleanValue
 	1476, // 1394: svg.ScriptAsyncAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
@@ -136022,7 +136069,7 @@ var file_svg_proto_depIdxs = []int32{
 	354,  // 1397: svg.ScriptContent.character_data_type:type_name -> svg.CharacterDataType
 	397,  // 1398: svg.SvgstyleElement.style_attribute:type_name -> svg.StyleAttribute
 	1192, // 1399: svg.SvgstyleElement.greater_than_sign_keyword:type_name -> svg.GreaterThanSignKeyword
-	1910, // 1400: svg.SvgstyleElement.css_style_sheet:type_name -> google.protobuf.Any
+	1911, // 1400: svg.SvgstyleElement.css_style_sheet:type_name -> google.protobuf.Any
 	1301, // 1401: svg.SvgstyleElement.less_than_sign_solidus_style_greater_than_sign_keyword:type_name -> svg.LessThanSignSolidusStyleGreaterThanSignKeyword
 	398,  // 1402: svg.StyleAttribute.style_type_attr:type_name -> svg.StyleTypeAttr
 	399,  // 1403: svg.StyleAttribute.style_media_attr:type_name -> svg.StyleMediaAttr
@@ -136036,7 +136083,7 @@ var file_svg_proto_depIdxs = []int32{
 	1476, // 1411: svg.StyleMediaAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
 	345,  // 1412: svg.StyleTitleAttr.string_type:type_name -> svg.StringType
 	1476, // 1413: svg.StyleTitleAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1760, // 1414: svg.PointerEventsAttr.alt1:type_name -> svg.PointerEventsAttr.Alt1
+	1761, // 1414: svg.PointerEventsAttr.alt1:type_name -> svg.PointerEventsAttr.Alt1
 	1476, // 1415: svg.PointerEventsAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
 	1554, // 1416: svg.FeInValue.source_graphic_keyword:type_name -> svg.SourceGraphicKeyword
 	1553, // 1417: svg.FeInValue.source_alpha_keyword:type_name -> svg.SourceAlphaKeyword
@@ -136098,7 +136145,7 @@ var file_svg_proto_depIdxs = []int32{
 	1476, // 1473: svg.FeBlendInAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
 	402,  // 1474: svg.FeBlendIn2attr.fe_in_value:type_name -> svg.FeInValue
 	1476, // 1475: svg.FeBlendIn2attr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1761, // 1476: svg.FeBlendModeAttr.alt1:type_name -> svg.FeBlendModeAttr.Alt1
+	1762, // 1476: svg.FeBlendModeAttr.alt1:type_name -> svg.FeBlendModeAttr.Alt1
 	1476, // 1477: svg.FeBlendModeAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
 	336,  // 1478: svg.FeBlendXattr.length_percentage_type:type_name -> svg.LengthPercentageType
 	1476, // 1479: svg.FeBlendXattr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
@@ -136126,7 +136173,7 @@ var file_svg_proto_depIdxs = []int32{
 	917,  // 1501: svg.FeColorMatrixAttribute.presentation_attribute:type_name -> svg.PresentationAttribute
 	402,  // 1502: svg.FeColorMatrixInAttr.fe_in_value:type_name -> svg.FeInValue
 	1476, // 1503: svg.FeColorMatrixInAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1762, // 1504: svg.FeColorMatrixTypeAttr.alt1:type_name -> svg.FeColorMatrixTypeAttr.Alt1
+	1763, // 1504: svg.FeColorMatrixTypeAttr.alt1:type_name -> svg.FeColorMatrixTypeAttr.Alt1
 	1476, // 1505: svg.FeColorMatrixTypeAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
 	428,  // 1506: svg.FeColorMatrixValuesAttr.fe_color_matrix_values_type:type_name -> svg.FeColorMatrixValuesType
 	1476, // 1507: svg.FeColorMatrixValuesAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
@@ -136212,7 +136259,7 @@ var file_svg_proto_depIdxs = []int32{
 	1476, // 1587: svg.FeCompositeInAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
 	402,  // 1588: svg.FeCompositeIn2attr.fe_in_value:type_name -> svg.FeInValue
 	1476, // 1589: svg.FeCompositeIn2attr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1763, // 1590: svg.FeCompositeOperatorAttr.alt1:type_name -> svg.FeCompositeOperatorAttr.Alt1
+	1764, // 1590: svg.FeCompositeOperatorAttr.alt1:type_name -> svg.FeCompositeOperatorAttr.Alt1
 	1476, // 1591: svg.FeCompositeOperatorAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
 	329,  // 1592: svg.FeCompositeK1attr.number_type:type_name -> svg.NumberType
 	1476, // 1593: svg.FeCompositeK1attr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
@@ -136267,7 +136314,7 @@ var file_svg_proto_depIdxs = []int32{
 	1476, // 1642: svg.FeConvolveMatrixTargetXattr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
 	331,  // 1643: svg.FeConvolveMatrixTargetYattr.integer_type:type_name -> svg.IntegerType
 	1476, // 1644: svg.FeConvolveMatrixTargetYattr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1764, // 1645: svg.FeConvolveMatrixEdgeModeAttr.alt1:type_name -> svg.FeConvolveMatrixEdgeModeAttr.Alt1
+	1765, // 1645: svg.FeConvolveMatrixEdgeModeAttr.alt1:type_name -> svg.FeConvolveMatrixEdgeModeAttr.Alt1
 	1476, // 1646: svg.FeConvolveMatrixEdgeModeAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
 	351,  // 1647: svg.FeConvolveMatrixKernelUnitLengthAttr.number_optional_number_type:type_name -> svg.NumberOptionalNumberType
 	1476, // 1648: svg.FeConvolveMatrixKernelUnitLengthAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
@@ -136341,9 +136388,9 @@ var file_svg_proto_depIdxs = []int32{
 	1476, // 1716: svg.FeDisplacementMapIn2attr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
 	329,  // 1717: svg.FeDisplacementMapScaleAttr.number_type:type_name -> svg.NumberType
 	1476, // 1718: svg.FeDisplacementMapScaleAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1765, // 1719: svg.FeDisplacementMapXchannelSelectorAttr.alt1:type_name -> svg.FeDisplacementMapXchannelSelectorAttr.Alt1
+	1766, // 1719: svg.FeDisplacementMapXchannelSelectorAttr.alt1:type_name -> svg.FeDisplacementMapXchannelSelectorAttr.Alt1
 	1476, // 1720: svg.FeDisplacementMapXchannelSelectorAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1766, // 1721: svg.FeDisplacementMapYchannelSelectorAttr.alt1:type_name -> svg.FeDisplacementMapYchannelSelectorAttr.Alt1
+	1767, // 1721: svg.FeDisplacementMapYchannelSelectorAttr.alt1:type_name -> svg.FeDisplacementMapYchannelSelectorAttr.Alt1
 	1476, // 1722: svg.FeDisplacementMapYchannelSelectorAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
 	336,  // 1723: svg.FeDisplacementMapXattr.length_percentage_type:type_name -> svg.LengthPercentageType
 	1476, // 1724: svg.FeDisplacementMapXattr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
@@ -136427,7 +136474,7 @@ var file_svg_proto_depIdxs = []int32{
 	1476, // 1802: svg.FeGaussianBlurInAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
 	351,  // 1803: svg.FeGaussianBlurStdDeviationAttr.number_optional_number_type:type_name -> svg.NumberOptionalNumberType
 	1476, // 1804: svg.FeGaussianBlurStdDeviationAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1767, // 1805: svg.FeGaussianBlurEdgeModeAttr.alt1:type_name -> svg.FeGaussianBlurEdgeModeAttr.Alt1
+	1768, // 1805: svg.FeGaussianBlurEdgeModeAttr.alt1:type_name -> svg.FeGaussianBlurEdgeModeAttr.Alt1
 	1476, // 1806: svg.FeGaussianBlurEdgeModeAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
 	336,  // 1807: svg.FeGaussianBlurXattr.length_percentage_type:type_name -> svg.LengthPercentageType
 	1476, // 1808: svg.FeGaussianBlurXattr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
@@ -136463,7 +136510,7 @@ var file_svg_proto_depIdxs = []int32{
 	1476, // 1838: svg.FeImageHrefAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
 	361,  // 1839: svg.FeImagePreserveAspectRatioAttr.preserve_aspect_ratio:type_name -> svg.PreserveAspectRatio
 	1476, // 1840: svg.FeImagePreserveAspectRatioAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1768, // 1841: svg.FeImageCrossoriginAttr.alt1:type_name -> svg.FeImageCrossoriginAttr.Alt1
+	1769, // 1841: svg.FeImageCrossoriginAttr.alt1:type_name -> svg.FeImageCrossoriginAttr.Alt1
 	1476, // 1842: svg.FeImageCrossoriginAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
 	336,  // 1843: svg.FeImageXattr.length_percentage_type:type_name -> svg.LengthPercentageType
 	1476, // 1844: svg.FeImageXattr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
@@ -136515,7 +136562,7 @@ var file_svg_proto_depIdxs = []int32{
 	917,  // 1890: svg.FeMorphologyAttribute.presentation_attribute:type_name -> svg.PresentationAttribute
 	402,  // 1891: svg.FeMorphologyInAttr.fe_in_value:type_name -> svg.FeInValue
 	1476, // 1892: svg.FeMorphologyInAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1769, // 1893: svg.FeMorphologyOperatorAttr.alt1:type_name -> svg.FeMorphologyOperatorAttr.Alt1
+	1770, // 1893: svg.FeMorphologyOperatorAttr.alt1:type_name -> svg.FeMorphologyOperatorAttr.Alt1
 	1476, // 1894: svg.FeMorphologyOperatorAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
 	351,  // 1895: svg.FeMorphologyRadiusAttr.number_optional_number_type:type_name -> svg.NumberOptionalNumberType
 	1476, // 1896: svg.FeMorphologyRadiusAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
@@ -136644,9 +136691,9 @@ var file_svg_proto_depIdxs = []int32{
 	1476, // 2019: svg.FeTurbulenceNumOctavesAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
 	329,  // 2020: svg.FeTurbulenceSeedAttr.number_type:type_name -> svg.NumberType
 	1476, // 2021: svg.FeTurbulenceSeedAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1770, // 2022: svg.FeTurbulenceStitchTilesAttr.alt1:type_name -> svg.FeTurbulenceStitchTilesAttr.Alt1
+	1771, // 2022: svg.FeTurbulenceStitchTilesAttr.alt1:type_name -> svg.FeTurbulenceStitchTilesAttr.Alt1
 	1476, // 2023: svg.FeTurbulenceStitchTilesAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1771, // 2024: svg.FeTurbulenceTypeAttr.alt1:type_name -> svg.FeTurbulenceTypeAttr.Alt1
+	1772, // 2024: svg.FeTurbulenceTypeAttr.alt1:type_name -> svg.FeTurbulenceTypeAttr.Alt1
 	1476, // 2025: svg.FeTurbulenceTypeAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
 	336,  // 2026: svg.FeTurbulenceXattr.length_percentage_type:type_name -> svg.LengthPercentageType
 	1476, // 2027: svg.FeTurbulenceXattr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
@@ -136684,7 +136731,7 @@ var file_svg_proto_depIdxs = []int32{
 	612,  // 2059: svg.FeFuncRattribute.fe_func_roffset_attr:type_name -> svg.FeFuncRoffsetAttr
 	12,   // 2060: svg.FeFuncRattribute.core_attribute:type_name -> svg.CoreAttribute
 	917,  // 2061: svg.FeFuncRattribute.presentation_attribute:type_name -> svg.PresentationAttribute
-	1772, // 2062: svg.FeFuncRtypeAttr.alt1:type_name -> svg.FeFuncRtypeAttr.Alt1
+	1773, // 2062: svg.FeFuncRtypeAttr.alt1:type_name -> svg.FeFuncRtypeAttr.Alt1
 	1476, // 2063: svg.FeFuncRtypeAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
 	350,  // 2064: svg.FeFuncRtableValuesAttr.list_of_numbers_type:type_name -> svg.ListOfNumbersType
 	1476, // 2065: svg.FeFuncRtableValuesAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
@@ -136711,7 +136758,7 @@ var file_svg_proto_depIdxs = []int32{
 	621,  // 2086: svg.FeFuncGattribute.fe_func_goffset_attr:type_name -> svg.FeFuncGoffsetAttr
 	12,   // 2087: svg.FeFuncGattribute.core_attribute:type_name -> svg.CoreAttribute
 	917,  // 2088: svg.FeFuncGattribute.presentation_attribute:type_name -> svg.PresentationAttribute
-	1773, // 2089: svg.FeFuncGtypeAttr.alt1:type_name -> svg.FeFuncGtypeAttr.Alt1
+	1774, // 2089: svg.FeFuncGtypeAttr.alt1:type_name -> svg.FeFuncGtypeAttr.Alt1
 	1476, // 2090: svg.FeFuncGtypeAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
 	350,  // 2091: svg.FeFuncGtableValuesAttr.list_of_numbers_type:type_name -> svg.ListOfNumbersType
 	1476, // 2092: svg.FeFuncGtableValuesAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
@@ -136738,7 +136785,7 @@ var file_svg_proto_depIdxs = []int32{
 	630,  // 2113: svg.FeFuncBattribute.fe_func_boffset_attr:type_name -> svg.FeFuncBoffsetAttr
 	12,   // 2114: svg.FeFuncBattribute.core_attribute:type_name -> svg.CoreAttribute
 	917,  // 2115: svg.FeFuncBattribute.presentation_attribute:type_name -> svg.PresentationAttribute
-	1774, // 2116: svg.FeFuncBtypeAttr.alt1:type_name -> svg.FeFuncBtypeAttr.Alt1
+	1775, // 2116: svg.FeFuncBtypeAttr.alt1:type_name -> svg.FeFuncBtypeAttr.Alt1
 	1476, // 2117: svg.FeFuncBtypeAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
 	350,  // 2118: svg.FeFuncBtableValuesAttr.list_of_numbers_type:type_name -> svg.ListOfNumbersType
 	1476, // 2119: svg.FeFuncBtableValuesAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
@@ -136765,7 +136812,7 @@ var file_svg_proto_depIdxs = []int32{
 	639,  // 2140: svg.FeFuncAattribute.fe_func_aoffset_attr:type_name -> svg.FeFuncAoffsetAttr
 	12,   // 2141: svg.FeFuncAattribute.core_attribute:type_name -> svg.CoreAttribute
 	917,  // 2142: svg.FeFuncAattribute.presentation_attribute:type_name -> svg.PresentationAttribute
-	1775, // 2143: svg.FeFuncAtypeAttr.alt1:type_name -> svg.FeFuncAtypeAttr.Alt1
+	1776, // 2143: svg.FeFuncAtypeAttr.alt1:type_name -> svg.FeFuncAtypeAttr.Alt1
 	1476, // 2144: svg.FeFuncAtypeAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
 	350,  // 2145: svg.FeFuncAtableValuesAttr.list_of_numbers_type:type_name -> svg.ListOfNumbersType
 	1476, // 2146: svg.FeFuncAtableValuesAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
@@ -136836,7 +136883,7 @@ var file_svg_proto_depIdxs = []int32{
 	1476, // 2211: svg.FeSpotLightSpecularExponentAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
 	329,  // 2212: svg.FeSpotLightLimitingConeAngleAttr.number_type:type_name -> svg.NumberType
 	1476, // 2213: svg.FeSpotLightLimitingConeAngleAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1776, // 2214: svg.FilterAttr.alt1:type_name -> svg.FilterAttr.Alt1
+	1777, // 2214: svg.FilterAttr.alt1:type_name -> svg.FilterAttr.Alt1
 	1476, // 2215: svg.FilterAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
 	661,  // 2216: svg.FilterValueList.filter_value_item:type_name -> svg.FilterValueItem
 	662,  // 2217: svg.FilterValueItem.filter_function:type_name -> svg.FilterFunction
@@ -136857,14 +136904,14 @@ var file_svg_proto_depIdxs = []int32{
 	1493, // 2232: svg.BrightnessFunction.right_parenthesis_keyword:type_name -> svg.RightParenthesisKeyword
 	673,  // 2233: svg.ContrastFunction.number_percentage:type_name -> svg.NumberPercentage
 	1493, // 2234: svg.ContrastFunction.right_parenthesis_keyword:type_name -> svg.RightParenthesisKeyword
-	1910, // 2235: svg.DropShadowFunction.color_type:type_name -> google.protobuf.Any
+	1911, // 2235: svg.DropShadowFunction.color_type:type_name -> google.protobuf.Any
 	333,  // 2236: svg.DropShadowFunction.length_type:type_name -> svg.LengthType
 	333,  // 2237: svg.DropShadowFunction.length_type_2:type_name -> svg.LengthType
 	333,  // 2238: svg.DropShadowFunction.length_type_3:type_name -> svg.LengthType
 	1493, // 2239: svg.DropShadowFunction.right_parenthesis_keyword:type_name -> svg.RightParenthesisKeyword
 	673,  // 2240: svg.GrayscaleFunction.number_percentage:type_name -> svg.NumberPercentage
 	1493, // 2241: svg.GrayscaleFunction.right_parenthesis_keyword:type_name -> svg.RightParenthesisKeyword
-	1777, // 2242: svg.HueRotateFunction.alt1:type_name -> svg.HueRotateFunction.Alt1
+	1778, // 2242: svg.HueRotateFunction.alt1:type_name -> svg.HueRotateFunction.Alt1
 	1493, // 2243: svg.HueRotateFunction.right_parenthesis_keyword:type_name -> svg.RightParenthesisKeyword
 	673,  // 2244: svg.InvertFunction.number_percentage:type_name -> svg.NumberPercentage
 	1493, // 2245: svg.InvertFunction.right_parenthesis_keyword:type_name -> svg.RightParenthesisKeyword
@@ -136876,15 +136923,15 @@ var file_svg_proto_depIdxs = []int32{
 	1493, // 2251: svg.SepiaFunction.right_parenthesis_keyword:type_name -> svg.RightParenthesisKeyword
 	329,  // 2252: svg.NumberPercentage.number_type:type_name -> svg.NumberType
 	335,  // 2253: svg.NumberPercentage.percentage_type:type_name -> svg.PercentageType
-	1778, // 2254: svg.ColorInterpolationFiltersAttr.alt1:type_name -> svg.ColorInterpolationFiltersAttr.Alt1
+	1779, // 2254: svg.ColorInterpolationFiltersAttr.alt1:type_name -> svg.ColorInterpolationFiltersAttr.Alt1
 	1476, // 2255: svg.ColorInterpolationFiltersAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1779, // 2256: svg.FloodColorAttr.alt1:type_name -> svg.FloodColorAttr.Alt1
+	1780, // 2256: svg.FloodColorAttr.alt1:type_name -> svg.FloodColorAttr.Alt1
 	1476, // 2257: svg.FloodColorAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
 	355,  // 2258: svg.FloodOpacityAttr.alpha_value:type_name -> svg.AlphaValue
 	1476, // 2259: svg.FloodOpacityAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1780, // 2260: svg.LightingColorAttr.alt1:type_name -> svg.LightingColorAttr.Alt1
+	1781, // 2260: svg.LightingColorAttr.alt1:type_name -> svg.LightingColorAttr.Alt1
 	1476, // 2261: svg.LightingColorAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1781, // 2262: svg.ImageRenderingAttr.alt1:type_name -> svg.ImageRenderingAttr.Alt1
+	1782, // 2262: svg.ImageRenderingAttr.alt1:type_name -> svg.ImageRenderingAttr.Alt1
 	1476, // 2263: svg.ImageRenderingAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
 	680,  // 2264: svg.SvgclipPathElement.clip_path_attribute:type_name -> svg.ClipPathAttribute
 	1192, // 2265: svg.SvgclipPathElement.greater_than_sign_keyword:type_name -> svg.GreaterThanSignKeyword
@@ -136954,12 +137001,12 @@ var file_svg_proto_depIdxs = []int32{
 	1476, // 2329: svg.MaskWidthAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
 	337,  // 2330: svg.MaskHeightAttr.non_negative_length_percentage_type:type_name -> svg.NonNegativeLengthPercentageType
 	1476, // 2331: svg.MaskHeightAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1782, // 2332: svg.MaskTypeAttr.alt1:type_name -> svg.MaskTypeAttr.Alt1
+	1783, // 2332: svg.MaskTypeAttr.alt1:type_name -> svg.MaskTypeAttr.Alt1
 	1476, // 2333: svg.MaskTypeAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1783, // 2334: svg.ClipPathAttr.alt1:type_name -> svg.ClipPathAttr.Alt1
+	1784, // 2334: svg.ClipPathAttr.alt1:type_name -> svg.ClipPathAttr.Alt1
 	1476, // 2335: svg.ClipPathAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1784, // 2336: svg.ClipPathCombo.seq1:type_name -> svg.ClipPathCombo.Seq1
-	1785, // 2337: svg.ClipPathCombo.seq2:type_name -> svg.ClipPathCombo.Seq2
+	1785, // 2336: svg.ClipPathCombo.seq1:type_name -> svg.ClipPathCombo.Seq1
+	1786, // 2337: svg.ClipPathCombo.seq2:type_name -> svg.ClipPathCombo.Seq2
 	1046, // 2338: svg.GeometryBox.border_hyphen_minus_box_keyword:type_name -> svg.BorderHyphenMinusBoxKeyword
 	1443, // 2339: svg.GeometryBox.padding_hyphen_minus_box_keyword:type_name -> svg.PaddingHyphenMinusBoxKeyword
 	1081, // 2340: svg.GeometryBox.content_hyphen_minus_box_keyword:type_name -> svg.ContentHyphenMinusBoxKeyword
@@ -136974,21 +137021,21 @@ var file_svg_proto_depIdxs = []int32{
 	708,  // 2349: svg.BasicShape.path_fn:type_name -> svg.PathFn
 	709,  // 2350: svg.BasicShape.shape_fn:type_name -> svg.ShapeFn
 	336,  // 2351: svg.InsetFn.length_percentage_type:type_name -> svg.LengthPercentageType
-	1786, // 2352: svg.InsetFn.space:type_name -> svg.InsetFn.Space
-	1787, // 2353: svg.InsetFn.space_round_space:type_name -> svg.InsetFn.SpaceRoundSpace
+	1787, // 2352: svg.InsetFn.space:type_name -> svg.InsetFn.Space
+	1788, // 2353: svg.InsetFn.space_round_space:type_name -> svg.InsetFn.SpaceRoundSpace
 	1493, // 2354: svg.InsetFn.right_parenthesis_keyword:type_name -> svg.RightParenthesisKeyword
 	336,  // 2355: svg.BorderRadius.length_percentage_type:type_name -> svg.LengthPercentageType
-	1790, // 2356: svg.BorderRadius.space:type_name -> svg.BorderRadius.Space
-	1791, // 2357: svg.BorderRadius.solidus:type_name -> svg.BorderRadius.Solidus
-	1797, // 2358: svg.CircleFn.seq1:type_name -> svg.CircleFn.Seq1
+	1791, // 2356: svg.BorderRadius.space:type_name -> svg.BorderRadius.Space
+	1792, // 2357: svg.BorderRadius.solidus:type_name -> svg.BorderRadius.Solidus
+	1798, // 2358: svg.CircleFn.seq1:type_name -> svg.CircleFn.Seq1
 	1493, // 2359: svg.CircleFn.right_parenthesis_keyword:type_name -> svg.RightParenthesisKeyword
-	1799, // 2360: svg.EllipseFn.seq1:type_name -> svg.EllipseFn.Seq1
+	1800, // 2360: svg.EllipseFn.seq1:type_name -> svg.EllipseFn.Seq1
 	1493, // 2361: svg.EllipseFn.right_parenthesis_keyword:type_name -> svg.RightParenthesisKeyword
 	336,  // 2362: svg.RadialSize.length_percentage_type:type_name -> svg.LengthPercentageType
 	1066, // 2363: svg.RadialSize.closest_hyphen_minus_side_keyword:type_name -> svg.ClosestHyphenMinusSideKeyword
 	1160, // 2364: svg.RadialSize.farthest_hyphen_minus_side_keyword:type_name -> svg.FarthestHyphenMinusSideKeyword
 	704,  // 2365: svg.CssPosition.css_position_h:type_name -> svg.CssPositionH
-	1801, // 2366: svg.CssPosition.space:type_name -> svg.CssPosition.Space
+	1802, // 2366: svg.CssPosition.space:type_name -> svg.CssPosition.Space
 	1245, // 2367: svg.CssPositionH.left_keyword:type_name -> svg.LeftKeyword
 	1059, // 2368: svg.CssPositionH.center_keyword:type_name -> svg.CenterKeyword
 	1492, // 2369: svg.CssPositionH.right_keyword:type_name -> svg.RightKeyword
@@ -136997,17 +137044,17 @@ var file_svg_proto_depIdxs = []int32{
 	1059, // 2372: svg.CssPositionV.center_keyword:type_name -> svg.CenterKeyword
 	1048, // 2373: svg.CssPositionV.bottom_keyword:type_name -> svg.BottomKeyword
 	336,  // 2374: svg.CssPositionV.length_percentage_type:type_name -> svg.LengthPercentageType
-	1802, // 2375: svg.PolygonFn.seq1:type_name -> svg.PolygonFn.Seq1
-	1803, // 2376: svg.PolygonFn.space_round_space:type_name -> svg.PolygonFn.SpaceRoundSpace
+	1803, // 2375: svg.PolygonFn.seq1:type_name -> svg.PolygonFn.Seq1
+	1804, // 2376: svg.PolygonFn.space_round_space:type_name -> svg.PolygonFn.SpaceRoundSpace
 	707,  // 2377: svg.PolygonFn.polygon_vertex:type_name -> svg.PolygonVertex
 	1493, // 2378: svg.PolygonFn.right_parenthesis_keyword:type_name -> svg.RightParenthesisKeyword
 	336,  // 2379: svg.PolygonVertex.length_percentage_type:type_name -> svg.LengthPercentageType
 	1555, // 2380: svg.PolygonVertex.space_keyword:type_name -> svg.SpaceKeyword
 	336,  // 2381: svg.PolygonVertex.length_percentage_type_2:type_name -> svg.LengthPercentageType
-	1804, // 2382: svg.PathFn.seq1:type_name -> svg.PathFn.Seq1
+	1805, // 2382: svg.PathFn.seq1:type_name -> svg.PathFn.Seq1
 	345,  // 2383: svg.PathFn.string_type:type_name -> svg.StringType
 	1493, // 2384: svg.PathFn.right_parenthesis_keyword:type_name -> svg.RightParenthesisKeyword
-	1805, // 2385: svg.ShapeFn.seq1:type_name -> svg.ShapeFn.Seq1
+	1806, // 2385: svg.ShapeFn.seq1:type_name -> svg.ShapeFn.Seq1
 	1176, // 2386: svg.ShapeFn.from_space_keyword:type_name -> svg.FromSpaceKeyword
 	703,  // 2387: svg.ShapeFn.css_position:type_name -> svg.CssPosition
 	1076, // 2388: svg.ShapeFn.comma_keyword:type_name -> svg.CommaKeyword
@@ -137016,9 +137063,9 @@ var file_svg_proto_depIdxs = []int32{
 	345,  // 2391: svg.ShapeCommand.string_type:type_name -> svg.StringType
 	1411, // 2392: svg.FillRule.nonzero_keyword:type_name -> svg.NonzeroKeyword
 	1150, // 2393: svg.FillRule.evenodd_keyword:type_name -> svg.EvenoddKeyword
-	1806, // 2394: svg.ClipRuleAttr.alt1:type_name -> svg.ClipRuleAttr.Alt1
+	1807, // 2394: svg.ClipRuleAttr.alt1:type_name -> svg.ClipRuleAttr.Alt1
 	1476, // 2395: svg.ClipRuleAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1807, // 2396: svg.ClipAttr.alt1:type_name -> svg.ClipAttr.Alt1
+	1808, // 2396: svg.ClipAttr.alt1:type_name -> svg.ClipAttr.Alt1
 	1476, // 2397: svg.ClipAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
 	715,  // 2398: svg.ClipRect.clip_edge:type_name -> svg.ClipEdge
 	1076, // 2399: svg.ClipRect.comma_keyword:type_name -> svg.CommaKeyword
@@ -137030,7 +137077,7 @@ var file_svg_proto_depIdxs = []int32{
 	1493, // 2405: svg.ClipRect.right_parenthesis_keyword:type_name -> svg.RightParenthesisKeyword
 	333,  // 2406: svg.ClipEdge.length_type:type_name -> svg.LengthType
 	1024, // 2407: svg.ClipEdge.auto_keyword:type_name -> svg.AutoKeyword
-	1808, // 2408: svg.MaskAttr.alt1:type_name -> svg.MaskAttr.Alt1
+	1809, // 2408: svg.MaskAttr.alt1:type_name -> svg.MaskAttr.Alt1
 	1476, // 2409: svg.MaskAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
 	718,  // 2410: svg.MaskLayerList.mask_layer:type_name -> svg.MaskLayer
 	719,  // 2411: svg.MaskLayer.mask_layer_image:type_name -> svg.MaskLayerImage
@@ -137041,12 +137088,12 @@ var file_svg_proto_depIdxs = []int32{
 	726,  // 2416: svg.MaskLayer.mask_layer_mode:type_name -> svg.MaskLayerMode
 	727,  // 2417: svg.MaskLayerImage.mask_reference:type_name -> svg.MaskReference
 	703,  // 2418: svg.MaskLayerPosition.css_position:type_name -> svg.CssPosition
-	1809, // 2419: svg.MaskLayerPosition.solidus:type_name -> svg.MaskLayerPosition.Solidus
+	1810, // 2419: svg.MaskLayerPosition.solidus:type_name -> svg.MaskLayerPosition.Solidus
 	1024, // 2420: svg.MaskBgSize.auto_keyword:type_name -> svg.AutoKeyword
 	1092, // 2421: svg.MaskBgSize.cover_keyword:type_name -> svg.CoverKeyword
 	1080, // 2422: svg.MaskBgSize.contain_keyword:type_name -> svg.ContainKeyword
 	336,  // 2423: svg.MaskBgSize.length_percentage_type:type_name -> svg.LengthPercentageType
-	1810, // 2424: svg.MaskBgSize.seq1:type_name -> svg.MaskBgSize.Seq1
+	1811, // 2424: svg.MaskBgSize.seq1:type_name -> svg.MaskBgSize.Seq1
 	723,  // 2425: svg.MaskLayerRepeat.mask_repeat_value:type_name -> svg.MaskRepeatValue
 	1488, // 2426: svg.MaskRepeatValue.repeat_keyword:type_name -> svg.RepeatKeyword
 	1486, // 2427: svg.MaskRepeatValue.repeat_hyphen_minus_x_keyword:type_name -> svg.RepeatHyphenMinusXKeyword
@@ -137054,10 +137101,10 @@ var file_svg_proto_depIdxs = []int32{
 	1555, // 2429: svg.MaskRepeatValue.space_keyword:type_name -> svg.SpaceKeyword
 	1498, // 2430: svg.MaskRepeatValue.round_keyword:type_name -> svg.RoundKeyword
 	1405, // 2431: svg.MaskRepeatValue.no_hyphen_minus_repeat_keyword:type_name -> svg.NoHyphenMinusRepeatKeyword
-	1811, // 2432: svg.MaskRepeatValue.seq1:type_name -> svg.MaskRepeatValue.Seq1
+	1812, // 2432: svg.MaskRepeatValue.seq1:type_name -> svg.MaskRepeatValue.Seq1
 	731,  // 2433: svg.MaskLayerOriginClip.mask_origin_box:type_name -> svg.MaskOriginBox
 	730,  // 2434: svg.MaskLayerOriginClip.mask_clip_box_value:type_name -> svg.MaskClipBoxValue
-	1814, // 2435: svg.MaskLayerOriginClip.seq1:type_name -> svg.MaskLayerOriginClip.Seq1
+	1815, // 2435: svg.MaskLayerOriginClip.seq1:type_name -> svg.MaskLayerOriginClip.Seq1
 	732,  // 2436: svg.MaskLayerComposite.mask_composite_value:type_name -> svg.MaskCompositeValue
 	729,  // 2437: svg.MaskLayerMode.mask_mode_value:type_name -> svg.MaskModeValue
 	1410, // 2438: svg.MaskReference.none_keyword:type_name -> svg.NoneKeyword
@@ -137100,17 +137147,17 @@ var file_svg_proto_depIdxs = []int32{
 	917,  // 2475: svg.MarkerAttribute.presentation_attribute:type_name -> svg.PresentationAttribute
 	83,   // 2476: svg.MarkerAttribute.global_event_attribute:type_name -> svg.GlobalEventAttribute
 	145,  // 2477: svg.MarkerAttribute.document_element_event_attribute:type_name -> svg.DocumentElementEventAttribute
-	1815, // 2478: svg.MarkerMarkerUnitsAttr.alt1:type_name -> svg.MarkerMarkerUnitsAttr.Alt1
+	1816, // 2478: svg.MarkerMarkerUnitsAttr.alt1:type_name -> svg.MarkerMarkerUnitsAttr.Alt1
 	1476, // 2479: svg.MarkerMarkerUnitsAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
 	337,  // 2480: svg.MarkerWidthAttr.non_negative_length_percentage_type:type_name -> svg.NonNegativeLengthPercentageType
 	1476, // 2481: svg.MarkerWidthAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
 	337,  // 2482: svg.MarkerHeightAttr.non_negative_length_percentage_type:type_name -> svg.NonNegativeLengthPercentageType
 	1476, // 2483: svg.MarkerHeightAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1816, // 2484: svg.MarkerRefXattr.alt1:type_name -> svg.MarkerRefXattr.Alt1
+	1817, // 2484: svg.MarkerRefXattr.alt1:type_name -> svg.MarkerRefXattr.Alt1
 	1476, // 2485: svg.MarkerRefXattr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1817, // 2486: svg.MarkerRefYattr.alt1:type_name -> svg.MarkerRefYattr.Alt1
+	1818, // 2486: svg.MarkerRefYattr.alt1:type_name -> svg.MarkerRefYattr.Alt1
 	1476, // 2487: svg.MarkerRefYattr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1818, // 2488: svg.MarkerOrientAttr.alt1:type_name -> svg.MarkerOrientAttr.Alt1
+	1819, // 2488: svg.MarkerOrientAttr.alt1:type_name -> svg.MarkerOrientAttr.Alt1
 	1476, // 2489: svg.MarkerOrientAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
 	360,  // 2490: svg.MarkerViewBoxAttr.view_box:type_name -> svg.ViewBox
 	1476, // 2491: svg.MarkerViewBoxAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
@@ -137118,7 +137165,7 @@ var file_svg_proto_depIdxs = []int32{
 	1476, // 2493: svg.MarkerPreserveAspectRatioAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
 	357,  // 2494: svg.FillAttr.paint_type:type_name -> svg.PaintType
 	1476, // 2495: svg.FillAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1819, // 2496: svg.FillRuleAttr.alt1:type_name -> svg.FillRuleAttr.Alt1
+	1820, // 2496: svg.FillRuleAttr.alt1:type_name -> svg.FillRuleAttr.Alt1
 	1476, // 2497: svg.FillRuleAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
 	355,  // 2498: svg.FillOpacityAttr.alpha_value:type_name -> svg.AlphaValue
 	1476, // 2499: svg.FillOpacityAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
@@ -137128,41 +137175,41 @@ var file_svg_proto_depIdxs = []int32{
 	1476, // 2503: svg.StrokeOpacityAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
 	337,  // 2504: svg.StrokeWidthAttr.non_negative_length_percentage_type:type_name -> svg.NonNegativeLengthPercentageType
 	1476, // 2505: svg.StrokeWidthAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1820, // 2506: svg.StrokeLinecapAttr.alt1:type_name -> svg.StrokeLinecapAttr.Alt1
+	1821, // 2506: svg.StrokeLinecapAttr.alt1:type_name -> svg.StrokeLinecapAttr.Alt1
 	1476, // 2507: svg.StrokeLinecapAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1821, // 2508: svg.StrokeLinejoinAttr.alt1:type_name -> svg.StrokeLinejoinAttr.Alt1
+	1822, // 2508: svg.StrokeLinejoinAttr.alt1:type_name -> svg.StrokeLinejoinAttr.Alt1
 	1476, // 2509: svg.StrokeLinejoinAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
 	338,  // 2510: svg.StrokeMiterlimitAttr.miter_limit_type:type_name -> svg.MiterLimitType
 	1476, // 2511: svg.StrokeMiterlimitAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1822, // 2512: svg.StrokeDasharrayAttr.alt1:type_name -> svg.StrokeDasharrayAttr.Alt1
+	1823, // 2512: svg.StrokeDasharrayAttr.alt1:type_name -> svg.StrokeDasharrayAttr.Alt1
 	1476, // 2513: svg.StrokeDasharrayAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1823, // 2514: svg.StrokeDashoffsetAttr.alt1:type_name -> svg.StrokeDashoffsetAttr.Alt1
+	1824, // 2514: svg.StrokeDashoffsetAttr.alt1:type_name -> svg.StrokeDashoffsetAttr.Alt1
 	1476, // 2515: svg.StrokeDashoffsetAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1824, // 2516: svg.PaintOrderAttr.alt1:type_name -> svg.PaintOrderAttr.Alt1
+	1825, // 2516: svg.PaintOrderAttr.alt1:type_name -> svg.PaintOrderAttr.Alt1
 	1476, // 2517: svg.PaintOrderAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
 	756,  // 2518: svg.PaintOrderList.paint_order_token:type_name -> svg.PaintOrderToken
 	1164, // 2519: svg.PaintOrderToken.fill_keyword:type_name -> svg.FillKeyword
 	1573, // 2520: svg.PaintOrderToken.stroke_keyword:type_name -> svg.StrokeKeyword
 	1353, // 2521: svg.PaintOrderToken.markers_keyword:type_name -> svg.MarkersKeyword
-	1825, // 2522: svg.MarkerAttr.alt1:type_name -> svg.MarkerAttr.Alt1
+	1826, // 2522: svg.MarkerAttr.alt1:type_name -> svg.MarkerAttr.Alt1
 	1476, // 2523: svg.MarkerAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1826, // 2524: svg.MarkerStartAttr.alt1:type_name -> svg.MarkerStartAttr.Alt1
+	1827, // 2524: svg.MarkerStartAttr.alt1:type_name -> svg.MarkerStartAttr.Alt1
 	1476, // 2525: svg.MarkerStartAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1827, // 2526: svg.MarkerMidAttr.alt1:type_name -> svg.MarkerMidAttr.Alt1
+	1828, // 2526: svg.MarkerMidAttr.alt1:type_name -> svg.MarkerMidAttr.Alt1
 	1476, // 2527: svg.MarkerMidAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1828, // 2528: svg.MarkerEndAttr.alt1:type_name -> svg.MarkerEndAttr.Alt1
+	1829, // 2528: svg.MarkerEndAttr.alt1:type_name -> svg.MarkerEndAttr.Alt1
 	1476, // 2529: svg.MarkerEndAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1910, // 2530: svg.ColorAttr.color_type:type_name -> google.protobuf.Any
+	1911, // 2530: svg.ColorAttr.color_type:type_name -> google.protobuf.Any
 	1476, // 2531: svg.ColorAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1829, // 2532: svg.ColorInterpolationAttr.alt1:type_name -> svg.ColorInterpolationAttr.Alt1
+	1830, // 2532: svg.ColorInterpolationAttr.alt1:type_name -> svg.ColorInterpolationAttr.Alt1
 	1476, // 2533: svg.ColorInterpolationAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1830, // 2534: svg.ColorRenderingAttr.alt1:type_name -> svg.ColorRenderingAttr.Alt1
+	1831, // 2534: svg.ColorRenderingAttr.alt1:type_name -> svg.ColorRenderingAttr.Alt1
 	1476, // 2535: svg.ColorRenderingAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1831, // 2536: svg.ShapeRenderingAttr.alt1:type_name -> svg.ShapeRenderingAttr.Alt1
+	1832, // 2536: svg.ShapeRenderingAttr.alt1:type_name -> svg.ShapeRenderingAttr.Alt1
 	1476, // 2537: svg.ShapeRenderingAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1832, // 2538: svg.VectorEffectAttr.alt1:type_name -> svg.VectorEffectAttr.Alt1
+	1833, // 2538: svg.VectorEffectAttr.alt1:type_name -> svg.VectorEffectAttr.Alt1
 	1476, // 2539: svg.VectorEffectAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1833, // 2540: svg.SvgPath.seq1:type_name -> svg.SvgPath.Seq1
+	1834, // 2540: svg.SvgPath.seq1:type_name -> svg.SvgPath.Seq1
 	768,  // 2541: svg.DrawToCommand.move_to:type_name -> svg.MoveTo
 	769,  // 2542: svg.DrawToCommand.close_path:type_name -> svg.ClosePath
 	770,  // 2543: svg.DrawToCommand.line_to:type_name -> svg.LineTo
@@ -137173,30 +137220,30 @@ var file_svg_proto_depIdxs = []int32{
 	777,  // 2548: svg.DrawToCommand.quadratic_bezier_curve_to:type_name -> svg.QuadraticBezierCurveTo
 	779,  // 2549: svg.DrawToCommand.smooth_quadratic_bezier_curve_to:type_name -> svg.SmoothQuadraticBezierCurveTo
 	780,  // 2550: svg.DrawToCommand.elliptical_arc:type_name -> svg.EllipticalArc
-	1834, // 2551: svg.MoveTo.alt1:type_name -> svg.MoveTo.Alt1
+	1835, // 2551: svg.MoveTo.alt1:type_name -> svg.MoveTo.Alt1
 	784,  // 2552: svg.MoveTo.coordinate_pair_sequence:type_name -> svg.CoordinatePairSequence
-	1835, // 2553: svg.ClosePath.alt1:type_name -> svg.ClosePath.Alt1
-	1836, // 2554: svg.LineTo.alt1:type_name -> svg.LineTo.Alt1
+	1836, // 2553: svg.ClosePath.alt1:type_name -> svg.ClosePath.Alt1
+	1837, // 2554: svg.LineTo.alt1:type_name -> svg.LineTo.Alt1
 	784,  // 2555: svg.LineTo.coordinate_pair_sequence:type_name -> svg.CoordinatePairSequence
-	1837, // 2556: svg.HorizontalLineTo.alt1:type_name -> svg.HorizontalLineTo.Alt1
+	1838, // 2556: svg.HorizontalLineTo.alt1:type_name -> svg.HorizontalLineTo.Alt1
 	785,  // 2557: svg.HorizontalLineTo.coordinate_sequence:type_name -> svg.CoordinateSequence
-	1838, // 2558: svg.VerticalLineTo.alt1:type_name -> svg.VerticalLineTo.Alt1
+	1839, // 2558: svg.VerticalLineTo.alt1:type_name -> svg.VerticalLineTo.Alt1
 	785,  // 2559: svg.VerticalLineTo.coordinate_sequence:type_name -> svg.CoordinateSequence
-	1839, // 2560: svg.CurveTo.alt1:type_name -> svg.CurveTo.Alt1
+	1840, // 2560: svg.CurveTo.alt1:type_name -> svg.CurveTo.Alt1
 	774,  // 2561: svg.CurveTo.curve_to_coordinate_sequence:type_name -> svg.CurveToCoordinateSequence
 	787,  // 2562: svg.CurveToCoordinateSequence.coordinate_pair_triplet:type_name -> svg.CoordinatePairTriplet
 	787,  // 2563: svg.CurveToCoordinateSequence.coordinate_pair_triplet_2:type_name -> svg.CoordinatePairTriplet
-	1840, // 2564: svg.SmoothCurveTo.alt1:type_name -> svg.SmoothCurveTo.Alt1
+	1841, // 2564: svg.SmoothCurveTo.alt1:type_name -> svg.SmoothCurveTo.Alt1
 	776,  // 2565: svg.SmoothCurveTo.smooth_curve_to_coordinate_sequence:type_name -> svg.SmoothCurveToCoordinateSequence
 	786,  // 2566: svg.SmoothCurveToCoordinateSequence.coordinate_pair_double:type_name -> svg.CoordinatePairDouble
 	786,  // 2567: svg.SmoothCurveToCoordinateSequence.coordinate_pair_double_2:type_name -> svg.CoordinatePairDouble
-	1841, // 2568: svg.QuadraticBezierCurveTo.alt1:type_name -> svg.QuadraticBezierCurveTo.Alt1
+	1842, // 2568: svg.QuadraticBezierCurveTo.alt1:type_name -> svg.QuadraticBezierCurveTo.Alt1
 	778,  // 2569: svg.QuadraticBezierCurveTo.quadratic_bezier_curve_to_coordinate_sequence:type_name -> svg.QuadraticBezierCurveToCoordinateSequence
 	786,  // 2570: svg.QuadraticBezierCurveToCoordinateSequence.coordinate_pair_double:type_name -> svg.CoordinatePairDouble
 	786,  // 2571: svg.QuadraticBezierCurveToCoordinateSequence.coordinate_pair_double_2:type_name -> svg.CoordinatePairDouble
-	1842, // 2572: svg.SmoothQuadraticBezierCurveTo.alt1:type_name -> svg.SmoothQuadraticBezierCurveTo.Alt1
+	1843, // 2572: svg.SmoothQuadraticBezierCurveTo.alt1:type_name -> svg.SmoothQuadraticBezierCurveTo.Alt1
 	784,  // 2573: svg.SmoothQuadraticBezierCurveTo.coordinate_pair_sequence:type_name -> svg.CoordinatePairSequence
-	1843, // 2574: svg.EllipticalArc.alt1:type_name -> svg.EllipticalArc.Alt1
+	1844, // 2574: svg.EllipticalArc.alt1:type_name -> svg.EllipticalArc.Alt1
 	781,  // 2575: svg.EllipticalArc.elliptical_arc_argument_sequence:type_name -> svg.EllipticalArcArgumentSequence
 	782,  // 2576: svg.EllipticalArcArgumentSequence.elliptical_arc_argument:type_name -> svg.EllipticalArcArgument
 	782,  // 2577: svg.EllipticalArcArgumentSequence.elliptical_arc_argument_2:type_name -> svg.EllipticalArcArgument
@@ -137225,7 +137272,7 @@ var file_svg_proto_depIdxs = []int32{
 	1213, // 2600: svg.PathSign.hyphen_minus_keyword:type_name -> svg.HyphenMinusKeyword
 	356,  // 2601: svg.GradientUnitsAttr.unit_type:type_name -> svg.UnitType
 	1476, // 2602: svg.GradientUnitsAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1844, // 2603: svg.SpreadMethodAttr.alt1:type_name -> svg.SpreadMethodAttr.Alt1
+	1845, // 2603: svg.SpreadMethodAttr.alt1:type_name -> svg.SpreadMethodAttr.Alt1
 	1476, // 2604: svg.SpreadMethodAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
 	794,  // 2605: svg.SvglinearGradientElement.linear_gradient_attribute:type_name -> svg.LinearGradientAttribute
 	1192, // 2606: svg.SvglinearGradientElement.greater_than_sign_keyword:type_name -> svg.GreaterThanSignKeyword
@@ -137246,13 +137293,13 @@ var file_svg_proto_depIdxs = []int32{
 	156,  // 2621: svg.LinearGradientAttribute.xlink_attribute:type_name -> svg.XlinkAttribute
 	986,  // 2622: svg.LinearGradientTransformAttr.transform_list:type_name -> svg.TransformList
 	1476, // 2623: svg.LinearGradientTransformAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1845, // 2624: svg.LinearGradientX1attr.alt1:type_name -> svg.LinearGradientX1attr.Alt1
+	1846, // 2624: svg.LinearGradientX1attr.alt1:type_name -> svg.LinearGradientX1attr.Alt1
 	1476, // 2625: svg.LinearGradientX1attr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1846, // 2626: svg.LinearGradientY1attr.alt1:type_name -> svg.LinearGradientY1attr.Alt1
+	1847, // 2626: svg.LinearGradientY1attr.alt1:type_name -> svg.LinearGradientY1attr.Alt1
 	1476, // 2627: svg.LinearGradientY1attr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1847, // 2628: svg.LinearGradientX2attr.alt1:type_name -> svg.LinearGradientX2attr.Alt1
+	1848, // 2628: svg.LinearGradientX2attr.alt1:type_name -> svg.LinearGradientX2attr.Alt1
 	1476, // 2629: svg.LinearGradientX2attr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1848, // 2630: svg.LinearGradientY2attr.alt1:type_name -> svg.LinearGradientY2attr.Alt1
+	1849, // 2630: svg.LinearGradientY2attr.alt1:type_name -> svg.LinearGradientY2attr.Alt1
 	1476, // 2631: svg.LinearGradientY2attr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
 	343,  // 2632: svg.LinearGradientHrefAttr.iri_type:type_name -> svg.IriType
 	1476, // 2633: svg.LinearGradientHrefAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
@@ -137284,15 +137331,15 @@ var file_svg_proto_depIdxs = []int32{
 	156,  // 2659: svg.RadialGradientAttribute.xlink_attribute:type_name -> svg.XlinkAttribute
 	986,  // 2660: svg.RadialGradientTransformAttr.transform_list:type_name -> svg.TransformList
 	1476, // 2661: svg.RadialGradientTransformAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1849, // 2662: svg.RadialGradientCxAttr.alt1:type_name -> svg.RadialGradientCxAttr.Alt1
+	1850, // 2662: svg.RadialGradientCxAttr.alt1:type_name -> svg.RadialGradientCxAttr.Alt1
 	1476, // 2663: svg.RadialGradientCxAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1850, // 2664: svg.RadialGradientCyAttr.alt1:type_name -> svg.RadialGradientCyAttr.Alt1
+	1851, // 2664: svg.RadialGradientCyAttr.alt1:type_name -> svg.RadialGradientCyAttr.Alt1
 	1476, // 2665: svg.RadialGradientCyAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
 	337,  // 2666: svg.RadialGradientRattr.non_negative_length_percentage_type:type_name -> svg.NonNegativeLengthPercentageType
 	1476, // 2667: svg.RadialGradientRattr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1851, // 2668: svg.RadialGradientFxAttr.alt1:type_name -> svg.RadialGradientFxAttr.Alt1
+	1852, // 2668: svg.RadialGradientFxAttr.alt1:type_name -> svg.RadialGradientFxAttr.Alt1
 	1476, // 2669: svg.RadialGradientFxAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1852, // 2670: svg.RadialGradientFyAttr.alt1:type_name -> svg.RadialGradientFyAttr.Alt1
+	1853, // 2670: svg.RadialGradientFyAttr.alt1:type_name -> svg.RadialGradientFyAttr.Alt1
 	1476, // 2671: svg.RadialGradientFyAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
 	337,  // 2672: svg.RadialGradientFrAttr.non_negative_length_percentage_type:type_name -> svg.NonNegativeLengthPercentageType
 	1476, // 2673: svg.RadialGradientFrAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
@@ -137314,13 +137361,13 @@ var file_svg_proto_depIdxs = []int32{
 	917,  // 2689: svg.StopAttribute.presentation_attribute:type_name -> svg.PresentationAttribute
 	83,   // 2690: svg.StopAttribute.global_event_attribute:type_name -> svg.GlobalEventAttribute
 	145,  // 2691: svg.StopAttribute.document_element_event_attribute:type_name -> svg.DocumentElementEventAttribute
-	1853, // 2692: svg.StopOffsetAttr.alt1:type_name -> svg.StopOffsetAttr.Alt1
+	1854, // 2692: svg.StopOffsetAttr.alt1:type_name -> svg.StopOffsetAttr.Alt1
 	1476, // 2693: svg.StopOffsetAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
 	232,  // 2694: svg.StopContent.svganimate_element:type_name -> svg.SvganimateElement
 	255,  // 2695: svg.StopContent.svgset_element:type_name -> svg.SvgsetElement
 	388,  // 2696: svg.StopContent.svgscript_element:type_name -> svg.SvgscriptElement
 	396,  // 2697: svg.StopContent.svgstyle_element:type_name -> svg.SvgstyleElement
-	1854, // 2698: svg.StopColorAttr.alt1:type_name -> svg.StopColorAttr.Alt1
+	1855, // 2698: svg.StopColorAttr.alt1:type_name -> svg.StopColorAttr.Alt1
 	1476, // 2699: svg.StopColorAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
 	355,  // 2700: svg.StopOpacityAttr.alpha_value:type_name -> svg.AlphaValue
 	1476, // 2701: svg.StopOpacityAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
@@ -137450,9 +137497,9 @@ var file_svg_proto_depIdxs = []int32{
 	1476, // 2825: svg.RectWidthAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
 	337,  // 2826: svg.RectHeightAttr.non_negative_length_percentage_type:type_name -> svg.NonNegativeLengthPercentageType
 	1476, // 2827: svg.RectHeightAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1855, // 2828: svg.RectRxAttr.alt1:type_name -> svg.RectRxAttr.Alt1
+	1856, // 2828: svg.RectRxAttr.alt1:type_name -> svg.RectRxAttr.Alt1
 	1476, // 2829: svg.RectRxAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1856, // 2830: svg.RectRyAttr.alt1:type_name -> svg.RectRyAttr.Alt1
+	1857, // 2830: svg.RectRyAttr.alt1:type_name -> svg.RectRyAttr.Alt1
 	1476, // 2831: svg.RectRyAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
 	848,  // 2832: svg.SvgcircleElement.circle_attribute:type_name -> svg.CircleAttribute
 	1192, // 2833: svg.SvgcircleElement.greater_than_sign_keyword:type_name -> svg.GreaterThanSignKeyword
@@ -137495,9 +137542,9 @@ var file_svg_proto_depIdxs = []int32{
 	1476, // 2870: svg.EllipseCxAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
 	336,  // 2871: svg.EllipseCyAttr.length_percentage_type:type_name -> svg.LengthPercentageType
 	1476, // 2872: svg.EllipseCyAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1857, // 2873: svg.EllipseRxAttr.alt1:type_name -> svg.EllipseRxAttr.Alt1
+	1858, // 2873: svg.EllipseRxAttr.alt1:type_name -> svg.EllipseRxAttr.Alt1
 	1476, // 2874: svg.EllipseRxAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1858, // 2875: svg.EllipseRyAttr.alt1:type_name -> svg.EllipseRyAttr.Alt1
+	1859, // 2875: svg.EllipseRyAttr.alt1:type_name -> svg.EllipseRyAttr.Alt1
 	1476, // 2876: svg.EllipseRyAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
 	859,  // 2877: svg.SvglineElement.line_attribute:type_name -> svg.LineAttribute
 	1192, // 2878: svg.SvglineElement.greater_than_sign_keyword:type_name -> svg.GreaterThanSignKeyword
@@ -137515,13 +137562,13 @@ var file_svg_proto_depIdxs = []int32{
 	83,   // 2890: svg.LineAttribute.global_event_attribute:type_name -> svg.GlobalEventAttribute
 	145,  // 2891: svg.LineAttribute.document_element_event_attribute:type_name -> svg.DocumentElementEventAttribute
 	149,  // 2892: svg.LineAttribute.graphical_event_attribute:type_name -> svg.GraphicalEventAttribute
-	1859, // 2893: svg.LineX1attr.alt1:type_name -> svg.LineX1attr.Alt1
+	1860, // 2893: svg.LineX1attr.alt1:type_name -> svg.LineX1attr.Alt1
 	1476, // 2894: svg.LineX1attr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1860, // 2895: svg.LineY1attr.alt1:type_name -> svg.LineY1attr.Alt1
+	1861, // 2895: svg.LineY1attr.alt1:type_name -> svg.LineY1attr.Alt1
 	1476, // 2896: svg.LineY1attr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1861, // 2897: svg.LineX2attr.alt1:type_name -> svg.LineX2attr.Alt1
+	1862, // 2897: svg.LineX2attr.alt1:type_name -> svg.LineX2attr.Alt1
 	1476, // 2898: svg.LineX2attr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1862, // 2899: svg.LineY2attr.alt1:type_name -> svg.LineY2attr.Alt1
+	1863, // 2899: svg.LineY2attr.alt1:type_name -> svg.LineY2attr.Alt1
 	1476, // 2900: svg.LineY2attr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
 	865,  // 2901: svg.SvgpolylineElement.polyline_attribute:type_name -> svg.PolylineAttribute
 	1192, // 2902: svg.SvgpolylineElement.greater_than_sign_keyword:type_name -> svg.GreaterThanSignKeyword
@@ -137566,7 +137613,7 @@ var file_svg_proto_depIdxs = []int32{
 	83,   // 2941: svg.PathAttribute.global_event_attribute:type_name -> svg.GlobalEventAttribute
 	145,  // 2942: svg.PathAttribute.document_element_event_attribute:type_name -> svg.DocumentElementEventAttribute
 	149,  // 2943: svg.PathAttribute.graphical_event_attribute:type_name -> svg.GraphicalEventAttribute
-	1863, // 2944: svg.PathDattr.alt1:type_name -> svg.PathDattr.Alt1
+	1864, // 2944: svg.PathDattr.alt1:type_name -> svg.PathDattr.Alt1
 	1476, // 2945: svg.PathDattr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
 	874,  // 2946: svg.Points.points_coordinate_pair:type_name -> svg.PointsCoordinatePair
 	874,  // 2947: svg.Points.points_coordinate_pair_2:type_name -> svg.PointsCoordinatePair
@@ -137595,17 +137642,17 @@ var file_svg_proto_depIdxs = []int32{
 	1476, // 2970: svg.SymbolViewBoxAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
 	361,  // 2971: svg.SymbolPreserveAspectRatioAttr.preserve_aspect_ratio:type_name -> svg.PreserveAspectRatio
 	1476, // 2972: svg.SymbolPreserveAspectRatioAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1864, // 2973: svg.SymbolRefXattr.alt1:type_name -> svg.SymbolRefXattr.Alt1
+	1865, // 2973: svg.SymbolRefXattr.alt1:type_name -> svg.SymbolRefXattr.Alt1
 	1476, // 2974: svg.SymbolRefXattr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1865, // 2975: svg.SymbolRefYattr.alt1:type_name -> svg.SymbolRefYattr.Alt1
+	1866, // 2975: svg.SymbolRefYattr.alt1:type_name -> svg.SymbolRefYattr.Alt1
 	1476, // 2976: svg.SymbolRefYattr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
 	336,  // 2977: svg.SymbolXattr.length_percentage_type:type_name -> svg.LengthPercentageType
 	1476, // 2978: svg.SymbolXattr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
 	336,  // 2979: svg.SymbolYattr.length_percentage_type:type_name -> svg.LengthPercentageType
 	1476, // 2980: svg.SymbolYattr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1866, // 2981: svg.SymbolWidthAttr.alt1:type_name -> svg.SymbolWidthAttr.Alt1
+	1867, // 2981: svg.SymbolWidthAttr.alt1:type_name -> svg.SymbolWidthAttr.Alt1
 	1476, // 2982: svg.SymbolWidthAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1867, // 2983: svg.SymbolHeightAttr.alt1:type_name -> svg.SymbolHeightAttr.Alt1
+	1868, // 2983: svg.SymbolHeightAttr.alt1:type_name -> svg.SymbolHeightAttr.Alt1
 	1476, // 2984: svg.SymbolHeightAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
 	886,  // 2985: svg.SvguseElement.use_attribute:type_name -> svg.UseAttribute
 	1192, // 2986: svg.SvguseElement.greater_than_sign_keyword:type_name -> svg.GreaterThanSignKeyword
@@ -137630,9 +137677,9 @@ var file_svg_proto_depIdxs = []int32{
 	1476, // 3005: svg.UseXattr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
 	336,  // 3006: svg.UseYattr.length_percentage_type:type_name -> svg.LengthPercentageType
 	1476, // 3007: svg.UseYattr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1868, // 3008: svg.UseWidthAttr.alt1:type_name -> svg.UseWidthAttr.Alt1
+	1869, // 3008: svg.UseWidthAttr.alt1:type_name -> svg.UseWidthAttr.Alt1
 	1476, // 3009: svg.UseWidthAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1869, // 3010: svg.UseHeightAttr.alt1:type_name -> svg.UseHeightAttr.Alt1
+	1870, // 3010: svg.UseHeightAttr.alt1:type_name -> svg.UseHeightAttr.Alt1
 	1476, // 3011: svg.UseHeightAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
 	1,    // 3012: svg.UseContent.animation_element:type_name -> svg.AnimationElement
 	2,    // 3013: svg.UseContent.descriptive_element:type_name -> svg.DescriptiveElement
@@ -137701,9 +137748,9 @@ var file_svg_proto_depIdxs = []int32{
 	1222, // 3076: svg.DisplayValue.initial_keyword:type_name -> svg.InitialKeyword
 	1634, // 3077: svg.DisplayValue.unset_keyword:type_name -> svg.UnsetKeyword
 	1491, // 3078: svg.DisplayValue.revert_keyword:type_name -> svg.RevertKeyword
-	1870, // 3079: svg.VisibilityAttr.alt1:type_name -> svg.VisibilityAttr.Alt1
+	1871, // 3079: svg.VisibilityAttr.alt1:type_name -> svg.VisibilityAttr.Alt1
 	1476, // 3080: svg.VisibilityAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1871, // 3081: svg.OverflowAttr.alt1:type_name -> svg.OverflowAttr.Alt1
+	1872, // 3081: svg.OverflowAttr.alt1:type_name -> svg.OverflowAttr.Alt1
 	1476, // 3082: svg.OverflowAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
 	355,  // 3083: svg.OpacityAttr.alpha_value:type_name -> svg.AlphaValue
 	1476, // 3084: svg.OpacityAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
@@ -137756,7 +137803,7 @@ var file_svg_proto_depIdxs = []int32{
 	1222, // 3131: svg.TransformOriginKeyword.initial_keyword:type_name -> svg.InitialKeyword
 	1634, // 3132: svg.TransformOriginKeyword.unset_keyword:type_name -> svg.UnsetKeyword
 	914,  // 3133: svg.TransformOriginPosition.transform_origin_x:type_name -> svg.TransformOriginX
-	1872, // 3134: svg.TransformOriginPosition.seq1:type_name -> svg.TransformOriginPosition.Seq1
+	1873, // 3134: svg.TransformOriginPosition.seq1:type_name -> svg.TransformOriginPosition.Seq1
 	1245, // 3135: svg.TransformOriginX.left_keyword:type_name -> svg.LeftKeyword
 	1059, // 3136: svg.TransformOriginX.center_keyword:type_name -> svg.CenterKeyword
 	1492, // 3137: svg.TransformOriginX.right_keyword:type_name -> svg.RightKeyword
@@ -137857,11 +137904,11 @@ var file_svg_proto_depIdxs = []int32{
 	1476, // 3232: svg.TextDyAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
 	928,  // 3233: svg.TextRotateAttr.text_rotate_list:type_name -> svg.TextRotateList
 	1476, // 3234: svg.TextRotateAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1873, // 3235: svg.TextLengthAttr.alt1:type_name -> svg.TextLengthAttr.Alt1
+	1874, // 3235: svg.TextLengthAttr.alt1:type_name -> svg.TextLengthAttr.Alt1
 	1476, // 3236: svg.TextLengthAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1874, // 3237: svg.TextLengthAdjustAttr.alt1:type_name -> svg.TextLengthAdjustAttr.Alt1
+	1875, // 3237: svg.TextLengthAdjustAttr.alt1:type_name -> svg.TextLengthAdjustAttr.Alt1
 	1476, // 3238: svg.TextLengthAdjustAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1875, // 3239: svg.TextPositionList.alt1:type_name -> svg.TextPositionList.Alt1
+	1876, // 3239: svg.TextPositionList.alt1:type_name -> svg.TextPositionList.Alt1
 	329,  // 3240: svg.TextRotateList.number_type:type_name -> svg.NumberType
 	354,  // 3241: svg.TextContent.character_data_type:type_name -> svg.CharacterDataType
 	1,    // 3242: svg.TextContent.animation_element:type_name -> svg.AnimationElement
@@ -137902,9 +137949,9 @@ var file_svg_proto_depIdxs = []int32{
 	1476, // 3277: svg.TspanDyAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
 	928,  // 3278: svg.TspanRotateAttr.text_rotate_list:type_name -> svg.TextRotateList
 	1476, // 3279: svg.TspanRotateAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1876, // 3280: svg.TspanLengthAttr.alt1:type_name -> svg.TspanLengthAttr.Alt1
+	1877, // 3280: svg.TspanLengthAttr.alt1:type_name -> svg.TspanLengthAttr.Alt1
 	1476, // 3281: svg.TspanLengthAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1877, // 3282: svg.TspanLengthAdjustAttr.alt1:type_name -> svg.TspanLengthAdjustAttr.Alt1
+	1878, // 3282: svg.TspanLengthAdjustAttr.alt1:type_name -> svg.TspanLengthAdjustAttr.Alt1
 	1476, // 3283: svg.TspanLengthAdjustAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
 	354,  // 3284: svg.TspanContent.character_data_type:type_name -> svg.CharacterDataType
 	2,    // 3285: svg.TspanContent.descriptive_element:type_name -> svg.DescriptiveElement
@@ -137939,17 +137986,17 @@ var file_svg_proto_depIdxs = []int32{
 	1476, // 3314: svg.TextPathPathAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
 	343,  // 3315: svg.TextPathHrefAttr.iri_type:type_name -> svg.IriType
 	1476, // 3316: svg.TextPathHrefAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1878, // 3317: svg.TextPathStartOffsetAttr.alt1:type_name -> svg.TextPathStartOffsetAttr.Alt1
+	1879, // 3317: svg.TextPathStartOffsetAttr.alt1:type_name -> svg.TextPathStartOffsetAttr.Alt1
 	1476, // 3318: svg.TextPathStartOffsetAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1879, // 3319: svg.TextPathMethodAttr.alt1:type_name -> svg.TextPathMethodAttr.Alt1
+	1880, // 3319: svg.TextPathMethodAttr.alt1:type_name -> svg.TextPathMethodAttr.Alt1
 	1476, // 3320: svg.TextPathMethodAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1880, // 3321: svg.TextPathSpacingAttr.alt1:type_name -> svg.TextPathSpacingAttr.Alt1
+	1881, // 3321: svg.TextPathSpacingAttr.alt1:type_name -> svg.TextPathSpacingAttr.Alt1
 	1476, // 3322: svg.TextPathSpacingAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1881, // 3323: svg.TextPathSideAttr.alt1:type_name -> svg.TextPathSideAttr.Alt1
+	1882, // 3323: svg.TextPathSideAttr.alt1:type_name -> svg.TextPathSideAttr.Alt1
 	1476, // 3324: svg.TextPathSideAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1882, // 3325: svg.TextPathLengthAttr.alt1:type_name -> svg.TextPathLengthAttr.Alt1
+	1883, // 3325: svg.TextPathLengthAttr.alt1:type_name -> svg.TextPathLengthAttr.Alt1
 	1476, // 3326: svg.TextPathLengthAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1883, // 3327: svg.TextPathLengthAdjustAttr.alt1:type_name -> svg.TextPathLengthAdjustAttr.Alt1
+	1884, // 3327: svg.TextPathLengthAdjustAttr.alt1:type_name -> svg.TextPathLengthAdjustAttr.Alt1
 	1476, // 3328: svg.TextPathLengthAdjustAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
 	354,  // 3329: svg.TextPathContent.character_data_type:type_name -> svg.CharacterDataType
 	2,    // 3330: svg.TextPathContent.descriptive_element:type_name -> svg.DescriptiveElement
@@ -137963,33 +138010,33 @@ var file_svg_proto_depIdxs = []int32{
 	255,  // 3338: svg.TextPathContent.svgset_element:type_name -> svg.SvgsetElement
 	396,  // 3339: svg.TextPathContent.svgstyle_element:type_name -> svg.SvgstyleElement
 	930,  // 3340: svg.TextPathContent.svgtspan_element:type_name -> svg.SvgtspanElement
-	1884, // 3341: svg.TextAnchorAttr.alt1:type_name -> svg.TextAnchorAttr.Alt1
+	1885, // 3341: svg.TextAnchorAttr.alt1:type_name -> svg.TextAnchorAttr.Alt1
 	1476, // 3342: svg.TextAnchorAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1885, // 3343: svg.DominantBaselineAttr.alt1:type_name -> svg.DominantBaselineAttr.Alt1
+	1886, // 3343: svg.DominantBaselineAttr.alt1:type_name -> svg.DominantBaselineAttr.Alt1
 	1476, // 3344: svg.DominantBaselineAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1886, // 3345: svg.AlignmentBaselineAttr.alt1:type_name -> svg.AlignmentBaselineAttr.Alt1
+	1887, // 3345: svg.AlignmentBaselineAttr.alt1:type_name -> svg.AlignmentBaselineAttr.Alt1
 	1476, // 3346: svg.AlignmentBaselineAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1887, // 3347: svg.BaselineShiftAttr.alt1:type_name -> svg.BaselineShiftAttr.Alt1
+	1888, // 3347: svg.BaselineShiftAttr.alt1:type_name -> svg.BaselineShiftAttr.Alt1
 	1476, // 3348: svg.BaselineShiftAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1888, // 3349: svg.DirectionAttr.alt1:type_name -> svg.DirectionAttr.Alt1
+	1889, // 3349: svg.DirectionAttr.alt1:type_name -> svg.DirectionAttr.Alt1
 	1476, // 3350: svg.DirectionAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1889, // 3351: svg.UnicodeBidiAttr.alt1:type_name -> svg.UnicodeBidiAttr.Alt1
+	1890, // 3351: svg.UnicodeBidiAttr.alt1:type_name -> svg.UnicodeBidiAttr.Alt1
 	1476, // 3352: svg.UnicodeBidiAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1890, // 3353: svg.WritingModeAttr.alt1:type_name -> svg.WritingModeAttr.Alt1
+	1891, // 3353: svg.WritingModeAttr.alt1:type_name -> svg.WritingModeAttr.Alt1
 	1476, // 3354: svg.WritingModeAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1891, // 3355: svg.LetterSpacingAttr.alt1:type_name -> svg.LetterSpacingAttr.Alt1
+	1892, // 3355: svg.LetterSpacingAttr.alt1:type_name -> svg.LetterSpacingAttr.Alt1
 	1476, // 3356: svg.LetterSpacingAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1892, // 3357: svg.WordSpacingAttr.alt1:type_name -> svg.WordSpacingAttr.Alt1
+	1893, // 3357: svg.WordSpacingAttr.alt1:type_name -> svg.WordSpacingAttr.Alt1
 	1476, // 3358: svg.WordSpacingAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
 	961,  // 3359: svg.TextDecorationAttr.text_decoration_value:type_name -> svg.TextDecorationValue
 	1476, // 3360: svg.TextDecorationAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
 	1410, // 3361: svg.TextDecorationValue.none_keyword:type_name -> svg.NoneKeyword
 	962,  // 3362: svg.TextDecorationValue.text_decoration_line:type_name -> svg.TextDecorationLine
 	963,  // 3363: svg.TextDecorationValue.text_decoration_style:type_name -> svg.TextDecorationStyle
-	1893, // 3364: svg.TextDecorationValue.seq1:type_name -> svg.TextDecorationValue.Seq1
-	1894, // 3365: svg.TextDecorationValue.seq2:type_name -> svg.TextDecorationValue.Seq2
-	1895, // 3366: svg.TextDecorationValue.seq3:type_name -> svg.TextDecorationValue.Seq3
-	1896, // 3367: svg.TextDecorationValue.seq4:type_name -> svg.TextDecorationValue.Seq4
+	1894, // 3364: svg.TextDecorationValue.seq1:type_name -> svg.TextDecorationValue.Seq1
+	1895, // 3365: svg.TextDecorationValue.seq2:type_name -> svg.TextDecorationValue.Seq2
+	1896, // 3366: svg.TextDecorationValue.seq3:type_name -> svg.TextDecorationValue.Seq3
+	1897, // 3367: svg.TextDecorationValue.seq4:type_name -> svg.TextDecorationValue.Seq4
 	1631, // 3368: svg.TextDecorationLine.underline_keyword:type_name -> svg.UnderlineKeyword
 	1440, // 3369: svg.TextDecorationLine.overline_keyword:type_name -> svg.OverlineKeyword
 	1330, // 3370: svg.TextDecorationLine.line_hyphen_minus_through_keyword:type_name -> svg.LineHyphenMinusThroughKeyword
@@ -137999,11 +138046,11 @@ var file_svg_proto_depIdxs = []int32{
 	1141, // 3374: svg.TextDecorationStyle.dotted_keyword:type_name -> svg.DottedKeyword
 	1119, // 3375: svg.TextDecorationStyle.dashed_keyword:type_name -> svg.DashedKeyword
 	1650, // 3376: svg.TextDecorationStyle.wavy_keyword:type_name -> svg.WavyKeyword
-	1897, // 3377: svg.TextOverflowAttr.alt1:type_name -> svg.TextOverflowAttr.Alt1
+	1898, // 3377: svg.TextOverflowAttr.alt1:type_name -> svg.TextOverflowAttr.Alt1
 	1476, // 3378: svg.TextOverflowAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1898, // 3379: svg.TextRenderingAttr.alt1:type_name -> svg.TextRenderingAttr.Alt1
+	1899, // 3379: svg.TextRenderingAttr.alt1:type_name -> svg.TextRenderingAttr.Alt1
 	1476, // 3380: svg.TextRenderingAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1899, // 3381: svg.WhiteSpaceAttr.alt1:type_name -> svg.WhiteSpaceAttr.Alt1
+	1900, // 3381: svg.WhiteSpaceAttr.alt1:type_name -> svg.WhiteSpaceAttr.Alt1
 	1476, // 3382: svg.WhiteSpaceAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
 	345,  // 3383: svg.FontFamilyAttr.string_type:type_name -> svg.StringType
 	1476, // 3384: svg.FontFamilyAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
@@ -138022,11 +138069,11 @@ var file_svg_proto_depIdxs = []int32{
 	1670, // 3397: svg.FontAbsoluteSize.xxx_hyphen_minus_large_keyword:type_name -> svg.XxxHyphenMinusLargeKeyword
 	1241, // 3398: svg.FontRelativeSize.larger_keyword:type_name -> svg.LargerKeyword
 	1549, // 3399: svg.FontRelativeSize.smaller_keyword:type_name -> svg.SmallerKeyword
-	1900, // 3400: svg.FontSizeAdjustAttr.alt1:type_name -> svg.FontSizeAdjustAttr.Alt1
+	1901, // 3400: svg.FontSizeAdjustAttr.alt1:type_name -> svg.FontSizeAdjustAttr.Alt1
 	1476, // 3401: svg.FontSizeAdjustAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1901, // 3402: svg.FontStyleAttr.alt1:type_name -> svg.FontStyleAttr.Alt1
+	1902, // 3402: svg.FontStyleAttr.alt1:type_name -> svg.FontStyleAttr.Alt1
 	1476, // 3403: svg.FontStyleAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1902, // 3404: svg.FontStyleOblique.space:type_name -> svg.FontStyleOblique.Space
+	1903, // 3404: svg.FontStyleOblique.space:type_name -> svg.FontStyleOblique.Space
 	976,  // 3405: svg.FontVariantAttr.font_variant_value:type_name -> svg.FontVariantValue
 	1476, // 3406: svg.FontVariantAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
 	1412, // 3407: svg.FontVariantValue.normal_keyword:type_name -> svg.NormalKeyword
@@ -138074,13 +138121,13 @@ var file_svg_proto_depIdxs = []int32{
 	1586, // 3449: svg.FontVariantAlternates.swash_keyword:type_name -> svg.SwashKeyword
 	1435, // 3450: svg.FontVariantAlternates.ornaments_keyword:type_name -> svg.OrnamentsKeyword
 	1009, // 3451: svg.FontVariantAlternates.annotation_keyword:type_name -> svg.AnnotationKeyword
-	1903, // 3452: svg.FontWeightAttr.alt1:type_name -> svg.FontWeightAttr.Alt1
+	1904, // 3452: svg.FontWeightAttr.alt1:type_name -> svg.FontWeightAttr.Alt1
 	1476, // 3453: svg.FontWeightAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1904, // 3454: svg.FontStretchAttr.alt1:type_name -> svg.FontStretchAttr.Alt1
+	1905, // 3454: svg.FontStretchAttr.alt1:type_name -> svg.FontStretchAttr.Alt1
 	1476, // 3455: svg.FontStretchAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1905, // 3456: svg.InlineSizeAttr.alt1:type_name -> svg.InlineSizeAttr.Alt1
+	1906, // 3456: svg.InlineSizeAttr.alt1:type_name -> svg.InlineSizeAttr.Alt1
 	1476, // 3457: svg.InlineSizeAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1906, // 3458: svg.GlyphOrientationVerticalAttr.alt1:type_name -> svg.GlyphOrientationVerticalAttr.Alt1
+	1907, // 3458: svg.GlyphOrientationVerticalAttr.alt1:type_name -> svg.GlyphOrientationVerticalAttr.Alt1
 	1476, // 3459: svg.GlyphOrientationVerticalAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
 	987,  // 3460: svg.TransformList.transform:type_name -> svg.Transform
 	987,  // 3461: svg.TransformList.transform_2:type_name -> svg.Transform
@@ -138103,13 +138150,13 @@ var file_svg_proto_depIdxs = []int32{
 	329,  // 3478: svg.Matrix.number_type_6:type_name -> svg.NumberType
 	1493, // 3479: svg.Matrix.right_parenthesis_keyword:type_name -> svg.RightParenthesisKeyword
 	329,  // 3480: svg.Translate.number_type:type_name -> svg.NumberType
-	1907, // 3481: svg.Translate.comma:type_name -> svg.Translate.Comma
+	1908, // 3481: svg.Translate.comma:type_name -> svg.Translate.Comma
 	1493, // 3482: svg.Translate.right_parenthesis_keyword:type_name -> svg.RightParenthesisKeyword
 	329,  // 3483: svg.Scale.number_type:type_name -> svg.NumberType
-	1908, // 3484: svg.Scale.comma:type_name -> svg.Scale.Comma
+	1909, // 3484: svg.Scale.comma:type_name -> svg.Scale.Comma
 	1493, // 3485: svg.Scale.right_parenthesis_keyword:type_name -> svg.RightParenthesisKeyword
 	329,  // 3486: svg.Rotate.number_type:type_name -> svg.NumberType
-	1909, // 3487: svg.Rotate.comma:type_name -> svg.Rotate.Comma
+	1910, // 3487: svg.Rotate.comma:type_name -> svg.Rotate.Comma
 	1493, // 3488: svg.Rotate.right_parenthesis_keyword:type_name -> svg.RightParenthesisKeyword
 	329,  // 3489: svg.SkewX.number_type:type_name -> svg.NumberType
 	1493, // 3490: svg.SkewX.right_parenthesis_keyword:type_name -> svg.RightParenthesisKeyword
@@ -138312,466 +138359,467 @@ var file_svg_proto_depIdxs = []int32{
 	1410, // 3687: svg.AnimateTransformAccumulateAttr.Alt1.none_keyword:type_name -> svg.NoneKeyword
 	1582, // 3688: svg.AnimateTransformAccumulateAttr.Alt1.sum_keyword:type_name -> svg.SumKeyword
 	330,  // 3689: svg.NumberOptionalNumberType.Space.non_negative_number_type:type_name -> svg.NonNegativeNumberType
-	1010, // 3690: svg.ImageCrossoriginAttr.Alt1.anonymous_keyword:type_name -> svg.AnonymousKeyword
-	1635, // 3691: svg.ImageCrossoriginAttr.Alt1.use_hyphen_minus_credentials_keyword:type_name -> svg.UseHyphenMinusCredentialsKeyword
-	1024, // 3692: svg.ImageWidthAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
-	337,  // 3693: svg.ImageWidthAttr.Alt1.non_negative_length_percentage_type:type_name -> svg.NonNegativeLengthPercentageType
-	1024, // 3694: svg.ImageHeightAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
-	337,  // 3695: svg.ImageHeightAttr.Alt1.non_negative_length_percentage_type:type_name -> svg.NonNegativeLengthPercentageType
-	1588, // 3696: svg.ImageDecodingAttr.Alt1.sync_keyword:type_name -> svg.SyncKeyword
-	1020, // 3697: svg.ImageDecodingAttr.Alt1.async_keyword:type_name -> svg.AsyncKeyword
-	1024, // 3698: svg.ImageDecodingAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
-	1024, // 3699: svg.ForeignObjectWidthAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
-	337,  // 3700: svg.ForeignObjectWidthAttr.Alt1.non_negative_length_percentage_type:type_name -> svg.NonNegativeLengthPercentageType
-	1024, // 3701: svg.ForeignObjectHeightAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
-	337,  // 3702: svg.ForeignObjectHeightAttr.Alt1.non_negative_length_percentage_type:type_name -> svg.NonNegativeLengthPercentageType
-	1136, // 3703: svg.ViewZoomAndPanAttr.Alt1.disable_keyword:type_name -> svg.DisableKeyword
-	1350, // 3704: svg.ViewZoomAndPanAttr.Alt1.magnify_keyword:type_name -> svg.MagnifyKeyword
-	1010, // 3705: svg.ScriptCrossoriginAttr.Alt1.anonymous_keyword:type_name -> svg.AnonymousKeyword
-	1635, // 3706: svg.ScriptCrossoriginAttr.Alt1.use_hyphen_minus_credentials_keyword:type_name -> svg.UseHyphenMinusCredentialsKeyword
-	1049, // 3707: svg.PointerEventsAttr.Alt1.bounding_hyphen_minus_box_keyword:type_name -> svg.BoundingHyphenMinusBoxKeyword
-	1646, // 3708: svg.PointerEventsAttr.Alt1.visible_painted_keyword:type_name -> svg.VisiblePaintedKeyword
-	1644, // 3709: svg.PointerEventsAttr.Alt1.visible_fill_keyword:type_name -> svg.VisibleFillKeyword
-	1647, // 3710: svg.PointerEventsAttr.Alt1.visible_stroke_keyword:type_name -> svg.VisibleStrokeKeyword
-	1645, // 3711: svg.PointerEventsAttr.Alt1.visible_keyword:type_name -> svg.VisibleKeyword
-	1445, // 3712: svg.PointerEventsAttr.Alt1.painted_keyword:type_name -> svg.PaintedKeyword
-	1164, // 3713: svg.PointerEventsAttr.Alt1.fill_keyword:type_name -> svg.FillKeyword
-	1573, // 3714: svg.PointerEventsAttr.Alt1.stroke_keyword:type_name -> svg.StrokeKeyword
-	1005, // 3715: svg.PointerEventsAttr.Alt1.all_keyword:type_name -> svg.AllKeyword
-	1410, // 3716: svg.PointerEventsAttr.Alt1.none_keyword:type_name -> svg.NoneKeyword
-	1024, // 3717: svg.PointerEventsAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
-	1412, // 3718: svg.FeBlendModeAttr.Alt1.normal_keyword:type_name -> svg.NormalKeyword
-	1389, // 3719: svg.FeBlendModeAttr.Alt1.multiply_keyword:type_name -> svg.MultiplyKeyword
-	1521, // 3720: svg.FeBlendModeAttr.Alt1.screen_keyword:type_name -> svg.ScreenKeyword
-	1101, // 3721: svg.FeBlendModeAttr.Alt1.darken_keyword:type_name -> svg.DarkenKeyword
-	1314, // 3722: svg.FeBlendModeAttr.Alt1.lighten_keyword:type_name -> svg.LightenKeyword
-	1439, // 3723: svg.FeBlendModeAttr.Alt1.overlay_keyword:type_name -> svg.OverlayKeyword
-	1072, // 3724: svg.FeBlendModeAttr.Alt1.color_hyphen_minus_dodge_keyword:type_name -> svg.ColorHyphenMinusDodgeKeyword
-	1071, // 3725: svg.FeBlendModeAttr.Alt1.color_hyphen_minus_burn_keyword:type_name -> svg.ColorHyphenMinusBurnKeyword
-	1201, // 3726: svg.FeBlendModeAttr.Alt1.hard_hyphen_minus_light_keyword:type_name -> svg.HardHyphenMinusLightKeyword
-	1551, // 3727: svg.FeBlendModeAttr.Alt1.soft_hyphen_minus_light_keyword:type_name -> svg.SoftHyphenMinusLightKeyword
-	1129, // 3728: svg.FeBlendModeAttr.Alt1.difference_keyword:type_name -> svg.DifferenceKeyword
-	1154, // 3729: svg.FeBlendModeAttr.Alt1.exclusion_keyword:type_name -> svg.ExclusionKeyword
-	1211, // 3730: svg.FeBlendModeAttr.Alt1.hue_keyword:type_name -> svg.HueKeyword
-	1519, // 3731: svg.FeBlendModeAttr.Alt1.saturation_keyword:type_name -> svg.SaturationKeyword
-	1073, // 3732: svg.FeBlendModeAttr.Alt1.color_keyword:type_name -> svg.ColorKeyword
-	1347, // 3733: svg.FeBlendModeAttr.Alt1.luminosity_keyword:type_name -> svg.LuminosityKeyword
-	1359, // 3734: svg.FeColorMatrixTypeAttr.Alt1.matrix_keyword:type_name -> svg.MatrixKeyword
-	1518, // 3735: svg.FeColorMatrixTypeAttr.Alt1.saturate_keyword:type_name -> svg.SaturateKeyword
-	1212, // 3736: svg.FeColorMatrixTypeAttr.Alt1.hue_rotate_keyword:type_name -> svg.HueRotateKeyword
-	1346, // 3737: svg.FeColorMatrixTypeAttr.Alt1.luminance_to_alpha_keyword:type_name -> svg.LuminanceToAlphaKeyword
-	1438, // 3738: svg.FeCompositeOperatorAttr.Alt1.over_keyword:type_name -> svg.OverKeyword
-	1217, // 3739: svg.FeCompositeOperatorAttr.Alt1.in_keyword:type_name -> svg.InKeyword
-	1437, // 3740: svg.FeCompositeOperatorAttr.Alt1.out_keyword:type_name -> svg.OutKeyword
-	1021, // 3741: svg.FeCompositeOperatorAttr.Alt1.atop_keyword:type_name -> svg.AtopKeyword
-	1667, // 3742: svg.FeCompositeOperatorAttr.Alt1.xor_keyword:type_name -> svg.XorKeyword
-	1315, // 3743: svg.FeCompositeOperatorAttr.Alt1.lighter_keyword:type_name -> svg.LighterKeyword
-	1016, // 3744: svg.FeCompositeOperatorAttr.Alt1.arithmetic_keyword:type_name -> svg.ArithmeticKeyword
-	1143, // 3745: svg.FeConvolveMatrixEdgeModeAttr.Alt1.duplicate_keyword:type_name -> svg.DuplicateKeyword
-	1655, // 3746: svg.FeConvolveMatrixEdgeModeAttr.Alt1.wrap_keyword:type_name -> svg.WrapKeyword
-	1410, // 3747: svg.FeConvolveMatrixEdgeModeAttr.Alt1.none_keyword:type_name -> svg.NoneKeyword
-	1477, // 3748: svg.FeDisplacementMapXchannelSelectorAttr.Alt1.r_keyword:type_name -> svg.RKeyword
-	1180, // 3749: svg.FeDisplacementMapXchannelSelectorAttr.Alt1.g_keyword:type_name -> svg.GKeyword
-	1026, // 3750: svg.FeDisplacementMapXchannelSelectorAttr.Alt1.b_keyword:type_name -> svg.BKeyword
-	994,  // 3751: svg.FeDisplacementMapXchannelSelectorAttr.Alt1.a_keyword:type_name -> svg.AKeyword
-	1477, // 3752: svg.FeDisplacementMapYchannelSelectorAttr.Alt1.r_keyword:type_name -> svg.RKeyword
-	1180, // 3753: svg.FeDisplacementMapYchannelSelectorAttr.Alt1.g_keyword:type_name -> svg.GKeyword
-	1026, // 3754: svg.FeDisplacementMapYchannelSelectorAttr.Alt1.b_keyword:type_name -> svg.BKeyword
-	994,  // 3755: svg.FeDisplacementMapYchannelSelectorAttr.Alt1.a_keyword:type_name -> svg.AKeyword
-	1143, // 3756: svg.FeGaussianBlurEdgeModeAttr.Alt1.duplicate_keyword:type_name -> svg.DuplicateKeyword
-	1655, // 3757: svg.FeGaussianBlurEdgeModeAttr.Alt1.wrap_keyword:type_name -> svg.WrapKeyword
-	1410, // 3758: svg.FeGaussianBlurEdgeModeAttr.Alt1.none_keyword:type_name -> svg.NoneKeyword
-	1010, // 3759: svg.FeImageCrossoriginAttr.Alt1.anonymous_keyword:type_name -> svg.AnonymousKeyword
-	1635, // 3760: svg.FeImageCrossoriginAttr.Alt1.use_hyphen_minus_credentials_keyword:type_name -> svg.UseHyphenMinusCredentialsKeyword
-	1149, // 3761: svg.FeMorphologyOperatorAttr.Alt1.erode_keyword:type_name -> svg.ErodeKeyword
-	1132, // 3762: svg.FeMorphologyOperatorAttr.Alt1.dilate_keyword:type_name -> svg.DilateKeyword
-	1568, // 3763: svg.FeTurbulenceStitchTilesAttr.Alt1.stitch_keyword:type_name -> svg.StitchKeyword
-	1406, // 3764: svg.FeTurbulenceStitchTilesAttr.Alt1.no_stitch_keyword:type_name -> svg.NoStitchKeyword
-	1174, // 3765: svg.FeTurbulenceTypeAttr.Alt1.fractal_noise_keyword:type_name -> svg.FractalNoiseKeyword
-	1626, // 3766: svg.FeTurbulenceTypeAttr.Alt1.turbulence_keyword:type_name -> svg.TurbulenceKeyword
-	1214, // 3767: svg.FeFuncRtypeAttr.Alt1.identity_keyword:type_name -> svg.IdentityKeyword
-	1599, // 3768: svg.FeFuncRtypeAttr.Alt1.table_keyword:type_name -> svg.TableKeyword
-	1137, // 3769: svg.FeFuncRtypeAttr.Alt1.discrete_keyword:type_name -> svg.DiscreteKeyword
-	1331, // 3770: svg.FeFuncRtypeAttr.Alt1.linear_keyword:type_name -> svg.LinearKeyword
-	1182, // 3771: svg.FeFuncRtypeAttr.Alt1.gamma_keyword:type_name -> svg.GammaKeyword
-	1214, // 3772: svg.FeFuncGtypeAttr.Alt1.identity_keyword:type_name -> svg.IdentityKeyword
-	1599, // 3773: svg.FeFuncGtypeAttr.Alt1.table_keyword:type_name -> svg.TableKeyword
-	1137, // 3774: svg.FeFuncGtypeAttr.Alt1.discrete_keyword:type_name -> svg.DiscreteKeyword
-	1331, // 3775: svg.FeFuncGtypeAttr.Alt1.linear_keyword:type_name -> svg.LinearKeyword
-	1182, // 3776: svg.FeFuncGtypeAttr.Alt1.gamma_keyword:type_name -> svg.GammaKeyword
-	1214, // 3777: svg.FeFuncBtypeAttr.Alt1.identity_keyword:type_name -> svg.IdentityKeyword
-	1599, // 3778: svg.FeFuncBtypeAttr.Alt1.table_keyword:type_name -> svg.TableKeyword
-	1137, // 3779: svg.FeFuncBtypeAttr.Alt1.discrete_keyword:type_name -> svg.DiscreteKeyword
-	1331, // 3780: svg.FeFuncBtypeAttr.Alt1.linear_keyword:type_name -> svg.LinearKeyword
-	1182, // 3781: svg.FeFuncBtypeAttr.Alt1.gamma_keyword:type_name -> svg.GammaKeyword
-	1214, // 3782: svg.FeFuncAtypeAttr.Alt1.identity_keyword:type_name -> svg.IdentityKeyword
-	1599, // 3783: svg.FeFuncAtypeAttr.Alt1.table_keyword:type_name -> svg.TableKeyword
-	1137, // 3784: svg.FeFuncAtypeAttr.Alt1.discrete_keyword:type_name -> svg.DiscreteKeyword
-	1331, // 3785: svg.FeFuncAtypeAttr.Alt1.linear_keyword:type_name -> svg.LinearKeyword
-	1182, // 3786: svg.FeFuncAtypeAttr.Alt1.gamma_keyword:type_name -> svg.GammaKeyword
-	1410, // 3787: svg.FilterAttr.Alt1.none_keyword:type_name -> svg.NoneKeyword
-	660,  // 3788: svg.FilterAttr.Alt1.filter_value_list:type_name -> svg.FilterValueList
-	339,  // 3789: svg.HueRotateFunction.Alt1.angle_type:type_name -> svg.AngleType
-	329,  // 3790: svg.HueRotateFunction.Alt1.number_type:type_name -> svg.NumberType
-	1024, // 3791: svg.ColorInterpolationFiltersAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
-	1513, // 3792: svg.ColorInterpolationFiltersAttr.Alt1.s_rgb_keyword:type_name -> svg.SRgbKeyword
-	1332, // 3793: svg.ColorInterpolationFiltersAttr.Alt1.linear_rgb_keyword:type_name -> svg.LinearRgbKeyword
-	1097, // 3794: svg.FloodColorAttr.Alt1.current_color_keyword:type_name -> svg.CurrentColorKeyword
-	1910, // 3795: svg.FloodColorAttr.Alt1.color_type:type_name -> google.protobuf.Any
-	1097, // 3796: svg.LightingColorAttr.Alt1.current_color_keyword:type_name -> svg.CurrentColorKeyword
-	1910, // 3797: svg.LightingColorAttr.Alt1.color_type:type_name -> google.protobuf.Any
-	1024, // 3798: svg.ImageRenderingAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
-	1427, // 3799: svg.ImageRenderingAttr.Alt1.optimize_speed_keyword:type_name -> svg.OptimizeSpeedKeyword
-	1426, // 3800: svg.ImageRenderingAttr.Alt1.optimize_quality_keyword:type_name -> svg.OptimizeQualityKeyword
-	1095, // 3801: svg.ImageRenderingAttr.Alt1.crisp_hyphen_minus_edges_keyword:type_name -> svg.CrispHyphenMinusEdgesKeyword
-	1457, // 3802: svg.ImageRenderingAttr.Alt1.pixelated_keyword:type_name -> svg.PixelatedKeyword
-	1345, // 3803: svg.MaskTypeAttr.Alt1.luminance_keyword:type_name -> svg.LuminanceKeyword
-	1006, // 3804: svg.MaskTypeAttr.Alt1.alpha_keyword:type_name -> svg.AlphaKeyword
-	1410, // 3805: svg.ClipPathAttr.Alt1.none_keyword:type_name -> svg.NoneKeyword
-	344,  // 3806: svg.ClipPathAttr.Alt1.url_type:type_name -> svg.UrlType
-	697,  // 3807: svg.ClipPathAttr.Alt1.basic_shape:type_name -> svg.BasicShape
-	696,  // 3808: svg.ClipPathAttr.Alt1.geometry_box:type_name -> svg.GeometryBox
-	695,  // 3809: svg.ClipPathAttr.Alt1.clip_path_combo:type_name -> svg.ClipPathCombo
-	697,  // 3810: svg.ClipPathCombo.Seq1.basic_shape:type_name -> svg.BasicShape
-	696,  // 3811: svg.ClipPathCombo.Seq1.geometry_box:type_name -> svg.GeometryBox
-	696,  // 3812: svg.ClipPathCombo.Seq2.geometry_box:type_name -> svg.GeometryBox
-	697,  // 3813: svg.ClipPathCombo.Seq2.basic_shape:type_name -> svg.BasicShape
-	336,  // 3814: svg.InsetFn.Space.length_percentage_type:type_name -> svg.LengthPercentageType
-	1788, // 3815: svg.InsetFn.Space.space:type_name -> svg.InsetFn.Space.Space
-	699,  // 3816: svg.InsetFn.SpaceRoundSpace.border_radius:type_name -> svg.BorderRadius
-	336,  // 3817: svg.InsetFn.Space.Space.length_percentage_type:type_name -> svg.LengthPercentageType
-	1789, // 3818: svg.InsetFn.Space.Space.space:type_name -> svg.InsetFn.Space.Space.Space
-	336,  // 3819: svg.InsetFn.Space.Space.Space.length_percentage_type:type_name -> svg.LengthPercentageType
-	336,  // 3820: svg.BorderRadius.Space.length_percentage_type:type_name -> svg.LengthPercentageType
-	1792, // 3821: svg.BorderRadius.Space.space:type_name -> svg.BorderRadius.Space.Space
-	336,  // 3822: svg.BorderRadius.Solidus.length_percentage_type:type_name -> svg.LengthPercentageType
-	1794, // 3823: svg.BorderRadius.Solidus.space:type_name -> svg.BorderRadius.Solidus.Space
-	336,  // 3824: svg.BorderRadius.Space.Space.length_percentage_type:type_name -> svg.LengthPercentageType
-	1793, // 3825: svg.BorderRadius.Space.Space.space:type_name -> svg.BorderRadius.Space.Space.Space
-	336,  // 3826: svg.BorderRadius.Space.Space.Space.length_percentage_type:type_name -> svg.LengthPercentageType
-	336,  // 3827: svg.BorderRadius.Solidus.Space.length_percentage_type:type_name -> svg.LengthPercentageType
-	1795, // 3828: svg.BorderRadius.Solidus.Space.space:type_name -> svg.BorderRadius.Solidus.Space.Space
-	336,  // 3829: svg.BorderRadius.Solidus.Space.Space.length_percentage_type:type_name -> svg.LengthPercentageType
-	1796, // 3830: svg.BorderRadius.Solidus.Space.Space.space:type_name -> svg.BorderRadius.Solidus.Space.Space.Space
-	336,  // 3831: svg.BorderRadius.Solidus.Space.Space.Space.length_percentage_type:type_name -> svg.LengthPercentageType
-	702,  // 3832: svg.CircleFn.Seq1.radial_size:type_name -> svg.RadialSize
-	1798, // 3833: svg.CircleFn.Seq1.space_at_space:type_name -> svg.CircleFn.Seq1.SpaceAtSpace
-	703,  // 3834: svg.CircleFn.Seq1.SpaceAtSpace.css_position:type_name -> svg.CssPosition
-	702,  // 3835: svg.EllipseFn.Seq1.radial_size:type_name -> svg.RadialSize
-	1555, // 3836: svg.EllipseFn.Seq1.space_keyword:type_name -> svg.SpaceKeyword
-	702,  // 3837: svg.EllipseFn.Seq1.radial_size_2:type_name -> svg.RadialSize
-	1800, // 3838: svg.EllipseFn.Seq1.space_at_space:type_name -> svg.EllipseFn.Seq1.SpaceAtSpace
-	703,  // 3839: svg.EllipseFn.Seq1.SpaceAtSpace.css_position:type_name -> svg.CssPosition
-	705,  // 3840: svg.CssPosition.Space.css_position_v:type_name -> svg.CssPositionV
-	711,  // 3841: svg.PolygonFn.Seq1.fill_rule:type_name -> svg.FillRule
-	1076, // 3842: svg.PolygonFn.Seq1.comma_keyword:type_name -> svg.CommaKeyword
-	333,  // 3843: svg.PolygonFn.SpaceRoundSpace.length_type:type_name -> svg.LengthType
-	1076, // 3844: svg.PolygonFn.SpaceRoundSpace.comma_keyword:type_name -> svg.CommaKeyword
-	711,  // 3845: svg.PathFn.Seq1.fill_rule:type_name -> svg.FillRule
-	1076, // 3846: svg.PathFn.Seq1.comma_keyword:type_name -> svg.CommaKeyword
-	711,  // 3847: svg.ShapeFn.Seq1.fill_rule:type_name -> svg.FillRule
-	1555, // 3848: svg.ShapeFn.Seq1.space_keyword:type_name -> svg.SpaceKeyword
-	1411, // 3849: svg.ClipRuleAttr.Alt1.nonzero_keyword:type_name -> svg.NonzeroKeyword
-	1150, // 3850: svg.ClipRuleAttr.Alt1.evenodd_keyword:type_name -> svg.EvenoddKeyword
-	1024, // 3851: svg.ClipAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
-	714,  // 3852: svg.ClipAttr.Alt1.clip_rect:type_name -> svg.ClipRect
-	1410, // 3853: svg.MaskAttr.Alt1.none_keyword:type_name -> svg.NoneKeyword
-	344,  // 3854: svg.MaskAttr.Alt1.url_type:type_name -> svg.UrlType
-	717,  // 3855: svg.MaskAttr.Alt1.mask_layer_list:type_name -> svg.MaskLayerList
-	721,  // 3856: svg.MaskLayerPosition.Solidus.mask_bg_size:type_name -> svg.MaskBgSize
-	336,  // 3857: svg.MaskBgSize.Seq1.length_percentage_type:type_name -> svg.LengthPercentageType
-	1555, // 3858: svg.MaskBgSize.Seq1.space_keyword:type_name -> svg.SpaceKeyword
-	336,  // 3859: svg.MaskBgSize.Seq1.length_percentage_type_2:type_name -> svg.LengthPercentageType
-	1812, // 3860: svg.MaskRepeatValue.Seq1.alt1:type_name -> svg.MaskRepeatValue.Seq1.Alt1
-	1555, // 3861: svg.MaskRepeatValue.Seq1.space_keyword:type_name -> svg.SpaceKeyword
-	1813, // 3862: svg.MaskRepeatValue.Seq1.alt2:type_name -> svg.MaskRepeatValue.Seq1.Alt2
-	1488, // 3863: svg.MaskRepeatValue.Seq1.Alt1.repeat_keyword:type_name -> svg.RepeatKeyword
-	1555, // 3864: svg.MaskRepeatValue.Seq1.Alt1.space_keyword:type_name -> svg.SpaceKeyword
-	1498, // 3865: svg.MaskRepeatValue.Seq1.Alt1.round_keyword:type_name -> svg.RoundKeyword
-	1405, // 3866: svg.MaskRepeatValue.Seq1.Alt1.no_hyphen_minus_repeat_keyword:type_name -> svg.NoHyphenMinusRepeatKeyword
-	1488, // 3867: svg.MaskRepeatValue.Seq1.Alt2.repeat_keyword:type_name -> svg.RepeatKeyword
-	1555, // 3868: svg.MaskRepeatValue.Seq1.Alt2.space_keyword:type_name -> svg.SpaceKeyword
-	1498, // 3869: svg.MaskRepeatValue.Seq1.Alt2.round_keyword:type_name -> svg.RoundKeyword
-	1405, // 3870: svg.MaskRepeatValue.Seq1.Alt2.no_hyphen_minus_repeat_keyword:type_name -> svg.NoHyphenMinusRepeatKeyword
-	731,  // 3871: svg.MaskLayerOriginClip.Seq1.mask_origin_box:type_name -> svg.MaskOriginBox
-	1555, // 3872: svg.MaskLayerOriginClip.Seq1.space_keyword:type_name -> svg.SpaceKeyword
-	730,  // 3873: svg.MaskLayerOriginClip.Seq1.mask_clip_box_value:type_name -> svg.MaskClipBoxValue
-	1575, // 3874: svg.MarkerMarkerUnitsAttr.Alt1.stroke_width_keyword:type_name -> svg.StrokeWidthKeyword
-	1636, // 3875: svg.MarkerMarkerUnitsAttr.Alt1.user_space_on_use_keyword:type_name -> svg.UserSpaceOnUseKeyword
-	336,  // 3876: svg.MarkerRefXattr.Alt1.length_percentage_type:type_name -> svg.LengthPercentageType
-	329,  // 3877: svg.MarkerRefXattr.Alt1.number_type:type_name -> svg.NumberType
-	1245, // 3878: svg.MarkerRefXattr.Alt1.left_keyword:type_name -> svg.LeftKeyword
-	1059, // 3879: svg.MarkerRefXattr.Alt1.center_keyword:type_name -> svg.CenterKeyword
-	1492, // 3880: svg.MarkerRefXattr.Alt1.right_keyword:type_name -> svg.RightKeyword
-	336,  // 3881: svg.MarkerRefYattr.Alt1.length_percentage_type:type_name -> svg.LengthPercentageType
-	329,  // 3882: svg.MarkerRefYattr.Alt1.number_type:type_name -> svg.NumberType
-	1619, // 3883: svg.MarkerRefYattr.Alt1.top_keyword:type_name -> svg.TopKeyword
-	1059, // 3884: svg.MarkerRefYattr.Alt1.center_keyword:type_name -> svg.CenterKeyword
-	1048, // 3885: svg.MarkerRefYattr.Alt1.bottom_keyword:type_name -> svg.BottomKeyword
-	1024, // 3886: svg.MarkerOrientAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
-	1023, // 3887: svg.MarkerOrientAttr.Alt1.auto_hyphen_minus_start_hyphen_minus_reverse_keyword:type_name -> svg.AutoHyphenMinusStartHyphenMinusReverseKeyword
-	339,  // 3888: svg.MarkerOrientAttr.Alt1.angle_type:type_name -> svg.AngleType
-	329,  // 3889: svg.MarkerOrientAttr.Alt1.number_type:type_name -> svg.NumberType
-	1411, // 3890: svg.FillRuleAttr.Alt1.nonzero_keyword:type_name -> svg.NonzeroKeyword
-	1150, // 3891: svg.FillRuleAttr.Alt1.evenodd_keyword:type_name -> svg.EvenoddKeyword
-	1053, // 3892: svg.StrokeLinecapAttr.Alt1.butt_keyword:type_name -> svg.ButtKeyword
-	1498, // 3893: svg.StrokeLinecapAttr.Alt1.round_keyword:type_name -> svg.RoundKeyword
-	1562, // 3894: svg.StrokeLinecapAttr.Alt1.square_keyword:type_name -> svg.SquareKeyword
-	1384, // 3895: svg.StrokeLinejoinAttr.Alt1.miter_keyword:type_name -> svg.MiterKeyword
-	1383, // 3896: svg.StrokeLinejoinAttr.Alt1.miter_hyphen_minus_clip_keyword:type_name -> svg.MiterHyphenMinusClipKeyword
-	1498, // 3897: svg.StrokeLinejoinAttr.Alt1.round_keyword:type_name -> svg.RoundKeyword
-	1033, // 3898: svg.StrokeLinejoinAttr.Alt1.bevel_keyword:type_name -> svg.BevelKeyword
-	1015, // 3899: svg.StrokeLinejoinAttr.Alt1.arcs_keyword:type_name -> svg.ArcsKeyword
-	1410, // 3900: svg.StrokeDasharrayAttr.Alt1.none_keyword:type_name -> svg.NoneKeyword
-	352,  // 3901: svg.StrokeDasharrayAttr.Alt1.dasharray_type:type_name -> svg.DasharrayType
-	336,  // 3902: svg.StrokeDashoffsetAttr.Alt1.length_percentage_type:type_name -> svg.LengthPercentageType
-	329,  // 3903: svg.StrokeDashoffsetAttr.Alt1.number_type:type_name -> svg.NumberType
-	1412, // 3904: svg.PaintOrderAttr.Alt1.normal_keyword:type_name -> svg.NormalKeyword
-	755,  // 3905: svg.PaintOrderAttr.Alt1.paint_order_list:type_name -> svg.PaintOrderList
-	1410, // 3906: svg.MarkerAttr.Alt1.none_keyword:type_name -> svg.NoneKeyword
-	344,  // 3907: svg.MarkerAttr.Alt1.url_type:type_name -> svg.UrlType
-	1410, // 3908: svg.MarkerStartAttr.Alt1.none_keyword:type_name -> svg.NoneKeyword
-	344,  // 3909: svg.MarkerStartAttr.Alt1.url_type:type_name -> svg.UrlType
-	1410, // 3910: svg.MarkerMidAttr.Alt1.none_keyword:type_name -> svg.NoneKeyword
-	344,  // 3911: svg.MarkerMidAttr.Alt1.url_type:type_name -> svg.UrlType
-	1410, // 3912: svg.MarkerEndAttr.Alt1.none_keyword:type_name -> svg.NoneKeyword
-	344,  // 3913: svg.MarkerEndAttr.Alt1.url_type:type_name -> svg.UrlType
-	1024, // 3914: svg.ColorInterpolationAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
-	1513, // 3915: svg.ColorInterpolationAttr.Alt1.s_rgb_keyword:type_name -> svg.SRgbKeyword
-	1332, // 3916: svg.ColorInterpolationAttr.Alt1.linear_rgb_keyword:type_name -> svg.LinearRgbKeyword
-	1024, // 3917: svg.ColorRenderingAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
-	1427, // 3918: svg.ColorRenderingAttr.Alt1.optimize_speed_keyword:type_name -> svg.OptimizeSpeedKeyword
-	1426, // 3919: svg.ColorRenderingAttr.Alt1.optimize_quality_keyword:type_name -> svg.OptimizeQualityKeyword
-	1024, // 3920: svg.ShapeRenderingAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
-	1427, // 3921: svg.ShapeRenderingAttr.Alt1.optimize_speed_keyword:type_name -> svg.OptimizeSpeedKeyword
-	1094, // 3922: svg.ShapeRenderingAttr.Alt1.crisp_edges_keyword:type_name -> svg.CrispEdgesKeyword
-	1184, // 3923: svg.ShapeRenderingAttr.Alt1.geometric_precision_keyword:type_name -> svg.GeometricPrecisionKeyword
-	1410, // 3924: svg.VectorEffectAttr.Alt1.none_keyword:type_name -> svg.NoneKeyword
-	1409, // 3925: svg.VectorEffectAttr.Alt1.non_hyphen_minus_scaling_hyphen_minus_stroke_keyword:type_name -> svg.NonHyphenMinusScalingHyphenMinusStrokeKeyword
-	1408, // 3926: svg.VectorEffectAttr.Alt1.non_hyphen_minus_scaling_hyphen_minus_size_keyword:type_name -> svg.NonHyphenMinusScalingHyphenMinusSizeKeyword
-	1407, // 3927: svg.VectorEffectAttr.Alt1.non_hyphen_minus_rotation_keyword:type_name -> svg.NonHyphenMinusRotationKeyword
-	1167, // 3928: svg.VectorEffectAttr.Alt1.fixed_hyphen_minus_position_keyword:type_name -> svg.FixedHyphenMinusPositionKeyword
-	768,  // 3929: svg.SvgPath.Seq1.move_to:type_name -> svg.MoveTo
-	767,  // 3930: svg.SvgPath.Seq1.draw_to_command:type_name -> svg.DrawToCommand
-	1348, // 3931: svg.MoveTo.Alt1.m_keyword:type_name -> svg.MKeyword
-	1348, // 3932: svg.MoveTo.Alt1.m_keyword_2:type_name -> svg.MKeyword
-	1673, // 3933: svg.ClosePath.Alt1.z_keyword:type_name -> svg.ZKeyword
-	1673, // 3934: svg.ClosePath.Alt1.z_keyword_2:type_name -> svg.ZKeyword
-	1239, // 3935: svg.LineTo.Alt1.l_keyword:type_name -> svg.LKeyword
-	1239, // 3936: svg.LineTo.Alt1.l_keyword_2:type_name -> svg.LKeyword
-	1199, // 3937: svg.HorizontalLineTo.Alt1.h_keyword:type_name -> svg.HKeyword
-	1199, // 3938: svg.HorizontalLineTo.Alt1.h_keyword_2:type_name -> svg.HKeyword
-	1637, // 3939: svg.VerticalLineTo.Alt1.v_keyword:type_name -> svg.VKeyword
-	1637, // 3940: svg.VerticalLineTo.Alt1.v_keyword_2:type_name -> svg.VKeyword
-	1055, // 3941: svg.CurveTo.Alt1.c_keyword:type_name -> svg.CKeyword
-	1055, // 3942: svg.CurveTo.Alt1.c_keyword_2:type_name -> svg.CKeyword
-	1512, // 3943: svg.SmoothCurveTo.Alt1.s_keyword:type_name -> svg.SKeyword
-	1512, // 3944: svg.SmoothCurveTo.Alt1.s_keyword_2:type_name -> svg.SKeyword
-	1475, // 3945: svg.QuadraticBezierCurveTo.Alt1.q_keyword:type_name -> svg.QKeyword
-	1475, // 3946: svg.QuadraticBezierCurveTo.Alt1.q_keyword_2:type_name -> svg.QKeyword
-	1589, // 3947: svg.SmoothQuadraticBezierCurveTo.Alt1.t_keyword:type_name -> svg.TKeyword
-	1589, // 3948: svg.SmoothQuadraticBezierCurveTo.Alt1.t_keyword_2:type_name -> svg.TKeyword
-	994,  // 3949: svg.EllipticalArc.Alt1.a_keyword:type_name -> svg.AKeyword
-	994,  // 3950: svg.EllipticalArc.Alt1.a_keyword_2:type_name -> svg.AKeyword
-	1442, // 3951: svg.SpreadMethodAttr.Alt1.pad_keyword:type_name -> svg.PadKeyword
-	1482, // 3952: svg.SpreadMethodAttr.Alt1.reflect_keyword:type_name -> svg.ReflectKeyword
-	1488, // 3953: svg.SpreadMethodAttr.Alt1.repeat_keyword:type_name -> svg.RepeatKeyword
-	336,  // 3954: svg.LinearGradientX1attr.Alt1.length_percentage_type:type_name -> svg.LengthPercentageType
-	329,  // 3955: svg.LinearGradientX1attr.Alt1.number_type:type_name -> svg.NumberType
-	336,  // 3956: svg.LinearGradientY1attr.Alt1.length_percentage_type:type_name -> svg.LengthPercentageType
-	329,  // 3957: svg.LinearGradientY1attr.Alt1.number_type:type_name -> svg.NumberType
-	336,  // 3958: svg.LinearGradientX2attr.Alt1.length_percentage_type:type_name -> svg.LengthPercentageType
-	329,  // 3959: svg.LinearGradientX2attr.Alt1.number_type:type_name -> svg.NumberType
-	336,  // 3960: svg.LinearGradientY2attr.Alt1.length_percentage_type:type_name -> svg.LengthPercentageType
-	329,  // 3961: svg.LinearGradientY2attr.Alt1.number_type:type_name -> svg.NumberType
-	336,  // 3962: svg.RadialGradientCxAttr.Alt1.length_percentage_type:type_name -> svg.LengthPercentageType
-	329,  // 3963: svg.RadialGradientCxAttr.Alt1.number_type:type_name -> svg.NumberType
-	336,  // 3964: svg.RadialGradientCyAttr.Alt1.length_percentage_type:type_name -> svg.LengthPercentageType
-	329,  // 3965: svg.RadialGradientCyAttr.Alt1.number_type:type_name -> svg.NumberType
-	336,  // 3966: svg.RadialGradientFxAttr.Alt1.length_percentage_type:type_name -> svg.LengthPercentageType
-	329,  // 3967: svg.RadialGradientFxAttr.Alt1.number_type:type_name -> svg.NumberType
-	336,  // 3968: svg.RadialGradientFyAttr.Alt1.length_percentage_type:type_name -> svg.LengthPercentageType
-	329,  // 3969: svg.RadialGradientFyAttr.Alt1.number_type:type_name -> svg.NumberType
-	329,  // 3970: svg.StopOffsetAttr.Alt1.number_type:type_name -> svg.NumberType
-	335,  // 3971: svg.StopOffsetAttr.Alt1.percentage_type:type_name -> svg.PercentageType
-	1097, // 3972: svg.StopColorAttr.Alt1.current_color_keyword:type_name -> svg.CurrentColorKeyword
-	1910, // 3973: svg.StopColorAttr.Alt1.color_type:type_name -> google.protobuf.Any
-	1024, // 3974: svg.RectRxAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
-	337,  // 3975: svg.RectRxAttr.Alt1.non_negative_length_percentage_type:type_name -> svg.NonNegativeLengthPercentageType
-	1024, // 3976: svg.RectRyAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
-	337,  // 3977: svg.RectRyAttr.Alt1.non_negative_length_percentage_type:type_name -> svg.NonNegativeLengthPercentageType
-	1024, // 3978: svg.EllipseRxAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
-	337,  // 3979: svg.EllipseRxAttr.Alt1.non_negative_length_percentage_type:type_name -> svg.NonNegativeLengthPercentageType
-	1024, // 3980: svg.EllipseRyAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
-	337,  // 3981: svg.EllipseRyAttr.Alt1.non_negative_length_percentage_type:type_name -> svg.NonNegativeLengthPercentageType
-	336,  // 3982: svg.LineX1attr.Alt1.length_percentage_type:type_name -> svg.LengthPercentageType
-	329,  // 3983: svg.LineX1attr.Alt1.number_type:type_name -> svg.NumberType
-	336,  // 3984: svg.LineY1attr.Alt1.length_percentage_type:type_name -> svg.LengthPercentageType
-	329,  // 3985: svg.LineY1attr.Alt1.number_type:type_name -> svg.NumberType
-	336,  // 3986: svg.LineX2attr.Alt1.length_percentage_type:type_name -> svg.LengthPercentageType
-	329,  // 3987: svg.LineX2attr.Alt1.number_type:type_name -> svg.NumberType
-	336,  // 3988: svg.LineY2attr.Alt1.length_percentage_type:type_name -> svg.LengthPercentageType
-	329,  // 3989: svg.LineY2attr.Alt1.number_type:type_name -> svg.NumberType
-	1410, // 3990: svg.PathDattr.Alt1.none_keyword:type_name -> svg.NoneKeyword
-	766,  // 3991: svg.PathDattr.Alt1.svg_path:type_name -> svg.SvgPath
-	333,  // 3992: svg.SymbolRefXattr.Alt1.length_type:type_name -> svg.LengthType
-	1245, // 3993: svg.SymbolRefXattr.Alt1.left_keyword:type_name -> svg.LeftKeyword
-	1059, // 3994: svg.SymbolRefXattr.Alt1.center_keyword:type_name -> svg.CenterKeyword
-	1492, // 3995: svg.SymbolRefXattr.Alt1.right_keyword:type_name -> svg.RightKeyword
-	333,  // 3996: svg.SymbolRefYattr.Alt1.length_type:type_name -> svg.LengthType
-	1619, // 3997: svg.SymbolRefYattr.Alt1.top_keyword:type_name -> svg.TopKeyword
-	1059, // 3998: svg.SymbolRefYattr.Alt1.center_keyword:type_name -> svg.CenterKeyword
-	1048, // 3999: svg.SymbolRefYattr.Alt1.bottom_keyword:type_name -> svg.BottomKeyword
-	1024, // 4000: svg.SymbolWidthAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
-	337,  // 4001: svg.SymbolWidthAttr.Alt1.non_negative_length_percentage_type:type_name -> svg.NonNegativeLengthPercentageType
-	1024, // 4002: svg.SymbolHeightAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
-	337,  // 4003: svg.SymbolHeightAttr.Alt1.non_negative_length_percentage_type:type_name -> svg.NonNegativeLengthPercentageType
-	1024, // 4004: svg.UseWidthAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
-	337,  // 4005: svg.UseWidthAttr.Alt1.non_negative_length_percentage_type:type_name -> svg.NonNegativeLengthPercentageType
-	1024, // 4006: svg.UseHeightAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
-	337,  // 4007: svg.UseHeightAttr.Alt1.non_negative_length_percentage_type:type_name -> svg.NonNegativeLengthPercentageType
-	1645, // 4008: svg.VisibilityAttr.Alt1.visible_keyword:type_name -> svg.VisibleKeyword
-	1204, // 4009: svg.VisibilityAttr.Alt1.hidden_keyword:type_name -> svg.HiddenKeyword
-	1069, // 4010: svg.VisibilityAttr.Alt1.collapse_keyword:type_name -> svg.CollapseKeyword
-	1221, // 4011: svg.VisibilityAttr.Alt1.inherit_keyword:type_name -> svg.InheritKeyword
-	1645, // 4012: svg.OverflowAttr.Alt1.visible_keyword:type_name -> svg.VisibleKeyword
-	1204, // 4013: svg.OverflowAttr.Alt1.hidden_keyword:type_name -> svg.HiddenKeyword
-	1522, // 4014: svg.OverflowAttr.Alt1.scroll_keyword:type_name -> svg.ScrollKeyword
-	1024, // 4015: svg.OverflowAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
-	1221, // 4016: svg.OverflowAttr.Alt1.inherit_keyword:type_name -> svg.InheritKeyword
-	915,  // 4017: svg.TransformOriginPosition.Seq1.transform_origin_y:type_name -> svg.TransformOriginY
-	916,  // 4018: svg.TransformOriginPosition.Seq1.transform_origin_z:type_name -> svg.TransformOriginZ
-	336,  // 4019: svg.TextLengthAttr.Alt1.length_percentage_type:type_name -> svg.LengthPercentageType
-	329,  // 4020: svg.TextLengthAttr.Alt1.number_type:type_name -> svg.NumberType
-	1557, // 4021: svg.TextLengthAdjustAttr.Alt1.spacing_keyword:type_name -> svg.SpacingKeyword
-	1556, // 4022: svg.TextLengthAdjustAttr.Alt1.spacing_and_glyphs_keyword:type_name -> svg.SpacingAndGlyphsKeyword
-	336,  // 4023: svg.TextPositionList.Alt1.length_percentage_type:type_name -> svg.LengthPercentageType
-	329,  // 4024: svg.TextPositionList.Alt1.number_type:type_name -> svg.NumberType
-	336,  // 4025: svg.TspanLengthAttr.Alt1.length_percentage_type:type_name -> svg.LengthPercentageType
-	329,  // 4026: svg.TspanLengthAttr.Alt1.number_type:type_name -> svg.NumberType
-	1557, // 4027: svg.TspanLengthAdjustAttr.Alt1.spacing_keyword:type_name -> svg.SpacingKeyword
-	1556, // 4028: svg.TspanLengthAdjustAttr.Alt1.spacing_and_glyphs_keyword:type_name -> svg.SpacingAndGlyphsKeyword
-	336,  // 4029: svg.TextPathStartOffsetAttr.Alt1.length_percentage_type:type_name -> svg.LengthPercentageType
-	329,  // 4030: svg.TextPathStartOffsetAttr.Alt1.number_type:type_name -> svg.NumberType
-	1001, // 4031: svg.TextPathMethodAttr.Alt1.align_keyword:type_name -> svg.AlignKeyword
-	1569, // 4032: svg.TextPathMethodAttr.Alt1.stretch_keyword:type_name -> svg.StretchKeyword
-	1024, // 4033: svg.TextPathSpacingAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
-	1152, // 4034: svg.TextPathSpacingAttr.Alt1.exact_keyword:type_name -> svg.ExactKeyword
-	1245, // 4035: svg.TextPathSideAttr.Alt1.left_keyword:type_name -> svg.LeftKeyword
-	1492, // 4036: svg.TextPathSideAttr.Alt1.right_keyword:type_name -> svg.RightKeyword
-	336,  // 4037: svg.TextPathLengthAttr.Alt1.length_percentage_type:type_name -> svg.LengthPercentageType
-	329,  // 4038: svg.TextPathLengthAttr.Alt1.number_type:type_name -> svg.NumberType
-	1557, // 4039: svg.TextPathLengthAdjustAttr.Alt1.spacing_keyword:type_name -> svg.SpacingKeyword
-	1556, // 4040: svg.TextPathLengthAdjustAttr.Alt1.spacing_and_glyphs_keyword:type_name -> svg.SpacingAndGlyphsKeyword
-	1564, // 4041: svg.TextAnchorAttr.Alt1.start_keyword:type_name -> svg.StartKeyword
-	1378, // 4042: svg.TextAnchorAttr.Alt1.middle_keyword:type_name -> svg.MiddleKeyword
-	1148, // 4043: svg.TextAnchorAttr.Alt1.end_keyword:type_name -> svg.EndKeyword
-	1024, // 4044: svg.DominantBaselineAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
-	1608, // 4045: svg.DominantBaselineAttr.Alt1.text_hyphen_minus_bottom_keyword:type_name -> svg.TextHyphenMinusBottomKeyword
-	1007, // 4046: svg.DominantBaselineAttr.Alt1.alphabetic_keyword:type_name -> svg.AlphabeticKeyword
-	1215, // 4047: svg.DominantBaselineAttr.Alt1.ideographic_keyword:type_name -> svg.IdeographicKeyword
-	1378, // 4048: svg.DominantBaselineAttr.Alt1.middle_keyword:type_name -> svg.MiddleKeyword
-	1060, // 4049: svg.DominantBaselineAttr.Alt1.central_keyword:type_name -> svg.CentralKeyword
-	1358, // 4050: svg.DominantBaselineAttr.Alt1.mathematical_keyword:type_name -> svg.MathematicalKeyword
-	1200, // 4051: svg.DominantBaselineAttr.Alt1.hanging_keyword:type_name -> svg.HangingKeyword
-	1609, // 4052: svg.DominantBaselineAttr.Alt1.text_hyphen_minus_top_keyword:type_name -> svg.TextHyphenMinusTopKeyword
-	1030, // 4053: svg.AlignmentBaselineAttr.Alt1.baseline_keyword:type_name -> svg.BaselineKeyword
-	1608, // 4054: svg.AlignmentBaselineAttr.Alt1.text_hyphen_minus_bottom_keyword:type_name -> svg.TextHyphenMinusBottomKeyword
-	1007, // 4055: svg.AlignmentBaselineAttr.Alt1.alphabetic_keyword:type_name -> svg.AlphabeticKeyword
-	1215, // 4056: svg.AlignmentBaselineAttr.Alt1.ideographic_keyword:type_name -> svg.IdeographicKeyword
-	1378, // 4057: svg.AlignmentBaselineAttr.Alt1.middle_keyword:type_name -> svg.MiddleKeyword
-	1060, // 4058: svg.AlignmentBaselineAttr.Alt1.central_keyword:type_name -> svg.CentralKeyword
-	1358, // 4059: svg.AlignmentBaselineAttr.Alt1.mathematical_keyword:type_name -> svg.MathematicalKeyword
-	1200, // 4060: svg.AlignmentBaselineAttr.Alt1.hanging_keyword:type_name -> svg.HangingKeyword
-	1609, // 4061: svg.AlignmentBaselineAttr.Alt1.text_hyphen_minus_top_keyword:type_name -> svg.TextHyphenMinusTopKeyword
-	1579, // 4062: svg.BaselineShiftAttr.Alt1.sub_keyword:type_name -> svg.SubKeyword
-	1583, // 4063: svg.BaselineShiftAttr.Alt1.super_keyword:type_name -> svg.SuperKeyword
-	336,  // 4064: svg.BaselineShiftAttr.Alt1.length_percentage_type:type_name -> svg.LengthPercentageType
-	1344, // 4065: svg.DirectionAttr.Alt1.ltr_keyword:type_name -> svg.LtrKeyword
-	1504, // 4066: svg.DirectionAttr.Alt1.rtl_keyword:type_name -> svg.RtlKeyword
-	1412, // 4067: svg.UnicodeBidiAttr.Alt1.normal_keyword:type_name -> svg.NormalKeyword
-	1146, // 4068: svg.UnicodeBidiAttr.Alt1.embed_keyword:type_name -> svg.EmbedKeyword
-	1231, // 4069: svg.UnicodeBidiAttr.Alt1.isolate_keyword:type_name -> svg.IsolateKeyword
-	1034, // 4070: svg.UnicodeBidiAttr.Alt1.bidi_hyphen_minus_override_keyword:type_name -> svg.BidiHyphenMinusOverrideKeyword
-	1230, // 4071: svg.UnicodeBidiAttr.Alt1.isolate_hyphen_minus_override_keyword:type_name -> svg.IsolateHyphenMinusOverrideKeyword
-	1458, // 4072: svg.UnicodeBidiAttr.Alt1.plaintext_keyword:type_name -> svg.PlaintextKeyword
-	1208, // 4073: svg.WritingModeAttr.Alt1.horizontal_hyphen_minus_tb_keyword:type_name -> svg.HorizontalHyphenMinusTbKeyword
-	1639, // 4074: svg.WritingModeAttr.Alt1.vertical_hyphen_minus_rl_keyword:type_name -> svg.VerticalHyphenMinusRlKeyword
-	1638, // 4075: svg.WritingModeAttr.Alt1.vertical_hyphen_minus_lr_keyword:type_name -> svg.VerticalHyphenMinusLrKeyword
-	1534, // 4076: svg.WritingModeAttr.Alt1.sideways_hyphen_minus_rl_keyword:type_name -> svg.SidewaysHyphenMinusRlKeyword
-	1533, // 4077: svg.WritingModeAttr.Alt1.sideways_hyphen_minus_lr_keyword:type_name -> svg.SidewaysHyphenMinusLrKeyword
-	1343, // 4078: svg.WritingModeAttr.Alt1.lr_keyword:type_name -> svg.LrKeyword
-	1342, // 4079: svg.WritingModeAttr.Alt1.lr_hyphen_minus_tb_keyword:type_name -> svg.LrHyphenMinusTbKeyword
-	1495, // 4080: svg.WritingModeAttr.Alt1.rl_keyword:type_name -> svg.RlKeyword
-	1494, // 4081: svg.WritingModeAttr.Alt1.rl_hyphen_minus_tb_keyword:type_name -> svg.RlHyphenMinusTbKeyword
-	1605, // 4082: svg.WritingModeAttr.Alt1.tb_keyword:type_name -> svg.TbKeyword
-	1604, // 4083: svg.WritingModeAttr.Alt1.tb_hyphen_minus_rl_keyword:type_name -> svg.TbHyphenMinusRlKeyword
-	1412, // 4084: svg.LetterSpacingAttr.Alt1.normal_keyword:type_name -> svg.NormalKeyword
-	333,  // 4085: svg.LetterSpacingAttr.Alt1.length_type:type_name -> svg.LengthType
-	1412, // 4086: svg.WordSpacingAttr.Alt1.normal_keyword:type_name -> svg.NormalKeyword
-	336,  // 4087: svg.WordSpacingAttr.Alt1.length_percentage_type:type_name -> svg.LengthPercentageType
-	962,  // 4088: svg.TextDecorationValue.Seq1.text_decoration_line:type_name -> svg.TextDecorationLine
-	1555, // 4089: svg.TextDecorationValue.Seq1.space_keyword:type_name -> svg.SpaceKeyword
-	963,  // 4090: svg.TextDecorationValue.Seq1.text_decoration_style:type_name -> svg.TextDecorationStyle
-	962,  // 4091: svg.TextDecorationValue.Seq2.text_decoration_line:type_name -> svg.TextDecorationLine
-	1555, // 4092: svg.TextDecorationValue.Seq2.space_keyword:type_name -> svg.SpaceKeyword
-	1910, // 4093: svg.TextDecorationValue.Seq2.color_type:type_name -> google.protobuf.Any
-	963,  // 4094: svg.TextDecorationValue.Seq3.text_decoration_style:type_name -> svg.TextDecorationStyle
-	1555, // 4095: svg.TextDecorationValue.Seq3.space_keyword:type_name -> svg.SpaceKeyword
-	1910, // 4096: svg.TextDecorationValue.Seq3.color_type:type_name -> google.protobuf.Any
-	962,  // 4097: svg.TextDecorationValue.Seq4.text_decoration_line:type_name -> svg.TextDecorationLine
-	1555, // 4098: svg.TextDecorationValue.Seq4.space_keyword:type_name -> svg.SpaceKeyword
-	963,  // 4099: svg.TextDecorationValue.Seq4.text_decoration_style:type_name -> svg.TextDecorationStyle
-	1555, // 4100: svg.TextDecorationValue.Seq4.space_keyword_2:type_name -> svg.SpaceKeyword
-	1910, // 4101: svg.TextDecorationValue.Seq4.color_type:type_name -> google.protobuf.Any
-	1065, // 4102: svg.TextOverflowAttr.Alt1.clip_keyword:type_name -> svg.ClipKeyword
-	1145, // 4103: svg.TextOverflowAttr.Alt1.ellipsis_keyword:type_name -> svg.EllipsisKeyword
-	1024, // 4104: svg.TextRenderingAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
-	1427, // 4105: svg.TextRenderingAttr.Alt1.optimize_speed_keyword:type_name -> svg.OptimizeSpeedKeyword
-	1425, // 4106: svg.TextRenderingAttr.Alt1.optimize_legibility_keyword:type_name -> svg.OptimizeLegibilityKeyword
-	1184, // 4107: svg.TextRenderingAttr.Alt1.geometric_precision_keyword:type_name -> svg.GeometricPrecisionKeyword
-	1412, // 4108: svg.WhiteSpaceAttr.Alt1.normal_keyword:type_name -> svg.NormalKeyword
-	1467, // 4109: svg.WhiteSpaceAttr.Alt1.pre_keyword:type_name -> svg.PreKeyword
-	1415, // 4110: svg.WhiteSpaceAttr.Alt1.nowrap_keyword:type_name -> svg.NowrapKeyword
-	1466, // 4111: svg.WhiteSpaceAttr.Alt1.pre_hyphen_minus_wrap_keyword:type_name -> svg.PreHyphenMinusWrapKeyword
-	1465, // 4112: svg.WhiteSpaceAttr.Alt1.pre_hyphen_minus_line_keyword:type_name -> svg.PreHyphenMinusLineKeyword
-	1050, // 4113: svg.WhiteSpaceAttr.Alt1.break_hyphen_minus_spaces_keyword:type_name -> svg.BreakHyphenMinusSpacesKeyword
-	1410, // 4114: svg.FontSizeAdjustAttr.Alt1.none_keyword:type_name -> svg.NoneKeyword
-	329,  // 4115: svg.FontSizeAdjustAttr.Alt1.number_type:type_name -> svg.NumberType
-	1412, // 4116: svg.FontStyleAttr.Alt1.normal_keyword:type_name -> svg.NormalKeyword
-	1232, // 4117: svg.FontStyleAttr.Alt1.italic_keyword:type_name -> svg.ItalicKeyword
-	974,  // 4118: svg.FontStyleAttr.Alt1.font_style_oblique:type_name -> svg.FontStyleOblique
-	339,  // 4119: svg.FontStyleOblique.Space.angle_type:type_name -> svg.AngleType
-	1412, // 4120: svg.FontWeightAttr.Alt1.normal_keyword:type_name -> svg.NormalKeyword
-	1044, // 4121: svg.FontWeightAttr.Alt1.bold_keyword:type_name -> svg.BoldKeyword
-	1045, // 4122: svg.FontWeightAttr.Alt1.bolder_keyword:type_name -> svg.BolderKeyword
-	1315, // 4123: svg.FontWeightAttr.Alt1.lighter_keyword:type_name -> svg.LighterKeyword
-	329,  // 4124: svg.FontWeightAttr.Alt1.number_type:type_name -> svg.NumberType
-	1412, // 4125: svg.FontStretchAttr.Alt1.normal_keyword:type_name -> svg.NormalKeyword
-	1628, // 4126: svg.FontStretchAttr.Alt1.ultra_hyphen_minus_condensed_keyword:type_name -> svg.UltraHyphenMinusCondensedKeyword
-	1157, // 4127: svg.FontStretchAttr.Alt1.extra_hyphen_minus_condensed_keyword:type_name -> svg.ExtraHyphenMinusCondensedKeyword
-	1079, // 4128: svg.FontStretchAttr.Alt1.condensed_keyword:type_name -> svg.CondensedKeyword
-	1530, // 4129: svg.FontStretchAttr.Alt1.semi_hyphen_minus_condensed_keyword:type_name -> svg.SemiHyphenMinusCondensedKeyword
-	1531, // 4130: svg.FontStretchAttr.Alt1.semi_hyphen_minus_expanded_keyword:type_name -> svg.SemiHyphenMinusExpandedKeyword
-	1156, // 4131: svg.FontStretchAttr.Alt1.expanded_keyword:type_name -> svg.ExpandedKeyword
-	1158, // 4132: svg.FontStretchAttr.Alt1.extra_hyphen_minus_expanded_keyword:type_name -> svg.ExtraHyphenMinusExpandedKeyword
-	1629, // 4133: svg.FontStretchAttr.Alt1.ultra_hyphen_minus_expanded_keyword:type_name -> svg.UltraHyphenMinusExpandedKeyword
-	335,  // 4134: svg.FontStretchAttr.Alt1.percentage_type:type_name -> svg.PercentageType
-	1024, // 4135: svg.InlineSizeAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
-	336,  // 4136: svg.InlineSizeAttr.Alt1.length_percentage_type:type_name -> svg.LengthPercentageType
-	1024, // 4137: svg.GlyphOrientationVerticalAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
-	339,  // 4138: svg.GlyphOrientationVerticalAttr.Alt1.angle_type:type_name -> svg.AngleType
-	329,  // 4139: svg.GlyphOrientationVerticalAttr.Alt1.number_type:type_name -> svg.NumberType
-	329,  // 4140: svg.Translate.Comma.number_type:type_name -> svg.NumberType
-	329,  // 4141: svg.Scale.Comma.number_type:type_name -> svg.NumberType
-	329,  // 4142: svg.Rotate.Comma.number_type:type_name -> svg.NumberType
-	1076, // 4143: svg.Rotate.Comma.comma_keyword:type_name -> svg.CommaKeyword
-	329,  // 4144: svg.Rotate.Comma.number_type_2:type_name -> svg.NumberType
-	4145, // [4145:4145] is the sub-list for method output_type
-	4145, // [4145:4145] is the sub-list for method input_type
-	4145, // [4145:4145] is the sub-list for extension type_name
-	4145, // [4145:4145] is the sub-list for extension extendee
-	0,    // [0:4145] is the sub-list for field type_name
+	363,  // 3690: svg.PreserveAspectRatio.Space.meet_or_slice:type_name -> svg.MeetOrSlice
+	1010, // 3691: svg.ImageCrossoriginAttr.Alt1.anonymous_keyword:type_name -> svg.AnonymousKeyword
+	1635, // 3692: svg.ImageCrossoriginAttr.Alt1.use_hyphen_minus_credentials_keyword:type_name -> svg.UseHyphenMinusCredentialsKeyword
+	1024, // 3693: svg.ImageWidthAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
+	337,  // 3694: svg.ImageWidthAttr.Alt1.non_negative_length_percentage_type:type_name -> svg.NonNegativeLengthPercentageType
+	1024, // 3695: svg.ImageHeightAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
+	337,  // 3696: svg.ImageHeightAttr.Alt1.non_negative_length_percentage_type:type_name -> svg.NonNegativeLengthPercentageType
+	1588, // 3697: svg.ImageDecodingAttr.Alt1.sync_keyword:type_name -> svg.SyncKeyword
+	1020, // 3698: svg.ImageDecodingAttr.Alt1.async_keyword:type_name -> svg.AsyncKeyword
+	1024, // 3699: svg.ImageDecodingAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
+	1024, // 3700: svg.ForeignObjectWidthAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
+	337,  // 3701: svg.ForeignObjectWidthAttr.Alt1.non_negative_length_percentage_type:type_name -> svg.NonNegativeLengthPercentageType
+	1024, // 3702: svg.ForeignObjectHeightAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
+	337,  // 3703: svg.ForeignObjectHeightAttr.Alt1.non_negative_length_percentage_type:type_name -> svg.NonNegativeLengthPercentageType
+	1136, // 3704: svg.ViewZoomAndPanAttr.Alt1.disable_keyword:type_name -> svg.DisableKeyword
+	1350, // 3705: svg.ViewZoomAndPanAttr.Alt1.magnify_keyword:type_name -> svg.MagnifyKeyword
+	1010, // 3706: svg.ScriptCrossoriginAttr.Alt1.anonymous_keyword:type_name -> svg.AnonymousKeyword
+	1635, // 3707: svg.ScriptCrossoriginAttr.Alt1.use_hyphen_minus_credentials_keyword:type_name -> svg.UseHyphenMinusCredentialsKeyword
+	1049, // 3708: svg.PointerEventsAttr.Alt1.bounding_hyphen_minus_box_keyword:type_name -> svg.BoundingHyphenMinusBoxKeyword
+	1646, // 3709: svg.PointerEventsAttr.Alt1.visible_painted_keyword:type_name -> svg.VisiblePaintedKeyword
+	1644, // 3710: svg.PointerEventsAttr.Alt1.visible_fill_keyword:type_name -> svg.VisibleFillKeyword
+	1647, // 3711: svg.PointerEventsAttr.Alt1.visible_stroke_keyword:type_name -> svg.VisibleStrokeKeyword
+	1645, // 3712: svg.PointerEventsAttr.Alt1.visible_keyword:type_name -> svg.VisibleKeyword
+	1445, // 3713: svg.PointerEventsAttr.Alt1.painted_keyword:type_name -> svg.PaintedKeyword
+	1164, // 3714: svg.PointerEventsAttr.Alt1.fill_keyword:type_name -> svg.FillKeyword
+	1573, // 3715: svg.PointerEventsAttr.Alt1.stroke_keyword:type_name -> svg.StrokeKeyword
+	1005, // 3716: svg.PointerEventsAttr.Alt1.all_keyword:type_name -> svg.AllKeyword
+	1410, // 3717: svg.PointerEventsAttr.Alt1.none_keyword:type_name -> svg.NoneKeyword
+	1024, // 3718: svg.PointerEventsAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
+	1412, // 3719: svg.FeBlendModeAttr.Alt1.normal_keyword:type_name -> svg.NormalKeyword
+	1389, // 3720: svg.FeBlendModeAttr.Alt1.multiply_keyword:type_name -> svg.MultiplyKeyword
+	1521, // 3721: svg.FeBlendModeAttr.Alt1.screen_keyword:type_name -> svg.ScreenKeyword
+	1101, // 3722: svg.FeBlendModeAttr.Alt1.darken_keyword:type_name -> svg.DarkenKeyword
+	1314, // 3723: svg.FeBlendModeAttr.Alt1.lighten_keyword:type_name -> svg.LightenKeyword
+	1439, // 3724: svg.FeBlendModeAttr.Alt1.overlay_keyword:type_name -> svg.OverlayKeyword
+	1072, // 3725: svg.FeBlendModeAttr.Alt1.color_hyphen_minus_dodge_keyword:type_name -> svg.ColorHyphenMinusDodgeKeyword
+	1071, // 3726: svg.FeBlendModeAttr.Alt1.color_hyphen_minus_burn_keyword:type_name -> svg.ColorHyphenMinusBurnKeyword
+	1201, // 3727: svg.FeBlendModeAttr.Alt1.hard_hyphen_minus_light_keyword:type_name -> svg.HardHyphenMinusLightKeyword
+	1551, // 3728: svg.FeBlendModeAttr.Alt1.soft_hyphen_minus_light_keyword:type_name -> svg.SoftHyphenMinusLightKeyword
+	1129, // 3729: svg.FeBlendModeAttr.Alt1.difference_keyword:type_name -> svg.DifferenceKeyword
+	1154, // 3730: svg.FeBlendModeAttr.Alt1.exclusion_keyword:type_name -> svg.ExclusionKeyword
+	1211, // 3731: svg.FeBlendModeAttr.Alt1.hue_keyword:type_name -> svg.HueKeyword
+	1519, // 3732: svg.FeBlendModeAttr.Alt1.saturation_keyword:type_name -> svg.SaturationKeyword
+	1073, // 3733: svg.FeBlendModeAttr.Alt1.color_keyword:type_name -> svg.ColorKeyword
+	1347, // 3734: svg.FeBlendModeAttr.Alt1.luminosity_keyword:type_name -> svg.LuminosityKeyword
+	1359, // 3735: svg.FeColorMatrixTypeAttr.Alt1.matrix_keyword:type_name -> svg.MatrixKeyword
+	1518, // 3736: svg.FeColorMatrixTypeAttr.Alt1.saturate_keyword:type_name -> svg.SaturateKeyword
+	1212, // 3737: svg.FeColorMatrixTypeAttr.Alt1.hue_rotate_keyword:type_name -> svg.HueRotateKeyword
+	1346, // 3738: svg.FeColorMatrixTypeAttr.Alt1.luminance_to_alpha_keyword:type_name -> svg.LuminanceToAlphaKeyword
+	1438, // 3739: svg.FeCompositeOperatorAttr.Alt1.over_keyword:type_name -> svg.OverKeyword
+	1217, // 3740: svg.FeCompositeOperatorAttr.Alt1.in_keyword:type_name -> svg.InKeyword
+	1437, // 3741: svg.FeCompositeOperatorAttr.Alt1.out_keyword:type_name -> svg.OutKeyword
+	1021, // 3742: svg.FeCompositeOperatorAttr.Alt1.atop_keyword:type_name -> svg.AtopKeyword
+	1667, // 3743: svg.FeCompositeOperatorAttr.Alt1.xor_keyword:type_name -> svg.XorKeyword
+	1315, // 3744: svg.FeCompositeOperatorAttr.Alt1.lighter_keyword:type_name -> svg.LighterKeyword
+	1016, // 3745: svg.FeCompositeOperatorAttr.Alt1.arithmetic_keyword:type_name -> svg.ArithmeticKeyword
+	1143, // 3746: svg.FeConvolveMatrixEdgeModeAttr.Alt1.duplicate_keyword:type_name -> svg.DuplicateKeyword
+	1655, // 3747: svg.FeConvolveMatrixEdgeModeAttr.Alt1.wrap_keyword:type_name -> svg.WrapKeyword
+	1410, // 3748: svg.FeConvolveMatrixEdgeModeAttr.Alt1.none_keyword:type_name -> svg.NoneKeyword
+	1477, // 3749: svg.FeDisplacementMapXchannelSelectorAttr.Alt1.r_keyword:type_name -> svg.RKeyword
+	1180, // 3750: svg.FeDisplacementMapXchannelSelectorAttr.Alt1.g_keyword:type_name -> svg.GKeyword
+	1026, // 3751: svg.FeDisplacementMapXchannelSelectorAttr.Alt1.b_keyword:type_name -> svg.BKeyword
+	994,  // 3752: svg.FeDisplacementMapXchannelSelectorAttr.Alt1.a_keyword:type_name -> svg.AKeyword
+	1477, // 3753: svg.FeDisplacementMapYchannelSelectorAttr.Alt1.r_keyword:type_name -> svg.RKeyword
+	1180, // 3754: svg.FeDisplacementMapYchannelSelectorAttr.Alt1.g_keyword:type_name -> svg.GKeyword
+	1026, // 3755: svg.FeDisplacementMapYchannelSelectorAttr.Alt1.b_keyword:type_name -> svg.BKeyword
+	994,  // 3756: svg.FeDisplacementMapYchannelSelectorAttr.Alt1.a_keyword:type_name -> svg.AKeyword
+	1143, // 3757: svg.FeGaussianBlurEdgeModeAttr.Alt1.duplicate_keyword:type_name -> svg.DuplicateKeyword
+	1655, // 3758: svg.FeGaussianBlurEdgeModeAttr.Alt1.wrap_keyword:type_name -> svg.WrapKeyword
+	1410, // 3759: svg.FeGaussianBlurEdgeModeAttr.Alt1.none_keyword:type_name -> svg.NoneKeyword
+	1010, // 3760: svg.FeImageCrossoriginAttr.Alt1.anonymous_keyword:type_name -> svg.AnonymousKeyword
+	1635, // 3761: svg.FeImageCrossoriginAttr.Alt1.use_hyphen_minus_credentials_keyword:type_name -> svg.UseHyphenMinusCredentialsKeyword
+	1149, // 3762: svg.FeMorphologyOperatorAttr.Alt1.erode_keyword:type_name -> svg.ErodeKeyword
+	1132, // 3763: svg.FeMorphologyOperatorAttr.Alt1.dilate_keyword:type_name -> svg.DilateKeyword
+	1568, // 3764: svg.FeTurbulenceStitchTilesAttr.Alt1.stitch_keyword:type_name -> svg.StitchKeyword
+	1406, // 3765: svg.FeTurbulenceStitchTilesAttr.Alt1.no_stitch_keyword:type_name -> svg.NoStitchKeyword
+	1174, // 3766: svg.FeTurbulenceTypeAttr.Alt1.fractal_noise_keyword:type_name -> svg.FractalNoiseKeyword
+	1626, // 3767: svg.FeTurbulenceTypeAttr.Alt1.turbulence_keyword:type_name -> svg.TurbulenceKeyword
+	1214, // 3768: svg.FeFuncRtypeAttr.Alt1.identity_keyword:type_name -> svg.IdentityKeyword
+	1599, // 3769: svg.FeFuncRtypeAttr.Alt1.table_keyword:type_name -> svg.TableKeyword
+	1137, // 3770: svg.FeFuncRtypeAttr.Alt1.discrete_keyword:type_name -> svg.DiscreteKeyword
+	1331, // 3771: svg.FeFuncRtypeAttr.Alt1.linear_keyword:type_name -> svg.LinearKeyword
+	1182, // 3772: svg.FeFuncRtypeAttr.Alt1.gamma_keyword:type_name -> svg.GammaKeyword
+	1214, // 3773: svg.FeFuncGtypeAttr.Alt1.identity_keyword:type_name -> svg.IdentityKeyword
+	1599, // 3774: svg.FeFuncGtypeAttr.Alt1.table_keyword:type_name -> svg.TableKeyword
+	1137, // 3775: svg.FeFuncGtypeAttr.Alt1.discrete_keyword:type_name -> svg.DiscreteKeyword
+	1331, // 3776: svg.FeFuncGtypeAttr.Alt1.linear_keyword:type_name -> svg.LinearKeyword
+	1182, // 3777: svg.FeFuncGtypeAttr.Alt1.gamma_keyword:type_name -> svg.GammaKeyword
+	1214, // 3778: svg.FeFuncBtypeAttr.Alt1.identity_keyword:type_name -> svg.IdentityKeyword
+	1599, // 3779: svg.FeFuncBtypeAttr.Alt1.table_keyword:type_name -> svg.TableKeyword
+	1137, // 3780: svg.FeFuncBtypeAttr.Alt1.discrete_keyword:type_name -> svg.DiscreteKeyword
+	1331, // 3781: svg.FeFuncBtypeAttr.Alt1.linear_keyword:type_name -> svg.LinearKeyword
+	1182, // 3782: svg.FeFuncBtypeAttr.Alt1.gamma_keyword:type_name -> svg.GammaKeyword
+	1214, // 3783: svg.FeFuncAtypeAttr.Alt1.identity_keyword:type_name -> svg.IdentityKeyword
+	1599, // 3784: svg.FeFuncAtypeAttr.Alt1.table_keyword:type_name -> svg.TableKeyword
+	1137, // 3785: svg.FeFuncAtypeAttr.Alt1.discrete_keyword:type_name -> svg.DiscreteKeyword
+	1331, // 3786: svg.FeFuncAtypeAttr.Alt1.linear_keyword:type_name -> svg.LinearKeyword
+	1182, // 3787: svg.FeFuncAtypeAttr.Alt1.gamma_keyword:type_name -> svg.GammaKeyword
+	1410, // 3788: svg.FilterAttr.Alt1.none_keyword:type_name -> svg.NoneKeyword
+	660,  // 3789: svg.FilterAttr.Alt1.filter_value_list:type_name -> svg.FilterValueList
+	339,  // 3790: svg.HueRotateFunction.Alt1.angle_type:type_name -> svg.AngleType
+	329,  // 3791: svg.HueRotateFunction.Alt1.number_type:type_name -> svg.NumberType
+	1024, // 3792: svg.ColorInterpolationFiltersAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
+	1513, // 3793: svg.ColorInterpolationFiltersAttr.Alt1.s_rgb_keyword:type_name -> svg.SRgbKeyword
+	1332, // 3794: svg.ColorInterpolationFiltersAttr.Alt1.linear_rgb_keyword:type_name -> svg.LinearRgbKeyword
+	1097, // 3795: svg.FloodColorAttr.Alt1.current_color_keyword:type_name -> svg.CurrentColorKeyword
+	1911, // 3796: svg.FloodColorAttr.Alt1.color_type:type_name -> google.protobuf.Any
+	1097, // 3797: svg.LightingColorAttr.Alt1.current_color_keyword:type_name -> svg.CurrentColorKeyword
+	1911, // 3798: svg.LightingColorAttr.Alt1.color_type:type_name -> google.protobuf.Any
+	1024, // 3799: svg.ImageRenderingAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
+	1427, // 3800: svg.ImageRenderingAttr.Alt1.optimize_speed_keyword:type_name -> svg.OptimizeSpeedKeyword
+	1426, // 3801: svg.ImageRenderingAttr.Alt1.optimize_quality_keyword:type_name -> svg.OptimizeQualityKeyword
+	1095, // 3802: svg.ImageRenderingAttr.Alt1.crisp_hyphen_minus_edges_keyword:type_name -> svg.CrispHyphenMinusEdgesKeyword
+	1457, // 3803: svg.ImageRenderingAttr.Alt1.pixelated_keyword:type_name -> svg.PixelatedKeyword
+	1345, // 3804: svg.MaskTypeAttr.Alt1.luminance_keyword:type_name -> svg.LuminanceKeyword
+	1006, // 3805: svg.MaskTypeAttr.Alt1.alpha_keyword:type_name -> svg.AlphaKeyword
+	1410, // 3806: svg.ClipPathAttr.Alt1.none_keyword:type_name -> svg.NoneKeyword
+	344,  // 3807: svg.ClipPathAttr.Alt1.url_type:type_name -> svg.UrlType
+	697,  // 3808: svg.ClipPathAttr.Alt1.basic_shape:type_name -> svg.BasicShape
+	696,  // 3809: svg.ClipPathAttr.Alt1.geometry_box:type_name -> svg.GeometryBox
+	695,  // 3810: svg.ClipPathAttr.Alt1.clip_path_combo:type_name -> svg.ClipPathCombo
+	697,  // 3811: svg.ClipPathCombo.Seq1.basic_shape:type_name -> svg.BasicShape
+	696,  // 3812: svg.ClipPathCombo.Seq1.geometry_box:type_name -> svg.GeometryBox
+	696,  // 3813: svg.ClipPathCombo.Seq2.geometry_box:type_name -> svg.GeometryBox
+	697,  // 3814: svg.ClipPathCombo.Seq2.basic_shape:type_name -> svg.BasicShape
+	336,  // 3815: svg.InsetFn.Space.length_percentage_type:type_name -> svg.LengthPercentageType
+	1789, // 3816: svg.InsetFn.Space.space:type_name -> svg.InsetFn.Space.Space
+	699,  // 3817: svg.InsetFn.SpaceRoundSpace.border_radius:type_name -> svg.BorderRadius
+	336,  // 3818: svg.InsetFn.Space.Space.length_percentage_type:type_name -> svg.LengthPercentageType
+	1790, // 3819: svg.InsetFn.Space.Space.space:type_name -> svg.InsetFn.Space.Space.Space
+	336,  // 3820: svg.InsetFn.Space.Space.Space.length_percentage_type:type_name -> svg.LengthPercentageType
+	336,  // 3821: svg.BorderRadius.Space.length_percentage_type:type_name -> svg.LengthPercentageType
+	1793, // 3822: svg.BorderRadius.Space.space:type_name -> svg.BorderRadius.Space.Space
+	336,  // 3823: svg.BorderRadius.Solidus.length_percentage_type:type_name -> svg.LengthPercentageType
+	1795, // 3824: svg.BorderRadius.Solidus.space:type_name -> svg.BorderRadius.Solidus.Space
+	336,  // 3825: svg.BorderRadius.Space.Space.length_percentage_type:type_name -> svg.LengthPercentageType
+	1794, // 3826: svg.BorderRadius.Space.Space.space:type_name -> svg.BorderRadius.Space.Space.Space
+	336,  // 3827: svg.BorderRadius.Space.Space.Space.length_percentage_type:type_name -> svg.LengthPercentageType
+	336,  // 3828: svg.BorderRadius.Solidus.Space.length_percentage_type:type_name -> svg.LengthPercentageType
+	1796, // 3829: svg.BorderRadius.Solidus.Space.space:type_name -> svg.BorderRadius.Solidus.Space.Space
+	336,  // 3830: svg.BorderRadius.Solidus.Space.Space.length_percentage_type:type_name -> svg.LengthPercentageType
+	1797, // 3831: svg.BorderRadius.Solidus.Space.Space.space:type_name -> svg.BorderRadius.Solidus.Space.Space.Space
+	336,  // 3832: svg.BorderRadius.Solidus.Space.Space.Space.length_percentage_type:type_name -> svg.LengthPercentageType
+	702,  // 3833: svg.CircleFn.Seq1.radial_size:type_name -> svg.RadialSize
+	1799, // 3834: svg.CircleFn.Seq1.space_at_space:type_name -> svg.CircleFn.Seq1.SpaceAtSpace
+	703,  // 3835: svg.CircleFn.Seq1.SpaceAtSpace.css_position:type_name -> svg.CssPosition
+	702,  // 3836: svg.EllipseFn.Seq1.radial_size:type_name -> svg.RadialSize
+	1555, // 3837: svg.EllipseFn.Seq1.space_keyword:type_name -> svg.SpaceKeyword
+	702,  // 3838: svg.EllipseFn.Seq1.radial_size_2:type_name -> svg.RadialSize
+	1801, // 3839: svg.EllipseFn.Seq1.space_at_space:type_name -> svg.EllipseFn.Seq1.SpaceAtSpace
+	703,  // 3840: svg.EllipseFn.Seq1.SpaceAtSpace.css_position:type_name -> svg.CssPosition
+	705,  // 3841: svg.CssPosition.Space.css_position_v:type_name -> svg.CssPositionV
+	711,  // 3842: svg.PolygonFn.Seq1.fill_rule:type_name -> svg.FillRule
+	1076, // 3843: svg.PolygonFn.Seq1.comma_keyword:type_name -> svg.CommaKeyword
+	333,  // 3844: svg.PolygonFn.SpaceRoundSpace.length_type:type_name -> svg.LengthType
+	1076, // 3845: svg.PolygonFn.SpaceRoundSpace.comma_keyword:type_name -> svg.CommaKeyword
+	711,  // 3846: svg.PathFn.Seq1.fill_rule:type_name -> svg.FillRule
+	1076, // 3847: svg.PathFn.Seq1.comma_keyword:type_name -> svg.CommaKeyword
+	711,  // 3848: svg.ShapeFn.Seq1.fill_rule:type_name -> svg.FillRule
+	1555, // 3849: svg.ShapeFn.Seq1.space_keyword:type_name -> svg.SpaceKeyword
+	1411, // 3850: svg.ClipRuleAttr.Alt1.nonzero_keyword:type_name -> svg.NonzeroKeyword
+	1150, // 3851: svg.ClipRuleAttr.Alt1.evenodd_keyword:type_name -> svg.EvenoddKeyword
+	1024, // 3852: svg.ClipAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
+	714,  // 3853: svg.ClipAttr.Alt1.clip_rect:type_name -> svg.ClipRect
+	1410, // 3854: svg.MaskAttr.Alt1.none_keyword:type_name -> svg.NoneKeyword
+	344,  // 3855: svg.MaskAttr.Alt1.url_type:type_name -> svg.UrlType
+	717,  // 3856: svg.MaskAttr.Alt1.mask_layer_list:type_name -> svg.MaskLayerList
+	721,  // 3857: svg.MaskLayerPosition.Solidus.mask_bg_size:type_name -> svg.MaskBgSize
+	336,  // 3858: svg.MaskBgSize.Seq1.length_percentage_type:type_name -> svg.LengthPercentageType
+	1555, // 3859: svg.MaskBgSize.Seq1.space_keyword:type_name -> svg.SpaceKeyword
+	336,  // 3860: svg.MaskBgSize.Seq1.length_percentage_type_2:type_name -> svg.LengthPercentageType
+	1813, // 3861: svg.MaskRepeatValue.Seq1.alt1:type_name -> svg.MaskRepeatValue.Seq1.Alt1
+	1555, // 3862: svg.MaskRepeatValue.Seq1.space_keyword:type_name -> svg.SpaceKeyword
+	1814, // 3863: svg.MaskRepeatValue.Seq1.alt2:type_name -> svg.MaskRepeatValue.Seq1.Alt2
+	1488, // 3864: svg.MaskRepeatValue.Seq1.Alt1.repeat_keyword:type_name -> svg.RepeatKeyword
+	1555, // 3865: svg.MaskRepeatValue.Seq1.Alt1.space_keyword:type_name -> svg.SpaceKeyword
+	1498, // 3866: svg.MaskRepeatValue.Seq1.Alt1.round_keyword:type_name -> svg.RoundKeyword
+	1405, // 3867: svg.MaskRepeatValue.Seq1.Alt1.no_hyphen_minus_repeat_keyword:type_name -> svg.NoHyphenMinusRepeatKeyword
+	1488, // 3868: svg.MaskRepeatValue.Seq1.Alt2.repeat_keyword:type_name -> svg.RepeatKeyword
+	1555, // 3869: svg.MaskRepeatValue.Seq1.Alt2.space_keyword:type_name -> svg.SpaceKeyword
+	1498, // 3870: svg.MaskRepeatValue.Seq1.Alt2.round_keyword:type_name -> svg.RoundKeyword
+	1405, // 3871: svg.MaskRepeatValue.Seq1.Alt2.no_hyphen_minus_repeat_keyword:type_name -> svg.NoHyphenMinusRepeatKeyword
+	731,  // 3872: svg.MaskLayerOriginClip.Seq1.mask_origin_box:type_name -> svg.MaskOriginBox
+	1555, // 3873: svg.MaskLayerOriginClip.Seq1.space_keyword:type_name -> svg.SpaceKeyword
+	730,  // 3874: svg.MaskLayerOriginClip.Seq1.mask_clip_box_value:type_name -> svg.MaskClipBoxValue
+	1575, // 3875: svg.MarkerMarkerUnitsAttr.Alt1.stroke_width_keyword:type_name -> svg.StrokeWidthKeyword
+	1636, // 3876: svg.MarkerMarkerUnitsAttr.Alt1.user_space_on_use_keyword:type_name -> svg.UserSpaceOnUseKeyword
+	336,  // 3877: svg.MarkerRefXattr.Alt1.length_percentage_type:type_name -> svg.LengthPercentageType
+	329,  // 3878: svg.MarkerRefXattr.Alt1.number_type:type_name -> svg.NumberType
+	1245, // 3879: svg.MarkerRefXattr.Alt1.left_keyword:type_name -> svg.LeftKeyword
+	1059, // 3880: svg.MarkerRefXattr.Alt1.center_keyword:type_name -> svg.CenterKeyword
+	1492, // 3881: svg.MarkerRefXattr.Alt1.right_keyword:type_name -> svg.RightKeyword
+	336,  // 3882: svg.MarkerRefYattr.Alt1.length_percentage_type:type_name -> svg.LengthPercentageType
+	329,  // 3883: svg.MarkerRefYattr.Alt1.number_type:type_name -> svg.NumberType
+	1619, // 3884: svg.MarkerRefYattr.Alt1.top_keyword:type_name -> svg.TopKeyword
+	1059, // 3885: svg.MarkerRefYattr.Alt1.center_keyword:type_name -> svg.CenterKeyword
+	1048, // 3886: svg.MarkerRefYattr.Alt1.bottom_keyword:type_name -> svg.BottomKeyword
+	1024, // 3887: svg.MarkerOrientAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
+	1023, // 3888: svg.MarkerOrientAttr.Alt1.auto_hyphen_minus_start_hyphen_minus_reverse_keyword:type_name -> svg.AutoHyphenMinusStartHyphenMinusReverseKeyword
+	339,  // 3889: svg.MarkerOrientAttr.Alt1.angle_type:type_name -> svg.AngleType
+	329,  // 3890: svg.MarkerOrientAttr.Alt1.number_type:type_name -> svg.NumberType
+	1411, // 3891: svg.FillRuleAttr.Alt1.nonzero_keyword:type_name -> svg.NonzeroKeyword
+	1150, // 3892: svg.FillRuleAttr.Alt1.evenodd_keyword:type_name -> svg.EvenoddKeyword
+	1053, // 3893: svg.StrokeLinecapAttr.Alt1.butt_keyword:type_name -> svg.ButtKeyword
+	1498, // 3894: svg.StrokeLinecapAttr.Alt1.round_keyword:type_name -> svg.RoundKeyword
+	1562, // 3895: svg.StrokeLinecapAttr.Alt1.square_keyword:type_name -> svg.SquareKeyword
+	1384, // 3896: svg.StrokeLinejoinAttr.Alt1.miter_keyword:type_name -> svg.MiterKeyword
+	1383, // 3897: svg.StrokeLinejoinAttr.Alt1.miter_hyphen_minus_clip_keyword:type_name -> svg.MiterHyphenMinusClipKeyword
+	1498, // 3898: svg.StrokeLinejoinAttr.Alt1.round_keyword:type_name -> svg.RoundKeyword
+	1033, // 3899: svg.StrokeLinejoinAttr.Alt1.bevel_keyword:type_name -> svg.BevelKeyword
+	1015, // 3900: svg.StrokeLinejoinAttr.Alt1.arcs_keyword:type_name -> svg.ArcsKeyword
+	1410, // 3901: svg.StrokeDasharrayAttr.Alt1.none_keyword:type_name -> svg.NoneKeyword
+	352,  // 3902: svg.StrokeDasharrayAttr.Alt1.dasharray_type:type_name -> svg.DasharrayType
+	336,  // 3903: svg.StrokeDashoffsetAttr.Alt1.length_percentage_type:type_name -> svg.LengthPercentageType
+	329,  // 3904: svg.StrokeDashoffsetAttr.Alt1.number_type:type_name -> svg.NumberType
+	1412, // 3905: svg.PaintOrderAttr.Alt1.normal_keyword:type_name -> svg.NormalKeyword
+	755,  // 3906: svg.PaintOrderAttr.Alt1.paint_order_list:type_name -> svg.PaintOrderList
+	1410, // 3907: svg.MarkerAttr.Alt1.none_keyword:type_name -> svg.NoneKeyword
+	344,  // 3908: svg.MarkerAttr.Alt1.url_type:type_name -> svg.UrlType
+	1410, // 3909: svg.MarkerStartAttr.Alt1.none_keyword:type_name -> svg.NoneKeyword
+	344,  // 3910: svg.MarkerStartAttr.Alt1.url_type:type_name -> svg.UrlType
+	1410, // 3911: svg.MarkerMidAttr.Alt1.none_keyword:type_name -> svg.NoneKeyword
+	344,  // 3912: svg.MarkerMidAttr.Alt1.url_type:type_name -> svg.UrlType
+	1410, // 3913: svg.MarkerEndAttr.Alt1.none_keyword:type_name -> svg.NoneKeyword
+	344,  // 3914: svg.MarkerEndAttr.Alt1.url_type:type_name -> svg.UrlType
+	1024, // 3915: svg.ColorInterpolationAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
+	1513, // 3916: svg.ColorInterpolationAttr.Alt1.s_rgb_keyword:type_name -> svg.SRgbKeyword
+	1332, // 3917: svg.ColorInterpolationAttr.Alt1.linear_rgb_keyword:type_name -> svg.LinearRgbKeyword
+	1024, // 3918: svg.ColorRenderingAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
+	1427, // 3919: svg.ColorRenderingAttr.Alt1.optimize_speed_keyword:type_name -> svg.OptimizeSpeedKeyword
+	1426, // 3920: svg.ColorRenderingAttr.Alt1.optimize_quality_keyword:type_name -> svg.OptimizeQualityKeyword
+	1024, // 3921: svg.ShapeRenderingAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
+	1427, // 3922: svg.ShapeRenderingAttr.Alt1.optimize_speed_keyword:type_name -> svg.OptimizeSpeedKeyword
+	1094, // 3923: svg.ShapeRenderingAttr.Alt1.crisp_edges_keyword:type_name -> svg.CrispEdgesKeyword
+	1184, // 3924: svg.ShapeRenderingAttr.Alt1.geometric_precision_keyword:type_name -> svg.GeometricPrecisionKeyword
+	1410, // 3925: svg.VectorEffectAttr.Alt1.none_keyword:type_name -> svg.NoneKeyword
+	1409, // 3926: svg.VectorEffectAttr.Alt1.non_hyphen_minus_scaling_hyphen_minus_stroke_keyword:type_name -> svg.NonHyphenMinusScalingHyphenMinusStrokeKeyword
+	1408, // 3927: svg.VectorEffectAttr.Alt1.non_hyphen_minus_scaling_hyphen_minus_size_keyword:type_name -> svg.NonHyphenMinusScalingHyphenMinusSizeKeyword
+	1407, // 3928: svg.VectorEffectAttr.Alt1.non_hyphen_minus_rotation_keyword:type_name -> svg.NonHyphenMinusRotationKeyword
+	1167, // 3929: svg.VectorEffectAttr.Alt1.fixed_hyphen_minus_position_keyword:type_name -> svg.FixedHyphenMinusPositionKeyword
+	768,  // 3930: svg.SvgPath.Seq1.move_to:type_name -> svg.MoveTo
+	767,  // 3931: svg.SvgPath.Seq1.draw_to_command:type_name -> svg.DrawToCommand
+	1348, // 3932: svg.MoveTo.Alt1.m_keyword:type_name -> svg.MKeyword
+	1348, // 3933: svg.MoveTo.Alt1.m_keyword_2:type_name -> svg.MKeyword
+	1673, // 3934: svg.ClosePath.Alt1.z_keyword:type_name -> svg.ZKeyword
+	1673, // 3935: svg.ClosePath.Alt1.z_keyword_2:type_name -> svg.ZKeyword
+	1239, // 3936: svg.LineTo.Alt1.l_keyword:type_name -> svg.LKeyword
+	1239, // 3937: svg.LineTo.Alt1.l_keyword_2:type_name -> svg.LKeyword
+	1199, // 3938: svg.HorizontalLineTo.Alt1.h_keyword:type_name -> svg.HKeyword
+	1199, // 3939: svg.HorizontalLineTo.Alt1.h_keyword_2:type_name -> svg.HKeyword
+	1637, // 3940: svg.VerticalLineTo.Alt1.v_keyword:type_name -> svg.VKeyword
+	1637, // 3941: svg.VerticalLineTo.Alt1.v_keyword_2:type_name -> svg.VKeyword
+	1055, // 3942: svg.CurveTo.Alt1.c_keyword:type_name -> svg.CKeyword
+	1055, // 3943: svg.CurveTo.Alt1.c_keyword_2:type_name -> svg.CKeyword
+	1512, // 3944: svg.SmoothCurveTo.Alt1.s_keyword:type_name -> svg.SKeyword
+	1512, // 3945: svg.SmoothCurveTo.Alt1.s_keyword_2:type_name -> svg.SKeyword
+	1475, // 3946: svg.QuadraticBezierCurveTo.Alt1.q_keyword:type_name -> svg.QKeyword
+	1475, // 3947: svg.QuadraticBezierCurveTo.Alt1.q_keyword_2:type_name -> svg.QKeyword
+	1589, // 3948: svg.SmoothQuadraticBezierCurveTo.Alt1.t_keyword:type_name -> svg.TKeyword
+	1589, // 3949: svg.SmoothQuadraticBezierCurveTo.Alt1.t_keyword_2:type_name -> svg.TKeyword
+	994,  // 3950: svg.EllipticalArc.Alt1.a_keyword:type_name -> svg.AKeyword
+	994,  // 3951: svg.EllipticalArc.Alt1.a_keyword_2:type_name -> svg.AKeyword
+	1442, // 3952: svg.SpreadMethodAttr.Alt1.pad_keyword:type_name -> svg.PadKeyword
+	1482, // 3953: svg.SpreadMethodAttr.Alt1.reflect_keyword:type_name -> svg.ReflectKeyword
+	1488, // 3954: svg.SpreadMethodAttr.Alt1.repeat_keyword:type_name -> svg.RepeatKeyword
+	336,  // 3955: svg.LinearGradientX1attr.Alt1.length_percentage_type:type_name -> svg.LengthPercentageType
+	329,  // 3956: svg.LinearGradientX1attr.Alt1.number_type:type_name -> svg.NumberType
+	336,  // 3957: svg.LinearGradientY1attr.Alt1.length_percentage_type:type_name -> svg.LengthPercentageType
+	329,  // 3958: svg.LinearGradientY1attr.Alt1.number_type:type_name -> svg.NumberType
+	336,  // 3959: svg.LinearGradientX2attr.Alt1.length_percentage_type:type_name -> svg.LengthPercentageType
+	329,  // 3960: svg.LinearGradientX2attr.Alt1.number_type:type_name -> svg.NumberType
+	336,  // 3961: svg.LinearGradientY2attr.Alt1.length_percentage_type:type_name -> svg.LengthPercentageType
+	329,  // 3962: svg.LinearGradientY2attr.Alt1.number_type:type_name -> svg.NumberType
+	336,  // 3963: svg.RadialGradientCxAttr.Alt1.length_percentage_type:type_name -> svg.LengthPercentageType
+	329,  // 3964: svg.RadialGradientCxAttr.Alt1.number_type:type_name -> svg.NumberType
+	336,  // 3965: svg.RadialGradientCyAttr.Alt1.length_percentage_type:type_name -> svg.LengthPercentageType
+	329,  // 3966: svg.RadialGradientCyAttr.Alt1.number_type:type_name -> svg.NumberType
+	336,  // 3967: svg.RadialGradientFxAttr.Alt1.length_percentage_type:type_name -> svg.LengthPercentageType
+	329,  // 3968: svg.RadialGradientFxAttr.Alt1.number_type:type_name -> svg.NumberType
+	336,  // 3969: svg.RadialGradientFyAttr.Alt1.length_percentage_type:type_name -> svg.LengthPercentageType
+	329,  // 3970: svg.RadialGradientFyAttr.Alt1.number_type:type_name -> svg.NumberType
+	329,  // 3971: svg.StopOffsetAttr.Alt1.number_type:type_name -> svg.NumberType
+	335,  // 3972: svg.StopOffsetAttr.Alt1.percentage_type:type_name -> svg.PercentageType
+	1097, // 3973: svg.StopColorAttr.Alt1.current_color_keyword:type_name -> svg.CurrentColorKeyword
+	1911, // 3974: svg.StopColorAttr.Alt1.color_type:type_name -> google.protobuf.Any
+	1024, // 3975: svg.RectRxAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
+	337,  // 3976: svg.RectRxAttr.Alt1.non_negative_length_percentage_type:type_name -> svg.NonNegativeLengthPercentageType
+	1024, // 3977: svg.RectRyAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
+	337,  // 3978: svg.RectRyAttr.Alt1.non_negative_length_percentage_type:type_name -> svg.NonNegativeLengthPercentageType
+	1024, // 3979: svg.EllipseRxAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
+	337,  // 3980: svg.EllipseRxAttr.Alt1.non_negative_length_percentage_type:type_name -> svg.NonNegativeLengthPercentageType
+	1024, // 3981: svg.EllipseRyAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
+	337,  // 3982: svg.EllipseRyAttr.Alt1.non_negative_length_percentage_type:type_name -> svg.NonNegativeLengthPercentageType
+	336,  // 3983: svg.LineX1attr.Alt1.length_percentage_type:type_name -> svg.LengthPercentageType
+	329,  // 3984: svg.LineX1attr.Alt1.number_type:type_name -> svg.NumberType
+	336,  // 3985: svg.LineY1attr.Alt1.length_percentage_type:type_name -> svg.LengthPercentageType
+	329,  // 3986: svg.LineY1attr.Alt1.number_type:type_name -> svg.NumberType
+	336,  // 3987: svg.LineX2attr.Alt1.length_percentage_type:type_name -> svg.LengthPercentageType
+	329,  // 3988: svg.LineX2attr.Alt1.number_type:type_name -> svg.NumberType
+	336,  // 3989: svg.LineY2attr.Alt1.length_percentage_type:type_name -> svg.LengthPercentageType
+	329,  // 3990: svg.LineY2attr.Alt1.number_type:type_name -> svg.NumberType
+	1410, // 3991: svg.PathDattr.Alt1.none_keyword:type_name -> svg.NoneKeyword
+	766,  // 3992: svg.PathDattr.Alt1.svg_path:type_name -> svg.SvgPath
+	333,  // 3993: svg.SymbolRefXattr.Alt1.length_type:type_name -> svg.LengthType
+	1245, // 3994: svg.SymbolRefXattr.Alt1.left_keyword:type_name -> svg.LeftKeyword
+	1059, // 3995: svg.SymbolRefXattr.Alt1.center_keyword:type_name -> svg.CenterKeyword
+	1492, // 3996: svg.SymbolRefXattr.Alt1.right_keyword:type_name -> svg.RightKeyword
+	333,  // 3997: svg.SymbolRefYattr.Alt1.length_type:type_name -> svg.LengthType
+	1619, // 3998: svg.SymbolRefYattr.Alt1.top_keyword:type_name -> svg.TopKeyword
+	1059, // 3999: svg.SymbolRefYattr.Alt1.center_keyword:type_name -> svg.CenterKeyword
+	1048, // 4000: svg.SymbolRefYattr.Alt1.bottom_keyword:type_name -> svg.BottomKeyword
+	1024, // 4001: svg.SymbolWidthAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
+	337,  // 4002: svg.SymbolWidthAttr.Alt1.non_negative_length_percentage_type:type_name -> svg.NonNegativeLengthPercentageType
+	1024, // 4003: svg.SymbolHeightAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
+	337,  // 4004: svg.SymbolHeightAttr.Alt1.non_negative_length_percentage_type:type_name -> svg.NonNegativeLengthPercentageType
+	1024, // 4005: svg.UseWidthAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
+	337,  // 4006: svg.UseWidthAttr.Alt1.non_negative_length_percentage_type:type_name -> svg.NonNegativeLengthPercentageType
+	1024, // 4007: svg.UseHeightAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
+	337,  // 4008: svg.UseHeightAttr.Alt1.non_negative_length_percentage_type:type_name -> svg.NonNegativeLengthPercentageType
+	1645, // 4009: svg.VisibilityAttr.Alt1.visible_keyword:type_name -> svg.VisibleKeyword
+	1204, // 4010: svg.VisibilityAttr.Alt1.hidden_keyword:type_name -> svg.HiddenKeyword
+	1069, // 4011: svg.VisibilityAttr.Alt1.collapse_keyword:type_name -> svg.CollapseKeyword
+	1221, // 4012: svg.VisibilityAttr.Alt1.inherit_keyword:type_name -> svg.InheritKeyword
+	1645, // 4013: svg.OverflowAttr.Alt1.visible_keyword:type_name -> svg.VisibleKeyword
+	1204, // 4014: svg.OverflowAttr.Alt1.hidden_keyword:type_name -> svg.HiddenKeyword
+	1522, // 4015: svg.OverflowAttr.Alt1.scroll_keyword:type_name -> svg.ScrollKeyword
+	1024, // 4016: svg.OverflowAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
+	1221, // 4017: svg.OverflowAttr.Alt1.inherit_keyword:type_name -> svg.InheritKeyword
+	915,  // 4018: svg.TransformOriginPosition.Seq1.transform_origin_y:type_name -> svg.TransformOriginY
+	916,  // 4019: svg.TransformOriginPosition.Seq1.transform_origin_z:type_name -> svg.TransformOriginZ
+	336,  // 4020: svg.TextLengthAttr.Alt1.length_percentage_type:type_name -> svg.LengthPercentageType
+	329,  // 4021: svg.TextLengthAttr.Alt1.number_type:type_name -> svg.NumberType
+	1557, // 4022: svg.TextLengthAdjustAttr.Alt1.spacing_keyword:type_name -> svg.SpacingKeyword
+	1556, // 4023: svg.TextLengthAdjustAttr.Alt1.spacing_and_glyphs_keyword:type_name -> svg.SpacingAndGlyphsKeyword
+	336,  // 4024: svg.TextPositionList.Alt1.length_percentage_type:type_name -> svg.LengthPercentageType
+	329,  // 4025: svg.TextPositionList.Alt1.number_type:type_name -> svg.NumberType
+	336,  // 4026: svg.TspanLengthAttr.Alt1.length_percentage_type:type_name -> svg.LengthPercentageType
+	329,  // 4027: svg.TspanLengthAttr.Alt1.number_type:type_name -> svg.NumberType
+	1557, // 4028: svg.TspanLengthAdjustAttr.Alt1.spacing_keyword:type_name -> svg.SpacingKeyword
+	1556, // 4029: svg.TspanLengthAdjustAttr.Alt1.spacing_and_glyphs_keyword:type_name -> svg.SpacingAndGlyphsKeyword
+	336,  // 4030: svg.TextPathStartOffsetAttr.Alt1.length_percentage_type:type_name -> svg.LengthPercentageType
+	329,  // 4031: svg.TextPathStartOffsetAttr.Alt1.number_type:type_name -> svg.NumberType
+	1001, // 4032: svg.TextPathMethodAttr.Alt1.align_keyword:type_name -> svg.AlignKeyword
+	1569, // 4033: svg.TextPathMethodAttr.Alt1.stretch_keyword:type_name -> svg.StretchKeyword
+	1024, // 4034: svg.TextPathSpacingAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
+	1152, // 4035: svg.TextPathSpacingAttr.Alt1.exact_keyword:type_name -> svg.ExactKeyword
+	1245, // 4036: svg.TextPathSideAttr.Alt1.left_keyword:type_name -> svg.LeftKeyword
+	1492, // 4037: svg.TextPathSideAttr.Alt1.right_keyword:type_name -> svg.RightKeyword
+	336,  // 4038: svg.TextPathLengthAttr.Alt1.length_percentage_type:type_name -> svg.LengthPercentageType
+	329,  // 4039: svg.TextPathLengthAttr.Alt1.number_type:type_name -> svg.NumberType
+	1557, // 4040: svg.TextPathLengthAdjustAttr.Alt1.spacing_keyword:type_name -> svg.SpacingKeyword
+	1556, // 4041: svg.TextPathLengthAdjustAttr.Alt1.spacing_and_glyphs_keyword:type_name -> svg.SpacingAndGlyphsKeyword
+	1564, // 4042: svg.TextAnchorAttr.Alt1.start_keyword:type_name -> svg.StartKeyword
+	1378, // 4043: svg.TextAnchorAttr.Alt1.middle_keyword:type_name -> svg.MiddleKeyword
+	1148, // 4044: svg.TextAnchorAttr.Alt1.end_keyword:type_name -> svg.EndKeyword
+	1024, // 4045: svg.DominantBaselineAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
+	1608, // 4046: svg.DominantBaselineAttr.Alt1.text_hyphen_minus_bottom_keyword:type_name -> svg.TextHyphenMinusBottomKeyword
+	1007, // 4047: svg.DominantBaselineAttr.Alt1.alphabetic_keyword:type_name -> svg.AlphabeticKeyword
+	1215, // 4048: svg.DominantBaselineAttr.Alt1.ideographic_keyword:type_name -> svg.IdeographicKeyword
+	1378, // 4049: svg.DominantBaselineAttr.Alt1.middle_keyword:type_name -> svg.MiddleKeyword
+	1060, // 4050: svg.DominantBaselineAttr.Alt1.central_keyword:type_name -> svg.CentralKeyword
+	1358, // 4051: svg.DominantBaselineAttr.Alt1.mathematical_keyword:type_name -> svg.MathematicalKeyword
+	1200, // 4052: svg.DominantBaselineAttr.Alt1.hanging_keyword:type_name -> svg.HangingKeyword
+	1609, // 4053: svg.DominantBaselineAttr.Alt1.text_hyphen_minus_top_keyword:type_name -> svg.TextHyphenMinusTopKeyword
+	1030, // 4054: svg.AlignmentBaselineAttr.Alt1.baseline_keyword:type_name -> svg.BaselineKeyword
+	1608, // 4055: svg.AlignmentBaselineAttr.Alt1.text_hyphen_minus_bottom_keyword:type_name -> svg.TextHyphenMinusBottomKeyword
+	1007, // 4056: svg.AlignmentBaselineAttr.Alt1.alphabetic_keyword:type_name -> svg.AlphabeticKeyword
+	1215, // 4057: svg.AlignmentBaselineAttr.Alt1.ideographic_keyword:type_name -> svg.IdeographicKeyword
+	1378, // 4058: svg.AlignmentBaselineAttr.Alt1.middle_keyword:type_name -> svg.MiddleKeyword
+	1060, // 4059: svg.AlignmentBaselineAttr.Alt1.central_keyword:type_name -> svg.CentralKeyword
+	1358, // 4060: svg.AlignmentBaselineAttr.Alt1.mathematical_keyword:type_name -> svg.MathematicalKeyword
+	1200, // 4061: svg.AlignmentBaselineAttr.Alt1.hanging_keyword:type_name -> svg.HangingKeyword
+	1609, // 4062: svg.AlignmentBaselineAttr.Alt1.text_hyphen_minus_top_keyword:type_name -> svg.TextHyphenMinusTopKeyword
+	1579, // 4063: svg.BaselineShiftAttr.Alt1.sub_keyword:type_name -> svg.SubKeyword
+	1583, // 4064: svg.BaselineShiftAttr.Alt1.super_keyword:type_name -> svg.SuperKeyword
+	336,  // 4065: svg.BaselineShiftAttr.Alt1.length_percentage_type:type_name -> svg.LengthPercentageType
+	1344, // 4066: svg.DirectionAttr.Alt1.ltr_keyword:type_name -> svg.LtrKeyword
+	1504, // 4067: svg.DirectionAttr.Alt1.rtl_keyword:type_name -> svg.RtlKeyword
+	1412, // 4068: svg.UnicodeBidiAttr.Alt1.normal_keyword:type_name -> svg.NormalKeyword
+	1146, // 4069: svg.UnicodeBidiAttr.Alt1.embed_keyword:type_name -> svg.EmbedKeyword
+	1231, // 4070: svg.UnicodeBidiAttr.Alt1.isolate_keyword:type_name -> svg.IsolateKeyword
+	1034, // 4071: svg.UnicodeBidiAttr.Alt1.bidi_hyphen_minus_override_keyword:type_name -> svg.BidiHyphenMinusOverrideKeyword
+	1230, // 4072: svg.UnicodeBidiAttr.Alt1.isolate_hyphen_minus_override_keyword:type_name -> svg.IsolateHyphenMinusOverrideKeyword
+	1458, // 4073: svg.UnicodeBidiAttr.Alt1.plaintext_keyword:type_name -> svg.PlaintextKeyword
+	1208, // 4074: svg.WritingModeAttr.Alt1.horizontal_hyphen_minus_tb_keyword:type_name -> svg.HorizontalHyphenMinusTbKeyword
+	1639, // 4075: svg.WritingModeAttr.Alt1.vertical_hyphen_minus_rl_keyword:type_name -> svg.VerticalHyphenMinusRlKeyword
+	1638, // 4076: svg.WritingModeAttr.Alt1.vertical_hyphen_minus_lr_keyword:type_name -> svg.VerticalHyphenMinusLrKeyword
+	1534, // 4077: svg.WritingModeAttr.Alt1.sideways_hyphen_minus_rl_keyword:type_name -> svg.SidewaysHyphenMinusRlKeyword
+	1533, // 4078: svg.WritingModeAttr.Alt1.sideways_hyphen_minus_lr_keyword:type_name -> svg.SidewaysHyphenMinusLrKeyword
+	1343, // 4079: svg.WritingModeAttr.Alt1.lr_keyword:type_name -> svg.LrKeyword
+	1342, // 4080: svg.WritingModeAttr.Alt1.lr_hyphen_minus_tb_keyword:type_name -> svg.LrHyphenMinusTbKeyword
+	1495, // 4081: svg.WritingModeAttr.Alt1.rl_keyword:type_name -> svg.RlKeyword
+	1494, // 4082: svg.WritingModeAttr.Alt1.rl_hyphen_minus_tb_keyword:type_name -> svg.RlHyphenMinusTbKeyword
+	1605, // 4083: svg.WritingModeAttr.Alt1.tb_keyword:type_name -> svg.TbKeyword
+	1604, // 4084: svg.WritingModeAttr.Alt1.tb_hyphen_minus_rl_keyword:type_name -> svg.TbHyphenMinusRlKeyword
+	1412, // 4085: svg.LetterSpacingAttr.Alt1.normal_keyword:type_name -> svg.NormalKeyword
+	333,  // 4086: svg.LetterSpacingAttr.Alt1.length_type:type_name -> svg.LengthType
+	1412, // 4087: svg.WordSpacingAttr.Alt1.normal_keyword:type_name -> svg.NormalKeyword
+	336,  // 4088: svg.WordSpacingAttr.Alt1.length_percentage_type:type_name -> svg.LengthPercentageType
+	962,  // 4089: svg.TextDecorationValue.Seq1.text_decoration_line:type_name -> svg.TextDecorationLine
+	1555, // 4090: svg.TextDecorationValue.Seq1.space_keyword:type_name -> svg.SpaceKeyword
+	963,  // 4091: svg.TextDecorationValue.Seq1.text_decoration_style:type_name -> svg.TextDecorationStyle
+	962,  // 4092: svg.TextDecorationValue.Seq2.text_decoration_line:type_name -> svg.TextDecorationLine
+	1555, // 4093: svg.TextDecorationValue.Seq2.space_keyword:type_name -> svg.SpaceKeyword
+	1911, // 4094: svg.TextDecorationValue.Seq2.color_type:type_name -> google.protobuf.Any
+	963,  // 4095: svg.TextDecorationValue.Seq3.text_decoration_style:type_name -> svg.TextDecorationStyle
+	1555, // 4096: svg.TextDecorationValue.Seq3.space_keyword:type_name -> svg.SpaceKeyword
+	1911, // 4097: svg.TextDecorationValue.Seq3.color_type:type_name -> google.protobuf.Any
+	962,  // 4098: svg.TextDecorationValue.Seq4.text_decoration_line:type_name -> svg.TextDecorationLine
+	1555, // 4099: svg.TextDecorationValue.Seq4.space_keyword:type_name -> svg.SpaceKeyword
+	963,  // 4100: svg.TextDecorationValue.Seq4.text_decoration_style:type_name -> svg.TextDecorationStyle
+	1555, // 4101: svg.TextDecorationValue.Seq4.space_keyword_2:type_name -> svg.SpaceKeyword
+	1911, // 4102: svg.TextDecorationValue.Seq4.color_type:type_name -> google.protobuf.Any
+	1065, // 4103: svg.TextOverflowAttr.Alt1.clip_keyword:type_name -> svg.ClipKeyword
+	1145, // 4104: svg.TextOverflowAttr.Alt1.ellipsis_keyword:type_name -> svg.EllipsisKeyword
+	1024, // 4105: svg.TextRenderingAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
+	1427, // 4106: svg.TextRenderingAttr.Alt1.optimize_speed_keyword:type_name -> svg.OptimizeSpeedKeyword
+	1425, // 4107: svg.TextRenderingAttr.Alt1.optimize_legibility_keyword:type_name -> svg.OptimizeLegibilityKeyword
+	1184, // 4108: svg.TextRenderingAttr.Alt1.geometric_precision_keyword:type_name -> svg.GeometricPrecisionKeyword
+	1412, // 4109: svg.WhiteSpaceAttr.Alt1.normal_keyword:type_name -> svg.NormalKeyword
+	1467, // 4110: svg.WhiteSpaceAttr.Alt1.pre_keyword:type_name -> svg.PreKeyword
+	1415, // 4111: svg.WhiteSpaceAttr.Alt1.nowrap_keyword:type_name -> svg.NowrapKeyword
+	1466, // 4112: svg.WhiteSpaceAttr.Alt1.pre_hyphen_minus_wrap_keyword:type_name -> svg.PreHyphenMinusWrapKeyword
+	1465, // 4113: svg.WhiteSpaceAttr.Alt1.pre_hyphen_minus_line_keyword:type_name -> svg.PreHyphenMinusLineKeyword
+	1050, // 4114: svg.WhiteSpaceAttr.Alt1.break_hyphen_minus_spaces_keyword:type_name -> svg.BreakHyphenMinusSpacesKeyword
+	1410, // 4115: svg.FontSizeAdjustAttr.Alt1.none_keyword:type_name -> svg.NoneKeyword
+	329,  // 4116: svg.FontSizeAdjustAttr.Alt1.number_type:type_name -> svg.NumberType
+	1412, // 4117: svg.FontStyleAttr.Alt1.normal_keyword:type_name -> svg.NormalKeyword
+	1232, // 4118: svg.FontStyleAttr.Alt1.italic_keyword:type_name -> svg.ItalicKeyword
+	974,  // 4119: svg.FontStyleAttr.Alt1.font_style_oblique:type_name -> svg.FontStyleOblique
+	339,  // 4120: svg.FontStyleOblique.Space.angle_type:type_name -> svg.AngleType
+	1412, // 4121: svg.FontWeightAttr.Alt1.normal_keyword:type_name -> svg.NormalKeyword
+	1044, // 4122: svg.FontWeightAttr.Alt1.bold_keyword:type_name -> svg.BoldKeyword
+	1045, // 4123: svg.FontWeightAttr.Alt1.bolder_keyword:type_name -> svg.BolderKeyword
+	1315, // 4124: svg.FontWeightAttr.Alt1.lighter_keyword:type_name -> svg.LighterKeyword
+	329,  // 4125: svg.FontWeightAttr.Alt1.number_type:type_name -> svg.NumberType
+	1412, // 4126: svg.FontStretchAttr.Alt1.normal_keyword:type_name -> svg.NormalKeyword
+	1628, // 4127: svg.FontStretchAttr.Alt1.ultra_hyphen_minus_condensed_keyword:type_name -> svg.UltraHyphenMinusCondensedKeyword
+	1157, // 4128: svg.FontStretchAttr.Alt1.extra_hyphen_minus_condensed_keyword:type_name -> svg.ExtraHyphenMinusCondensedKeyword
+	1079, // 4129: svg.FontStretchAttr.Alt1.condensed_keyword:type_name -> svg.CondensedKeyword
+	1530, // 4130: svg.FontStretchAttr.Alt1.semi_hyphen_minus_condensed_keyword:type_name -> svg.SemiHyphenMinusCondensedKeyword
+	1531, // 4131: svg.FontStretchAttr.Alt1.semi_hyphen_minus_expanded_keyword:type_name -> svg.SemiHyphenMinusExpandedKeyword
+	1156, // 4132: svg.FontStretchAttr.Alt1.expanded_keyword:type_name -> svg.ExpandedKeyword
+	1158, // 4133: svg.FontStretchAttr.Alt1.extra_hyphen_minus_expanded_keyword:type_name -> svg.ExtraHyphenMinusExpandedKeyword
+	1629, // 4134: svg.FontStretchAttr.Alt1.ultra_hyphen_minus_expanded_keyword:type_name -> svg.UltraHyphenMinusExpandedKeyword
+	335,  // 4135: svg.FontStretchAttr.Alt1.percentage_type:type_name -> svg.PercentageType
+	1024, // 4136: svg.InlineSizeAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
+	336,  // 4137: svg.InlineSizeAttr.Alt1.length_percentage_type:type_name -> svg.LengthPercentageType
+	1024, // 4138: svg.GlyphOrientationVerticalAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
+	339,  // 4139: svg.GlyphOrientationVerticalAttr.Alt1.angle_type:type_name -> svg.AngleType
+	329,  // 4140: svg.GlyphOrientationVerticalAttr.Alt1.number_type:type_name -> svg.NumberType
+	329,  // 4141: svg.Translate.Comma.number_type:type_name -> svg.NumberType
+	329,  // 4142: svg.Scale.Comma.number_type:type_name -> svg.NumberType
+	329,  // 4143: svg.Rotate.Comma.number_type:type_name -> svg.NumberType
+	1076, // 4144: svg.Rotate.Comma.comma_keyword:type_name -> svg.CommaKeyword
+	329,  // 4145: svg.Rotate.Comma.number_type_2:type_name -> svg.NumberType
+	4146, // [4146:4146] is the sub-list for method output_type
+	4146, // [4146:4146] is the sub-list for method input_type
+	4146, // [4146:4146] is the sub-list for extension type_name
+	4146, // [4146:4146] is the sub-list for extension extendee
+	0,    // [0:4146] is the sub-list for field type_name
 }
 
 func init() { file_svg_proto_init() }
@@ -141186,40 +141234,40 @@ func file_svg_proto_init() {
 		(*AnimateTransformAccumulateAttr_Alt1_NoneKeyword)(nil),
 		(*AnimateTransformAccumulateAttr_Alt1_SumKeyword)(nil),
 	}
-	file_svg_proto_msgTypes[1752].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1753].OneofWrappers = []any{
 		(*ImageCrossoriginAttr_Alt1_AnonymousKeyword)(nil),
 		(*ImageCrossoriginAttr_Alt1_UseHyphenMinusCredentialsKeyword)(nil),
 	}
-	file_svg_proto_msgTypes[1753].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1754].OneofWrappers = []any{
 		(*ImageWidthAttr_Alt1_AutoKeyword)(nil),
 		(*ImageWidthAttr_Alt1_NonNegativeLengthPercentageType)(nil),
 	}
-	file_svg_proto_msgTypes[1754].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1755].OneofWrappers = []any{
 		(*ImageHeightAttr_Alt1_AutoKeyword)(nil),
 		(*ImageHeightAttr_Alt1_NonNegativeLengthPercentageType)(nil),
 	}
-	file_svg_proto_msgTypes[1755].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1756].OneofWrappers = []any{
 		(*ImageDecodingAttr_Alt1_SyncKeyword)(nil),
 		(*ImageDecodingAttr_Alt1_AsyncKeyword)(nil),
 		(*ImageDecodingAttr_Alt1_AutoKeyword)(nil),
 	}
-	file_svg_proto_msgTypes[1756].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1757].OneofWrappers = []any{
 		(*ForeignObjectWidthAttr_Alt1_AutoKeyword)(nil),
 		(*ForeignObjectWidthAttr_Alt1_NonNegativeLengthPercentageType)(nil),
 	}
-	file_svg_proto_msgTypes[1757].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1758].OneofWrappers = []any{
 		(*ForeignObjectHeightAttr_Alt1_AutoKeyword)(nil),
 		(*ForeignObjectHeightAttr_Alt1_NonNegativeLengthPercentageType)(nil),
 	}
-	file_svg_proto_msgTypes[1758].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1759].OneofWrappers = []any{
 		(*ViewZoomAndPanAttr_Alt1_DisableKeyword)(nil),
 		(*ViewZoomAndPanAttr_Alt1_MagnifyKeyword)(nil),
 	}
-	file_svg_proto_msgTypes[1759].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1760].OneofWrappers = []any{
 		(*ScriptCrossoriginAttr_Alt1_AnonymousKeyword)(nil),
 		(*ScriptCrossoriginAttr_Alt1_UseHyphenMinusCredentialsKeyword)(nil),
 	}
-	file_svg_proto_msgTypes[1760].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1761].OneofWrappers = []any{
 		(*PointerEventsAttr_Alt1_BoundingHyphenMinusBoxKeyword)(nil),
 		(*PointerEventsAttr_Alt1_VisiblePaintedKeyword)(nil),
 		(*PointerEventsAttr_Alt1_VisibleFillKeyword)(nil),
@@ -141232,7 +141280,7 @@ func file_svg_proto_init() {
 		(*PointerEventsAttr_Alt1_NoneKeyword)(nil),
 		(*PointerEventsAttr_Alt1_AutoKeyword)(nil),
 	}
-	file_svg_proto_msgTypes[1761].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1762].OneofWrappers = []any{
 		(*FeBlendModeAttr_Alt1_NormalKeyword)(nil),
 		(*FeBlendModeAttr_Alt1_MultiplyKeyword)(nil),
 		(*FeBlendModeAttr_Alt1_ScreenKeyword)(nil),
@@ -141250,13 +141298,13 @@ func file_svg_proto_init() {
 		(*FeBlendModeAttr_Alt1_ColorKeyword)(nil),
 		(*FeBlendModeAttr_Alt1_LuminosityKeyword)(nil),
 	}
-	file_svg_proto_msgTypes[1762].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1763].OneofWrappers = []any{
 		(*FeColorMatrixTypeAttr_Alt1_MatrixKeyword)(nil),
 		(*FeColorMatrixTypeAttr_Alt1_SaturateKeyword)(nil),
 		(*FeColorMatrixTypeAttr_Alt1_HueRotateKeyword)(nil),
 		(*FeColorMatrixTypeAttr_Alt1_LuminanceToAlphaKeyword)(nil),
 	}
-	file_svg_proto_msgTypes[1763].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1764].OneofWrappers = []any{
 		(*FeCompositeOperatorAttr_Alt1_OverKeyword)(nil),
 		(*FeCompositeOperatorAttr_Alt1_InKeyword)(nil),
 		(*FeCompositeOperatorAttr_Alt1_OutKeyword)(nil),
@@ -141265,439 +141313,439 @@ func file_svg_proto_init() {
 		(*FeCompositeOperatorAttr_Alt1_LighterKeyword)(nil),
 		(*FeCompositeOperatorAttr_Alt1_ArithmeticKeyword)(nil),
 	}
-	file_svg_proto_msgTypes[1764].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1765].OneofWrappers = []any{
 		(*FeConvolveMatrixEdgeModeAttr_Alt1_DuplicateKeyword)(nil),
 		(*FeConvolveMatrixEdgeModeAttr_Alt1_WrapKeyword)(nil),
 		(*FeConvolveMatrixEdgeModeAttr_Alt1_NoneKeyword)(nil),
 	}
-	file_svg_proto_msgTypes[1765].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1766].OneofWrappers = []any{
 		(*FeDisplacementMapXchannelSelectorAttr_Alt1_RKeyword)(nil),
 		(*FeDisplacementMapXchannelSelectorAttr_Alt1_GKeyword)(nil),
 		(*FeDisplacementMapXchannelSelectorAttr_Alt1_BKeyword)(nil),
 		(*FeDisplacementMapXchannelSelectorAttr_Alt1_AKeyword)(nil),
 	}
-	file_svg_proto_msgTypes[1766].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1767].OneofWrappers = []any{
 		(*FeDisplacementMapYchannelSelectorAttr_Alt1_RKeyword)(nil),
 		(*FeDisplacementMapYchannelSelectorAttr_Alt1_GKeyword)(nil),
 		(*FeDisplacementMapYchannelSelectorAttr_Alt1_BKeyword)(nil),
 		(*FeDisplacementMapYchannelSelectorAttr_Alt1_AKeyword)(nil),
 	}
-	file_svg_proto_msgTypes[1767].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1768].OneofWrappers = []any{
 		(*FeGaussianBlurEdgeModeAttr_Alt1_DuplicateKeyword)(nil),
 		(*FeGaussianBlurEdgeModeAttr_Alt1_WrapKeyword)(nil),
 		(*FeGaussianBlurEdgeModeAttr_Alt1_NoneKeyword)(nil),
 	}
-	file_svg_proto_msgTypes[1768].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1769].OneofWrappers = []any{
 		(*FeImageCrossoriginAttr_Alt1_AnonymousKeyword)(nil),
 		(*FeImageCrossoriginAttr_Alt1_UseHyphenMinusCredentialsKeyword)(nil),
 	}
-	file_svg_proto_msgTypes[1769].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1770].OneofWrappers = []any{
 		(*FeMorphologyOperatorAttr_Alt1_ErodeKeyword)(nil),
 		(*FeMorphologyOperatorAttr_Alt1_DilateKeyword)(nil),
 	}
-	file_svg_proto_msgTypes[1770].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1771].OneofWrappers = []any{
 		(*FeTurbulenceStitchTilesAttr_Alt1_StitchKeyword)(nil),
 		(*FeTurbulenceStitchTilesAttr_Alt1_NoStitchKeyword)(nil),
 	}
-	file_svg_proto_msgTypes[1771].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1772].OneofWrappers = []any{
 		(*FeTurbulenceTypeAttr_Alt1_FractalNoiseKeyword)(nil),
 		(*FeTurbulenceTypeAttr_Alt1_TurbulenceKeyword)(nil),
 	}
-	file_svg_proto_msgTypes[1772].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1773].OneofWrappers = []any{
 		(*FeFuncRtypeAttr_Alt1_IdentityKeyword)(nil),
 		(*FeFuncRtypeAttr_Alt1_TableKeyword)(nil),
 		(*FeFuncRtypeAttr_Alt1_DiscreteKeyword)(nil),
 		(*FeFuncRtypeAttr_Alt1_LinearKeyword)(nil),
 		(*FeFuncRtypeAttr_Alt1_GammaKeyword)(nil),
 	}
-	file_svg_proto_msgTypes[1773].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1774].OneofWrappers = []any{
 		(*FeFuncGtypeAttr_Alt1_IdentityKeyword)(nil),
 		(*FeFuncGtypeAttr_Alt1_TableKeyword)(nil),
 		(*FeFuncGtypeAttr_Alt1_DiscreteKeyword)(nil),
 		(*FeFuncGtypeAttr_Alt1_LinearKeyword)(nil),
 		(*FeFuncGtypeAttr_Alt1_GammaKeyword)(nil),
 	}
-	file_svg_proto_msgTypes[1774].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1775].OneofWrappers = []any{
 		(*FeFuncBtypeAttr_Alt1_IdentityKeyword)(nil),
 		(*FeFuncBtypeAttr_Alt1_TableKeyword)(nil),
 		(*FeFuncBtypeAttr_Alt1_DiscreteKeyword)(nil),
 		(*FeFuncBtypeAttr_Alt1_LinearKeyword)(nil),
 		(*FeFuncBtypeAttr_Alt1_GammaKeyword)(nil),
 	}
-	file_svg_proto_msgTypes[1775].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1776].OneofWrappers = []any{
 		(*FeFuncAtypeAttr_Alt1_IdentityKeyword)(nil),
 		(*FeFuncAtypeAttr_Alt1_TableKeyword)(nil),
 		(*FeFuncAtypeAttr_Alt1_DiscreteKeyword)(nil),
 		(*FeFuncAtypeAttr_Alt1_LinearKeyword)(nil),
 		(*FeFuncAtypeAttr_Alt1_GammaKeyword)(nil),
 	}
-	file_svg_proto_msgTypes[1776].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1777].OneofWrappers = []any{
 		(*FilterAttr_Alt1_NoneKeyword)(nil),
 		(*FilterAttr_Alt1_FilterValueList)(nil),
 	}
-	file_svg_proto_msgTypes[1777].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1778].OneofWrappers = []any{
 		(*HueRotateFunction_Alt1_AngleType)(nil),
 		(*HueRotateFunction_Alt1_NumberType)(nil),
 	}
-	file_svg_proto_msgTypes[1778].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1779].OneofWrappers = []any{
 		(*ColorInterpolationFiltersAttr_Alt1_AutoKeyword)(nil),
 		(*ColorInterpolationFiltersAttr_Alt1_SRgbKeyword)(nil),
 		(*ColorInterpolationFiltersAttr_Alt1_LinearRgbKeyword)(nil),
 	}
-	file_svg_proto_msgTypes[1779].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1780].OneofWrappers = []any{
 		(*FloodColorAttr_Alt1_CurrentColorKeyword)(nil),
 		(*FloodColorAttr_Alt1_ColorType)(nil),
 	}
-	file_svg_proto_msgTypes[1780].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1781].OneofWrappers = []any{
 		(*LightingColorAttr_Alt1_CurrentColorKeyword)(nil),
 		(*LightingColorAttr_Alt1_ColorType)(nil),
 	}
-	file_svg_proto_msgTypes[1781].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1782].OneofWrappers = []any{
 		(*ImageRenderingAttr_Alt1_AutoKeyword)(nil),
 		(*ImageRenderingAttr_Alt1_OptimizeSpeedKeyword)(nil),
 		(*ImageRenderingAttr_Alt1_OptimizeQualityKeyword)(nil),
 		(*ImageRenderingAttr_Alt1_CrispHyphenMinusEdgesKeyword)(nil),
 		(*ImageRenderingAttr_Alt1_PixelatedKeyword)(nil),
 	}
-	file_svg_proto_msgTypes[1782].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1783].OneofWrappers = []any{
 		(*MaskTypeAttr_Alt1_LuminanceKeyword)(nil),
 		(*MaskTypeAttr_Alt1_AlphaKeyword)(nil),
 	}
-	file_svg_proto_msgTypes[1783].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1784].OneofWrappers = []any{
 		(*ClipPathAttr_Alt1_NoneKeyword)(nil),
 		(*ClipPathAttr_Alt1_UrlType)(nil),
 		(*ClipPathAttr_Alt1_BasicShape)(nil),
 		(*ClipPathAttr_Alt1_GeometryBox)(nil),
 		(*ClipPathAttr_Alt1_ClipPathCombo)(nil),
 	}
-	file_svg_proto_msgTypes[1806].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1807].OneofWrappers = []any{
 		(*ClipRuleAttr_Alt1_NonzeroKeyword)(nil),
 		(*ClipRuleAttr_Alt1_EvenoddKeyword)(nil),
 	}
-	file_svg_proto_msgTypes[1807].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1808].OneofWrappers = []any{
 		(*ClipAttr_Alt1_AutoKeyword)(nil),
 		(*ClipAttr_Alt1_ClipRect)(nil),
 	}
-	file_svg_proto_msgTypes[1808].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1809].OneofWrappers = []any{
 		(*MaskAttr_Alt1_NoneKeyword)(nil),
 		(*MaskAttr_Alt1_UrlType)(nil),
 		(*MaskAttr_Alt1_MaskLayerList)(nil),
 	}
-	file_svg_proto_msgTypes[1812].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1813].OneofWrappers = []any{
 		(*MaskRepeatValue_Seq1_Alt1_RepeatKeyword)(nil),
 		(*MaskRepeatValue_Seq1_Alt1_SpaceKeyword)(nil),
 		(*MaskRepeatValue_Seq1_Alt1_RoundKeyword)(nil),
 		(*MaskRepeatValue_Seq1_Alt1_NoHyphenMinusRepeatKeyword)(nil),
 	}
-	file_svg_proto_msgTypes[1813].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1814].OneofWrappers = []any{
 		(*MaskRepeatValue_Seq1_Alt2_RepeatKeyword)(nil),
 		(*MaskRepeatValue_Seq1_Alt2_SpaceKeyword)(nil),
 		(*MaskRepeatValue_Seq1_Alt2_RoundKeyword)(nil),
 		(*MaskRepeatValue_Seq1_Alt2_NoHyphenMinusRepeatKeyword)(nil),
 	}
-	file_svg_proto_msgTypes[1815].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1816].OneofWrappers = []any{
 		(*MarkerMarkerUnitsAttr_Alt1_StrokeWidthKeyword)(nil),
 		(*MarkerMarkerUnitsAttr_Alt1_UserSpaceOnUseKeyword)(nil),
 	}
-	file_svg_proto_msgTypes[1816].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1817].OneofWrappers = []any{
 		(*MarkerRefXattr_Alt1_LengthPercentageType)(nil),
 		(*MarkerRefXattr_Alt1_NumberType)(nil),
 		(*MarkerRefXattr_Alt1_LeftKeyword)(nil),
 		(*MarkerRefXattr_Alt1_CenterKeyword)(nil),
 		(*MarkerRefXattr_Alt1_RightKeyword)(nil),
 	}
-	file_svg_proto_msgTypes[1817].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1818].OneofWrappers = []any{
 		(*MarkerRefYattr_Alt1_LengthPercentageType)(nil),
 		(*MarkerRefYattr_Alt1_NumberType)(nil),
 		(*MarkerRefYattr_Alt1_TopKeyword)(nil),
 		(*MarkerRefYattr_Alt1_CenterKeyword)(nil),
 		(*MarkerRefYattr_Alt1_BottomKeyword)(nil),
 	}
-	file_svg_proto_msgTypes[1818].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1819].OneofWrappers = []any{
 		(*MarkerOrientAttr_Alt1_AutoKeyword)(nil),
 		(*MarkerOrientAttr_Alt1_AutoHyphenMinusStartHyphenMinusReverseKeyword)(nil),
 		(*MarkerOrientAttr_Alt1_AngleType)(nil),
 		(*MarkerOrientAttr_Alt1_NumberType)(nil),
 	}
-	file_svg_proto_msgTypes[1819].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1820].OneofWrappers = []any{
 		(*FillRuleAttr_Alt1_NonzeroKeyword)(nil),
 		(*FillRuleAttr_Alt1_EvenoddKeyword)(nil),
 	}
-	file_svg_proto_msgTypes[1820].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1821].OneofWrappers = []any{
 		(*StrokeLinecapAttr_Alt1_ButtKeyword)(nil),
 		(*StrokeLinecapAttr_Alt1_RoundKeyword)(nil),
 		(*StrokeLinecapAttr_Alt1_SquareKeyword)(nil),
 	}
-	file_svg_proto_msgTypes[1821].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1822].OneofWrappers = []any{
 		(*StrokeLinejoinAttr_Alt1_MiterKeyword)(nil),
 		(*StrokeLinejoinAttr_Alt1_MiterHyphenMinusClipKeyword)(nil),
 		(*StrokeLinejoinAttr_Alt1_RoundKeyword)(nil),
 		(*StrokeLinejoinAttr_Alt1_BevelKeyword)(nil),
 		(*StrokeLinejoinAttr_Alt1_ArcsKeyword)(nil),
 	}
-	file_svg_proto_msgTypes[1822].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1823].OneofWrappers = []any{
 		(*StrokeDasharrayAttr_Alt1_NoneKeyword)(nil),
 		(*StrokeDasharrayAttr_Alt1_DasharrayType)(nil),
 	}
-	file_svg_proto_msgTypes[1823].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1824].OneofWrappers = []any{
 		(*StrokeDashoffsetAttr_Alt1_LengthPercentageType)(nil),
 		(*StrokeDashoffsetAttr_Alt1_NumberType)(nil),
 	}
-	file_svg_proto_msgTypes[1824].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1825].OneofWrappers = []any{
 		(*PaintOrderAttr_Alt1_NormalKeyword)(nil),
 		(*PaintOrderAttr_Alt1_PaintOrderList)(nil),
 	}
-	file_svg_proto_msgTypes[1825].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1826].OneofWrappers = []any{
 		(*MarkerAttr_Alt1_NoneKeyword)(nil),
 		(*MarkerAttr_Alt1_UrlType)(nil),
 	}
-	file_svg_proto_msgTypes[1826].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1827].OneofWrappers = []any{
 		(*MarkerStartAttr_Alt1_NoneKeyword)(nil),
 		(*MarkerStartAttr_Alt1_UrlType)(nil),
 	}
-	file_svg_proto_msgTypes[1827].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1828].OneofWrappers = []any{
 		(*MarkerMidAttr_Alt1_NoneKeyword)(nil),
 		(*MarkerMidAttr_Alt1_UrlType)(nil),
 	}
-	file_svg_proto_msgTypes[1828].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1829].OneofWrappers = []any{
 		(*MarkerEndAttr_Alt1_NoneKeyword)(nil),
 		(*MarkerEndAttr_Alt1_UrlType)(nil),
 	}
-	file_svg_proto_msgTypes[1829].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1830].OneofWrappers = []any{
 		(*ColorInterpolationAttr_Alt1_AutoKeyword)(nil),
 		(*ColorInterpolationAttr_Alt1_SRgbKeyword)(nil),
 		(*ColorInterpolationAttr_Alt1_LinearRgbKeyword)(nil),
 	}
-	file_svg_proto_msgTypes[1830].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1831].OneofWrappers = []any{
 		(*ColorRenderingAttr_Alt1_AutoKeyword)(nil),
 		(*ColorRenderingAttr_Alt1_OptimizeSpeedKeyword)(nil),
 		(*ColorRenderingAttr_Alt1_OptimizeQualityKeyword)(nil),
 	}
-	file_svg_proto_msgTypes[1831].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1832].OneofWrappers = []any{
 		(*ShapeRenderingAttr_Alt1_AutoKeyword)(nil),
 		(*ShapeRenderingAttr_Alt1_OptimizeSpeedKeyword)(nil),
 		(*ShapeRenderingAttr_Alt1_CrispEdgesKeyword)(nil),
 		(*ShapeRenderingAttr_Alt1_GeometricPrecisionKeyword)(nil),
 	}
-	file_svg_proto_msgTypes[1832].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1833].OneofWrappers = []any{
 		(*VectorEffectAttr_Alt1_NoneKeyword)(nil),
 		(*VectorEffectAttr_Alt1_NonHyphenMinusScalingHyphenMinusStrokeKeyword)(nil),
 		(*VectorEffectAttr_Alt1_NonHyphenMinusScalingHyphenMinusSizeKeyword)(nil),
 		(*VectorEffectAttr_Alt1_NonHyphenMinusRotationKeyword)(nil),
 		(*VectorEffectAttr_Alt1_FixedHyphenMinusPositionKeyword)(nil),
 	}
-	file_svg_proto_msgTypes[1834].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1835].OneofWrappers = []any{
 		(*MoveTo_Alt1_MKeyword)(nil),
 		(*MoveTo_Alt1_MKeyword_2)(nil),
 	}
-	file_svg_proto_msgTypes[1835].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1836].OneofWrappers = []any{
 		(*ClosePath_Alt1_ZKeyword)(nil),
 		(*ClosePath_Alt1_ZKeyword_2)(nil),
 	}
-	file_svg_proto_msgTypes[1836].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1837].OneofWrappers = []any{
 		(*LineTo_Alt1_LKeyword)(nil),
 		(*LineTo_Alt1_LKeyword_2)(nil),
 	}
-	file_svg_proto_msgTypes[1837].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1838].OneofWrappers = []any{
 		(*HorizontalLineTo_Alt1_HKeyword)(nil),
 		(*HorizontalLineTo_Alt1_HKeyword_2)(nil),
 	}
-	file_svg_proto_msgTypes[1838].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1839].OneofWrappers = []any{
 		(*VerticalLineTo_Alt1_VKeyword)(nil),
 		(*VerticalLineTo_Alt1_VKeyword_2)(nil),
 	}
-	file_svg_proto_msgTypes[1839].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1840].OneofWrappers = []any{
 		(*CurveTo_Alt1_CKeyword)(nil),
 		(*CurveTo_Alt1_CKeyword_2)(nil),
 	}
-	file_svg_proto_msgTypes[1840].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1841].OneofWrappers = []any{
 		(*SmoothCurveTo_Alt1_SKeyword)(nil),
 		(*SmoothCurveTo_Alt1_SKeyword_2)(nil),
 	}
-	file_svg_proto_msgTypes[1841].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1842].OneofWrappers = []any{
 		(*QuadraticBezierCurveTo_Alt1_QKeyword)(nil),
 		(*QuadraticBezierCurveTo_Alt1_QKeyword_2)(nil),
 	}
-	file_svg_proto_msgTypes[1842].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1843].OneofWrappers = []any{
 		(*SmoothQuadraticBezierCurveTo_Alt1_TKeyword)(nil),
 		(*SmoothQuadraticBezierCurveTo_Alt1_TKeyword_2)(nil),
 	}
-	file_svg_proto_msgTypes[1843].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1844].OneofWrappers = []any{
 		(*EllipticalArc_Alt1_AKeyword)(nil),
 		(*EllipticalArc_Alt1_AKeyword_2)(nil),
 	}
-	file_svg_proto_msgTypes[1844].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1845].OneofWrappers = []any{
 		(*SpreadMethodAttr_Alt1_PadKeyword)(nil),
 		(*SpreadMethodAttr_Alt1_ReflectKeyword)(nil),
 		(*SpreadMethodAttr_Alt1_RepeatKeyword)(nil),
 	}
-	file_svg_proto_msgTypes[1845].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1846].OneofWrappers = []any{
 		(*LinearGradientX1Attr_Alt1_LengthPercentageType)(nil),
 		(*LinearGradientX1Attr_Alt1_NumberType)(nil),
 	}
-	file_svg_proto_msgTypes[1846].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1847].OneofWrappers = []any{
 		(*LinearGradientY1Attr_Alt1_LengthPercentageType)(nil),
 		(*LinearGradientY1Attr_Alt1_NumberType)(nil),
 	}
-	file_svg_proto_msgTypes[1847].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1848].OneofWrappers = []any{
 		(*LinearGradientX2Attr_Alt1_LengthPercentageType)(nil),
 		(*LinearGradientX2Attr_Alt1_NumberType)(nil),
 	}
-	file_svg_proto_msgTypes[1848].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1849].OneofWrappers = []any{
 		(*LinearGradientY2Attr_Alt1_LengthPercentageType)(nil),
 		(*LinearGradientY2Attr_Alt1_NumberType)(nil),
 	}
-	file_svg_proto_msgTypes[1849].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1850].OneofWrappers = []any{
 		(*RadialGradientCxAttr_Alt1_LengthPercentageType)(nil),
 		(*RadialGradientCxAttr_Alt1_NumberType)(nil),
 	}
-	file_svg_proto_msgTypes[1850].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1851].OneofWrappers = []any{
 		(*RadialGradientCyAttr_Alt1_LengthPercentageType)(nil),
 		(*RadialGradientCyAttr_Alt1_NumberType)(nil),
 	}
-	file_svg_proto_msgTypes[1851].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1852].OneofWrappers = []any{
 		(*RadialGradientFxAttr_Alt1_LengthPercentageType)(nil),
 		(*RadialGradientFxAttr_Alt1_NumberType)(nil),
 	}
-	file_svg_proto_msgTypes[1852].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1853].OneofWrappers = []any{
 		(*RadialGradientFyAttr_Alt1_LengthPercentageType)(nil),
 		(*RadialGradientFyAttr_Alt1_NumberType)(nil),
 	}
-	file_svg_proto_msgTypes[1853].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1854].OneofWrappers = []any{
 		(*StopOffsetAttr_Alt1_NumberType)(nil),
 		(*StopOffsetAttr_Alt1_PercentageType)(nil),
 	}
-	file_svg_proto_msgTypes[1854].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1855].OneofWrappers = []any{
 		(*StopColorAttr_Alt1_CurrentColorKeyword)(nil),
 		(*StopColorAttr_Alt1_ColorType)(nil),
 	}
-	file_svg_proto_msgTypes[1855].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1856].OneofWrappers = []any{
 		(*RectRxAttr_Alt1_AutoKeyword)(nil),
 		(*RectRxAttr_Alt1_NonNegativeLengthPercentageType)(nil),
 	}
-	file_svg_proto_msgTypes[1856].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1857].OneofWrappers = []any{
 		(*RectRyAttr_Alt1_AutoKeyword)(nil),
 		(*RectRyAttr_Alt1_NonNegativeLengthPercentageType)(nil),
 	}
-	file_svg_proto_msgTypes[1857].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1858].OneofWrappers = []any{
 		(*EllipseRxAttr_Alt1_AutoKeyword)(nil),
 		(*EllipseRxAttr_Alt1_NonNegativeLengthPercentageType)(nil),
 	}
-	file_svg_proto_msgTypes[1858].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1859].OneofWrappers = []any{
 		(*EllipseRyAttr_Alt1_AutoKeyword)(nil),
 		(*EllipseRyAttr_Alt1_NonNegativeLengthPercentageType)(nil),
 	}
-	file_svg_proto_msgTypes[1859].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1860].OneofWrappers = []any{
 		(*LineX1Attr_Alt1_LengthPercentageType)(nil),
 		(*LineX1Attr_Alt1_NumberType)(nil),
 	}
-	file_svg_proto_msgTypes[1860].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1861].OneofWrappers = []any{
 		(*LineY1Attr_Alt1_LengthPercentageType)(nil),
 		(*LineY1Attr_Alt1_NumberType)(nil),
 	}
-	file_svg_proto_msgTypes[1861].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1862].OneofWrappers = []any{
 		(*LineX2Attr_Alt1_LengthPercentageType)(nil),
 		(*LineX2Attr_Alt1_NumberType)(nil),
 	}
-	file_svg_proto_msgTypes[1862].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1863].OneofWrappers = []any{
 		(*LineY2Attr_Alt1_LengthPercentageType)(nil),
 		(*LineY2Attr_Alt1_NumberType)(nil),
 	}
-	file_svg_proto_msgTypes[1863].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1864].OneofWrappers = []any{
 		(*PathDattr_Alt1_NoneKeyword)(nil),
 		(*PathDattr_Alt1_SvgPath)(nil),
 	}
-	file_svg_proto_msgTypes[1864].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1865].OneofWrappers = []any{
 		(*SymbolRefXattr_Alt1_LengthType)(nil),
 		(*SymbolRefXattr_Alt1_LeftKeyword)(nil),
 		(*SymbolRefXattr_Alt1_CenterKeyword)(nil),
 		(*SymbolRefXattr_Alt1_RightKeyword)(nil),
 	}
-	file_svg_proto_msgTypes[1865].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1866].OneofWrappers = []any{
 		(*SymbolRefYattr_Alt1_LengthType)(nil),
 		(*SymbolRefYattr_Alt1_TopKeyword)(nil),
 		(*SymbolRefYattr_Alt1_CenterKeyword)(nil),
 		(*SymbolRefYattr_Alt1_BottomKeyword)(nil),
 	}
-	file_svg_proto_msgTypes[1866].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1867].OneofWrappers = []any{
 		(*SymbolWidthAttr_Alt1_AutoKeyword)(nil),
 		(*SymbolWidthAttr_Alt1_NonNegativeLengthPercentageType)(nil),
 	}
-	file_svg_proto_msgTypes[1867].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1868].OneofWrappers = []any{
 		(*SymbolHeightAttr_Alt1_AutoKeyword)(nil),
 		(*SymbolHeightAttr_Alt1_NonNegativeLengthPercentageType)(nil),
 	}
-	file_svg_proto_msgTypes[1868].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1869].OneofWrappers = []any{
 		(*UseWidthAttr_Alt1_AutoKeyword)(nil),
 		(*UseWidthAttr_Alt1_NonNegativeLengthPercentageType)(nil),
 	}
-	file_svg_proto_msgTypes[1869].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1870].OneofWrappers = []any{
 		(*UseHeightAttr_Alt1_AutoKeyword)(nil),
 		(*UseHeightAttr_Alt1_NonNegativeLengthPercentageType)(nil),
 	}
-	file_svg_proto_msgTypes[1870].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1871].OneofWrappers = []any{
 		(*VisibilityAttr_Alt1_VisibleKeyword)(nil),
 		(*VisibilityAttr_Alt1_HiddenKeyword)(nil),
 		(*VisibilityAttr_Alt1_CollapseKeyword)(nil),
 		(*VisibilityAttr_Alt1_InheritKeyword)(nil),
 	}
-	file_svg_proto_msgTypes[1871].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1872].OneofWrappers = []any{
 		(*OverflowAttr_Alt1_VisibleKeyword)(nil),
 		(*OverflowAttr_Alt1_HiddenKeyword)(nil),
 		(*OverflowAttr_Alt1_ScrollKeyword)(nil),
 		(*OverflowAttr_Alt1_AutoKeyword)(nil),
 		(*OverflowAttr_Alt1_InheritKeyword)(nil),
 	}
-	file_svg_proto_msgTypes[1873].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1874].OneofWrappers = []any{
 		(*TextLengthAttr_Alt1_LengthPercentageType)(nil),
 		(*TextLengthAttr_Alt1_NumberType)(nil),
 	}
-	file_svg_proto_msgTypes[1874].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1875].OneofWrappers = []any{
 		(*TextLengthAdjustAttr_Alt1_SpacingKeyword)(nil),
 		(*TextLengthAdjustAttr_Alt1_SpacingAndGlyphsKeyword)(nil),
 	}
-	file_svg_proto_msgTypes[1875].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1876].OneofWrappers = []any{
 		(*TextPositionList_Alt1_LengthPercentageType)(nil),
 		(*TextPositionList_Alt1_NumberType)(nil),
 	}
-	file_svg_proto_msgTypes[1876].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1877].OneofWrappers = []any{
 		(*TspanLengthAttr_Alt1_LengthPercentageType)(nil),
 		(*TspanLengthAttr_Alt1_NumberType)(nil),
 	}
-	file_svg_proto_msgTypes[1877].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1878].OneofWrappers = []any{
 		(*TspanLengthAdjustAttr_Alt1_SpacingKeyword)(nil),
 		(*TspanLengthAdjustAttr_Alt1_SpacingAndGlyphsKeyword)(nil),
 	}
-	file_svg_proto_msgTypes[1878].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1879].OneofWrappers = []any{
 		(*TextPathStartOffsetAttr_Alt1_LengthPercentageType)(nil),
 		(*TextPathStartOffsetAttr_Alt1_NumberType)(nil),
 	}
-	file_svg_proto_msgTypes[1879].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1880].OneofWrappers = []any{
 		(*TextPathMethodAttr_Alt1_AlignKeyword)(nil),
 		(*TextPathMethodAttr_Alt1_StretchKeyword)(nil),
 	}
-	file_svg_proto_msgTypes[1880].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1881].OneofWrappers = []any{
 		(*TextPathSpacingAttr_Alt1_AutoKeyword)(nil),
 		(*TextPathSpacingAttr_Alt1_ExactKeyword)(nil),
 	}
-	file_svg_proto_msgTypes[1881].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1882].OneofWrappers = []any{
 		(*TextPathSideAttr_Alt1_LeftKeyword)(nil),
 		(*TextPathSideAttr_Alt1_RightKeyword)(nil),
 	}
-	file_svg_proto_msgTypes[1882].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1883].OneofWrappers = []any{
 		(*TextPathLengthAttr_Alt1_LengthPercentageType)(nil),
 		(*TextPathLengthAttr_Alt1_NumberType)(nil),
 	}
-	file_svg_proto_msgTypes[1883].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1884].OneofWrappers = []any{
 		(*TextPathLengthAdjustAttr_Alt1_SpacingKeyword)(nil),
 		(*TextPathLengthAdjustAttr_Alt1_SpacingAndGlyphsKeyword)(nil),
 	}
-	file_svg_proto_msgTypes[1884].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1885].OneofWrappers = []any{
 		(*TextAnchorAttr_Alt1_StartKeyword)(nil),
 		(*TextAnchorAttr_Alt1_MiddleKeyword)(nil),
 		(*TextAnchorAttr_Alt1_EndKeyword)(nil),
 	}
-	file_svg_proto_msgTypes[1885].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1886].OneofWrappers = []any{
 		(*DominantBaselineAttr_Alt1_AutoKeyword)(nil),
 		(*DominantBaselineAttr_Alt1_TextHyphenMinusBottomKeyword)(nil),
 		(*DominantBaselineAttr_Alt1_AlphabeticKeyword)(nil),
@@ -141708,7 +141756,7 @@ func file_svg_proto_init() {
 		(*DominantBaselineAttr_Alt1_HangingKeyword)(nil),
 		(*DominantBaselineAttr_Alt1_TextHyphenMinusTopKeyword)(nil),
 	}
-	file_svg_proto_msgTypes[1886].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1887].OneofWrappers = []any{
 		(*AlignmentBaselineAttr_Alt1_BaselineKeyword)(nil),
 		(*AlignmentBaselineAttr_Alt1_TextHyphenMinusBottomKeyword)(nil),
 		(*AlignmentBaselineAttr_Alt1_AlphabeticKeyword)(nil),
@@ -141719,16 +141767,16 @@ func file_svg_proto_init() {
 		(*AlignmentBaselineAttr_Alt1_HangingKeyword)(nil),
 		(*AlignmentBaselineAttr_Alt1_TextHyphenMinusTopKeyword)(nil),
 	}
-	file_svg_proto_msgTypes[1887].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1888].OneofWrappers = []any{
 		(*BaselineShiftAttr_Alt1_SubKeyword)(nil),
 		(*BaselineShiftAttr_Alt1_SuperKeyword)(nil),
 		(*BaselineShiftAttr_Alt1_LengthPercentageType)(nil),
 	}
-	file_svg_proto_msgTypes[1888].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1889].OneofWrappers = []any{
 		(*DirectionAttr_Alt1_LtrKeyword)(nil),
 		(*DirectionAttr_Alt1_RtlKeyword)(nil),
 	}
-	file_svg_proto_msgTypes[1889].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1890].OneofWrappers = []any{
 		(*UnicodeBidiAttr_Alt1_NormalKeyword)(nil),
 		(*UnicodeBidiAttr_Alt1_EmbedKeyword)(nil),
 		(*UnicodeBidiAttr_Alt1_IsolateKeyword)(nil),
@@ -141736,7 +141784,7 @@ func file_svg_proto_init() {
 		(*UnicodeBidiAttr_Alt1_IsolateHyphenMinusOverrideKeyword)(nil),
 		(*UnicodeBidiAttr_Alt1_PlaintextKeyword)(nil),
 	}
-	file_svg_proto_msgTypes[1890].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1891].OneofWrappers = []any{
 		(*WritingModeAttr_Alt1_HorizontalHyphenMinusTbKeyword)(nil),
 		(*WritingModeAttr_Alt1_VerticalHyphenMinusRlKeyword)(nil),
 		(*WritingModeAttr_Alt1_VerticalHyphenMinusLrKeyword)(nil),
@@ -141749,25 +141797,25 @@ func file_svg_proto_init() {
 		(*WritingModeAttr_Alt1_TbKeyword)(nil),
 		(*WritingModeAttr_Alt1_TbHyphenMinusRlKeyword)(nil),
 	}
-	file_svg_proto_msgTypes[1891].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1892].OneofWrappers = []any{
 		(*LetterSpacingAttr_Alt1_NormalKeyword)(nil),
 		(*LetterSpacingAttr_Alt1_LengthType)(nil),
 	}
-	file_svg_proto_msgTypes[1892].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1893].OneofWrappers = []any{
 		(*WordSpacingAttr_Alt1_NormalKeyword)(nil),
 		(*WordSpacingAttr_Alt1_LengthPercentageType)(nil),
 	}
-	file_svg_proto_msgTypes[1897].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1898].OneofWrappers = []any{
 		(*TextOverflowAttr_Alt1_ClipKeyword)(nil),
 		(*TextOverflowAttr_Alt1_EllipsisKeyword)(nil),
 	}
-	file_svg_proto_msgTypes[1898].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1899].OneofWrappers = []any{
 		(*TextRenderingAttr_Alt1_AutoKeyword)(nil),
 		(*TextRenderingAttr_Alt1_OptimizeSpeedKeyword)(nil),
 		(*TextRenderingAttr_Alt1_OptimizeLegibilityKeyword)(nil),
 		(*TextRenderingAttr_Alt1_GeometricPrecisionKeyword)(nil),
 	}
-	file_svg_proto_msgTypes[1899].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1900].OneofWrappers = []any{
 		(*WhiteSpaceAttr_Alt1_NormalKeyword)(nil),
 		(*WhiteSpaceAttr_Alt1_PreKeyword)(nil),
 		(*WhiteSpaceAttr_Alt1_NowrapKeyword)(nil),
@@ -141775,23 +141823,23 @@ func file_svg_proto_init() {
 		(*WhiteSpaceAttr_Alt1_PreHyphenMinusLineKeyword)(nil),
 		(*WhiteSpaceAttr_Alt1_BreakHyphenMinusSpacesKeyword)(nil),
 	}
-	file_svg_proto_msgTypes[1900].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1901].OneofWrappers = []any{
 		(*FontSizeAdjustAttr_Alt1_NoneKeyword)(nil),
 		(*FontSizeAdjustAttr_Alt1_NumberType)(nil),
 	}
-	file_svg_proto_msgTypes[1901].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1902].OneofWrappers = []any{
 		(*FontStyleAttr_Alt1_NormalKeyword)(nil),
 		(*FontStyleAttr_Alt1_ItalicKeyword)(nil),
 		(*FontStyleAttr_Alt1_FontStyleOblique)(nil),
 	}
-	file_svg_proto_msgTypes[1903].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1904].OneofWrappers = []any{
 		(*FontWeightAttr_Alt1_NormalKeyword)(nil),
 		(*FontWeightAttr_Alt1_BoldKeyword)(nil),
 		(*FontWeightAttr_Alt1_BolderKeyword)(nil),
 		(*FontWeightAttr_Alt1_LighterKeyword)(nil),
 		(*FontWeightAttr_Alt1_NumberType)(nil),
 	}
-	file_svg_proto_msgTypes[1904].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1905].OneofWrappers = []any{
 		(*FontStretchAttr_Alt1_NormalKeyword)(nil),
 		(*FontStretchAttr_Alt1_UltraHyphenMinusCondensedKeyword)(nil),
 		(*FontStretchAttr_Alt1_ExtraHyphenMinusCondensedKeyword)(nil),
@@ -141803,11 +141851,11 @@ func file_svg_proto_init() {
 		(*FontStretchAttr_Alt1_UltraHyphenMinusExpandedKeyword)(nil),
 		(*FontStretchAttr_Alt1_PercentageType)(nil),
 	}
-	file_svg_proto_msgTypes[1905].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1906].OneofWrappers = []any{
 		(*InlineSizeAttr_Alt1_AutoKeyword)(nil),
 		(*InlineSizeAttr_Alt1_LengthPercentageType)(nil),
 	}
-	file_svg_proto_msgTypes[1906].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1907].OneofWrappers = []any{
 		(*GlyphOrientationVerticalAttr_Alt1_AutoKeyword)(nil),
 		(*GlyphOrientationVerticalAttr_Alt1_AngleType)(nil),
 		(*GlyphOrientationVerticalAttr_Alt1_NumberType)(nil),
@@ -141818,7 +141866,7 @@ func file_svg_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_svg_proto_rawDesc), len(file_svg_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   1910,
+			NumMessages:   1911,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

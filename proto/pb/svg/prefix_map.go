@@ -1094,6 +1094,7 @@ var MessagePrefix = map[string][]string{
 	".svg.PreHyphenMinusWrapKeyword": {"pre-wrap"},
 	".svg.PreKeyword": {"pre"},
 	".svg.PresentationKeyword": {"presentation"},
+	".svg.PreserveAspectRatio.Space": {" "},
 	".svg.PreserveKeyword": {"preserve"},
 	".svg.ProgressKeyword": {"progress"},
 	".svg.ProgressbarKeyword": {"progressbar"},

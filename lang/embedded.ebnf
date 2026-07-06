@@ -107,7 +107,7 @@ ScriptContent = CharacterDataType ;
 
 (* ── SVGStyleElement (tag: style) ─────────────────────────────────────────── *)
 
-SVGStyleElement = "<style" , { StyleAttribute } , ">" , { StyleContent } , "</style>" ;
+SVGStyleElement = "<style" , { StyleAttribute } , ">" , CssStyleSheet , "</style>" ;
 
 StyleAttribute = StyleTypeAttr | StyleMediaAttr | StyleTitleAttr
                | CoreAttribute | GlobalEventAttribute | DocumentElementEventAttribute ;
@@ -118,8 +118,12 @@ StyleTypeAttr  = ' type="' , StringType , '"' ;
 StyleMediaAttr = ' media="' , StringType , '"' ;  (* media-query-list; open value *)
 StyleTitleAttr = ' title="' , StringType , '"' ;
 
-(* Content model: raw CSS character data. *)
-StyleContent = CharacterDataType ;
+(* Content model: raw CSS character data — the proto-css seam. This rule name
+   deliberately matches the proto-css production (CssStyleSheet). Standalone
+   builds keep this opaque char-swallowing fallback so proto-svg parses on its
+   own; when the proto-css build dependency is wired, genproto's externalize
+   pass drops this local message and retypes the field to .css.CssStyleSheet. *)
+CssStyleSheet = { " " ... "￿" } ;
 
 (* ── PointerEventsAttr ────────────────────────────────────────────────────── *)
 (* Canonical home: embedded.ebnf (per docs/GRAMMAR_PLAN.md §g).

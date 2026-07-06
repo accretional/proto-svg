@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package svg;
 
+import "css.proto";
+
 option go_package = "github.com/accretional/proto-svg/proto/pb/svg;svgpb";
 
 message SvgDocument {
@@ -4519,7 +4521,7 @@ message SvgstyleElement {
 
   GreaterThanSignKeyword greater_than_sign_keyword = 2;
 
-  repeated StyleContent style_content = 3;
+  css.CssStyleSheet css_style_sheet = 3;
 
   LessThanSignSolidusStyleGreaterThanSignKeyword less_than_sign_solidus_style_greater_than_sign_keyword = 4;
 }
@@ -4556,10 +4558,6 @@ message StyleTitleAttr {
   StringType string_type = 1;
 
   QuotationMarkKeyword quotation_mark_keyword = 2;
-}
-
-message StyleContent {
-  CharacterDataType character_data_type = 1;
 }
 
 message PointerEventsAttr {

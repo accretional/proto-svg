@@ -8,15 +8,16 @@ replace github.com/accretional/merge => ../proto-merge
 
 require (
 	github.com/accretional/gluon v0.0.0-20260430002741-82b4ddbe67a4
-	github.com/accretional/merge v0.0.0-00010101000000-000000000000
+	github.com/accretional/proto-css v0.0.0-20260613003218-d55b6b96c0d7
+	github.com/jhump/protoreflect v1.18.0
 	google.golang.org/protobuf v1.36.11
 )
 
 require (
 	github.com/accretional/proto-expr v0.0.0-20260416071217-9a69001c59bb // indirect
 	github.com/golang/protobuf v1.5.4 // indirect
-	github.com/jhump/protoreflect v1.18.0 // indirect
 	github.com/jhump/protoreflect/v2 v2.0.0-beta.1 // indirect
+	go.starlark.net v0.0.0-20260522144826-ec58d4b459e2 // indirect
 	golang.org/x/net v0.52.0 // indirect
 	golang.org/x/sys v0.42.0 // indirect
 	golang.org/x/text v0.35.0 // indirect

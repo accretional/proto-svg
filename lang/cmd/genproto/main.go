@@ -35,10 +35,12 @@ import (
 	"google.golang.org/protobuf/proto"
 	"google.golang.org/protobuf/types/descriptorpb"
 
+	"github.com/accretional/gluon/v2/builddep"
 	"github.com/accretional/gluon/v2/compiler"
 	metaparser "github.com/accretional/gluon/v2/metaparser"
 	pb "github.com/accretional/gluon/v2/pb"
-	"github.com/accretional/merge/descriptor"
+	"github.com/jhump/protoreflect/desc"
+	"github.com/jhump/protoreflect/desc/protoprint"
 )
 
 // ebnfComment matches an EBNF (* ... *) comment, including multi-line, used to
@@ -90,7 +92,26 @@ func main() {
 	separatorMapOut := flag.String("separator-map", "proto/pb/svg/separator_map.go", "generated FieldSeparator map")
 	pkgName := flag.String("package", "svg", "proto package name")
 	goPkg := flag.String("go-package", "github.com/accretional/proto-svg/proto/pb/svg;svgpb", "go_package option")
+	depsFile := flag.String("deps", "grammar_deps.bzl", "Starlark build-dependency file for cross-grammar seams (missing = standalone build)")
 	flag.Parse()
+
+	// Load cross-grammar build dependencies (proto-css). If the file is absent
+	// the build is standalone: the opaque seam placeholders stay local and
+	// svg.proto imports nothing. When present, the externalize pass below
+	// retypes seam fields to the dependency's proto types and adds the import.
+	var grammarDeps []builddep.GrammarDep
+	if *depsFile != "" {
+		if _, statErr := os.Stat(*depsFile); statErr == nil {
+			loaded, loadErr := builddep.Load(*depsFile)
+			if loadErr != nil {
+				log.Fatalf("load build deps %s: %v", *depsFile, loadErr)
+			}
+			grammarDeps = loaded
+			fmt.Printf("loaded %d grammar dependency/ies from %s\n", len(grammarDeps), *depsFile)
+		} else {
+			fmt.Printf("no build-dep file at %s — standalone build (seams stay local)\n", *depsFile)
+		}
+	}
 
 	// 1. Read + concatenate the grammar.
 	ebnfFiles, err := collectEBNFFiles(*langDir)
@@ -204,6 +225,7 @@ func main() {
 	dangling := dropDanglingFields(fdp)
 	emptyOneofs := pruneEmptyOneofs(fdp)
 	renamed := uniquifyFields(fdp)
+	externalized := externalizeImports(fdp, *pkgName, grammarDeps)
 	fmt.Printf("compiled %d messages from %d rules\n", len(fdp.GetMessageType()), len(gd.GetRules()))
 	if len(dups) > 0 {
 		fmt.Printf("note: deduped %d colliding message name(s): %v\n", len(dups), dups)
@@ -216,6 +238,12 @@ func main() {
 	}
 	if renamed > 0 {
 		fmt.Printf("note: uniquified %d duplicate field name(s) (repeated inline terminals)\n", renamed)
+	}
+	if len(externalized) > 0 {
+		fmt.Printf("note: externalized %d seam field(s) to imported dependency types:\n", len(externalized))
+		for _, e := range externalized {
+			fmt.Printf("  %s\n", e)
+		}
 	}
 	if deps := fdp.GetDependency(); len(deps) > 0 {
 		fmt.Printf("note: svg.proto imports %v\n", deps)
@@ -233,7 +261,18 @@ func main() {
 		log.Fatalf("mkdir: %v", err)
 	}
 
-	set := &descriptorpb.FileDescriptorSet{File: []*descriptorpb.FileDescriptorProto{fdp}}
+	// Resolve dependency descriptors (proto-css) so svg.proto's css.proto
+	// import resolves when we build and print the descriptor.
+	depFileProtos, depFDs, err := loadDepDescriptors(grammarDeps)
+	if err != nil {
+		log.Fatalf("load dependency descriptors: %v", err)
+	}
+
+	// The fdset is self-contained: dependency files first (imports must precede
+	// the importer), then svg.proto — so svg.fdset resolves on its own.
+	setFiles := append([]*descriptorpb.FileDescriptorProto{}, depFileProtos...)
+	setFiles = append(setFiles, fdp)
+	set := &descriptorpb.FileDescriptorSet{File: setFiles}
 	blob, err := proto.Marshal(set)
 	if err != nil {
 		log.Fatalf("marshal fdset: %v", err)
@@ -243,9 +282,9 @@ func main() {
 	}
 	fmt.Printf("wrote %s (%d bytes)\n", *fdsetOut, len(blob))
 
-	protoSrc, err := descriptor.ToString(fdp)
+	protoSrc, err := protoToString(fdp, depFDs)
 	if err != nil {
-		log.Fatalf("descriptor.ToString: %v", err)
+		log.Fatalf("print proto: %v", err)
 	}
 	if err := os.WriteFile(*bundledOut, []byte(protoSrc), 0o644); err != nil {
 		log.Fatalf("write %s: %v", *bundledOut, err)
@@ -413,6 +452,127 @@ func uniquifyFields(fdp *descriptorpb.FileDescriptorProto) int {
 		walk(m)
 	}
 	return n
+}
+
+// loadDepDescriptors loads each build dependency's compiled proto descriptor
+// from its serialized FileDescriptorSet (e.g. ../proto-css/proto/css.fdset,
+// derived from the dep's proto_include + proto file name). It returns the flat
+// list of dependency FileDescriptorProtos (to embed in svg.fdset so it resolves
+// standalone) and the jhump *desc.FileDescriptors (to resolve svg.proto's
+// imports when printing). Deps without a proto/proto_include are skipped.
+func loadDepDescriptors(deps []builddep.GrammarDep) ([]*descriptorpb.FileDescriptorProto, []*desc.FileDescriptor, error) {
+	var fileProtos []*descriptorpb.FileDescriptorProto
+	var fds []*desc.FileDescriptor
+	seen := map[string]bool{}
+	for _, d := range deps {
+		if d.Proto == "" || d.ProtoInclude == "" {
+			continue
+		}
+		stem := strings.TrimSuffix(filepath.Base(d.Proto), ".proto")
+		fdsetPath := filepath.Join(d.ProtoInclude, stem+".fdset")
+		raw, err := os.ReadFile(fdsetPath)
+		if err != nil {
+			return nil, nil, fmt.Errorf("read dep fdset %s: %w", fdsetPath, err)
+		}
+		var set descriptorpb.FileDescriptorSet
+		if err := proto.Unmarshal(raw, &set); err != nil {
+			return nil, nil, fmt.Errorf("unmarshal %s: %w", fdsetPath, err)
+		}
+		for _, f := range set.GetFile() {
+			if !seen[f.GetName()] {
+				seen[f.GetName()] = true
+				fileProtos = append(fileProtos, f)
+			}
+		}
+		fd, err := desc.CreateFileDescriptorFromSet(&set)
+		if err != nil {
+			return nil, nil, fmt.Errorf("build dep descriptor %s: %w", fdsetPath, err)
+		}
+		fds = append(fds, fd)
+	}
+	return fileProtos, fds, nil
+}
+
+// protoToString prints fdp as .proto source, resolving its imports against the
+// supplied dependency descriptors. Replaces merge/descriptor.ToString (which
+// resolves against no deps and so can't print a file that imports another).
+func protoToString(fdp *descriptorpb.FileDescriptorProto, deps []*desc.FileDescriptor) (string, error) {
+	fd, err := desc.CreateFileDescriptor(fdp, deps...)
+	if err != nil {
+		return "", fmt.Errorf("create file descriptor: %w", err)
+	}
+	printer := &protoprint.Printer{Compact: false}
+	return printer.PrintProtoToString(fd)
+}
+
+// externalizeImports rewrites fields that reference a dependency-provided rule
+// into cross-file proto imports, keeping svg.proto importing css.proto rather
+// than inlining CSS. The SVG grammar defines an opaque placeholder rule whose
+// name matches the proto-css production (CssStyleSheet); genproto compiles it as
+// a local scalar message, so the <style> content field ends up typed
+// .svg.CssStyleSheet. For each build dependency this pass retypes any field
+// whose type is .<pkg>.<ExternalRule> to .<dep.ProtoPackage>.<ExternalRule>
+// (recursing into nested messages), deletes the local placeholder message, and
+// adds dep.Proto to the file's imports. No-op with no deps (standalone build).
+func externalizeImports(fdp *descriptorpb.FileDescriptorProto, pkg string, deps []builddep.GrammarDep) []string {
+	remap := map[string]string{} // ".svg.CssStyleSheet" -> ".css.CssStyleSheet"
+	dropMsg := map[string]bool{} // local placeholder message names to remove
+	importSet := map[string]bool{}
+	for _, d := range deps {
+		for _, rule := range d.ExternalRules {
+			remap["."+pkg+"."+rule] = "." + d.ProtoPackage + "." + rule
+			dropMsg[rule] = true
+			if d.Proto != "" {
+				importSet[d.Proto] = true
+			}
+		}
+	}
+	if len(remap) == 0 {
+		return nil
+	}
+
+	var notes []string
+	var walk func(m *descriptorpb.DescriptorProto, fqn string)
+	walk = func(m *descriptorpb.DescriptorProto, fqn string) {
+		for _, f := range m.GetField() {
+			if f.GetType() != descriptorpb.FieldDescriptorProto_TYPE_MESSAGE {
+				continue
+			}
+			if ext, ok := remap[f.GetTypeName()]; ok {
+				notes = append(notes, fmt.Sprintf("%s.%s: %s -> %s", fqn, f.GetName(), f.GetTypeName(), ext))
+				f.TypeName = proto.String(ext)
+			}
+		}
+		for _, n := range m.GetNestedType() {
+			walk(n, fqn+"."+n.GetName())
+		}
+	}
+	for _, m := range fdp.GetMessageType() {
+		walk(m, "."+pkg+"."+m.GetName())
+	}
+
+	var kept []*descriptorpb.DescriptorProto
+	for _, m := range fdp.GetMessageType() {
+		if dropMsg[m.GetName()] {
+			notes = append(notes, "drop placeholder "+m.GetName())
+			continue
+		}
+		kept = append(kept, m)
+	}
+	fdp.MessageType = kept
+
+	existing := map[string]bool{}
+	for _, dep := range fdp.GetDependency() {
+		existing[dep] = true
+	}
+	for imp := range importSet {
+		if !existing[imp] {
+			fdp.Dependency = append(fdp.Dependency, imp)
+			existing[imp] = true
+		}
+	}
+	sort.Strings(fdp.Dependency)
+	return notes
 }
 
 // writeReport writes a sorted, headed list to path for human inspection.

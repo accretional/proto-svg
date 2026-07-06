@@ -4291,7 +4291,7 @@ message SvgforeignObjectElement {
 
   GreaterThanSignKeyword greater_than_sign_keyword = 2;
 
-  repeated ForeignObjectContent foreign_object_content = 3;
+  repeated google.protobuf.Any flow_content = 3;
 
   LessThanSignSolidusForeignObjectGreaterThanSignKeyword less_than_sign_solidus_foreign_object_greater_than_sign_keyword = 4;
 }
@@ -4360,10 +4360,6 @@ message ForeignObjectHeightAttr {
       NonNegativeLengthPercentageType non_negative_length_percentage_type = 2;
     }
   }
-}
-
-message ForeignObjectContent {
-  CharacterDataType character_data_type = 1;
 }
 
 message SvgviewElement {

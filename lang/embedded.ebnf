@@ -50,7 +50,7 @@ ImageContent = AnimationElement | DescriptiveElement
 (* ── SVGForeignObjectElement (tag: foreignObject) ─────────────────────────── *)
 
 SVGForeignObjectElement = "<foreignObject" , { ForeignObjectAttribute } , ">"
-                        , { ForeignObjectContent }
+                        , { FlowContent }
                         , "</foreignObject>" ;
 
 ForeignObjectAttribute = ForeignObjectXAttr | ForeignObjectYAttr
@@ -64,9 +64,12 @@ ForeignObjectYAttr      = ' y="' , LengthPercentageType , '"' ;
 ForeignObjectWidthAttr  = ' width="' , ( "auto" | NonNegativeLengthPercentageType ) , '"' ;
 ForeignObjectHeightAttr = ' height="' , ( "auto" | NonNegativeLengthPercentageType ) , '"' ;
 
-(* Content model: any foreign-namespace content or character data; modelled as
-   the CharacterDataType leaf (over-approximation per CONTEXT_SENSITIVITY Rule 2). *)
-ForeignObjectContent = CharacterDataType ;
+(* Content model: HTML flow content (the proto-html seam). The rule name matches
+   the proto-html production (FlowContent); genproto rewrites the referencing
+   field to Any(html.FlowContent). Opaque char-swallowing fallback for standalone
+   builds. This is the svg→html edge — a genuine cycle with html→svg, which the
+   uniform-Any model represents with no proto import between the grammars. *)
+FlowContent = { " " ... "￿" } ;
 
 (* ── SVGViewElement (tag: view) ───────────────────────────────────────────── *)
 

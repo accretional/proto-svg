@@ -15,6 +15,7 @@ var SeamType = map[string]string{
 	".svg.PaintFallback.color_type": "css.ColorType",
 	".svg.PaintType.color_type": "css.ColorType",
 	".svg.StopColorAttr.Alt1.color_type": "css.ColorType",
+	".svg.SvgforeignObjectElement.flow_content": "html.FlowContent",
 	".svg.SvgstyleElement.css_style_sheet": "css.CssStyleSheet",
 	".svg.TextDecorationValue.Seq2.color_type": "css.ColorType",
 	".svg.TextDecorationValue.Seq3.color_type": "css.ColorType",

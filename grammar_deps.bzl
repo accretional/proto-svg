@@ -34,4 +34,15 @@ GRAMMAR_DEPS = [
             "ColorType",
         ],
     ),
+    struct(
+        name = "html",
+        # <foreignObject> content is HTML flow content — the svg→html edge (a
+        # genuine cycle with html→svg). Uniform-Any needs no proto import.
+        grammar_srcs = "../proto-html/lang",
+        proto_package = "html",
+        go_package = "github.com/accretional/proto-html/proto/pb/html",
+        external_rules = [
+            "FlowContent",
+        ],
+    ),
 ]

@@ -23,6 +23,7 @@ func init() {
 		Separator:    svgpb.FieldSeparator,
 		Seam:         svgpb.SeamType,
 		Required:     svgpb.FieldRequired,
+		ScalarStops:  svgpb.ScalarStopChars,
 		SmartSpacing: false, // SVG: markup; spacing baked into terminals.
 	})
 }

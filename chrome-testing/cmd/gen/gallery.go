@@ -115,10 +115,11 @@ func blueprintSlotNeedsID(blueprint, tag string) bool {
 	case catGradient, catPattern, catMarker, catClip, catMask, catFilter:
 		return true
 	}
-	// defs and symbol are catSelf but their blueprints reference the injected
-	// element via <use href="#slot">, so the element must carry id="slot"
-	// (otherwise every defs/symbol card is blank — QA round1).
-	if tag == "defs" || tag == "symbol" {
+	// symbol is catSelf but its blueprint references the injected element via
+	// <use href="#slot">, so the <symbol> itself must carry id="slot". (defs is
+	// NOT here: its scaffold references a CHILD def carrying id="slot" — bodyFor —
+	// not the <defs> wrapper, so no id is injected onto <defs> itself.)
+	if tag == "symbol" {
 		return true
 	}
 	return false

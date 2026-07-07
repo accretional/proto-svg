@@ -106,17 +106,30 @@ func interactivePresets(tag string) []catPreset {
 	}
 }
 
+// elementDoc is the hand-authored long-form documentation for an element,
+// rendered by the gallery's About panel. summary is a one-sentence lead, body is
+// one or more prose paragraphs, tips are short "good to know" bullets.
+type elementDoc struct {
+	Summary string   `json:"summary,omitempty"`
+	Body    []string `json:"body,omitempty"`
+	Tips    []string `json:"tips,omitempty"`
+}
+
 type catElement struct {
 	ID       string            `json:"id"`
 	Tag      string            `json:"tag"`
 	Name     string            `json:"name"`
 	Cat      string            `json:"cat"`
 	Desc     string            `json:"desc"`
+	Doc      *elementDoc       `json:"doc,omitempty"`
 	Temporal bool              `json:"temporal,omitempty"`
-	Attrs    []catControl      `json:"attrs"`
-	Defaults map[string]string `json:"defaults"`
-	Base     string            `json:"base"`
-	Presets  []catPreset       `json:"presets"`
+	// ContentRaw marks an element whose _content preset value is element MARKUP
+	// (injected unescaped between the open/close tags) rather than escaped text.
+	ContentRaw bool              `json:"contentRaw,omitempty"`
+	Attrs      []catControl      `json:"attrs"`
+	Defaults   map[string]string `json:"defaults"`
+	Base       string            `json:"base"`
+	Presets    []catPreset       `json:"presets"`
 }
 
 type catalogue struct {
@@ -163,13 +176,22 @@ func runCataloguePass(en *Enumerator, bp *blueprintProvider, els []element, page
 			}
 			vals[v.Attr] = append(vals[v.Attr], v.Value)
 		}
-		if len(order) == 0 {
-			continue // nothing visual to show
+		// content presets: content-driven elements (style/script/defs/desc/title/
+		// metadata) have NO visual attributes — their showcase is their CONTENT. The
+		// grammar's content production (el.contentMsg, set by the grammar walk in
+		// allElements) legitimizes emitting content; curateContent supplies the
+		// demonstrative values, the same split curateAttr uses for attributes.
+		var contentPresets []demoPreset
+		if el.contentMsg != "" {
+			contentPresets = curateContent(p.tag)
+		}
+		if len(order) == 0 && len(contentPresets) == 0 {
+			continue // nothing visual or content to show
 		}
 
 		ce := catElement{
 			ID: p.tag, Tag: p.tag, Name: nameFor(p.tag), Cat: groupFor(p.tag),
-			Desc: descFor(p.tag), Defaults: map[string]string{},
+			Desc: descFor(p.tag), Doc: docFor(p.tag), Defaults: map[string]string{},
 		}
 		ce.Temporal = animationTags[p.tag] || liveSMILRe.MatchString(base)
 		seenGroup[ce.Cat] = true
@@ -226,6 +248,23 @@ func runCataloguePass(en *Enumerator, bp *blueprintProvider, els []element, page
 		}
 		// interactivity: event-attribute presets demonstrated under real mouse input.
 		ce.Presets = append(ce.Presets, interactivePresets(p.tag)...)
+		// content-driven elements: a multi-line content control + one preset per
+		// curated content value. _content is applied between the open/close tags by
+		// the gallery (escaped text, or raw markup when ContentRaw). The default
+		// mirrors the element's baseline content (bodyFor).
+		if len(contentPresets) > 0 {
+			ce.ContentRaw = contentIsRaw(p.tag)
+			ce.Attrs = append(ce.Attrs, catControl{Key: contentKey, Label: contentLabel(p.tag), Control: "textarea"})
+			ce.Defaults[contentKey] = bodyFor(p.tag)
+			for _, dp := range contentPresets {
+				ce.Presets = append(ce.Presets, catPreset{
+					Name:    dp.label,
+					Values:  dp.values,
+					Meaning: dp.meaning,
+					Prov:    "curated",
+				})
+			}
+		}
 		if usesDemoDefs {
 			base = injectDemoDefs(base)
 		}

@@ -7,7 +7,8 @@
   "Paint \u0026 fills",
   "Clipping \u0026 masking",
   "Filters",
-  "Content \u0026 motion"
+  "Content \u0026 motion",
+  "Descriptive"
  ],
  "elements": [
   {
@@ -15,7 +16,17 @@
    "tag": "a",
    "name": "Anchor",
    "cat": "Containers",
-   "desc": "The \u003ca\u003e SVG element.",
+   "desc": "A hyperlink wrapping SVG content.",
+   "doc": {
+    "summary": "A hyperlink that wraps SVG content.",
+    "body": [
+     "`\u003ca\u003e` is SVG's anchor: wrap any shape, group or text in it and that content becomes a clickable link via `href`. It behaves like an HTML `\u003ca\u003e` — `target`, `download`, `rel` and friends all apply.",
+     "Because it is a container, the link region is exactly the bounding geometry of whatever it contains."
+    ],
+    "tips": [
+     "Add a `\u003ctitle\u003e` child for an accessible link name and hover tooltip."
+    ]
+   },
    "attrs": [
     {
      "key": "fill",
@@ -270,6 +281,17 @@
    "name": "Animate",
    "cat": "Content \u0026 motion",
    "desc": "Declarative animation — tween an attribute over time.",
+   "doc": {
+    "summary": "Declarative SMIL animation — tweens a single attribute over time.",
+    "body": [
+     "`\u003canimate\u003e` smoothly changes one attribute (named by `attributeName`) of its parent element from `from` to `to` (or across a `values` list) over `dur`. `begin`, `repeatCount`, `fill` and `calcMode` control timing, looping and easing.",
+     "It runs without any script, defined entirely in markup, making simple motion self-contained inside the SVG."
+    ],
+    "tips": [
+     "`fill=\"freeze\"` holds the final value after the animation ends instead of snapping back.",
+     "Use `keyTimes`+`keySplines` with `calcMode=\"spline\"` for custom easing curves."
+    ]
+   },
    "temporal": true,
    "attrs": [
     {
@@ -507,6 +529,16 @@
    "name": "Animate motion",
    "cat": "Content \u0026 motion",
    "desc": "Animate an element along a motion path.",
+   "doc": {
+    "summary": "Moves an element along a motion path.",
+    "body": [
+     "`\u003canimateMotion\u003e` translates its parent along a trajectory — given inline as a `path`, or by referencing a real `\u003cpath\u003e` through a child `\u003cmpath\u003e`. `rotate=\"auto\"` turns the element to face its direction of travel, so it banks through curves.",
+     "`keyPoints` with `keyTimes` lets you vary speed along the path rather than moving at constant rate."
+    ],
+    "tips": [
+     "Pair it with `\u003cmpath href=\"#track\"\u003e` to reuse an existing path as the route."
+    ]
+   },
    "temporal": true,
    "attrs": [
     {
@@ -745,6 +777,15 @@
    "name": "Animate transform",
    "cat": "Content \u0026 motion",
    "desc": "Animate a transform (translate, scale, rotate…).",
+   "doc": {
+    "summary": "Animates a transform — translate, scale, rotate or skew.",
+    "body": [
+     "`\u003canimateTransform\u003e` animates the `transform` attribute specifically, with `type` selecting `translate`, `scale`, `rotate`, `skewX` or `skewY`. Because it targets the transform list it can spin, grow or slide an element where a plain `\u003canimate\u003e` cannot."
+    ],
+    "tips": [
+     "For `rotate`, the `from`/`to` values can include a centre: `0 50 50` → `360 50 50` spins about (50,50)."
+    ]
+   },
    "temporal": true,
    "attrs": [
     {
@@ -979,6 +1020,16 @@
    "name": "Circle",
    "cat": "Shapes",
    "desc": "A perfect circle defined by a centre point and radius.",
+   "doc": {
+    "summary": "A circle defined by a centre point and a single radius.",
+    "body": [
+     "`\u003ccircle\u003e` is the simplest curved primitive: `cx`/`cy` place the centre and `r` sets the radius. There is no separate width and height — for an oval use `\u003cellipse\u003e` instead.",
+     "A circle with `r=\"0\"` is not rendered. The geometry is exact, so it scales crisply at any zoom."
+    ],
+    "tips": [
+     "Stroke straddles the edge — half its width sits outside the radius, half inside."
+    ]
+   },
    "attrs": [
     {
      "key": "cx",
@@ -1380,7 +1431,17 @@
    "tag": "clipPath",
    "name": "Clip path",
    "cat": "Clipping \u0026 masking",
-   "desc": "Clips an element to an arbitrary shape.",
+   "desc": "Clips an element to an arbitrary shape — hard, 1-bit edges.",
+   "doc": {
+    "summary": "Clips an element to an arbitrary shape with hard, 1-bit edges.",
+    "body": [
+     "`\u003cclipPath\u003e` defines a region — built from shapes, paths or text — and everything outside it is cut away when applied via `clip-path=\"url(#id)\"`. Clipping is binary: a pixel is either fully kept or fully removed, giving crisp silhouette edges.",
+     "`clipPathUnits` chooses between bounding-box fractions and user-space coordinates for the clip geometry."
+    ],
+    "tips": [
+     "For soft, graduated edges or partial transparency use `\u003cmask\u003e` instead — clipping cannot feather."
+    ]
+   },
    "attrs": [
     {
      "key": "clipPathUnits",
@@ -1422,11 +1483,137 @@
    ]
   },
   {
+   "id": "defs",
+   "tag": "defs",
+   "name": "Definitions",
+   "cat": "Containers",
+   "desc": "Holds reusable definitions that render only when referenced.",
+   "doc": {
+    "summary": "A container for reusable definitions that are not drawn until referenced.",
+    "body": [
+     "`\u003cdefs\u003e` holds elements that exist to be referenced elsewhere — gradients, patterns, filters, clip paths, markers, symbols and reusable shapes. Nothing inside `\u003cdefs\u003e` renders on its own; it becomes visible only when something points at it by `id`, e.g. `fill=\"url(#grad)\"` or `\u003cuse href=\"#icon\"\u003e`.",
+     "Grouping definitions in `\u003cdefs\u003e` keeps a document tidy and makes intent explicit, though technically any element with an `id` can be referenced from anywhere."
+    ],
+    "tips": [
+     "In this lab the `\u003cdefs\u003e` holds a shape with `id=\"slot\"` that a `\u003cuse\u003e` instantiates — swap the definition and the rendered shape changes."
+    ]
+   },
+   "contentRaw": true,
+   "attrs": [
+    {
+     "key": "_content",
+     "label": "defines",
+     "control": "textarea"
+    }
+   ],
+   "defaults": {
+    "_content": "\u003crect id=\"slot\" x=\"20\" y=\"20\" width=\"60\" height=\"60\" fill=\"#4d8bff\"/\u003e"
+   },
+   "base": "\u003csvg xmlns=\"http://www.w3.org/2000/svg\" width=\"120\" height=\"120\" viewBox=\"0 0 100 100\"\u003e\u003cdefs data-lab=\"\"\u003e\u003crect id=\"slot\" x=\"20\" y=\"20\" width=\"60\" height=\"60\" fill=\"#4d8bff\"\u003e\u003c/rect\u003e\u003c/defs\u003e\u003cuse href=\"#slot\"/\u003e\u003c/svg\u003e",
+   "presets": [
+    {
+     "name": "circle",
+     "values": {
+      "_content": "\u003ccircle id=\"slot\" cx=\"50\" cy=\"50\" r=\"34\" fill=\"#16c79a\"/\u003e"
+     },
+     "meaning": "defs holds a reusable circle that \u003cuse href=\"#slot\"\u003e instantiates",
+     "prov": "curated"
+    },
+    {
+     "name": "star",
+     "values": {
+      "_content": "\u003cpolygon id=\"slot\" points=\"50,8 61,38 95,38 67,58 78,92 50,72 22,92 33,58 5,38 39,38\" fill=\"#f5a623\"/\u003e"
+     },
+     "meaning": "defs holds a reusable star polygon",
+     "prov": "curated"
+    },
+    {
+     "name": "gradient swatch",
+     "values": {
+      "_content": "\u003clinearGradient id=\"g\"\u003e\u003cstop offset=\"0\" stop-color=\"#e94560\"/\u003e\u003cstop offset=\"1\" stop-color=\"#4d8bff\"/\u003e\u003c/linearGradient\u003e\u003crect id=\"slot\" x=\"14\" y=\"14\" width=\"72\" height=\"72\" rx=\"8\" fill=\"url(#g)\"/\u003e"
+     },
+     "meaning": "defs holds a gradient AND a rect that fills with it",
+     "prov": "curated"
+    },
+    {
+     "name": "icon group",
+     "values": {
+      "_content": "\u003cg id=\"slot\"\u003e\u003ccircle cx=\"36\" cy=\"42\" r=\"18\" fill=\"#e94560\"/\u003e\u003crect x=\"48\" y=\"30\" width=\"36\" height=\"36\" rx=\"5\" fill=\"#4d8bff\"/\u003e\u003c/g\u003e"
+     },
+     "meaning": "defs holds a reusable group of shapes",
+     "prov": "curated"
+    }
+   ]
+  },
+  {
+   "id": "desc",
+   "tag": "desc",
+   "name": "Description",
+   "cat": "Descriptive",
+   "desc": "A long-form accessible description of its parent element.",
+   "doc": {
+    "summary": "A long-form, accessible description of its parent element.",
+    "body": [
+     "`\u003cdesc\u003e` provides extended descriptive text for the element that contains it, read by assistive technology. It is never rendered visually — its job is semantic, conveying detail that the artwork alone cannot.",
+     "Place it as the first child of any container or shape you want to describe; pair it with `\u003ctitle\u003e` for a short name plus a fuller explanation."
+    ],
+    "tips": [
+     "Reference it from the parent with `aria-describedby` for the most reliable screen-reader support."
+    ]
+   },
+   "attrs": [
+    {
+     "key": "_content",
+     "label": "text",
+     "control": "textarea"
+    }
+   ],
+   "defaults": {
+    "_content": "info"
+   },
+   "base": "\u003csvg xmlns=\"http://www.w3.org/2000/svg\" width=\"120\" height=\"120\" viewBox=\"0 0 100 100\"\u003e\u003crect x=\"10\" y=\"10\" width=\"80\" height=\"44\" rx=\"6\" fill=\"#16c79a\"\u003e\u003cdesc data-lab=\"\"\u003einfo\u003c/desc\u003e\u003c/rect\u003e\u003ctext data-echo=\"\" x=\"50\" y=\"72\" text-anchor=\"middle\" font-family=\"monospace\" font-size=\"6\" fill=\"#cdd6d2\"\u003e\u003c/text\u003e\u003c/svg\u003e",
+   "presets": [
+    {
+     "name": "short",
+     "values": {
+      "_content": "A teal rounded square."
+     },
+     "meaning": "a brief accessible description of the shape",
+     "prov": "curated"
+    },
+    {
+     "name": "detailed",
+     "values": {
+      "_content": "A teal rectangle with rounded corners, used as a button background."
+     },
+     "meaning": "a longer-form description exposed to assistive technology",
+     "prov": "curated"
+    },
+    {
+     "name": "instructions",
+     "values": {
+      "_content": "Press Enter to activate this control."
+     },
+     "meaning": "a description that conveys usage instructions",
+     "prov": "curated"
+    }
+   ]
+  },
+  {
    "id": "discard",
    "tag": "discard",
    "name": "Discard",
    "cat": "Content \u0026 motion",
-   "desc": "The \u003cdiscard\u003e SVG element.",
+   "desc": "Removes its target element at a set time.",
+   "doc": {
+    "summary": "Removes its target element from the document at a set time.",
+    "body": [
+     "`\u003cdiscard\u003e` deletes its target (the parent, or an `href` element) once its `begin` time is reached, permanently removing it from the DOM. It is a performance hint for long or looping animations — drop elements that will never be seen again to free resources."
+    ],
+    "tips": [
+     "The removal is one-way; the element does not come back."
+    ]
+   },
    "temporal": true,
    "attrs": [
     {
@@ -1454,6 +1641,13 @@
    "name": "Ellipse",
    "cat": "Shapes",
    "desc": "A circle with independent horizontal and vertical radii.",
+   "doc": {
+    "summary": "An ellipse with independent horizontal and vertical radii.",
+    "body": [
+     "`\u003cellipse\u003e` extends the circle with two radii: `rx` along x and `ry` along y, centred at `cx`/`cy`. Equal radii give a circle.",
+     "In SVG 2 `rx` or `ry` may be `auto`, in which case the other radius is used for both — handy when only one axis is known."
+    ]
+   },
    "attrs": [
     {
      "key": "cx",
@@ -1888,7 +2082,16 @@
    "tag": "feBlend",
    "name": "Blend",
    "cat": "Filters",
-   "desc": "A filter primitive (feBlend) in the filter chain.",
+   "desc": "Blends two inputs with a Photoshop-style blend mode.",
+   "doc": {
+    "summary": "Blends two filter inputs with a Photoshop-style blend mode.",
+    "body": [
+     "`\u003cfeBlend\u003e` combines its `in` and `in2` inputs using a `mode` such as `normal`, `multiply`, `screen`, `darken`, `lighten`, `overlay` or `color-dodge`. The modes match those in image editors, mixing the two layers' colours rather than simply stacking them."
+    ],
+    "tips": [
+     "Blend modes only differ visibly when the two layers overlap and contrast — feed it distinct, overlapping inputs."
+    ]
+   },
    "attrs": [
     {
      "key": "in",
@@ -2325,7 +2528,17 @@
    "tag": "feColorMatrix",
    "name": "Color matrix",
    "cat": "Filters",
-   "desc": "A filter primitive (feColorMatrix) in the filter chain.",
+   "desc": "Transforms colours through a matrix — saturate, hue-rotate, recolour.",
+   "doc": {
+    "summary": "Transforms colours through a matrix — saturate, hue-rotate or fully recolour.",
+    "body": [
+     "`\u003cfeColorMatrix\u003e` multiplies each pixel's [R,G,B,A] by a transformation. `type=\"matrix\"` takes a full 20-value 5×4 matrix for arbitrary channel mixing; `saturate` takes one number (0 = greyscale, 1 = normal); `hueRotate` takes an angle in degrees; and `luminanceToAlpha` turns brightness into opacity.",
+     "It is the go-to primitive for tinting, desaturating, channel swaps and converting a graphic into an alpha matte."
+    ],
+    "tips": [
+     "`luminanceToAlpha` is a quick way to build a mask from any artwork's brightness."
+    ]
+   },
    "attrs": [
     {
      "key": "in",
@@ -2632,7 +2845,17 @@
    "tag": "feComponentTransfer",
    "name": "Component transfer",
    "cat": "Filters",
-   "desc": "A filter primitive (feComponentTransfer) in the filter chain.",
+   "desc": "Remaps each colour channel through a transfer function.",
+   "doc": {
+    "summary": "Remaps each colour channel through its own transfer function.",
+    "body": [
+     "`\u003cfeComponentTransfer\u003e` adjusts colour curves per channel using up to four children — `\u003cfeFuncR\u003e`, `\u003cfeFuncG\u003e`, `\u003cfeFuncB\u003e`, `\u003cfeFuncA\u003e`. Each function reshapes its channel: `identity` leaves it, `linear` applies slope+intercept, `gamma` applies amplitude·Cᵉˣᵖ+offset, and `table`/`discrete` remap through a lookup list.",
+     "Together they cover brightness, contrast, colour balance, posterisation and thresholding."
+    ],
+    "tips": [
+     "`discrete` with a few `tableValues` posterises a channel into hard steps."
+    ]
+   },
    "attrs": [
     {
      "key": "in",
@@ -2876,7 +3099,17 @@
    "tag": "feComposite",
    "name": "Composite",
    "cat": "Filters",
-   "desc": "A filter primitive (feComposite) in the filter chain.",
+   "desc": "Combines two inputs with Porter-Duff or arithmetic compositing.",
+   "doc": {
+    "summary": "Combines two inputs with Porter-Duff or arithmetic compositing.",
+    "body": [
+     "`\u003cfeComposite\u003e` merges `in` and `in2` using an `operator`: the Porter-Duff set `over`, `in`, `out`, `atop` and `xor` controls how the two layers' coverage combines, while `lighter` adds them.",
+     "`operator=\"arithmetic\"` instead computes `result = k1·i1·i2 + k2·i1 + k3·i2 + k4` per channel, a flexible formula for masking, fades and custom mixes via the `k1`–`k4` coefficients."
+    ],
+    "tips": [
+     "`operator=\"in\"` is a common way to clip one filter result to the shape of another."
+    ]
+   },
    "attrs": [
     {
      "key": "in",
@@ -3461,7 +3694,17 @@
    "tag": "feConvolveMatrix",
    "name": "Convolve matrix",
    "cat": "Filters",
-   "desc": "A filter primitive (feConvolveMatrix) in the filter chain.",
+   "desc": "Convolves pixels with a kernel — blur, sharpen, emboss, edges.",
+   "doc": {
+    "summary": "Convolves pixels with a kernel — blur, sharpen, emboss or detect edges.",
+    "body": [
+     "`\u003cfeConvolveMatrix\u003e` recomputes each pixel as a weighted blend of its neighbours. `order` sets the kernel size and `kernelMatrix` its weights; `divisor` normalises the result and `bias` offsets it. The chosen weights determine the effect — a centre-heavy kernel sharpens, a ring detects edges, an asymmetric one embosses.",
+     "`edgeMode` decides how pixels at the boundary are sampled (`duplicate`, `wrap` or `none`)."
+    ],
+    "tips": [
+     "It needs textured input to show anything — a flat fill convolves to the same flat colour."
+    ]
+   },
    "attrs": [
     {
      "key": "in",
@@ -3877,7 +4120,17 @@
    "tag": "feDiffuseLighting",
    "name": "Diffuse lighting",
    "cat": "Filters",
-   "desc": "A filter primitive (feDiffuseLighting) in the filter chain.",
+   "desc": "Lights an alpha bump-map with matte (diffuse) shading.",
+   "doc": {
+    "summary": "Lights an alpha bump-map with matte (Lambertian) shading.",
+    "body": [
+     "`\u003cfeDiffuseLighting\u003e` treats its input's alpha channel as a height-field and shades it as a non-shiny surface lit by a child light source (`\u003cfeDistantLight\u003e`, `\u003cfePointLight\u003e` or `\u003cfeSpotLight\u003e`). `surfaceScale` exaggerates the relief, `diffuseConstant` scales brightness and `lighting-color` tints the light.",
+     "The output is opaque RGBA, usually composited back over the original artwork to add dimensional shading."
+    ],
+    "tips": [
+     "Blur the alpha source first (`feGaussianBlur` on `SourceAlpha`) so there's a smooth gradient for the light to grade across."
+    ]
+   },
    "attrs": [
     {
      "key": "in",
@@ -4187,7 +4440,17 @@
    "tag": "feDisplacementMap",
    "name": "Displacement map",
    "cat": "Filters",
-   "desc": "A filter primitive (feDisplacementMap) in the filter chain.",
+   "desc": "Warps one input using another input's pixel values.",
+   "doc": {
+    "summary": "Warps one input using the pixel values of another.",
+    "body": [
+     "`\u003cfeDisplacementMap\u003e` shifts each pixel of `in` by an amount read from `in2`: `P'(x,y) = P(x + scale·(Xc−0.5), y + scale·(Yc−0.5))`. `xChannelSelector` and `yChannelSelector` pick which channels of the map drive horizontal and vertical displacement, and `scale` sets the strength.",
+     "Paired with `feTurbulence` as the map it produces ripples, liquid distortion and organic wobble."
+    ],
+    "tips": [
+     "Animate `scale` from 0 for a melt/ripple-in effect."
+    ]
+   },
    "attrs": [
     {
      "key": "in",
@@ -4576,7 +4839,13 @@
    "tag": "feDistantLight",
    "name": "Distant light",
    "cat": "Filters",
-   "desc": "A filter primitive (feDistantLight) in the filter chain.",
+   "desc": "An infinitely-distant directional light for a lighting filter.",
+   "doc": {
+    "summary": "An infinitely-distant directional light for a lighting filter.",
+    "body": [
+     "`\u003cfeDistantLight\u003e` is a light source used inside `\u003cfeDiffuseLighting\u003e` or `\u003cfeSpecularLighting\u003e`. Because it is infinitely far away, only its direction matters: `azimuth` is the compass angle in the xy-plane and `elevation` the angle above the surface, like sunlight."
+    ]
+   },
    "attrs": [
     {
      "key": "azimuth",
@@ -4625,6 +4894,16 @@
    "name": "Drop shadow",
    "cat": "Filters",
    "desc": "Offset, blurred drop shadow with its own colour.",
+   "doc": {
+    "summary": "A one-shot offset, blurred, coloured drop shadow.",
+    "body": [
+     "`\u003cfeDropShadow\u003e` is a convenience primitive bundling offset, blur and composite into one step: it blurs the source alpha by `stdDeviation`, offsets it by `dx`/`dy`, tints it with `flood-color`/`flood-opacity`, and draws the original on top.",
+     "It replaces the classic `feGaussianBlur`+`feOffset`+`feMerge` recipe with a single, readable element."
+    ],
+    "tips": [
+     "Give the `\u003cfilter\u003e` room (negative `x`/`y`, \u003e100% width/height) or the shadow clips at the edge."
+    ]
+   },
    "attrs": [
     {
      "key": "in",
@@ -4953,7 +5232,13 @@
    "tag": "feFlood",
    "name": "Flood",
    "cat": "Filters",
-   "desc": "A filter primitive (feFlood) in the filter chain.",
+   "desc": "Fills the filter region with a solid colour.",
+   "doc": {
+    "summary": "Fills the entire filter region with a solid colour.",
+    "body": [
+     "`\u003cfeFlood\u003e` paints a flat rectangle of `flood-color` at `flood-opacity` across the filter region (or a sub-region you set). On its own it is just a colour block; combined with `feComposite`/`feMerge` it becomes the colour layer behind shadows, tints and glows."
+    ]
+   },
    "attrs": [
     {
      "key": "x",
@@ -5189,7 +5474,13 @@
    "tag": "feFuncA",
    "name": "Func a",
    "cat": "Filters",
-   "desc": "A filter primitive (feFuncA) in the filter chain.",
+   "desc": "The alpha-channel transfer function inside feComponentTransfer.",
+   "doc": {
+    "summary": "The alpha-channel transfer function inside feComponentTransfer.",
+    "body": [
+     "`\u003cfeFuncA\u003e` reshapes the alpha (opacity) channel within a `\u003cfeComponentTransfer\u003e`. A `linear` or `gamma` curve fades transparency smoothly; a `discrete` table thresholds it into hard cut-outs."
+    ]
+   },
    "attrs": [
     {
      "key": "type",
@@ -5620,7 +5911,13 @@
    "tag": "feFuncB",
    "name": "Func b",
    "cat": "Filters",
-   "desc": "A filter primitive (feFuncB) in the filter chain.",
+   "desc": "The blue-channel transfer function inside feComponentTransfer.",
+   "doc": {
+    "summary": "The blue-channel transfer function inside feComponentTransfer.",
+    "body": [
+     "`\u003cfeFuncB\u003e` remaps the blue channel within a `\u003cfeComponentTransfer\u003e` using its `type` curve — the same options as the other channels — letting you shift colour balance or posterise blue independently."
+    ]
+   },
    "attrs": [
     {
      "key": "type",
@@ -6051,7 +6348,13 @@
    "tag": "feFuncG",
    "name": "Func g",
    "cat": "Filters",
-   "desc": "A filter primitive (feFuncG) in the filter chain.",
+   "desc": "The green-channel transfer function inside feComponentTransfer.",
+   "doc": {
+    "summary": "The green-channel transfer function inside feComponentTransfer.",
+    "body": [
+     "`\u003cfeFuncG\u003e` is the green-channel counterpart of `\u003cfeFuncR\u003e`, applying its own transfer curve (`identity`, `linear`, `gamma`, `table` or `discrete`) to remap green within a `\u003cfeComponentTransfer\u003e`."
+    ]
+   },
    "attrs": [
     {
      "key": "type",
@@ -6482,7 +6785,13 @@
    "tag": "feFuncR",
    "name": "Func r",
    "cat": "Filters",
-   "desc": "A filter primitive (feFuncR) in the filter chain.",
+   "desc": "The red-channel transfer function inside feComponentTransfer.",
+   "doc": {
+    "summary": "The red-channel transfer function inside feComponentTransfer.",
+    "body": [
+     "`\u003cfeFuncR\u003e` reshapes the red channel within a `\u003cfeComponentTransfer\u003e`. Its `type` chooses the curve — `identity`, `linear` (slope/intercept), `gamma` (amplitude/exponent/offset) or `table`/`discrete` (a `tableValues` lookup) — and the result is recombined with the other channels."
+    ]
+   },
    "attrs": [
     {
      "key": "type",
@@ -6914,6 +7223,16 @@
    "name": "Gaussian blur",
    "cat": "Filters",
    "desc": "Softens an input by a standard deviation.",
+   "doc": {
+    "summary": "Softens an input with a Gaussian blur of a given standard deviation.",
+    "body": [
+     "`\u003cfeGaussianBlur\u003e` is the workhorse softening primitive. `stdDeviation` sets the blur amount, and a two-number value blurs x and y by different amounts for directional softness.",
+     "Beyond plain blurring it is the first step of most shadows, glows and lighting bump-maps (blurring `SourceAlpha` into a smooth height-field)."
+    ],
+    "tips": [
+     "`stdDeviation=\"0\"` is a no-op; larger values spread further and need a roomier filter region."
+    ]
+   },
    "attrs": [
     {
      "key": "in",
@@ -7201,7 +7520,16 @@
    "tag": "feImage",
    "name": "Image",
    "cat": "Filters",
-   "desc": "A filter primitive (feImage) in the filter chain.",
+   "desc": "Loads an external image or element as a filter input.",
+   "doc": {
+    "summary": "Loads an external image or document element as a filter input.",
+    "body": [
+     "`\u003cfeImage\u003e` brings outside pixels into the filter chain — referenced by `href` (a raster, an SVG, or even another element by fragment) — so they can be blended, displaced or composited with the source. `preserveAspectRatio` controls how the image fits the region."
+    ],
+    "tips": [
+     "Use it to supply a custom texture as the displacement map for `feDisplacementMap`."
+    ]
+   },
    "attrs": [
     {
      "key": "href",
@@ -7444,7 +7772,13 @@
    "tag": "feMerge",
    "name": "Merge",
    "cat": "Filters",
-   "desc": "A filter primitive (feMerge) in the filter chain.",
+   "desc": "Stacks several filter results into one layered output.",
+   "doc": {
+    "summary": "Stacks several filter results into one layered output.",
+    "body": [
+     "`\u003cfeMerge\u003e` composites multiple earlier results on top of one another in order, each named by an `\u003cfeMergeNode in=\"...\"\u003e` child. It is how the shadow recipe puts the blurred, offset shadow underneath the crisp original in a single step."
+    ]
+   },
    "attrs": [
     {
      "key": "x",
@@ -7649,7 +7983,13 @@
    "tag": "feMergeNode",
    "name": "Merge node",
    "cat": "Filters",
-   "desc": "A filter primitive (feMergeNode) in the filter chain.",
+   "desc": "One input layer inside an feMerge.",
+   "doc": {
+    "summary": "One input layer inside an feMerge.",
+    "body": [
+     "`\u003cfeMergeNode\u003e` names a single layer to stack inside its parent `\u003cfeMerge\u003e`. Its only attribute, `in`, points at a previous primitive's `result` (or a source keyword); the order of the nodes is the painting order, bottom to top."
+    ]
+   },
    "attrs": [
     {
      "key": "in",
@@ -7703,7 +8043,16 @@
    "tag": "feMorphology",
    "name": "Morphology",
    "cat": "Filters",
-   "desc": "A filter primitive (feMorphology) in the filter chain.",
+   "desc": "Fattens (dilate) or thins (erode) an input.",
+   "doc": {
+    "summary": "Fattens (dilate) or thins (erode) an input.",
+    "body": [
+     "`\u003cfeMorphology\u003e` grows or shrinks the opaque parts of its input. `operator=\"dilate\"` spreads them outward (thicker strokes, bolder text); `operator=\"erode\"` pulls them inward (thinner, eaten away). `radius` sets how far, and a two-number radius works on x and y separately."
+    ],
+    "tips": [
+     "Dilate then subtract the original to build an outline/stroke around arbitrary artwork."
+    ]
+   },
    "attrs": [
     {
      "key": "in",
@@ -7999,7 +8348,13 @@
    "tag": "feOffset",
    "name": "Offset",
    "cat": "Filters",
-   "desc": "A filter primitive (feOffset) in the filter chain.",
+   "desc": "Shifts an input by dx/dy — the basis of shadows.",
+   "doc": {
+    "summary": "Shifts an input by dx/dy — the foundation of drop shadows.",
+    "body": [
+     "`\u003cfeOffset\u003e` simply translates its input by `dx`/`dy` within the filter region. Alone it just moves pixels; offsetting a blurred `SourceAlpha` and merging the original on top is the classic drop-shadow construction."
+    ]
+   },
    "attrs": [
     {
      "key": "in",
@@ -8278,7 +8633,13 @@
    "tag": "fePointLight",
    "name": "Point light",
    "cat": "Filters",
-   "desc": "A filter primitive (fePointLight) in the filter chain.",
+   "desc": "A point light source at x/y/z for a lighting filter.",
+   "doc": {
+    "summary": "A point light source at a 3-D position for a lighting filter.",
+    "body": [
+     "`\u003cfePointLight\u003e` is an omnidirectional light placed at (`x`,`y`,`z`) inside `\u003cfeDiffuseLighting\u003e` or `\u003cfeSpecularLighting\u003e`. Like a bare bulb it radiates in all directions, so its position relative to the surface — especially the `z` height — controls where highlights fall and how they spread."
+    ]
+   },
    "attrs": [
     {
      "key": "x",
@@ -8343,7 +8704,14 @@
    "tag": "feSpecularLighting",
    "name": "Specular lighting",
    "cat": "Filters",
-   "desc": "A filter primitive (feSpecularLighting) in the filter chain.",
+   "desc": "Lights an alpha bump-map with glossy (specular) highlights.",
+   "doc": {
+    "summary": "Lights an alpha bump-map with glossy specular highlights.",
+    "body": [
+     "`\u003cfeSpecularLighting\u003e` is the shiny counterpart to `feDiffuseLighting`: it adds bright, view-dependent highlights to an alpha height-field. `specularConstant` scales highlight intensity and `specularExponent` their tightness (higher = sharper, glassier), while `surfaceScale` and `lighting-color` behave as in diffuse lighting.",
+     "Its result is typically composited additively over the artwork to give a wet or metallic sheen."
+    ]
+   },
    "attrs": [
     {
      "key": "in",
@@ -8694,7 +9062,13 @@
    "tag": "feSpotLight",
    "name": "Spot light",
    "cat": "Filters",
-   "desc": "A filter primitive (feSpotLight) in the filter chain.",
+   "desc": "A cone-shaped spotlight for a lighting filter.",
+   "doc": {
+    "summary": "A cone-shaped spotlight for a lighting filter.",
+    "body": [
+     "`\u003cfeSpotLight\u003e` is positioned at (`x`,`y`,`z`) and aimed at (`pointsAtX`,`pointsAtY`,`pointsAtZ`), casting a directional cone of light. `specularExponent` concentrates the beam toward its axis and `limitingConeAngle` clips it to a hard-edged circle of light."
+    ]
+   },
    "attrs": [
     {
      "key": "x",
@@ -8884,7 +9258,16 @@
    "tag": "feTile",
    "name": "Tile",
    "cat": "Filters",
-   "desc": "A filter primitive (feTile) in the filter chain.",
+   "desc": "Tiles a filter result across the filter region.",
+   "doc": {
+    "summary": "Tiles a filter result repeatedly across the filter region.",
+    "body": [
+     "`\u003cfeTile\u003e` takes a small input result (defined by its sub-region) and repeats it edge-to-edge to fill the area. Combined with `feFlood` or `feImage` it builds repeating textures and step-and-repeat patterns entirely within the filter chain."
+    ],
+    "tips": [
+     "The tiled input must itself be non-uniform — tiling a flat colour produces the same flat colour."
+    ]
+   },
    "attrs": [
     {
      "key": "in",
@@ -9130,7 +9513,17 @@
    "tag": "feTurbulence",
    "name": "Turbulence",
    "cat": "Filters",
-   "desc": "A filter primitive (feTurbulence) in the filter chain.",
+   "desc": "Generates Perlin noise — clouds, marble, organic texture.",
+   "doc": {
+    "summary": "Generates Perlin noise — clouds, marble and organic texture.",
+    "body": [
+     "`\u003cfeTurbulence\u003e` synthesises procedural noise to fill the filter region. `type=\"fractalNoise\"` gives soft, cloud-like fields; `type=\"turbulence\"` gives sharper, marbled patterns. `baseFrequency` sets the feature scale (small = large blobs), `numOctaves` adds fine detail, and `seed` makes it reproducible.",
+     "It is the raw material for textures and, fed into `feDisplacementMap`, for organic distortion."
+    ],
+    "tips": [
+     "`stitchTiles=\"stitch\"` makes the noise seamlessly tileable across the region edges."
+    ]
+   },
    "attrs": [
     {
      "key": "baseFrequency",
@@ -9455,6 +9848,16 @@
    "name": "Filter",
    "cat": "Filters",
    "desc": "A container for a chain of filter primitives.",
+   "doc": {
+    "summary": "A container for a pipeline of filter primitives applied as a post-process.",
+    "body": [
+     "`\u003cfilter\u003e` holds an ordered chain of `fe*` primitives. Applied via `filter=\"url(#id)\"`, it takes the element's rendering (`SourceGraphic`/`SourceAlpha`) and runs it through the chain to produce effects like blur, shadow, lighting and texture.",
+     "`x`/`y`/`width`/`height` define the filter region — the canvas the effect can paint into. Primitives pass results to one another via `result` names and the `in`/`in2` inputs."
+    ],
+    "tips": [
+     "Effects often spill outside the element — widen the region (e.g. `x=\"-20%\" width=\"140%\"`) so blurs and shadows aren't clipped."
+    ]
+   },
    "attrs": [
     {
      "key": "filterUnits",
@@ -9655,7 +10058,17 @@
    "tag": "foreignObject",
    "name": "Foreign object",
    "cat": "Containers",
-   "desc": "The \u003cforeignObject\u003e SVG element.",
+   "desc": "Embeds HTML (or other XML) inside SVG.",
+   "doc": {
+    "summary": "Embeds HTML (or any other XML namespace) inside an SVG drawing.",
+    "body": [
+     "`\u003cforeignObject\u003e` carves out a rectangular region (`x`,`y`,`width`,`height`) inside the SVG and hands it to another renderer — almost always HTML. It is the bridge for putting wrapping paragraphs, form controls or live web content into a vector scene.",
+     "Content must declare its namespace, e.g. a `\u003cdiv xmlns=\"http://www.w3.org/1999/xhtml\"\u003e`. The region participates in SVG transforms and clipping like any other element."
+    ],
+    "tips": [
+     "Support in standalone SVG-as-image contexts is limited — it shines when the SVG is inline in an HTML page."
+    ]
+   },
    "attrs": [
     {
      "key": "x",
@@ -9940,6 +10353,16 @@
    "name": "Group",
    "cat": "Containers",
    "desc": "Groups elements so they share attributes and transforms.",
+   "doc": {
+    "summary": "Groups elements so they share a transform, paint and other inherited properties.",
+    "body": [
+     "`\u003cg\u003e` has no geometry of its own. It bundles child elements so a single `transform`, `opacity`, `fill`, `clip-path` or `filter` applies to them all at once, and so they can be referenced or animated as a unit.",
+     "Groups also organise a document logically, much like a folder, without affecting the rendered result beyond the inherited attributes you set on them."
+    ],
+    "tips": [
+     "`opacity` on a `\u003cg\u003e` is group opacity — the whole group is composited then faded, so overlaps don't double up."
+    ]
+   },
    "attrs": [
     {
      "key": "fill",
@@ -10194,6 +10617,15 @@
    "name": "Image",
    "cat": "Content \u0026 motion",
    "desc": "An embedded raster or SVG image.",
+   "doc": {
+    "summary": "Embeds a raster or SVG image into the drawing.",
+    "body": [
+     "`\u003cimage href=\"...\"\u003e` places an external bitmap (PNG/JPEG/GIF) or SVG into a rectangle defined by `x`/`y`/`width`/`height`. `preserveAspectRatio` controls how the image fits that box, and the image participates in SVG transforms, clipping and filters like any element."
+    ],
+    "tips": [
+     "A `data:` URI embeds the image inline so the SVG stays self-contained with no extra request."
+    ]
+   },
    "attrs": [
     {
      "key": "href",
@@ -10483,6 +10915,15 @@
    "name": "Line",
    "cat": "Lines \u0026 paths",
    "desc": "A single straight segment between two points.",
+   "doc": {
+    "summary": "A single straight segment between two points.",
+    "body": [
+     "`\u003cline\u003e` connects (`x1`,`y1`) to (`x2`,`y2`) with one straight stroke. It has no interior, so `fill` does nothing — only stroke properties (`stroke`, `stroke-width`, `stroke-dasharray`, `stroke-linecap`) affect how it looks."
+    ],
+    "tips": [
+     "For more than two points use `\u003cpolyline\u003e`; for curves use `\u003cpath\u003e`."
+    ]
+   },
    "attrs": [
     {
      "key": "x1",
@@ -10926,6 +11367,16 @@
    "name": "Linear gradient",
    "cat": "Paint \u0026 fills",
    "desc": "A smooth colour blend along a vector, referenced as a fill.",
+   "doc": {
+    "summary": "A smooth colour blend along a straight vector, used as a paint.",
+    "body": [
+     "`\u003clinearGradient\u003e` interpolates colour between `\u003cstop\u003e` children along the line from (`x1`,`y1`) to (`x2`,`y2`). Reference it with `fill=\"url(#id)\"` or `stroke=\"url(#id)\"`.",
+     "`gradientUnits` decides whether those coordinates are fractions of the shape's bounding box (`objectBoundingBox`, the default) or absolute user units (`userSpaceOnUse`); `spreadMethod` controls what happens beyond the end stops."
+    ],
+    "tips": [
+     "`gradientTransform` rotates or skews the gradient independently of the shape it paints."
+    ]
+   },
    "attrs": [
     {
      "key": "gradientUnits",
@@ -11221,6 +11672,16 @@
    "name": "Marker",
    "cat": "Clipping \u0026 masking",
    "desc": "A symbol drawn at the vertices of a path or shape.",
+   "doc": {
+    "summary": "A graphic stamped onto the vertices of a path or shape.",
+    "body": [
+     "`\u003cmarker\u003e` defines a small symbol — an arrowhead, dot or tick — that is drawn at a shape's points via the `marker-start`, `marker-mid` and `marker-end` properties. `refX`/`refY` set the anchor that lands on each vertex and `markerWidth`/`markerHeight` the marker viewport.",
+     "`orient=\"auto\"` rotates the marker to follow the path direction (so arrowheads point the right way), and `markerUnits` scales it either with the stroke width or in fixed user units."
+    ],
+    "tips": [
+     "`orient=\"auto-start-reverse\"` flips the start marker so a single arrow definition works at both ends."
+    ]
+   },
    "attrs": [
     {
      "key": "markerUnits",
@@ -11754,7 +12215,17 @@
    "tag": "mask",
    "name": "Mask",
    "cat": "Clipping \u0026 masking",
-   "desc": "Masks an element by luminance or alpha.",
+   "desc": "Masks an element by luminance or alpha — soft, graduated.",
+   "doc": {
+    "summary": "Masks an element by luminance or alpha — soft and graduated.",
+    "body": [
+     "`\u003cmask\u003e` composites its content against an element via `mask=\"url(#id)\"`. By default it is a luminance mask: bright mask pixels reveal, dark ones hide, and greys produce partial transparency — so gradients in the mask create smooth fades.",
+     "Set `mask-type=\"alpha\"` (or the CSS property) to drive visibility from the mask's alpha channel instead. `maskUnits` and `maskContentUnits` control the coordinate systems."
+    ],
+    "tips": [
+     "A black→white gradient mask is the classic way to fade an element out along an edge."
+    ]
+   },
    "attrs": [
     {
      "key": "maskUnits",
@@ -12030,11 +12501,71 @@
    ]
   },
   {
+   "id": "metadata",
+   "tag": "metadata",
+   "name": "Metadata",
+   "cat": "Descriptive",
+   "desc": "Machine-readable metadata — RDF, licensing, authorship.",
+   "doc": {
+    "summary": "Machine-readable metadata about the document — authorship, licensing, RDF.",
+    "body": [
+     "`\u003cmetadata\u003e` carries data meant for machines rather than viewers: typically RDF, Dublin Core or other XML vocabularies describing the document's author, license, creation tool or keywords. It is invisible and ignored by the renderer, but available to crawlers and asset pipelines.",
+     "Editors such as Inkscape write provenance here, and licensing tools read it back."
+    ],
+    "tips": [
+     "Content is usually namespaced XML (e.g. an `\u003crdf:RDF\u003e` block), not plain text."
+    ]
+   },
+   "attrs": [
+    {
+     "key": "_content",
+     "label": "text",
+     "control": "textarea"
+    }
+   ],
+   "defaults": {
+    "_content": "info"
+   },
+   "base": "\u003csvg xmlns=\"http://www.w3.org/2000/svg\" width=\"120\" height=\"120\" viewBox=\"0 0 100 100\"\u003e\u003crect x=\"10\" y=\"10\" width=\"80\" height=\"44\" rx=\"6\" fill=\"#16c79a\"\u003e\u003cmetadata data-lab=\"\"\u003einfo\u003c/metadata\u003e\u003c/rect\u003e\u003ctext data-echo=\"\" x=\"50\" y=\"72\" text-anchor=\"middle\" font-family=\"monospace\" font-size=\"6\" fill=\"#cdd6d2\"\u003e\u003c/text\u003e\u003c/svg\u003e",
+   "presets": [
+    {
+     "name": "author",
+     "values": {
+      "_content": "Creator: Jane Doe"
+     },
+     "meaning": "machine-readable authorship metadata (real metadata wraps RDF/XML)",
+     "prov": "curated"
+    },
+    {
+     "name": "license",
+     "values": {
+      "_content": "License: CC BY 4.0"
+     },
+     "meaning": "machine-readable licensing metadata",
+     "prov": "curated"
+    },
+    {
+     "name": "keywords",
+     "values": {
+      "_content": "Keywords: icon, button, ui"
+     },
+     "meaning": "machine-readable descriptive keywords",
+     "prov": "curated"
+    }
+   ]
+  },
+  {
    "id": "mpath",
    "tag": "mpath",
    "name": "Motion path",
    "cat": "Content \u0026 motion",
-   "desc": "The \u003cmpath\u003e SVG element.",
+   "desc": "References a path for animateMotion to follow.",
+   "doc": {
+    "summary": "References an existing path for animateMotion to follow.",
+    "body": [
+     "`\u003cmpath href=\"#path\"\u003e` is a child of `\u003canimateMotion\u003e` that points it at a real `\u003cpath\u003e` element to use as the motion route, instead of duplicating the geometry in a `path` attribute. Edit the referenced path and the motion updates with it."
+    ]
+   },
    "temporal": true,
    "attrs": [
     {
@@ -12075,6 +12606,17 @@
    "name": "Path",
    "cat": "Lines \u0026 paths",
    "desc": "Arbitrary curves and lines from a `d` command string.",
+   "doc": {
+    "summary": "The universal shape — any line or curve from a `d` command string.",
+    "body": [
+     "`\u003cpath\u003e` is the most powerful primitive. Its `d` attribute is a mini-language of commands: `M` moveto, `L` lineto, `H`/`V` horizontal/vertical, `C`/`S` cubic Béziers, `Q`/`T` quadratic Béziers, `A` elliptical arcs, and `Z` to close. Uppercase commands are absolute, lowercase relative.",
+     "Every other shape can be expressed as a path. It is what drawing tools export, what `\u003ctextPath\u003e` follows, and what `pathLength` lets you normalise for dash and animation maths."
+    ],
+    "tips": [
+     "`pathLength` rescales the path's reported length so `stroke-dasharray` and motion offsets use round numbers.",
+     "Keep `d` precise but compact — relative commands often produce smaller, more editable strings."
+    ]
+   },
    "attrs": [
     {
      "key": "d",
@@ -12421,7 +12963,17 @@
    "tag": "pattern",
    "name": "Pattern",
    "cat": "Paint \u0026 fills",
-   "desc": "A tiled motif that repeats across any fill.",
+   "desc": "A tiled motif that repeats across any fill or stroke.",
+   "doc": {
+    "summary": "A tile that repeats across any fill or stroke.",
+    "body": [
+     "`\u003cpattern\u003e` defines a small piece of artwork that is tiled to paint a shape via `fill=\"url(#id)\"`. `width`/`height` set the tile size and `x`/`y` its origin. `patternUnits` controls how those are measured and `patternContentUnits` how the tile's own contents are measured.",
+     "A `viewBox` lets the tile scale independently, and `patternTransform` rotates or scales the whole tiling — perfect for hatching, polka dots, textures and repeating motifs."
+    ],
+    "tips": [
+     "Default `patternUnits=\"objectBoundingBox\"` makes the tile size a fraction of the shape — switch to `userSpaceOnUse` for fixed-size tiles."
+    ]
+   },
    "attrs": [
     {
      "key": "patternUnits",
@@ -12859,6 +13411,15 @@
    "name": "Polygon",
    "cat": "Lines \u0026 paths",
    "desc": "A closed shape built from a list of points.",
+   "doc": {
+    "summary": "A closed shape built from a list of points.",
+    "body": [
+     "`\u003cpolygon\u003e` is like `\u003cpolyline\u003e` but automatically closes — an edge is drawn from the last point back to the first, enclosing a fillable area. Use it for triangles, stars, arrows and any straight-edged shape."
+    ],
+    "tips": [
+     "`fill-rule` (`nonzero` vs `evenodd`) decides which regions count as inside for self-intersecting stars."
+    ]
+   },
    "attrs": [
     {
      "key": "points",
@@ -13200,6 +13761,13 @@
    "name": "Polyline",
    "cat": "Lines \u0026 paths",
    "desc": "A connected run of straight segments through a list of points.",
+   "doc": {
+    "summary": "A connected run of straight segments through a list of points.",
+    "body": [
+     "`\u003cpolyline\u003e` draws an open chain of line segments through the coordinate pairs in its `points` list. It is not automatically closed, so by default it reads as a multi-segment line rather than a shape.",
+     "It can still take a `fill`, which paints the region enclosed by the implicit closing edge between the last and first points — useful for area charts."
+    ]
+   },
    "attrs": [
     {
      "key": "points",
@@ -13534,6 +14102,16 @@
    "name": "Radial gradient",
    "cat": "Paint \u0026 fills",
    "desc": "A colour blend radiating from a focal point.",
+   "doc": {
+    "summary": "A colour blend radiating outward from a focal point.",
+    "body": [
+     "`\u003cradialGradient\u003e` blends its `\u003cstop\u003e`s from a centre (`cx`,`cy`) out to radius `r`, optionally with a separate focal point (`fx`,`fy`) for an off-centre highlight that reads as a light source or sphere.",
+     "Like its linear sibling it supports `gradientUnits`, `gradientTransform` and `spreadMethod`, and is referenced through `url(#id)`."
+    ],
+    "tips": [
+     "Move `fx`/`fy` away from `cx`/`cy` to suggest a glossy, directionally-lit surface."
+    ]
+   },
    "attrs": [
     {
      "key": "gradientUnits",
@@ -13925,6 +14503,17 @@
    "name": "Rectangle",
    "cat": "Shapes",
    "desc": "The fundamental box primitive — position, size and corner radius.",
+   "doc": {
+    "summary": "The rectangle — SVG's box primitive, positioned by its top-left corner.",
+    "body": [
+     "`\u003crect\u003e` draws an axis-aligned rectangle. `x`/`y` set the top-left corner and `width`/`height` the size, all in the current user coordinate system. Give `rx`/`ry` a value to round the corners; set only one and the other mirrors it.",
+     "Like every shape it is painted with `fill` and `stroke`, and can be transformed, clipped, masked and filtered. A zero width or height makes it disappear entirely."
+    ],
+    "tips": [
+     "`rx`/`ry` are clamped to half the width/height — a fully rounded short side becomes a stadium/pill.",
+     "Percentages on `width`/`height` resolve against the viewport, not the parent shape."
+    ]
+   },
    "attrs": [
     {
      "key": "x",
@@ -14459,11 +15048,82 @@
    ]
   },
   {
+   "id": "script",
+   "tag": "script",
+   "name": "Script",
+   "cat": "Descriptive",
+   "desc": "Embedded or referenced ECMAScript.",
+   "doc": {
+    "summary": "Embedded or referenced ECMAScript that runs in the SVG.",
+    "body": [
+     "`\u003cscript\u003e` adds scripting to an SVG, either inline as a text body or via `href` to an external file. In a live browser it can manipulate the DOM, respond to events and drive interaction, exactly like a script in HTML.",
+     "Note that a `\u003cscript\u003e` inserted through `innerHTML` (as this lab renders previews) does not execute per the HTML spec — its code runs when the SVG is loaded as a real document or file."
+    ],
+    "tips": [
+     "`type` defaults to JavaScript; a non-JS MIME type makes the browser treat the body as data, not code."
+    ]
+   },
+   "attrs": [
+    {
+     "key": "_content",
+     "label": "JS",
+     "control": "textarea"
+    }
+   ],
+   "defaults": {
+    "_content": "(function(){var t=document.getElementById('slot-target');if(t){t.setAttribute('fill','#16c79a');}})();"
+   },
+   "base": "\u003csvg xmlns=\"http://www.w3.org/2000/svg\" width=\"120\" height=\"120\" viewBox=\"0 0 100 100\"\u003e\u003crect id=\"slot-target\" x=\"16\" y=\"8\" width=\"68\" height=\"48\" rx=\"6\" fill=\"#e94560\"/\u003e\u003cscript data-lab=\"\"\u003e(function(){var t=document.getElementById('slot-target');if(t){t.setAttribute('fill','#16c79a');}})();\u003c/script\u003e\u003ctext data-echo=\"\" x=\"50\" y=\"70\" text-anchor=\"middle\" font-family=\"monospace\" font-size=\"6\" fill=\"#cdd6d2\"\u003e\u003c/text\u003e\u003c/svg\u003e",
+   "presets": [
+    {
+     "name": "recolor",
+     "values": {
+      "_content": "var t=document.getElementById('slot-target');if(t)t.setAttribute('fill','#16c79a');"
+     },
+     "meaning": "recolors the target rect to teal (runs in a real browser / .svg file)",
+     "prov": "curated"
+    },
+    {
+     "name": "resize",
+     "values": {
+      "_content": "var t=document.getElementById('slot-target');if(t){t.setAttribute('width','86');t.setAttribute('height','86');}"
+     },
+     "meaning": "grows the target rect to fill the canvas",
+     "prov": "curated"
+    },
+    {
+     "name": "add stroke",
+     "values": {
+      "_content": "var t=document.getElementById('slot-target');if(t){t.setAttribute('stroke','#ffd166');t.setAttribute('stroke-width','6');}"
+     },
+     "meaning": "adds a gold stroke to the target rect",
+     "prov": "curated"
+    },
+    {
+     "name": "rotate",
+     "values": {
+      "_content": "var t=document.getElementById('slot-target');if(t)t.setAttribute('transform','rotate(18 50 37)');"
+     },
+     "meaning": "rotates the target rect 18°",
+     "prov": "curated"
+    }
+   ]
+  },
+  {
    "id": "set",
    "tag": "set",
    "name": "Set",
    "cat": "Content \u0026 motion",
    "desc": "Set an attribute to a value for a span of time.",
+   "doc": {
+    "summary": "Sets an attribute to a value for a span of time — a discrete, non-interpolated change.",
+    "body": [
+     "`\u003cset\u003e` snaps `attributeName` to a single `to` value at `begin` and (optionally) reverts after `dur`. Unlike `\u003canimate\u003e` it does not tween — it is an instantaneous state change, ideal for toggling visibility, swapping a colour on interaction, or scripting show/hide."
+    ],
+    "tips": [
+     "`begin=\"click\"` makes `\u003cset\u003e` a pure-markup interaction handler."
+    ]
+   },
    "temporal": true,
    "attrs": [
     {
@@ -14568,6 +15228,16 @@
    "name": "Stop",
    "cat": "Paint \u0026 fills",
    "desc": "One colour stop within a gradient.",
+   "doc": {
+    "summary": "One colour stop within a gradient.",
+    "body": [
+     "`\u003cstop\u003e` defines a single point in a gradient: `offset` (0–1, or a percentage) is its position along the gradient and `stop-color` its colour, with `stop-opacity` for partial transparency.",
+     "A gradient needs at least two stops; their order and offsets shape the entire blend."
+    ],
+    "tips": [
+     "Two stops at the same offset create a hard colour band instead of a smooth transition."
+    ]
+   },
    "attrs": [
     {
      "key": "offset",
@@ -14652,7 +15322,18 @@
    "tag": "svg",
    "name": "SVG root",
    "cat": "Containers",
-   "desc": "The root canvas (or a nested viewport).",
+   "desc": "The root canvas, or a nested viewport with its own coordinates.",
+   "doc": {
+    "summary": "The root canvas — and, when nested, a viewport with its own coordinates.",
+    "body": [
+     "`\u003csvg\u003e` is the outermost element of any SVG document, but it can also nest inside another `\u003csvg\u003e` to establish a fresh coordinate system. `viewBox` defines the internal coordinates that map onto the element's `width`/`height`, and `preserveAspectRatio` controls how that mapping fits when the aspect ratios differ.",
+     "A nested `\u003csvg\u003e` clips to its bounds by default, making it a clean way to embed a self-contained sub-drawing or reframe content."
+    ],
+    "tips": [
+     "`viewBox=\"minX minY width height\"` is the single most important attribute for responsive, scalable SVG.",
+     "`preserveAspectRatio=\"xMidYMid meet\"` fits and centres; `slice` fills and crops; `none` stretches."
+    ]
+   },
    "attrs": [
     {
      "key": "viewBox",
@@ -15094,7 +15775,17 @@
    "tag": "switch",
    "name": "Switch",
    "cat": "Containers",
-   "desc": "The \u003cswitch\u003e SVG element.",
+   "desc": "Renders the first child whose conditional tests pass.",
+   "doc": {
+    "summary": "Renders only the first child whose conditional-processing tests pass.",
+    "body": [
+     "`\u003cswitch\u003e` evaluates each direct child in order and draws the first one whose conditional attributes all evaluate true, skipping the rest. The tested attributes are `requiredExtensions`, `systemLanguage` (and the legacy `requiredFeatures`).",
+     "It is most often used for localisation — offer the same label in several languages and let `systemLanguage` pick the right one — or to provide a fallback when an extension is unsupported."
+    ],
+    "tips": [
+     "Order matters: put the most specific match first and a no-condition fallback last."
+    ]
+   },
    "attrs": [
     {
      "key": "fill",
@@ -15348,7 +16039,17 @@
    "tag": "symbol",
    "name": "Symbol",
    "cat": "Containers",
-   "desc": "The \u003csymbol\u003e SVG element.",
+   "desc": "A reusable template instantiated with its own viewport via `use`.",
+   "doc": {
+    "summary": "A reusable template that renders only when instantiated by `\u003cuse\u003e`, with its own viewport.",
+    "body": [
+     "`\u003csymbol\u003e` defines graphics meant to be reused, like `\u003cdefs\u003e` content, but it is never drawn directly — it appears only through `\u003cuse href=\"#id\"\u003e`. Unlike `\u003cg\u003e`, it carries its own `viewBox`, `preserveAspectRatio`, `refX` and `refY`, giving each instance an isolated, scalable coordinate system.",
+     "This makes `\u003csymbol\u003e` the natural building block for icon libraries: define once, size and place freely with `\u003cuse\u003e`."
+    ],
+    "tips": [
+     "`refX`/`refY` set the symbol's anchor point — the coordinate that lands on the `\u003cuse\u003e` element's `x`/`y`."
+    ]
+   },
    "attrs": [
     {
      "key": "viewBox",
@@ -15781,6 +16482,17 @@
    "name": "Text",
    "cat": "Text",
    "desc": "Real, selectable type rendered as vectors.",
+   "doc": {
+    "summary": "Real, selectable, accessible type rendered as vector glyphs.",
+    "body": [
+     "`\u003ctext\u003e` places a run of characters at (`x`,`y`), where the y is the baseline. It honours the full set of font and text properties (`font-family`, `font-size`, `text-anchor`, `letter-spacing`) and is painted with `fill`/`stroke` like any shape.",
+     "`x`/`y`/`dx`/`dy`/`rotate` accept lists, letting you position or rotate individual glyphs, and `textLength` with `lengthAdjust` fits the run to an exact width."
+    ],
+    "tips": [
+     "`text-anchor` (`start`/`middle`/`end`) aligns the run horizontally around the `x` position.",
+     "Real text stays selectable and searchable — prefer it over outlining type to paths."
+    ]
+   },
    "attrs": [
     {
      "key": "x",
@@ -16301,6 +17013,16 @@
    "name": "Text path",
    "cat": "Text",
    "desc": "Text laid out along an arbitrary path.",
+   "doc": {
+    "summary": "Text flowed along the shape of a referenced path.",
+    "body": [
+     "`\u003ctextPath href=\"#path\"\u003e` lays its characters along an arbitrary `\u003cpath\u003e` (or basic shape) instead of a straight baseline, so type can curve, loop or spiral. `startOffset` shifts where the text begins along the path.",
+     "`side` chooses which side of the path the text sits on, `method` picks between aligning and stretching glyphs, and `spacing` controls inter-glyph spacing."
+    ],
+    "tips": [
+     "A negative or percentage `startOffset` slides the text — easy to animate for a marquee-on-a-curve effect."
+    ]
+   },
    "attrs": [
     {
      "key": "path",
@@ -16874,11 +17596,75 @@
    ]
   },
   {
+   "id": "title",
+   "tag": "title",
+   "name": "Title",
+   "cat": "Descriptive",
+   "desc": "An accessible name / tooltip for its parent element.",
+   "doc": {
+    "summary": "An accessible name and hover tooltip for its parent element.",
+    "body": [
+     "`\u003ctitle\u003e` gives its parent a short human-readable name. Most browsers surface it as a native tooltip on hover, and assistive technology announces it as the element's accessible name — the SVG equivalent of an HTML `title`/`alt`.",
+     "It renders nothing itself; being the first child of the element it names is what wires it up."
+    ],
+    "tips": [
+     "Add a `\u003ctitle\u003e` to interactive elements (`\u003ca\u003e`, buttons) and to the root `\u003csvg\u003e` for a document name."
+    ]
+   },
+   "attrs": [
+    {
+     "key": "_content",
+     "label": "text",
+     "control": "textarea"
+    }
+   ],
+   "defaults": {
+    "_content": "info"
+   },
+   "base": "\u003csvg xmlns=\"http://www.w3.org/2000/svg\" width=\"120\" height=\"120\" viewBox=\"0 0 100 100\"\u003e\u003crect x=\"10\" y=\"10\" width=\"80\" height=\"44\" rx=\"6\" fill=\"#16c79a\"\u003e\u003ctitle data-lab=\"\"\u003einfo\u003c/title\u003e\u003c/rect\u003e\u003ctext data-echo=\"\" x=\"50\" y=\"72\" text-anchor=\"middle\" font-family=\"monospace\" font-size=\"6\" fill=\"#cdd6d2\"\u003e\u003c/text\u003e\u003c/svg\u003e",
+   "presets": [
+    {
+     "name": "label",
+     "values": {
+      "_content": "Save"
+     },
+     "meaning": "a short accessible name — most browsers show it as a tooltip on hover",
+     "prov": "curated"
+    },
+    {
+     "name": "action",
+     "values": {
+      "_content": "Save document"
+     },
+     "meaning": "a more descriptive accessible name / tooltip",
+     "prov": "curated"
+    },
+    {
+     "name": "status",
+     "values": {
+      "_content": "Connection: online"
+     },
+     "meaning": "a status label exposed to assistive technology",
+     "prov": "curated"
+    }
+   ]
+  },
+  {
    "id": "tspan",
    "tag": "tspan",
    "name": "Text span",
    "cat": "Text",
    "desc": "A styled run inside a text element.",
+   "doc": {
+    "summary": "A styled or repositioned sub-run inside a `\u003ctext\u003e`.",
+    "body": [
+     "`\u003ctspan\u003e` carves a piece of text out of its surrounding `\u003ctext\u003e` so it can be styled or moved independently — a coloured word, a superscript, a second line. Its `x`/`y` reposition absolutely while `dx`/`dy` nudge relative to the flow.",
+     "Nesting `\u003ctspan\u003e`s lets you build rich inline formatting from a single text element."
+    ],
+    "tips": [
+     "Set `dy` on a `\u003ctspan\u003e` and reset `x` to fake line breaks (SVG `\u003ctext\u003e` does not wrap on its own)."
+    ]
+   },
    "attrs": [
     {
      "key": "x",
@@ -17396,7 +18182,17 @@
    "tag": "use",
    "name": "Use",
    "cat": "Containers",
-   "desc": "Reuse a defined element by reference.",
+   "desc": "Stamps a copy of a defined element by reference.",
+   "doc": {
+    "summary": "Stamps a copy of an already-defined element by reference.",
+    "body": [
+     "`\u003cuse href=\"#id\"\u003e` clones the referenced element (or `\u003csymbol\u003e`) into the document at the `x`/`y` offset you give. The clone is a live, shadow copy: edit the original and every `\u003cuse\u003e` of it updates, which is the backbone of icon systems and repeated motifs.",
+     "Referencing a `\u003csymbol\u003e` also applies that symbol's own `width`/`height`/`viewBox`, so `\u003cuse\u003e` becomes a sized, self-contained instance."
+    ],
+    "tips": [
+     "Inherited paint (e.g. `fill`) only reaches the clone for properties the original left unset — set `fill=\"currentColor\"` on the original to recolour per instance."
+    ]
+   },
    "attrs": [
     {
      "key": "href",
@@ -17788,7 +18584,17 @@
    "tag": "view",
    "name": "View",
    "cat": "Containers",
-   "desc": "The \u003cview\u003e SVG element.",
+   "desc": "A named viewport recalled by a URL fragment.",
+   "doc": {
+    "summary": "A named viewport you can jump to by URL fragment.",
+    "body": [
+     "`\u003cview id=\"name\"\u003e` predefines a `viewBox` (and optional `preserveAspectRatio`) that can be activated by referencing the SVG with that fragment, e.g. `picture.svg#name`. Loading that URL reframes the whole document to the view's box — like a saved camera position.",
+     "It renders nothing inline; its only effect is the framing it applies when targeted."
+    ],
+    "tips": [
+     "Great for slide-style storytelling or deep-linking to a detail within one SVG file."
+    ]
+   },
    "attrs": [
     {
      "key": "viewBox",

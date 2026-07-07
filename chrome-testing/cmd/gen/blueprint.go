@@ -129,6 +129,15 @@ var builtinScaffoldWins = map[string]bool{
 	"text":     true,
 	"tspan":    true,
 	"textPath": true,
+	// Content-driven, non-rendering descriptive elements. Their native render is
+	// nothing (a <title> is a tooltip, <desc>/<metadata> are invisible), so the
+	// on-disk templates show only a flat colored rect — every content preset would
+	// look identical. Force the corrected catDescriptive built-in, which hosts the
+	// element and draws a data-echo caption that app.js fills from the element's
+	// text content, so each content preset is visually distinct.
+	"desc":     true,
+	"title":    true,
+	"metadata": true,
 }
 
 // blueprintFor returns the scaffold for tag (with a {{ELEMENT}} placeholder).
@@ -196,15 +205,16 @@ func defaultScaffold(tag string) string {
 	// over the generic category scaffolds below.
 	switch tag {
 	case "defs":
-		// <defs> is a non-rendering container, so a <use> of the <defs> itself
-		// paints nothing (QA round2: all cards blank). Instead reference a CHILD
-		// shape: the generated <defs> (carrying the varied attribute) sits beside
-		// a sibling <defs> holding a renderable <rect id="defskid">, and <use>
-		// instantiates THAT rect so every card shows the red square.
+		// <defs> never renders directly; it holds reusable definitions referenced
+		// elsewhere. So its SHOWCASE is its CONTENT: the generated <defs> holds a
+		// definition carrying id="slot" (bodyFor → a shape; the content presets swap
+		// in a circle / star / gradient swatch / icon group), and <use href="#slot">
+		// instantiates it — so varying the defs content visibly changes the instanced
+		// shape. The id lives on the CHILD def, not the <defs> wrapper, so
+		// blueprintSlotNeedsID is false for defs (no id injected onto <defs>).
 		return svgOpen +
 			`{{ELEMENT}}` +
-			`<defs><rect id="defskid" x="20" y="20" width="60" height="60" fill="#e94560"/></defs>` +
-			`<use href="#defskid"/></svg>`
+			`<use href="#slot"/></svg>`
 	case "feComponentTransfer", "feFuncR", "feFuncG", "feFuncB", "feFuncA":
 		// A flat source makes every transfer curve a single flat shade. Feed a
 		// horizontal black→white gradient so each pixel samples a different input
@@ -330,14 +340,17 @@ func defaultScaffold(tag string) string {
 			`<rect x="0" y="0" width="100" height="100" fill="none" stroke="#2a3a34" stroke-width="1.5"/>` +
 			`</svg>`
 	case "script":
-		// FIX 9: pre-color the target rect so cards whose <script type="…"> is a
-		// non-JS MIME type (which the browser refuses to execute) are not a blank
-		// grey square. The <script> is illustrative — it would recolor the rect IF
-		// it ran — but the base color does not depend on JS execution. The script
-		// body (bodyFor) targets id="slot-target".
+		// <script> inserted via innerHTML (how the gallery + shoot render) NEVER
+		// executes per the HTML spec, so it cannot recolor anything live. Its
+		// showcase is therefore the SOURCE: a pre-colored target rect (id="slot-target"
+		// — what the script WOULD act on in a standalone file) plus a data-echo caption
+		// that app.js fills from the <script>'s text content, so each JS content preset
+		// is visually distinct. The About panel notes scripts run in a real browser.
 		return svgOpen +
-			`<rect id="slot-target" x="20" y="20" width="60" height="60" fill="#e94560"/>` +
-			`{{ELEMENT}}</svg>`
+			`<rect id="slot-target" x="16" y="8" width="68" height="48" rx="6" fill="#e94560"/>` +
+			`{{ELEMENT}}` +
+			`<text data-echo="" x="50" y="70" text-anchor="middle" font-family="monospace" font-size="6" fill="#cdd6d2"></text>` +
+			`</svg>`
 	case "switch":
 		// FIX 8: <switch> is a container; presentation attrs set on it (color,
 		// fill-opacity, opacity, …) only show if its rendered child INHERITS them.
@@ -532,8 +545,16 @@ func defaultScaffold(tag string) string {
 			`<defs><path id="target" d="M30 50 Q50 10 70 50"/></defs>` +
 			`<rect x="30" y="30" width="40" height="40" fill="#4d8bff"><animateMotion dur="2s" repeatCount="indefinite">{{ELEMENT}}</animateMotion></rect></svg>`
 	case catDescriptive:
+		// <desc>/<title>/<metadata> render NOTHING natively (a <title> is a tooltip /
+		// accessible name; <desc>/<metadata> are invisible). The element is hosted as
+		// the FIRST CHILD of a shape (the correct place for a <title> tooltip), and a
+		// data-echo caption — filled by app.js from the element's text content —
+		// makes each content preset visually distinct. The host shape stays constant;
+		// the caption is what changes per preset.
 		return svgOpen +
-			`<rect x="10" y="10" width="80" height="80" fill="#16c79a">{{ELEMENT}}</rect></svg>`
+			`<rect x="10" y="10" width="80" height="44" rx="6" fill="#16c79a">{{ELEMENT}}</rect>` +
+			`<text data-echo="" x="50" y="72" text-anchor="middle" font-family="monospace" font-size="6" fill="#cdd6d2"></text>` +
+			`</svg>`
 	case catContainerRef:
 		// <use> references a defined shape; the baseline href is "#slot", so the
 		// referenced def carries id="slot" (was "#ref" → dangling, QA round1).
@@ -1052,10 +1073,10 @@ func bodyFor(tag string) string {
 		return `<circle cx="34" cy="34" r="22" fill="currentColor"/>` +
 			`<rect x="52" y="52" width="34" height="34" rx="4" fill="currentColor"/>`
 	case "defs":
-		// <defs> never renders directly; its <use href="#defskid"> instantiates a
-		// fixed rect (the defs child can't inherit paint set on <defs>). Keep a
-		// concrete fill so the card is visible.
-		return `<rect x="20" y="20" width="60" height="60" fill="#4d8bff"/>`
+		// <defs> never renders directly; the scaffold's <use href="#slot"> instantiates
+		// THIS child. The baseline definition is a plain rect carrying id="slot"; the
+		// content presets swap in other reusable defs (circle / star / gradient / group).
+		return `<rect id="slot" x="20" y="20" width="60" height="60" fill="#4d8bff"/>`
 	case "switch":
 		// <switch> renders the FIRST child whose conditional-processing attrs pass; a
 		// bare child always qualifies. Wrapping in a labelled <g> (rendered as one

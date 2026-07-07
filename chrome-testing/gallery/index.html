@@ -38,6 +38,26 @@
   select.fin{cursor:pointer;width:100%;padding:7px 8px}
   input[type=range]{width:100%;accent-color:#4ee39a;cursor:pointer}
   input[type=color]{width:28px;height:28px;padding:0;border:1px solid #243029;border-radius:6px;background:#141917;cursor:pointer;flex:none}
+  textarea.fin{font-family:'JetBrains Mono',monospace}
+  /* about panel */
+  .about-lead{font-size:12.5px;line-height:1.55;color:#dce5e0;margin-bottom:10px;font-weight:500}
+  .about-p{font-size:12px;line-height:1.62;color:#9aa8a0;margin:0 0 9px}
+  .about-tips-h{font-size:9.5px;letter-spacing:1.6px;color:#56655e;margin:13px 0 6px}
+  .about-tips{margin:0;padding-left:16px;color:#8a978f;font-size:11.5px;line-height:1.55}
+  .about-tips li{margin-bottom:5px}
+  #about code{background:#11201a;color:#6fd3e8;padding:1px 5px;border-radius:4px;font-family:'JetBrains Mono',monospace;font-size:11px}
+  /* search */
+  #search:focus{border-color:#33463c}
+  #search::placeholder{color:#4a584f}
+  .sr-row{display:flex;align-items:center;gap:10px;width:100%;text-align:left;background:none;border:none;border-radius:7px;padding:7px 8px;cursor:pointer}
+  .sr-row:hover,.sr-row.sel{background:#141b18}
+  .sr-mini{width:27px;height:27px;flex:none;background:#0a0e0c;border:1px solid #1a221e;border-radius:5px;display:flex;align-items:center;justify-content:center;padding:3px;overflow:hidden}
+  .sr-txt{flex:1;min-width:0;display:flex;flex-direction:column;gap:1px}
+  .sr-name{font-size:12.5px;color:#eef4f0;font-family:'Space Grotesk',sans-serif;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .sr-tag{font-size:10.5px;color:#4ee39a;font-family:'JetBrains Mono',monospace;font-weight:400}
+  .sr-desc{font-size:10.5px;color:#6b7a73;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .sr-cat{font-size:10px;color:#4a584f;flex:none}
+  .sr-empty{padding:12px 10px;color:#6b7a73;font-size:12px}
 </style>
 </head>
 <body>
@@ -49,6 +69,12 @@
       <span style="font-weight:700;font-size:15px;letter-spacing:-.3px"><span style="color:#4ee39a">svg</span><span style="color:#e7efeb">lab</span></span>
     </div>
     <span style="color:#5b6a64;font-size:12px;letter-spacing:.2px">// vector element explorer</span>
+    <div style="position:relative;margin-left:26px;width:330px;max-width:38vw">
+      <span style="position:absolute;left:10px;top:50%;transform:translateY(-50%);color:#4a584f;font-size:12px;pointer-events:none">⌕</span>
+      <input id="search" type="text" placeholder="Search elements, attributes, docs…  /" autocomplete="off" spellcheck="false"
+        style="width:100%;background:#0a0e0c;border:1px solid #1f2925;color:#cdd6d2;font-family:inherit;font-size:12px;padding:7px 10px 7px 28px;border-radius:7px;outline:none">
+      <div id="search-results" style="display:none;position:absolute;top:40px;left:0;right:0;background:#0c100e;border:1px solid #243029;border-radius:9px;box-shadow:0 14px 36px rgba(0,0,0,.55);max-height:64vh;overflow-y:auto;z-index:60;padding:5px"></div>
+    </div>
     <div style="margin-left:auto;display:flex;align-items:center;gap:18px;font-size:12px;color:#6b7a73">
       <span><span id="el-count" style="color:#9fb0a8">0</span> elements</span>
       <span style="color:#3a4842">·</span>
@@ -152,6 +178,11 @@
 
           <!-- RIGHT: control panel -->
           <aside id="ctrlpanel" style="width:354px;flex:none;border-left:1px solid #1c2422;background:#0c100e;display:flex;flex-direction:column;overflow-y:auto">
+            <div style="padding:18px 18px 4px">
+              <div style="font-size:11px;letter-spacing:2px;color:#56655e;margin-bottom:11px">ABOUT</div>
+              <div id="about"></div>
+            </div>
+            <div style="height:1px;background:#161c19;margin:14px 0 0"></div>
             <div style="padding:18px 18px 8px">
               <div style="font-size:11px;letter-spacing:2px;color:#56655e;margin-bottom:13px">PRESETS <span id="preset-count" style="color:#3f4d46"></span></div>
               <div id="presets" style="display:flex;flex-wrap:wrap;gap:8px;max-height:148px;overflow-y:auto"></div>

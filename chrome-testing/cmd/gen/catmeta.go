@@ -66,34 +66,79 @@ func nameFor(tag string) string {
 }
 
 var descTable = map[string]string{
-	"rect":           "The fundamental box primitive — position, size and corner radius.",
-	"circle":         "A perfect circle defined by a centre point and radius.",
-	"ellipse":        "A circle with independent horizontal and vertical radii.",
-	"line":           "A single straight segment between two points.",
-	"polyline":       "A connected run of straight segments through a list of points.",
-	"polygon":        "A closed shape built from a list of points.",
-	"path":           "Arbitrary curves and lines from a `d` command string.",
-	"text":           "Real, selectable type rendered as vectors.",
-	"tspan":          "A styled run inside a text element.",
-	"textPath":       "Text laid out along an arbitrary path.",
+	// shapes
+	"rect":    "The fundamental box primitive — position, size and corner radius.",
+	"circle":  "A perfect circle defined by a centre point and radius.",
+	"ellipse": "A circle with independent horizontal and vertical radii.",
+	// lines & paths
+	"line":     "A single straight segment between two points.",
+	"polyline": "A connected run of straight segments through a list of points.",
+	"polygon":  "A closed shape built from a list of points.",
+	"path":     "Arbitrary curves and lines from a `d` command string.",
+	// containers
+	"svg":           "The root canvas, or a nested viewport with its own coordinates.",
+	"g":             "Groups elements so they share attributes and transforms.",
+	"defs":          "Holds reusable definitions that render only when referenced.",
+	"use":           "Stamps a copy of a defined element by reference.",
+	"symbol":        "A reusable template instantiated with its own viewport via `use`.",
+	"switch":        "Renders the first child whose conditional tests pass.",
+	"a":             "A hyperlink wrapping SVG content.",
+	"foreignObject": "Embeds HTML (or other XML) inside SVG.",
+	"view":          "A named viewport recalled by a URL fragment.",
+	// text
+	"text":     "Real, selectable type rendered as vectors.",
+	"tspan":    "A styled run inside a text element.",
+	"textPath": "Text laid out along an arbitrary path.",
+	// paint & fills
 	"linearGradient": "A smooth colour blend along a vector, referenced as a fill.",
 	"radialGradient": "A colour blend radiating from a focal point.",
 	"stop":           "One colour stop within a gradient.",
-	"pattern":        "A tiled motif that repeats across any fill.",
-	"filter":         "A container for a chain of filter primitives.",
-	"feGaussianBlur": "Softens an input by a standard deviation.",
-	"feDropShadow":   "Offset, blurred drop shadow with its own colour.",
-	"clipPath":       "Clips an element to an arbitrary shape.",
-	"mask":           "Masks an element by luminance or alpha.",
-	"marker":         "A symbol drawn at the vertices of a path or shape.",
-	"animate":        "Declarative animation — tween an attribute over time.",
+	"pattern":        "A tiled motif that repeats across any fill or stroke.",
+	// clipping & masking
+	"clipPath": "Clips an element to an arbitrary shape — hard, 1-bit edges.",
+	"mask":     "Masks an element by luminance or alpha — soft, graduated.",
+	"marker":   "A symbol drawn at the vertices of a path or shape.",
+	// filters
+	"filter":              "A container for a chain of filter primitives.",
+	"feBlend":             "Blends two inputs with a Photoshop-style blend mode.",
+	"feColorMatrix":       "Transforms colours through a matrix — saturate, hue-rotate, recolour.",
+	"feComponentTransfer": "Remaps each colour channel through a transfer function.",
+	"feComposite":         "Combines two inputs with Porter-Duff or arithmetic compositing.",
+	"feConvolveMatrix":    "Convolves pixels with a kernel — blur, sharpen, emboss, edges.",
+	"feDiffuseLighting":   "Lights an alpha bump-map with matte (diffuse) shading.",
+	"feDisplacementMap":   "Warps one input using another input's pixel values.",
+	"feDistantLight":      "An infinitely-distant directional light for a lighting filter.",
+	"feDropShadow":        "Offset, blurred drop shadow with its own colour.",
+	"feFlood":             "Fills the filter region with a solid colour.",
+	"feFuncR":             "The red-channel transfer function inside feComponentTransfer.",
+	"feFuncG":             "The green-channel transfer function inside feComponentTransfer.",
+	"feFuncB":             "The blue-channel transfer function inside feComponentTransfer.",
+	"feFuncA":             "The alpha-channel transfer function inside feComponentTransfer.",
+	"feGaussianBlur":      "Softens an input by a standard deviation.",
+	"feImage":             "Loads an external image or element as a filter input.",
+	"feMerge":             "Stacks several filter results into one layered output.",
+	"feMergeNode":         "One input layer inside an feMerge.",
+	"feMorphology":        "Fattens (dilate) or thins (erode) an input.",
+	"feOffset":            "Shifts an input by dx/dy — the basis of shadows.",
+	"fePointLight":        "A point light source at x/y/z for a lighting filter.",
+	"feSpecularLighting":  "Lights an alpha bump-map with glossy (specular) highlights.",
+	"feSpotLight":         "A cone-shaped spotlight for a lighting filter.",
+	"feTile":              "Tiles a filter result across the filter region.",
+	"feTurbulence":        "Generates Perlin noise — clouds, marble, organic texture.",
+	// content & motion
+	"animate":          "Declarative animation — tween an attribute over time.",
+	"animateMotion":    "Animate an element along a motion path.",
 	"animateTransform": "Animate a transform (translate, scale, rotate…).",
-	"animateMotion":  "Animate an element along a motion path.",
-	"set":            "Set an attribute to a value for a span of time.",
-	"image":          "An embedded raster or SVG image.",
-	"use":            "Reuse a defined element by reference.",
-	"g":              "Groups elements so they share attributes and transforms.",
-	"svg":            "The root canvas (or a nested viewport).",
+	"set":              "Set an attribute to a value for a span of time.",
+	"mpath":            "References a path for animateMotion to follow.",
+	"discard":          "Removes its target element at a set time.",
+	"image":            "An embedded raster or SVG image.",
+	// descriptive / metadata
+	"desc":     "A long-form accessible description of its parent element.",
+	"title":    "An accessible name / tooltip for its parent element.",
+	"metadata": "Machine-readable metadata — RDF, licensing, authorship.",
+	"script":   "Embedded or referenced ECMAScript.",
+	"style":    "Embedded CSS that styles the document.",
 }
 
 func descFor(tag string) string {
@@ -104,4 +149,13 @@ func descFor(tag string) string {
 		return "A filter primitive (" + tag + ") in the filter chain."
 	}
 	return "The <" + tag + "> SVG element."
+}
+
+// docFor returns the hand-authored long-form documentation for an element (the
+// About panel), or nil if none is authored.
+func docFor(tag string) *elementDoc {
+	if d, ok := docTable[tag]; ok {
+		return &d
+	}
+	return nil
 }

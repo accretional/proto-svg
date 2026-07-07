@@ -52,8 +52,13 @@
     }
     var ca = el.attrs.filter(function (a) { return a.key === '_content'; })[0];
     if (ca && vals._content != null) {
-      var cre = new RegExp('(<' + escRe(el.tag) + '(?:\\s[^>]*?)?>)([\\s\\S]*?)(<\\/' + escRe(el.tag) + '>)');
-      out = out.replace(cre, function (_, a, b, c) { return a + escXml(vals._content) + c; });
+      var cre = new RegExp('(<' + escRe(el.tag) + '\\b[^>]*?\\bdata-lab\\b[^>]*?>)([\\s\\S]*?)(<\\/' + escRe(el.tag) + '>)');
+      if (!cre.test(out)) cre = new RegExp('(<' + escRe(el.tag) + '(?:\\s[^>]*?)?>)([\\s\\S]*?)(<\\/' + escRe(el.tag) + '>)');
+      // contentRaw elements (<defs>) carry element MARKUP as content — inject it
+      // unescaped; text-content elements (style/script/desc/title/metadata) are escaped.
+      out = out.replace(cre, function (_, a, b, c) {
+        return a + (el.contentRaw ? String(vals._content) : escXml(vals._content)) + c;
+      });
     }
     return out;
   }
@@ -77,6 +82,38 @@
     out.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', uri);
   }
 
+  // syncEcho mirrors a content-driven element's text into a visible [data-echo]
+  // caption. Elements that render NOTHING natively (<desc>/<title>/<metadata>) or
+  // whose script never executes via innerHTML (<script>) would otherwise look
+  // identical across content presets; echoing the source text makes each distinct.
+  function syncEcho(svg) {
+    var echo = svg.querySelector('[data-echo]');
+    if (!echo) return;
+    var lab = svg.querySelector('[data-lab]');
+    var txt = lab ? (lab.textContent || '').replace(/\s+/g, ' ').trim() : '';
+    // Fit into up to two lines of ≈26 monospace chars (font-size 6 in the 100-unit
+    // viewBox), breaking at a space for prose but hard-breaking long code tokens so
+    // a line never strands a single short word; ellipsise the overflow.
+    var max = 26, lines;
+    if (txt.length <= max) {
+      lines = txt ? [txt] : [];
+    } else {
+      var bp = txt.lastIndexOf(' ', max);
+      if (bp < max * 0.5) bp = max; // no usable space (e.g. JS source) → hard break
+      var l2 = txt.slice(bp).trim();
+      if (l2.length > max) l2 = l2.slice(0, max - 1).trim() + '…';
+      lines = [txt.slice(0, bp).trim(), l2];
+    }
+    var NS = 'http://www.w3.org/2000/svg', x = echo.getAttribute('x') || '50';
+    while (echo.firstChild) echo.removeChild(echo.firstChild);
+    lines.forEach(function (ln, i) {
+      var ts = document.createElementNS(NS, 'tspan');
+      ts.setAttribute('x', x); ts.setAttribute('dy', i === 0 ? '0' : '10');
+      ts.textContent = ln;
+      echo.appendChild(ts);
+    });
+  }
+
   // ---- viewer ----
   function renderViewer() {
     var v = $('viewer');
@@ -86,6 +123,7 @@
     if (svg) {
       svg.setAttribute('width', '100%'); svg.setAttribute('height', '100%'); svg.style.display = 'block';
       syncFragmentView(svg);
+      syncEcho(svg);
     }
     v.style.transform = 'translate(' + panX + 'px,' + panY + 'px) scale(' + zoom + ')';
     var cv = $('canvas');
@@ -204,6 +242,16 @@
       if (a.step != null) n.step = a.step; n.value = val;
       n.oninput = function () { commit(n.value); };
       wrap.appendChild(n);
+    } else if (a.control === 'textarea') {
+      // Multi-line content editor (CSS / JS / markup / descriptive text). Stack the
+      // label above a full-width textarea so there's room to read and edit.
+      row.style.flexDirection = 'column'; row.style.alignItems = 'stretch';
+      lab.style.width = 'auto'; lab.style.marginBottom = '7px';
+      var ta2 = document.createElement('textarea'); ta2.className = 'fin'; ta2.spellcheck = false;
+      ta2.rows = 5; ta2.value = val;
+      ta2.style.cssText += ';width:100%;resize:vertical;line-height:1.5;white-space:pre;font-size:11.5px';
+      ta2.oninput = function () { commit(ta2.value); };
+      wrap.appendChild(ta2);
     } else { // text
       var t = document.createElement('input'); t.type = 'text'; t.className = 'fin';
       t.style.cssText += ';width:100%'; t.value = val;
@@ -301,6 +349,25 @@
     });
   }
 
+  // ---- about panel ----
+  // fmtDoc escapes prose, then renders `code` spans as inline <code>.
+  function fmtDoc(s) {
+    return escXml(s).replace(/`([^`]+)`/g, '<code>$1</code>');
+  }
+  function renderAbout(el) {
+    var host = $('about'); if (!host) return;
+    var d = el.doc || {};
+    var h = '';
+    if (d.summary) h += '<div class="about-lead">' + fmtDoc(d.summary) + '</div>';
+    (d.body || []).forEach(function (p) { h += '<p class="about-p">' + fmtDoc(p) + '</p>'; });
+    if (d.tips && d.tips.length) {
+      h += '<div class="about-tips-h">GOOD TO KNOW</div><ul class="about-tips">';
+      d.tips.forEach(function (t) { h += '<li>' + fmtDoc(t) + '</li>'; });
+      h += '</ul>';
+    }
+    host.innerHTML = h || ('<p class="about-p">' + fmtDoc(el.desc || '') + '</p>');
+  }
+
   // ---- open element / breadcrumb ----
   function openElement(id, presetVals) {
     var el = byId[id]; if (!el) return;
@@ -311,6 +378,7 @@
     $('bc-tag').textContent = '<' + el.tag + '>';
     $('bc-desc').textContent = el.desc || '';
     $('b-reset').textContent = '100%';
+    renderAbout(el);
     renderControls();
     regen();
     markActive(id);
@@ -361,6 +429,90 @@
         '<div style="font-size:10.5px;color:#6b7a73;margin-top:3px">' + el.cat + '</div></div>';
       card.onclick = function () { location.hash = '#/el/' + el.id; };
       feat.appendChild(card);
+    });
+  }
+
+  // ---- full-text search (in-browser, over names + tags + descriptions + attrs) ----
+  var searchIdx = [], searchHits = [], searchSel = -1;
+  function buildSearchIndex() {
+    searchIdx = els.map(function (e) {
+      var parts = [e.name, e.tag, e.cat, e.desc || ''];
+      if (e.doc) {
+        if (e.doc.summary) parts.push(e.doc.summary);
+        (e.doc.body || []).forEach(function (p) { parts.push(p); });
+        (e.doc.tips || []).forEach(function (t) { parts.push(t); });
+      }
+      (e.attrs || []).forEach(function (a) { parts.push(a.key); });
+      (e.presets || []).forEach(function (p) { parts.push(p.name); });
+      return { el: e, hay: parts.join('  ').toLowerCase() };
+    });
+  }
+  // score: exact tag/name > prefix > whole-word > substring. Attribute/description
+  // hits still match (via hay) but rank below name/tag matches.
+  function searchScore(rec, q) {
+    var name = rec.el.name.toLowerCase(), tag = rec.el.tag.toLowerCase();
+    if (tag === q || name === q) return 100;
+    if (tag.indexOf(q) === 0 || name.indexOf(q) === 0) return 80;
+    if (rec.hay.indexOf(' ' + q) >= 0) return 55;
+    if (rec.hay.indexOf(q) >= 0) return 35;
+    return 0;
+  }
+  function runSearch(raw) {
+    var box = $('search-results'); if (!box) return;
+    var q = (raw || '').trim().toLowerCase();
+    if (!q) { box.style.display = 'none'; searchHits = []; searchSel = -1; return; }
+    searchHits = searchIdx.map(function (r) { return { r: r, s: searchScore(r, q) }; })
+      .filter(function (x) { return x.s > 0; })
+      .sort(function (a, b) { return b.s - a.s || a.r.el.name.localeCompare(b.r.el.name); })
+      .slice(0, 12).map(function (x) { return x.r.el; });
+    searchSel = searchHits.length ? 0 : -1;
+    renderSearchResults(q);
+  }
+  function renderSearchResults(q) {
+    var box = $('search-results'); if (!box) return;
+    if (!searchHits.length) {
+      box.innerHTML = '<div class="sr-empty">No elements match “' + escXml(q) + '”</div>';
+      box.style.display = 'block'; return;
+    }
+    box.innerHTML = searchHits.map(function (e, i) {
+      return '<button class="sr-row' + (i === searchSel ? ' sel' : '') + '" data-id="' + e.id + '">' +
+        '<span class="sr-mini">' + miniSvg(e) + '</span>' +
+        '<span class="sr-txt">' +
+        '<span class="sr-name">' + escXml(e.name) + ' <span class="sr-tag">&lt;' + e.tag + '&gt;</span></span>' +
+        '<span class="sr-desc">' + escXml(e.desc || '') + '</span></span>' +
+        '<span class="sr-cat">' + escXml(e.cat) + '</span></button>';
+    }).join('');
+    box.style.display = 'block';
+    Array.prototype.forEach.call(box.querySelectorAll('.sr-row'), function (b) {
+      b.onclick = function () { goSearch(b.dataset.id); };
+    });
+  }
+  function goSearch(id) {
+    var box = $('search-results'), inp = $('search');
+    if (box) box.style.display = 'none';
+    if (inp) inp.blur();
+    location.hash = '#/el/' + id;
+  }
+  function wireSearch() {
+    var inp = $('search'); if (!inp) return;
+    inp.oninput = function () { runSearch(inp.value); };
+    inp.onfocus = function () { if (inp.value.trim()) runSearch(inp.value); };
+    inp.onkeydown = function (e) {
+      if (e.key === 'ArrowDown') { e.preventDefault(); if (searchHits.length) { searchSel = Math.min(searchHits.length - 1, searchSel + 1); renderSearchResults(inp.value); } }
+      else if (e.key === 'ArrowUp') { e.preventDefault(); if (searchHits.length) { searchSel = Math.max(0, searchSel - 1); renderSearchResults(inp.value); } }
+      else if (e.key === 'Enter') { e.preventDefault(); if (searchHits[searchSel]) goSearch(searchHits[searchSel].id); }
+      else if (e.key === 'Escape') { inp.value = ''; runSearch(''); inp.blur(); }
+    };
+    document.addEventListener('mousedown', function (e) {
+      var box = $('search-results');
+      if (box && box.style.display !== 'none' && !box.contains(e.target) && e.target !== inp) box.style.display = 'none';
+    });
+    // press "/" anywhere (outside a field) to focus search
+    document.addEventListener('keydown', function (e) {
+      if (e.key !== '/' || e.metaKey || e.ctrlKey || e.altKey) return;
+      var t = (document.activeElement || {}).tagName || '';
+      if (t === 'INPUT' || t === 'TEXTAREA' || t === 'SELECT') return;
+      e.preventDefault(); inp.focus();
     });
   }
 
@@ -439,6 +591,8 @@
     $('el-count').textContent = els.length;
     $('grp-count').textContent = (d.groups || []).filter(function (g) { return els.some(function (e) { return e.cat === g; }); }).length;
     buildRail();
+    buildSearchIndex();
+    wireSearch();
     wireViewer();
     window.addEventListener('hashchange', route);
     route();

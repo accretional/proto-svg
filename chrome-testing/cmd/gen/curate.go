@@ -450,6 +450,116 @@ func defStr(s, fallback string) string {
 	return s
 }
 
+// ── content-driven elements ──────────────────────────────────────────────────
+//
+// style / script / defs / desc / title / metadata have NO visually-varying
+// attributes — their meaning is their CONTENT (CSS text, a script body, reusable
+// defs, descriptive text). The grammar models that content (CharacterDataType /
+// ContainerContent); this layer supplies the demonstrative values, exactly as
+// curateAttr supplies demonstrative attribute values. curateContent returns one
+// preset per showcase content value, keyed by the special "_content" attribute
+// the gallery applies between the element's open and close tags.
+
+const contentKey = "_content"
+
+// contentIsRaw reports whether a tag's content is element MARKUP (injected
+// unescaped by the gallery) rather than text (escaped). Only <defs> defines
+// child elements.
+func contentIsRaw(tag string) bool { return tag == "defs" }
+
+// contentLabel is the control label for a tag's content textarea.
+func contentLabel(tag string) string {
+	switch tag {
+	case "style":
+		return "CSS"
+	case "script":
+		return "JS"
+	case "defs":
+		return "defines"
+	}
+	return "text" // desc / title / metadata
+}
+
+func contentPreset(name, body, meaning string) demoPreset {
+	return demoPreset{label: name, values: map[string]string{contentKey: body}, meaning: meaning}
+}
+
+// curateContent returns the showcase content presets for a content-driven
+// element, or nil for any element whose content is not curated here.
+func curateContent(tag string) []demoPreset {
+	switch tag {
+	case "style":
+		// CSS in a <style> DOES apply when the gallery injects it (innerHTML keeps
+		// <style> live); each rule restyles the blueprint's .slot shapes.
+		return []demoPreset{
+			contentPreset("fill + stroke", `.slot{fill:#e94560;stroke:#ffd166;stroke-width:4}`,
+				"a CSS rule recolors every .slot shape — red fill, gold stroke"),
+			contentPreset("dashed outline", `.slot{fill:none;stroke:#4ee39a;stroke-width:3;stroke-dasharray:7 5}`,
+				"unfilled shapes with a dashed teal outline"),
+			contentPreset("translucent", `.slot{fill:#4d8bff;opacity:.45}`,
+				"a blue fill at 45% opacity"),
+			contentPreset("keyframe pulse", `.slot{fill:#16c79a;animation:pulse 1.4s ease-in-out infinite}@keyframes pulse{50%{opacity:.2}}`,
+				"a CSS @keyframes animation fades the shapes in and out"),
+			contentPreset("rotate", `.slot{fill:#f5a623;transform:rotate(12deg);transform-origin:50px 50px}`,
+				"a CSS transform rotates the shapes 12°"),
+		}
+	case "script":
+		// <script> injected via innerHTML never executes, so the showcase is the
+		// SOURCE (echoed in the caption); in a standalone .svg each body runs.
+		return []demoPreset{
+			contentPreset("recolor", `var t=document.getElementById('slot-target');if(t)t.setAttribute('fill','#16c79a');`,
+				"recolors the target rect to teal (runs in a real browser / .svg file)"),
+			contentPreset("resize", `var t=document.getElementById('slot-target');if(t){t.setAttribute('width','86');t.setAttribute('height','86');}`,
+				"grows the target rect to fill the canvas"),
+			contentPreset("add stroke", `var t=document.getElementById('slot-target');if(t){t.setAttribute('stroke','#ffd166');t.setAttribute('stroke-width','6');}`,
+				"adds a gold stroke to the target rect"),
+			contentPreset("rotate", `var t=document.getElementById('slot-target');if(t)t.setAttribute('transform','rotate(18 50 37)');`,
+				"rotates the target rect 18°"),
+		}
+	case "defs":
+		// defs content is element MARKUP (contentIsRaw); each preset is a reusable
+		// definition carrying id="slot" that the scaffold's <use> instantiates.
+		return []demoPreset{
+			contentPreset("circle", `<circle id="slot" cx="50" cy="50" r="34" fill="#16c79a"/>`,
+				"defs holds a reusable circle that <use href=\"#slot\"> instantiates"),
+			contentPreset("star", `<polygon id="slot" points="50,8 61,38 95,38 67,58 78,92 50,72 22,92 33,58 5,38 39,38" fill="#f5a623"/>`,
+				"defs holds a reusable star polygon"),
+			contentPreset("gradient swatch", `<linearGradient id="g"><stop offset="0" stop-color="#e94560"/><stop offset="1" stop-color="#4d8bff"/></linearGradient><rect id="slot" x="14" y="14" width="72" height="72" rx="8" fill="url(#g)"/>`,
+				"defs holds a gradient AND a rect that fills with it"),
+			contentPreset("icon group", `<g id="slot"><circle cx="36" cy="42" r="18" fill="#e94560"/><rect x="48" y="30" width="36" height="36" rx="5" fill="#4d8bff"/></g>`,
+				"defs holds a reusable group of shapes"),
+		}
+	case "desc":
+		return []demoPreset{
+			contentPreset("short", `A teal rounded square.`,
+				"a brief accessible description of the shape"),
+			contentPreset("detailed", `A teal rectangle with rounded corners, used as a button background.`,
+				"a longer-form description exposed to assistive technology"),
+			contentPreset("instructions", `Press Enter to activate this control.`,
+				"a description that conveys usage instructions"),
+		}
+	case "title":
+		return []demoPreset{
+			contentPreset("label", `Save`,
+				"a short accessible name — most browsers show it as a tooltip on hover"),
+			contentPreset("action", `Save document`,
+				"a more descriptive accessible name / tooltip"),
+			contentPreset("status", `Connection: online`,
+				"a status label exposed to assistive technology"),
+		}
+	case "metadata":
+		return []demoPreset{
+			contentPreset("author", `Creator: Jane Doe`,
+				"machine-readable authorship metadata (real metadata wraps RDF/XML)"),
+			contentPreset("license", `License: CC BY 4.0`,
+				"machine-readable licensing metadata"),
+			contentPreset("keywords", `Keywords: icon, button, ui`,
+				"machine-readable descriptive keywords"),
+		}
+	}
+	return nil
+}
+
 // meaningFor returns a plain-language caption for an UN-curated preset (the raw
 // enumerated value). Keyed by attribute, with the value interpolated.
 func meaningFor(tag, attr, val string) string {

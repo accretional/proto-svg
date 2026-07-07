@@ -13,7 +13,6 @@ require (
 )
 
 require (
-	github.com/accretional/merge v0.0.0-00010101000000-000000000000
 	github.com/accretional/proto-css v0.0.0-00010101000000-000000000000
 	github.com/accretional/proto-expr v0.0.0-20260416071217-9a69001c59bb // indirect
 	github.com/accretional/proto-html v0.0.0-00010101000000-000000000000
@@ -29,4 +28,4 @@ require (
 
 replace github.com/accretional/proto-css => ../proto-css
 
-replace github.com/accretional/proto-html => ../proto-html-css-seam
+replace github.com/accretional/proto-html => ../proto-html

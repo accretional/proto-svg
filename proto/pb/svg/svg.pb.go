@@ -60255,11 +60255,10 @@ func (x *EllipticalArc) GetEllipticalArcArgumentSequence() *EllipticalArcArgumen
 }
 
 type EllipticalArcArgumentSequence struct {
-	state                   protoimpl.MessageState   `protogen:"open.v1"`
-	EllipticalArcArgument   *EllipticalArcArgument   `protobuf:"bytes,1,opt,name=elliptical_arc_argument,json=ellipticalArcArgument,proto3" json:"elliptical_arc_argument,omitempty"`
-	EllipticalArcArgument_2 []*EllipticalArcArgument `protobuf:"bytes,2,rep,name=elliptical_arc_argument_2,json=ellipticalArcArgument2,proto3" json:"elliptical_arc_argument_2,omitempty"`
-	unknownFields           protoimpl.UnknownFields
-	sizeCache               protoimpl.SizeCache
+	state                 protoimpl.MessageState   `protogen:"open.v1"`
+	EllipticalArcArgument []*EllipticalArcArgument `protobuf:"bytes,1,rep,name=elliptical_arc_argument,json=ellipticalArcArgument,proto3" json:"elliptical_arc_argument,omitempty"`
+	unknownFields         protoimpl.UnknownFields
+	sizeCache             protoimpl.SizeCache
 }
 
 func (x *EllipticalArcArgumentSequence) Reset() {
@@ -60292,16 +60291,9 @@ func (*EllipticalArcArgumentSequence) Descriptor() ([]byte, []int) {
 	return file_svg_proto_rawDescGZIP(), []int{781}
 }
 
-func (x *EllipticalArcArgumentSequence) GetEllipticalArcArgument() *EllipticalArcArgument {
+func (x *EllipticalArcArgumentSequence) GetEllipticalArcArgument() []*EllipticalArcArgument {
 	if x != nil {
 		return x.EllipticalArcArgument
-	}
-	return nil
-}
-
-func (x *EllipticalArcArgumentSequence) GetEllipticalArcArgument_2() []*EllipticalArcArgument {
-	if x != nil {
-		return x.EllipticalArcArgument_2
 	}
 	return nil
 }
@@ -60309,11 +60301,16 @@ func (x *EllipticalArcArgumentSequence) GetEllipticalArcArgument_2() []*Elliptic
 type EllipticalArcArgument struct {
 	state          protoimpl.MessageState `protogen:"open.v1"`
 	NumberType     *NumberType            `protobuf:"bytes,1,opt,name=number_type,json=numberType,proto3" json:"number_type,omitempty"`
-	NumberType_2   *NumberType            `protobuf:"bytes,2,opt,name=number_type_2,json=numberType2,proto3" json:"number_type_2,omitempty"`
-	PathRotation   *PathRotation          `protobuf:"bytes,3,opt,name=path_rotation,json=pathRotation,proto3" json:"path_rotation,omitempty"`
-	ArcFlag        *ArcFlag               `protobuf:"bytes,4,opt,name=arc_flag,json=arcFlag,proto3" json:"arc_flag,omitempty"`
-	ArcFlag_2      *ArcFlag               `protobuf:"bytes,5,opt,name=arc_flag_2,json=arcFlag2,proto3" json:"arc_flag_2,omitempty"`
-	CoordinatePair *CoordinatePair        `protobuf:"bytes,6,opt,name=coordinate_pair,json=coordinatePair,proto3" json:"coordinate_pair,omitempty"`
+	SpaceKeyword   *SpaceKeyword          `protobuf:"bytes,2,opt,name=space_keyword,json=spaceKeyword,proto3" json:"space_keyword,omitempty"`
+	NumberType_2   *NumberType            `protobuf:"bytes,3,opt,name=number_type_2,json=numberType2,proto3" json:"number_type_2,omitempty"`
+	SpaceKeyword_2 *SpaceKeyword          `protobuf:"bytes,4,opt,name=space_keyword_2,json=spaceKeyword2,proto3" json:"space_keyword_2,omitempty"`
+	PathRotation   *PathRotation          `protobuf:"bytes,5,opt,name=path_rotation,json=pathRotation,proto3" json:"path_rotation,omitempty"`
+	SpaceKeyword_3 *SpaceKeyword          `protobuf:"bytes,6,opt,name=space_keyword_3,json=spaceKeyword3,proto3" json:"space_keyword_3,omitempty"`
+	ArcFlag        *ArcFlag               `protobuf:"bytes,7,opt,name=arc_flag,json=arcFlag,proto3" json:"arc_flag,omitempty"`
+	SpaceKeyword_4 *SpaceKeyword          `protobuf:"bytes,8,opt,name=space_keyword_4,json=spaceKeyword4,proto3" json:"space_keyword_4,omitempty"`
+	ArcFlag_2      *ArcFlag               `protobuf:"bytes,9,opt,name=arc_flag_2,json=arcFlag2,proto3" json:"arc_flag_2,omitempty"`
+	SpaceKeyword_5 *SpaceKeyword          `protobuf:"bytes,10,opt,name=space_keyword_5,json=spaceKeyword5,proto3" json:"space_keyword_5,omitempty"`
+	CoordinatePair *CoordinatePair        `protobuf:"bytes,11,opt,name=coordinate_pair,json=coordinatePair,proto3" json:"coordinate_pair,omitempty"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
 }
@@ -60355,9 +60352,23 @@ func (x *EllipticalArcArgument) GetNumberType() *NumberType {
 	return nil
 }
 
+func (x *EllipticalArcArgument) GetSpaceKeyword() *SpaceKeyword {
+	if x != nil {
+		return x.SpaceKeyword
+	}
+	return nil
+}
+
 func (x *EllipticalArcArgument) GetNumberType_2() *NumberType {
 	if x != nil {
 		return x.NumberType_2
+	}
+	return nil
+}
+
+func (x *EllipticalArcArgument) GetSpaceKeyword_2() *SpaceKeyword {
+	if x != nil {
+		return x.SpaceKeyword_2
 	}
 	return nil
 }
@@ -60369,6 +60380,13 @@ func (x *EllipticalArcArgument) GetPathRotation() *PathRotation {
 	return nil
 }
 
+func (x *EllipticalArcArgument) GetSpaceKeyword_3() *SpaceKeyword {
+	if x != nil {
+		return x.SpaceKeyword_3
+	}
+	return nil
+}
+
 func (x *EllipticalArcArgument) GetArcFlag() *ArcFlag {
 	if x != nil {
 		return x.ArcFlag
@@ -60376,9 +60394,23 @@ func (x *EllipticalArcArgument) GetArcFlag() *ArcFlag {
 	return nil
 }
 
+func (x *EllipticalArcArgument) GetSpaceKeyword_4() *SpaceKeyword {
+	if x != nil {
+		return x.SpaceKeyword_4
+	}
+	return nil
+}
+
 func (x *EllipticalArcArgument) GetArcFlag_2() *ArcFlag {
 	if x != nil {
 		return x.ArcFlag_2
+	}
+	return nil
+}
+
+func (x *EllipticalArcArgument) GetSpaceKeyword_5() *SpaceKeyword {
+	if x != nil {
+		return x.SpaceKeyword_5
 	}
 	return nil
 }
@@ -60443,11 +60475,10 @@ func (x *PathRotation) GetNumberType() *NumberType {
 }
 
 type CoordinatePairSequence struct {
-	state            protoimpl.MessageState `protogen:"open.v1"`
-	CoordinatePair   *CoordinatePair        `protobuf:"bytes,1,opt,name=coordinate_pair,json=coordinatePair,proto3" json:"coordinate_pair,omitempty"`
-	CoordinatePair_2 []*CoordinatePair      `protobuf:"bytes,2,rep,name=coordinate_pair_2,json=coordinatePair2,proto3" json:"coordinate_pair_2,omitempty"`
-	unknownFields    protoimpl.UnknownFields
-	sizeCache        protoimpl.SizeCache
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	CoordinatePair []*CoordinatePair      `protobuf:"bytes,1,rep,name=coordinate_pair,json=coordinatePair,proto3" json:"coordinate_pair,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
 }
 
 func (x *CoordinatePairSequence) Reset() {
@@ -60480,24 +60511,16 @@ func (*CoordinatePairSequence) Descriptor() ([]byte, []int) {
 	return file_svg_proto_rawDescGZIP(), []int{784}
 }
 
-func (x *CoordinatePairSequence) GetCoordinatePair() *CoordinatePair {
+func (x *CoordinatePairSequence) GetCoordinatePair() []*CoordinatePair {
 	if x != nil {
 		return x.CoordinatePair
 	}
 	return nil
 }
 
-func (x *CoordinatePairSequence) GetCoordinatePair_2() []*CoordinatePair {
-	if x != nil {
-		return x.CoordinatePair_2
-	}
-	return nil
-}
-
 type CoordinateSequence struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	NumberType    *NumberType            `protobuf:"bytes,1,opt,name=number_type,json=numberType,proto3" json:"number_type,omitempty"`
-	NumberType_2  []*NumberType          `protobuf:"bytes,2,rep,name=number_type_2,json=numberType2,proto3" json:"number_type_2,omitempty"`
+	NumberType    []*NumberType          `protobuf:"bytes,1,rep,name=number_type,json=numberType,proto3" json:"number_type,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -60532,16 +60555,9 @@ func (*CoordinateSequence) Descriptor() ([]byte, []int) {
 	return file_svg_proto_rawDescGZIP(), []int{785}
 }
 
-func (x *CoordinateSequence) GetNumberType() *NumberType {
+func (x *CoordinateSequence) GetNumberType() []*NumberType {
 	if x != nil {
 		return x.NumberType
-	}
-	return nil
-}
-
-func (x *CoordinateSequence) GetNumberType_2() []*NumberType {
-	if x != nil {
-		return x.NumberType_2
 	}
 	return nil
 }
@@ -60549,7 +60565,8 @@ func (x *CoordinateSequence) GetNumberType_2() []*NumberType {
 type CoordinatePairDouble struct {
 	state            protoimpl.MessageState `protogen:"open.v1"`
 	CoordinatePair   *CoordinatePair        `protobuf:"bytes,1,opt,name=coordinate_pair,json=coordinatePair,proto3" json:"coordinate_pair,omitempty"`
-	CoordinatePair_2 *CoordinatePair        `protobuf:"bytes,2,opt,name=coordinate_pair_2,json=coordinatePair2,proto3" json:"coordinate_pair_2,omitempty"`
+	SpaceKeyword     *SpaceKeyword          `protobuf:"bytes,2,opt,name=space_keyword,json=spaceKeyword,proto3" json:"space_keyword,omitempty"`
+	CoordinatePair_2 *CoordinatePair        `protobuf:"bytes,3,opt,name=coordinate_pair_2,json=coordinatePair2,proto3" json:"coordinate_pair_2,omitempty"`
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
 }
@@ -60591,6 +60608,13 @@ func (x *CoordinatePairDouble) GetCoordinatePair() *CoordinatePair {
 	return nil
 }
 
+func (x *CoordinatePairDouble) GetSpaceKeyword() *SpaceKeyword {
+	if x != nil {
+		return x.SpaceKeyword
+	}
+	return nil
+}
+
 func (x *CoordinatePairDouble) GetCoordinatePair_2() *CoordinatePair {
 	if x != nil {
 		return x.CoordinatePair_2
@@ -60601,8 +60625,10 @@ func (x *CoordinatePairDouble) GetCoordinatePair_2() *CoordinatePair {
 type CoordinatePairTriplet struct {
 	state            protoimpl.MessageState `protogen:"open.v1"`
 	CoordinatePair   *CoordinatePair        `protobuf:"bytes,1,opt,name=coordinate_pair,json=coordinatePair,proto3" json:"coordinate_pair,omitempty"`
-	CoordinatePair_2 *CoordinatePair        `protobuf:"bytes,2,opt,name=coordinate_pair_2,json=coordinatePair2,proto3" json:"coordinate_pair_2,omitempty"`
-	CoordinatePair_3 *CoordinatePair        `protobuf:"bytes,3,opt,name=coordinate_pair_3,json=coordinatePair3,proto3" json:"coordinate_pair_3,omitempty"`
+	SpaceKeyword     *SpaceKeyword          `protobuf:"bytes,2,opt,name=space_keyword,json=spaceKeyword,proto3" json:"space_keyword,omitempty"`
+	CoordinatePair_2 *CoordinatePair        `protobuf:"bytes,3,opt,name=coordinate_pair_2,json=coordinatePair2,proto3" json:"coordinate_pair_2,omitempty"`
+	SpaceKeyword_2   *SpaceKeyword          `protobuf:"bytes,4,opt,name=space_keyword_2,json=spaceKeyword2,proto3" json:"space_keyword_2,omitempty"`
+	CoordinatePair_3 *CoordinatePair        `protobuf:"bytes,5,opt,name=coordinate_pair_3,json=coordinatePair3,proto3" json:"coordinate_pair_3,omitempty"`
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
 }
@@ -60644,9 +60670,23 @@ func (x *CoordinatePairTriplet) GetCoordinatePair() *CoordinatePair {
 	return nil
 }
 
+func (x *CoordinatePairTriplet) GetSpaceKeyword() *SpaceKeyword {
+	if x != nil {
+		return x.SpaceKeyword
+	}
+	return nil
+}
+
 func (x *CoordinatePairTriplet) GetCoordinatePair_2() *CoordinatePair {
 	if x != nil {
 		return x.CoordinatePair_2
+	}
+	return nil
+}
+
+func (x *CoordinatePairTriplet) GetSpaceKeyword_2() *SpaceKeyword {
+	if x != nil {
+		return x.SpaceKeyword_2
 	}
 	return nil
 }
@@ -60661,7 +60701,8 @@ func (x *CoordinatePairTriplet) GetCoordinatePair_3() *CoordinatePair {
 type CoordinatePair struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	NumberType    *NumberType            `protobuf:"bytes,1,opt,name=number_type,json=numberType,proto3" json:"number_type,omitempty"`
-	NumberType_2  *NumberType            `protobuf:"bytes,2,opt,name=number_type_2,json=numberType2,proto3" json:"number_type_2,omitempty"`
+	SpaceKeyword  *SpaceKeyword          `protobuf:"bytes,2,opt,name=space_keyword,json=spaceKeyword,proto3" json:"space_keyword,omitempty"`
+	NumberType_2  *NumberType            `protobuf:"bytes,3,opt,name=number_type_2,json=numberType2,proto3" json:"number_type_2,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -60699,6 +60740,13 @@ func (*CoordinatePair) Descriptor() ([]byte, []int) {
 func (x *CoordinatePair) GetNumberType() *NumberType {
 	if x != nil {
 		return x.NumberType
+	}
+	return nil
+}
+
+func (x *CoordinatePair) GetSpaceKeyword() *SpaceKeyword {
+	if x != nil {
+		return x.SpaceKeyword
 	}
 	return nil
 }
@@ -68489,11 +68537,10 @@ func (x *PathDattr) GetQuotationMarkKeyword() *QuotationMarkKeyword {
 }
 
 type Points struct {
-	state                  protoimpl.MessageState  `protogen:"open.v1"`
-	PointsCoordinatePair   *PointsCoordinatePair   `protobuf:"bytes,1,opt,name=points_coordinate_pair,json=pointsCoordinatePair,proto3" json:"points_coordinate_pair,omitempty"`
-	PointsCoordinatePair_2 []*PointsCoordinatePair `protobuf:"bytes,2,rep,name=points_coordinate_pair_2,json=pointsCoordinatePair2,proto3" json:"points_coordinate_pair_2,omitempty"`
-	unknownFields          protoimpl.UnknownFields
-	sizeCache              protoimpl.SizeCache
+	state                protoimpl.MessageState  `protogen:"open.v1"`
+	PointsCoordinatePair []*PointsCoordinatePair `protobuf:"bytes,1,rep,name=points_coordinate_pair,json=pointsCoordinatePair,proto3" json:"points_coordinate_pair,omitempty"`
+	unknownFields        protoimpl.UnknownFields
+	sizeCache            protoimpl.SizeCache
 }
 
 func (x *Points) Reset() {
@@ -68526,16 +68573,9 @@ func (*Points) Descriptor() ([]byte, []int) {
 	return file_svg_proto_rawDescGZIP(), []int{873}
 }
 
-func (x *Points) GetPointsCoordinatePair() *PointsCoordinatePair {
+func (x *Points) GetPointsCoordinatePair() []*PointsCoordinatePair {
 	if x != nil {
 		return x.PointsCoordinatePair
-	}
-	return nil
-}
-
-func (x *Points) GetPointsCoordinatePair_2() []*PointsCoordinatePair {
-	if x != nil {
-		return x.PointsCoordinatePair_2
 	}
 	return nil
 }
@@ -68543,7 +68583,8 @@ func (x *Points) GetPointsCoordinatePair_2() []*PointsCoordinatePair {
 type PointsCoordinatePair struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	NumberType    *NumberType            `protobuf:"bytes,1,opt,name=number_type,json=numberType,proto3" json:"number_type,omitempty"`
-	NumberType_2  *NumberType            `protobuf:"bytes,2,opt,name=number_type_2,json=numberType2,proto3" json:"number_type_2,omitempty"`
+	CommaKeyword  *CommaKeyword          `protobuf:"bytes,2,opt,name=comma_keyword,json=commaKeyword,proto3" json:"comma_keyword,omitempty"`
+	NumberType_2  *NumberType            `protobuf:"bytes,3,opt,name=number_type_2,json=numberType2,proto3" json:"number_type_2,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -68581,6 +68622,13 @@ func (*PointsCoordinatePair) Descriptor() ([]byte, []int) {
 func (x *PointsCoordinatePair) GetNumberType() *NumberType {
 	if x != nil {
 		return x.NumberType
+	}
+	return nil
+}
+
+func (x *PointsCoordinatePair) GetCommaKeyword() *CommaKeyword {
+	if x != nil {
+		return x.CommaKeyword
 	}
 	return nil
 }
@@ -118799,7 +118847,7 @@ func (*VectorEffectAttr_Alt1_FixedHyphenMinusPositionKeyword) isVectorEffectAttr
 type SvgPath_Seq1 struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	MoveTo        *MoveTo                `protobuf:"bytes,1,opt,name=move_to,json=moveTo,proto3" json:"move_to,omitempty"`
-	DrawToCommand []*DrawToCommand       `protobuf:"bytes,2,rep,name=draw_to_command,json=drawToCommand,proto3" json:"draw_to_command,omitempty"`
+	Space         []*SvgPath_Seq1_Space  `protobuf:"bytes,2,rep,name=space,proto3" json:"space,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -118841,7 +118889,51 @@ func (x *SvgPath_Seq1) GetMoveTo() *MoveTo {
 	return nil
 }
 
-func (x *SvgPath_Seq1) GetDrawToCommand() []*DrawToCommand {
+func (x *SvgPath_Seq1) GetSpace() []*SvgPath_Seq1_Space {
+	if x != nil {
+		return x.Space
+	}
+	return nil
+}
+
+type SvgPath_Seq1_Space struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	DrawToCommand *DrawToCommand         `protobuf:"bytes,1,opt,name=draw_to_command,json=drawToCommand,proto3" json:"draw_to_command,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SvgPath_Seq1_Space) Reset() {
+	*x = SvgPath_Seq1_Space{}
+	mi := &file_svg_proto_msgTypes[1835]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SvgPath_Seq1_Space) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SvgPath_Seq1_Space) ProtoMessage() {}
+
+func (x *SvgPath_Seq1_Space) ProtoReflect() protoreflect.Message {
+	mi := &file_svg_proto_msgTypes[1835]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SvgPath_Seq1_Space.ProtoReflect.Descriptor instead.
+func (*SvgPath_Seq1_Space) Descriptor() ([]byte, []int) {
+	return file_svg_proto_rawDescGZIP(), []int{766, 0, 0}
+}
+
+func (x *SvgPath_Seq1_Space) GetDrawToCommand() *DrawToCommand {
 	if x != nil {
 		return x.DrawToCommand
 	}
@@ -118861,7 +118953,7 @@ type MoveTo_Alt1 struct {
 
 func (x *MoveTo_Alt1) Reset() {
 	*x = MoveTo_Alt1{}
-	mi := &file_svg_proto_msgTypes[1835]
+	mi := &file_svg_proto_msgTypes[1836]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -118873,7 +118965,7 @@ func (x *MoveTo_Alt1) String() string {
 func (*MoveTo_Alt1) ProtoMessage() {}
 
 func (x *MoveTo_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1835]
+	mi := &file_svg_proto_msgTypes[1836]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -118943,7 +119035,7 @@ type ClosePath_Alt1 struct {
 
 func (x *ClosePath_Alt1) Reset() {
 	*x = ClosePath_Alt1{}
-	mi := &file_svg_proto_msgTypes[1836]
+	mi := &file_svg_proto_msgTypes[1837]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -118955,7 +119047,7 @@ func (x *ClosePath_Alt1) String() string {
 func (*ClosePath_Alt1) ProtoMessage() {}
 
 func (x *ClosePath_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1836]
+	mi := &file_svg_proto_msgTypes[1837]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -119025,7 +119117,7 @@ type LineTo_Alt1 struct {
 
 func (x *LineTo_Alt1) Reset() {
 	*x = LineTo_Alt1{}
-	mi := &file_svg_proto_msgTypes[1837]
+	mi := &file_svg_proto_msgTypes[1838]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -119037,7 +119129,7 @@ func (x *LineTo_Alt1) String() string {
 func (*LineTo_Alt1) ProtoMessage() {}
 
 func (x *LineTo_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1837]
+	mi := &file_svg_proto_msgTypes[1838]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -119107,7 +119199,7 @@ type HorizontalLineTo_Alt1 struct {
 
 func (x *HorizontalLineTo_Alt1) Reset() {
 	*x = HorizontalLineTo_Alt1{}
-	mi := &file_svg_proto_msgTypes[1838]
+	mi := &file_svg_proto_msgTypes[1839]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -119119,7 +119211,7 @@ func (x *HorizontalLineTo_Alt1) String() string {
 func (*HorizontalLineTo_Alt1) ProtoMessage() {}
 
 func (x *HorizontalLineTo_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1838]
+	mi := &file_svg_proto_msgTypes[1839]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -119189,7 +119281,7 @@ type VerticalLineTo_Alt1 struct {
 
 func (x *VerticalLineTo_Alt1) Reset() {
 	*x = VerticalLineTo_Alt1{}
-	mi := &file_svg_proto_msgTypes[1839]
+	mi := &file_svg_proto_msgTypes[1840]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -119201,7 +119293,7 @@ func (x *VerticalLineTo_Alt1) String() string {
 func (*VerticalLineTo_Alt1) ProtoMessage() {}
 
 func (x *VerticalLineTo_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1839]
+	mi := &file_svg_proto_msgTypes[1840]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -119271,7 +119363,7 @@ type CurveTo_Alt1 struct {
 
 func (x *CurveTo_Alt1) Reset() {
 	*x = CurveTo_Alt1{}
-	mi := &file_svg_proto_msgTypes[1840]
+	mi := &file_svg_proto_msgTypes[1841]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -119283,7 +119375,7 @@ func (x *CurveTo_Alt1) String() string {
 func (*CurveTo_Alt1) ProtoMessage() {}
 
 func (x *CurveTo_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1840]
+	mi := &file_svg_proto_msgTypes[1841]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -119353,7 +119445,7 @@ type SmoothCurveTo_Alt1 struct {
 
 func (x *SmoothCurveTo_Alt1) Reset() {
 	*x = SmoothCurveTo_Alt1{}
-	mi := &file_svg_proto_msgTypes[1841]
+	mi := &file_svg_proto_msgTypes[1842]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -119365,7 +119457,7 @@ func (x *SmoothCurveTo_Alt1) String() string {
 func (*SmoothCurveTo_Alt1) ProtoMessage() {}
 
 func (x *SmoothCurveTo_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1841]
+	mi := &file_svg_proto_msgTypes[1842]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -119435,7 +119527,7 @@ type QuadraticBezierCurveTo_Alt1 struct {
 
 func (x *QuadraticBezierCurveTo_Alt1) Reset() {
 	*x = QuadraticBezierCurveTo_Alt1{}
-	mi := &file_svg_proto_msgTypes[1842]
+	mi := &file_svg_proto_msgTypes[1843]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -119447,7 +119539,7 @@ func (x *QuadraticBezierCurveTo_Alt1) String() string {
 func (*QuadraticBezierCurveTo_Alt1) ProtoMessage() {}
 
 func (x *QuadraticBezierCurveTo_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1842]
+	mi := &file_svg_proto_msgTypes[1843]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -119517,7 +119609,7 @@ type SmoothQuadraticBezierCurveTo_Alt1 struct {
 
 func (x *SmoothQuadraticBezierCurveTo_Alt1) Reset() {
 	*x = SmoothQuadraticBezierCurveTo_Alt1{}
-	mi := &file_svg_proto_msgTypes[1843]
+	mi := &file_svg_proto_msgTypes[1844]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -119529,7 +119621,7 @@ func (x *SmoothQuadraticBezierCurveTo_Alt1) String() string {
 func (*SmoothQuadraticBezierCurveTo_Alt1) ProtoMessage() {}
 
 func (x *SmoothQuadraticBezierCurveTo_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1843]
+	mi := &file_svg_proto_msgTypes[1844]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -119599,7 +119691,7 @@ type EllipticalArc_Alt1 struct {
 
 func (x *EllipticalArc_Alt1) Reset() {
 	*x = EllipticalArc_Alt1{}
-	mi := &file_svg_proto_msgTypes[1844]
+	mi := &file_svg_proto_msgTypes[1845]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -119611,7 +119703,7 @@ func (x *EllipticalArc_Alt1) String() string {
 func (*EllipticalArc_Alt1) ProtoMessage() {}
 
 func (x *EllipticalArc_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1844]
+	mi := &file_svg_proto_msgTypes[1845]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -119682,7 +119774,7 @@ type SpreadMethodAttr_Alt1 struct {
 
 func (x *SpreadMethodAttr_Alt1) Reset() {
 	*x = SpreadMethodAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1845]
+	mi := &file_svg_proto_msgTypes[1846]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -119694,7 +119786,7 @@ func (x *SpreadMethodAttr_Alt1) String() string {
 func (*SpreadMethodAttr_Alt1) ProtoMessage() {}
 
 func (x *SpreadMethodAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1845]
+	mi := &file_svg_proto_msgTypes[1846]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -119779,7 +119871,7 @@ type LinearGradientX1Attr_Alt1 struct {
 
 func (x *LinearGradientX1Attr_Alt1) Reset() {
 	*x = LinearGradientX1Attr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1846]
+	mi := &file_svg_proto_msgTypes[1847]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -119791,7 +119883,7 @@ func (x *LinearGradientX1Attr_Alt1) String() string {
 func (*LinearGradientX1Attr_Alt1) ProtoMessage() {}
 
 func (x *LinearGradientX1Attr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1846]
+	mi := &file_svg_proto_msgTypes[1847]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -119861,7 +119953,7 @@ type LinearGradientY1Attr_Alt1 struct {
 
 func (x *LinearGradientY1Attr_Alt1) Reset() {
 	*x = LinearGradientY1Attr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1847]
+	mi := &file_svg_proto_msgTypes[1848]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -119873,7 +119965,7 @@ func (x *LinearGradientY1Attr_Alt1) String() string {
 func (*LinearGradientY1Attr_Alt1) ProtoMessage() {}
 
 func (x *LinearGradientY1Attr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1847]
+	mi := &file_svg_proto_msgTypes[1848]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -119943,7 +120035,7 @@ type LinearGradientX2Attr_Alt1 struct {
 
 func (x *LinearGradientX2Attr_Alt1) Reset() {
 	*x = LinearGradientX2Attr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1848]
+	mi := &file_svg_proto_msgTypes[1849]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -119955,7 +120047,7 @@ func (x *LinearGradientX2Attr_Alt1) String() string {
 func (*LinearGradientX2Attr_Alt1) ProtoMessage() {}
 
 func (x *LinearGradientX2Attr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1848]
+	mi := &file_svg_proto_msgTypes[1849]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -120025,7 +120117,7 @@ type LinearGradientY2Attr_Alt1 struct {
 
 func (x *LinearGradientY2Attr_Alt1) Reset() {
 	*x = LinearGradientY2Attr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1849]
+	mi := &file_svg_proto_msgTypes[1850]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -120037,7 +120129,7 @@ func (x *LinearGradientY2Attr_Alt1) String() string {
 func (*LinearGradientY2Attr_Alt1) ProtoMessage() {}
 
 func (x *LinearGradientY2Attr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1849]
+	mi := &file_svg_proto_msgTypes[1850]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -120107,7 +120199,7 @@ type RadialGradientCxAttr_Alt1 struct {
 
 func (x *RadialGradientCxAttr_Alt1) Reset() {
 	*x = RadialGradientCxAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1850]
+	mi := &file_svg_proto_msgTypes[1851]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -120119,7 +120211,7 @@ func (x *RadialGradientCxAttr_Alt1) String() string {
 func (*RadialGradientCxAttr_Alt1) ProtoMessage() {}
 
 func (x *RadialGradientCxAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1850]
+	mi := &file_svg_proto_msgTypes[1851]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -120189,7 +120281,7 @@ type RadialGradientCyAttr_Alt1 struct {
 
 func (x *RadialGradientCyAttr_Alt1) Reset() {
 	*x = RadialGradientCyAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1851]
+	mi := &file_svg_proto_msgTypes[1852]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -120201,7 +120293,7 @@ func (x *RadialGradientCyAttr_Alt1) String() string {
 func (*RadialGradientCyAttr_Alt1) ProtoMessage() {}
 
 func (x *RadialGradientCyAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1851]
+	mi := &file_svg_proto_msgTypes[1852]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -120271,7 +120363,7 @@ type RadialGradientFxAttr_Alt1 struct {
 
 func (x *RadialGradientFxAttr_Alt1) Reset() {
 	*x = RadialGradientFxAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1852]
+	mi := &file_svg_proto_msgTypes[1853]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -120283,7 +120375,7 @@ func (x *RadialGradientFxAttr_Alt1) String() string {
 func (*RadialGradientFxAttr_Alt1) ProtoMessage() {}
 
 func (x *RadialGradientFxAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1852]
+	mi := &file_svg_proto_msgTypes[1853]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -120353,7 +120445,7 @@ type RadialGradientFyAttr_Alt1 struct {
 
 func (x *RadialGradientFyAttr_Alt1) Reset() {
 	*x = RadialGradientFyAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1853]
+	mi := &file_svg_proto_msgTypes[1854]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -120365,7 +120457,7 @@ func (x *RadialGradientFyAttr_Alt1) String() string {
 func (*RadialGradientFyAttr_Alt1) ProtoMessage() {}
 
 func (x *RadialGradientFyAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1853]
+	mi := &file_svg_proto_msgTypes[1854]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -120435,7 +120527,7 @@ type StopOffsetAttr_Alt1 struct {
 
 func (x *StopOffsetAttr_Alt1) Reset() {
 	*x = StopOffsetAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1854]
+	mi := &file_svg_proto_msgTypes[1855]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -120447,7 +120539,7 @@ func (x *StopOffsetAttr_Alt1) String() string {
 func (*StopOffsetAttr_Alt1) ProtoMessage() {}
 
 func (x *StopOffsetAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1854]
+	mi := &file_svg_proto_msgTypes[1855]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -120517,7 +120609,7 @@ type StopColorAttr_Alt1 struct {
 
 func (x *StopColorAttr_Alt1) Reset() {
 	*x = StopColorAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1855]
+	mi := &file_svg_proto_msgTypes[1856]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -120529,7 +120621,7 @@ func (x *StopColorAttr_Alt1) String() string {
 func (*StopColorAttr_Alt1) ProtoMessage() {}
 
 func (x *StopColorAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1855]
+	mi := &file_svg_proto_msgTypes[1856]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -120599,7 +120691,7 @@ type RectRxAttr_Alt1 struct {
 
 func (x *RectRxAttr_Alt1) Reset() {
 	*x = RectRxAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1856]
+	mi := &file_svg_proto_msgTypes[1857]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -120611,7 +120703,7 @@ func (x *RectRxAttr_Alt1) String() string {
 func (*RectRxAttr_Alt1) ProtoMessage() {}
 
 func (x *RectRxAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1856]
+	mi := &file_svg_proto_msgTypes[1857]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -120681,7 +120773,7 @@ type RectRyAttr_Alt1 struct {
 
 func (x *RectRyAttr_Alt1) Reset() {
 	*x = RectRyAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1857]
+	mi := &file_svg_proto_msgTypes[1858]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -120693,7 +120785,7 @@ func (x *RectRyAttr_Alt1) String() string {
 func (*RectRyAttr_Alt1) ProtoMessage() {}
 
 func (x *RectRyAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1857]
+	mi := &file_svg_proto_msgTypes[1858]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -120763,7 +120855,7 @@ type EllipseRxAttr_Alt1 struct {
 
 func (x *EllipseRxAttr_Alt1) Reset() {
 	*x = EllipseRxAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1858]
+	mi := &file_svg_proto_msgTypes[1859]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -120775,7 +120867,7 @@ func (x *EllipseRxAttr_Alt1) String() string {
 func (*EllipseRxAttr_Alt1) ProtoMessage() {}
 
 func (x *EllipseRxAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1858]
+	mi := &file_svg_proto_msgTypes[1859]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -120845,7 +120937,7 @@ type EllipseRyAttr_Alt1 struct {
 
 func (x *EllipseRyAttr_Alt1) Reset() {
 	*x = EllipseRyAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1859]
+	mi := &file_svg_proto_msgTypes[1860]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -120857,7 +120949,7 @@ func (x *EllipseRyAttr_Alt1) String() string {
 func (*EllipseRyAttr_Alt1) ProtoMessage() {}
 
 func (x *EllipseRyAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1859]
+	mi := &file_svg_proto_msgTypes[1860]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -120927,7 +121019,7 @@ type LineX1Attr_Alt1 struct {
 
 func (x *LineX1Attr_Alt1) Reset() {
 	*x = LineX1Attr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1860]
+	mi := &file_svg_proto_msgTypes[1861]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -120939,7 +121031,7 @@ func (x *LineX1Attr_Alt1) String() string {
 func (*LineX1Attr_Alt1) ProtoMessage() {}
 
 func (x *LineX1Attr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1860]
+	mi := &file_svg_proto_msgTypes[1861]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -121009,7 +121101,7 @@ type LineY1Attr_Alt1 struct {
 
 func (x *LineY1Attr_Alt1) Reset() {
 	*x = LineY1Attr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1861]
+	mi := &file_svg_proto_msgTypes[1862]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -121021,7 +121113,7 @@ func (x *LineY1Attr_Alt1) String() string {
 func (*LineY1Attr_Alt1) ProtoMessage() {}
 
 func (x *LineY1Attr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1861]
+	mi := &file_svg_proto_msgTypes[1862]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -121091,7 +121183,7 @@ type LineX2Attr_Alt1 struct {
 
 func (x *LineX2Attr_Alt1) Reset() {
 	*x = LineX2Attr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1862]
+	mi := &file_svg_proto_msgTypes[1863]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -121103,7 +121195,7 @@ func (x *LineX2Attr_Alt1) String() string {
 func (*LineX2Attr_Alt1) ProtoMessage() {}
 
 func (x *LineX2Attr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1862]
+	mi := &file_svg_proto_msgTypes[1863]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -121173,7 +121265,7 @@ type LineY2Attr_Alt1 struct {
 
 func (x *LineY2Attr_Alt1) Reset() {
 	*x = LineY2Attr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1863]
+	mi := &file_svg_proto_msgTypes[1864]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -121185,7 +121277,7 @@ func (x *LineY2Attr_Alt1) String() string {
 func (*LineY2Attr_Alt1) ProtoMessage() {}
 
 func (x *LineY2Attr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1863]
+	mi := &file_svg_proto_msgTypes[1864]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -121255,7 +121347,7 @@ type PathDattr_Alt1 struct {
 
 func (x *PathDattr_Alt1) Reset() {
 	*x = PathDattr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1864]
+	mi := &file_svg_proto_msgTypes[1865]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -121267,7 +121359,7 @@ func (x *PathDattr_Alt1) String() string {
 func (*PathDattr_Alt1) ProtoMessage() {}
 
 func (x *PathDattr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1864]
+	mi := &file_svg_proto_msgTypes[1865]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -121339,7 +121431,7 @@ type SymbolRefXattr_Alt1 struct {
 
 func (x *SymbolRefXattr_Alt1) Reset() {
 	*x = SymbolRefXattr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1865]
+	mi := &file_svg_proto_msgTypes[1866]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -121351,7 +121443,7 @@ func (x *SymbolRefXattr_Alt1) String() string {
 func (*SymbolRefXattr_Alt1) ProtoMessage() {}
 
 func (x *SymbolRefXattr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1865]
+	mi := &file_svg_proto_msgTypes[1866]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -121453,7 +121545,7 @@ type SymbolRefYattr_Alt1 struct {
 
 func (x *SymbolRefYattr_Alt1) Reset() {
 	*x = SymbolRefYattr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1866]
+	mi := &file_svg_proto_msgTypes[1867]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -121465,7 +121557,7 @@ func (x *SymbolRefYattr_Alt1) String() string {
 func (*SymbolRefYattr_Alt1) ProtoMessage() {}
 
 func (x *SymbolRefYattr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1866]
+	mi := &file_svg_proto_msgTypes[1867]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -121565,7 +121657,7 @@ type SymbolWidthAttr_Alt1 struct {
 
 func (x *SymbolWidthAttr_Alt1) Reset() {
 	*x = SymbolWidthAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1867]
+	mi := &file_svg_proto_msgTypes[1868]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -121577,7 +121669,7 @@ func (x *SymbolWidthAttr_Alt1) String() string {
 func (*SymbolWidthAttr_Alt1) ProtoMessage() {}
 
 func (x *SymbolWidthAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1867]
+	mi := &file_svg_proto_msgTypes[1868]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -121647,7 +121739,7 @@ type SymbolHeightAttr_Alt1 struct {
 
 func (x *SymbolHeightAttr_Alt1) Reset() {
 	*x = SymbolHeightAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1868]
+	mi := &file_svg_proto_msgTypes[1869]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -121659,7 +121751,7 @@ func (x *SymbolHeightAttr_Alt1) String() string {
 func (*SymbolHeightAttr_Alt1) ProtoMessage() {}
 
 func (x *SymbolHeightAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1868]
+	mi := &file_svg_proto_msgTypes[1869]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -121729,7 +121821,7 @@ type UseWidthAttr_Alt1 struct {
 
 func (x *UseWidthAttr_Alt1) Reset() {
 	*x = UseWidthAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1869]
+	mi := &file_svg_proto_msgTypes[1870]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -121741,7 +121833,7 @@ func (x *UseWidthAttr_Alt1) String() string {
 func (*UseWidthAttr_Alt1) ProtoMessage() {}
 
 func (x *UseWidthAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1869]
+	mi := &file_svg_proto_msgTypes[1870]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -121811,7 +121903,7 @@ type UseHeightAttr_Alt1 struct {
 
 func (x *UseHeightAttr_Alt1) Reset() {
 	*x = UseHeightAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1870]
+	mi := &file_svg_proto_msgTypes[1871]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -121823,7 +121915,7 @@ func (x *UseHeightAttr_Alt1) String() string {
 func (*UseHeightAttr_Alt1) ProtoMessage() {}
 
 func (x *UseHeightAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1870]
+	mi := &file_svg_proto_msgTypes[1871]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -121895,7 +121987,7 @@ type VisibilityAttr_Alt1 struct {
 
 func (x *VisibilityAttr_Alt1) Reset() {
 	*x = VisibilityAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1871]
+	mi := &file_svg_proto_msgTypes[1872]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -121907,7 +121999,7 @@ func (x *VisibilityAttr_Alt1) String() string {
 func (*VisibilityAttr_Alt1) ProtoMessage() {}
 
 func (x *VisibilityAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1871]
+	mi := &file_svg_proto_msgTypes[1872]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -122010,7 +122102,7 @@ type OverflowAttr_Alt1 struct {
 
 func (x *OverflowAttr_Alt1) Reset() {
 	*x = OverflowAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1872]
+	mi := &file_svg_proto_msgTypes[1873]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -122022,7 +122114,7 @@ func (x *OverflowAttr_Alt1) String() string {
 func (*OverflowAttr_Alt1) ProtoMessage() {}
 
 func (x *OverflowAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1872]
+	mi := &file_svg_proto_msgTypes[1873]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -122134,7 +122226,7 @@ type TransformOriginPosition_Seq1 struct {
 
 func (x *TransformOriginPosition_Seq1) Reset() {
 	*x = TransformOriginPosition_Seq1{}
-	mi := &file_svg_proto_msgTypes[1873]
+	mi := &file_svg_proto_msgTypes[1874]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -122146,7 +122238,7 @@ func (x *TransformOriginPosition_Seq1) String() string {
 func (*TransformOriginPosition_Seq1) ProtoMessage() {}
 
 func (x *TransformOriginPosition_Seq1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1873]
+	mi := &file_svg_proto_msgTypes[1874]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -122189,7 +122281,7 @@ type TextLengthAttr_Alt1 struct {
 
 func (x *TextLengthAttr_Alt1) Reset() {
 	*x = TextLengthAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1874]
+	mi := &file_svg_proto_msgTypes[1875]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -122201,7 +122293,7 @@ func (x *TextLengthAttr_Alt1) String() string {
 func (*TextLengthAttr_Alt1) ProtoMessage() {}
 
 func (x *TextLengthAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1874]
+	mi := &file_svg_proto_msgTypes[1875]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -122271,7 +122363,7 @@ type TextLengthAdjustAttr_Alt1 struct {
 
 func (x *TextLengthAdjustAttr_Alt1) Reset() {
 	*x = TextLengthAdjustAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1875]
+	mi := &file_svg_proto_msgTypes[1876]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -122283,7 +122375,7 @@ func (x *TextLengthAdjustAttr_Alt1) String() string {
 func (*TextLengthAdjustAttr_Alt1) ProtoMessage() {}
 
 func (x *TextLengthAdjustAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1875]
+	mi := &file_svg_proto_msgTypes[1876]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -122353,7 +122445,7 @@ type TextPositionList_Alt1 struct {
 
 func (x *TextPositionList_Alt1) Reset() {
 	*x = TextPositionList_Alt1{}
-	mi := &file_svg_proto_msgTypes[1876]
+	mi := &file_svg_proto_msgTypes[1877]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -122365,7 +122457,7 @@ func (x *TextPositionList_Alt1) String() string {
 func (*TextPositionList_Alt1) ProtoMessage() {}
 
 func (x *TextPositionList_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1876]
+	mi := &file_svg_proto_msgTypes[1877]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -122435,7 +122527,7 @@ type TspanLengthAttr_Alt1 struct {
 
 func (x *TspanLengthAttr_Alt1) Reset() {
 	*x = TspanLengthAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1877]
+	mi := &file_svg_proto_msgTypes[1878]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -122447,7 +122539,7 @@ func (x *TspanLengthAttr_Alt1) String() string {
 func (*TspanLengthAttr_Alt1) ProtoMessage() {}
 
 func (x *TspanLengthAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1877]
+	mi := &file_svg_proto_msgTypes[1878]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -122517,7 +122609,7 @@ type TspanLengthAdjustAttr_Alt1 struct {
 
 func (x *TspanLengthAdjustAttr_Alt1) Reset() {
 	*x = TspanLengthAdjustAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1878]
+	mi := &file_svg_proto_msgTypes[1879]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -122529,7 +122621,7 @@ func (x *TspanLengthAdjustAttr_Alt1) String() string {
 func (*TspanLengthAdjustAttr_Alt1) ProtoMessage() {}
 
 func (x *TspanLengthAdjustAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1878]
+	mi := &file_svg_proto_msgTypes[1879]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -122599,7 +122691,7 @@ type TextPathStartOffsetAttr_Alt1 struct {
 
 func (x *TextPathStartOffsetAttr_Alt1) Reset() {
 	*x = TextPathStartOffsetAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1879]
+	mi := &file_svg_proto_msgTypes[1880]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -122611,7 +122703,7 @@ func (x *TextPathStartOffsetAttr_Alt1) String() string {
 func (*TextPathStartOffsetAttr_Alt1) ProtoMessage() {}
 
 func (x *TextPathStartOffsetAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1879]
+	mi := &file_svg_proto_msgTypes[1880]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -122681,7 +122773,7 @@ type TextPathMethodAttr_Alt1 struct {
 
 func (x *TextPathMethodAttr_Alt1) Reset() {
 	*x = TextPathMethodAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1880]
+	mi := &file_svg_proto_msgTypes[1881]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -122693,7 +122785,7 @@ func (x *TextPathMethodAttr_Alt1) String() string {
 func (*TextPathMethodAttr_Alt1) ProtoMessage() {}
 
 func (x *TextPathMethodAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1880]
+	mi := &file_svg_proto_msgTypes[1881]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -122763,7 +122855,7 @@ type TextPathSpacingAttr_Alt1 struct {
 
 func (x *TextPathSpacingAttr_Alt1) Reset() {
 	*x = TextPathSpacingAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1881]
+	mi := &file_svg_proto_msgTypes[1882]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -122775,7 +122867,7 @@ func (x *TextPathSpacingAttr_Alt1) String() string {
 func (*TextPathSpacingAttr_Alt1) ProtoMessage() {}
 
 func (x *TextPathSpacingAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1881]
+	mi := &file_svg_proto_msgTypes[1882]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -122845,7 +122937,7 @@ type TextPathSideAttr_Alt1 struct {
 
 func (x *TextPathSideAttr_Alt1) Reset() {
 	*x = TextPathSideAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1882]
+	mi := &file_svg_proto_msgTypes[1883]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -122857,7 +122949,7 @@ func (x *TextPathSideAttr_Alt1) String() string {
 func (*TextPathSideAttr_Alt1) ProtoMessage() {}
 
 func (x *TextPathSideAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1882]
+	mi := &file_svg_proto_msgTypes[1883]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -122927,7 +123019,7 @@ type TextPathLengthAttr_Alt1 struct {
 
 func (x *TextPathLengthAttr_Alt1) Reset() {
 	*x = TextPathLengthAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1883]
+	mi := &file_svg_proto_msgTypes[1884]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -122939,7 +123031,7 @@ func (x *TextPathLengthAttr_Alt1) String() string {
 func (*TextPathLengthAttr_Alt1) ProtoMessage() {}
 
 func (x *TextPathLengthAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1883]
+	mi := &file_svg_proto_msgTypes[1884]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -123009,7 +123101,7 @@ type TextPathLengthAdjustAttr_Alt1 struct {
 
 func (x *TextPathLengthAdjustAttr_Alt1) Reset() {
 	*x = TextPathLengthAdjustAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1884]
+	mi := &file_svg_proto_msgTypes[1885]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -123021,7 +123113,7 @@ func (x *TextPathLengthAdjustAttr_Alt1) String() string {
 func (*TextPathLengthAdjustAttr_Alt1) ProtoMessage() {}
 
 func (x *TextPathLengthAdjustAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1884]
+	mi := &file_svg_proto_msgTypes[1885]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -123093,7 +123185,7 @@ type TextAnchorAttr_Alt1 struct {
 
 func (x *TextAnchorAttr_Alt1) Reset() {
 	*x = TextAnchorAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1885]
+	mi := &file_svg_proto_msgTypes[1886]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -123105,7 +123197,7 @@ func (x *TextAnchorAttr_Alt1) String() string {
 func (*TextAnchorAttr_Alt1) ProtoMessage() {}
 
 func (x *TextAnchorAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1885]
+	mi := &file_svg_proto_msgTypes[1886]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -123197,7 +123289,7 @@ type DominantBaselineAttr_Alt1 struct {
 
 func (x *DominantBaselineAttr_Alt1) Reset() {
 	*x = DominantBaselineAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1886]
+	mi := &file_svg_proto_msgTypes[1887]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -123209,7 +123301,7 @@ func (x *DominantBaselineAttr_Alt1) String() string {
 func (*DominantBaselineAttr_Alt1) ProtoMessage() {}
 
 func (x *DominantBaselineAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1886]
+	mi := &file_svg_proto_msgTypes[1887]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -123391,7 +123483,7 @@ type AlignmentBaselineAttr_Alt1 struct {
 
 func (x *AlignmentBaselineAttr_Alt1) Reset() {
 	*x = AlignmentBaselineAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1887]
+	mi := &file_svg_proto_msgTypes[1888]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -123403,7 +123495,7 @@ func (x *AlignmentBaselineAttr_Alt1) String() string {
 func (*AlignmentBaselineAttr_Alt1) ProtoMessage() {}
 
 func (x *AlignmentBaselineAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1887]
+	mi := &file_svg_proto_msgTypes[1888]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -123580,7 +123672,7 @@ type BaselineShiftAttr_Alt1 struct {
 
 func (x *BaselineShiftAttr_Alt1) Reset() {
 	*x = BaselineShiftAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1888]
+	mi := &file_svg_proto_msgTypes[1889]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -123592,7 +123684,7 @@ func (x *BaselineShiftAttr_Alt1) String() string {
 func (*BaselineShiftAttr_Alt1) ProtoMessage() {}
 
 func (x *BaselineShiftAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1888]
+	mi := &file_svg_proto_msgTypes[1889]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -123677,7 +123769,7 @@ type DirectionAttr_Alt1 struct {
 
 func (x *DirectionAttr_Alt1) Reset() {
 	*x = DirectionAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1889]
+	mi := &file_svg_proto_msgTypes[1890]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -123689,7 +123781,7 @@ func (x *DirectionAttr_Alt1) String() string {
 func (*DirectionAttr_Alt1) ProtoMessage() {}
 
 func (x *DirectionAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1889]
+	mi := &file_svg_proto_msgTypes[1890]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -123763,7 +123855,7 @@ type UnicodeBidiAttr_Alt1 struct {
 
 func (x *UnicodeBidiAttr_Alt1) Reset() {
 	*x = UnicodeBidiAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1890]
+	mi := &file_svg_proto_msgTypes[1891]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -123775,7 +123867,7 @@ func (x *UnicodeBidiAttr_Alt1) String() string {
 func (*UnicodeBidiAttr_Alt1) ProtoMessage() {}
 
 func (x *UnicodeBidiAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1890]
+	mi := &file_svg_proto_msgTypes[1891]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -123914,7 +124006,7 @@ type WritingModeAttr_Alt1 struct {
 
 func (x *WritingModeAttr_Alt1) Reset() {
 	*x = WritingModeAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1891]
+	mi := &file_svg_proto_msgTypes[1892]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -123926,7 +124018,7 @@ func (x *WritingModeAttr_Alt1) String() string {
 func (*WritingModeAttr_Alt1) ProtoMessage() {}
 
 func (x *WritingModeAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1891]
+	mi := &file_svg_proto_msgTypes[1892]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -124131,7 +124223,7 @@ type LetterSpacingAttr_Alt1 struct {
 
 func (x *LetterSpacingAttr_Alt1) Reset() {
 	*x = LetterSpacingAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1892]
+	mi := &file_svg_proto_msgTypes[1893]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -124143,7 +124235,7 @@ func (x *LetterSpacingAttr_Alt1) String() string {
 func (*LetterSpacingAttr_Alt1) ProtoMessage() {}
 
 func (x *LetterSpacingAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1892]
+	mi := &file_svg_proto_msgTypes[1893]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -124213,7 +124305,7 @@ type WordSpacingAttr_Alt1 struct {
 
 func (x *WordSpacingAttr_Alt1) Reset() {
 	*x = WordSpacingAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1893]
+	mi := &file_svg_proto_msgTypes[1894]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -124225,7 +124317,7 @@ func (x *WordSpacingAttr_Alt1) String() string {
 func (*WordSpacingAttr_Alt1) ProtoMessage() {}
 
 func (x *WordSpacingAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1893]
+	mi := &file_svg_proto_msgTypes[1894]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -124293,7 +124385,7 @@ type TextDecorationValue_Seq1 struct {
 
 func (x *TextDecorationValue_Seq1) Reset() {
 	*x = TextDecorationValue_Seq1{}
-	mi := &file_svg_proto_msgTypes[1894]
+	mi := &file_svg_proto_msgTypes[1895]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -124305,7 +124397,7 @@ func (x *TextDecorationValue_Seq1) String() string {
 func (*TextDecorationValue_Seq1) ProtoMessage() {}
 
 func (x *TextDecorationValue_Seq1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1894]
+	mi := &file_svg_proto_msgTypes[1895]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -124353,7 +124445,7 @@ type TextDecorationValue_Seq2 struct {
 
 func (x *TextDecorationValue_Seq2) Reset() {
 	*x = TextDecorationValue_Seq2{}
-	mi := &file_svg_proto_msgTypes[1895]
+	mi := &file_svg_proto_msgTypes[1896]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -124365,7 +124457,7 @@ func (x *TextDecorationValue_Seq2) String() string {
 func (*TextDecorationValue_Seq2) ProtoMessage() {}
 
 func (x *TextDecorationValue_Seq2) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1895]
+	mi := &file_svg_proto_msgTypes[1896]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -124413,7 +124505,7 @@ type TextDecorationValue_Seq3 struct {
 
 func (x *TextDecorationValue_Seq3) Reset() {
 	*x = TextDecorationValue_Seq3{}
-	mi := &file_svg_proto_msgTypes[1896]
+	mi := &file_svg_proto_msgTypes[1897]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -124425,7 +124517,7 @@ func (x *TextDecorationValue_Seq3) String() string {
 func (*TextDecorationValue_Seq3) ProtoMessage() {}
 
 func (x *TextDecorationValue_Seq3) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1896]
+	mi := &file_svg_proto_msgTypes[1897]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -124475,7 +124567,7 @@ type TextDecorationValue_Seq4 struct {
 
 func (x *TextDecorationValue_Seq4) Reset() {
 	*x = TextDecorationValue_Seq4{}
-	mi := &file_svg_proto_msgTypes[1897]
+	mi := &file_svg_proto_msgTypes[1898]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -124487,7 +124579,7 @@ func (x *TextDecorationValue_Seq4) String() string {
 func (*TextDecorationValue_Seq4) ProtoMessage() {}
 
 func (x *TextDecorationValue_Seq4) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1897]
+	mi := &file_svg_proto_msgTypes[1898]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -124551,7 +124643,7 @@ type TextOverflowAttr_Alt1 struct {
 
 func (x *TextOverflowAttr_Alt1) Reset() {
 	*x = TextOverflowAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1898]
+	mi := &file_svg_proto_msgTypes[1899]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -124563,7 +124655,7 @@ func (x *TextOverflowAttr_Alt1) String() string {
 func (*TextOverflowAttr_Alt1) ProtoMessage() {}
 
 func (x *TextOverflowAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1898]
+	mi := &file_svg_proto_msgTypes[1899]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -124635,7 +124727,7 @@ type TextRenderingAttr_Alt1 struct {
 
 func (x *TextRenderingAttr_Alt1) Reset() {
 	*x = TextRenderingAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1899]
+	mi := &file_svg_proto_msgTypes[1900]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -124647,7 +124739,7 @@ func (x *TextRenderingAttr_Alt1) String() string {
 func (*TextRenderingAttr_Alt1) ProtoMessage() {}
 
 func (x *TextRenderingAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1899]
+	mi := &file_svg_proto_msgTypes[1900]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -124751,7 +124843,7 @@ type WhiteSpaceAttr_Alt1 struct {
 
 func (x *WhiteSpaceAttr_Alt1) Reset() {
 	*x = WhiteSpaceAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1900]
+	mi := &file_svg_proto_msgTypes[1901]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -124763,7 +124855,7 @@ func (x *WhiteSpaceAttr_Alt1) String() string {
 func (*WhiteSpaceAttr_Alt1) ProtoMessage() {}
 
 func (x *WhiteSpaceAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1900]
+	mi := &file_svg_proto_msgTypes[1901]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -124893,7 +124985,7 @@ type FontSizeAdjustAttr_Alt1 struct {
 
 func (x *FontSizeAdjustAttr_Alt1) Reset() {
 	*x = FontSizeAdjustAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1901]
+	mi := &file_svg_proto_msgTypes[1902]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -124905,7 +124997,7 @@ func (x *FontSizeAdjustAttr_Alt1) String() string {
 func (*FontSizeAdjustAttr_Alt1) ProtoMessage() {}
 
 func (x *FontSizeAdjustAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1901]
+	mi := &file_svg_proto_msgTypes[1902]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -124976,7 +125068,7 @@ type FontStyleAttr_Alt1 struct {
 
 func (x *FontStyleAttr_Alt1) Reset() {
 	*x = FontStyleAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1902]
+	mi := &file_svg_proto_msgTypes[1903]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -124988,7 +125080,7 @@ func (x *FontStyleAttr_Alt1) String() string {
 func (*FontStyleAttr_Alt1) ProtoMessage() {}
 
 func (x *FontStyleAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1902]
+	mi := &file_svg_proto_msgTypes[1903]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -125069,7 +125161,7 @@ type FontStyleOblique_Space struct {
 
 func (x *FontStyleOblique_Space) Reset() {
 	*x = FontStyleOblique_Space{}
-	mi := &file_svg_proto_msgTypes[1903]
+	mi := &file_svg_proto_msgTypes[1904]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -125081,7 +125173,7 @@ func (x *FontStyleOblique_Space) String() string {
 func (*FontStyleOblique_Space) ProtoMessage() {}
 
 func (x *FontStyleOblique_Space) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1903]
+	mi := &file_svg_proto_msgTypes[1904]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -125120,7 +125212,7 @@ type FontWeightAttr_Alt1 struct {
 
 func (x *FontWeightAttr_Alt1) Reset() {
 	*x = FontWeightAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1904]
+	mi := &file_svg_proto_msgTypes[1905]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -125132,7 +125224,7 @@ func (x *FontWeightAttr_Alt1) String() string {
 func (*FontWeightAttr_Alt1) ProtoMessage() {}
 
 func (x *FontWeightAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1904]
+	mi := &file_svg_proto_msgTypes[1905]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -125255,7 +125347,7 @@ type FontStretchAttr_Alt1 struct {
 
 func (x *FontStretchAttr_Alt1) Reset() {
 	*x = FontStretchAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1905]
+	mi := &file_svg_proto_msgTypes[1906]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -125267,7 +125359,7 @@ func (x *FontStretchAttr_Alt1) String() string {
 func (*FontStretchAttr_Alt1) ProtoMessage() {}
 
 func (x *FontStretchAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1905]
+	mi := &file_svg_proto_msgTypes[1906]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -125457,7 +125549,7 @@ type InlineSizeAttr_Alt1 struct {
 
 func (x *InlineSizeAttr_Alt1) Reset() {
 	*x = InlineSizeAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1906]
+	mi := &file_svg_proto_msgTypes[1907]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -125469,7 +125561,7 @@ func (x *InlineSizeAttr_Alt1) String() string {
 func (*InlineSizeAttr_Alt1) ProtoMessage() {}
 
 func (x *InlineSizeAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1906]
+	mi := &file_svg_proto_msgTypes[1907]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -125540,7 +125632,7 @@ type GlyphOrientationVerticalAttr_Alt1 struct {
 
 func (x *GlyphOrientationVerticalAttr_Alt1) Reset() {
 	*x = GlyphOrientationVerticalAttr_Alt1{}
-	mi := &file_svg_proto_msgTypes[1907]
+	mi := &file_svg_proto_msgTypes[1908]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -125552,7 +125644,7 @@ func (x *GlyphOrientationVerticalAttr_Alt1) String() string {
 func (*GlyphOrientationVerticalAttr_Alt1) ProtoMessage() {}
 
 func (x *GlyphOrientationVerticalAttr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1907]
+	mi := &file_svg_proto_msgTypes[1908]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -125633,7 +125725,7 @@ type Translate_Comma struct {
 
 func (x *Translate_Comma) Reset() {
 	*x = Translate_Comma{}
-	mi := &file_svg_proto_msgTypes[1908]
+	mi := &file_svg_proto_msgTypes[1909]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -125645,7 +125737,7 @@ func (x *Translate_Comma) String() string {
 func (*Translate_Comma) ProtoMessage() {}
 
 func (x *Translate_Comma) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1908]
+	mi := &file_svg_proto_msgTypes[1909]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -125677,7 +125769,7 @@ type Scale_Comma struct {
 
 func (x *Scale_Comma) Reset() {
 	*x = Scale_Comma{}
-	mi := &file_svg_proto_msgTypes[1909]
+	mi := &file_svg_proto_msgTypes[1910]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -125689,7 +125781,7 @@ func (x *Scale_Comma) String() string {
 func (*Scale_Comma) ProtoMessage() {}
 
 func (x *Scale_Comma) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1909]
+	mi := &file_svg_proto_msgTypes[1910]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -125723,7 +125815,7 @@ type Rotate_Comma struct {
 
 func (x *Rotate_Comma) Reset() {
 	*x = Rotate_Comma{}
-	mi := &file_svg_proto_msgTypes[1910]
+	mi := &file_svg_proto_msgTypes[1911]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -125735,7 +125827,7 @@ func (x *Rotate_Comma) String() string {
 func (*Rotate_Comma) ProtoMessage() {}
 
 func (x *Rotate_Comma) ProtoReflect() protoreflect.Message {
-	mi := &file_svg_proto_msgTypes[1910]
+	mi := &file_svg_proto_msgTypes[1911]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -130299,12 +130391,14 @@ const file_svg_proto_rawDesc = "" +
 	"2non_hyphen_minus_scaling_hyphen_minus_size_keyword\x18\x03 \x01(\v20.svg.NonHyphenMinusScalingHyphenMinusSizeKeywordH\x00R+nonHyphenMinusScalingHyphenMinusSizeKeyword\x12n\n" +
 	"!non_hyphen_minus_rotation_keyword\x18\x04 \x01(\v2\".svg.NonHyphenMinusRotationKeywordH\x00R\x1dnonHyphenMinusRotationKeyword\x12t\n" +
 	"#fixed_hyphen_minus_position_keyword\x18\x05 \x01(\v2$.svg.FixedHyphenMinusPositionKeywordH\x00R\x1ffixedHyphenMinusPositionKeywordB\a\n" +
-	"\x05value\"\x9a\x01\n" +
+	"\x05value\"\xd3\x01\n" +
 	"\aSvgPath\x12%\n" +
-	"\x04seq1\x18\x01 \x01(\v2\x11.svg.SvgPath.Seq1R\x04seq1\x1ah\n" +
+	"\x04seq1\x18\x01 \x01(\v2\x11.svg.SvgPath.Seq1R\x04seq1\x1a\xa0\x01\n" +
 	"\x04Seq1\x12$\n" +
-	"\amove_to\x18\x01 \x01(\v2\v.svg.MoveToR\x06moveTo\x12:\n" +
-	"\x0fdraw_to_command\x18\x02 \x03(\v2\x12.svg.DrawToCommandR\rdrawToCommand\"\x8e\x05\n" +
+	"\amove_to\x18\x01 \x01(\v2\v.svg.MoveToR\x06moveTo\x12-\n" +
+	"\x05space\x18\x02 \x03(\v2\x17.svg.SvgPath.Seq1.SpaceR\x05space\x1aC\n" +
+	"\x05Space\x12:\n" +
+	"\x0fdraw_to_command\x18\x01 \x01(\v2\x12.svg.DrawToCommandR\rdrawToCommand\"\x8e\x05\n" +
 	"\rDrawToCommand\x12&\n" +
 	"\amove_to\x18\x01 \x01(\v2\v.svg.MoveToH\x00R\x06moveTo\x12/\n" +
 	"\n" +
@@ -130396,41 +130490,48 @@ const file_svg_proto_rawDesc = "" +
 	"\x04Alt1\x12,\n" +
 	"\ta_keyword\x18\x01 \x01(\v2\r.svg.AKeywordH\x00R\baKeyword\x12/\n" +
 	"\va_keyword_2\x18\x02 \x01(\v2\r.svg.AKeywordH\x00R\taKeyword2B\a\n" +
-	"\x05value\"\xca\x01\n" +
+	"\x05value\"s\n" +
 	"\x1dEllipticalArcArgumentSequence\x12R\n" +
-	"\x17elliptical_arc_argument\x18\x01 \x01(\v2\x1a.svg.EllipticalArcArgumentR\x15ellipticalArcArgument\x12U\n" +
-	"\x19elliptical_arc_argument_2\x18\x02 \x03(\v2\x1a.svg.EllipticalArcArgumentR\x16ellipticalArcArgument2\"\xc9\x02\n" +
+	"\x17elliptical_arc_argument\x18\x01 \x03(\v2\x1a.svg.EllipticalArcArgumentR\x15ellipticalArcArgument\"\xed\x04\n" +
 	"\x15EllipticalArcArgument\x120\n" +
 	"\vnumber_type\x18\x01 \x01(\v2\x0f.svg.NumberTypeR\n" +
-	"numberType\x123\n" +
-	"\rnumber_type_2\x18\x02 \x01(\v2\x0f.svg.NumberTypeR\vnumberType2\x126\n" +
-	"\rpath_rotation\x18\x03 \x01(\v2\x11.svg.PathRotationR\fpathRotation\x12'\n" +
-	"\barc_flag\x18\x04 \x01(\v2\f.svg.ArcFlagR\aarcFlag\x12*\n" +
+	"numberType\x126\n" +
+	"\rspace_keyword\x18\x02 \x01(\v2\x11.svg.SpaceKeywordR\fspaceKeyword\x123\n" +
+	"\rnumber_type_2\x18\x03 \x01(\v2\x0f.svg.NumberTypeR\vnumberType2\x129\n" +
+	"\x0fspace_keyword_2\x18\x04 \x01(\v2\x11.svg.SpaceKeywordR\rspaceKeyword2\x126\n" +
+	"\rpath_rotation\x18\x05 \x01(\v2\x11.svg.PathRotationR\fpathRotation\x129\n" +
+	"\x0fspace_keyword_3\x18\x06 \x01(\v2\x11.svg.SpaceKeywordR\rspaceKeyword3\x12'\n" +
+	"\barc_flag\x18\a \x01(\v2\f.svg.ArcFlagR\aarcFlag\x129\n" +
+	"\x0fspace_keyword_4\x18\b \x01(\v2\x11.svg.SpaceKeywordR\rspaceKeyword4\x12*\n" +
 	"\n" +
-	"arc_flag_2\x18\x05 \x01(\v2\f.svg.ArcFlagR\barcFlag2\x12<\n" +
-	"\x0fcoordinate_pair\x18\x06 \x01(\v2\x13.svg.CoordinatePairR\x0ecoordinatePair\"l\n" +
+	"arc_flag_2\x18\t \x01(\v2\f.svg.ArcFlagR\barcFlag2\x129\n" +
+	"\x0fspace_keyword_5\x18\n" +
+	" \x01(\v2\x11.svg.SpaceKeywordR\rspaceKeyword5\x12<\n" +
+	"\x0fcoordinate_pair\x18\v \x01(\v2\x13.svg.CoordinatePairR\x0ecoordinatePair\"l\n" +
 	"\fPathRotation\x12*\n" +
 	"\tpath_sign\x18\x01 \x01(\v2\r.svg.PathSignR\bpathSign\x120\n" +
 	"\vnumber_type\x18\x02 \x01(\v2\x0f.svg.NumberTypeR\n" +
-	"numberType\"\x97\x01\n" +
+	"numberType\"V\n" +
 	"\x16CoordinatePairSequence\x12<\n" +
-	"\x0fcoordinate_pair\x18\x01 \x01(\v2\x13.svg.CoordinatePairR\x0ecoordinatePair\x12?\n" +
-	"\x11coordinate_pair_2\x18\x02 \x03(\v2\x13.svg.CoordinatePairR\x0fcoordinatePair2\"{\n" +
+	"\x0fcoordinate_pair\x18\x01 \x03(\v2\x13.svg.CoordinatePairR\x0ecoordinatePair\"F\n" +
 	"\x12CoordinateSequence\x120\n" +
-	"\vnumber_type\x18\x01 \x01(\v2\x0f.svg.NumberTypeR\n" +
-	"numberType\x123\n" +
-	"\rnumber_type_2\x18\x02 \x03(\v2\x0f.svg.NumberTypeR\vnumberType2\"\x95\x01\n" +
+	"\vnumber_type\x18\x01 \x03(\v2\x0f.svg.NumberTypeR\n" +
+	"numberType\"\xcd\x01\n" +
 	"\x14CoordinatePairDouble\x12<\n" +
-	"\x0fcoordinate_pair\x18\x01 \x01(\v2\x13.svg.CoordinatePairR\x0ecoordinatePair\x12?\n" +
-	"\x11coordinate_pair_2\x18\x02 \x01(\v2\x13.svg.CoordinatePairR\x0fcoordinatePair2\"\xd7\x01\n" +
+	"\x0fcoordinate_pair\x18\x01 \x01(\v2\x13.svg.CoordinatePairR\x0ecoordinatePair\x126\n" +
+	"\rspace_keyword\x18\x02 \x01(\v2\x11.svg.SpaceKeywordR\fspaceKeyword\x12?\n" +
+	"\x11coordinate_pair_2\x18\x03 \x01(\v2\x13.svg.CoordinatePairR\x0fcoordinatePair2\"\xca\x02\n" +
 	"\x15CoordinatePairTriplet\x12<\n" +
-	"\x0fcoordinate_pair\x18\x01 \x01(\v2\x13.svg.CoordinatePairR\x0ecoordinatePair\x12?\n" +
-	"\x11coordinate_pair_2\x18\x02 \x01(\v2\x13.svg.CoordinatePairR\x0fcoordinatePair2\x12?\n" +
-	"\x11coordinate_pair_3\x18\x03 \x01(\v2\x13.svg.CoordinatePairR\x0fcoordinatePair3\"w\n" +
+	"\x0fcoordinate_pair\x18\x01 \x01(\v2\x13.svg.CoordinatePairR\x0ecoordinatePair\x126\n" +
+	"\rspace_keyword\x18\x02 \x01(\v2\x11.svg.SpaceKeywordR\fspaceKeyword\x12?\n" +
+	"\x11coordinate_pair_2\x18\x03 \x01(\v2\x13.svg.CoordinatePairR\x0fcoordinatePair2\x129\n" +
+	"\x0fspace_keyword_2\x18\x04 \x01(\v2\x11.svg.SpaceKeywordR\rspaceKeyword2\x12?\n" +
+	"\x11coordinate_pair_3\x18\x05 \x01(\v2\x13.svg.CoordinatePairR\x0fcoordinatePair3\"\xaf\x01\n" +
 	"\x0eCoordinatePair\x120\n" +
 	"\vnumber_type\x18\x01 \x01(\v2\x0f.svg.NumberTypeR\n" +
-	"numberType\x123\n" +
-	"\rnumber_type_2\x18\x02 \x01(\v2\x0f.svg.NumberTypeR\vnumberType2\"\x9d\x01\n" +
+	"numberType\x126\n" +
+	"\rspace_keyword\x18\x02 \x01(\v2\x11.svg.SpaceKeywordR\fspaceKeyword\x123\n" +
+	"\rnumber_type_2\x18\x03 \x01(\v2\x0f.svg.NumberTypeR\vnumberType2\"\x9d\x01\n" +
 	"\aArcFlag\x12E\n" +
 	"\x12digit_zero_keyword\x18\x01 \x01(\v2\x15.svg.DigitZeroKeywordH\x00R\x10digitZeroKeyword\x12B\n" +
 	"\x11digit_one_keyword\x18\x02 \x01(\v2\x14.svg.DigitOneKeywordH\x00R\x0fdigitOneKeywordB\a\n" +
@@ -131007,14 +131108,14 @@ const file_svg_proto_rawDesc = "" +
 	"\x04Alt1\x125\n" +
 	"\fnone_keyword\x18\x01 \x01(\v2\x10.svg.NoneKeywordH\x00R\vnoneKeyword\x12)\n" +
 	"\bsvg_path\x18\x02 \x01(\v2\f.svg.SvgPathH\x00R\asvgPathB\a\n" +
-	"\x05value\"\xad\x01\n" +
+	"\x05value\"Y\n" +
 	"\x06Points\x12O\n" +
-	"\x16points_coordinate_pair\x18\x01 \x01(\v2\x19.svg.PointsCoordinatePairR\x14pointsCoordinatePair\x12R\n" +
-	"\x18points_coordinate_pair_2\x18\x02 \x03(\v2\x19.svg.PointsCoordinatePairR\x15pointsCoordinatePair2\"}\n" +
+	"\x16points_coordinate_pair\x18\x01 \x03(\v2\x19.svg.PointsCoordinatePairR\x14pointsCoordinatePair\"\xb5\x01\n" +
 	"\x14PointsCoordinatePair\x120\n" +
 	"\vnumber_type\x18\x01 \x01(\v2\x0f.svg.NumberTypeR\n" +
-	"numberType\x123\n" +
-	"\rnumber_type_2\x18\x02 \x01(\v2\x0f.svg.NumberTypeR\vnumberType2\"\x98\x03\n" +
+	"numberType\x126\n" +
+	"\rcomma_keyword\x18\x02 \x01(\v2\x11.svg.CommaKeywordR\fcommaKeyword\x123\n" +
+	"\rnumber_type_2\x18\x03 \x01(\v2\x0f.svg.NumberTypeR\vnumberType2\"\x98\x03\n" +
 	"\x10SvgsymbolElement\x12?\n" +
 	"\x10symbol_attribute\x18\x01 \x03(\v2\x14.svg.SymbolAttributeR\x0fsymbolAttribute\x12V\n" +
 	"\x19greater_than_sign_keyword\x18\x02 \x01(\v2\x1b.svg.GreaterThanSignKeywordR\x16greaterThanSignKeyword\x12B\n" +
@@ -132753,7 +132854,7 @@ func file_svg_proto_rawDescGZIP() []byte {
 	return file_svg_proto_rawDescData
 }
 
-var file_svg_proto_msgTypes = make([]protoimpl.MessageInfo, 1911)
+var file_svg_proto_msgTypes = make([]protoimpl.MessageInfo, 1912)
 var file_svg_proto_goTypes = []any{
 	(*SvgDocument)(nil),                                      // 0: svg.SvgDocument
 	(*AnimationElement)(nil),                                 // 1: svg.AnimationElement
@@ -134590,83 +134691,84 @@ var file_svg_proto_goTypes = []any{
 	(*ShapeRenderingAttr_Alt1)(nil),                                                        // 1832: svg.ShapeRenderingAttr.Alt1
 	(*VectorEffectAttr_Alt1)(nil),                                                          // 1833: svg.VectorEffectAttr.Alt1
 	(*SvgPath_Seq1)(nil),                                                                   // 1834: svg.SvgPath.Seq1
-	(*MoveTo_Alt1)(nil),                                                                    // 1835: svg.MoveTo.Alt1
-	(*ClosePath_Alt1)(nil),                                                                 // 1836: svg.ClosePath.Alt1
-	(*LineTo_Alt1)(nil),                                                                    // 1837: svg.LineTo.Alt1
-	(*HorizontalLineTo_Alt1)(nil),                                                          // 1838: svg.HorizontalLineTo.Alt1
-	(*VerticalLineTo_Alt1)(nil),                                                            // 1839: svg.VerticalLineTo.Alt1
-	(*CurveTo_Alt1)(nil),                                                                   // 1840: svg.CurveTo.Alt1
-	(*SmoothCurveTo_Alt1)(nil),                                                             // 1841: svg.SmoothCurveTo.Alt1
-	(*QuadraticBezierCurveTo_Alt1)(nil),                                                    // 1842: svg.QuadraticBezierCurveTo.Alt1
-	(*SmoothQuadraticBezierCurveTo_Alt1)(nil),                                              // 1843: svg.SmoothQuadraticBezierCurveTo.Alt1
-	(*EllipticalArc_Alt1)(nil),                                                             // 1844: svg.EllipticalArc.Alt1
-	(*SpreadMethodAttr_Alt1)(nil),                                                          // 1845: svg.SpreadMethodAttr.Alt1
-	(*LinearGradientX1Attr_Alt1)(nil),                                                      // 1846: svg.LinearGradientX1attr.Alt1
-	(*LinearGradientY1Attr_Alt1)(nil),                                                      // 1847: svg.LinearGradientY1attr.Alt1
-	(*LinearGradientX2Attr_Alt1)(nil),                                                      // 1848: svg.LinearGradientX2attr.Alt1
-	(*LinearGradientY2Attr_Alt1)(nil),                                                      // 1849: svg.LinearGradientY2attr.Alt1
-	(*RadialGradientCxAttr_Alt1)(nil),                                                      // 1850: svg.RadialGradientCxAttr.Alt1
-	(*RadialGradientCyAttr_Alt1)(nil),                                                      // 1851: svg.RadialGradientCyAttr.Alt1
-	(*RadialGradientFxAttr_Alt1)(nil),                                                      // 1852: svg.RadialGradientFxAttr.Alt1
-	(*RadialGradientFyAttr_Alt1)(nil),                                                      // 1853: svg.RadialGradientFyAttr.Alt1
-	(*StopOffsetAttr_Alt1)(nil),                                                            // 1854: svg.StopOffsetAttr.Alt1
-	(*StopColorAttr_Alt1)(nil),                                                             // 1855: svg.StopColorAttr.Alt1
-	(*RectRxAttr_Alt1)(nil),                                                                // 1856: svg.RectRxAttr.Alt1
-	(*RectRyAttr_Alt1)(nil),                                                                // 1857: svg.RectRyAttr.Alt1
-	(*EllipseRxAttr_Alt1)(nil),                                                             // 1858: svg.EllipseRxAttr.Alt1
-	(*EllipseRyAttr_Alt1)(nil),                                                             // 1859: svg.EllipseRyAttr.Alt1
-	(*LineX1Attr_Alt1)(nil),                                                                // 1860: svg.LineX1attr.Alt1
-	(*LineY1Attr_Alt1)(nil),                                                                // 1861: svg.LineY1attr.Alt1
-	(*LineX2Attr_Alt1)(nil),                                                                // 1862: svg.LineX2attr.Alt1
-	(*LineY2Attr_Alt1)(nil),                                                                // 1863: svg.LineY2attr.Alt1
-	(*PathDattr_Alt1)(nil),                                                                 // 1864: svg.PathDattr.Alt1
-	(*SymbolRefXattr_Alt1)(nil),                                                            // 1865: svg.SymbolRefXattr.Alt1
-	(*SymbolRefYattr_Alt1)(nil),                                                            // 1866: svg.SymbolRefYattr.Alt1
-	(*SymbolWidthAttr_Alt1)(nil),                                                           // 1867: svg.SymbolWidthAttr.Alt1
-	(*SymbolHeightAttr_Alt1)(nil),                                                          // 1868: svg.SymbolHeightAttr.Alt1
-	(*UseWidthAttr_Alt1)(nil),                                                              // 1869: svg.UseWidthAttr.Alt1
-	(*UseHeightAttr_Alt1)(nil),                                                             // 1870: svg.UseHeightAttr.Alt1
-	(*VisibilityAttr_Alt1)(nil),                                                            // 1871: svg.VisibilityAttr.Alt1
-	(*OverflowAttr_Alt1)(nil),                                                              // 1872: svg.OverflowAttr.Alt1
-	(*TransformOriginPosition_Seq1)(nil),                                                   // 1873: svg.TransformOriginPosition.Seq1
-	(*TextLengthAttr_Alt1)(nil),                                                            // 1874: svg.TextLengthAttr.Alt1
-	(*TextLengthAdjustAttr_Alt1)(nil),                                                      // 1875: svg.TextLengthAdjustAttr.Alt1
-	(*TextPositionList_Alt1)(nil),                                                          // 1876: svg.TextPositionList.Alt1
-	(*TspanLengthAttr_Alt1)(nil),                                                           // 1877: svg.TspanLengthAttr.Alt1
-	(*TspanLengthAdjustAttr_Alt1)(nil),                                                     // 1878: svg.TspanLengthAdjustAttr.Alt1
-	(*TextPathStartOffsetAttr_Alt1)(nil),                                                   // 1879: svg.TextPathStartOffsetAttr.Alt1
-	(*TextPathMethodAttr_Alt1)(nil),                                                        // 1880: svg.TextPathMethodAttr.Alt1
-	(*TextPathSpacingAttr_Alt1)(nil),                                                       // 1881: svg.TextPathSpacingAttr.Alt1
-	(*TextPathSideAttr_Alt1)(nil),                                                          // 1882: svg.TextPathSideAttr.Alt1
-	(*TextPathLengthAttr_Alt1)(nil),                                                        // 1883: svg.TextPathLengthAttr.Alt1
-	(*TextPathLengthAdjustAttr_Alt1)(nil),                                                  // 1884: svg.TextPathLengthAdjustAttr.Alt1
-	(*TextAnchorAttr_Alt1)(nil),                                                            // 1885: svg.TextAnchorAttr.Alt1
-	(*DominantBaselineAttr_Alt1)(nil),                                                      // 1886: svg.DominantBaselineAttr.Alt1
-	(*AlignmentBaselineAttr_Alt1)(nil),                                                     // 1887: svg.AlignmentBaselineAttr.Alt1
-	(*BaselineShiftAttr_Alt1)(nil),                                                         // 1888: svg.BaselineShiftAttr.Alt1
-	(*DirectionAttr_Alt1)(nil),                                                             // 1889: svg.DirectionAttr.Alt1
-	(*UnicodeBidiAttr_Alt1)(nil),                                                           // 1890: svg.UnicodeBidiAttr.Alt1
-	(*WritingModeAttr_Alt1)(nil),                                                           // 1891: svg.WritingModeAttr.Alt1
-	(*LetterSpacingAttr_Alt1)(nil),                                                         // 1892: svg.LetterSpacingAttr.Alt1
-	(*WordSpacingAttr_Alt1)(nil),                                                           // 1893: svg.WordSpacingAttr.Alt1
-	(*TextDecorationValue_Seq1)(nil),                                                       // 1894: svg.TextDecorationValue.Seq1
-	(*TextDecorationValue_Seq2)(nil),                                                       // 1895: svg.TextDecorationValue.Seq2
-	(*TextDecorationValue_Seq3)(nil),                                                       // 1896: svg.TextDecorationValue.Seq3
-	(*TextDecorationValue_Seq4)(nil),                                                       // 1897: svg.TextDecorationValue.Seq4
-	(*TextOverflowAttr_Alt1)(nil),                                                          // 1898: svg.TextOverflowAttr.Alt1
-	(*TextRenderingAttr_Alt1)(nil),                                                         // 1899: svg.TextRenderingAttr.Alt1
-	(*WhiteSpaceAttr_Alt1)(nil),                                                            // 1900: svg.WhiteSpaceAttr.Alt1
-	(*FontSizeAdjustAttr_Alt1)(nil),                                                        // 1901: svg.FontSizeAdjustAttr.Alt1
-	(*FontStyleAttr_Alt1)(nil),                                                             // 1902: svg.FontStyleAttr.Alt1
-	(*FontStyleOblique_Space)(nil),                                                         // 1903: svg.FontStyleOblique.Space
-	(*FontWeightAttr_Alt1)(nil),                                                            // 1904: svg.FontWeightAttr.Alt1
-	(*FontStretchAttr_Alt1)(nil),                                                           // 1905: svg.FontStretchAttr.Alt1
-	(*InlineSizeAttr_Alt1)(nil),                                                            // 1906: svg.InlineSizeAttr.Alt1
-	(*GlyphOrientationVerticalAttr_Alt1)(nil),                                              // 1907: svg.GlyphOrientationVerticalAttr.Alt1
-	(*Translate_Comma)(nil),                                                                // 1908: svg.Translate.Comma
-	(*Scale_Comma)(nil),                                                                    // 1909: svg.Scale.Comma
-	(*Rotate_Comma)(nil),                                                                   // 1910: svg.Rotate.Comma
-	(*anypb.Any)(nil),                                                                      // 1911: google.protobuf.Any
+	(*SvgPath_Seq1_Space)(nil),                                                             // 1835: svg.SvgPath.Seq1.Space
+	(*MoveTo_Alt1)(nil),                                                                    // 1836: svg.MoveTo.Alt1
+	(*ClosePath_Alt1)(nil),                                                                 // 1837: svg.ClosePath.Alt1
+	(*LineTo_Alt1)(nil),                                                                    // 1838: svg.LineTo.Alt1
+	(*HorizontalLineTo_Alt1)(nil),                                                          // 1839: svg.HorizontalLineTo.Alt1
+	(*VerticalLineTo_Alt1)(nil),                                                            // 1840: svg.VerticalLineTo.Alt1
+	(*CurveTo_Alt1)(nil),                                                                   // 1841: svg.CurveTo.Alt1
+	(*SmoothCurveTo_Alt1)(nil),                                                             // 1842: svg.SmoothCurveTo.Alt1
+	(*QuadraticBezierCurveTo_Alt1)(nil),                                                    // 1843: svg.QuadraticBezierCurveTo.Alt1
+	(*SmoothQuadraticBezierCurveTo_Alt1)(nil),                                              // 1844: svg.SmoothQuadraticBezierCurveTo.Alt1
+	(*EllipticalArc_Alt1)(nil),                                                             // 1845: svg.EllipticalArc.Alt1
+	(*SpreadMethodAttr_Alt1)(nil),                                                          // 1846: svg.SpreadMethodAttr.Alt1
+	(*LinearGradientX1Attr_Alt1)(nil),                                                      // 1847: svg.LinearGradientX1attr.Alt1
+	(*LinearGradientY1Attr_Alt1)(nil),                                                      // 1848: svg.LinearGradientY1attr.Alt1
+	(*LinearGradientX2Attr_Alt1)(nil),                                                      // 1849: svg.LinearGradientX2attr.Alt1
+	(*LinearGradientY2Attr_Alt1)(nil),                                                      // 1850: svg.LinearGradientY2attr.Alt1
+	(*RadialGradientCxAttr_Alt1)(nil),                                                      // 1851: svg.RadialGradientCxAttr.Alt1
+	(*RadialGradientCyAttr_Alt1)(nil),                                                      // 1852: svg.RadialGradientCyAttr.Alt1
+	(*RadialGradientFxAttr_Alt1)(nil),                                                      // 1853: svg.RadialGradientFxAttr.Alt1
+	(*RadialGradientFyAttr_Alt1)(nil),                                                      // 1854: svg.RadialGradientFyAttr.Alt1
+	(*StopOffsetAttr_Alt1)(nil),                                                            // 1855: svg.StopOffsetAttr.Alt1
+	(*StopColorAttr_Alt1)(nil),                                                             // 1856: svg.StopColorAttr.Alt1
+	(*RectRxAttr_Alt1)(nil),                                                                // 1857: svg.RectRxAttr.Alt1
+	(*RectRyAttr_Alt1)(nil),                                                                // 1858: svg.RectRyAttr.Alt1
+	(*EllipseRxAttr_Alt1)(nil),                                                             // 1859: svg.EllipseRxAttr.Alt1
+	(*EllipseRyAttr_Alt1)(nil),                                                             // 1860: svg.EllipseRyAttr.Alt1
+	(*LineX1Attr_Alt1)(nil),                                                                // 1861: svg.LineX1attr.Alt1
+	(*LineY1Attr_Alt1)(nil),                                                                // 1862: svg.LineY1attr.Alt1
+	(*LineX2Attr_Alt1)(nil),                                                                // 1863: svg.LineX2attr.Alt1
+	(*LineY2Attr_Alt1)(nil),                                                                // 1864: svg.LineY2attr.Alt1
+	(*PathDattr_Alt1)(nil),                                                                 // 1865: svg.PathDattr.Alt1
+	(*SymbolRefXattr_Alt1)(nil),                                                            // 1866: svg.SymbolRefXattr.Alt1
+	(*SymbolRefYattr_Alt1)(nil),                                                            // 1867: svg.SymbolRefYattr.Alt1
+	(*SymbolWidthAttr_Alt1)(nil),                                                           // 1868: svg.SymbolWidthAttr.Alt1
+	(*SymbolHeightAttr_Alt1)(nil),                                                          // 1869: svg.SymbolHeightAttr.Alt1
+	(*UseWidthAttr_Alt1)(nil),                                                              // 1870: svg.UseWidthAttr.Alt1
+	(*UseHeightAttr_Alt1)(nil),                                                             // 1871: svg.UseHeightAttr.Alt1
+	(*VisibilityAttr_Alt1)(nil),                                                            // 1872: svg.VisibilityAttr.Alt1
+	(*OverflowAttr_Alt1)(nil),                                                              // 1873: svg.OverflowAttr.Alt1
+	(*TransformOriginPosition_Seq1)(nil),                                                   // 1874: svg.TransformOriginPosition.Seq1
+	(*TextLengthAttr_Alt1)(nil),                                                            // 1875: svg.TextLengthAttr.Alt1
+	(*TextLengthAdjustAttr_Alt1)(nil),                                                      // 1876: svg.TextLengthAdjustAttr.Alt1
+	(*TextPositionList_Alt1)(nil),                                                          // 1877: svg.TextPositionList.Alt1
+	(*TspanLengthAttr_Alt1)(nil),                                                           // 1878: svg.TspanLengthAttr.Alt1
+	(*TspanLengthAdjustAttr_Alt1)(nil),                                                     // 1879: svg.TspanLengthAdjustAttr.Alt1
+	(*TextPathStartOffsetAttr_Alt1)(nil),                                                   // 1880: svg.TextPathStartOffsetAttr.Alt1
+	(*TextPathMethodAttr_Alt1)(nil),                                                        // 1881: svg.TextPathMethodAttr.Alt1
+	(*TextPathSpacingAttr_Alt1)(nil),                                                       // 1882: svg.TextPathSpacingAttr.Alt1
+	(*TextPathSideAttr_Alt1)(nil),                                                          // 1883: svg.TextPathSideAttr.Alt1
+	(*TextPathLengthAttr_Alt1)(nil),                                                        // 1884: svg.TextPathLengthAttr.Alt1
+	(*TextPathLengthAdjustAttr_Alt1)(nil),                                                  // 1885: svg.TextPathLengthAdjustAttr.Alt1
+	(*TextAnchorAttr_Alt1)(nil),                                                            // 1886: svg.TextAnchorAttr.Alt1
+	(*DominantBaselineAttr_Alt1)(nil),                                                      // 1887: svg.DominantBaselineAttr.Alt1
+	(*AlignmentBaselineAttr_Alt1)(nil),                                                     // 1888: svg.AlignmentBaselineAttr.Alt1
+	(*BaselineShiftAttr_Alt1)(nil),                                                         // 1889: svg.BaselineShiftAttr.Alt1
+	(*DirectionAttr_Alt1)(nil),                                                             // 1890: svg.DirectionAttr.Alt1
+	(*UnicodeBidiAttr_Alt1)(nil),                                                           // 1891: svg.UnicodeBidiAttr.Alt1
+	(*WritingModeAttr_Alt1)(nil),                                                           // 1892: svg.WritingModeAttr.Alt1
+	(*LetterSpacingAttr_Alt1)(nil),                                                         // 1893: svg.LetterSpacingAttr.Alt1
+	(*WordSpacingAttr_Alt1)(nil),                                                           // 1894: svg.WordSpacingAttr.Alt1
+	(*TextDecorationValue_Seq1)(nil),                                                       // 1895: svg.TextDecorationValue.Seq1
+	(*TextDecorationValue_Seq2)(nil),                                                       // 1896: svg.TextDecorationValue.Seq2
+	(*TextDecorationValue_Seq3)(nil),                                                       // 1897: svg.TextDecorationValue.Seq3
+	(*TextDecorationValue_Seq4)(nil),                                                       // 1898: svg.TextDecorationValue.Seq4
+	(*TextOverflowAttr_Alt1)(nil),                                                          // 1899: svg.TextOverflowAttr.Alt1
+	(*TextRenderingAttr_Alt1)(nil),                                                         // 1900: svg.TextRenderingAttr.Alt1
+	(*WhiteSpaceAttr_Alt1)(nil),                                                            // 1901: svg.WhiteSpaceAttr.Alt1
+	(*FontSizeAdjustAttr_Alt1)(nil),                                                        // 1902: svg.FontSizeAdjustAttr.Alt1
+	(*FontStyleAttr_Alt1)(nil),                                                             // 1903: svg.FontStyleAttr.Alt1
+	(*FontStyleOblique_Space)(nil),                                                         // 1904: svg.FontStyleOblique.Space
+	(*FontWeightAttr_Alt1)(nil),                                                            // 1905: svg.FontWeightAttr.Alt1
+	(*FontStretchAttr_Alt1)(nil),                                                           // 1906: svg.FontStretchAttr.Alt1
+	(*InlineSizeAttr_Alt1)(nil),                                                            // 1907: svg.InlineSizeAttr.Alt1
+	(*GlyphOrientationVerticalAttr_Alt1)(nil),                                              // 1908: svg.GlyphOrientationVerticalAttr.Alt1
+	(*Translate_Comma)(nil),                                                                // 1909: svg.Translate.Comma
+	(*Scale_Comma)(nil),                                                                    // 1910: svg.Scale.Comma
+	(*Rotate_Comma)(nil),                                                                   // 1911: svg.Rotate.Comma
+	(*anypb.Any)(nil),                                                                      // 1912: google.protobuf.Any
 }
 var file_svg_proto_depIdxs = []int32{
 	159,  // 0: svg.SvgDocument.svgsvgelement:type_name -> svg.Svgsvgelement
@@ -135446,7 +135548,7 @@ var file_svg_proto_depIdxs = []int32{
 	335,  // 774: svg.AnimationValue.percentage_type:type_name -> svg.PercentageType
 	336,  // 775: svg.AnimationValue.length_percentage_type:type_name -> svg.LengthPercentageType
 	339,  // 776: svg.AnimationValue.angle_type:type_name -> svg.AngleType
-	1911, // 777: svg.AnimationValue.color_type:type_name -> google.protobuf.Any
+	1912, // 777: svg.AnimationValue.color_type:type_name -> google.protobuf.Any
 	357,  // 778: svg.AnimationValue.paint_type:type_name -> svg.PaintType
 	986,  // 779: svg.AnimationValue.transform_list:type_name -> svg.TransformList
 	766,  // 780: svg.AnimationValue.svg_path:type_name -> svg.SvgPath
@@ -135927,13 +136029,13 @@ var file_svg_proto_depIdxs = []int32{
 	1097, // 1255: svg.PaintType.current_color_keyword:type_name -> svg.CurrentColorKeyword
 	1084, // 1256: svg.PaintType.context_hyphen_minus_fill_keyword:type_name -> svg.ContextHyphenMinusFillKeyword
 	1086, // 1257: svg.PaintType.context_hyphen_minus_stroke_keyword:type_name -> svg.ContextHyphenMinusStrokeKeyword
-	1911, // 1258: svg.PaintType.color_type:type_name -> google.protobuf.Any
+	1912, // 1258: svg.PaintType.color_type:type_name -> google.protobuf.Any
 	358,  // 1259: svg.PaintType.paint_ref:type_name -> svg.PaintRef
 	344,  // 1260: svg.PaintRef.url_type:type_name -> svg.UrlType
 	359,  // 1261: svg.PaintRef.paint_fallback:type_name -> svg.PaintFallback
 	1410, // 1262: svg.PaintFallback.none_keyword:type_name -> svg.NoneKeyword
 	1097, // 1263: svg.PaintFallback.current_color_keyword:type_name -> svg.CurrentColorKeyword
-	1911, // 1264: svg.PaintFallback.color_type:type_name -> google.protobuf.Any
+	1912, // 1264: svg.PaintFallback.color_type:type_name -> google.protobuf.Any
 	329,  // 1265: svg.ViewBox.number_type:type_name -> svg.NumberType
 	1555, // 1266: svg.ViewBox.space_keyword:type_name -> svg.SpaceKeyword
 	329,  // 1267: svg.ViewBox.number_type_2:type_name -> svg.NumberType
@@ -136001,7 +136103,7 @@ var file_svg_proto_depIdxs = []int32{
 	396,  // 1329: svg.ImageContent.svgstyle_element:type_name -> svg.SvgstyleElement
 	377,  // 1330: svg.SvgforeignObjectElement.foreign_object_attribute:type_name -> svg.ForeignObjectAttribute
 	1192, // 1331: svg.SvgforeignObjectElement.greater_than_sign_keyword:type_name -> svg.GreaterThanSignKeyword
-	1911, // 1332: svg.SvgforeignObjectElement.flow_content:type_name -> google.protobuf.Any
+	1912, // 1332: svg.SvgforeignObjectElement.flow_content:type_name -> google.protobuf.Any
 	1283, // 1333: svg.SvgforeignObjectElement.less_than_sign_solidus_foreign_object_greater_than_sign_keyword:type_name -> svg.LessThanSignSolidusForeignObjectGreaterThanSignKeyword
 	378,  // 1334: svg.ForeignObjectAttribute.foreign_object_xattr:type_name -> svg.ForeignObjectXattr
 	379,  // 1335: svg.ForeignObjectAttribute.foreign_object_yattr:type_name -> svg.ForeignObjectYattr
@@ -136069,7 +136171,7 @@ var file_svg_proto_depIdxs = []int32{
 	354,  // 1397: svg.ScriptContent.character_data_type:type_name -> svg.CharacterDataType
 	397,  // 1398: svg.SvgstyleElement.style_attribute:type_name -> svg.StyleAttribute
 	1192, // 1399: svg.SvgstyleElement.greater_than_sign_keyword:type_name -> svg.GreaterThanSignKeyword
-	1911, // 1400: svg.SvgstyleElement.css_style_sheet:type_name -> google.protobuf.Any
+	1912, // 1400: svg.SvgstyleElement.css_style_sheet:type_name -> google.protobuf.Any
 	1301, // 1401: svg.SvgstyleElement.less_than_sign_solidus_style_greater_than_sign_keyword:type_name -> svg.LessThanSignSolidusStyleGreaterThanSignKeyword
 	398,  // 1402: svg.StyleAttribute.style_type_attr:type_name -> svg.StyleTypeAttr
 	399,  // 1403: svg.StyleAttribute.style_media_attr:type_name -> svg.StyleMediaAttr
@@ -136904,7 +137006,7 @@ var file_svg_proto_depIdxs = []int32{
 	1493, // 2232: svg.BrightnessFunction.right_parenthesis_keyword:type_name -> svg.RightParenthesisKeyword
 	673,  // 2233: svg.ContrastFunction.number_percentage:type_name -> svg.NumberPercentage
 	1493, // 2234: svg.ContrastFunction.right_parenthesis_keyword:type_name -> svg.RightParenthesisKeyword
-	1911, // 2235: svg.DropShadowFunction.color_type:type_name -> google.protobuf.Any
+	1912, // 2235: svg.DropShadowFunction.color_type:type_name -> google.protobuf.Any
 	333,  // 2236: svg.DropShadowFunction.length_type:type_name -> svg.LengthType
 	333,  // 2237: svg.DropShadowFunction.length_type_2:type_name -> svg.LengthType
 	333,  // 2238: svg.DropShadowFunction.length_type_3:type_name -> svg.LengthType
@@ -137199,7 +137301,7 @@ var file_svg_proto_depIdxs = []int32{
 	1476, // 2527: svg.MarkerMidAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
 	1829, // 2528: svg.MarkerEndAttr.alt1:type_name -> svg.MarkerEndAttr.Alt1
 	1476, // 2529: svg.MarkerEndAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1911, // 2530: svg.ColorAttr.color_type:type_name -> google.protobuf.Any
+	1912, // 2530: svg.ColorAttr.color_type:type_name -> google.protobuf.Any
 	1476, // 2531: svg.ColorAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
 	1830, // 2532: svg.ColorInterpolationAttr.alt1:type_name -> svg.ColorInterpolationAttr.Alt1
 	1476, // 2533: svg.ColorInterpolationAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
@@ -137220,1606 +137322,1613 @@ var file_svg_proto_depIdxs = []int32{
 	777,  // 2548: svg.DrawToCommand.quadratic_bezier_curve_to:type_name -> svg.QuadraticBezierCurveTo
 	779,  // 2549: svg.DrawToCommand.smooth_quadratic_bezier_curve_to:type_name -> svg.SmoothQuadraticBezierCurveTo
 	780,  // 2550: svg.DrawToCommand.elliptical_arc:type_name -> svg.EllipticalArc
-	1835, // 2551: svg.MoveTo.alt1:type_name -> svg.MoveTo.Alt1
+	1836, // 2551: svg.MoveTo.alt1:type_name -> svg.MoveTo.Alt1
 	784,  // 2552: svg.MoveTo.coordinate_pair_sequence:type_name -> svg.CoordinatePairSequence
-	1836, // 2553: svg.ClosePath.alt1:type_name -> svg.ClosePath.Alt1
-	1837, // 2554: svg.LineTo.alt1:type_name -> svg.LineTo.Alt1
+	1837, // 2553: svg.ClosePath.alt1:type_name -> svg.ClosePath.Alt1
+	1838, // 2554: svg.LineTo.alt1:type_name -> svg.LineTo.Alt1
 	784,  // 2555: svg.LineTo.coordinate_pair_sequence:type_name -> svg.CoordinatePairSequence
-	1838, // 2556: svg.HorizontalLineTo.alt1:type_name -> svg.HorizontalLineTo.Alt1
+	1839, // 2556: svg.HorizontalLineTo.alt1:type_name -> svg.HorizontalLineTo.Alt1
 	785,  // 2557: svg.HorizontalLineTo.coordinate_sequence:type_name -> svg.CoordinateSequence
-	1839, // 2558: svg.VerticalLineTo.alt1:type_name -> svg.VerticalLineTo.Alt1
+	1840, // 2558: svg.VerticalLineTo.alt1:type_name -> svg.VerticalLineTo.Alt1
 	785,  // 2559: svg.VerticalLineTo.coordinate_sequence:type_name -> svg.CoordinateSequence
-	1840, // 2560: svg.CurveTo.alt1:type_name -> svg.CurveTo.Alt1
+	1841, // 2560: svg.CurveTo.alt1:type_name -> svg.CurveTo.Alt1
 	774,  // 2561: svg.CurveTo.curve_to_coordinate_sequence:type_name -> svg.CurveToCoordinateSequence
 	787,  // 2562: svg.CurveToCoordinateSequence.coordinate_pair_triplet:type_name -> svg.CoordinatePairTriplet
 	787,  // 2563: svg.CurveToCoordinateSequence.coordinate_pair_triplet_2:type_name -> svg.CoordinatePairTriplet
-	1841, // 2564: svg.SmoothCurveTo.alt1:type_name -> svg.SmoothCurveTo.Alt1
+	1842, // 2564: svg.SmoothCurveTo.alt1:type_name -> svg.SmoothCurveTo.Alt1
 	776,  // 2565: svg.SmoothCurveTo.smooth_curve_to_coordinate_sequence:type_name -> svg.SmoothCurveToCoordinateSequence
 	786,  // 2566: svg.SmoothCurveToCoordinateSequence.coordinate_pair_double:type_name -> svg.CoordinatePairDouble
 	786,  // 2567: svg.SmoothCurveToCoordinateSequence.coordinate_pair_double_2:type_name -> svg.CoordinatePairDouble
-	1842, // 2568: svg.QuadraticBezierCurveTo.alt1:type_name -> svg.QuadraticBezierCurveTo.Alt1
+	1843, // 2568: svg.QuadraticBezierCurveTo.alt1:type_name -> svg.QuadraticBezierCurveTo.Alt1
 	778,  // 2569: svg.QuadraticBezierCurveTo.quadratic_bezier_curve_to_coordinate_sequence:type_name -> svg.QuadraticBezierCurveToCoordinateSequence
 	786,  // 2570: svg.QuadraticBezierCurveToCoordinateSequence.coordinate_pair_double:type_name -> svg.CoordinatePairDouble
 	786,  // 2571: svg.QuadraticBezierCurveToCoordinateSequence.coordinate_pair_double_2:type_name -> svg.CoordinatePairDouble
-	1843, // 2572: svg.SmoothQuadraticBezierCurveTo.alt1:type_name -> svg.SmoothQuadraticBezierCurveTo.Alt1
+	1844, // 2572: svg.SmoothQuadraticBezierCurveTo.alt1:type_name -> svg.SmoothQuadraticBezierCurveTo.Alt1
 	784,  // 2573: svg.SmoothQuadraticBezierCurveTo.coordinate_pair_sequence:type_name -> svg.CoordinatePairSequence
-	1844, // 2574: svg.EllipticalArc.alt1:type_name -> svg.EllipticalArc.Alt1
+	1845, // 2574: svg.EllipticalArc.alt1:type_name -> svg.EllipticalArc.Alt1
 	781,  // 2575: svg.EllipticalArc.elliptical_arc_argument_sequence:type_name -> svg.EllipticalArcArgumentSequence
 	782,  // 2576: svg.EllipticalArcArgumentSequence.elliptical_arc_argument:type_name -> svg.EllipticalArcArgument
-	782,  // 2577: svg.EllipticalArcArgumentSequence.elliptical_arc_argument_2:type_name -> svg.EllipticalArcArgument
-	329,  // 2578: svg.EllipticalArcArgument.number_type:type_name -> svg.NumberType
+	329,  // 2577: svg.EllipticalArcArgument.number_type:type_name -> svg.NumberType
+	1555, // 2578: svg.EllipticalArcArgument.space_keyword:type_name -> svg.SpaceKeyword
 	329,  // 2579: svg.EllipticalArcArgument.number_type_2:type_name -> svg.NumberType
-	783,  // 2580: svg.EllipticalArcArgument.path_rotation:type_name -> svg.PathRotation
-	789,  // 2581: svg.EllipticalArcArgument.arc_flag:type_name -> svg.ArcFlag
-	789,  // 2582: svg.EllipticalArcArgument.arc_flag_2:type_name -> svg.ArcFlag
-	788,  // 2583: svg.EllipticalArcArgument.coordinate_pair:type_name -> svg.CoordinatePair
-	790,  // 2584: svg.PathRotation.path_sign:type_name -> svg.PathSign
-	329,  // 2585: svg.PathRotation.number_type:type_name -> svg.NumberType
-	788,  // 2586: svg.CoordinatePairSequence.coordinate_pair:type_name -> svg.CoordinatePair
-	788,  // 2587: svg.CoordinatePairSequence.coordinate_pair_2:type_name -> svg.CoordinatePair
-	329,  // 2588: svg.CoordinateSequence.number_type:type_name -> svg.NumberType
-	329,  // 2589: svg.CoordinateSequence.number_type_2:type_name -> svg.NumberType
-	788,  // 2590: svg.CoordinatePairDouble.coordinate_pair:type_name -> svg.CoordinatePair
-	788,  // 2591: svg.CoordinatePairDouble.coordinate_pair_2:type_name -> svg.CoordinatePair
-	788,  // 2592: svg.CoordinatePairTriplet.coordinate_pair:type_name -> svg.CoordinatePair
-	788,  // 2593: svg.CoordinatePairTriplet.coordinate_pair_2:type_name -> svg.CoordinatePair
-	788,  // 2594: svg.CoordinatePairTriplet.coordinate_pair_3:type_name -> svg.CoordinatePair
-	329,  // 2595: svg.CoordinatePair.number_type:type_name -> svg.NumberType
-	329,  // 2596: svg.CoordinatePair.number_type_2:type_name -> svg.NumberType
-	1131, // 2597: svg.ArcFlag.digit_zero_keyword:type_name -> svg.DigitZeroKeyword
-	1130, // 2598: svg.ArcFlag.digit_one_keyword:type_name -> svg.DigitOneKeyword
-	1460, // 2599: svg.PathSign.plus_sign_keyword:type_name -> svg.PlusSignKeyword
-	1213, // 2600: svg.PathSign.hyphen_minus_keyword:type_name -> svg.HyphenMinusKeyword
-	356,  // 2601: svg.GradientUnitsAttr.unit_type:type_name -> svg.UnitType
-	1476, // 2602: svg.GradientUnitsAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1845, // 2603: svg.SpreadMethodAttr.alt1:type_name -> svg.SpreadMethodAttr.Alt1
-	1476, // 2604: svg.SpreadMethodAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	794,  // 2605: svg.SvglinearGradientElement.linear_gradient_attribute:type_name -> svg.LinearGradientAttribute
-	1192, // 2606: svg.SvglinearGradientElement.greater_than_sign_keyword:type_name -> svg.GreaterThanSignKeyword
-	801,  // 2607: svg.SvglinearGradientElement.linear_gradient_content:type_name -> svg.LinearGradientContent
-	1287, // 2608: svg.SvglinearGradientElement.less_than_sign_solidus_linear_gradient_greater_than_sign_keyword:type_name -> svg.LessThanSignSolidusLinearGradientGreaterThanSignKeyword
-	791,  // 2609: svg.LinearGradientAttribute.gradient_units_attr:type_name -> svg.GradientUnitsAttr
-	795,  // 2610: svg.LinearGradientAttribute.linear_gradient_transform_attr:type_name -> svg.LinearGradientTransformAttr
-	796,  // 2611: svg.LinearGradientAttribute.linear_gradient_x1attr:type_name -> svg.LinearGradientX1attr
-	797,  // 2612: svg.LinearGradientAttribute.linear_gradient_y1attr:type_name -> svg.LinearGradientY1attr
-	798,  // 2613: svg.LinearGradientAttribute.linear_gradient_x2attr:type_name -> svg.LinearGradientX2attr
-	799,  // 2614: svg.LinearGradientAttribute.linear_gradient_y2attr:type_name -> svg.LinearGradientY2attr
-	792,  // 2615: svg.LinearGradientAttribute.spread_method_attr:type_name -> svg.SpreadMethodAttr
-	800,  // 2616: svg.LinearGradientAttribute.linear_gradient_href_attr:type_name -> svg.LinearGradientHrefAttr
-	12,   // 2617: svg.LinearGradientAttribute.core_attribute:type_name -> svg.CoreAttribute
-	917,  // 2618: svg.LinearGradientAttribute.presentation_attribute:type_name -> svg.PresentationAttribute
-	83,   // 2619: svg.LinearGradientAttribute.global_event_attribute:type_name -> svg.GlobalEventAttribute
-	145,  // 2620: svg.LinearGradientAttribute.document_element_event_attribute:type_name -> svg.DocumentElementEventAttribute
-	156,  // 2621: svg.LinearGradientAttribute.xlink_attribute:type_name -> svg.XlinkAttribute
-	986,  // 2622: svg.LinearGradientTransformAttr.transform_list:type_name -> svg.TransformList
-	1476, // 2623: svg.LinearGradientTransformAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1846, // 2624: svg.LinearGradientX1attr.alt1:type_name -> svg.LinearGradientX1attr.Alt1
-	1476, // 2625: svg.LinearGradientX1attr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1847, // 2626: svg.LinearGradientY1attr.alt1:type_name -> svg.LinearGradientY1attr.Alt1
-	1476, // 2627: svg.LinearGradientY1attr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1848, // 2628: svg.LinearGradientX2attr.alt1:type_name -> svg.LinearGradientX2attr.Alt1
-	1476, // 2629: svg.LinearGradientX2attr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1849, // 2630: svg.LinearGradientY2attr.alt1:type_name -> svg.LinearGradientY2attr.Alt1
-	1476, // 2631: svg.LinearGradientY2attr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	343,  // 2632: svg.LinearGradientHrefAttr.iri_type:type_name -> svg.IriType
-	1476, // 2633: svg.LinearGradientHrefAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	2,    // 2634: svg.LinearGradientContent.descriptive_element:type_name -> svg.DescriptiveElement
-	232,  // 2635: svg.LinearGradientContent.svganimate_element:type_name -> svg.SvganimateElement
-	296,  // 2636: svg.LinearGradientContent.svganimate_transform_element:type_name -> svg.SvganimateTransformElement
-	255,  // 2637: svg.LinearGradientContent.svgset_element:type_name -> svg.SvgsetElement
-	388,  // 2638: svg.LinearGradientContent.svgscript_element:type_name -> svg.SvgscriptElement
-	396,  // 2639: svg.LinearGradientContent.svgstyle_element:type_name -> svg.SvgstyleElement
-	813,  // 2640: svg.LinearGradientContent.svgstop_element:type_name -> svg.SvgstopElement
-	803,  // 2641: svg.SvgradialGradientElement.radial_gradient_attribute:type_name -> svg.RadialGradientAttribute
-	1192, // 2642: svg.SvgradialGradientElement.greater_than_sign_keyword:type_name -> svg.GreaterThanSignKeyword
-	812,  // 2643: svg.SvgradialGradientElement.radial_gradient_content:type_name -> svg.RadialGradientContent
-	1296, // 2644: svg.SvgradialGradientElement.less_than_sign_solidus_radial_gradient_greater_than_sign_keyword:type_name -> svg.LessThanSignSolidusRadialGradientGreaterThanSignKeyword
-	791,  // 2645: svg.RadialGradientAttribute.gradient_units_attr:type_name -> svg.GradientUnitsAttr
-	804,  // 2646: svg.RadialGradientAttribute.radial_gradient_transform_attr:type_name -> svg.RadialGradientTransformAttr
-	805,  // 2647: svg.RadialGradientAttribute.radial_gradient_cx_attr:type_name -> svg.RadialGradientCxAttr
-	806,  // 2648: svg.RadialGradientAttribute.radial_gradient_cy_attr:type_name -> svg.RadialGradientCyAttr
-	807,  // 2649: svg.RadialGradientAttribute.radial_gradient_rattr:type_name -> svg.RadialGradientRattr
-	808,  // 2650: svg.RadialGradientAttribute.radial_gradient_fx_attr:type_name -> svg.RadialGradientFxAttr
-	809,  // 2651: svg.RadialGradientAttribute.radial_gradient_fy_attr:type_name -> svg.RadialGradientFyAttr
-	810,  // 2652: svg.RadialGradientAttribute.radial_gradient_fr_attr:type_name -> svg.RadialGradientFrAttr
-	792,  // 2653: svg.RadialGradientAttribute.spread_method_attr:type_name -> svg.SpreadMethodAttr
-	811,  // 2654: svg.RadialGradientAttribute.radial_gradient_href_attr:type_name -> svg.RadialGradientHrefAttr
-	12,   // 2655: svg.RadialGradientAttribute.core_attribute:type_name -> svg.CoreAttribute
-	917,  // 2656: svg.RadialGradientAttribute.presentation_attribute:type_name -> svg.PresentationAttribute
-	83,   // 2657: svg.RadialGradientAttribute.global_event_attribute:type_name -> svg.GlobalEventAttribute
-	145,  // 2658: svg.RadialGradientAttribute.document_element_event_attribute:type_name -> svg.DocumentElementEventAttribute
-	156,  // 2659: svg.RadialGradientAttribute.xlink_attribute:type_name -> svg.XlinkAttribute
-	986,  // 2660: svg.RadialGradientTransformAttr.transform_list:type_name -> svg.TransformList
-	1476, // 2661: svg.RadialGradientTransformAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1850, // 2662: svg.RadialGradientCxAttr.alt1:type_name -> svg.RadialGradientCxAttr.Alt1
-	1476, // 2663: svg.RadialGradientCxAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1851, // 2664: svg.RadialGradientCyAttr.alt1:type_name -> svg.RadialGradientCyAttr.Alt1
-	1476, // 2665: svg.RadialGradientCyAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	337,  // 2666: svg.RadialGradientRattr.non_negative_length_percentage_type:type_name -> svg.NonNegativeLengthPercentageType
-	1476, // 2667: svg.RadialGradientRattr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1852, // 2668: svg.RadialGradientFxAttr.alt1:type_name -> svg.RadialGradientFxAttr.Alt1
-	1476, // 2669: svg.RadialGradientFxAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1853, // 2670: svg.RadialGradientFyAttr.alt1:type_name -> svg.RadialGradientFyAttr.Alt1
-	1476, // 2671: svg.RadialGradientFyAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	337,  // 2672: svg.RadialGradientFrAttr.non_negative_length_percentage_type:type_name -> svg.NonNegativeLengthPercentageType
-	1476, // 2673: svg.RadialGradientFrAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	343,  // 2674: svg.RadialGradientHrefAttr.iri_type:type_name -> svg.IriType
-	1476, // 2675: svg.RadialGradientHrefAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	2,    // 2676: svg.RadialGradientContent.descriptive_element:type_name -> svg.DescriptiveElement
-	232,  // 2677: svg.RadialGradientContent.svganimate_element:type_name -> svg.SvganimateElement
-	296,  // 2678: svg.RadialGradientContent.svganimate_transform_element:type_name -> svg.SvganimateTransformElement
-	255,  // 2679: svg.RadialGradientContent.svgset_element:type_name -> svg.SvgsetElement
-	388,  // 2680: svg.RadialGradientContent.svgscript_element:type_name -> svg.SvgscriptElement
-	396,  // 2681: svg.RadialGradientContent.svgstyle_element:type_name -> svg.SvgstyleElement
-	813,  // 2682: svg.RadialGradientContent.svgstop_element:type_name -> svg.SvgstopElement
-	814,  // 2683: svg.SvgstopElement.stop_attribute:type_name -> svg.StopAttribute
-	1192, // 2684: svg.SvgstopElement.greater_than_sign_keyword:type_name -> svg.GreaterThanSignKeyword
-	816,  // 2685: svg.SvgstopElement.stop_content:type_name -> svg.StopContent
-	1300, // 2686: svg.SvgstopElement.less_than_sign_solidus_stop_greater_than_sign_keyword:type_name -> svg.LessThanSignSolidusStopGreaterThanSignKeyword
-	815,  // 2687: svg.StopAttribute.stop_offset_attr:type_name -> svg.StopOffsetAttr
-	12,   // 2688: svg.StopAttribute.core_attribute:type_name -> svg.CoreAttribute
-	917,  // 2689: svg.StopAttribute.presentation_attribute:type_name -> svg.PresentationAttribute
-	83,   // 2690: svg.StopAttribute.global_event_attribute:type_name -> svg.GlobalEventAttribute
-	145,  // 2691: svg.StopAttribute.document_element_event_attribute:type_name -> svg.DocumentElementEventAttribute
-	1854, // 2692: svg.StopOffsetAttr.alt1:type_name -> svg.StopOffsetAttr.Alt1
-	1476, // 2693: svg.StopOffsetAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	232,  // 2694: svg.StopContent.svganimate_element:type_name -> svg.SvganimateElement
-	255,  // 2695: svg.StopContent.svgset_element:type_name -> svg.SvgsetElement
-	388,  // 2696: svg.StopContent.svgscript_element:type_name -> svg.SvgscriptElement
-	396,  // 2697: svg.StopContent.svgstyle_element:type_name -> svg.SvgstyleElement
-	1855, // 2698: svg.StopColorAttr.alt1:type_name -> svg.StopColorAttr.Alt1
-	1476, // 2699: svg.StopColorAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	355,  // 2700: svg.StopOpacityAttr.alpha_value:type_name -> svg.AlphaValue
-	1476, // 2701: svg.StopOpacityAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	820,  // 2702: svg.SvgpatternElement.pattern_attribute:type_name -> svg.PatternAttribute
-	1192, // 2703: svg.SvgpatternElement.greater_than_sign_keyword:type_name -> svg.GreaterThanSignKeyword
-	11,   // 2704: svg.SvgpatternElement.container_content:type_name -> svg.ContainerContent
-	1293, // 2705: svg.SvgpatternElement.less_than_sign_solidus_pattern_greater_than_sign_keyword:type_name -> svg.LessThanSignSolidusPatternGreaterThanSignKeyword
-	821,  // 2706: svg.PatternAttribute.pattern_units_attr:type_name -> svg.PatternUnitsAttr
-	822,  // 2707: svg.PatternAttribute.pattern_content_units_attr:type_name -> svg.PatternContentUnitsAttr
-	823,  // 2708: svg.PatternAttribute.pattern_transform_attr:type_name -> svg.PatternTransformAttr
-	824,  // 2709: svg.PatternAttribute.pattern_xattr:type_name -> svg.PatternXattr
-	825,  // 2710: svg.PatternAttribute.pattern_yattr:type_name -> svg.PatternYattr
-	826,  // 2711: svg.PatternAttribute.pattern_width_attr:type_name -> svg.PatternWidthAttr
-	827,  // 2712: svg.PatternAttribute.pattern_height_attr:type_name -> svg.PatternHeightAttr
-	828,  // 2713: svg.PatternAttribute.pattern_view_box_attr:type_name -> svg.PatternViewBoxAttr
-	829,  // 2714: svg.PatternAttribute.pattern_preserve_aspect_ratio_attr:type_name -> svg.PatternPreserveAspectRatioAttr
-	830,  // 2715: svg.PatternAttribute.pattern_href_attr:type_name -> svg.PatternHrefAttr
-	12,   // 2716: svg.PatternAttribute.core_attribute:type_name -> svg.CoreAttribute
-	22,   // 2717: svg.PatternAttribute.conditional_processing_attribute:type_name -> svg.ConditionalProcessingAttribute
-	25,   // 2718: svg.PatternAttribute.aria_attribute:type_name -> svg.AriaAttribute
-	917,  // 2719: svg.PatternAttribute.presentation_attribute:type_name -> svg.PresentationAttribute
-	83,   // 2720: svg.PatternAttribute.global_event_attribute:type_name -> svg.GlobalEventAttribute
-	145,  // 2721: svg.PatternAttribute.document_element_event_attribute:type_name -> svg.DocumentElementEventAttribute
-	149,  // 2722: svg.PatternAttribute.graphical_event_attribute:type_name -> svg.GraphicalEventAttribute
-	156,  // 2723: svg.PatternAttribute.xlink_attribute:type_name -> svg.XlinkAttribute
-	356,  // 2724: svg.PatternUnitsAttr.unit_type:type_name -> svg.UnitType
-	1476, // 2725: svg.PatternUnitsAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	356,  // 2726: svg.PatternContentUnitsAttr.unit_type:type_name -> svg.UnitType
-	1476, // 2727: svg.PatternContentUnitsAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	986,  // 2728: svg.PatternTransformAttr.transform_list:type_name -> svg.TransformList
-	1476, // 2729: svg.PatternTransformAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	333,  // 2730: svg.PatternXattr.length_type:type_name -> svg.LengthType
-	1476, // 2731: svg.PatternXattr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	333,  // 2732: svg.PatternYattr.length_type:type_name -> svg.LengthType
-	1476, // 2733: svg.PatternYattr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	334,  // 2734: svg.PatternWidthAttr.non_negative_length_type:type_name -> svg.NonNegativeLengthType
-	1476, // 2735: svg.PatternWidthAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	334,  // 2736: svg.PatternHeightAttr.non_negative_length_type:type_name -> svg.NonNegativeLengthType
-	1476, // 2737: svg.PatternHeightAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	360,  // 2738: svg.PatternViewBoxAttr.view_box:type_name -> svg.ViewBox
-	1476, // 2739: svg.PatternViewBoxAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	361,  // 2740: svg.PatternPreserveAspectRatioAttr.preserve_aspect_ratio:type_name -> svg.PreserveAspectRatio
-	1476, // 2741: svg.PatternPreserveAspectRatioAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	343,  // 2742: svg.PatternHrefAttr.iri_type:type_name -> svg.IriType
-	1476, // 2743: svg.PatternHrefAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1,    // 2744: svg.RectContent.animation_element:type_name -> svg.AnimationElement
-	2,    // 2745: svg.RectContent.descriptive_element:type_name -> svg.DescriptiveElement
-	5,    // 2746: svg.RectContent.paint_server_element:type_name -> svg.PaintServerElement
-	679,  // 2747: svg.RectContent.svgclip_path_element:type_name -> svg.SvgclipPathElement
-	733,  // 2748: svg.RectContent.svgmarker_element:type_name -> svg.SvgmarkerElement
-	684,  // 2749: svg.RectContent.svgmask_element:type_name -> svg.SvgmaskElement
-	388,  // 2750: svg.RectContent.svgscript_element:type_name -> svg.SvgscriptElement
-	396,  // 2751: svg.RectContent.svgstyle_element:type_name -> svg.SvgstyleElement
-	1,    // 2752: svg.CircleContent.animation_element:type_name -> svg.AnimationElement
-	2,    // 2753: svg.CircleContent.descriptive_element:type_name -> svg.DescriptiveElement
-	5,    // 2754: svg.CircleContent.paint_server_element:type_name -> svg.PaintServerElement
-	679,  // 2755: svg.CircleContent.svgclip_path_element:type_name -> svg.SvgclipPathElement
-	733,  // 2756: svg.CircleContent.svgmarker_element:type_name -> svg.SvgmarkerElement
-	684,  // 2757: svg.CircleContent.svgmask_element:type_name -> svg.SvgmaskElement
-	388,  // 2758: svg.CircleContent.svgscript_element:type_name -> svg.SvgscriptElement
-	396,  // 2759: svg.CircleContent.svgstyle_element:type_name -> svg.SvgstyleElement
-	1,    // 2760: svg.EllipseContent.animation_element:type_name -> svg.AnimationElement
-	2,    // 2761: svg.EllipseContent.descriptive_element:type_name -> svg.DescriptiveElement
-	5,    // 2762: svg.EllipseContent.paint_server_element:type_name -> svg.PaintServerElement
-	679,  // 2763: svg.EllipseContent.svgclip_path_element:type_name -> svg.SvgclipPathElement
-	733,  // 2764: svg.EllipseContent.svgmarker_element:type_name -> svg.SvgmarkerElement
-	684,  // 2765: svg.EllipseContent.svgmask_element:type_name -> svg.SvgmaskElement
-	388,  // 2766: svg.EllipseContent.svgscript_element:type_name -> svg.SvgscriptElement
-	396,  // 2767: svg.EllipseContent.svgstyle_element:type_name -> svg.SvgstyleElement
-	1,    // 2768: svg.LineContent.animation_element:type_name -> svg.AnimationElement
-	2,    // 2769: svg.LineContent.descriptive_element:type_name -> svg.DescriptiveElement
-	5,    // 2770: svg.LineContent.paint_server_element:type_name -> svg.PaintServerElement
-	679,  // 2771: svg.LineContent.svgclip_path_element:type_name -> svg.SvgclipPathElement
-	733,  // 2772: svg.LineContent.svgmarker_element:type_name -> svg.SvgmarkerElement
-	684,  // 2773: svg.LineContent.svgmask_element:type_name -> svg.SvgmaskElement
-	388,  // 2774: svg.LineContent.svgscript_element:type_name -> svg.SvgscriptElement
-	396,  // 2775: svg.LineContent.svgstyle_element:type_name -> svg.SvgstyleElement
-	1,    // 2776: svg.PolylineContent.animation_element:type_name -> svg.AnimationElement
-	2,    // 2777: svg.PolylineContent.descriptive_element:type_name -> svg.DescriptiveElement
-	5,    // 2778: svg.PolylineContent.paint_server_element:type_name -> svg.PaintServerElement
-	679,  // 2779: svg.PolylineContent.svgclip_path_element:type_name -> svg.SvgclipPathElement
-	733,  // 2780: svg.PolylineContent.svgmarker_element:type_name -> svg.SvgmarkerElement
-	684,  // 2781: svg.PolylineContent.svgmask_element:type_name -> svg.SvgmaskElement
-	388,  // 2782: svg.PolylineContent.svgscript_element:type_name -> svg.SvgscriptElement
-	396,  // 2783: svg.PolylineContent.svgstyle_element:type_name -> svg.SvgstyleElement
-	1,    // 2784: svg.PolygonContent.animation_element:type_name -> svg.AnimationElement
-	2,    // 2785: svg.PolygonContent.descriptive_element:type_name -> svg.DescriptiveElement
-	5,    // 2786: svg.PolygonContent.paint_server_element:type_name -> svg.PaintServerElement
-	679,  // 2787: svg.PolygonContent.svgclip_path_element:type_name -> svg.SvgclipPathElement
-	733,  // 2788: svg.PolygonContent.svgmarker_element:type_name -> svg.SvgmarkerElement
-	684,  // 2789: svg.PolygonContent.svgmask_element:type_name -> svg.SvgmaskElement
-	388,  // 2790: svg.PolygonContent.svgscript_element:type_name -> svg.SvgscriptElement
-	396,  // 2791: svg.PolygonContent.svgstyle_element:type_name -> svg.SvgstyleElement
-	1,    // 2792: svg.PathContent.animation_element:type_name -> svg.AnimationElement
-	2,    // 2793: svg.PathContent.descriptive_element:type_name -> svg.DescriptiveElement
-	5,    // 2794: svg.PathContent.paint_server_element:type_name -> svg.PaintServerElement
-	679,  // 2795: svg.PathContent.svgclip_path_element:type_name -> svg.SvgclipPathElement
-	733,  // 2796: svg.PathContent.svgmarker_element:type_name -> svg.SvgmarkerElement
-	684,  // 2797: svg.PathContent.svgmask_element:type_name -> svg.SvgmaskElement
-	388,  // 2798: svg.PathContent.svgscript_element:type_name -> svg.SvgscriptElement
-	396,  // 2799: svg.PathContent.svgstyle_element:type_name -> svg.SvgstyleElement
-	330,  // 2800: svg.PathLengthAttr.non_negative_number_type:type_name -> svg.NonNegativeNumberType
-	1476, // 2801: svg.PathLengthAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	840,  // 2802: svg.SvgrectElement.rect_attribute:type_name -> svg.RectAttribute
-	1192, // 2803: svg.SvgrectElement.greater_than_sign_keyword:type_name -> svg.GreaterThanSignKeyword
-	831,  // 2804: svg.SvgrectElement.rect_content:type_name -> svg.RectContent
-	1297, // 2805: svg.SvgrectElement.less_than_sign_solidus_rect_greater_than_sign_keyword:type_name -> svg.LessThanSignSolidusRectGreaterThanSignKeyword
-	841,  // 2806: svg.RectAttribute.rect_xattr:type_name -> svg.RectXattr
-	842,  // 2807: svg.RectAttribute.rect_yattr:type_name -> svg.RectYattr
-	843,  // 2808: svg.RectAttribute.rect_width_attr:type_name -> svg.RectWidthAttr
-	844,  // 2809: svg.RectAttribute.rect_height_attr:type_name -> svg.RectHeightAttr
-	845,  // 2810: svg.RectAttribute.rect_rx_attr:type_name -> svg.RectRxAttr
-	846,  // 2811: svg.RectAttribute.rect_ry_attr:type_name -> svg.RectRyAttr
-	838,  // 2812: svg.RectAttribute.path_length_attr:type_name -> svg.PathLengthAttr
-	12,   // 2813: svg.RectAttribute.core_attribute:type_name -> svg.CoreAttribute
-	22,   // 2814: svg.RectAttribute.conditional_processing_attribute:type_name -> svg.ConditionalProcessingAttribute
-	25,   // 2815: svg.RectAttribute.aria_attribute:type_name -> svg.AriaAttribute
-	917,  // 2816: svg.RectAttribute.presentation_attribute:type_name -> svg.PresentationAttribute
-	83,   // 2817: svg.RectAttribute.global_event_attribute:type_name -> svg.GlobalEventAttribute
-	145,  // 2818: svg.RectAttribute.document_element_event_attribute:type_name -> svg.DocumentElementEventAttribute
-	149,  // 2819: svg.RectAttribute.graphical_event_attribute:type_name -> svg.GraphicalEventAttribute
-	336,  // 2820: svg.RectXattr.length_percentage_type:type_name -> svg.LengthPercentageType
-	1476, // 2821: svg.RectXattr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	336,  // 2822: svg.RectYattr.length_percentage_type:type_name -> svg.LengthPercentageType
-	1476, // 2823: svg.RectYattr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	337,  // 2824: svg.RectWidthAttr.non_negative_length_percentage_type:type_name -> svg.NonNegativeLengthPercentageType
-	1476, // 2825: svg.RectWidthAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	337,  // 2826: svg.RectHeightAttr.non_negative_length_percentage_type:type_name -> svg.NonNegativeLengthPercentageType
-	1476, // 2827: svg.RectHeightAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1856, // 2828: svg.RectRxAttr.alt1:type_name -> svg.RectRxAttr.Alt1
-	1476, // 2829: svg.RectRxAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1857, // 2830: svg.RectRyAttr.alt1:type_name -> svg.RectRyAttr.Alt1
-	1476, // 2831: svg.RectRyAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	848,  // 2832: svg.SvgcircleElement.circle_attribute:type_name -> svg.CircleAttribute
-	1192, // 2833: svg.SvgcircleElement.greater_than_sign_keyword:type_name -> svg.GreaterThanSignKeyword
-	832,  // 2834: svg.SvgcircleElement.circle_content:type_name -> svg.CircleContent
-	1251, // 2835: svg.SvgcircleElement.less_than_sign_solidus_circle_greater_than_sign_keyword:type_name -> svg.LessThanSignSolidusCircleGreaterThanSignKeyword
-	849,  // 2836: svg.CircleAttribute.circle_cx_attr:type_name -> svg.CircleCxAttr
-	850,  // 2837: svg.CircleAttribute.circle_cy_attr:type_name -> svg.CircleCyAttr
-	851,  // 2838: svg.CircleAttribute.circle_rattr:type_name -> svg.CircleRattr
-	838,  // 2839: svg.CircleAttribute.path_length_attr:type_name -> svg.PathLengthAttr
-	12,   // 2840: svg.CircleAttribute.core_attribute:type_name -> svg.CoreAttribute
-	22,   // 2841: svg.CircleAttribute.conditional_processing_attribute:type_name -> svg.ConditionalProcessingAttribute
-	25,   // 2842: svg.CircleAttribute.aria_attribute:type_name -> svg.AriaAttribute
-	917,  // 2843: svg.CircleAttribute.presentation_attribute:type_name -> svg.PresentationAttribute
-	83,   // 2844: svg.CircleAttribute.global_event_attribute:type_name -> svg.GlobalEventAttribute
-	145,  // 2845: svg.CircleAttribute.document_element_event_attribute:type_name -> svg.DocumentElementEventAttribute
-	149,  // 2846: svg.CircleAttribute.graphical_event_attribute:type_name -> svg.GraphicalEventAttribute
-	336,  // 2847: svg.CircleCxAttr.length_percentage_type:type_name -> svg.LengthPercentageType
-	1476, // 2848: svg.CircleCxAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	336,  // 2849: svg.CircleCyAttr.length_percentage_type:type_name -> svg.LengthPercentageType
-	1476, // 2850: svg.CircleCyAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	337,  // 2851: svg.CircleRattr.non_negative_length_percentage_type:type_name -> svg.NonNegativeLengthPercentageType
-	1476, // 2852: svg.CircleRattr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	853,  // 2853: svg.SvgellipseElement.ellipse_attribute:type_name -> svg.EllipseAttribute
-	1192, // 2854: svg.SvgellipseElement.greater_than_sign_keyword:type_name -> svg.GreaterThanSignKeyword
-	833,  // 2855: svg.SvgellipseElement.ellipse_content:type_name -> svg.EllipseContent
-	1256, // 2856: svg.SvgellipseElement.less_than_sign_solidus_ellipse_greater_than_sign_keyword:type_name -> svg.LessThanSignSolidusEllipseGreaterThanSignKeyword
-	854,  // 2857: svg.EllipseAttribute.ellipse_cx_attr:type_name -> svg.EllipseCxAttr
-	855,  // 2858: svg.EllipseAttribute.ellipse_cy_attr:type_name -> svg.EllipseCyAttr
-	856,  // 2859: svg.EllipseAttribute.ellipse_rx_attr:type_name -> svg.EllipseRxAttr
-	857,  // 2860: svg.EllipseAttribute.ellipse_ry_attr:type_name -> svg.EllipseRyAttr
-	838,  // 2861: svg.EllipseAttribute.path_length_attr:type_name -> svg.PathLengthAttr
-	12,   // 2862: svg.EllipseAttribute.core_attribute:type_name -> svg.CoreAttribute
-	22,   // 2863: svg.EllipseAttribute.conditional_processing_attribute:type_name -> svg.ConditionalProcessingAttribute
-	25,   // 2864: svg.EllipseAttribute.aria_attribute:type_name -> svg.AriaAttribute
-	917,  // 2865: svg.EllipseAttribute.presentation_attribute:type_name -> svg.PresentationAttribute
-	83,   // 2866: svg.EllipseAttribute.global_event_attribute:type_name -> svg.GlobalEventAttribute
-	145,  // 2867: svg.EllipseAttribute.document_element_event_attribute:type_name -> svg.DocumentElementEventAttribute
-	149,  // 2868: svg.EllipseAttribute.graphical_event_attribute:type_name -> svg.GraphicalEventAttribute
-	336,  // 2869: svg.EllipseCxAttr.length_percentage_type:type_name -> svg.LengthPercentageType
-	1476, // 2870: svg.EllipseCxAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	336,  // 2871: svg.EllipseCyAttr.length_percentage_type:type_name -> svg.LengthPercentageType
-	1476, // 2872: svg.EllipseCyAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1858, // 2873: svg.EllipseRxAttr.alt1:type_name -> svg.EllipseRxAttr.Alt1
-	1476, // 2874: svg.EllipseRxAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1859, // 2875: svg.EllipseRyAttr.alt1:type_name -> svg.EllipseRyAttr.Alt1
-	1476, // 2876: svg.EllipseRyAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	859,  // 2877: svg.SvglineElement.line_attribute:type_name -> svg.LineAttribute
-	1192, // 2878: svg.SvglineElement.greater_than_sign_keyword:type_name -> svg.GreaterThanSignKeyword
-	834,  // 2879: svg.SvglineElement.line_content:type_name -> svg.LineContent
-	1286, // 2880: svg.SvglineElement.less_than_sign_solidus_line_greater_than_sign_keyword:type_name -> svg.LessThanSignSolidusLineGreaterThanSignKeyword
-	860,  // 2881: svg.LineAttribute.line_x1attr:type_name -> svg.LineX1attr
-	861,  // 2882: svg.LineAttribute.line_y1attr:type_name -> svg.LineY1attr
-	862,  // 2883: svg.LineAttribute.line_x2attr:type_name -> svg.LineX2attr
-	863,  // 2884: svg.LineAttribute.line_y2attr:type_name -> svg.LineY2attr
-	838,  // 2885: svg.LineAttribute.path_length_attr:type_name -> svg.PathLengthAttr
-	12,   // 2886: svg.LineAttribute.core_attribute:type_name -> svg.CoreAttribute
-	22,   // 2887: svg.LineAttribute.conditional_processing_attribute:type_name -> svg.ConditionalProcessingAttribute
-	25,   // 2888: svg.LineAttribute.aria_attribute:type_name -> svg.AriaAttribute
-	917,  // 2889: svg.LineAttribute.presentation_attribute:type_name -> svg.PresentationAttribute
-	83,   // 2890: svg.LineAttribute.global_event_attribute:type_name -> svg.GlobalEventAttribute
-	145,  // 2891: svg.LineAttribute.document_element_event_attribute:type_name -> svg.DocumentElementEventAttribute
-	149,  // 2892: svg.LineAttribute.graphical_event_attribute:type_name -> svg.GraphicalEventAttribute
-	1860, // 2893: svg.LineX1attr.alt1:type_name -> svg.LineX1attr.Alt1
-	1476, // 2894: svg.LineX1attr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1861, // 2895: svg.LineY1attr.alt1:type_name -> svg.LineY1attr.Alt1
-	1476, // 2896: svg.LineY1attr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1862, // 2897: svg.LineX2attr.alt1:type_name -> svg.LineX2attr.Alt1
-	1476, // 2898: svg.LineX2attr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1863, // 2899: svg.LineY2attr.alt1:type_name -> svg.LineY2attr.Alt1
-	1476, // 2900: svg.LineY2attr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	865,  // 2901: svg.SvgpolylineElement.polyline_attribute:type_name -> svg.PolylineAttribute
-	1192, // 2902: svg.SvgpolylineElement.greater_than_sign_keyword:type_name -> svg.GreaterThanSignKeyword
-	835,  // 2903: svg.SvgpolylineElement.polyline_content:type_name -> svg.PolylineContent
-	1295, // 2904: svg.SvgpolylineElement.less_than_sign_solidus_polyline_greater_than_sign_keyword:type_name -> svg.LessThanSignSolidusPolylineGreaterThanSignKeyword
-	866,  // 2905: svg.PolylineAttribute.polyline_points_attr:type_name -> svg.PolylinePointsAttr
-	838,  // 2906: svg.PolylineAttribute.path_length_attr:type_name -> svg.PathLengthAttr
-	12,   // 2907: svg.PolylineAttribute.core_attribute:type_name -> svg.CoreAttribute
-	22,   // 2908: svg.PolylineAttribute.conditional_processing_attribute:type_name -> svg.ConditionalProcessingAttribute
-	25,   // 2909: svg.PolylineAttribute.aria_attribute:type_name -> svg.AriaAttribute
-	917,  // 2910: svg.PolylineAttribute.presentation_attribute:type_name -> svg.PresentationAttribute
-	83,   // 2911: svg.PolylineAttribute.global_event_attribute:type_name -> svg.GlobalEventAttribute
-	145,  // 2912: svg.PolylineAttribute.document_element_event_attribute:type_name -> svg.DocumentElementEventAttribute
-	149,  // 2913: svg.PolylineAttribute.graphical_event_attribute:type_name -> svg.GraphicalEventAttribute
-	873,  // 2914: svg.PolylinePointsAttr.points:type_name -> svg.Points
-	1476, // 2915: svg.PolylinePointsAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	868,  // 2916: svg.SvgpolygonElement.polygon_attribute:type_name -> svg.PolygonAttribute
-	1192, // 2917: svg.SvgpolygonElement.greater_than_sign_keyword:type_name -> svg.GreaterThanSignKeyword
-	836,  // 2918: svg.SvgpolygonElement.polygon_content:type_name -> svg.PolygonContent
-	1294, // 2919: svg.SvgpolygonElement.less_than_sign_solidus_polygon_greater_than_sign_keyword:type_name -> svg.LessThanSignSolidusPolygonGreaterThanSignKeyword
-	869,  // 2920: svg.PolygonAttribute.polygon_points_attr:type_name -> svg.PolygonPointsAttr
-	838,  // 2921: svg.PolygonAttribute.path_length_attr:type_name -> svg.PathLengthAttr
-	12,   // 2922: svg.PolygonAttribute.core_attribute:type_name -> svg.CoreAttribute
-	22,   // 2923: svg.PolygonAttribute.conditional_processing_attribute:type_name -> svg.ConditionalProcessingAttribute
-	25,   // 2924: svg.PolygonAttribute.aria_attribute:type_name -> svg.AriaAttribute
-	917,  // 2925: svg.PolygonAttribute.presentation_attribute:type_name -> svg.PresentationAttribute
-	83,   // 2926: svg.PolygonAttribute.global_event_attribute:type_name -> svg.GlobalEventAttribute
-	145,  // 2927: svg.PolygonAttribute.document_element_event_attribute:type_name -> svg.DocumentElementEventAttribute
-	149,  // 2928: svg.PolygonAttribute.graphical_event_attribute:type_name -> svg.GraphicalEventAttribute
-	873,  // 2929: svg.PolygonPointsAttr.points:type_name -> svg.Points
-	1476, // 2930: svg.PolygonPointsAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	871,  // 2931: svg.SvgpathElement.path_attribute:type_name -> svg.PathAttribute
-	1192, // 2932: svg.SvgpathElement.greater_than_sign_keyword:type_name -> svg.GreaterThanSignKeyword
-	837,  // 2933: svg.SvgpathElement.path_content:type_name -> svg.PathContent
-	1292, // 2934: svg.SvgpathElement.less_than_sign_solidus_path_greater_than_sign_keyword:type_name -> svg.LessThanSignSolidusPathGreaterThanSignKeyword
-	872,  // 2935: svg.PathAttribute.path_dattr:type_name -> svg.PathDattr
-	838,  // 2936: svg.PathAttribute.path_length_attr:type_name -> svg.PathLengthAttr
-	12,   // 2937: svg.PathAttribute.core_attribute:type_name -> svg.CoreAttribute
-	22,   // 2938: svg.PathAttribute.conditional_processing_attribute:type_name -> svg.ConditionalProcessingAttribute
-	25,   // 2939: svg.PathAttribute.aria_attribute:type_name -> svg.AriaAttribute
-	917,  // 2940: svg.PathAttribute.presentation_attribute:type_name -> svg.PresentationAttribute
-	83,   // 2941: svg.PathAttribute.global_event_attribute:type_name -> svg.GlobalEventAttribute
-	145,  // 2942: svg.PathAttribute.document_element_event_attribute:type_name -> svg.DocumentElementEventAttribute
-	149,  // 2943: svg.PathAttribute.graphical_event_attribute:type_name -> svg.GraphicalEventAttribute
-	1864, // 2944: svg.PathDattr.alt1:type_name -> svg.PathDattr.Alt1
-	1476, // 2945: svg.PathDattr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	874,  // 2946: svg.Points.points_coordinate_pair:type_name -> svg.PointsCoordinatePair
-	874,  // 2947: svg.Points.points_coordinate_pair_2:type_name -> svg.PointsCoordinatePair
-	329,  // 2948: svg.PointsCoordinatePair.number_type:type_name -> svg.NumberType
-	329,  // 2949: svg.PointsCoordinatePair.number_type_2:type_name -> svg.NumberType
-	876,  // 2950: svg.SvgsymbolElement.symbol_attribute:type_name -> svg.SymbolAttribute
-	1192, // 2951: svg.SvgsymbolElement.greater_than_sign_keyword:type_name -> svg.GreaterThanSignKeyword
-	11,   // 2952: svg.SvgsymbolElement.container_content:type_name -> svg.ContainerContent
-	1304, // 2953: svg.SvgsymbolElement.less_than_sign_solidus_symbol_greater_than_sign_keyword:type_name -> svg.LessThanSignSolidusSymbolGreaterThanSignKeyword
-	877,  // 2954: svg.SymbolAttribute.symbol_view_box_attr:type_name -> svg.SymbolViewBoxAttr
-	878,  // 2955: svg.SymbolAttribute.symbol_preserve_aspect_ratio_attr:type_name -> svg.SymbolPreserveAspectRatioAttr
-	879,  // 2956: svg.SymbolAttribute.symbol_ref_xattr:type_name -> svg.SymbolRefXattr
-	880,  // 2957: svg.SymbolAttribute.symbol_ref_yattr:type_name -> svg.SymbolRefYattr
-	881,  // 2958: svg.SymbolAttribute.symbol_xattr:type_name -> svg.SymbolXattr
-	882,  // 2959: svg.SymbolAttribute.symbol_yattr:type_name -> svg.SymbolYattr
-	883,  // 2960: svg.SymbolAttribute.symbol_width_attr:type_name -> svg.SymbolWidthAttr
-	884,  // 2961: svg.SymbolAttribute.symbol_height_attr:type_name -> svg.SymbolHeightAttr
-	12,   // 2962: svg.SymbolAttribute.core_attribute:type_name -> svg.CoreAttribute
-	22,   // 2963: svg.SymbolAttribute.conditional_processing_attribute:type_name -> svg.ConditionalProcessingAttribute
-	25,   // 2964: svg.SymbolAttribute.aria_attribute:type_name -> svg.AriaAttribute
-	917,  // 2965: svg.SymbolAttribute.presentation_attribute:type_name -> svg.PresentationAttribute
-	83,   // 2966: svg.SymbolAttribute.global_event_attribute:type_name -> svg.GlobalEventAttribute
-	145,  // 2967: svg.SymbolAttribute.document_element_event_attribute:type_name -> svg.DocumentElementEventAttribute
-	149,  // 2968: svg.SymbolAttribute.graphical_event_attribute:type_name -> svg.GraphicalEventAttribute
-	360,  // 2969: svg.SymbolViewBoxAttr.view_box:type_name -> svg.ViewBox
-	1476, // 2970: svg.SymbolViewBoxAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	361,  // 2971: svg.SymbolPreserveAspectRatioAttr.preserve_aspect_ratio:type_name -> svg.PreserveAspectRatio
-	1476, // 2972: svg.SymbolPreserveAspectRatioAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1865, // 2973: svg.SymbolRefXattr.alt1:type_name -> svg.SymbolRefXattr.Alt1
-	1476, // 2974: svg.SymbolRefXattr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1866, // 2975: svg.SymbolRefYattr.alt1:type_name -> svg.SymbolRefYattr.Alt1
-	1476, // 2976: svg.SymbolRefYattr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	336,  // 2977: svg.SymbolXattr.length_percentage_type:type_name -> svg.LengthPercentageType
-	1476, // 2978: svg.SymbolXattr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	336,  // 2979: svg.SymbolYattr.length_percentage_type:type_name -> svg.LengthPercentageType
-	1476, // 2980: svg.SymbolYattr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1867, // 2981: svg.SymbolWidthAttr.alt1:type_name -> svg.SymbolWidthAttr.Alt1
-	1476, // 2982: svg.SymbolWidthAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1868, // 2983: svg.SymbolHeightAttr.alt1:type_name -> svg.SymbolHeightAttr.Alt1
-	1476, // 2984: svg.SymbolHeightAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	886,  // 2985: svg.SvguseElement.use_attribute:type_name -> svg.UseAttribute
-	1192, // 2986: svg.SvguseElement.greater_than_sign_keyword:type_name -> svg.GreaterThanSignKeyword
-	892,  // 2987: svg.SvguseElement.use_content:type_name -> svg.UseContent
-	1309, // 2988: svg.SvguseElement.less_than_sign_solidus_use_greater_than_sign_keyword:type_name -> svg.LessThanSignSolidusUseGreaterThanSignKeyword
-	887,  // 2989: svg.UseAttribute.use_href_attr:type_name -> svg.UseHrefAttr
-	888,  // 2990: svg.UseAttribute.use_xattr:type_name -> svg.UseXattr
-	889,  // 2991: svg.UseAttribute.use_yattr:type_name -> svg.UseYattr
-	890,  // 2992: svg.UseAttribute.use_width_attr:type_name -> svg.UseWidthAttr
-	891,  // 2993: svg.UseAttribute.use_height_attr:type_name -> svg.UseHeightAttr
-	12,   // 2994: svg.UseAttribute.core_attribute:type_name -> svg.CoreAttribute
-	22,   // 2995: svg.UseAttribute.conditional_processing_attribute:type_name -> svg.ConditionalProcessingAttribute
-	25,   // 2996: svg.UseAttribute.aria_attribute:type_name -> svg.AriaAttribute
-	917,  // 2997: svg.UseAttribute.presentation_attribute:type_name -> svg.PresentationAttribute
-	83,   // 2998: svg.UseAttribute.global_event_attribute:type_name -> svg.GlobalEventAttribute
-	145,  // 2999: svg.UseAttribute.document_element_event_attribute:type_name -> svg.DocumentElementEventAttribute
-	149,  // 3000: svg.UseAttribute.graphical_event_attribute:type_name -> svg.GraphicalEventAttribute
-	156,  // 3001: svg.UseAttribute.xlink_attribute:type_name -> svg.XlinkAttribute
-	343,  // 3002: svg.UseHrefAttr.iri_type:type_name -> svg.IriType
-	1476, // 3003: svg.UseHrefAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	336,  // 3004: svg.UseXattr.length_percentage_type:type_name -> svg.LengthPercentageType
-	1476, // 3005: svg.UseXattr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	336,  // 3006: svg.UseYattr.length_percentage_type:type_name -> svg.LengthPercentageType
-	1476, // 3007: svg.UseYattr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1869, // 3008: svg.UseWidthAttr.alt1:type_name -> svg.UseWidthAttr.Alt1
-	1476, // 3009: svg.UseWidthAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1870, // 3010: svg.UseHeightAttr.alt1:type_name -> svg.UseHeightAttr.Alt1
-	1476, // 3011: svg.UseHeightAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1,    // 3012: svg.UseContent.animation_element:type_name -> svg.AnimationElement
-	2,    // 3013: svg.UseContent.descriptive_element:type_name -> svg.DescriptiveElement
-	679,  // 3014: svg.UseContent.svgclip_path_element:type_name -> svg.SvgclipPathElement
-	684,  // 3015: svg.UseContent.svgmask_element:type_name -> svg.SvgmaskElement
-	388,  // 3016: svg.UseContent.svgscript_element:type_name -> svg.SvgscriptElement
-	396,  // 3017: svg.UseContent.svgstyle_element:type_name -> svg.SvgstyleElement
-	894,  // 3018: svg.SvgdescElement.desc_attribute:type_name -> svg.DescAttribute
-	1192, // 3019: svg.SvgdescElement.greater_than_sign_keyword:type_name -> svg.GreaterThanSignKeyword
-	895,  // 3020: svg.SvgdescElement.desc_content:type_name -> svg.DescContent
-	1254, // 3021: svg.SvgdescElement.less_than_sign_solidus_desc_greater_than_sign_keyword:type_name -> svg.LessThanSignSolidusDescGreaterThanSignKeyword
-	12,   // 3022: svg.DescAttribute.core_attribute:type_name -> svg.CoreAttribute
-	83,   // 3023: svg.DescAttribute.global_event_attribute:type_name -> svg.GlobalEventAttribute
-	145,  // 3024: svg.DescAttribute.document_element_event_attribute:type_name -> svg.DocumentElementEventAttribute
-	354,  // 3025: svg.DescContent.character_data_type:type_name -> svg.CharacterDataType
-	11,   // 3026: svg.DescContent.container_content:type_name -> svg.ContainerContent
-	897,  // 3027: svg.SvgtitleElement.title_attribute:type_name -> svg.TitleAttribute
-	1192, // 3028: svg.SvgtitleElement.greater_than_sign_keyword:type_name -> svg.GreaterThanSignKeyword
-	898,  // 3029: svg.SvgtitleElement.title_content:type_name -> svg.TitleContent
-	1307, // 3030: svg.SvgtitleElement.less_than_sign_solidus_title_greater_than_sign_keyword:type_name -> svg.LessThanSignSolidusTitleGreaterThanSignKeyword
-	12,   // 3031: svg.TitleAttribute.core_attribute:type_name -> svg.CoreAttribute
-	83,   // 3032: svg.TitleAttribute.global_event_attribute:type_name -> svg.GlobalEventAttribute
-	145,  // 3033: svg.TitleAttribute.document_element_event_attribute:type_name -> svg.DocumentElementEventAttribute
-	354,  // 3034: svg.TitleContent.character_data_type:type_name -> svg.CharacterDataType
-	11,   // 3035: svg.TitleContent.container_content:type_name -> svg.ContainerContent
-	900,  // 3036: svg.SvgmetadataElement.metadata_attribute:type_name -> svg.MetadataAttribute
-	1192, // 3037: svg.SvgmetadataElement.greater_than_sign_keyword:type_name -> svg.GreaterThanSignKeyword
-	901,  // 3038: svg.SvgmetadataElement.metadata_content:type_name -> svg.MetadataContent
-	1290, // 3039: svg.SvgmetadataElement.less_than_sign_solidus_metadata_greater_than_sign_keyword:type_name -> svg.LessThanSignSolidusMetadataGreaterThanSignKeyword
-	12,   // 3040: svg.MetadataAttribute.core_attribute:type_name -> svg.CoreAttribute
-	83,   // 3041: svg.MetadataAttribute.global_event_attribute:type_name -> svg.GlobalEventAttribute
-	145,  // 3042: svg.MetadataAttribute.document_element_event_attribute:type_name -> svg.DocumentElementEventAttribute
-	354,  // 3043: svg.MetadataContent.character_data_type:type_name -> svg.CharacterDataType
-	11,   // 3044: svg.MetadataContent.container_content:type_name -> svg.ContainerContent
-	903,  // 3045: svg.DisplayAttr.display_value:type_name -> svg.DisplayValue
-	1476, // 3046: svg.DisplayAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1410, // 3047: svg.DisplayValue.none_keyword:type_name -> svg.NoneKeyword
-	1227, // 3048: svg.DisplayValue.inline_keyword:type_name -> svg.InlineKeyword
-	1040, // 3049: svg.DisplayValue.block_keyword:type_name -> svg.BlockKeyword
-	1510, // 3050: svg.DisplayValue.run_hyphen_minus_in_keyword:type_name -> svg.RunHyphenMinusInKeyword
-	1171, // 3051: svg.DisplayValue.flow_keyword:type_name -> svg.FlowKeyword
-	1170, // 3052: svg.DisplayValue.flow_hyphen_minus_root_keyword:type_name -> svg.FlowHyphenMinusRootKeyword
-	1599, // 3053: svg.DisplayValue.table_keyword:type_name -> svg.TableKeyword
-	1168, // 3054: svg.DisplayValue.flex_keyword:type_name -> svg.FlexKeyword
-	1196, // 3055: svg.DisplayValue.grid_keyword:type_name -> svg.GridKeyword
-	1509, // 3056: svg.DisplayValue.ruby_keyword:type_name -> svg.RubyKeyword
-	1336, // 3057: svg.DisplayValue.list_hyphen_minus_item_keyword:type_name -> svg.ListHyphenMinusItemKeyword
-	1223, // 3058: svg.DisplayValue.inline_hyphen_minus_block_keyword:type_name -> svg.InlineHyphenMinusBlockKeyword
-	1226, // 3059: svg.DisplayValue.inline_hyphen_minus_table_keyword:type_name -> svg.InlineHyphenMinusTableKeyword
-	1224, // 3060: svg.DisplayValue.inline_hyphen_minus_flex_keyword:type_name -> svg.InlineHyphenMinusFlexKeyword
-	1225, // 3061: svg.DisplayValue.inline_hyphen_minus_grid_keyword:type_name -> svg.InlineHyphenMinusGridKeyword
-	1597, // 3062: svg.DisplayValue.table_hyphen_minus_row_hyphen_minus_group_keyword:type_name -> svg.TableHyphenMinusRowHyphenMinusGroupKeyword
-	1596, // 3063: svg.DisplayValue.table_hyphen_minus_header_hyphen_minus_group_keyword:type_name -> svg.TableHyphenMinusHeaderHyphenMinusGroupKeyword
-	1595, // 3064: svg.DisplayValue.table_hyphen_minus_footer_hyphen_minus_group_keyword:type_name -> svg.TableHyphenMinusFooterHyphenMinusGroupKeyword
-	1598, // 3065: svg.DisplayValue.table_hyphen_minus_row_keyword:type_name -> svg.TableHyphenMinusRowKeyword
-	1592, // 3066: svg.DisplayValue.table_hyphen_minus_cell_keyword:type_name -> svg.TableHyphenMinusCellKeyword
-	1593, // 3067: svg.DisplayValue.table_hyphen_minus_column_hyphen_minus_group_keyword:type_name -> svg.TableHyphenMinusColumnHyphenMinusGroupKeyword
-	1594, // 3068: svg.DisplayValue.table_hyphen_minus_column_keyword:type_name -> svg.TableHyphenMinusColumnKeyword
-	1591, // 3069: svg.DisplayValue.table_hyphen_minus_caption_keyword:type_name -> svg.TableHyphenMinusCaptionKeyword
-	1506, // 3070: svg.DisplayValue.ruby_hyphen_minus_base_keyword:type_name -> svg.RubyHyphenMinusBaseKeyword
-	1508, // 3071: svg.DisplayValue.ruby_hyphen_minus_text_keyword:type_name -> svg.RubyHyphenMinusTextKeyword
-	1505, // 3072: svg.DisplayValue.ruby_hyphen_minus_base_hyphen_minus_container_keyword:type_name -> svg.RubyHyphenMinusBaseHyphenMinusContainerKeyword
-	1507, // 3073: svg.DisplayValue.ruby_hyphen_minus_text_hyphen_minus_container_keyword:type_name -> svg.RubyHyphenMinusTextHyphenMinusContainerKeyword
-	1083, // 3074: svg.DisplayValue.contents_keyword:type_name -> svg.ContentsKeyword
-	1221, // 3075: svg.DisplayValue.inherit_keyword:type_name -> svg.InheritKeyword
-	1222, // 3076: svg.DisplayValue.initial_keyword:type_name -> svg.InitialKeyword
-	1634, // 3077: svg.DisplayValue.unset_keyword:type_name -> svg.UnsetKeyword
-	1491, // 3078: svg.DisplayValue.revert_keyword:type_name -> svg.RevertKeyword
-	1871, // 3079: svg.VisibilityAttr.alt1:type_name -> svg.VisibilityAttr.Alt1
-	1476, // 3080: svg.VisibilityAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1872, // 3081: svg.OverflowAttr.alt1:type_name -> svg.OverflowAttr.Alt1
-	1476, // 3082: svg.OverflowAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	355,  // 3083: svg.OpacityAttr.alpha_value:type_name -> svg.AlphaValue
-	1476, // 3084: svg.OpacityAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	908,  // 3085: svg.CursorAttr.cursor_value:type_name -> svg.CursorValue
-	1476, // 3086: svg.CursorAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1024, // 3087: svg.CursorValue.auto_keyword:type_name -> svg.AutoKeyword
-	1123, // 3088: svg.CursorValue.default_keyword:type_name -> svg.DefaultKeyword
-	1410, // 3089: svg.CursorValue.none_keyword:type_name -> svg.NoneKeyword
-	1085, // 3090: svg.CursorValue.context_hyphen_minus_menu_keyword:type_name -> svg.ContextHyphenMinusMenuKeyword
-	1203, // 3091: svg.CursorValue.help_keyword:type_name -> svg.HelpKeyword
-	1461, // 3092: svg.CursorValue.pointer_keyword:type_name -> svg.PointerKeyword
-	1470, // 3093: svg.CursorValue.progress_keyword:type_name -> svg.ProgressKeyword
-	1649, // 3094: svg.CursorValue.wait_keyword:type_name -> svg.WaitKeyword
-	1058, // 3095: svg.CursorValue.cell_keyword:type_name -> svg.CellKeyword
-	1096, // 3096: svg.CursorValue.crosshair_keyword:type_name -> svg.CrosshairKeyword
-	1610, // 3097: svg.CursorValue.text_keyword:type_name -> svg.TextKeyword
-	1640, // 3098: svg.CursorValue.vertical_hyphen_minus_text_keyword:type_name -> svg.VerticalHyphenMinusTextKeyword
-	999,  // 3099: svg.CursorValue.alias_keyword:type_name -> svg.AliasKeyword
-	1088, // 3100: svg.CursorValue.copy_keyword:type_name -> svg.CopyKeyword
-	1387, // 3101: svg.CursorValue.move_keyword:type_name -> svg.MoveKeyword
-	1401, // 3102: svg.CursorValue.no_hyphen_minus_drop_keyword:type_name -> svg.NoHyphenMinusDropKeyword
-	1413, // 3103: svg.CursorValue.not_hyphen_minus_allowed_keyword:type_name -> svg.NotHyphenMinusAllowedKeyword
-	1188, // 3104: svg.CursorValue.grab_keyword:type_name -> svg.GrabKeyword
-	1189, // 3105: svg.CursorValue.grabbing_keyword:type_name -> svg.GrabbingKeyword
-	1144, // 3106: svg.CursorValue.e_hyphen_minus_resize_keyword:type_name -> svg.EHyphenMinusResizeKeyword
-	1390, // 3107: svg.CursorValue.n_hyphen_minus_resize_keyword:type_name -> svg.NHyphenMinusResizeKeyword
-	1394, // 3108: svg.CursorValue.ne_hyphen_minus_resize_keyword:type_name -> svg.NeHyphenMinusResizeKeyword
-	1417, // 3109: svg.CursorValue.nw_hyphen_minus_resize_keyword:type_name -> svg.NwHyphenMinusResizeKeyword
-	1511, // 3110: svg.CursorValue.s_hyphen_minus_resize_keyword:type_name -> svg.SHyphenMinusResizeKeyword
-	1524, // 3111: svg.CursorValue.se_hyphen_minus_resize_keyword:type_name -> svg.SeHyphenMinusResizeKeyword
-	1585, // 3112: svg.CursorValue.sw_hyphen_minus_resize_keyword:type_name -> svg.SwHyphenMinusResizeKeyword
-	1648, // 3113: svg.CursorValue.w_hyphen_minus_resize_keyword:type_name -> svg.WHyphenMinusResizeKeyword
-	1151, // 3114: svg.CursorValue.ew_hyphen_minus_resize_keyword:type_name -> svg.EwHyphenMinusResizeKeyword
-	1416, // 3115: svg.CursorValue.ns_hyphen_minus_resize_keyword:type_name -> svg.NsHyphenMinusResizeKeyword
-	1395, // 3116: svg.CursorValue.nesw_hyphen_minus_resize_keyword:type_name -> svg.NeswHyphenMinusResizeKeyword
-	1418, // 3117: svg.CursorValue.nwse_hyphen_minus_resize_keyword:type_name -> svg.NwseHyphenMinusResizeKeyword
-	1068, // 3118: svg.CursorValue.col_hyphen_minus_resize_keyword:type_name -> svg.ColHyphenMinusResizeKeyword
-	1499, // 3119: svg.CursorValue.row_hyphen_minus_resize_keyword:type_name -> svg.RowHyphenMinusResizeKeyword
-	1003, // 3120: svg.CursorValue.all_hyphen_minus_scroll_keyword:type_name -> svg.AllHyphenMinusScrollKeyword
-	1674, // 3121: svg.CursorValue.zoom_hyphen_minus_in_keyword:type_name -> svg.ZoomHyphenMinusInKeyword
-	1675, // 3122: svg.CursorValue.zoom_hyphen_minus_out_keyword:type_name -> svg.ZoomHyphenMinusOutKeyword
-	1221, // 3123: svg.CursorValue.inherit_keyword:type_name -> svg.InheritKeyword
-	986,  // 3124: svg.TransformAttr.transform_list:type_name -> svg.TransformList
-	1476, // 3125: svg.TransformAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	911,  // 3126: svg.TransformOriginAttr.transform_origin_value:type_name -> svg.TransformOriginValue
-	1476, // 3127: svg.TransformOriginAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	912,  // 3128: svg.TransformOriginValue.transform_origin_keyword:type_name -> svg.TransformOriginKeyword
-	913,  // 3129: svg.TransformOriginValue.transform_origin_position:type_name -> svg.TransformOriginPosition
-	1221, // 3130: svg.TransformOriginKeyword.inherit_keyword:type_name -> svg.InheritKeyword
-	1222, // 3131: svg.TransformOriginKeyword.initial_keyword:type_name -> svg.InitialKeyword
-	1634, // 3132: svg.TransformOriginKeyword.unset_keyword:type_name -> svg.UnsetKeyword
-	914,  // 3133: svg.TransformOriginPosition.transform_origin_x:type_name -> svg.TransformOriginX
-	1873, // 3134: svg.TransformOriginPosition.seq1:type_name -> svg.TransformOriginPosition.Seq1
-	1245, // 3135: svg.TransformOriginX.left_keyword:type_name -> svg.LeftKeyword
-	1059, // 3136: svg.TransformOriginX.center_keyword:type_name -> svg.CenterKeyword
-	1492, // 3137: svg.TransformOriginX.right_keyword:type_name -> svg.RightKeyword
-	336,  // 3138: svg.TransformOriginX.length_percentage_type:type_name -> svg.LengthPercentageType
-	1619, // 3139: svg.TransformOriginY.top_keyword:type_name -> svg.TopKeyword
-	1059, // 3140: svg.TransformOriginY.center_keyword:type_name -> svg.CenterKeyword
-	1048, // 3141: svg.TransformOriginY.bottom_keyword:type_name -> svg.BottomKeyword
-	336,  // 3142: svg.TransformOriginY.length_percentage_type:type_name -> svg.LengthPercentageType
-	333,  // 3143: svg.TransformOriginZ.length_type:type_name -> svg.LengthType
-	743,  // 3144: svg.PresentationAttribute.fill_attr:type_name -> svg.FillAttr
-	744,  // 3145: svg.PresentationAttribute.fill_rule_attr:type_name -> svg.FillRuleAttr
-	745,  // 3146: svg.PresentationAttribute.fill_opacity_attr:type_name -> svg.FillOpacityAttr
-	746,  // 3147: svg.PresentationAttribute.stroke_attr:type_name -> svg.StrokeAttr
-	747,  // 3148: svg.PresentationAttribute.stroke_opacity_attr:type_name -> svg.StrokeOpacityAttr
-	748,  // 3149: svg.PresentationAttribute.stroke_width_attr:type_name -> svg.StrokeWidthAttr
-	749,  // 3150: svg.PresentationAttribute.stroke_linecap_attr:type_name -> svg.StrokeLinecapAttr
-	750,  // 3151: svg.PresentationAttribute.stroke_linejoin_attr:type_name -> svg.StrokeLinejoinAttr
-	751,  // 3152: svg.PresentationAttribute.stroke_miterlimit_attr:type_name -> svg.StrokeMiterlimitAttr
-	752,  // 3153: svg.PresentationAttribute.stroke_dasharray_attr:type_name -> svg.StrokeDasharrayAttr
-	753,  // 3154: svg.PresentationAttribute.stroke_dashoffset_attr:type_name -> svg.StrokeDashoffsetAttr
-	754,  // 3155: svg.PresentationAttribute.paint_order_attr:type_name -> svg.PaintOrderAttr
-	757,  // 3156: svg.PresentationAttribute.marker_attr:type_name -> svg.MarkerAttr
-	758,  // 3157: svg.PresentationAttribute.marker_start_attr:type_name -> svg.MarkerStartAttr
-	759,  // 3158: svg.PresentationAttribute.marker_mid_attr:type_name -> svg.MarkerMidAttr
-	760,  // 3159: svg.PresentationAttribute.marker_end_attr:type_name -> svg.MarkerEndAttr
-	761,  // 3160: svg.PresentationAttribute.color_attr:type_name -> svg.ColorAttr
-	762,  // 3161: svg.PresentationAttribute.color_interpolation_attr:type_name -> svg.ColorInterpolationAttr
-	763,  // 3162: svg.PresentationAttribute.color_rendering_attr:type_name -> svg.ColorRenderingAttr
-	764,  // 3163: svg.PresentationAttribute.shape_rendering_attr:type_name -> svg.ShapeRenderingAttr
-	765,  // 3164: svg.PresentationAttribute.vector_effect_attr:type_name -> svg.VectorEffectAttr
-	659,  // 3165: svg.PresentationAttribute.filter_attr:type_name -> svg.FilterAttr
-	674,  // 3166: svg.PresentationAttribute.color_interpolation_filters_attr:type_name -> svg.ColorInterpolationFiltersAttr
-	675,  // 3167: svg.PresentationAttribute.flood_color_attr:type_name -> svg.FloodColorAttr
-	676,  // 3168: svg.PresentationAttribute.flood_opacity_attr:type_name -> svg.FloodOpacityAttr
-	677,  // 3169: svg.PresentationAttribute.lighting_color_attr:type_name -> svg.LightingColorAttr
-	678,  // 3170: svg.PresentationAttribute.image_rendering_attr:type_name -> svg.ImageRenderingAttr
-	694,  // 3171: svg.PresentationAttribute.clip_path_attr:type_name -> svg.ClipPathAttr
-	712,  // 3172: svg.PresentationAttribute.clip_rule_attr:type_name -> svg.ClipRuleAttr
-	713,  // 3173: svg.PresentationAttribute.clip_attr:type_name -> svg.ClipAttr
-	716,  // 3174: svg.PresentationAttribute.mask_attr:type_name -> svg.MaskAttr
-	951,  // 3175: svg.PresentationAttribute.text_anchor_attr:type_name -> svg.TextAnchorAttr
-	952,  // 3176: svg.PresentationAttribute.dominant_baseline_attr:type_name -> svg.DominantBaselineAttr
-	953,  // 3177: svg.PresentationAttribute.alignment_baseline_attr:type_name -> svg.AlignmentBaselineAttr
-	954,  // 3178: svg.PresentationAttribute.baseline_shift_attr:type_name -> svg.BaselineShiftAttr
-	955,  // 3179: svg.PresentationAttribute.direction_attr:type_name -> svg.DirectionAttr
-	956,  // 3180: svg.PresentationAttribute.unicode_bidi_attr:type_name -> svg.UnicodeBidiAttr
-	957,  // 3181: svg.PresentationAttribute.writing_mode_attr:type_name -> svg.WritingModeAttr
-	958,  // 3182: svg.PresentationAttribute.letter_spacing_attr:type_name -> svg.LetterSpacingAttr
-	959,  // 3183: svg.PresentationAttribute.word_spacing_attr:type_name -> svg.WordSpacingAttr
-	960,  // 3184: svg.PresentationAttribute.text_decoration_attr:type_name -> svg.TextDecorationAttr
-	964,  // 3185: svg.PresentationAttribute.text_overflow_attr:type_name -> svg.TextOverflowAttr
-	965,  // 3186: svg.PresentationAttribute.text_rendering_attr:type_name -> svg.TextRenderingAttr
-	966,  // 3187: svg.PresentationAttribute.white_space_attr:type_name -> svg.WhiteSpaceAttr
-	967,  // 3188: svg.PresentationAttribute.font_family_attr:type_name -> svg.FontFamilyAttr
-	968,  // 3189: svg.PresentationAttribute.font_size_attr:type_name -> svg.FontSizeAttr
-	972,  // 3190: svg.PresentationAttribute.font_size_adjust_attr:type_name -> svg.FontSizeAdjustAttr
-	973,  // 3191: svg.PresentationAttribute.font_style_attr:type_name -> svg.FontStyleAttr
-	975,  // 3192: svg.PresentationAttribute.font_variant_attr:type_name -> svg.FontVariantAttr
-	982,  // 3193: svg.PresentationAttribute.font_weight_attr:type_name -> svg.FontWeightAttr
-	983,  // 3194: svg.PresentationAttribute.font_stretch_attr:type_name -> svg.FontStretchAttr
-	984,  // 3195: svg.PresentationAttribute.inline_size_attr:type_name -> svg.InlineSizeAttr
-	985,  // 3196: svg.PresentationAttribute.glyph_orientation_vertical_attr:type_name -> svg.GlyphOrientationVerticalAttr
-	401,  // 3197: svg.PresentationAttribute.pointer_events_attr:type_name -> svg.PointerEventsAttr
-	817,  // 3198: svg.PresentationAttribute.stop_color_attr:type_name -> svg.StopColorAttr
-	818,  // 3199: svg.PresentationAttribute.stop_opacity_attr:type_name -> svg.StopOpacityAttr
-	902,  // 3200: svg.PresentationAttribute.display_attr:type_name -> svg.DisplayAttr
-	904,  // 3201: svg.PresentationAttribute.visibility_attr:type_name -> svg.VisibilityAttr
-	905,  // 3202: svg.PresentationAttribute.overflow_attr:type_name -> svg.OverflowAttr
-	906,  // 3203: svg.PresentationAttribute.opacity_attr:type_name -> svg.OpacityAttr
-	907,  // 3204: svg.PresentationAttribute.cursor_attr:type_name -> svg.CursorAttr
-	909,  // 3205: svg.PresentationAttribute.transform_attr:type_name -> svg.TransformAttr
-	910,  // 3206: svg.PresentationAttribute.transform_origin_attr:type_name -> svg.TransformOriginAttr
-	919,  // 3207: svg.SvgtextElement.text_attribute:type_name -> svg.TextAttribute
-	1192, // 3208: svg.SvgtextElement.greater_than_sign_keyword:type_name -> svg.GreaterThanSignKeyword
-	929,  // 3209: svg.SvgtextElement.text_content:type_name -> svg.TextContent
-	1305, // 3210: svg.SvgtextElement.less_than_sign_solidus_text_greater_than_sign_keyword:type_name -> svg.LessThanSignSolidusTextGreaterThanSignKeyword
-	920,  // 3211: svg.TextAttribute.text_xattr:type_name -> svg.TextXattr
-	921,  // 3212: svg.TextAttribute.text_yattr:type_name -> svg.TextYattr
-	922,  // 3213: svg.TextAttribute.text_dx_attr:type_name -> svg.TextDxAttr
-	923,  // 3214: svg.TextAttribute.text_dy_attr:type_name -> svg.TextDyAttr
-	924,  // 3215: svg.TextAttribute.text_rotate_attr:type_name -> svg.TextRotateAttr
-	925,  // 3216: svg.TextAttribute.text_length_attr:type_name -> svg.TextLengthAttr
-	926,  // 3217: svg.TextAttribute.text_length_adjust_attr:type_name -> svg.TextLengthAdjustAttr
-	12,   // 3218: svg.TextAttribute.core_attribute:type_name -> svg.CoreAttribute
-	22,   // 3219: svg.TextAttribute.conditional_processing_attribute:type_name -> svg.ConditionalProcessingAttribute
-	25,   // 3220: svg.TextAttribute.aria_attribute:type_name -> svg.AriaAttribute
-	917,  // 3221: svg.TextAttribute.presentation_attribute:type_name -> svg.PresentationAttribute
-	83,   // 3222: svg.TextAttribute.global_event_attribute:type_name -> svg.GlobalEventAttribute
-	145,  // 3223: svg.TextAttribute.document_element_event_attribute:type_name -> svg.DocumentElementEventAttribute
-	149,  // 3224: svg.TextAttribute.graphical_event_attribute:type_name -> svg.GraphicalEventAttribute
-	927,  // 3225: svg.TextXattr.text_position_list:type_name -> svg.TextPositionList
-	1476, // 3226: svg.TextXattr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	927,  // 3227: svg.TextYattr.text_position_list:type_name -> svg.TextPositionList
-	1476, // 3228: svg.TextYattr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	927,  // 3229: svg.TextDxAttr.text_position_list:type_name -> svg.TextPositionList
-	1476, // 3230: svg.TextDxAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	927,  // 3231: svg.TextDyAttr.text_position_list:type_name -> svg.TextPositionList
-	1476, // 3232: svg.TextDyAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	928,  // 3233: svg.TextRotateAttr.text_rotate_list:type_name -> svg.TextRotateList
-	1476, // 3234: svg.TextRotateAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1874, // 3235: svg.TextLengthAttr.alt1:type_name -> svg.TextLengthAttr.Alt1
-	1476, // 3236: svg.TextLengthAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1875, // 3237: svg.TextLengthAdjustAttr.alt1:type_name -> svg.TextLengthAdjustAttr.Alt1
-	1476, // 3238: svg.TextLengthAdjustAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1876, // 3239: svg.TextPositionList.alt1:type_name -> svg.TextPositionList.Alt1
-	329,  // 3240: svg.TextRotateList.number_type:type_name -> svg.NumberType
-	354,  // 3241: svg.TextContent.character_data_type:type_name -> svg.CharacterDataType
-	1,    // 3242: svg.TextContent.animation_element:type_name -> svg.AnimationElement
-	2,    // 3243: svg.TextContent.descriptive_element:type_name -> svg.DescriptiveElement
-	5,    // 3244: svg.TextContent.paint_server_element:type_name -> svg.PaintServerElement
-	10,   // 3245: svg.TextContent.text_content_child_element:type_name -> svg.TextContentChildElement
-	177,  // 3246: svg.TextContent.svgaelement:type_name -> svg.Svgaelement
-	679,  // 3247: svg.TextContent.svgclip_path_element:type_name -> svg.SvgclipPathElement
-	733,  // 3248: svg.TextContent.svgmarker_element:type_name -> svg.SvgmarkerElement
-	684,  // 3249: svg.TextContent.svgmask_element:type_name -> svg.SvgmaskElement
-	388,  // 3250: svg.TextContent.svgscript_element:type_name -> svg.SvgscriptElement
-	396,  // 3251: svg.TextContent.svgstyle_element:type_name -> svg.SvgstyleElement
-	931,  // 3252: svg.SvgtspanElement.tspan_attribute:type_name -> svg.TspanAttribute
-	1192, // 3253: svg.SvgtspanElement.greater_than_sign_keyword:type_name -> svg.GreaterThanSignKeyword
-	939,  // 3254: svg.SvgtspanElement.tspan_content:type_name -> svg.TspanContent
-	1308, // 3255: svg.SvgtspanElement.less_than_sign_solidus_tspan_greater_than_sign_keyword:type_name -> svg.LessThanSignSolidusTspanGreaterThanSignKeyword
-	932,  // 3256: svg.TspanAttribute.tspan_xattr:type_name -> svg.TspanXattr
-	933,  // 3257: svg.TspanAttribute.tspan_yattr:type_name -> svg.TspanYattr
-	934,  // 3258: svg.TspanAttribute.tspan_dx_attr:type_name -> svg.TspanDxAttr
-	935,  // 3259: svg.TspanAttribute.tspan_dy_attr:type_name -> svg.TspanDyAttr
-	936,  // 3260: svg.TspanAttribute.tspan_rotate_attr:type_name -> svg.TspanRotateAttr
-	937,  // 3261: svg.TspanAttribute.tspan_length_attr:type_name -> svg.TspanLengthAttr
-	938,  // 3262: svg.TspanAttribute.tspan_length_adjust_attr:type_name -> svg.TspanLengthAdjustAttr
-	12,   // 3263: svg.TspanAttribute.core_attribute:type_name -> svg.CoreAttribute
-	22,   // 3264: svg.TspanAttribute.conditional_processing_attribute:type_name -> svg.ConditionalProcessingAttribute
-	25,   // 3265: svg.TspanAttribute.aria_attribute:type_name -> svg.AriaAttribute
-	917,  // 3266: svg.TspanAttribute.presentation_attribute:type_name -> svg.PresentationAttribute
-	83,   // 3267: svg.TspanAttribute.global_event_attribute:type_name -> svg.GlobalEventAttribute
-	145,  // 3268: svg.TspanAttribute.document_element_event_attribute:type_name -> svg.DocumentElementEventAttribute
-	149,  // 3269: svg.TspanAttribute.graphical_event_attribute:type_name -> svg.GraphicalEventAttribute
-	927,  // 3270: svg.TspanXattr.text_position_list:type_name -> svg.TextPositionList
-	1476, // 3271: svg.TspanXattr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	927,  // 3272: svg.TspanYattr.text_position_list:type_name -> svg.TextPositionList
-	1476, // 3273: svg.TspanYattr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	927,  // 3274: svg.TspanDxAttr.text_position_list:type_name -> svg.TextPositionList
-	1476, // 3275: svg.TspanDxAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	927,  // 3276: svg.TspanDyAttr.text_position_list:type_name -> svg.TextPositionList
-	1476, // 3277: svg.TspanDyAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	928,  // 3278: svg.TspanRotateAttr.text_rotate_list:type_name -> svg.TextRotateList
-	1476, // 3279: svg.TspanRotateAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1877, // 3280: svg.TspanLengthAttr.alt1:type_name -> svg.TspanLengthAttr.Alt1
-	1476, // 3281: svg.TspanLengthAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1878, // 3282: svg.TspanLengthAdjustAttr.alt1:type_name -> svg.TspanLengthAdjustAttr.Alt1
-	1476, // 3283: svg.TspanLengthAdjustAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	354,  // 3284: svg.TspanContent.character_data_type:type_name -> svg.CharacterDataType
-	2,    // 3285: svg.TspanContent.descriptive_element:type_name -> svg.DescriptiveElement
-	5,    // 3286: svg.TspanContent.paint_server_element:type_name -> svg.PaintServerElement
-	177,  // 3287: svg.TspanContent.svgaelement:type_name -> svg.Svgaelement
-	232,  // 3288: svg.TspanContent.svganimate_element:type_name -> svg.SvganimateElement
-	388,  // 3289: svg.TspanContent.svgscript_element:type_name -> svg.SvgscriptElement
-	255,  // 3290: svg.TspanContent.svgset_element:type_name -> svg.SvgsetElement
-	396,  // 3291: svg.TspanContent.svgstyle_element:type_name -> svg.SvgstyleElement
-	930,  // 3292: svg.TspanContent.svgtspan_element:type_name -> svg.SvgtspanElement
-	941,  // 3293: svg.SvgtextPathElement.text_path_attribute:type_name -> svg.TextPathAttribute
-	1192, // 3294: svg.SvgtextPathElement.greater_than_sign_keyword:type_name -> svg.GreaterThanSignKeyword
-	950,  // 3295: svg.SvgtextPathElement.text_path_content:type_name -> svg.TextPathContent
-	1306, // 3296: svg.SvgtextPathElement.less_than_sign_solidus_text_path_greater_than_sign_keyword:type_name -> svg.LessThanSignSolidusTextPathGreaterThanSignKeyword
-	942,  // 3297: svg.TextPathAttribute.text_path_path_attr:type_name -> svg.TextPathPathAttr
-	943,  // 3298: svg.TextPathAttribute.text_path_href_attr:type_name -> svg.TextPathHrefAttr
-	944,  // 3299: svg.TextPathAttribute.text_path_start_offset_attr:type_name -> svg.TextPathStartOffsetAttr
-	945,  // 3300: svg.TextPathAttribute.text_path_method_attr:type_name -> svg.TextPathMethodAttr
-	946,  // 3301: svg.TextPathAttribute.text_path_spacing_attr:type_name -> svg.TextPathSpacingAttr
-	947,  // 3302: svg.TextPathAttribute.text_path_side_attr:type_name -> svg.TextPathSideAttr
-	948,  // 3303: svg.TextPathAttribute.text_path_length_attr:type_name -> svg.TextPathLengthAttr
-	949,  // 3304: svg.TextPathAttribute.text_path_length_adjust_attr:type_name -> svg.TextPathLengthAdjustAttr
-	12,   // 3305: svg.TextPathAttribute.core_attribute:type_name -> svg.CoreAttribute
-	22,   // 3306: svg.TextPathAttribute.conditional_processing_attribute:type_name -> svg.ConditionalProcessingAttribute
-	25,   // 3307: svg.TextPathAttribute.aria_attribute:type_name -> svg.AriaAttribute
-	917,  // 3308: svg.TextPathAttribute.presentation_attribute:type_name -> svg.PresentationAttribute
-	83,   // 3309: svg.TextPathAttribute.global_event_attribute:type_name -> svg.GlobalEventAttribute
-	145,  // 3310: svg.TextPathAttribute.document_element_event_attribute:type_name -> svg.DocumentElementEventAttribute
-	149,  // 3311: svg.TextPathAttribute.graphical_event_attribute:type_name -> svg.GraphicalEventAttribute
-	156,  // 3312: svg.TextPathAttribute.xlink_attribute:type_name -> svg.XlinkAttribute
-	766,  // 3313: svg.TextPathPathAttr.svg_path:type_name -> svg.SvgPath
-	1476, // 3314: svg.TextPathPathAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	343,  // 3315: svg.TextPathHrefAttr.iri_type:type_name -> svg.IriType
-	1476, // 3316: svg.TextPathHrefAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1879, // 3317: svg.TextPathStartOffsetAttr.alt1:type_name -> svg.TextPathStartOffsetAttr.Alt1
-	1476, // 3318: svg.TextPathStartOffsetAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1880, // 3319: svg.TextPathMethodAttr.alt1:type_name -> svg.TextPathMethodAttr.Alt1
-	1476, // 3320: svg.TextPathMethodAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1881, // 3321: svg.TextPathSpacingAttr.alt1:type_name -> svg.TextPathSpacingAttr.Alt1
-	1476, // 3322: svg.TextPathSpacingAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1882, // 3323: svg.TextPathSideAttr.alt1:type_name -> svg.TextPathSideAttr.Alt1
-	1476, // 3324: svg.TextPathSideAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1883, // 3325: svg.TextPathLengthAttr.alt1:type_name -> svg.TextPathLengthAttr.Alt1
-	1476, // 3326: svg.TextPathLengthAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1884, // 3327: svg.TextPathLengthAdjustAttr.alt1:type_name -> svg.TextPathLengthAdjustAttr.Alt1
-	1476, // 3328: svg.TextPathLengthAdjustAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	354,  // 3329: svg.TextPathContent.character_data_type:type_name -> svg.CharacterDataType
-	2,    // 3330: svg.TextPathContent.descriptive_element:type_name -> svg.DescriptiveElement
-	5,    // 3331: svg.TextPathContent.paint_server_element:type_name -> svg.PaintServerElement
-	177,  // 3332: svg.TextPathContent.svgaelement:type_name -> svg.Svgaelement
-	232,  // 3333: svg.TextPathContent.svganimate_element:type_name -> svg.SvganimateElement
-	679,  // 3334: svg.TextPathContent.svgclip_path_element:type_name -> svg.SvgclipPathElement
-	733,  // 3335: svg.TextPathContent.svgmarker_element:type_name -> svg.SvgmarkerElement
-	684,  // 3336: svg.TextPathContent.svgmask_element:type_name -> svg.SvgmaskElement
-	388,  // 3337: svg.TextPathContent.svgscript_element:type_name -> svg.SvgscriptElement
-	255,  // 3338: svg.TextPathContent.svgset_element:type_name -> svg.SvgsetElement
-	396,  // 3339: svg.TextPathContent.svgstyle_element:type_name -> svg.SvgstyleElement
-	930,  // 3340: svg.TextPathContent.svgtspan_element:type_name -> svg.SvgtspanElement
-	1885, // 3341: svg.TextAnchorAttr.alt1:type_name -> svg.TextAnchorAttr.Alt1
-	1476, // 3342: svg.TextAnchorAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1886, // 3343: svg.DominantBaselineAttr.alt1:type_name -> svg.DominantBaselineAttr.Alt1
-	1476, // 3344: svg.DominantBaselineAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1887, // 3345: svg.AlignmentBaselineAttr.alt1:type_name -> svg.AlignmentBaselineAttr.Alt1
-	1476, // 3346: svg.AlignmentBaselineAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1888, // 3347: svg.BaselineShiftAttr.alt1:type_name -> svg.BaselineShiftAttr.Alt1
-	1476, // 3348: svg.BaselineShiftAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1889, // 3349: svg.DirectionAttr.alt1:type_name -> svg.DirectionAttr.Alt1
-	1476, // 3350: svg.DirectionAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1890, // 3351: svg.UnicodeBidiAttr.alt1:type_name -> svg.UnicodeBidiAttr.Alt1
-	1476, // 3352: svg.UnicodeBidiAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1891, // 3353: svg.WritingModeAttr.alt1:type_name -> svg.WritingModeAttr.Alt1
-	1476, // 3354: svg.WritingModeAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1892, // 3355: svg.LetterSpacingAttr.alt1:type_name -> svg.LetterSpacingAttr.Alt1
-	1476, // 3356: svg.LetterSpacingAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1893, // 3357: svg.WordSpacingAttr.alt1:type_name -> svg.WordSpacingAttr.Alt1
-	1476, // 3358: svg.WordSpacingAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	961,  // 3359: svg.TextDecorationAttr.text_decoration_value:type_name -> svg.TextDecorationValue
-	1476, // 3360: svg.TextDecorationAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1410, // 3361: svg.TextDecorationValue.none_keyword:type_name -> svg.NoneKeyword
-	962,  // 3362: svg.TextDecorationValue.text_decoration_line:type_name -> svg.TextDecorationLine
-	963,  // 3363: svg.TextDecorationValue.text_decoration_style:type_name -> svg.TextDecorationStyle
-	1894, // 3364: svg.TextDecorationValue.seq1:type_name -> svg.TextDecorationValue.Seq1
-	1895, // 3365: svg.TextDecorationValue.seq2:type_name -> svg.TextDecorationValue.Seq2
-	1896, // 3366: svg.TextDecorationValue.seq3:type_name -> svg.TextDecorationValue.Seq3
-	1897, // 3367: svg.TextDecorationValue.seq4:type_name -> svg.TextDecorationValue.Seq4
-	1631, // 3368: svg.TextDecorationLine.underline_keyword:type_name -> svg.UnderlineKeyword
-	1440, // 3369: svg.TextDecorationLine.overline_keyword:type_name -> svg.OverlineKeyword
-	1330, // 3370: svg.TextDecorationLine.line_hyphen_minus_through_keyword:type_name -> svg.LineHyphenMinusThroughKeyword
-	1039, // 3371: svg.TextDecorationLine.blink_keyword:type_name -> svg.BlinkKeyword
-	1552, // 3372: svg.TextDecorationStyle.solid_keyword:type_name -> svg.SolidKeyword
-	1142, // 3373: svg.TextDecorationStyle.double_keyword:type_name -> svg.DoubleKeyword
-	1141, // 3374: svg.TextDecorationStyle.dotted_keyword:type_name -> svg.DottedKeyword
-	1119, // 3375: svg.TextDecorationStyle.dashed_keyword:type_name -> svg.DashedKeyword
-	1650, // 3376: svg.TextDecorationStyle.wavy_keyword:type_name -> svg.WavyKeyword
-	1898, // 3377: svg.TextOverflowAttr.alt1:type_name -> svg.TextOverflowAttr.Alt1
-	1476, // 3378: svg.TextOverflowAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1899, // 3379: svg.TextRenderingAttr.alt1:type_name -> svg.TextRenderingAttr.Alt1
-	1476, // 3380: svg.TextRenderingAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1900, // 3381: svg.WhiteSpaceAttr.alt1:type_name -> svg.WhiteSpaceAttr.Alt1
-	1476, // 3382: svg.WhiteSpaceAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	345,  // 3383: svg.FontFamilyAttr.string_type:type_name -> svg.StringType
-	1476, // 3384: svg.FontFamilyAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	969,  // 3385: svg.FontSizeAttr.font_size_value:type_name -> svg.FontSizeValue
-	1476, // 3386: svg.FontSizeAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	970,  // 3387: svg.FontSizeValue.font_absolute_size:type_name -> svg.FontAbsoluteSize
-	971,  // 3388: svg.FontSizeValue.font_relative_size:type_name -> svg.FontRelativeSize
-	336,  // 3389: svg.FontSizeValue.length_percentage_type:type_name -> svg.LengthPercentageType
-	1669, // 3390: svg.FontAbsoluteSize.xx_hyphen_minus_small_keyword:type_name -> svg.XxHyphenMinusSmallKeyword
-	1657, // 3391: svg.FontAbsoluteSize.x_hyphen_minus_small_keyword:type_name -> svg.XHyphenMinusSmallKeyword
-	1548, // 3392: svg.FontAbsoluteSize.small_keyword:type_name -> svg.SmallKeyword
-	1361, // 3393: svg.FontAbsoluteSize.medium_keyword:type_name -> svg.MediumKeyword
-	1240, // 3394: svg.FontAbsoluteSize.large_keyword:type_name -> svg.LargeKeyword
-	1656, // 3395: svg.FontAbsoluteSize.x_hyphen_minus_large_keyword:type_name -> svg.XHyphenMinusLargeKeyword
-	1668, // 3396: svg.FontAbsoluteSize.xx_hyphen_minus_large_keyword:type_name -> svg.XxHyphenMinusLargeKeyword
-	1670, // 3397: svg.FontAbsoluteSize.xxx_hyphen_minus_large_keyword:type_name -> svg.XxxHyphenMinusLargeKeyword
-	1241, // 3398: svg.FontRelativeSize.larger_keyword:type_name -> svg.LargerKeyword
-	1549, // 3399: svg.FontRelativeSize.smaller_keyword:type_name -> svg.SmallerKeyword
-	1901, // 3400: svg.FontSizeAdjustAttr.alt1:type_name -> svg.FontSizeAdjustAttr.Alt1
-	1476, // 3401: svg.FontSizeAdjustAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1902, // 3402: svg.FontStyleAttr.alt1:type_name -> svg.FontStyleAttr.Alt1
-	1476, // 3403: svg.FontStyleAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1903, // 3404: svg.FontStyleOblique.space:type_name -> svg.FontStyleOblique.Space
-	976,  // 3405: svg.FontVariantAttr.font_variant_value:type_name -> svg.FontVariantValue
-	1476, // 3406: svg.FontVariantAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1412, // 3407: svg.FontVariantValue.normal_keyword:type_name -> svg.NormalKeyword
-	1410, // 3408: svg.FontVariantValue.none_keyword:type_name -> svg.NoneKeyword
-	977,  // 3409: svg.FontVariantValue.font_variant_caps:type_name -> svg.FontVariantCaps
-	978,  // 3410: svg.FontVariantValue.font_variant_ligatures:type_name -> svg.FontVariantLigatures
-	979,  // 3411: svg.FontVariantValue.font_variant_numeric:type_name -> svg.FontVariantNumeric
-	980,  // 3412: svg.FontVariantValue.font_variant_east_asian:type_name -> svg.FontVariantEastAsian
-	981,  // 3413: svg.FontVariantValue.font_variant_alternates:type_name -> svg.FontVariantAlternates
-	1547, // 3414: svg.FontVariantCaps.small_hyphen_minus_caps_keyword:type_name -> svg.SmallHyphenMinusCapsKeyword
-	1004, // 3415: svg.FontVariantCaps.all_hyphen_minus_small_hyphen_minus_caps_keyword:type_name -> svg.AllHyphenMinusSmallHyphenMinusCapsKeyword
-	1455, // 3416: svg.FontVariantCaps.petite_hyphen_minus_caps_keyword:type_name -> svg.PetiteHyphenMinusCapsKeyword
-	1002, // 3417: svg.FontVariantCaps.all_hyphen_minus_petite_hyphen_minus_caps_keyword:type_name -> svg.AllHyphenMinusPetiteHyphenMinusCapsKeyword
-	1632, // 3418: svg.FontVariantCaps.unicase_keyword:type_name -> svg.UnicaseKeyword
-	1615, // 3419: svg.FontVariantCaps.titling_hyphen_minus_caps_keyword:type_name -> svg.TitlingHyphenMinusCapsKeyword
-	1077, // 3420: svg.FontVariantLigatures.common_hyphen_minus_ligatures_keyword:type_name -> svg.CommonHyphenMinusLigaturesKeyword
-	1398, // 3421: svg.FontVariantLigatures.no_hyphen_minus_common_hyphen_minus_ligatures_keyword:type_name -> svg.NoHyphenMinusCommonHyphenMinusLigaturesKeyword
-	1138, // 3422: svg.FontVariantLigatures.discretionary_hyphen_minus_ligatures_keyword:type_name -> svg.DiscretionaryHyphenMinusLigaturesKeyword
-	1400, // 3423: svg.FontVariantLigatures.no_hyphen_minus_discretionary_hyphen_minus_ligatures_keyword:type_name -> svg.NoHyphenMinusDiscretionaryHyphenMinusLigaturesKeyword
-	1206, // 3424: svg.FontVariantLigatures.historical_hyphen_minus_ligatures_keyword:type_name -> svg.HistoricalHyphenMinusLigaturesKeyword
-	1402, // 3425: svg.FontVariantLigatures.no_hyphen_minus_historical_hyphen_minus_ligatures_keyword:type_name -> svg.NoHyphenMinusHistoricalHyphenMinusLigaturesKeyword
-	1087, // 3426: svg.FontVariantLigatures.contextual_keyword:type_name -> svg.ContextualKeyword
-	1399, // 3427: svg.FontVariantLigatures.no_hyphen_minus_contextual_keyword:type_name -> svg.NoHyphenMinusContextualKeyword
-	1334, // 3428: svg.FontVariantNumeric.lining_hyphen_minus_nums_keyword:type_name -> svg.LiningHyphenMinusNumsKeyword
-	1422, // 3429: svg.FontVariantNumeric.oldstyle_hyphen_minus_nums_keyword:type_name -> svg.OldstyleHyphenMinusNumsKeyword
-	1472, // 3430: svg.FontVariantNumeric.proportional_hyphen_minus_nums_keyword:type_name -> svg.ProportionalHyphenMinusNumsKeyword
-	1602, // 3431: svg.FontVariantNumeric.tabular_hyphen_minus_nums_keyword:type_name -> svg.TabularHyphenMinusNumsKeyword
-	1127, // 3432: svg.FontVariantNumeric.diagonal_hyphen_minus_fractions_keyword:type_name -> svg.DiagonalHyphenMinusFractionsKeyword
-	1563, // 3433: svg.FontVariantNumeric.stacked_hyphen_minus_fractions_keyword:type_name -> svg.StackedHyphenMinusFractionsKeyword
-	1432, // 3434: svg.FontVariantNumeric.ordinal_keyword:type_name -> svg.OrdinalKeyword
-	1541, // 3435: svg.FontVariantNumeric.slashed_hyphen_minus_zero_keyword:type_name -> svg.SlashedHyphenMinusZeroKeyword
-	1235, // 3436: svg.FontVariantEastAsian.jis78_keyword:type_name -> svg.Jis78Keyword
-	1236, // 3437: svg.FontVariantEastAsian.jis83_keyword:type_name -> svg.Jis83Keyword
-	1237, // 3438: svg.FontVariantEastAsian.jis90_keyword:type_name -> svg.Jis90Keyword
-	1234, // 3439: svg.FontVariantEastAsian.jis04_keyword:type_name -> svg.Jis04Keyword
-	1537, // 3440: svg.FontVariantEastAsian.simplified_keyword:type_name -> svg.SimplifiedKeyword
-	1620, // 3441: svg.FontVariantEastAsian.traditional_keyword:type_name -> svg.TraditionalKeyword
-	1178, // 3442: svg.FontVariantEastAsian.full_hyphen_minus_width_keyword:type_name -> svg.FullHyphenMinusWidthKeyword
-	1473, // 3443: svg.FontVariantEastAsian.proportional_hyphen_minus_width_keyword:type_name -> svg.ProportionalHyphenMinusWidthKeyword
-	1509, // 3444: svg.FontVariantEastAsian.ruby_keyword:type_name -> svg.RubyKeyword
-	1205, // 3445: svg.FontVariantAlternates.historical_hyphen_minus_forms_keyword:type_name -> svg.HistoricalHyphenMinusFormsKeyword
-	1578, // 3446: svg.FontVariantAlternates.stylistic_keyword:type_name -> svg.StylisticKeyword
-	1577, // 3447: svg.FontVariantAlternates.styleset_keyword:type_name -> svg.StylesetKeyword
-	1061, // 3448: svg.FontVariantAlternates.character_hyphen_minus_variant_keyword:type_name -> svg.CharacterHyphenMinusVariantKeyword
-	1586, // 3449: svg.FontVariantAlternates.swash_keyword:type_name -> svg.SwashKeyword
-	1435, // 3450: svg.FontVariantAlternates.ornaments_keyword:type_name -> svg.OrnamentsKeyword
-	1009, // 3451: svg.FontVariantAlternates.annotation_keyword:type_name -> svg.AnnotationKeyword
-	1904, // 3452: svg.FontWeightAttr.alt1:type_name -> svg.FontWeightAttr.Alt1
-	1476, // 3453: svg.FontWeightAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1905, // 3454: svg.FontStretchAttr.alt1:type_name -> svg.FontStretchAttr.Alt1
-	1476, // 3455: svg.FontStretchAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1906, // 3456: svg.InlineSizeAttr.alt1:type_name -> svg.InlineSizeAttr.Alt1
-	1476, // 3457: svg.InlineSizeAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	1907, // 3458: svg.GlyphOrientationVerticalAttr.alt1:type_name -> svg.GlyphOrientationVerticalAttr.Alt1
-	1476, // 3459: svg.GlyphOrientationVerticalAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
-	987,  // 3460: svg.TransformList.transform:type_name -> svg.Transform
-	987,  // 3461: svg.TransformList.transform_2:type_name -> svg.Transform
-	988,  // 3462: svg.Transform.matrix:type_name -> svg.Matrix
-	989,  // 3463: svg.Transform.translate:type_name -> svg.Translate
-	990,  // 3464: svg.Transform.scale:type_name -> svg.Scale
-	991,  // 3465: svg.Transform.rotate:type_name -> svg.Rotate
-	992,  // 3466: svg.Transform.skew_x:type_name -> svg.SkewX
-	993,  // 3467: svg.Transform.skew_y:type_name -> svg.SkewY
-	329,  // 3468: svg.Matrix.number_type:type_name -> svg.NumberType
-	1076, // 3469: svg.Matrix.comma_keyword:type_name -> svg.CommaKeyword
-	329,  // 3470: svg.Matrix.number_type_2:type_name -> svg.NumberType
-	1076, // 3471: svg.Matrix.comma_keyword_2:type_name -> svg.CommaKeyword
-	329,  // 3472: svg.Matrix.number_type_3:type_name -> svg.NumberType
-	1076, // 3473: svg.Matrix.comma_keyword_3:type_name -> svg.CommaKeyword
-	329,  // 3474: svg.Matrix.number_type_4:type_name -> svg.NumberType
-	1076, // 3475: svg.Matrix.comma_keyword_4:type_name -> svg.CommaKeyword
-	329,  // 3476: svg.Matrix.number_type_5:type_name -> svg.NumberType
-	1076, // 3477: svg.Matrix.comma_keyword_5:type_name -> svg.CommaKeyword
-	329,  // 3478: svg.Matrix.number_type_6:type_name -> svg.NumberType
-	1493, // 3479: svg.Matrix.right_parenthesis_keyword:type_name -> svg.RightParenthesisKeyword
-	329,  // 3480: svg.Translate.number_type:type_name -> svg.NumberType
-	1908, // 3481: svg.Translate.comma:type_name -> svg.Translate.Comma
-	1493, // 3482: svg.Translate.right_parenthesis_keyword:type_name -> svg.RightParenthesisKeyword
-	329,  // 3483: svg.Scale.number_type:type_name -> svg.NumberType
-	1909, // 3484: svg.Scale.comma:type_name -> svg.Scale.Comma
-	1493, // 3485: svg.Scale.right_parenthesis_keyword:type_name -> svg.RightParenthesisKeyword
-	329,  // 3486: svg.Rotate.number_type:type_name -> svg.NumberType
-	1910, // 3487: svg.Rotate.comma:type_name -> svg.Rotate.Comma
-	1493, // 3488: svg.Rotate.right_parenthesis_keyword:type_name -> svg.RightParenthesisKeyword
-	329,  // 3489: svg.SkewX.number_type:type_name -> svg.NumberType
-	1493, // 3490: svg.SkewX.right_parenthesis_keyword:type_name -> svg.RightParenthesisKeyword
-	329,  // 3491: svg.SkewY.number_type:type_name -> svg.NumberType
-	1493, // 3492: svg.SkewY.right_parenthesis_keyword:type_name -> svg.RightParenthesisKeyword
-	1123, // 3493: svg.XmlSpaceAttr.Alt1.default_keyword:type_name -> svg.DefaultKeyword
-	1469, // 3494: svg.XmlSpaceAttr.Alt1.preserve_keyword:type_name -> svg.PreserveKeyword
-	1227, // 3495: svg.AriaAutocompleteAttr.Alt1.inline_keyword:type_name -> svg.InlineKeyword
-	1337, // 3496: svg.AriaAutocompleteAttr.Alt1.list_keyword:type_name -> svg.ListKeyword
-	1047, // 3497: svg.AriaAutocompleteAttr.Alt1.both_keyword:type_name -> svg.BothKeyword
-	1410, // 3498: svg.AriaAutocompleteAttr.Alt1.none_keyword:type_name -> svg.NoneKeyword
-	1444, // 3499: svg.AriaCurrentAttr.Alt1.page_keyword:type_name -> svg.PageKeyword
-	1567, // 3500: svg.AriaCurrentAttr.Alt1.step_keyword:type_name -> svg.StepKeyword
-	1340, // 3501: svg.AriaCurrentAttr.Alt1.location_keyword:type_name -> svg.LocationKeyword
-	1120, // 3502: svg.AriaCurrentAttr.Alt1.date_keyword:type_name -> svg.DateKeyword
-	1613, // 3503: svg.AriaCurrentAttr.Alt1.time_keyword:type_name -> svg.TimeKeyword
-	1625, // 3504: svg.AriaCurrentAttr.Alt1.true_keyword:type_name -> svg.TrueKeyword
-	1159, // 3505: svg.AriaCurrentAttr.Alt1.false_keyword:type_name -> svg.FalseKeyword
-	1159, // 3506: svg.AriaHaspopupAttr.Alt1.false_keyword:type_name -> svg.FalseKeyword
-	1625, // 3507: svg.AriaHaspopupAttr.Alt1.true_keyword:type_name -> svg.TrueKeyword
-	1372, // 3508: svg.AriaHaspopupAttr.Alt1.menu_keyword:type_name -> svg.MenuKeyword
-	1338, // 3509: svg.AriaHaspopupAttr.Alt1.listbox_keyword:type_name -> svg.ListboxKeyword
-	1622, // 3510: svg.AriaHaspopupAttr.Alt1.tree_keyword:type_name -> svg.TreeKeyword
-	1196, // 3511: svg.AriaHaspopupAttr.Alt1.grid_keyword:type_name -> svg.GridKeyword
-	1128, // 3512: svg.AriaHaspopupAttr.Alt1.dialog_keyword:type_name -> svg.DialogKeyword
-	1190, // 3513: svg.AriaInvalidAttr.Alt1.grammar_keyword:type_name -> svg.GrammarKeyword
-	1159, // 3514: svg.AriaInvalidAttr.Alt1.false_keyword:type_name -> svg.FalseKeyword
-	1558, // 3515: svg.AriaInvalidAttr.Alt1.spelling_keyword:type_name -> svg.SpellingKeyword
-	1625, // 3516: svg.AriaInvalidAttr.Alt1.true_keyword:type_name -> svg.TrueKeyword
-	1420, // 3517: svg.AriaLiveAttr.Alt1.off_keyword:type_name -> svg.OffKeyword
-	1019, // 3518: svg.AriaLiveAttr.Alt1.assertive_keyword:type_name -> svg.AssertiveKeyword
-	1462, // 3519: svg.AriaLiveAttr.Alt1.polite_keyword:type_name -> svg.PoliteKeyword
-	1209, // 3520: svg.AriaOrientationAttr.Alt1.horizontal_keyword:type_name -> svg.HorizontalKeyword
-	1641, // 3521: svg.AriaOrientationAttr.Alt1.vertical_keyword:type_name -> svg.VerticalKeyword
-	1630, // 3522: svg.AriaOrientationAttr.Alt1.undefined_keyword:type_name -> svg.UndefinedKeyword
-	1018, // 3523: svg.AriaSortAttr.Alt1.ascending_keyword:type_name -> svg.AscendingKeyword
-	1126, // 3524: svg.AriaSortAttr.Alt1.descending_keyword:type_name -> svg.DescendingKeyword
-	1410, // 3525: svg.AriaSortAttr.Alt1.none_keyword:type_name -> svg.NoneKeyword
-	1436, // 3526: svg.AriaSortAttr.Alt1.other_keyword:type_name -> svg.OtherKeyword
-	1136, // 3527: svg.SvgZoomAndPanAttr.Alt1.disable_keyword:type_name -> svg.DisableKeyword
-	1350, // 3528: svg.SvgZoomAndPanAttr.Alt1.magnify_keyword:type_name -> svg.MagnifyKeyword
-	1024, // 3529: svg.SvgWidthAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
-	337,  // 3530: svg.SvgWidthAttr.Alt1.non_negative_length_percentage_type:type_name -> svg.NonNegativeLengthPercentageType
-	1024, // 3531: svg.SvgHeightAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
-	337,  // 3532: svg.SvgHeightAttr.Alt1.non_negative_length_percentage_type:type_name -> svg.NonNegativeLengthPercentageType
-	1529, // 3533: svg.AtargetAttr.Alt1.self_keyword:type_name -> svg.SelfKeyword
-	1452, // 3534: svg.AtargetAttr.Alt1.parent_keyword:type_name -> svg.ParentKeyword
-	1619, // 3535: svg.AtargetAttr.Alt1.top_keyword:type_name -> svg.TopKeyword
-	1038, // 3536: svg.AtargetAttr.Alt1.blank_keyword:type_name -> svg.BlankKeyword
-	348,  // 3537: svg.AtargetAttr.Alt1.xml_name_type:type_name -> svg.XmlNameType
-	1404, // 3538: svg.AreferrerpolicyAttr.Alt1.no_hyphen_minus_referrer_keyword:type_name -> svg.NoHyphenMinusReferrerKeyword
-	1403, // 3539: svg.AreferrerpolicyAttr.Alt1.no_hyphen_minus_referrer_hyphen_minus_when_hyphen_minus_downgrade_keyword:type_name -> svg.NoHyphenMinusReferrerHyphenMinusWhenHyphenMinusDowngradeKeyword
-	1434, // 3540: svg.AreferrerpolicyAttr.Alt1.origin_keyword:type_name -> svg.OriginKeyword
-	1433, // 3541: svg.AreferrerpolicyAttr.Alt1.origin_hyphen_minus_when_hyphen_minus_cross_hyphen_minus_origin_keyword:type_name -> svg.OriginHyphenMinusWhenHyphenMinusCrossHyphenMinusOriginKeyword
-	1516, // 3542: svg.AreferrerpolicyAttr.Alt1.same_hyphen_minus_origin_keyword:type_name -> svg.SameHyphenMinusOriginKeyword
-	1571, // 3543: svg.AreferrerpolicyAttr.Alt1.strict_hyphen_minus_origin_keyword:type_name -> svg.StrictHyphenMinusOriginKeyword
-	1570, // 3544: svg.AreferrerpolicyAttr.Alt1.strict_hyphen_minus_origin_hyphen_minus_when_hyphen_minus_cross_hyphen_minus_origin_keyword:type_name -> svg.StrictHyphenMinusOriginHyphenMinusWhenHyphenMinusCrossHyphenMinusOriginKeyword
-	1633, // 3545: svg.AreferrerpolicyAttr.Alt1.unsafe_hyphen_minus_url_keyword:type_name -> svg.UnsafeHyphenMinusUrlKeyword
-	195,  // 3546: svg.FullClockValue.FullStop.clock_fraction:type_name -> svg.ClockFraction
-	195,  // 3547: svg.PartialClockValue.FullStop.clock_fraction:type_name -> svg.ClockFraction
-	195,  // 3548: svg.TimecountValue.FullStop.clock_fraction:type_name -> svg.ClockFraction
-	1460, // 3549: svg.OffsetValue.Alt1.plus_sign_keyword:type_name -> svg.PlusSignKeyword
-	1213, // 3550: svg.OffsetValue.Alt1.hyphen_minus_keyword:type_name -> svg.HyphenMinusKeyword
-	1031, // 3551: svg.SyncbaseValue.Alt1.begin_keyword:type_name -> svg.BeginKeyword
-	1148, // 3552: svg.SyncbaseValue.Alt1.end_keyword:type_name -> svg.EndKeyword
-	1695, // 3553: svg.SyncbaseValue.Seq1.alt1:type_name -> svg.SyncbaseValue.Seq1.Alt1
-	187,  // 3554: svg.SyncbaseValue.Seq1.clock_value:type_name -> svg.ClockValue
-	1460, // 3555: svg.SyncbaseValue.Seq1.Alt1.plus_sign_keyword:type_name -> svg.PlusSignKeyword
-	1213, // 3556: svg.SyncbaseValue.Seq1.Alt1.hyphen_minus_keyword:type_name -> svg.HyphenMinusKeyword
-	348,  // 3557: svg.EventValue.Seq1.xml_name_type:type_name -> svg.XmlNameType
-	1179, // 3558: svg.EventValue.Seq1.full_stop_keyword:type_name -> svg.FullStopKeyword
-	1698, // 3559: svg.EventValue.Seq2.alt1:type_name -> svg.EventValue.Seq2.Alt1
-	187,  // 3560: svg.EventValue.Seq2.clock_value:type_name -> svg.ClockValue
-	1460, // 3561: svg.EventValue.Seq2.Alt1.plus_sign_keyword:type_name -> svg.PlusSignKeyword
-	1213, // 3562: svg.EventValue.Seq2.Alt1.hyphen_minus_keyword:type_name -> svg.HyphenMinusKeyword
-	348,  // 3563: svg.RepeatValue.Seq1.xml_name_type:type_name -> svg.XmlNameType
-	1179, // 3564: svg.RepeatValue.Seq1.full_stop_keyword:type_name -> svg.FullStopKeyword
-	1701, // 3565: svg.RepeatValue.Seq2.alt1:type_name -> svg.RepeatValue.Seq2.Alt1
-	187,  // 3566: svg.RepeatValue.Seq2.clock_value:type_name -> svg.ClockValue
-	1460, // 3567: svg.RepeatValue.Seq2.Alt1.plus_sign_keyword:type_name -> svg.PlusSignKeyword
-	1213, // 3568: svg.RepeatValue.Seq2.Alt1.hyphen_minus_keyword:type_name -> svg.HyphenMinusKeyword
-	1703, // 3569: svg.AccessKeyValue.Seq1.alt1:type_name -> svg.AccessKeyValue.Seq1.Alt1
-	187,  // 3570: svg.AccessKeyValue.Seq1.clock_value:type_name -> svg.ClockValue
-	1460, // 3571: svg.AccessKeyValue.Seq1.Alt1.plus_sign_keyword:type_name -> svg.PlusSignKeyword
-	1213, // 3572: svg.AccessKeyValue.Seq1.Alt1.hyphen_minus_keyword:type_name -> svg.HyphenMinusKeyword
-	203,  // 3573: svg.WallclockValue.Alt1.date_time:type_name -> svg.DateTime
-	205,  // 3574: svg.WallclockValue.Alt1.wall_time:type_name -> svg.WallTime
-	206,  // 3575: svg.WallTime.Alt1.hhmm_time:type_name -> svg.HhmmTime
-	207,  // 3576: svg.WallTime.Alt1.hhmmss_time:type_name -> svg.HhmmssTime
-	195,  // 3577: svg.HhmmssTime.FullStop.clock_fraction:type_name -> svg.ClockFraction
-	1708, // 3578: svg.Tzd.Seq1.alt1:type_name -> svg.Tzd.Seq1.Alt1
-	211,  // 3579: svg.Tzd.Seq1.hours24:type_name -> svg.Hours24
-	1070, // 3580: svg.Tzd.Seq1.colon_keyword:type_name -> svg.ColonKeyword
-	193,  // 3581: svg.Tzd.Seq1.minutes:type_name -> svg.Minutes
-	1460, // 3582: svg.Tzd.Seq1.Alt1.plus_sign_keyword:type_name -> svg.PlusSignKeyword
-	1213, // 3583: svg.Tzd.Seq1.Alt1.hyphen_minus_keyword:type_name -> svg.HyphenMinusKeyword
-	329,  // 3584: svg.AnimateTransformTranslateValue.Space.number_type:type_name -> svg.NumberType
-	329,  // 3585: svg.AnimateTransformScaleValue.Space.number_type:type_name -> svg.NumberType
-	329,  // 3586: svg.AnimateTransformRotateValue.Space.number_type:type_name -> svg.NumberType
-	1555, // 3587: svg.AnimateTransformRotateValue.Space.space_keyword:type_name -> svg.SpaceKeyword
-	329,  // 3588: svg.AnimateTransformRotateValue.Space.number_type_2:type_name -> svg.NumberType
-	187,  // 3589: svg.AnimateDurAttr.Alt1.clock_value:type_name -> svg.ClockValue
-	1360, // 3590: svg.AnimateDurAttr.Alt1.media_keyword:type_name -> svg.MediaKeyword
-	1218, // 3591: svg.AnimateDurAttr.Alt1.indefinite_keyword:type_name -> svg.IndefiniteKeyword
-	187,  // 3592: svg.AnimateMinAttr.Alt1.clock_value:type_name -> svg.ClockValue
-	1360, // 3593: svg.AnimateMinAttr.Alt1.media_keyword:type_name -> svg.MediaKeyword
-	187,  // 3594: svg.AnimateMaxAttr.Alt1.clock_value:type_name -> svg.ClockValue
-	1360, // 3595: svg.AnimateMaxAttr.Alt1.media_keyword:type_name -> svg.MediaKeyword
-	1008, // 3596: svg.AnimateRestartAttr.Alt1.always_keyword:type_name -> svg.AlwaysKeyword
-	1652, // 3597: svg.AnimateRestartAttr.Alt1.when_not_active_keyword:type_name -> svg.WhenNotActiveKeyword
-	1396, // 3598: svg.AnimateRestartAttr.Alt1.never_keyword:type_name -> svg.NeverKeyword
-	330,  // 3599: svg.AnimateRepeatCountAttr.Alt1.non_negative_number_type:type_name -> svg.NonNegativeNumberType
-	1218, // 3600: svg.AnimateRepeatCountAttr.Alt1.indefinite_keyword:type_name -> svg.IndefiniteKeyword
-	187,  // 3601: svg.AnimateRepeatDurAttr.Alt1.clock_value:type_name -> svg.ClockValue
-	1360, // 3602: svg.AnimateRepeatDurAttr.Alt1.media_keyword:type_name -> svg.MediaKeyword
-	1218, // 3603: svg.AnimateRepeatDurAttr.Alt1.indefinite_keyword:type_name -> svg.IndefiniteKeyword
-	1175, // 3604: svg.AnimateFillAttr.Alt1.freeze_keyword:type_name -> svg.FreezeKeyword
-	1485, // 3605: svg.AnimateFillAttr.Alt1.remove_keyword:type_name -> svg.RemoveKeyword
-	1137, // 3606: svg.AnimateCalcModeAttr.Alt1.discrete_keyword:type_name -> svg.DiscreteKeyword
-	1331, // 3607: svg.AnimateCalcModeAttr.Alt1.linear_keyword:type_name -> svg.LinearKeyword
-	1441, // 3608: svg.AnimateCalcModeAttr.Alt1.paced_keyword:type_name -> svg.PacedKeyword
-	1560, // 3609: svg.AnimateCalcModeAttr.Alt1.spline_keyword:type_name -> svg.SplineKeyword
-	1490, // 3610: svg.AnimateAdditiveAttr.Alt1.replace_keyword:type_name -> svg.ReplaceKeyword
-	1582, // 3611: svg.AnimateAdditiveAttr.Alt1.sum_keyword:type_name -> svg.SumKeyword
-	1410, // 3612: svg.AnimateAccumulateAttr.Alt1.none_keyword:type_name -> svg.NoneKeyword
-	1582, // 3613: svg.AnimateAccumulateAttr.Alt1.sum_keyword:type_name -> svg.SumKeyword
-	187,  // 3614: svg.SetDurAttr.Alt1.clock_value:type_name -> svg.ClockValue
-	1360, // 3615: svg.SetDurAttr.Alt1.media_keyword:type_name -> svg.MediaKeyword
-	1218, // 3616: svg.SetDurAttr.Alt1.indefinite_keyword:type_name -> svg.IndefiniteKeyword
-	187,  // 3617: svg.SetMinAttr.Alt1.clock_value:type_name -> svg.ClockValue
-	1360, // 3618: svg.SetMinAttr.Alt1.media_keyword:type_name -> svg.MediaKeyword
-	187,  // 3619: svg.SetMaxAttr.Alt1.clock_value:type_name -> svg.ClockValue
-	1360, // 3620: svg.SetMaxAttr.Alt1.media_keyword:type_name -> svg.MediaKeyword
-	1008, // 3621: svg.SetRestartAttr.Alt1.always_keyword:type_name -> svg.AlwaysKeyword
-	1652, // 3622: svg.SetRestartAttr.Alt1.when_not_active_keyword:type_name -> svg.WhenNotActiveKeyword
-	1396, // 3623: svg.SetRestartAttr.Alt1.never_keyword:type_name -> svg.NeverKeyword
-	330,  // 3624: svg.SetRepeatCountAttr.Alt1.non_negative_number_type:type_name -> svg.NonNegativeNumberType
-	1218, // 3625: svg.SetRepeatCountAttr.Alt1.indefinite_keyword:type_name -> svg.IndefiniteKeyword
-	187,  // 3626: svg.SetRepeatDurAttr.Alt1.clock_value:type_name -> svg.ClockValue
-	1360, // 3627: svg.SetRepeatDurAttr.Alt1.media_keyword:type_name -> svg.MediaKeyword
-	1218, // 3628: svg.SetRepeatDurAttr.Alt1.indefinite_keyword:type_name -> svg.IndefiniteKeyword
-	1175, // 3629: svg.SetFillAttr.Alt1.freeze_keyword:type_name -> svg.FreezeKeyword
-	1485, // 3630: svg.SetFillAttr.Alt1.remove_keyword:type_name -> svg.RemoveKeyword
-	187,  // 3631: svg.AnimateMotionDurAttr.Alt1.clock_value:type_name -> svg.ClockValue
-	1360, // 3632: svg.AnimateMotionDurAttr.Alt1.media_keyword:type_name -> svg.MediaKeyword
-	1218, // 3633: svg.AnimateMotionDurAttr.Alt1.indefinite_keyword:type_name -> svg.IndefiniteKeyword
-	187,  // 3634: svg.AnimateMotionMinAttr.Alt1.clock_value:type_name -> svg.ClockValue
-	1360, // 3635: svg.AnimateMotionMinAttr.Alt1.media_keyword:type_name -> svg.MediaKeyword
-	187,  // 3636: svg.AnimateMotionMaxAttr.Alt1.clock_value:type_name -> svg.ClockValue
-	1360, // 3637: svg.AnimateMotionMaxAttr.Alt1.media_keyword:type_name -> svg.MediaKeyword
-	1008, // 3638: svg.AnimateMotionRestartAttr.Alt1.always_keyword:type_name -> svg.AlwaysKeyword
-	1652, // 3639: svg.AnimateMotionRestartAttr.Alt1.when_not_active_keyword:type_name -> svg.WhenNotActiveKeyword
-	1396, // 3640: svg.AnimateMotionRestartAttr.Alt1.never_keyword:type_name -> svg.NeverKeyword
-	330,  // 3641: svg.AnimateMotionRepeatCountAttr.Alt1.non_negative_number_type:type_name -> svg.NonNegativeNumberType
-	1218, // 3642: svg.AnimateMotionRepeatCountAttr.Alt1.indefinite_keyword:type_name -> svg.IndefiniteKeyword
-	187,  // 3643: svg.AnimateMotionRepeatDurAttr.Alt1.clock_value:type_name -> svg.ClockValue
-	1360, // 3644: svg.AnimateMotionRepeatDurAttr.Alt1.media_keyword:type_name -> svg.MediaKeyword
-	1218, // 3645: svg.AnimateMotionRepeatDurAttr.Alt1.indefinite_keyword:type_name -> svg.IndefiniteKeyword
-	1175, // 3646: svg.AnimateMotionFillAttr.Alt1.freeze_keyword:type_name -> svg.FreezeKeyword
-	1485, // 3647: svg.AnimateMotionFillAttr.Alt1.remove_keyword:type_name -> svg.RemoveKeyword
-	1137, // 3648: svg.AnimateMotionCalcModeAttr.Alt1.discrete_keyword:type_name -> svg.DiscreteKeyword
-	1331, // 3649: svg.AnimateMotionCalcModeAttr.Alt1.linear_keyword:type_name -> svg.LinearKeyword
-	1441, // 3650: svg.AnimateMotionCalcModeAttr.Alt1.paced_keyword:type_name -> svg.PacedKeyword
-	1560, // 3651: svg.AnimateMotionCalcModeAttr.Alt1.spline_keyword:type_name -> svg.SplineKeyword
-	329,  // 3652: svg.AnimateMotionRotateAttr.Alt1.number_type:type_name -> svg.NumberType
-	1024, // 3653: svg.AnimateMotionRotateAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
-	1022, // 3654: svg.AnimateMotionRotateAttr.Alt1.auto_hyphen_minus_reverse_keyword:type_name -> svg.AutoHyphenMinusReverseKeyword
-	1490, // 3655: svg.AnimateMotionAdditiveAttr.Alt1.replace_keyword:type_name -> svg.ReplaceKeyword
-	1582, // 3656: svg.AnimateMotionAdditiveAttr.Alt1.sum_keyword:type_name -> svg.SumKeyword
-	1410, // 3657: svg.AnimateMotionAccumulateAttr.Alt1.none_keyword:type_name -> svg.NoneKeyword
-	1582, // 3658: svg.AnimateMotionAccumulateAttr.Alt1.sum_keyword:type_name -> svg.SumKeyword
-	187,  // 3659: svg.AnimateTransformDurAttr.Alt1.clock_value:type_name -> svg.ClockValue
-	1360, // 3660: svg.AnimateTransformDurAttr.Alt1.media_keyword:type_name -> svg.MediaKeyword
-	1218, // 3661: svg.AnimateTransformDurAttr.Alt1.indefinite_keyword:type_name -> svg.IndefiniteKeyword
-	187,  // 3662: svg.AnimateTransformMinAttr.Alt1.clock_value:type_name -> svg.ClockValue
-	1360, // 3663: svg.AnimateTransformMinAttr.Alt1.media_keyword:type_name -> svg.MediaKeyword
-	187,  // 3664: svg.AnimateTransformMaxAttr.Alt1.clock_value:type_name -> svg.ClockValue
-	1360, // 3665: svg.AnimateTransformMaxAttr.Alt1.media_keyword:type_name -> svg.MediaKeyword
-	1008, // 3666: svg.AnimateTransformRestartAttr.Alt1.always_keyword:type_name -> svg.AlwaysKeyword
-	1652, // 3667: svg.AnimateTransformRestartAttr.Alt1.when_not_active_keyword:type_name -> svg.WhenNotActiveKeyword
-	1396, // 3668: svg.AnimateTransformRestartAttr.Alt1.never_keyword:type_name -> svg.NeverKeyword
-	330,  // 3669: svg.AnimateTransformRepeatCountAttr.Alt1.non_negative_number_type:type_name -> svg.NonNegativeNumberType
-	1218, // 3670: svg.AnimateTransformRepeatCountAttr.Alt1.indefinite_keyword:type_name -> svg.IndefiniteKeyword
-	187,  // 3671: svg.AnimateTransformRepeatDurAttr.Alt1.clock_value:type_name -> svg.ClockValue
-	1360, // 3672: svg.AnimateTransformRepeatDurAttr.Alt1.media_keyword:type_name -> svg.MediaKeyword
-	1218, // 3673: svg.AnimateTransformRepeatDurAttr.Alt1.indefinite_keyword:type_name -> svg.IndefiniteKeyword
-	1175, // 3674: svg.AnimateTransformFillAttr.Alt1.freeze_keyword:type_name -> svg.FreezeKeyword
-	1485, // 3675: svg.AnimateTransformFillAttr.Alt1.remove_keyword:type_name -> svg.RemoveKeyword
-	1137, // 3676: svg.AnimateTransformCalcModeAttr.Alt1.discrete_keyword:type_name -> svg.DiscreteKeyword
-	1331, // 3677: svg.AnimateTransformCalcModeAttr.Alt1.linear_keyword:type_name -> svg.LinearKeyword
-	1441, // 3678: svg.AnimateTransformCalcModeAttr.Alt1.paced_keyword:type_name -> svg.PacedKeyword
-	1560, // 3679: svg.AnimateTransformCalcModeAttr.Alt1.spline_keyword:type_name -> svg.SplineKeyword
-	1621, // 3680: svg.AnimateTransformTypeAttr.Alt1.translate_keyword:type_name -> svg.TranslateKeyword
-	1520, // 3681: svg.AnimateTransformTypeAttr.Alt1.scale_keyword:type_name -> svg.ScaleKeyword
-	1497, // 3682: svg.AnimateTransformTypeAttr.Alt1.rotate_keyword:type_name -> svg.RotateKeyword
-	1538, // 3683: svg.AnimateTransformTypeAttr.Alt1.skew_x_keyword:type_name -> svg.SkewXKeyword
-	1539, // 3684: svg.AnimateTransformTypeAttr.Alt1.skew_y_keyword:type_name -> svg.SkewYKeyword
-	1490, // 3685: svg.AnimateTransformAdditiveAttr.Alt1.replace_keyword:type_name -> svg.ReplaceKeyword
-	1582, // 3686: svg.AnimateTransformAdditiveAttr.Alt1.sum_keyword:type_name -> svg.SumKeyword
-	1410, // 3687: svg.AnimateTransformAccumulateAttr.Alt1.none_keyword:type_name -> svg.NoneKeyword
-	1582, // 3688: svg.AnimateTransformAccumulateAttr.Alt1.sum_keyword:type_name -> svg.SumKeyword
-	330,  // 3689: svg.NumberOptionalNumberType.Space.non_negative_number_type:type_name -> svg.NonNegativeNumberType
-	363,  // 3690: svg.PreserveAspectRatio.Space.meet_or_slice:type_name -> svg.MeetOrSlice
-	1010, // 3691: svg.ImageCrossoriginAttr.Alt1.anonymous_keyword:type_name -> svg.AnonymousKeyword
-	1635, // 3692: svg.ImageCrossoriginAttr.Alt1.use_hyphen_minus_credentials_keyword:type_name -> svg.UseHyphenMinusCredentialsKeyword
-	1024, // 3693: svg.ImageWidthAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
-	337,  // 3694: svg.ImageWidthAttr.Alt1.non_negative_length_percentage_type:type_name -> svg.NonNegativeLengthPercentageType
-	1024, // 3695: svg.ImageHeightAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
-	337,  // 3696: svg.ImageHeightAttr.Alt1.non_negative_length_percentage_type:type_name -> svg.NonNegativeLengthPercentageType
-	1588, // 3697: svg.ImageDecodingAttr.Alt1.sync_keyword:type_name -> svg.SyncKeyword
-	1020, // 3698: svg.ImageDecodingAttr.Alt1.async_keyword:type_name -> svg.AsyncKeyword
-	1024, // 3699: svg.ImageDecodingAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
-	1024, // 3700: svg.ForeignObjectWidthAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
-	337,  // 3701: svg.ForeignObjectWidthAttr.Alt1.non_negative_length_percentage_type:type_name -> svg.NonNegativeLengthPercentageType
-	1024, // 3702: svg.ForeignObjectHeightAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
-	337,  // 3703: svg.ForeignObjectHeightAttr.Alt1.non_negative_length_percentage_type:type_name -> svg.NonNegativeLengthPercentageType
-	1136, // 3704: svg.ViewZoomAndPanAttr.Alt1.disable_keyword:type_name -> svg.DisableKeyword
-	1350, // 3705: svg.ViewZoomAndPanAttr.Alt1.magnify_keyword:type_name -> svg.MagnifyKeyword
-	1010, // 3706: svg.ScriptCrossoriginAttr.Alt1.anonymous_keyword:type_name -> svg.AnonymousKeyword
-	1635, // 3707: svg.ScriptCrossoriginAttr.Alt1.use_hyphen_minus_credentials_keyword:type_name -> svg.UseHyphenMinusCredentialsKeyword
-	1049, // 3708: svg.PointerEventsAttr.Alt1.bounding_hyphen_minus_box_keyword:type_name -> svg.BoundingHyphenMinusBoxKeyword
-	1646, // 3709: svg.PointerEventsAttr.Alt1.visible_painted_keyword:type_name -> svg.VisiblePaintedKeyword
-	1644, // 3710: svg.PointerEventsAttr.Alt1.visible_fill_keyword:type_name -> svg.VisibleFillKeyword
-	1647, // 3711: svg.PointerEventsAttr.Alt1.visible_stroke_keyword:type_name -> svg.VisibleStrokeKeyword
-	1645, // 3712: svg.PointerEventsAttr.Alt1.visible_keyword:type_name -> svg.VisibleKeyword
-	1445, // 3713: svg.PointerEventsAttr.Alt1.painted_keyword:type_name -> svg.PaintedKeyword
-	1164, // 3714: svg.PointerEventsAttr.Alt1.fill_keyword:type_name -> svg.FillKeyword
-	1573, // 3715: svg.PointerEventsAttr.Alt1.stroke_keyword:type_name -> svg.StrokeKeyword
-	1005, // 3716: svg.PointerEventsAttr.Alt1.all_keyword:type_name -> svg.AllKeyword
-	1410, // 3717: svg.PointerEventsAttr.Alt1.none_keyword:type_name -> svg.NoneKeyword
-	1024, // 3718: svg.PointerEventsAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
-	1412, // 3719: svg.FeBlendModeAttr.Alt1.normal_keyword:type_name -> svg.NormalKeyword
-	1389, // 3720: svg.FeBlendModeAttr.Alt1.multiply_keyword:type_name -> svg.MultiplyKeyword
-	1521, // 3721: svg.FeBlendModeAttr.Alt1.screen_keyword:type_name -> svg.ScreenKeyword
-	1101, // 3722: svg.FeBlendModeAttr.Alt1.darken_keyword:type_name -> svg.DarkenKeyword
-	1314, // 3723: svg.FeBlendModeAttr.Alt1.lighten_keyword:type_name -> svg.LightenKeyword
-	1439, // 3724: svg.FeBlendModeAttr.Alt1.overlay_keyword:type_name -> svg.OverlayKeyword
-	1072, // 3725: svg.FeBlendModeAttr.Alt1.color_hyphen_minus_dodge_keyword:type_name -> svg.ColorHyphenMinusDodgeKeyword
-	1071, // 3726: svg.FeBlendModeAttr.Alt1.color_hyphen_minus_burn_keyword:type_name -> svg.ColorHyphenMinusBurnKeyword
-	1201, // 3727: svg.FeBlendModeAttr.Alt1.hard_hyphen_minus_light_keyword:type_name -> svg.HardHyphenMinusLightKeyword
-	1551, // 3728: svg.FeBlendModeAttr.Alt1.soft_hyphen_minus_light_keyword:type_name -> svg.SoftHyphenMinusLightKeyword
-	1129, // 3729: svg.FeBlendModeAttr.Alt1.difference_keyword:type_name -> svg.DifferenceKeyword
-	1154, // 3730: svg.FeBlendModeAttr.Alt1.exclusion_keyword:type_name -> svg.ExclusionKeyword
-	1211, // 3731: svg.FeBlendModeAttr.Alt1.hue_keyword:type_name -> svg.HueKeyword
-	1519, // 3732: svg.FeBlendModeAttr.Alt1.saturation_keyword:type_name -> svg.SaturationKeyword
-	1073, // 3733: svg.FeBlendModeAttr.Alt1.color_keyword:type_name -> svg.ColorKeyword
-	1347, // 3734: svg.FeBlendModeAttr.Alt1.luminosity_keyword:type_name -> svg.LuminosityKeyword
-	1359, // 3735: svg.FeColorMatrixTypeAttr.Alt1.matrix_keyword:type_name -> svg.MatrixKeyword
-	1518, // 3736: svg.FeColorMatrixTypeAttr.Alt1.saturate_keyword:type_name -> svg.SaturateKeyword
-	1212, // 3737: svg.FeColorMatrixTypeAttr.Alt1.hue_rotate_keyword:type_name -> svg.HueRotateKeyword
-	1346, // 3738: svg.FeColorMatrixTypeAttr.Alt1.luminance_to_alpha_keyword:type_name -> svg.LuminanceToAlphaKeyword
-	1438, // 3739: svg.FeCompositeOperatorAttr.Alt1.over_keyword:type_name -> svg.OverKeyword
-	1217, // 3740: svg.FeCompositeOperatorAttr.Alt1.in_keyword:type_name -> svg.InKeyword
-	1437, // 3741: svg.FeCompositeOperatorAttr.Alt1.out_keyword:type_name -> svg.OutKeyword
-	1021, // 3742: svg.FeCompositeOperatorAttr.Alt1.atop_keyword:type_name -> svg.AtopKeyword
-	1667, // 3743: svg.FeCompositeOperatorAttr.Alt1.xor_keyword:type_name -> svg.XorKeyword
-	1315, // 3744: svg.FeCompositeOperatorAttr.Alt1.lighter_keyword:type_name -> svg.LighterKeyword
-	1016, // 3745: svg.FeCompositeOperatorAttr.Alt1.arithmetic_keyword:type_name -> svg.ArithmeticKeyword
-	1143, // 3746: svg.FeConvolveMatrixEdgeModeAttr.Alt1.duplicate_keyword:type_name -> svg.DuplicateKeyword
-	1655, // 3747: svg.FeConvolveMatrixEdgeModeAttr.Alt1.wrap_keyword:type_name -> svg.WrapKeyword
-	1410, // 3748: svg.FeConvolveMatrixEdgeModeAttr.Alt1.none_keyword:type_name -> svg.NoneKeyword
-	1477, // 3749: svg.FeDisplacementMapXchannelSelectorAttr.Alt1.r_keyword:type_name -> svg.RKeyword
-	1180, // 3750: svg.FeDisplacementMapXchannelSelectorAttr.Alt1.g_keyword:type_name -> svg.GKeyword
-	1026, // 3751: svg.FeDisplacementMapXchannelSelectorAttr.Alt1.b_keyword:type_name -> svg.BKeyword
-	994,  // 3752: svg.FeDisplacementMapXchannelSelectorAttr.Alt1.a_keyword:type_name -> svg.AKeyword
-	1477, // 3753: svg.FeDisplacementMapYchannelSelectorAttr.Alt1.r_keyword:type_name -> svg.RKeyword
-	1180, // 3754: svg.FeDisplacementMapYchannelSelectorAttr.Alt1.g_keyword:type_name -> svg.GKeyword
-	1026, // 3755: svg.FeDisplacementMapYchannelSelectorAttr.Alt1.b_keyword:type_name -> svg.BKeyword
-	994,  // 3756: svg.FeDisplacementMapYchannelSelectorAttr.Alt1.a_keyword:type_name -> svg.AKeyword
-	1143, // 3757: svg.FeGaussianBlurEdgeModeAttr.Alt1.duplicate_keyword:type_name -> svg.DuplicateKeyword
-	1655, // 3758: svg.FeGaussianBlurEdgeModeAttr.Alt1.wrap_keyword:type_name -> svg.WrapKeyword
-	1410, // 3759: svg.FeGaussianBlurEdgeModeAttr.Alt1.none_keyword:type_name -> svg.NoneKeyword
-	1010, // 3760: svg.FeImageCrossoriginAttr.Alt1.anonymous_keyword:type_name -> svg.AnonymousKeyword
-	1635, // 3761: svg.FeImageCrossoriginAttr.Alt1.use_hyphen_minus_credentials_keyword:type_name -> svg.UseHyphenMinusCredentialsKeyword
-	1149, // 3762: svg.FeMorphologyOperatorAttr.Alt1.erode_keyword:type_name -> svg.ErodeKeyword
-	1132, // 3763: svg.FeMorphologyOperatorAttr.Alt1.dilate_keyword:type_name -> svg.DilateKeyword
-	1568, // 3764: svg.FeTurbulenceStitchTilesAttr.Alt1.stitch_keyword:type_name -> svg.StitchKeyword
-	1406, // 3765: svg.FeTurbulenceStitchTilesAttr.Alt1.no_stitch_keyword:type_name -> svg.NoStitchKeyword
-	1174, // 3766: svg.FeTurbulenceTypeAttr.Alt1.fractal_noise_keyword:type_name -> svg.FractalNoiseKeyword
-	1626, // 3767: svg.FeTurbulenceTypeAttr.Alt1.turbulence_keyword:type_name -> svg.TurbulenceKeyword
-	1214, // 3768: svg.FeFuncRtypeAttr.Alt1.identity_keyword:type_name -> svg.IdentityKeyword
-	1599, // 3769: svg.FeFuncRtypeAttr.Alt1.table_keyword:type_name -> svg.TableKeyword
-	1137, // 3770: svg.FeFuncRtypeAttr.Alt1.discrete_keyword:type_name -> svg.DiscreteKeyword
-	1331, // 3771: svg.FeFuncRtypeAttr.Alt1.linear_keyword:type_name -> svg.LinearKeyword
-	1182, // 3772: svg.FeFuncRtypeAttr.Alt1.gamma_keyword:type_name -> svg.GammaKeyword
-	1214, // 3773: svg.FeFuncGtypeAttr.Alt1.identity_keyword:type_name -> svg.IdentityKeyword
-	1599, // 3774: svg.FeFuncGtypeAttr.Alt1.table_keyword:type_name -> svg.TableKeyword
-	1137, // 3775: svg.FeFuncGtypeAttr.Alt1.discrete_keyword:type_name -> svg.DiscreteKeyword
-	1331, // 3776: svg.FeFuncGtypeAttr.Alt1.linear_keyword:type_name -> svg.LinearKeyword
-	1182, // 3777: svg.FeFuncGtypeAttr.Alt1.gamma_keyword:type_name -> svg.GammaKeyword
-	1214, // 3778: svg.FeFuncBtypeAttr.Alt1.identity_keyword:type_name -> svg.IdentityKeyword
-	1599, // 3779: svg.FeFuncBtypeAttr.Alt1.table_keyword:type_name -> svg.TableKeyword
-	1137, // 3780: svg.FeFuncBtypeAttr.Alt1.discrete_keyword:type_name -> svg.DiscreteKeyword
-	1331, // 3781: svg.FeFuncBtypeAttr.Alt1.linear_keyword:type_name -> svg.LinearKeyword
-	1182, // 3782: svg.FeFuncBtypeAttr.Alt1.gamma_keyword:type_name -> svg.GammaKeyword
-	1214, // 3783: svg.FeFuncAtypeAttr.Alt1.identity_keyword:type_name -> svg.IdentityKeyword
-	1599, // 3784: svg.FeFuncAtypeAttr.Alt1.table_keyword:type_name -> svg.TableKeyword
-	1137, // 3785: svg.FeFuncAtypeAttr.Alt1.discrete_keyword:type_name -> svg.DiscreteKeyword
-	1331, // 3786: svg.FeFuncAtypeAttr.Alt1.linear_keyword:type_name -> svg.LinearKeyword
-	1182, // 3787: svg.FeFuncAtypeAttr.Alt1.gamma_keyword:type_name -> svg.GammaKeyword
-	1410, // 3788: svg.FilterAttr.Alt1.none_keyword:type_name -> svg.NoneKeyword
-	660,  // 3789: svg.FilterAttr.Alt1.filter_value_list:type_name -> svg.FilterValueList
-	339,  // 3790: svg.HueRotateFunction.Alt1.angle_type:type_name -> svg.AngleType
-	329,  // 3791: svg.HueRotateFunction.Alt1.number_type:type_name -> svg.NumberType
-	1024, // 3792: svg.ColorInterpolationFiltersAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
-	1513, // 3793: svg.ColorInterpolationFiltersAttr.Alt1.s_rgb_keyword:type_name -> svg.SRgbKeyword
-	1332, // 3794: svg.ColorInterpolationFiltersAttr.Alt1.linear_rgb_keyword:type_name -> svg.LinearRgbKeyword
-	1097, // 3795: svg.FloodColorAttr.Alt1.current_color_keyword:type_name -> svg.CurrentColorKeyword
-	1911, // 3796: svg.FloodColorAttr.Alt1.color_type:type_name -> google.protobuf.Any
-	1097, // 3797: svg.LightingColorAttr.Alt1.current_color_keyword:type_name -> svg.CurrentColorKeyword
-	1911, // 3798: svg.LightingColorAttr.Alt1.color_type:type_name -> google.protobuf.Any
-	1024, // 3799: svg.ImageRenderingAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
-	1427, // 3800: svg.ImageRenderingAttr.Alt1.optimize_speed_keyword:type_name -> svg.OptimizeSpeedKeyword
-	1426, // 3801: svg.ImageRenderingAttr.Alt1.optimize_quality_keyword:type_name -> svg.OptimizeQualityKeyword
-	1095, // 3802: svg.ImageRenderingAttr.Alt1.crisp_hyphen_minus_edges_keyword:type_name -> svg.CrispHyphenMinusEdgesKeyword
-	1457, // 3803: svg.ImageRenderingAttr.Alt1.pixelated_keyword:type_name -> svg.PixelatedKeyword
-	1345, // 3804: svg.MaskTypeAttr.Alt1.luminance_keyword:type_name -> svg.LuminanceKeyword
-	1006, // 3805: svg.MaskTypeAttr.Alt1.alpha_keyword:type_name -> svg.AlphaKeyword
-	1410, // 3806: svg.ClipPathAttr.Alt1.none_keyword:type_name -> svg.NoneKeyword
-	344,  // 3807: svg.ClipPathAttr.Alt1.url_type:type_name -> svg.UrlType
-	697,  // 3808: svg.ClipPathAttr.Alt1.basic_shape:type_name -> svg.BasicShape
-	696,  // 3809: svg.ClipPathAttr.Alt1.geometry_box:type_name -> svg.GeometryBox
-	695,  // 3810: svg.ClipPathAttr.Alt1.clip_path_combo:type_name -> svg.ClipPathCombo
-	697,  // 3811: svg.ClipPathCombo.Seq1.basic_shape:type_name -> svg.BasicShape
-	696,  // 3812: svg.ClipPathCombo.Seq1.geometry_box:type_name -> svg.GeometryBox
-	696,  // 3813: svg.ClipPathCombo.Seq2.geometry_box:type_name -> svg.GeometryBox
-	697,  // 3814: svg.ClipPathCombo.Seq2.basic_shape:type_name -> svg.BasicShape
-	336,  // 3815: svg.InsetFn.Space.length_percentage_type:type_name -> svg.LengthPercentageType
-	1789, // 3816: svg.InsetFn.Space.space:type_name -> svg.InsetFn.Space.Space
-	699,  // 3817: svg.InsetFn.SpaceRoundSpace.border_radius:type_name -> svg.BorderRadius
-	336,  // 3818: svg.InsetFn.Space.Space.length_percentage_type:type_name -> svg.LengthPercentageType
-	1790, // 3819: svg.InsetFn.Space.Space.space:type_name -> svg.InsetFn.Space.Space.Space
-	336,  // 3820: svg.InsetFn.Space.Space.Space.length_percentage_type:type_name -> svg.LengthPercentageType
-	336,  // 3821: svg.BorderRadius.Space.length_percentage_type:type_name -> svg.LengthPercentageType
-	1793, // 3822: svg.BorderRadius.Space.space:type_name -> svg.BorderRadius.Space.Space
-	336,  // 3823: svg.BorderRadius.Solidus.length_percentage_type:type_name -> svg.LengthPercentageType
-	1795, // 3824: svg.BorderRadius.Solidus.space:type_name -> svg.BorderRadius.Solidus.Space
-	336,  // 3825: svg.BorderRadius.Space.Space.length_percentage_type:type_name -> svg.LengthPercentageType
-	1794, // 3826: svg.BorderRadius.Space.Space.space:type_name -> svg.BorderRadius.Space.Space.Space
-	336,  // 3827: svg.BorderRadius.Space.Space.Space.length_percentage_type:type_name -> svg.LengthPercentageType
-	336,  // 3828: svg.BorderRadius.Solidus.Space.length_percentage_type:type_name -> svg.LengthPercentageType
-	1796, // 3829: svg.BorderRadius.Solidus.Space.space:type_name -> svg.BorderRadius.Solidus.Space.Space
-	336,  // 3830: svg.BorderRadius.Solidus.Space.Space.length_percentage_type:type_name -> svg.LengthPercentageType
-	1797, // 3831: svg.BorderRadius.Solidus.Space.Space.space:type_name -> svg.BorderRadius.Solidus.Space.Space.Space
-	336,  // 3832: svg.BorderRadius.Solidus.Space.Space.Space.length_percentage_type:type_name -> svg.LengthPercentageType
-	702,  // 3833: svg.CircleFn.Seq1.radial_size:type_name -> svg.RadialSize
-	1799, // 3834: svg.CircleFn.Seq1.space_at_space:type_name -> svg.CircleFn.Seq1.SpaceAtSpace
-	703,  // 3835: svg.CircleFn.Seq1.SpaceAtSpace.css_position:type_name -> svg.CssPosition
-	702,  // 3836: svg.EllipseFn.Seq1.radial_size:type_name -> svg.RadialSize
-	1555, // 3837: svg.EllipseFn.Seq1.space_keyword:type_name -> svg.SpaceKeyword
-	702,  // 3838: svg.EllipseFn.Seq1.radial_size_2:type_name -> svg.RadialSize
-	1801, // 3839: svg.EllipseFn.Seq1.space_at_space:type_name -> svg.EllipseFn.Seq1.SpaceAtSpace
-	703,  // 3840: svg.EllipseFn.Seq1.SpaceAtSpace.css_position:type_name -> svg.CssPosition
-	705,  // 3841: svg.CssPosition.Space.css_position_v:type_name -> svg.CssPositionV
-	711,  // 3842: svg.PolygonFn.Seq1.fill_rule:type_name -> svg.FillRule
-	1076, // 3843: svg.PolygonFn.Seq1.comma_keyword:type_name -> svg.CommaKeyword
-	333,  // 3844: svg.PolygonFn.SpaceRoundSpace.length_type:type_name -> svg.LengthType
-	1076, // 3845: svg.PolygonFn.SpaceRoundSpace.comma_keyword:type_name -> svg.CommaKeyword
-	711,  // 3846: svg.PathFn.Seq1.fill_rule:type_name -> svg.FillRule
-	1076, // 3847: svg.PathFn.Seq1.comma_keyword:type_name -> svg.CommaKeyword
-	711,  // 3848: svg.ShapeFn.Seq1.fill_rule:type_name -> svg.FillRule
-	1555, // 3849: svg.ShapeFn.Seq1.space_keyword:type_name -> svg.SpaceKeyword
-	1411, // 3850: svg.ClipRuleAttr.Alt1.nonzero_keyword:type_name -> svg.NonzeroKeyword
-	1150, // 3851: svg.ClipRuleAttr.Alt1.evenodd_keyword:type_name -> svg.EvenoddKeyword
-	1024, // 3852: svg.ClipAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
-	714,  // 3853: svg.ClipAttr.Alt1.clip_rect:type_name -> svg.ClipRect
-	1410, // 3854: svg.MaskAttr.Alt1.none_keyword:type_name -> svg.NoneKeyword
-	344,  // 3855: svg.MaskAttr.Alt1.url_type:type_name -> svg.UrlType
-	717,  // 3856: svg.MaskAttr.Alt1.mask_layer_list:type_name -> svg.MaskLayerList
-	721,  // 3857: svg.MaskLayerPosition.Solidus.mask_bg_size:type_name -> svg.MaskBgSize
-	336,  // 3858: svg.MaskBgSize.Seq1.length_percentage_type:type_name -> svg.LengthPercentageType
-	1555, // 3859: svg.MaskBgSize.Seq1.space_keyword:type_name -> svg.SpaceKeyword
-	336,  // 3860: svg.MaskBgSize.Seq1.length_percentage_type_2:type_name -> svg.LengthPercentageType
-	1813, // 3861: svg.MaskRepeatValue.Seq1.alt1:type_name -> svg.MaskRepeatValue.Seq1.Alt1
-	1555, // 3862: svg.MaskRepeatValue.Seq1.space_keyword:type_name -> svg.SpaceKeyword
-	1814, // 3863: svg.MaskRepeatValue.Seq1.alt2:type_name -> svg.MaskRepeatValue.Seq1.Alt2
-	1488, // 3864: svg.MaskRepeatValue.Seq1.Alt1.repeat_keyword:type_name -> svg.RepeatKeyword
-	1555, // 3865: svg.MaskRepeatValue.Seq1.Alt1.space_keyword:type_name -> svg.SpaceKeyword
-	1498, // 3866: svg.MaskRepeatValue.Seq1.Alt1.round_keyword:type_name -> svg.RoundKeyword
-	1405, // 3867: svg.MaskRepeatValue.Seq1.Alt1.no_hyphen_minus_repeat_keyword:type_name -> svg.NoHyphenMinusRepeatKeyword
-	1488, // 3868: svg.MaskRepeatValue.Seq1.Alt2.repeat_keyword:type_name -> svg.RepeatKeyword
-	1555, // 3869: svg.MaskRepeatValue.Seq1.Alt2.space_keyword:type_name -> svg.SpaceKeyword
-	1498, // 3870: svg.MaskRepeatValue.Seq1.Alt2.round_keyword:type_name -> svg.RoundKeyword
-	1405, // 3871: svg.MaskRepeatValue.Seq1.Alt2.no_hyphen_minus_repeat_keyword:type_name -> svg.NoHyphenMinusRepeatKeyword
-	731,  // 3872: svg.MaskLayerOriginClip.Seq1.mask_origin_box:type_name -> svg.MaskOriginBox
-	1555, // 3873: svg.MaskLayerOriginClip.Seq1.space_keyword:type_name -> svg.SpaceKeyword
-	730,  // 3874: svg.MaskLayerOriginClip.Seq1.mask_clip_box_value:type_name -> svg.MaskClipBoxValue
-	1575, // 3875: svg.MarkerMarkerUnitsAttr.Alt1.stroke_width_keyword:type_name -> svg.StrokeWidthKeyword
-	1636, // 3876: svg.MarkerMarkerUnitsAttr.Alt1.user_space_on_use_keyword:type_name -> svg.UserSpaceOnUseKeyword
-	336,  // 3877: svg.MarkerRefXattr.Alt1.length_percentage_type:type_name -> svg.LengthPercentageType
-	329,  // 3878: svg.MarkerRefXattr.Alt1.number_type:type_name -> svg.NumberType
-	1245, // 3879: svg.MarkerRefXattr.Alt1.left_keyword:type_name -> svg.LeftKeyword
-	1059, // 3880: svg.MarkerRefXattr.Alt1.center_keyword:type_name -> svg.CenterKeyword
-	1492, // 3881: svg.MarkerRefXattr.Alt1.right_keyword:type_name -> svg.RightKeyword
-	336,  // 3882: svg.MarkerRefYattr.Alt1.length_percentage_type:type_name -> svg.LengthPercentageType
-	329,  // 3883: svg.MarkerRefYattr.Alt1.number_type:type_name -> svg.NumberType
-	1619, // 3884: svg.MarkerRefYattr.Alt1.top_keyword:type_name -> svg.TopKeyword
-	1059, // 3885: svg.MarkerRefYattr.Alt1.center_keyword:type_name -> svg.CenterKeyword
-	1048, // 3886: svg.MarkerRefYattr.Alt1.bottom_keyword:type_name -> svg.BottomKeyword
-	1024, // 3887: svg.MarkerOrientAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
-	1023, // 3888: svg.MarkerOrientAttr.Alt1.auto_hyphen_minus_start_hyphen_minus_reverse_keyword:type_name -> svg.AutoHyphenMinusStartHyphenMinusReverseKeyword
-	339,  // 3889: svg.MarkerOrientAttr.Alt1.angle_type:type_name -> svg.AngleType
-	329,  // 3890: svg.MarkerOrientAttr.Alt1.number_type:type_name -> svg.NumberType
-	1411, // 3891: svg.FillRuleAttr.Alt1.nonzero_keyword:type_name -> svg.NonzeroKeyword
-	1150, // 3892: svg.FillRuleAttr.Alt1.evenodd_keyword:type_name -> svg.EvenoddKeyword
-	1053, // 3893: svg.StrokeLinecapAttr.Alt1.butt_keyword:type_name -> svg.ButtKeyword
-	1498, // 3894: svg.StrokeLinecapAttr.Alt1.round_keyword:type_name -> svg.RoundKeyword
-	1562, // 3895: svg.StrokeLinecapAttr.Alt1.square_keyword:type_name -> svg.SquareKeyword
-	1384, // 3896: svg.StrokeLinejoinAttr.Alt1.miter_keyword:type_name -> svg.MiterKeyword
-	1383, // 3897: svg.StrokeLinejoinAttr.Alt1.miter_hyphen_minus_clip_keyword:type_name -> svg.MiterHyphenMinusClipKeyword
-	1498, // 3898: svg.StrokeLinejoinAttr.Alt1.round_keyword:type_name -> svg.RoundKeyword
-	1033, // 3899: svg.StrokeLinejoinAttr.Alt1.bevel_keyword:type_name -> svg.BevelKeyword
-	1015, // 3900: svg.StrokeLinejoinAttr.Alt1.arcs_keyword:type_name -> svg.ArcsKeyword
-	1410, // 3901: svg.StrokeDasharrayAttr.Alt1.none_keyword:type_name -> svg.NoneKeyword
-	352,  // 3902: svg.StrokeDasharrayAttr.Alt1.dasharray_type:type_name -> svg.DasharrayType
-	336,  // 3903: svg.StrokeDashoffsetAttr.Alt1.length_percentage_type:type_name -> svg.LengthPercentageType
-	329,  // 3904: svg.StrokeDashoffsetAttr.Alt1.number_type:type_name -> svg.NumberType
-	1412, // 3905: svg.PaintOrderAttr.Alt1.normal_keyword:type_name -> svg.NormalKeyword
-	755,  // 3906: svg.PaintOrderAttr.Alt1.paint_order_list:type_name -> svg.PaintOrderList
-	1410, // 3907: svg.MarkerAttr.Alt1.none_keyword:type_name -> svg.NoneKeyword
-	344,  // 3908: svg.MarkerAttr.Alt1.url_type:type_name -> svg.UrlType
-	1410, // 3909: svg.MarkerStartAttr.Alt1.none_keyword:type_name -> svg.NoneKeyword
-	344,  // 3910: svg.MarkerStartAttr.Alt1.url_type:type_name -> svg.UrlType
-	1410, // 3911: svg.MarkerMidAttr.Alt1.none_keyword:type_name -> svg.NoneKeyword
-	344,  // 3912: svg.MarkerMidAttr.Alt1.url_type:type_name -> svg.UrlType
-	1410, // 3913: svg.MarkerEndAttr.Alt1.none_keyword:type_name -> svg.NoneKeyword
-	344,  // 3914: svg.MarkerEndAttr.Alt1.url_type:type_name -> svg.UrlType
-	1024, // 3915: svg.ColorInterpolationAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
-	1513, // 3916: svg.ColorInterpolationAttr.Alt1.s_rgb_keyword:type_name -> svg.SRgbKeyword
-	1332, // 3917: svg.ColorInterpolationAttr.Alt1.linear_rgb_keyword:type_name -> svg.LinearRgbKeyword
-	1024, // 3918: svg.ColorRenderingAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
-	1427, // 3919: svg.ColorRenderingAttr.Alt1.optimize_speed_keyword:type_name -> svg.OptimizeSpeedKeyword
-	1426, // 3920: svg.ColorRenderingAttr.Alt1.optimize_quality_keyword:type_name -> svg.OptimizeQualityKeyword
-	1024, // 3921: svg.ShapeRenderingAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
-	1427, // 3922: svg.ShapeRenderingAttr.Alt1.optimize_speed_keyword:type_name -> svg.OptimizeSpeedKeyword
-	1094, // 3923: svg.ShapeRenderingAttr.Alt1.crisp_edges_keyword:type_name -> svg.CrispEdgesKeyword
-	1184, // 3924: svg.ShapeRenderingAttr.Alt1.geometric_precision_keyword:type_name -> svg.GeometricPrecisionKeyword
-	1410, // 3925: svg.VectorEffectAttr.Alt1.none_keyword:type_name -> svg.NoneKeyword
-	1409, // 3926: svg.VectorEffectAttr.Alt1.non_hyphen_minus_scaling_hyphen_minus_stroke_keyword:type_name -> svg.NonHyphenMinusScalingHyphenMinusStrokeKeyword
-	1408, // 3927: svg.VectorEffectAttr.Alt1.non_hyphen_minus_scaling_hyphen_minus_size_keyword:type_name -> svg.NonHyphenMinusScalingHyphenMinusSizeKeyword
-	1407, // 3928: svg.VectorEffectAttr.Alt1.non_hyphen_minus_rotation_keyword:type_name -> svg.NonHyphenMinusRotationKeyword
-	1167, // 3929: svg.VectorEffectAttr.Alt1.fixed_hyphen_minus_position_keyword:type_name -> svg.FixedHyphenMinusPositionKeyword
-	768,  // 3930: svg.SvgPath.Seq1.move_to:type_name -> svg.MoveTo
-	767,  // 3931: svg.SvgPath.Seq1.draw_to_command:type_name -> svg.DrawToCommand
-	1348, // 3932: svg.MoveTo.Alt1.m_keyword:type_name -> svg.MKeyword
-	1348, // 3933: svg.MoveTo.Alt1.m_keyword_2:type_name -> svg.MKeyword
-	1673, // 3934: svg.ClosePath.Alt1.z_keyword:type_name -> svg.ZKeyword
-	1673, // 3935: svg.ClosePath.Alt1.z_keyword_2:type_name -> svg.ZKeyword
-	1239, // 3936: svg.LineTo.Alt1.l_keyword:type_name -> svg.LKeyword
-	1239, // 3937: svg.LineTo.Alt1.l_keyword_2:type_name -> svg.LKeyword
-	1199, // 3938: svg.HorizontalLineTo.Alt1.h_keyword:type_name -> svg.HKeyword
-	1199, // 3939: svg.HorizontalLineTo.Alt1.h_keyword_2:type_name -> svg.HKeyword
-	1637, // 3940: svg.VerticalLineTo.Alt1.v_keyword:type_name -> svg.VKeyword
-	1637, // 3941: svg.VerticalLineTo.Alt1.v_keyword_2:type_name -> svg.VKeyword
-	1055, // 3942: svg.CurveTo.Alt1.c_keyword:type_name -> svg.CKeyword
-	1055, // 3943: svg.CurveTo.Alt1.c_keyword_2:type_name -> svg.CKeyword
-	1512, // 3944: svg.SmoothCurveTo.Alt1.s_keyword:type_name -> svg.SKeyword
-	1512, // 3945: svg.SmoothCurveTo.Alt1.s_keyword_2:type_name -> svg.SKeyword
-	1475, // 3946: svg.QuadraticBezierCurveTo.Alt1.q_keyword:type_name -> svg.QKeyword
-	1475, // 3947: svg.QuadraticBezierCurveTo.Alt1.q_keyword_2:type_name -> svg.QKeyword
-	1589, // 3948: svg.SmoothQuadraticBezierCurveTo.Alt1.t_keyword:type_name -> svg.TKeyword
-	1589, // 3949: svg.SmoothQuadraticBezierCurveTo.Alt1.t_keyword_2:type_name -> svg.TKeyword
-	994,  // 3950: svg.EllipticalArc.Alt1.a_keyword:type_name -> svg.AKeyword
-	994,  // 3951: svg.EllipticalArc.Alt1.a_keyword_2:type_name -> svg.AKeyword
-	1442, // 3952: svg.SpreadMethodAttr.Alt1.pad_keyword:type_name -> svg.PadKeyword
-	1482, // 3953: svg.SpreadMethodAttr.Alt1.reflect_keyword:type_name -> svg.ReflectKeyword
-	1488, // 3954: svg.SpreadMethodAttr.Alt1.repeat_keyword:type_name -> svg.RepeatKeyword
-	336,  // 3955: svg.LinearGradientX1attr.Alt1.length_percentage_type:type_name -> svg.LengthPercentageType
-	329,  // 3956: svg.LinearGradientX1attr.Alt1.number_type:type_name -> svg.NumberType
-	336,  // 3957: svg.LinearGradientY1attr.Alt1.length_percentage_type:type_name -> svg.LengthPercentageType
-	329,  // 3958: svg.LinearGradientY1attr.Alt1.number_type:type_name -> svg.NumberType
-	336,  // 3959: svg.LinearGradientX2attr.Alt1.length_percentage_type:type_name -> svg.LengthPercentageType
-	329,  // 3960: svg.LinearGradientX2attr.Alt1.number_type:type_name -> svg.NumberType
-	336,  // 3961: svg.LinearGradientY2attr.Alt1.length_percentage_type:type_name -> svg.LengthPercentageType
-	329,  // 3962: svg.LinearGradientY2attr.Alt1.number_type:type_name -> svg.NumberType
-	336,  // 3963: svg.RadialGradientCxAttr.Alt1.length_percentage_type:type_name -> svg.LengthPercentageType
-	329,  // 3964: svg.RadialGradientCxAttr.Alt1.number_type:type_name -> svg.NumberType
-	336,  // 3965: svg.RadialGradientCyAttr.Alt1.length_percentage_type:type_name -> svg.LengthPercentageType
-	329,  // 3966: svg.RadialGradientCyAttr.Alt1.number_type:type_name -> svg.NumberType
-	336,  // 3967: svg.RadialGradientFxAttr.Alt1.length_percentage_type:type_name -> svg.LengthPercentageType
-	329,  // 3968: svg.RadialGradientFxAttr.Alt1.number_type:type_name -> svg.NumberType
-	336,  // 3969: svg.RadialGradientFyAttr.Alt1.length_percentage_type:type_name -> svg.LengthPercentageType
-	329,  // 3970: svg.RadialGradientFyAttr.Alt1.number_type:type_name -> svg.NumberType
-	329,  // 3971: svg.StopOffsetAttr.Alt1.number_type:type_name -> svg.NumberType
-	335,  // 3972: svg.StopOffsetAttr.Alt1.percentage_type:type_name -> svg.PercentageType
-	1097, // 3973: svg.StopColorAttr.Alt1.current_color_keyword:type_name -> svg.CurrentColorKeyword
-	1911, // 3974: svg.StopColorAttr.Alt1.color_type:type_name -> google.protobuf.Any
-	1024, // 3975: svg.RectRxAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
-	337,  // 3976: svg.RectRxAttr.Alt1.non_negative_length_percentage_type:type_name -> svg.NonNegativeLengthPercentageType
-	1024, // 3977: svg.RectRyAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
-	337,  // 3978: svg.RectRyAttr.Alt1.non_negative_length_percentage_type:type_name -> svg.NonNegativeLengthPercentageType
-	1024, // 3979: svg.EllipseRxAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
-	337,  // 3980: svg.EllipseRxAttr.Alt1.non_negative_length_percentage_type:type_name -> svg.NonNegativeLengthPercentageType
-	1024, // 3981: svg.EllipseRyAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
-	337,  // 3982: svg.EllipseRyAttr.Alt1.non_negative_length_percentage_type:type_name -> svg.NonNegativeLengthPercentageType
-	336,  // 3983: svg.LineX1attr.Alt1.length_percentage_type:type_name -> svg.LengthPercentageType
-	329,  // 3984: svg.LineX1attr.Alt1.number_type:type_name -> svg.NumberType
-	336,  // 3985: svg.LineY1attr.Alt1.length_percentage_type:type_name -> svg.LengthPercentageType
-	329,  // 3986: svg.LineY1attr.Alt1.number_type:type_name -> svg.NumberType
-	336,  // 3987: svg.LineX2attr.Alt1.length_percentage_type:type_name -> svg.LengthPercentageType
-	329,  // 3988: svg.LineX2attr.Alt1.number_type:type_name -> svg.NumberType
-	336,  // 3989: svg.LineY2attr.Alt1.length_percentage_type:type_name -> svg.LengthPercentageType
-	329,  // 3990: svg.LineY2attr.Alt1.number_type:type_name -> svg.NumberType
-	1410, // 3991: svg.PathDattr.Alt1.none_keyword:type_name -> svg.NoneKeyword
-	766,  // 3992: svg.PathDattr.Alt1.svg_path:type_name -> svg.SvgPath
-	333,  // 3993: svg.SymbolRefXattr.Alt1.length_type:type_name -> svg.LengthType
-	1245, // 3994: svg.SymbolRefXattr.Alt1.left_keyword:type_name -> svg.LeftKeyword
-	1059, // 3995: svg.SymbolRefXattr.Alt1.center_keyword:type_name -> svg.CenterKeyword
-	1492, // 3996: svg.SymbolRefXattr.Alt1.right_keyword:type_name -> svg.RightKeyword
-	333,  // 3997: svg.SymbolRefYattr.Alt1.length_type:type_name -> svg.LengthType
-	1619, // 3998: svg.SymbolRefYattr.Alt1.top_keyword:type_name -> svg.TopKeyword
-	1059, // 3999: svg.SymbolRefYattr.Alt1.center_keyword:type_name -> svg.CenterKeyword
-	1048, // 4000: svg.SymbolRefYattr.Alt1.bottom_keyword:type_name -> svg.BottomKeyword
-	1024, // 4001: svg.SymbolWidthAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
-	337,  // 4002: svg.SymbolWidthAttr.Alt1.non_negative_length_percentage_type:type_name -> svg.NonNegativeLengthPercentageType
-	1024, // 4003: svg.SymbolHeightAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
-	337,  // 4004: svg.SymbolHeightAttr.Alt1.non_negative_length_percentage_type:type_name -> svg.NonNegativeLengthPercentageType
-	1024, // 4005: svg.UseWidthAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
-	337,  // 4006: svg.UseWidthAttr.Alt1.non_negative_length_percentage_type:type_name -> svg.NonNegativeLengthPercentageType
-	1024, // 4007: svg.UseHeightAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
-	337,  // 4008: svg.UseHeightAttr.Alt1.non_negative_length_percentage_type:type_name -> svg.NonNegativeLengthPercentageType
-	1645, // 4009: svg.VisibilityAttr.Alt1.visible_keyword:type_name -> svg.VisibleKeyword
-	1204, // 4010: svg.VisibilityAttr.Alt1.hidden_keyword:type_name -> svg.HiddenKeyword
-	1069, // 4011: svg.VisibilityAttr.Alt1.collapse_keyword:type_name -> svg.CollapseKeyword
-	1221, // 4012: svg.VisibilityAttr.Alt1.inherit_keyword:type_name -> svg.InheritKeyword
-	1645, // 4013: svg.OverflowAttr.Alt1.visible_keyword:type_name -> svg.VisibleKeyword
-	1204, // 4014: svg.OverflowAttr.Alt1.hidden_keyword:type_name -> svg.HiddenKeyword
-	1522, // 4015: svg.OverflowAttr.Alt1.scroll_keyword:type_name -> svg.ScrollKeyword
-	1024, // 4016: svg.OverflowAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
-	1221, // 4017: svg.OverflowAttr.Alt1.inherit_keyword:type_name -> svg.InheritKeyword
-	915,  // 4018: svg.TransformOriginPosition.Seq1.transform_origin_y:type_name -> svg.TransformOriginY
-	916,  // 4019: svg.TransformOriginPosition.Seq1.transform_origin_z:type_name -> svg.TransformOriginZ
-	336,  // 4020: svg.TextLengthAttr.Alt1.length_percentage_type:type_name -> svg.LengthPercentageType
-	329,  // 4021: svg.TextLengthAttr.Alt1.number_type:type_name -> svg.NumberType
-	1557, // 4022: svg.TextLengthAdjustAttr.Alt1.spacing_keyword:type_name -> svg.SpacingKeyword
-	1556, // 4023: svg.TextLengthAdjustAttr.Alt1.spacing_and_glyphs_keyword:type_name -> svg.SpacingAndGlyphsKeyword
-	336,  // 4024: svg.TextPositionList.Alt1.length_percentage_type:type_name -> svg.LengthPercentageType
-	329,  // 4025: svg.TextPositionList.Alt1.number_type:type_name -> svg.NumberType
-	336,  // 4026: svg.TspanLengthAttr.Alt1.length_percentage_type:type_name -> svg.LengthPercentageType
-	329,  // 4027: svg.TspanLengthAttr.Alt1.number_type:type_name -> svg.NumberType
-	1557, // 4028: svg.TspanLengthAdjustAttr.Alt1.spacing_keyword:type_name -> svg.SpacingKeyword
-	1556, // 4029: svg.TspanLengthAdjustAttr.Alt1.spacing_and_glyphs_keyword:type_name -> svg.SpacingAndGlyphsKeyword
-	336,  // 4030: svg.TextPathStartOffsetAttr.Alt1.length_percentage_type:type_name -> svg.LengthPercentageType
-	329,  // 4031: svg.TextPathStartOffsetAttr.Alt1.number_type:type_name -> svg.NumberType
-	1001, // 4032: svg.TextPathMethodAttr.Alt1.align_keyword:type_name -> svg.AlignKeyword
-	1569, // 4033: svg.TextPathMethodAttr.Alt1.stretch_keyword:type_name -> svg.StretchKeyword
-	1024, // 4034: svg.TextPathSpacingAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
-	1152, // 4035: svg.TextPathSpacingAttr.Alt1.exact_keyword:type_name -> svg.ExactKeyword
-	1245, // 4036: svg.TextPathSideAttr.Alt1.left_keyword:type_name -> svg.LeftKeyword
-	1492, // 4037: svg.TextPathSideAttr.Alt1.right_keyword:type_name -> svg.RightKeyword
-	336,  // 4038: svg.TextPathLengthAttr.Alt1.length_percentage_type:type_name -> svg.LengthPercentageType
-	329,  // 4039: svg.TextPathLengthAttr.Alt1.number_type:type_name -> svg.NumberType
-	1557, // 4040: svg.TextPathLengthAdjustAttr.Alt1.spacing_keyword:type_name -> svg.SpacingKeyword
-	1556, // 4041: svg.TextPathLengthAdjustAttr.Alt1.spacing_and_glyphs_keyword:type_name -> svg.SpacingAndGlyphsKeyword
-	1564, // 4042: svg.TextAnchorAttr.Alt1.start_keyword:type_name -> svg.StartKeyword
-	1378, // 4043: svg.TextAnchorAttr.Alt1.middle_keyword:type_name -> svg.MiddleKeyword
-	1148, // 4044: svg.TextAnchorAttr.Alt1.end_keyword:type_name -> svg.EndKeyword
-	1024, // 4045: svg.DominantBaselineAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
-	1608, // 4046: svg.DominantBaselineAttr.Alt1.text_hyphen_minus_bottom_keyword:type_name -> svg.TextHyphenMinusBottomKeyword
-	1007, // 4047: svg.DominantBaselineAttr.Alt1.alphabetic_keyword:type_name -> svg.AlphabeticKeyword
-	1215, // 4048: svg.DominantBaselineAttr.Alt1.ideographic_keyword:type_name -> svg.IdeographicKeyword
-	1378, // 4049: svg.DominantBaselineAttr.Alt1.middle_keyword:type_name -> svg.MiddleKeyword
-	1060, // 4050: svg.DominantBaselineAttr.Alt1.central_keyword:type_name -> svg.CentralKeyword
-	1358, // 4051: svg.DominantBaselineAttr.Alt1.mathematical_keyword:type_name -> svg.MathematicalKeyword
-	1200, // 4052: svg.DominantBaselineAttr.Alt1.hanging_keyword:type_name -> svg.HangingKeyword
-	1609, // 4053: svg.DominantBaselineAttr.Alt1.text_hyphen_minus_top_keyword:type_name -> svg.TextHyphenMinusTopKeyword
-	1030, // 4054: svg.AlignmentBaselineAttr.Alt1.baseline_keyword:type_name -> svg.BaselineKeyword
-	1608, // 4055: svg.AlignmentBaselineAttr.Alt1.text_hyphen_minus_bottom_keyword:type_name -> svg.TextHyphenMinusBottomKeyword
-	1007, // 4056: svg.AlignmentBaselineAttr.Alt1.alphabetic_keyword:type_name -> svg.AlphabeticKeyword
-	1215, // 4057: svg.AlignmentBaselineAttr.Alt1.ideographic_keyword:type_name -> svg.IdeographicKeyword
-	1378, // 4058: svg.AlignmentBaselineAttr.Alt1.middle_keyword:type_name -> svg.MiddleKeyword
-	1060, // 4059: svg.AlignmentBaselineAttr.Alt1.central_keyword:type_name -> svg.CentralKeyword
-	1358, // 4060: svg.AlignmentBaselineAttr.Alt1.mathematical_keyword:type_name -> svg.MathematicalKeyword
-	1200, // 4061: svg.AlignmentBaselineAttr.Alt1.hanging_keyword:type_name -> svg.HangingKeyword
-	1609, // 4062: svg.AlignmentBaselineAttr.Alt1.text_hyphen_minus_top_keyword:type_name -> svg.TextHyphenMinusTopKeyword
-	1579, // 4063: svg.BaselineShiftAttr.Alt1.sub_keyword:type_name -> svg.SubKeyword
-	1583, // 4064: svg.BaselineShiftAttr.Alt1.super_keyword:type_name -> svg.SuperKeyword
-	336,  // 4065: svg.BaselineShiftAttr.Alt1.length_percentage_type:type_name -> svg.LengthPercentageType
-	1344, // 4066: svg.DirectionAttr.Alt1.ltr_keyword:type_name -> svg.LtrKeyword
-	1504, // 4067: svg.DirectionAttr.Alt1.rtl_keyword:type_name -> svg.RtlKeyword
-	1412, // 4068: svg.UnicodeBidiAttr.Alt1.normal_keyword:type_name -> svg.NormalKeyword
-	1146, // 4069: svg.UnicodeBidiAttr.Alt1.embed_keyword:type_name -> svg.EmbedKeyword
-	1231, // 4070: svg.UnicodeBidiAttr.Alt1.isolate_keyword:type_name -> svg.IsolateKeyword
-	1034, // 4071: svg.UnicodeBidiAttr.Alt1.bidi_hyphen_minus_override_keyword:type_name -> svg.BidiHyphenMinusOverrideKeyword
-	1230, // 4072: svg.UnicodeBidiAttr.Alt1.isolate_hyphen_minus_override_keyword:type_name -> svg.IsolateHyphenMinusOverrideKeyword
-	1458, // 4073: svg.UnicodeBidiAttr.Alt1.plaintext_keyword:type_name -> svg.PlaintextKeyword
-	1208, // 4074: svg.WritingModeAttr.Alt1.horizontal_hyphen_minus_tb_keyword:type_name -> svg.HorizontalHyphenMinusTbKeyword
-	1639, // 4075: svg.WritingModeAttr.Alt1.vertical_hyphen_minus_rl_keyword:type_name -> svg.VerticalHyphenMinusRlKeyword
-	1638, // 4076: svg.WritingModeAttr.Alt1.vertical_hyphen_minus_lr_keyword:type_name -> svg.VerticalHyphenMinusLrKeyword
-	1534, // 4077: svg.WritingModeAttr.Alt1.sideways_hyphen_minus_rl_keyword:type_name -> svg.SidewaysHyphenMinusRlKeyword
-	1533, // 4078: svg.WritingModeAttr.Alt1.sideways_hyphen_minus_lr_keyword:type_name -> svg.SidewaysHyphenMinusLrKeyword
-	1343, // 4079: svg.WritingModeAttr.Alt1.lr_keyword:type_name -> svg.LrKeyword
-	1342, // 4080: svg.WritingModeAttr.Alt1.lr_hyphen_minus_tb_keyword:type_name -> svg.LrHyphenMinusTbKeyword
-	1495, // 4081: svg.WritingModeAttr.Alt1.rl_keyword:type_name -> svg.RlKeyword
-	1494, // 4082: svg.WritingModeAttr.Alt1.rl_hyphen_minus_tb_keyword:type_name -> svg.RlHyphenMinusTbKeyword
-	1605, // 4083: svg.WritingModeAttr.Alt1.tb_keyword:type_name -> svg.TbKeyword
-	1604, // 4084: svg.WritingModeAttr.Alt1.tb_hyphen_minus_rl_keyword:type_name -> svg.TbHyphenMinusRlKeyword
-	1412, // 4085: svg.LetterSpacingAttr.Alt1.normal_keyword:type_name -> svg.NormalKeyword
-	333,  // 4086: svg.LetterSpacingAttr.Alt1.length_type:type_name -> svg.LengthType
-	1412, // 4087: svg.WordSpacingAttr.Alt1.normal_keyword:type_name -> svg.NormalKeyword
-	336,  // 4088: svg.WordSpacingAttr.Alt1.length_percentage_type:type_name -> svg.LengthPercentageType
-	962,  // 4089: svg.TextDecorationValue.Seq1.text_decoration_line:type_name -> svg.TextDecorationLine
-	1555, // 4090: svg.TextDecorationValue.Seq1.space_keyword:type_name -> svg.SpaceKeyword
-	963,  // 4091: svg.TextDecorationValue.Seq1.text_decoration_style:type_name -> svg.TextDecorationStyle
-	962,  // 4092: svg.TextDecorationValue.Seq2.text_decoration_line:type_name -> svg.TextDecorationLine
-	1555, // 4093: svg.TextDecorationValue.Seq2.space_keyword:type_name -> svg.SpaceKeyword
-	1911, // 4094: svg.TextDecorationValue.Seq2.color_type:type_name -> google.protobuf.Any
-	963,  // 4095: svg.TextDecorationValue.Seq3.text_decoration_style:type_name -> svg.TextDecorationStyle
-	1555, // 4096: svg.TextDecorationValue.Seq3.space_keyword:type_name -> svg.SpaceKeyword
-	1911, // 4097: svg.TextDecorationValue.Seq3.color_type:type_name -> google.protobuf.Any
-	962,  // 4098: svg.TextDecorationValue.Seq4.text_decoration_line:type_name -> svg.TextDecorationLine
-	1555, // 4099: svg.TextDecorationValue.Seq4.space_keyword:type_name -> svg.SpaceKeyword
-	963,  // 4100: svg.TextDecorationValue.Seq4.text_decoration_style:type_name -> svg.TextDecorationStyle
-	1555, // 4101: svg.TextDecorationValue.Seq4.space_keyword_2:type_name -> svg.SpaceKeyword
-	1911, // 4102: svg.TextDecorationValue.Seq4.color_type:type_name -> google.protobuf.Any
-	1065, // 4103: svg.TextOverflowAttr.Alt1.clip_keyword:type_name -> svg.ClipKeyword
-	1145, // 4104: svg.TextOverflowAttr.Alt1.ellipsis_keyword:type_name -> svg.EllipsisKeyword
-	1024, // 4105: svg.TextRenderingAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
-	1427, // 4106: svg.TextRenderingAttr.Alt1.optimize_speed_keyword:type_name -> svg.OptimizeSpeedKeyword
-	1425, // 4107: svg.TextRenderingAttr.Alt1.optimize_legibility_keyword:type_name -> svg.OptimizeLegibilityKeyword
-	1184, // 4108: svg.TextRenderingAttr.Alt1.geometric_precision_keyword:type_name -> svg.GeometricPrecisionKeyword
-	1412, // 4109: svg.WhiteSpaceAttr.Alt1.normal_keyword:type_name -> svg.NormalKeyword
-	1467, // 4110: svg.WhiteSpaceAttr.Alt1.pre_keyword:type_name -> svg.PreKeyword
-	1415, // 4111: svg.WhiteSpaceAttr.Alt1.nowrap_keyword:type_name -> svg.NowrapKeyword
-	1466, // 4112: svg.WhiteSpaceAttr.Alt1.pre_hyphen_minus_wrap_keyword:type_name -> svg.PreHyphenMinusWrapKeyword
-	1465, // 4113: svg.WhiteSpaceAttr.Alt1.pre_hyphen_minus_line_keyword:type_name -> svg.PreHyphenMinusLineKeyword
-	1050, // 4114: svg.WhiteSpaceAttr.Alt1.break_hyphen_minus_spaces_keyword:type_name -> svg.BreakHyphenMinusSpacesKeyword
-	1410, // 4115: svg.FontSizeAdjustAttr.Alt1.none_keyword:type_name -> svg.NoneKeyword
-	329,  // 4116: svg.FontSizeAdjustAttr.Alt1.number_type:type_name -> svg.NumberType
-	1412, // 4117: svg.FontStyleAttr.Alt1.normal_keyword:type_name -> svg.NormalKeyword
-	1232, // 4118: svg.FontStyleAttr.Alt1.italic_keyword:type_name -> svg.ItalicKeyword
-	974,  // 4119: svg.FontStyleAttr.Alt1.font_style_oblique:type_name -> svg.FontStyleOblique
-	339,  // 4120: svg.FontStyleOblique.Space.angle_type:type_name -> svg.AngleType
-	1412, // 4121: svg.FontWeightAttr.Alt1.normal_keyword:type_name -> svg.NormalKeyword
-	1044, // 4122: svg.FontWeightAttr.Alt1.bold_keyword:type_name -> svg.BoldKeyword
-	1045, // 4123: svg.FontWeightAttr.Alt1.bolder_keyword:type_name -> svg.BolderKeyword
-	1315, // 4124: svg.FontWeightAttr.Alt1.lighter_keyword:type_name -> svg.LighterKeyword
-	329,  // 4125: svg.FontWeightAttr.Alt1.number_type:type_name -> svg.NumberType
-	1412, // 4126: svg.FontStretchAttr.Alt1.normal_keyword:type_name -> svg.NormalKeyword
-	1628, // 4127: svg.FontStretchAttr.Alt1.ultra_hyphen_minus_condensed_keyword:type_name -> svg.UltraHyphenMinusCondensedKeyword
-	1157, // 4128: svg.FontStretchAttr.Alt1.extra_hyphen_minus_condensed_keyword:type_name -> svg.ExtraHyphenMinusCondensedKeyword
-	1079, // 4129: svg.FontStretchAttr.Alt1.condensed_keyword:type_name -> svg.CondensedKeyword
-	1530, // 4130: svg.FontStretchAttr.Alt1.semi_hyphen_minus_condensed_keyword:type_name -> svg.SemiHyphenMinusCondensedKeyword
-	1531, // 4131: svg.FontStretchAttr.Alt1.semi_hyphen_minus_expanded_keyword:type_name -> svg.SemiHyphenMinusExpandedKeyword
-	1156, // 4132: svg.FontStretchAttr.Alt1.expanded_keyword:type_name -> svg.ExpandedKeyword
-	1158, // 4133: svg.FontStretchAttr.Alt1.extra_hyphen_minus_expanded_keyword:type_name -> svg.ExtraHyphenMinusExpandedKeyword
-	1629, // 4134: svg.FontStretchAttr.Alt1.ultra_hyphen_minus_expanded_keyword:type_name -> svg.UltraHyphenMinusExpandedKeyword
-	335,  // 4135: svg.FontStretchAttr.Alt1.percentage_type:type_name -> svg.PercentageType
-	1024, // 4136: svg.InlineSizeAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
-	336,  // 4137: svg.InlineSizeAttr.Alt1.length_percentage_type:type_name -> svg.LengthPercentageType
-	1024, // 4138: svg.GlyphOrientationVerticalAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
-	339,  // 4139: svg.GlyphOrientationVerticalAttr.Alt1.angle_type:type_name -> svg.AngleType
-	329,  // 4140: svg.GlyphOrientationVerticalAttr.Alt1.number_type:type_name -> svg.NumberType
-	329,  // 4141: svg.Translate.Comma.number_type:type_name -> svg.NumberType
-	329,  // 4142: svg.Scale.Comma.number_type:type_name -> svg.NumberType
-	329,  // 4143: svg.Rotate.Comma.number_type:type_name -> svg.NumberType
-	1076, // 4144: svg.Rotate.Comma.comma_keyword:type_name -> svg.CommaKeyword
-	329,  // 4145: svg.Rotate.Comma.number_type_2:type_name -> svg.NumberType
-	4146, // [4146:4146] is the sub-list for method output_type
-	4146, // [4146:4146] is the sub-list for method input_type
-	4146, // [4146:4146] is the sub-list for extension type_name
-	4146, // [4146:4146] is the sub-list for extension extendee
-	0,    // [0:4146] is the sub-list for field type_name
+	1555, // 2580: svg.EllipticalArcArgument.space_keyword_2:type_name -> svg.SpaceKeyword
+	783,  // 2581: svg.EllipticalArcArgument.path_rotation:type_name -> svg.PathRotation
+	1555, // 2582: svg.EllipticalArcArgument.space_keyword_3:type_name -> svg.SpaceKeyword
+	789,  // 2583: svg.EllipticalArcArgument.arc_flag:type_name -> svg.ArcFlag
+	1555, // 2584: svg.EllipticalArcArgument.space_keyword_4:type_name -> svg.SpaceKeyword
+	789,  // 2585: svg.EllipticalArcArgument.arc_flag_2:type_name -> svg.ArcFlag
+	1555, // 2586: svg.EllipticalArcArgument.space_keyword_5:type_name -> svg.SpaceKeyword
+	788,  // 2587: svg.EllipticalArcArgument.coordinate_pair:type_name -> svg.CoordinatePair
+	790,  // 2588: svg.PathRotation.path_sign:type_name -> svg.PathSign
+	329,  // 2589: svg.PathRotation.number_type:type_name -> svg.NumberType
+	788,  // 2590: svg.CoordinatePairSequence.coordinate_pair:type_name -> svg.CoordinatePair
+	329,  // 2591: svg.CoordinateSequence.number_type:type_name -> svg.NumberType
+	788,  // 2592: svg.CoordinatePairDouble.coordinate_pair:type_name -> svg.CoordinatePair
+	1555, // 2593: svg.CoordinatePairDouble.space_keyword:type_name -> svg.SpaceKeyword
+	788,  // 2594: svg.CoordinatePairDouble.coordinate_pair_2:type_name -> svg.CoordinatePair
+	788,  // 2595: svg.CoordinatePairTriplet.coordinate_pair:type_name -> svg.CoordinatePair
+	1555, // 2596: svg.CoordinatePairTriplet.space_keyword:type_name -> svg.SpaceKeyword
+	788,  // 2597: svg.CoordinatePairTriplet.coordinate_pair_2:type_name -> svg.CoordinatePair
+	1555, // 2598: svg.CoordinatePairTriplet.space_keyword_2:type_name -> svg.SpaceKeyword
+	788,  // 2599: svg.CoordinatePairTriplet.coordinate_pair_3:type_name -> svg.CoordinatePair
+	329,  // 2600: svg.CoordinatePair.number_type:type_name -> svg.NumberType
+	1555, // 2601: svg.CoordinatePair.space_keyword:type_name -> svg.SpaceKeyword
+	329,  // 2602: svg.CoordinatePair.number_type_2:type_name -> svg.NumberType
+	1131, // 2603: svg.ArcFlag.digit_zero_keyword:type_name -> svg.DigitZeroKeyword
+	1130, // 2604: svg.ArcFlag.digit_one_keyword:type_name -> svg.DigitOneKeyword
+	1460, // 2605: svg.PathSign.plus_sign_keyword:type_name -> svg.PlusSignKeyword
+	1213, // 2606: svg.PathSign.hyphen_minus_keyword:type_name -> svg.HyphenMinusKeyword
+	356,  // 2607: svg.GradientUnitsAttr.unit_type:type_name -> svg.UnitType
+	1476, // 2608: svg.GradientUnitsAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	1846, // 2609: svg.SpreadMethodAttr.alt1:type_name -> svg.SpreadMethodAttr.Alt1
+	1476, // 2610: svg.SpreadMethodAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	794,  // 2611: svg.SvglinearGradientElement.linear_gradient_attribute:type_name -> svg.LinearGradientAttribute
+	1192, // 2612: svg.SvglinearGradientElement.greater_than_sign_keyword:type_name -> svg.GreaterThanSignKeyword
+	801,  // 2613: svg.SvglinearGradientElement.linear_gradient_content:type_name -> svg.LinearGradientContent
+	1287, // 2614: svg.SvglinearGradientElement.less_than_sign_solidus_linear_gradient_greater_than_sign_keyword:type_name -> svg.LessThanSignSolidusLinearGradientGreaterThanSignKeyword
+	791,  // 2615: svg.LinearGradientAttribute.gradient_units_attr:type_name -> svg.GradientUnitsAttr
+	795,  // 2616: svg.LinearGradientAttribute.linear_gradient_transform_attr:type_name -> svg.LinearGradientTransformAttr
+	796,  // 2617: svg.LinearGradientAttribute.linear_gradient_x1attr:type_name -> svg.LinearGradientX1attr
+	797,  // 2618: svg.LinearGradientAttribute.linear_gradient_y1attr:type_name -> svg.LinearGradientY1attr
+	798,  // 2619: svg.LinearGradientAttribute.linear_gradient_x2attr:type_name -> svg.LinearGradientX2attr
+	799,  // 2620: svg.LinearGradientAttribute.linear_gradient_y2attr:type_name -> svg.LinearGradientY2attr
+	792,  // 2621: svg.LinearGradientAttribute.spread_method_attr:type_name -> svg.SpreadMethodAttr
+	800,  // 2622: svg.LinearGradientAttribute.linear_gradient_href_attr:type_name -> svg.LinearGradientHrefAttr
+	12,   // 2623: svg.LinearGradientAttribute.core_attribute:type_name -> svg.CoreAttribute
+	917,  // 2624: svg.LinearGradientAttribute.presentation_attribute:type_name -> svg.PresentationAttribute
+	83,   // 2625: svg.LinearGradientAttribute.global_event_attribute:type_name -> svg.GlobalEventAttribute
+	145,  // 2626: svg.LinearGradientAttribute.document_element_event_attribute:type_name -> svg.DocumentElementEventAttribute
+	156,  // 2627: svg.LinearGradientAttribute.xlink_attribute:type_name -> svg.XlinkAttribute
+	986,  // 2628: svg.LinearGradientTransformAttr.transform_list:type_name -> svg.TransformList
+	1476, // 2629: svg.LinearGradientTransformAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	1847, // 2630: svg.LinearGradientX1attr.alt1:type_name -> svg.LinearGradientX1attr.Alt1
+	1476, // 2631: svg.LinearGradientX1attr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	1848, // 2632: svg.LinearGradientY1attr.alt1:type_name -> svg.LinearGradientY1attr.Alt1
+	1476, // 2633: svg.LinearGradientY1attr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	1849, // 2634: svg.LinearGradientX2attr.alt1:type_name -> svg.LinearGradientX2attr.Alt1
+	1476, // 2635: svg.LinearGradientX2attr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	1850, // 2636: svg.LinearGradientY2attr.alt1:type_name -> svg.LinearGradientY2attr.Alt1
+	1476, // 2637: svg.LinearGradientY2attr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	343,  // 2638: svg.LinearGradientHrefAttr.iri_type:type_name -> svg.IriType
+	1476, // 2639: svg.LinearGradientHrefAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	2,    // 2640: svg.LinearGradientContent.descriptive_element:type_name -> svg.DescriptiveElement
+	232,  // 2641: svg.LinearGradientContent.svganimate_element:type_name -> svg.SvganimateElement
+	296,  // 2642: svg.LinearGradientContent.svganimate_transform_element:type_name -> svg.SvganimateTransformElement
+	255,  // 2643: svg.LinearGradientContent.svgset_element:type_name -> svg.SvgsetElement
+	388,  // 2644: svg.LinearGradientContent.svgscript_element:type_name -> svg.SvgscriptElement
+	396,  // 2645: svg.LinearGradientContent.svgstyle_element:type_name -> svg.SvgstyleElement
+	813,  // 2646: svg.LinearGradientContent.svgstop_element:type_name -> svg.SvgstopElement
+	803,  // 2647: svg.SvgradialGradientElement.radial_gradient_attribute:type_name -> svg.RadialGradientAttribute
+	1192, // 2648: svg.SvgradialGradientElement.greater_than_sign_keyword:type_name -> svg.GreaterThanSignKeyword
+	812,  // 2649: svg.SvgradialGradientElement.radial_gradient_content:type_name -> svg.RadialGradientContent
+	1296, // 2650: svg.SvgradialGradientElement.less_than_sign_solidus_radial_gradient_greater_than_sign_keyword:type_name -> svg.LessThanSignSolidusRadialGradientGreaterThanSignKeyword
+	791,  // 2651: svg.RadialGradientAttribute.gradient_units_attr:type_name -> svg.GradientUnitsAttr
+	804,  // 2652: svg.RadialGradientAttribute.radial_gradient_transform_attr:type_name -> svg.RadialGradientTransformAttr
+	805,  // 2653: svg.RadialGradientAttribute.radial_gradient_cx_attr:type_name -> svg.RadialGradientCxAttr
+	806,  // 2654: svg.RadialGradientAttribute.radial_gradient_cy_attr:type_name -> svg.RadialGradientCyAttr
+	807,  // 2655: svg.RadialGradientAttribute.radial_gradient_rattr:type_name -> svg.RadialGradientRattr
+	808,  // 2656: svg.RadialGradientAttribute.radial_gradient_fx_attr:type_name -> svg.RadialGradientFxAttr
+	809,  // 2657: svg.RadialGradientAttribute.radial_gradient_fy_attr:type_name -> svg.RadialGradientFyAttr
+	810,  // 2658: svg.RadialGradientAttribute.radial_gradient_fr_attr:type_name -> svg.RadialGradientFrAttr
+	792,  // 2659: svg.RadialGradientAttribute.spread_method_attr:type_name -> svg.SpreadMethodAttr
+	811,  // 2660: svg.RadialGradientAttribute.radial_gradient_href_attr:type_name -> svg.RadialGradientHrefAttr
+	12,   // 2661: svg.RadialGradientAttribute.core_attribute:type_name -> svg.CoreAttribute
+	917,  // 2662: svg.RadialGradientAttribute.presentation_attribute:type_name -> svg.PresentationAttribute
+	83,   // 2663: svg.RadialGradientAttribute.global_event_attribute:type_name -> svg.GlobalEventAttribute
+	145,  // 2664: svg.RadialGradientAttribute.document_element_event_attribute:type_name -> svg.DocumentElementEventAttribute
+	156,  // 2665: svg.RadialGradientAttribute.xlink_attribute:type_name -> svg.XlinkAttribute
+	986,  // 2666: svg.RadialGradientTransformAttr.transform_list:type_name -> svg.TransformList
+	1476, // 2667: svg.RadialGradientTransformAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	1851, // 2668: svg.RadialGradientCxAttr.alt1:type_name -> svg.RadialGradientCxAttr.Alt1
+	1476, // 2669: svg.RadialGradientCxAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	1852, // 2670: svg.RadialGradientCyAttr.alt1:type_name -> svg.RadialGradientCyAttr.Alt1
+	1476, // 2671: svg.RadialGradientCyAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	337,  // 2672: svg.RadialGradientRattr.non_negative_length_percentage_type:type_name -> svg.NonNegativeLengthPercentageType
+	1476, // 2673: svg.RadialGradientRattr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	1853, // 2674: svg.RadialGradientFxAttr.alt1:type_name -> svg.RadialGradientFxAttr.Alt1
+	1476, // 2675: svg.RadialGradientFxAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	1854, // 2676: svg.RadialGradientFyAttr.alt1:type_name -> svg.RadialGradientFyAttr.Alt1
+	1476, // 2677: svg.RadialGradientFyAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	337,  // 2678: svg.RadialGradientFrAttr.non_negative_length_percentage_type:type_name -> svg.NonNegativeLengthPercentageType
+	1476, // 2679: svg.RadialGradientFrAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	343,  // 2680: svg.RadialGradientHrefAttr.iri_type:type_name -> svg.IriType
+	1476, // 2681: svg.RadialGradientHrefAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	2,    // 2682: svg.RadialGradientContent.descriptive_element:type_name -> svg.DescriptiveElement
+	232,  // 2683: svg.RadialGradientContent.svganimate_element:type_name -> svg.SvganimateElement
+	296,  // 2684: svg.RadialGradientContent.svganimate_transform_element:type_name -> svg.SvganimateTransformElement
+	255,  // 2685: svg.RadialGradientContent.svgset_element:type_name -> svg.SvgsetElement
+	388,  // 2686: svg.RadialGradientContent.svgscript_element:type_name -> svg.SvgscriptElement
+	396,  // 2687: svg.RadialGradientContent.svgstyle_element:type_name -> svg.SvgstyleElement
+	813,  // 2688: svg.RadialGradientContent.svgstop_element:type_name -> svg.SvgstopElement
+	814,  // 2689: svg.SvgstopElement.stop_attribute:type_name -> svg.StopAttribute
+	1192, // 2690: svg.SvgstopElement.greater_than_sign_keyword:type_name -> svg.GreaterThanSignKeyword
+	816,  // 2691: svg.SvgstopElement.stop_content:type_name -> svg.StopContent
+	1300, // 2692: svg.SvgstopElement.less_than_sign_solidus_stop_greater_than_sign_keyword:type_name -> svg.LessThanSignSolidusStopGreaterThanSignKeyword
+	815,  // 2693: svg.StopAttribute.stop_offset_attr:type_name -> svg.StopOffsetAttr
+	12,   // 2694: svg.StopAttribute.core_attribute:type_name -> svg.CoreAttribute
+	917,  // 2695: svg.StopAttribute.presentation_attribute:type_name -> svg.PresentationAttribute
+	83,   // 2696: svg.StopAttribute.global_event_attribute:type_name -> svg.GlobalEventAttribute
+	145,  // 2697: svg.StopAttribute.document_element_event_attribute:type_name -> svg.DocumentElementEventAttribute
+	1855, // 2698: svg.StopOffsetAttr.alt1:type_name -> svg.StopOffsetAttr.Alt1
+	1476, // 2699: svg.StopOffsetAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	232,  // 2700: svg.StopContent.svganimate_element:type_name -> svg.SvganimateElement
+	255,  // 2701: svg.StopContent.svgset_element:type_name -> svg.SvgsetElement
+	388,  // 2702: svg.StopContent.svgscript_element:type_name -> svg.SvgscriptElement
+	396,  // 2703: svg.StopContent.svgstyle_element:type_name -> svg.SvgstyleElement
+	1856, // 2704: svg.StopColorAttr.alt1:type_name -> svg.StopColorAttr.Alt1
+	1476, // 2705: svg.StopColorAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	355,  // 2706: svg.StopOpacityAttr.alpha_value:type_name -> svg.AlphaValue
+	1476, // 2707: svg.StopOpacityAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	820,  // 2708: svg.SvgpatternElement.pattern_attribute:type_name -> svg.PatternAttribute
+	1192, // 2709: svg.SvgpatternElement.greater_than_sign_keyword:type_name -> svg.GreaterThanSignKeyword
+	11,   // 2710: svg.SvgpatternElement.container_content:type_name -> svg.ContainerContent
+	1293, // 2711: svg.SvgpatternElement.less_than_sign_solidus_pattern_greater_than_sign_keyword:type_name -> svg.LessThanSignSolidusPatternGreaterThanSignKeyword
+	821,  // 2712: svg.PatternAttribute.pattern_units_attr:type_name -> svg.PatternUnitsAttr
+	822,  // 2713: svg.PatternAttribute.pattern_content_units_attr:type_name -> svg.PatternContentUnitsAttr
+	823,  // 2714: svg.PatternAttribute.pattern_transform_attr:type_name -> svg.PatternTransformAttr
+	824,  // 2715: svg.PatternAttribute.pattern_xattr:type_name -> svg.PatternXattr
+	825,  // 2716: svg.PatternAttribute.pattern_yattr:type_name -> svg.PatternYattr
+	826,  // 2717: svg.PatternAttribute.pattern_width_attr:type_name -> svg.PatternWidthAttr
+	827,  // 2718: svg.PatternAttribute.pattern_height_attr:type_name -> svg.PatternHeightAttr
+	828,  // 2719: svg.PatternAttribute.pattern_view_box_attr:type_name -> svg.PatternViewBoxAttr
+	829,  // 2720: svg.PatternAttribute.pattern_preserve_aspect_ratio_attr:type_name -> svg.PatternPreserveAspectRatioAttr
+	830,  // 2721: svg.PatternAttribute.pattern_href_attr:type_name -> svg.PatternHrefAttr
+	12,   // 2722: svg.PatternAttribute.core_attribute:type_name -> svg.CoreAttribute
+	22,   // 2723: svg.PatternAttribute.conditional_processing_attribute:type_name -> svg.ConditionalProcessingAttribute
+	25,   // 2724: svg.PatternAttribute.aria_attribute:type_name -> svg.AriaAttribute
+	917,  // 2725: svg.PatternAttribute.presentation_attribute:type_name -> svg.PresentationAttribute
+	83,   // 2726: svg.PatternAttribute.global_event_attribute:type_name -> svg.GlobalEventAttribute
+	145,  // 2727: svg.PatternAttribute.document_element_event_attribute:type_name -> svg.DocumentElementEventAttribute
+	149,  // 2728: svg.PatternAttribute.graphical_event_attribute:type_name -> svg.GraphicalEventAttribute
+	156,  // 2729: svg.PatternAttribute.xlink_attribute:type_name -> svg.XlinkAttribute
+	356,  // 2730: svg.PatternUnitsAttr.unit_type:type_name -> svg.UnitType
+	1476, // 2731: svg.PatternUnitsAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	356,  // 2732: svg.PatternContentUnitsAttr.unit_type:type_name -> svg.UnitType
+	1476, // 2733: svg.PatternContentUnitsAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	986,  // 2734: svg.PatternTransformAttr.transform_list:type_name -> svg.TransformList
+	1476, // 2735: svg.PatternTransformAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	333,  // 2736: svg.PatternXattr.length_type:type_name -> svg.LengthType
+	1476, // 2737: svg.PatternXattr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	333,  // 2738: svg.PatternYattr.length_type:type_name -> svg.LengthType
+	1476, // 2739: svg.PatternYattr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	334,  // 2740: svg.PatternWidthAttr.non_negative_length_type:type_name -> svg.NonNegativeLengthType
+	1476, // 2741: svg.PatternWidthAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	334,  // 2742: svg.PatternHeightAttr.non_negative_length_type:type_name -> svg.NonNegativeLengthType
+	1476, // 2743: svg.PatternHeightAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	360,  // 2744: svg.PatternViewBoxAttr.view_box:type_name -> svg.ViewBox
+	1476, // 2745: svg.PatternViewBoxAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	361,  // 2746: svg.PatternPreserveAspectRatioAttr.preserve_aspect_ratio:type_name -> svg.PreserveAspectRatio
+	1476, // 2747: svg.PatternPreserveAspectRatioAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	343,  // 2748: svg.PatternHrefAttr.iri_type:type_name -> svg.IriType
+	1476, // 2749: svg.PatternHrefAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	1,    // 2750: svg.RectContent.animation_element:type_name -> svg.AnimationElement
+	2,    // 2751: svg.RectContent.descriptive_element:type_name -> svg.DescriptiveElement
+	5,    // 2752: svg.RectContent.paint_server_element:type_name -> svg.PaintServerElement
+	679,  // 2753: svg.RectContent.svgclip_path_element:type_name -> svg.SvgclipPathElement
+	733,  // 2754: svg.RectContent.svgmarker_element:type_name -> svg.SvgmarkerElement
+	684,  // 2755: svg.RectContent.svgmask_element:type_name -> svg.SvgmaskElement
+	388,  // 2756: svg.RectContent.svgscript_element:type_name -> svg.SvgscriptElement
+	396,  // 2757: svg.RectContent.svgstyle_element:type_name -> svg.SvgstyleElement
+	1,    // 2758: svg.CircleContent.animation_element:type_name -> svg.AnimationElement
+	2,    // 2759: svg.CircleContent.descriptive_element:type_name -> svg.DescriptiveElement
+	5,    // 2760: svg.CircleContent.paint_server_element:type_name -> svg.PaintServerElement
+	679,  // 2761: svg.CircleContent.svgclip_path_element:type_name -> svg.SvgclipPathElement
+	733,  // 2762: svg.CircleContent.svgmarker_element:type_name -> svg.SvgmarkerElement
+	684,  // 2763: svg.CircleContent.svgmask_element:type_name -> svg.SvgmaskElement
+	388,  // 2764: svg.CircleContent.svgscript_element:type_name -> svg.SvgscriptElement
+	396,  // 2765: svg.CircleContent.svgstyle_element:type_name -> svg.SvgstyleElement
+	1,    // 2766: svg.EllipseContent.animation_element:type_name -> svg.AnimationElement
+	2,    // 2767: svg.EllipseContent.descriptive_element:type_name -> svg.DescriptiveElement
+	5,    // 2768: svg.EllipseContent.paint_server_element:type_name -> svg.PaintServerElement
+	679,  // 2769: svg.EllipseContent.svgclip_path_element:type_name -> svg.SvgclipPathElement
+	733,  // 2770: svg.EllipseContent.svgmarker_element:type_name -> svg.SvgmarkerElement
+	684,  // 2771: svg.EllipseContent.svgmask_element:type_name -> svg.SvgmaskElement
+	388,  // 2772: svg.EllipseContent.svgscript_element:type_name -> svg.SvgscriptElement
+	396,  // 2773: svg.EllipseContent.svgstyle_element:type_name -> svg.SvgstyleElement
+	1,    // 2774: svg.LineContent.animation_element:type_name -> svg.AnimationElement
+	2,    // 2775: svg.LineContent.descriptive_element:type_name -> svg.DescriptiveElement
+	5,    // 2776: svg.LineContent.paint_server_element:type_name -> svg.PaintServerElement
+	679,  // 2777: svg.LineContent.svgclip_path_element:type_name -> svg.SvgclipPathElement
+	733,  // 2778: svg.LineContent.svgmarker_element:type_name -> svg.SvgmarkerElement
+	684,  // 2779: svg.LineContent.svgmask_element:type_name -> svg.SvgmaskElement
+	388,  // 2780: svg.LineContent.svgscript_element:type_name -> svg.SvgscriptElement
+	396,  // 2781: svg.LineContent.svgstyle_element:type_name -> svg.SvgstyleElement
+	1,    // 2782: svg.PolylineContent.animation_element:type_name -> svg.AnimationElement
+	2,    // 2783: svg.PolylineContent.descriptive_element:type_name -> svg.DescriptiveElement
+	5,    // 2784: svg.PolylineContent.paint_server_element:type_name -> svg.PaintServerElement
+	679,  // 2785: svg.PolylineContent.svgclip_path_element:type_name -> svg.SvgclipPathElement
+	733,  // 2786: svg.PolylineContent.svgmarker_element:type_name -> svg.SvgmarkerElement
+	684,  // 2787: svg.PolylineContent.svgmask_element:type_name -> svg.SvgmaskElement
+	388,  // 2788: svg.PolylineContent.svgscript_element:type_name -> svg.SvgscriptElement
+	396,  // 2789: svg.PolylineContent.svgstyle_element:type_name -> svg.SvgstyleElement
+	1,    // 2790: svg.PolygonContent.animation_element:type_name -> svg.AnimationElement
+	2,    // 2791: svg.PolygonContent.descriptive_element:type_name -> svg.DescriptiveElement
+	5,    // 2792: svg.PolygonContent.paint_server_element:type_name -> svg.PaintServerElement
+	679,  // 2793: svg.PolygonContent.svgclip_path_element:type_name -> svg.SvgclipPathElement
+	733,  // 2794: svg.PolygonContent.svgmarker_element:type_name -> svg.SvgmarkerElement
+	684,  // 2795: svg.PolygonContent.svgmask_element:type_name -> svg.SvgmaskElement
+	388,  // 2796: svg.PolygonContent.svgscript_element:type_name -> svg.SvgscriptElement
+	396,  // 2797: svg.PolygonContent.svgstyle_element:type_name -> svg.SvgstyleElement
+	1,    // 2798: svg.PathContent.animation_element:type_name -> svg.AnimationElement
+	2,    // 2799: svg.PathContent.descriptive_element:type_name -> svg.DescriptiveElement
+	5,    // 2800: svg.PathContent.paint_server_element:type_name -> svg.PaintServerElement
+	679,  // 2801: svg.PathContent.svgclip_path_element:type_name -> svg.SvgclipPathElement
+	733,  // 2802: svg.PathContent.svgmarker_element:type_name -> svg.SvgmarkerElement
+	684,  // 2803: svg.PathContent.svgmask_element:type_name -> svg.SvgmaskElement
+	388,  // 2804: svg.PathContent.svgscript_element:type_name -> svg.SvgscriptElement
+	396,  // 2805: svg.PathContent.svgstyle_element:type_name -> svg.SvgstyleElement
+	330,  // 2806: svg.PathLengthAttr.non_negative_number_type:type_name -> svg.NonNegativeNumberType
+	1476, // 2807: svg.PathLengthAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	840,  // 2808: svg.SvgrectElement.rect_attribute:type_name -> svg.RectAttribute
+	1192, // 2809: svg.SvgrectElement.greater_than_sign_keyword:type_name -> svg.GreaterThanSignKeyword
+	831,  // 2810: svg.SvgrectElement.rect_content:type_name -> svg.RectContent
+	1297, // 2811: svg.SvgrectElement.less_than_sign_solidus_rect_greater_than_sign_keyword:type_name -> svg.LessThanSignSolidusRectGreaterThanSignKeyword
+	841,  // 2812: svg.RectAttribute.rect_xattr:type_name -> svg.RectXattr
+	842,  // 2813: svg.RectAttribute.rect_yattr:type_name -> svg.RectYattr
+	843,  // 2814: svg.RectAttribute.rect_width_attr:type_name -> svg.RectWidthAttr
+	844,  // 2815: svg.RectAttribute.rect_height_attr:type_name -> svg.RectHeightAttr
+	845,  // 2816: svg.RectAttribute.rect_rx_attr:type_name -> svg.RectRxAttr
+	846,  // 2817: svg.RectAttribute.rect_ry_attr:type_name -> svg.RectRyAttr
+	838,  // 2818: svg.RectAttribute.path_length_attr:type_name -> svg.PathLengthAttr
+	12,   // 2819: svg.RectAttribute.core_attribute:type_name -> svg.CoreAttribute
+	22,   // 2820: svg.RectAttribute.conditional_processing_attribute:type_name -> svg.ConditionalProcessingAttribute
+	25,   // 2821: svg.RectAttribute.aria_attribute:type_name -> svg.AriaAttribute
+	917,  // 2822: svg.RectAttribute.presentation_attribute:type_name -> svg.PresentationAttribute
+	83,   // 2823: svg.RectAttribute.global_event_attribute:type_name -> svg.GlobalEventAttribute
+	145,  // 2824: svg.RectAttribute.document_element_event_attribute:type_name -> svg.DocumentElementEventAttribute
+	149,  // 2825: svg.RectAttribute.graphical_event_attribute:type_name -> svg.GraphicalEventAttribute
+	336,  // 2826: svg.RectXattr.length_percentage_type:type_name -> svg.LengthPercentageType
+	1476, // 2827: svg.RectXattr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	336,  // 2828: svg.RectYattr.length_percentage_type:type_name -> svg.LengthPercentageType
+	1476, // 2829: svg.RectYattr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	337,  // 2830: svg.RectWidthAttr.non_negative_length_percentage_type:type_name -> svg.NonNegativeLengthPercentageType
+	1476, // 2831: svg.RectWidthAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	337,  // 2832: svg.RectHeightAttr.non_negative_length_percentage_type:type_name -> svg.NonNegativeLengthPercentageType
+	1476, // 2833: svg.RectHeightAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	1857, // 2834: svg.RectRxAttr.alt1:type_name -> svg.RectRxAttr.Alt1
+	1476, // 2835: svg.RectRxAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	1858, // 2836: svg.RectRyAttr.alt1:type_name -> svg.RectRyAttr.Alt1
+	1476, // 2837: svg.RectRyAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	848,  // 2838: svg.SvgcircleElement.circle_attribute:type_name -> svg.CircleAttribute
+	1192, // 2839: svg.SvgcircleElement.greater_than_sign_keyword:type_name -> svg.GreaterThanSignKeyword
+	832,  // 2840: svg.SvgcircleElement.circle_content:type_name -> svg.CircleContent
+	1251, // 2841: svg.SvgcircleElement.less_than_sign_solidus_circle_greater_than_sign_keyword:type_name -> svg.LessThanSignSolidusCircleGreaterThanSignKeyword
+	849,  // 2842: svg.CircleAttribute.circle_cx_attr:type_name -> svg.CircleCxAttr
+	850,  // 2843: svg.CircleAttribute.circle_cy_attr:type_name -> svg.CircleCyAttr
+	851,  // 2844: svg.CircleAttribute.circle_rattr:type_name -> svg.CircleRattr
+	838,  // 2845: svg.CircleAttribute.path_length_attr:type_name -> svg.PathLengthAttr
+	12,   // 2846: svg.CircleAttribute.core_attribute:type_name -> svg.CoreAttribute
+	22,   // 2847: svg.CircleAttribute.conditional_processing_attribute:type_name -> svg.ConditionalProcessingAttribute
+	25,   // 2848: svg.CircleAttribute.aria_attribute:type_name -> svg.AriaAttribute
+	917,  // 2849: svg.CircleAttribute.presentation_attribute:type_name -> svg.PresentationAttribute
+	83,   // 2850: svg.CircleAttribute.global_event_attribute:type_name -> svg.GlobalEventAttribute
+	145,  // 2851: svg.CircleAttribute.document_element_event_attribute:type_name -> svg.DocumentElementEventAttribute
+	149,  // 2852: svg.CircleAttribute.graphical_event_attribute:type_name -> svg.GraphicalEventAttribute
+	336,  // 2853: svg.CircleCxAttr.length_percentage_type:type_name -> svg.LengthPercentageType
+	1476, // 2854: svg.CircleCxAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	336,  // 2855: svg.CircleCyAttr.length_percentage_type:type_name -> svg.LengthPercentageType
+	1476, // 2856: svg.CircleCyAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	337,  // 2857: svg.CircleRattr.non_negative_length_percentage_type:type_name -> svg.NonNegativeLengthPercentageType
+	1476, // 2858: svg.CircleRattr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	853,  // 2859: svg.SvgellipseElement.ellipse_attribute:type_name -> svg.EllipseAttribute
+	1192, // 2860: svg.SvgellipseElement.greater_than_sign_keyword:type_name -> svg.GreaterThanSignKeyword
+	833,  // 2861: svg.SvgellipseElement.ellipse_content:type_name -> svg.EllipseContent
+	1256, // 2862: svg.SvgellipseElement.less_than_sign_solidus_ellipse_greater_than_sign_keyword:type_name -> svg.LessThanSignSolidusEllipseGreaterThanSignKeyword
+	854,  // 2863: svg.EllipseAttribute.ellipse_cx_attr:type_name -> svg.EllipseCxAttr
+	855,  // 2864: svg.EllipseAttribute.ellipse_cy_attr:type_name -> svg.EllipseCyAttr
+	856,  // 2865: svg.EllipseAttribute.ellipse_rx_attr:type_name -> svg.EllipseRxAttr
+	857,  // 2866: svg.EllipseAttribute.ellipse_ry_attr:type_name -> svg.EllipseRyAttr
+	838,  // 2867: svg.EllipseAttribute.path_length_attr:type_name -> svg.PathLengthAttr
+	12,   // 2868: svg.EllipseAttribute.core_attribute:type_name -> svg.CoreAttribute
+	22,   // 2869: svg.EllipseAttribute.conditional_processing_attribute:type_name -> svg.ConditionalProcessingAttribute
+	25,   // 2870: svg.EllipseAttribute.aria_attribute:type_name -> svg.AriaAttribute
+	917,  // 2871: svg.EllipseAttribute.presentation_attribute:type_name -> svg.PresentationAttribute
+	83,   // 2872: svg.EllipseAttribute.global_event_attribute:type_name -> svg.GlobalEventAttribute
+	145,  // 2873: svg.EllipseAttribute.document_element_event_attribute:type_name -> svg.DocumentElementEventAttribute
+	149,  // 2874: svg.EllipseAttribute.graphical_event_attribute:type_name -> svg.GraphicalEventAttribute
+	336,  // 2875: svg.EllipseCxAttr.length_percentage_type:type_name -> svg.LengthPercentageType
+	1476, // 2876: svg.EllipseCxAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	336,  // 2877: svg.EllipseCyAttr.length_percentage_type:type_name -> svg.LengthPercentageType
+	1476, // 2878: svg.EllipseCyAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	1859, // 2879: svg.EllipseRxAttr.alt1:type_name -> svg.EllipseRxAttr.Alt1
+	1476, // 2880: svg.EllipseRxAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	1860, // 2881: svg.EllipseRyAttr.alt1:type_name -> svg.EllipseRyAttr.Alt1
+	1476, // 2882: svg.EllipseRyAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	859,  // 2883: svg.SvglineElement.line_attribute:type_name -> svg.LineAttribute
+	1192, // 2884: svg.SvglineElement.greater_than_sign_keyword:type_name -> svg.GreaterThanSignKeyword
+	834,  // 2885: svg.SvglineElement.line_content:type_name -> svg.LineContent
+	1286, // 2886: svg.SvglineElement.less_than_sign_solidus_line_greater_than_sign_keyword:type_name -> svg.LessThanSignSolidusLineGreaterThanSignKeyword
+	860,  // 2887: svg.LineAttribute.line_x1attr:type_name -> svg.LineX1attr
+	861,  // 2888: svg.LineAttribute.line_y1attr:type_name -> svg.LineY1attr
+	862,  // 2889: svg.LineAttribute.line_x2attr:type_name -> svg.LineX2attr
+	863,  // 2890: svg.LineAttribute.line_y2attr:type_name -> svg.LineY2attr
+	838,  // 2891: svg.LineAttribute.path_length_attr:type_name -> svg.PathLengthAttr
+	12,   // 2892: svg.LineAttribute.core_attribute:type_name -> svg.CoreAttribute
+	22,   // 2893: svg.LineAttribute.conditional_processing_attribute:type_name -> svg.ConditionalProcessingAttribute
+	25,   // 2894: svg.LineAttribute.aria_attribute:type_name -> svg.AriaAttribute
+	917,  // 2895: svg.LineAttribute.presentation_attribute:type_name -> svg.PresentationAttribute
+	83,   // 2896: svg.LineAttribute.global_event_attribute:type_name -> svg.GlobalEventAttribute
+	145,  // 2897: svg.LineAttribute.document_element_event_attribute:type_name -> svg.DocumentElementEventAttribute
+	149,  // 2898: svg.LineAttribute.graphical_event_attribute:type_name -> svg.GraphicalEventAttribute
+	1861, // 2899: svg.LineX1attr.alt1:type_name -> svg.LineX1attr.Alt1
+	1476, // 2900: svg.LineX1attr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	1862, // 2901: svg.LineY1attr.alt1:type_name -> svg.LineY1attr.Alt1
+	1476, // 2902: svg.LineY1attr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	1863, // 2903: svg.LineX2attr.alt1:type_name -> svg.LineX2attr.Alt1
+	1476, // 2904: svg.LineX2attr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	1864, // 2905: svg.LineY2attr.alt1:type_name -> svg.LineY2attr.Alt1
+	1476, // 2906: svg.LineY2attr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	865,  // 2907: svg.SvgpolylineElement.polyline_attribute:type_name -> svg.PolylineAttribute
+	1192, // 2908: svg.SvgpolylineElement.greater_than_sign_keyword:type_name -> svg.GreaterThanSignKeyword
+	835,  // 2909: svg.SvgpolylineElement.polyline_content:type_name -> svg.PolylineContent
+	1295, // 2910: svg.SvgpolylineElement.less_than_sign_solidus_polyline_greater_than_sign_keyword:type_name -> svg.LessThanSignSolidusPolylineGreaterThanSignKeyword
+	866,  // 2911: svg.PolylineAttribute.polyline_points_attr:type_name -> svg.PolylinePointsAttr
+	838,  // 2912: svg.PolylineAttribute.path_length_attr:type_name -> svg.PathLengthAttr
+	12,   // 2913: svg.PolylineAttribute.core_attribute:type_name -> svg.CoreAttribute
+	22,   // 2914: svg.PolylineAttribute.conditional_processing_attribute:type_name -> svg.ConditionalProcessingAttribute
+	25,   // 2915: svg.PolylineAttribute.aria_attribute:type_name -> svg.AriaAttribute
+	917,  // 2916: svg.PolylineAttribute.presentation_attribute:type_name -> svg.PresentationAttribute
+	83,   // 2917: svg.PolylineAttribute.global_event_attribute:type_name -> svg.GlobalEventAttribute
+	145,  // 2918: svg.PolylineAttribute.document_element_event_attribute:type_name -> svg.DocumentElementEventAttribute
+	149,  // 2919: svg.PolylineAttribute.graphical_event_attribute:type_name -> svg.GraphicalEventAttribute
+	873,  // 2920: svg.PolylinePointsAttr.points:type_name -> svg.Points
+	1476, // 2921: svg.PolylinePointsAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	868,  // 2922: svg.SvgpolygonElement.polygon_attribute:type_name -> svg.PolygonAttribute
+	1192, // 2923: svg.SvgpolygonElement.greater_than_sign_keyword:type_name -> svg.GreaterThanSignKeyword
+	836,  // 2924: svg.SvgpolygonElement.polygon_content:type_name -> svg.PolygonContent
+	1294, // 2925: svg.SvgpolygonElement.less_than_sign_solidus_polygon_greater_than_sign_keyword:type_name -> svg.LessThanSignSolidusPolygonGreaterThanSignKeyword
+	869,  // 2926: svg.PolygonAttribute.polygon_points_attr:type_name -> svg.PolygonPointsAttr
+	838,  // 2927: svg.PolygonAttribute.path_length_attr:type_name -> svg.PathLengthAttr
+	12,   // 2928: svg.PolygonAttribute.core_attribute:type_name -> svg.CoreAttribute
+	22,   // 2929: svg.PolygonAttribute.conditional_processing_attribute:type_name -> svg.ConditionalProcessingAttribute
+	25,   // 2930: svg.PolygonAttribute.aria_attribute:type_name -> svg.AriaAttribute
+	917,  // 2931: svg.PolygonAttribute.presentation_attribute:type_name -> svg.PresentationAttribute
+	83,   // 2932: svg.PolygonAttribute.global_event_attribute:type_name -> svg.GlobalEventAttribute
+	145,  // 2933: svg.PolygonAttribute.document_element_event_attribute:type_name -> svg.DocumentElementEventAttribute
+	149,  // 2934: svg.PolygonAttribute.graphical_event_attribute:type_name -> svg.GraphicalEventAttribute
+	873,  // 2935: svg.PolygonPointsAttr.points:type_name -> svg.Points
+	1476, // 2936: svg.PolygonPointsAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	871,  // 2937: svg.SvgpathElement.path_attribute:type_name -> svg.PathAttribute
+	1192, // 2938: svg.SvgpathElement.greater_than_sign_keyword:type_name -> svg.GreaterThanSignKeyword
+	837,  // 2939: svg.SvgpathElement.path_content:type_name -> svg.PathContent
+	1292, // 2940: svg.SvgpathElement.less_than_sign_solidus_path_greater_than_sign_keyword:type_name -> svg.LessThanSignSolidusPathGreaterThanSignKeyword
+	872,  // 2941: svg.PathAttribute.path_dattr:type_name -> svg.PathDattr
+	838,  // 2942: svg.PathAttribute.path_length_attr:type_name -> svg.PathLengthAttr
+	12,   // 2943: svg.PathAttribute.core_attribute:type_name -> svg.CoreAttribute
+	22,   // 2944: svg.PathAttribute.conditional_processing_attribute:type_name -> svg.ConditionalProcessingAttribute
+	25,   // 2945: svg.PathAttribute.aria_attribute:type_name -> svg.AriaAttribute
+	917,  // 2946: svg.PathAttribute.presentation_attribute:type_name -> svg.PresentationAttribute
+	83,   // 2947: svg.PathAttribute.global_event_attribute:type_name -> svg.GlobalEventAttribute
+	145,  // 2948: svg.PathAttribute.document_element_event_attribute:type_name -> svg.DocumentElementEventAttribute
+	149,  // 2949: svg.PathAttribute.graphical_event_attribute:type_name -> svg.GraphicalEventAttribute
+	1865, // 2950: svg.PathDattr.alt1:type_name -> svg.PathDattr.Alt1
+	1476, // 2951: svg.PathDattr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	874,  // 2952: svg.Points.points_coordinate_pair:type_name -> svg.PointsCoordinatePair
+	329,  // 2953: svg.PointsCoordinatePair.number_type:type_name -> svg.NumberType
+	1076, // 2954: svg.PointsCoordinatePair.comma_keyword:type_name -> svg.CommaKeyword
+	329,  // 2955: svg.PointsCoordinatePair.number_type_2:type_name -> svg.NumberType
+	876,  // 2956: svg.SvgsymbolElement.symbol_attribute:type_name -> svg.SymbolAttribute
+	1192, // 2957: svg.SvgsymbolElement.greater_than_sign_keyword:type_name -> svg.GreaterThanSignKeyword
+	11,   // 2958: svg.SvgsymbolElement.container_content:type_name -> svg.ContainerContent
+	1304, // 2959: svg.SvgsymbolElement.less_than_sign_solidus_symbol_greater_than_sign_keyword:type_name -> svg.LessThanSignSolidusSymbolGreaterThanSignKeyword
+	877,  // 2960: svg.SymbolAttribute.symbol_view_box_attr:type_name -> svg.SymbolViewBoxAttr
+	878,  // 2961: svg.SymbolAttribute.symbol_preserve_aspect_ratio_attr:type_name -> svg.SymbolPreserveAspectRatioAttr
+	879,  // 2962: svg.SymbolAttribute.symbol_ref_xattr:type_name -> svg.SymbolRefXattr
+	880,  // 2963: svg.SymbolAttribute.symbol_ref_yattr:type_name -> svg.SymbolRefYattr
+	881,  // 2964: svg.SymbolAttribute.symbol_xattr:type_name -> svg.SymbolXattr
+	882,  // 2965: svg.SymbolAttribute.symbol_yattr:type_name -> svg.SymbolYattr
+	883,  // 2966: svg.SymbolAttribute.symbol_width_attr:type_name -> svg.SymbolWidthAttr
+	884,  // 2967: svg.SymbolAttribute.symbol_height_attr:type_name -> svg.SymbolHeightAttr
+	12,   // 2968: svg.SymbolAttribute.core_attribute:type_name -> svg.CoreAttribute
+	22,   // 2969: svg.SymbolAttribute.conditional_processing_attribute:type_name -> svg.ConditionalProcessingAttribute
+	25,   // 2970: svg.SymbolAttribute.aria_attribute:type_name -> svg.AriaAttribute
+	917,  // 2971: svg.SymbolAttribute.presentation_attribute:type_name -> svg.PresentationAttribute
+	83,   // 2972: svg.SymbolAttribute.global_event_attribute:type_name -> svg.GlobalEventAttribute
+	145,  // 2973: svg.SymbolAttribute.document_element_event_attribute:type_name -> svg.DocumentElementEventAttribute
+	149,  // 2974: svg.SymbolAttribute.graphical_event_attribute:type_name -> svg.GraphicalEventAttribute
+	360,  // 2975: svg.SymbolViewBoxAttr.view_box:type_name -> svg.ViewBox
+	1476, // 2976: svg.SymbolViewBoxAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	361,  // 2977: svg.SymbolPreserveAspectRatioAttr.preserve_aspect_ratio:type_name -> svg.PreserveAspectRatio
+	1476, // 2978: svg.SymbolPreserveAspectRatioAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	1866, // 2979: svg.SymbolRefXattr.alt1:type_name -> svg.SymbolRefXattr.Alt1
+	1476, // 2980: svg.SymbolRefXattr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	1867, // 2981: svg.SymbolRefYattr.alt1:type_name -> svg.SymbolRefYattr.Alt1
+	1476, // 2982: svg.SymbolRefYattr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	336,  // 2983: svg.SymbolXattr.length_percentage_type:type_name -> svg.LengthPercentageType
+	1476, // 2984: svg.SymbolXattr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	336,  // 2985: svg.SymbolYattr.length_percentage_type:type_name -> svg.LengthPercentageType
+	1476, // 2986: svg.SymbolYattr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	1868, // 2987: svg.SymbolWidthAttr.alt1:type_name -> svg.SymbolWidthAttr.Alt1
+	1476, // 2988: svg.SymbolWidthAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	1869, // 2989: svg.SymbolHeightAttr.alt1:type_name -> svg.SymbolHeightAttr.Alt1
+	1476, // 2990: svg.SymbolHeightAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	886,  // 2991: svg.SvguseElement.use_attribute:type_name -> svg.UseAttribute
+	1192, // 2992: svg.SvguseElement.greater_than_sign_keyword:type_name -> svg.GreaterThanSignKeyword
+	892,  // 2993: svg.SvguseElement.use_content:type_name -> svg.UseContent
+	1309, // 2994: svg.SvguseElement.less_than_sign_solidus_use_greater_than_sign_keyword:type_name -> svg.LessThanSignSolidusUseGreaterThanSignKeyword
+	887,  // 2995: svg.UseAttribute.use_href_attr:type_name -> svg.UseHrefAttr
+	888,  // 2996: svg.UseAttribute.use_xattr:type_name -> svg.UseXattr
+	889,  // 2997: svg.UseAttribute.use_yattr:type_name -> svg.UseYattr
+	890,  // 2998: svg.UseAttribute.use_width_attr:type_name -> svg.UseWidthAttr
+	891,  // 2999: svg.UseAttribute.use_height_attr:type_name -> svg.UseHeightAttr
+	12,   // 3000: svg.UseAttribute.core_attribute:type_name -> svg.CoreAttribute
+	22,   // 3001: svg.UseAttribute.conditional_processing_attribute:type_name -> svg.ConditionalProcessingAttribute
+	25,   // 3002: svg.UseAttribute.aria_attribute:type_name -> svg.AriaAttribute
+	917,  // 3003: svg.UseAttribute.presentation_attribute:type_name -> svg.PresentationAttribute
+	83,   // 3004: svg.UseAttribute.global_event_attribute:type_name -> svg.GlobalEventAttribute
+	145,  // 3005: svg.UseAttribute.document_element_event_attribute:type_name -> svg.DocumentElementEventAttribute
+	149,  // 3006: svg.UseAttribute.graphical_event_attribute:type_name -> svg.GraphicalEventAttribute
+	156,  // 3007: svg.UseAttribute.xlink_attribute:type_name -> svg.XlinkAttribute
+	343,  // 3008: svg.UseHrefAttr.iri_type:type_name -> svg.IriType
+	1476, // 3009: svg.UseHrefAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	336,  // 3010: svg.UseXattr.length_percentage_type:type_name -> svg.LengthPercentageType
+	1476, // 3011: svg.UseXattr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	336,  // 3012: svg.UseYattr.length_percentage_type:type_name -> svg.LengthPercentageType
+	1476, // 3013: svg.UseYattr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	1870, // 3014: svg.UseWidthAttr.alt1:type_name -> svg.UseWidthAttr.Alt1
+	1476, // 3015: svg.UseWidthAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	1871, // 3016: svg.UseHeightAttr.alt1:type_name -> svg.UseHeightAttr.Alt1
+	1476, // 3017: svg.UseHeightAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	1,    // 3018: svg.UseContent.animation_element:type_name -> svg.AnimationElement
+	2,    // 3019: svg.UseContent.descriptive_element:type_name -> svg.DescriptiveElement
+	679,  // 3020: svg.UseContent.svgclip_path_element:type_name -> svg.SvgclipPathElement
+	684,  // 3021: svg.UseContent.svgmask_element:type_name -> svg.SvgmaskElement
+	388,  // 3022: svg.UseContent.svgscript_element:type_name -> svg.SvgscriptElement
+	396,  // 3023: svg.UseContent.svgstyle_element:type_name -> svg.SvgstyleElement
+	894,  // 3024: svg.SvgdescElement.desc_attribute:type_name -> svg.DescAttribute
+	1192, // 3025: svg.SvgdescElement.greater_than_sign_keyword:type_name -> svg.GreaterThanSignKeyword
+	895,  // 3026: svg.SvgdescElement.desc_content:type_name -> svg.DescContent
+	1254, // 3027: svg.SvgdescElement.less_than_sign_solidus_desc_greater_than_sign_keyword:type_name -> svg.LessThanSignSolidusDescGreaterThanSignKeyword
+	12,   // 3028: svg.DescAttribute.core_attribute:type_name -> svg.CoreAttribute
+	83,   // 3029: svg.DescAttribute.global_event_attribute:type_name -> svg.GlobalEventAttribute
+	145,  // 3030: svg.DescAttribute.document_element_event_attribute:type_name -> svg.DocumentElementEventAttribute
+	354,  // 3031: svg.DescContent.character_data_type:type_name -> svg.CharacterDataType
+	11,   // 3032: svg.DescContent.container_content:type_name -> svg.ContainerContent
+	897,  // 3033: svg.SvgtitleElement.title_attribute:type_name -> svg.TitleAttribute
+	1192, // 3034: svg.SvgtitleElement.greater_than_sign_keyword:type_name -> svg.GreaterThanSignKeyword
+	898,  // 3035: svg.SvgtitleElement.title_content:type_name -> svg.TitleContent
+	1307, // 3036: svg.SvgtitleElement.less_than_sign_solidus_title_greater_than_sign_keyword:type_name -> svg.LessThanSignSolidusTitleGreaterThanSignKeyword
+	12,   // 3037: svg.TitleAttribute.core_attribute:type_name -> svg.CoreAttribute
+	83,   // 3038: svg.TitleAttribute.global_event_attribute:type_name -> svg.GlobalEventAttribute
+	145,  // 3039: svg.TitleAttribute.document_element_event_attribute:type_name -> svg.DocumentElementEventAttribute
+	354,  // 3040: svg.TitleContent.character_data_type:type_name -> svg.CharacterDataType
+	11,   // 3041: svg.TitleContent.container_content:type_name -> svg.ContainerContent
+	900,  // 3042: svg.SvgmetadataElement.metadata_attribute:type_name -> svg.MetadataAttribute
+	1192, // 3043: svg.SvgmetadataElement.greater_than_sign_keyword:type_name -> svg.GreaterThanSignKeyword
+	901,  // 3044: svg.SvgmetadataElement.metadata_content:type_name -> svg.MetadataContent
+	1290, // 3045: svg.SvgmetadataElement.less_than_sign_solidus_metadata_greater_than_sign_keyword:type_name -> svg.LessThanSignSolidusMetadataGreaterThanSignKeyword
+	12,   // 3046: svg.MetadataAttribute.core_attribute:type_name -> svg.CoreAttribute
+	83,   // 3047: svg.MetadataAttribute.global_event_attribute:type_name -> svg.GlobalEventAttribute
+	145,  // 3048: svg.MetadataAttribute.document_element_event_attribute:type_name -> svg.DocumentElementEventAttribute
+	354,  // 3049: svg.MetadataContent.character_data_type:type_name -> svg.CharacterDataType
+	11,   // 3050: svg.MetadataContent.container_content:type_name -> svg.ContainerContent
+	903,  // 3051: svg.DisplayAttr.display_value:type_name -> svg.DisplayValue
+	1476, // 3052: svg.DisplayAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	1410, // 3053: svg.DisplayValue.none_keyword:type_name -> svg.NoneKeyword
+	1227, // 3054: svg.DisplayValue.inline_keyword:type_name -> svg.InlineKeyword
+	1040, // 3055: svg.DisplayValue.block_keyword:type_name -> svg.BlockKeyword
+	1510, // 3056: svg.DisplayValue.run_hyphen_minus_in_keyword:type_name -> svg.RunHyphenMinusInKeyword
+	1171, // 3057: svg.DisplayValue.flow_keyword:type_name -> svg.FlowKeyword
+	1170, // 3058: svg.DisplayValue.flow_hyphen_minus_root_keyword:type_name -> svg.FlowHyphenMinusRootKeyword
+	1599, // 3059: svg.DisplayValue.table_keyword:type_name -> svg.TableKeyword
+	1168, // 3060: svg.DisplayValue.flex_keyword:type_name -> svg.FlexKeyword
+	1196, // 3061: svg.DisplayValue.grid_keyword:type_name -> svg.GridKeyword
+	1509, // 3062: svg.DisplayValue.ruby_keyword:type_name -> svg.RubyKeyword
+	1336, // 3063: svg.DisplayValue.list_hyphen_minus_item_keyword:type_name -> svg.ListHyphenMinusItemKeyword
+	1223, // 3064: svg.DisplayValue.inline_hyphen_minus_block_keyword:type_name -> svg.InlineHyphenMinusBlockKeyword
+	1226, // 3065: svg.DisplayValue.inline_hyphen_minus_table_keyword:type_name -> svg.InlineHyphenMinusTableKeyword
+	1224, // 3066: svg.DisplayValue.inline_hyphen_minus_flex_keyword:type_name -> svg.InlineHyphenMinusFlexKeyword
+	1225, // 3067: svg.DisplayValue.inline_hyphen_minus_grid_keyword:type_name -> svg.InlineHyphenMinusGridKeyword
+	1597, // 3068: svg.DisplayValue.table_hyphen_minus_row_hyphen_minus_group_keyword:type_name -> svg.TableHyphenMinusRowHyphenMinusGroupKeyword
+	1596, // 3069: svg.DisplayValue.table_hyphen_minus_header_hyphen_minus_group_keyword:type_name -> svg.TableHyphenMinusHeaderHyphenMinusGroupKeyword
+	1595, // 3070: svg.DisplayValue.table_hyphen_minus_footer_hyphen_minus_group_keyword:type_name -> svg.TableHyphenMinusFooterHyphenMinusGroupKeyword
+	1598, // 3071: svg.DisplayValue.table_hyphen_minus_row_keyword:type_name -> svg.TableHyphenMinusRowKeyword
+	1592, // 3072: svg.DisplayValue.table_hyphen_minus_cell_keyword:type_name -> svg.TableHyphenMinusCellKeyword
+	1593, // 3073: svg.DisplayValue.table_hyphen_minus_column_hyphen_minus_group_keyword:type_name -> svg.TableHyphenMinusColumnHyphenMinusGroupKeyword
+	1594, // 3074: svg.DisplayValue.table_hyphen_minus_column_keyword:type_name -> svg.TableHyphenMinusColumnKeyword
+	1591, // 3075: svg.DisplayValue.table_hyphen_minus_caption_keyword:type_name -> svg.TableHyphenMinusCaptionKeyword
+	1506, // 3076: svg.DisplayValue.ruby_hyphen_minus_base_keyword:type_name -> svg.RubyHyphenMinusBaseKeyword
+	1508, // 3077: svg.DisplayValue.ruby_hyphen_minus_text_keyword:type_name -> svg.RubyHyphenMinusTextKeyword
+	1505, // 3078: svg.DisplayValue.ruby_hyphen_minus_base_hyphen_minus_container_keyword:type_name -> svg.RubyHyphenMinusBaseHyphenMinusContainerKeyword
+	1507, // 3079: svg.DisplayValue.ruby_hyphen_minus_text_hyphen_minus_container_keyword:type_name -> svg.RubyHyphenMinusTextHyphenMinusContainerKeyword
+	1083, // 3080: svg.DisplayValue.contents_keyword:type_name -> svg.ContentsKeyword
+	1221, // 3081: svg.DisplayValue.inherit_keyword:type_name -> svg.InheritKeyword
+	1222, // 3082: svg.DisplayValue.initial_keyword:type_name -> svg.InitialKeyword
+	1634, // 3083: svg.DisplayValue.unset_keyword:type_name -> svg.UnsetKeyword
+	1491, // 3084: svg.DisplayValue.revert_keyword:type_name -> svg.RevertKeyword
+	1872, // 3085: svg.VisibilityAttr.alt1:type_name -> svg.VisibilityAttr.Alt1
+	1476, // 3086: svg.VisibilityAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	1873, // 3087: svg.OverflowAttr.alt1:type_name -> svg.OverflowAttr.Alt1
+	1476, // 3088: svg.OverflowAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	355,  // 3089: svg.OpacityAttr.alpha_value:type_name -> svg.AlphaValue
+	1476, // 3090: svg.OpacityAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	908,  // 3091: svg.CursorAttr.cursor_value:type_name -> svg.CursorValue
+	1476, // 3092: svg.CursorAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	1024, // 3093: svg.CursorValue.auto_keyword:type_name -> svg.AutoKeyword
+	1123, // 3094: svg.CursorValue.default_keyword:type_name -> svg.DefaultKeyword
+	1410, // 3095: svg.CursorValue.none_keyword:type_name -> svg.NoneKeyword
+	1085, // 3096: svg.CursorValue.context_hyphen_minus_menu_keyword:type_name -> svg.ContextHyphenMinusMenuKeyword
+	1203, // 3097: svg.CursorValue.help_keyword:type_name -> svg.HelpKeyword
+	1461, // 3098: svg.CursorValue.pointer_keyword:type_name -> svg.PointerKeyword
+	1470, // 3099: svg.CursorValue.progress_keyword:type_name -> svg.ProgressKeyword
+	1649, // 3100: svg.CursorValue.wait_keyword:type_name -> svg.WaitKeyword
+	1058, // 3101: svg.CursorValue.cell_keyword:type_name -> svg.CellKeyword
+	1096, // 3102: svg.CursorValue.crosshair_keyword:type_name -> svg.CrosshairKeyword
+	1610, // 3103: svg.CursorValue.text_keyword:type_name -> svg.TextKeyword
+	1640, // 3104: svg.CursorValue.vertical_hyphen_minus_text_keyword:type_name -> svg.VerticalHyphenMinusTextKeyword
+	999,  // 3105: svg.CursorValue.alias_keyword:type_name -> svg.AliasKeyword
+	1088, // 3106: svg.CursorValue.copy_keyword:type_name -> svg.CopyKeyword
+	1387, // 3107: svg.CursorValue.move_keyword:type_name -> svg.MoveKeyword
+	1401, // 3108: svg.CursorValue.no_hyphen_minus_drop_keyword:type_name -> svg.NoHyphenMinusDropKeyword
+	1413, // 3109: svg.CursorValue.not_hyphen_minus_allowed_keyword:type_name -> svg.NotHyphenMinusAllowedKeyword
+	1188, // 3110: svg.CursorValue.grab_keyword:type_name -> svg.GrabKeyword
+	1189, // 3111: svg.CursorValue.grabbing_keyword:type_name -> svg.GrabbingKeyword
+	1144, // 3112: svg.CursorValue.e_hyphen_minus_resize_keyword:type_name -> svg.EHyphenMinusResizeKeyword
+	1390, // 3113: svg.CursorValue.n_hyphen_minus_resize_keyword:type_name -> svg.NHyphenMinusResizeKeyword
+	1394, // 3114: svg.CursorValue.ne_hyphen_minus_resize_keyword:type_name -> svg.NeHyphenMinusResizeKeyword
+	1417, // 3115: svg.CursorValue.nw_hyphen_minus_resize_keyword:type_name -> svg.NwHyphenMinusResizeKeyword
+	1511, // 3116: svg.CursorValue.s_hyphen_minus_resize_keyword:type_name -> svg.SHyphenMinusResizeKeyword
+	1524, // 3117: svg.CursorValue.se_hyphen_minus_resize_keyword:type_name -> svg.SeHyphenMinusResizeKeyword
+	1585, // 3118: svg.CursorValue.sw_hyphen_minus_resize_keyword:type_name -> svg.SwHyphenMinusResizeKeyword
+	1648, // 3119: svg.CursorValue.w_hyphen_minus_resize_keyword:type_name -> svg.WHyphenMinusResizeKeyword
+	1151, // 3120: svg.CursorValue.ew_hyphen_minus_resize_keyword:type_name -> svg.EwHyphenMinusResizeKeyword
+	1416, // 3121: svg.CursorValue.ns_hyphen_minus_resize_keyword:type_name -> svg.NsHyphenMinusResizeKeyword
+	1395, // 3122: svg.CursorValue.nesw_hyphen_minus_resize_keyword:type_name -> svg.NeswHyphenMinusResizeKeyword
+	1418, // 3123: svg.CursorValue.nwse_hyphen_minus_resize_keyword:type_name -> svg.NwseHyphenMinusResizeKeyword
+	1068, // 3124: svg.CursorValue.col_hyphen_minus_resize_keyword:type_name -> svg.ColHyphenMinusResizeKeyword
+	1499, // 3125: svg.CursorValue.row_hyphen_minus_resize_keyword:type_name -> svg.RowHyphenMinusResizeKeyword
+	1003, // 3126: svg.CursorValue.all_hyphen_minus_scroll_keyword:type_name -> svg.AllHyphenMinusScrollKeyword
+	1674, // 3127: svg.CursorValue.zoom_hyphen_minus_in_keyword:type_name -> svg.ZoomHyphenMinusInKeyword
+	1675, // 3128: svg.CursorValue.zoom_hyphen_minus_out_keyword:type_name -> svg.ZoomHyphenMinusOutKeyword
+	1221, // 3129: svg.CursorValue.inherit_keyword:type_name -> svg.InheritKeyword
+	986,  // 3130: svg.TransformAttr.transform_list:type_name -> svg.TransformList
+	1476, // 3131: svg.TransformAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	911,  // 3132: svg.TransformOriginAttr.transform_origin_value:type_name -> svg.TransformOriginValue
+	1476, // 3133: svg.TransformOriginAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	912,  // 3134: svg.TransformOriginValue.transform_origin_keyword:type_name -> svg.TransformOriginKeyword
+	913,  // 3135: svg.TransformOriginValue.transform_origin_position:type_name -> svg.TransformOriginPosition
+	1221, // 3136: svg.TransformOriginKeyword.inherit_keyword:type_name -> svg.InheritKeyword
+	1222, // 3137: svg.TransformOriginKeyword.initial_keyword:type_name -> svg.InitialKeyword
+	1634, // 3138: svg.TransformOriginKeyword.unset_keyword:type_name -> svg.UnsetKeyword
+	914,  // 3139: svg.TransformOriginPosition.transform_origin_x:type_name -> svg.TransformOriginX
+	1874, // 3140: svg.TransformOriginPosition.seq1:type_name -> svg.TransformOriginPosition.Seq1
+	1245, // 3141: svg.TransformOriginX.left_keyword:type_name -> svg.LeftKeyword
+	1059, // 3142: svg.TransformOriginX.center_keyword:type_name -> svg.CenterKeyword
+	1492, // 3143: svg.TransformOriginX.right_keyword:type_name -> svg.RightKeyword
+	336,  // 3144: svg.TransformOriginX.length_percentage_type:type_name -> svg.LengthPercentageType
+	1619, // 3145: svg.TransformOriginY.top_keyword:type_name -> svg.TopKeyword
+	1059, // 3146: svg.TransformOriginY.center_keyword:type_name -> svg.CenterKeyword
+	1048, // 3147: svg.TransformOriginY.bottom_keyword:type_name -> svg.BottomKeyword
+	336,  // 3148: svg.TransformOriginY.length_percentage_type:type_name -> svg.LengthPercentageType
+	333,  // 3149: svg.TransformOriginZ.length_type:type_name -> svg.LengthType
+	743,  // 3150: svg.PresentationAttribute.fill_attr:type_name -> svg.FillAttr
+	744,  // 3151: svg.PresentationAttribute.fill_rule_attr:type_name -> svg.FillRuleAttr
+	745,  // 3152: svg.PresentationAttribute.fill_opacity_attr:type_name -> svg.FillOpacityAttr
+	746,  // 3153: svg.PresentationAttribute.stroke_attr:type_name -> svg.StrokeAttr
+	747,  // 3154: svg.PresentationAttribute.stroke_opacity_attr:type_name -> svg.StrokeOpacityAttr
+	748,  // 3155: svg.PresentationAttribute.stroke_width_attr:type_name -> svg.StrokeWidthAttr
+	749,  // 3156: svg.PresentationAttribute.stroke_linecap_attr:type_name -> svg.StrokeLinecapAttr
+	750,  // 3157: svg.PresentationAttribute.stroke_linejoin_attr:type_name -> svg.StrokeLinejoinAttr
+	751,  // 3158: svg.PresentationAttribute.stroke_miterlimit_attr:type_name -> svg.StrokeMiterlimitAttr
+	752,  // 3159: svg.PresentationAttribute.stroke_dasharray_attr:type_name -> svg.StrokeDasharrayAttr
+	753,  // 3160: svg.PresentationAttribute.stroke_dashoffset_attr:type_name -> svg.StrokeDashoffsetAttr
+	754,  // 3161: svg.PresentationAttribute.paint_order_attr:type_name -> svg.PaintOrderAttr
+	757,  // 3162: svg.PresentationAttribute.marker_attr:type_name -> svg.MarkerAttr
+	758,  // 3163: svg.PresentationAttribute.marker_start_attr:type_name -> svg.MarkerStartAttr
+	759,  // 3164: svg.PresentationAttribute.marker_mid_attr:type_name -> svg.MarkerMidAttr
+	760,  // 3165: svg.PresentationAttribute.marker_end_attr:type_name -> svg.MarkerEndAttr
+	761,  // 3166: svg.PresentationAttribute.color_attr:type_name -> svg.ColorAttr
+	762,  // 3167: svg.PresentationAttribute.color_interpolation_attr:type_name -> svg.ColorInterpolationAttr
+	763,  // 3168: svg.PresentationAttribute.color_rendering_attr:type_name -> svg.ColorRenderingAttr
+	764,  // 3169: svg.PresentationAttribute.shape_rendering_attr:type_name -> svg.ShapeRenderingAttr
+	765,  // 3170: svg.PresentationAttribute.vector_effect_attr:type_name -> svg.VectorEffectAttr
+	659,  // 3171: svg.PresentationAttribute.filter_attr:type_name -> svg.FilterAttr
+	674,  // 3172: svg.PresentationAttribute.color_interpolation_filters_attr:type_name -> svg.ColorInterpolationFiltersAttr
+	675,  // 3173: svg.PresentationAttribute.flood_color_attr:type_name -> svg.FloodColorAttr
+	676,  // 3174: svg.PresentationAttribute.flood_opacity_attr:type_name -> svg.FloodOpacityAttr
+	677,  // 3175: svg.PresentationAttribute.lighting_color_attr:type_name -> svg.LightingColorAttr
+	678,  // 3176: svg.PresentationAttribute.image_rendering_attr:type_name -> svg.ImageRenderingAttr
+	694,  // 3177: svg.PresentationAttribute.clip_path_attr:type_name -> svg.ClipPathAttr
+	712,  // 3178: svg.PresentationAttribute.clip_rule_attr:type_name -> svg.ClipRuleAttr
+	713,  // 3179: svg.PresentationAttribute.clip_attr:type_name -> svg.ClipAttr
+	716,  // 3180: svg.PresentationAttribute.mask_attr:type_name -> svg.MaskAttr
+	951,  // 3181: svg.PresentationAttribute.text_anchor_attr:type_name -> svg.TextAnchorAttr
+	952,  // 3182: svg.PresentationAttribute.dominant_baseline_attr:type_name -> svg.DominantBaselineAttr
+	953,  // 3183: svg.PresentationAttribute.alignment_baseline_attr:type_name -> svg.AlignmentBaselineAttr
+	954,  // 3184: svg.PresentationAttribute.baseline_shift_attr:type_name -> svg.BaselineShiftAttr
+	955,  // 3185: svg.PresentationAttribute.direction_attr:type_name -> svg.DirectionAttr
+	956,  // 3186: svg.PresentationAttribute.unicode_bidi_attr:type_name -> svg.UnicodeBidiAttr
+	957,  // 3187: svg.PresentationAttribute.writing_mode_attr:type_name -> svg.WritingModeAttr
+	958,  // 3188: svg.PresentationAttribute.letter_spacing_attr:type_name -> svg.LetterSpacingAttr
+	959,  // 3189: svg.PresentationAttribute.word_spacing_attr:type_name -> svg.WordSpacingAttr
+	960,  // 3190: svg.PresentationAttribute.text_decoration_attr:type_name -> svg.TextDecorationAttr
+	964,  // 3191: svg.PresentationAttribute.text_overflow_attr:type_name -> svg.TextOverflowAttr
+	965,  // 3192: svg.PresentationAttribute.text_rendering_attr:type_name -> svg.TextRenderingAttr
+	966,  // 3193: svg.PresentationAttribute.white_space_attr:type_name -> svg.WhiteSpaceAttr
+	967,  // 3194: svg.PresentationAttribute.font_family_attr:type_name -> svg.FontFamilyAttr
+	968,  // 3195: svg.PresentationAttribute.font_size_attr:type_name -> svg.FontSizeAttr
+	972,  // 3196: svg.PresentationAttribute.font_size_adjust_attr:type_name -> svg.FontSizeAdjustAttr
+	973,  // 3197: svg.PresentationAttribute.font_style_attr:type_name -> svg.FontStyleAttr
+	975,  // 3198: svg.PresentationAttribute.font_variant_attr:type_name -> svg.FontVariantAttr
+	982,  // 3199: svg.PresentationAttribute.font_weight_attr:type_name -> svg.FontWeightAttr
+	983,  // 3200: svg.PresentationAttribute.font_stretch_attr:type_name -> svg.FontStretchAttr
+	984,  // 3201: svg.PresentationAttribute.inline_size_attr:type_name -> svg.InlineSizeAttr
+	985,  // 3202: svg.PresentationAttribute.glyph_orientation_vertical_attr:type_name -> svg.GlyphOrientationVerticalAttr
+	401,  // 3203: svg.PresentationAttribute.pointer_events_attr:type_name -> svg.PointerEventsAttr
+	817,  // 3204: svg.PresentationAttribute.stop_color_attr:type_name -> svg.StopColorAttr
+	818,  // 3205: svg.PresentationAttribute.stop_opacity_attr:type_name -> svg.StopOpacityAttr
+	902,  // 3206: svg.PresentationAttribute.display_attr:type_name -> svg.DisplayAttr
+	904,  // 3207: svg.PresentationAttribute.visibility_attr:type_name -> svg.VisibilityAttr
+	905,  // 3208: svg.PresentationAttribute.overflow_attr:type_name -> svg.OverflowAttr
+	906,  // 3209: svg.PresentationAttribute.opacity_attr:type_name -> svg.OpacityAttr
+	907,  // 3210: svg.PresentationAttribute.cursor_attr:type_name -> svg.CursorAttr
+	909,  // 3211: svg.PresentationAttribute.transform_attr:type_name -> svg.TransformAttr
+	910,  // 3212: svg.PresentationAttribute.transform_origin_attr:type_name -> svg.TransformOriginAttr
+	919,  // 3213: svg.SvgtextElement.text_attribute:type_name -> svg.TextAttribute
+	1192, // 3214: svg.SvgtextElement.greater_than_sign_keyword:type_name -> svg.GreaterThanSignKeyword
+	929,  // 3215: svg.SvgtextElement.text_content:type_name -> svg.TextContent
+	1305, // 3216: svg.SvgtextElement.less_than_sign_solidus_text_greater_than_sign_keyword:type_name -> svg.LessThanSignSolidusTextGreaterThanSignKeyword
+	920,  // 3217: svg.TextAttribute.text_xattr:type_name -> svg.TextXattr
+	921,  // 3218: svg.TextAttribute.text_yattr:type_name -> svg.TextYattr
+	922,  // 3219: svg.TextAttribute.text_dx_attr:type_name -> svg.TextDxAttr
+	923,  // 3220: svg.TextAttribute.text_dy_attr:type_name -> svg.TextDyAttr
+	924,  // 3221: svg.TextAttribute.text_rotate_attr:type_name -> svg.TextRotateAttr
+	925,  // 3222: svg.TextAttribute.text_length_attr:type_name -> svg.TextLengthAttr
+	926,  // 3223: svg.TextAttribute.text_length_adjust_attr:type_name -> svg.TextLengthAdjustAttr
+	12,   // 3224: svg.TextAttribute.core_attribute:type_name -> svg.CoreAttribute
+	22,   // 3225: svg.TextAttribute.conditional_processing_attribute:type_name -> svg.ConditionalProcessingAttribute
+	25,   // 3226: svg.TextAttribute.aria_attribute:type_name -> svg.AriaAttribute
+	917,  // 3227: svg.TextAttribute.presentation_attribute:type_name -> svg.PresentationAttribute
+	83,   // 3228: svg.TextAttribute.global_event_attribute:type_name -> svg.GlobalEventAttribute
+	145,  // 3229: svg.TextAttribute.document_element_event_attribute:type_name -> svg.DocumentElementEventAttribute
+	149,  // 3230: svg.TextAttribute.graphical_event_attribute:type_name -> svg.GraphicalEventAttribute
+	927,  // 3231: svg.TextXattr.text_position_list:type_name -> svg.TextPositionList
+	1476, // 3232: svg.TextXattr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	927,  // 3233: svg.TextYattr.text_position_list:type_name -> svg.TextPositionList
+	1476, // 3234: svg.TextYattr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	927,  // 3235: svg.TextDxAttr.text_position_list:type_name -> svg.TextPositionList
+	1476, // 3236: svg.TextDxAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	927,  // 3237: svg.TextDyAttr.text_position_list:type_name -> svg.TextPositionList
+	1476, // 3238: svg.TextDyAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	928,  // 3239: svg.TextRotateAttr.text_rotate_list:type_name -> svg.TextRotateList
+	1476, // 3240: svg.TextRotateAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	1875, // 3241: svg.TextLengthAttr.alt1:type_name -> svg.TextLengthAttr.Alt1
+	1476, // 3242: svg.TextLengthAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	1876, // 3243: svg.TextLengthAdjustAttr.alt1:type_name -> svg.TextLengthAdjustAttr.Alt1
+	1476, // 3244: svg.TextLengthAdjustAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	1877, // 3245: svg.TextPositionList.alt1:type_name -> svg.TextPositionList.Alt1
+	329,  // 3246: svg.TextRotateList.number_type:type_name -> svg.NumberType
+	354,  // 3247: svg.TextContent.character_data_type:type_name -> svg.CharacterDataType
+	1,    // 3248: svg.TextContent.animation_element:type_name -> svg.AnimationElement
+	2,    // 3249: svg.TextContent.descriptive_element:type_name -> svg.DescriptiveElement
+	5,    // 3250: svg.TextContent.paint_server_element:type_name -> svg.PaintServerElement
+	10,   // 3251: svg.TextContent.text_content_child_element:type_name -> svg.TextContentChildElement
+	177,  // 3252: svg.TextContent.svgaelement:type_name -> svg.Svgaelement
+	679,  // 3253: svg.TextContent.svgclip_path_element:type_name -> svg.SvgclipPathElement
+	733,  // 3254: svg.TextContent.svgmarker_element:type_name -> svg.SvgmarkerElement
+	684,  // 3255: svg.TextContent.svgmask_element:type_name -> svg.SvgmaskElement
+	388,  // 3256: svg.TextContent.svgscript_element:type_name -> svg.SvgscriptElement
+	396,  // 3257: svg.TextContent.svgstyle_element:type_name -> svg.SvgstyleElement
+	931,  // 3258: svg.SvgtspanElement.tspan_attribute:type_name -> svg.TspanAttribute
+	1192, // 3259: svg.SvgtspanElement.greater_than_sign_keyword:type_name -> svg.GreaterThanSignKeyword
+	939,  // 3260: svg.SvgtspanElement.tspan_content:type_name -> svg.TspanContent
+	1308, // 3261: svg.SvgtspanElement.less_than_sign_solidus_tspan_greater_than_sign_keyword:type_name -> svg.LessThanSignSolidusTspanGreaterThanSignKeyword
+	932,  // 3262: svg.TspanAttribute.tspan_xattr:type_name -> svg.TspanXattr
+	933,  // 3263: svg.TspanAttribute.tspan_yattr:type_name -> svg.TspanYattr
+	934,  // 3264: svg.TspanAttribute.tspan_dx_attr:type_name -> svg.TspanDxAttr
+	935,  // 3265: svg.TspanAttribute.tspan_dy_attr:type_name -> svg.TspanDyAttr
+	936,  // 3266: svg.TspanAttribute.tspan_rotate_attr:type_name -> svg.TspanRotateAttr
+	937,  // 3267: svg.TspanAttribute.tspan_length_attr:type_name -> svg.TspanLengthAttr
+	938,  // 3268: svg.TspanAttribute.tspan_length_adjust_attr:type_name -> svg.TspanLengthAdjustAttr
+	12,   // 3269: svg.TspanAttribute.core_attribute:type_name -> svg.CoreAttribute
+	22,   // 3270: svg.TspanAttribute.conditional_processing_attribute:type_name -> svg.ConditionalProcessingAttribute
+	25,   // 3271: svg.TspanAttribute.aria_attribute:type_name -> svg.AriaAttribute
+	917,  // 3272: svg.TspanAttribute.presentation_attribute:type_name -> svg.PresentationAttribute
+	83,   // 3273: svg.TspanAttribute.global_event_attribute:type_name -> svg.GlobalEventAttribute
+	145,  // 3274: svg.TspanAttribute.document_element_event_attribute:type_name -> svg.DocumentElementEventAttribute
+	149,  // 3275: svg.TspanAttribute.graphical_event_attribute:type_name -> svg.GraphicalEventAttribute
+	927,  // 3276: svg.TspanXattr.text_position_list:type_name -> svg.TextPositionList
+	1476, // 3277: svg.TspanXattr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	927,  // 3278: svg.TspanYattr.text_position_list:type_name -> svg.TextPositionList
+	1476, // 3279: svg.TspanYattr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	927,  // 3280: svg.TspanDxAttr.text_position_list:type_name -> svg.TextPositionList
+	1476, // 3281: svg.TspanDxAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	927,  // 3282: svg.TspanDyAttr.text_position_list:type_name -> svg.TextPositionList
+	1476, // 3283: svg.TspanDyAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	928,  // 3284: svg.TspanRotateAttr.text_rotate_list:type_name -> svg.TextRotateList
+	1476, // 3285: svg.TspanRotateAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	1878, // 3286: svg.TspanLengthAttr.alt1:type_name -> svg.TspanLengthAttr.Alt1
+	1476, // 3287: svg.TspanLengthAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	1879, // 3288: svg.TspanLengthAdjustAttr.alt1:type_name -> svg.TspanLengthAdjustAttr.Alt1
+	1476, // 3289: svg.TspanLengthAdjustAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	354,  // 3290: svg.TspanContent.character_data_type:type_name -> svg.CharacterDataType
+	2,    // 3291: svg.TspanContent.descriptive_element:type_name -> svg.DescriptiveElement
+	5,    // 3292: svg.TspanContent.paint_server_element:type_name -> svg.PaintServerElement
+	177,  // 3293: svg.TspanContent.svgaelement:type_name -> svg.Svgaelement
+	232,  // 3294: svg.TspanContent.svganimate_element:type_name -> svg.SvganimateElement
+	388,  // 3295: svg.TspanContent.svgscript_element:type_name -> svg.SvgscriptElement
+	255,  // 3296: svg.TspanContent.svgset_element:type_name -> svg.SvgsetElement
+	396,  // 3297: svg.TspanContent.svgstyle_element:type_name -> svg.SvgstyleElement
+	930,  // 3298: svg.TspanContent.svgtspan_element:type_name -> svg.SvgtspanElement
+	941,  // 3299: svg.SvgtextPathElement.text_path_attribute:type_name -> svg.TextPathAttribute
+	1192, // 3300: svg.SvgtextPathElement.greater_than_sign_keyword:type_name -> svg.GreaterThanSignKeyword
+	950,  // 3301: svg.SvgtextPathElement.text_path_content:type_name -> svg.TextPathContent
+	1306, // 3302: svg.SvgtextPathElement.less_than_sign_solidus_text_path_greater_than_sign_keyword:type_name -> svg.LessThanSignSolidusTextPathGreaterThanSignKeyword
+	942,  // 3303: svg.TextPathAttribute.text_path_path_attr:type_name -> svg.TextPathPathAttr
+	943,  // 3304: svg.TextPathAttribute.text_path_href_attr:type_name -> svg.TextPathHrefAttr
+	944,  // 3305: svg.TextPathAttribute.text_path_start_offset_attr:type_name -> svg.TextPathStartOffsetAttr
+	945,  // 3306: svg.TextPathAttribute.text_path_method_attr:type_name -> svg.TextPathMethodAttr
+	946,  // 3307: svg.TextPathAttribute.text_path_spacing_attr:type_name -> svg.TextPathSpacingAttr
+	947,  // 3308: svg.TextPathAttribute.text_path_side_attr:type_name -> svg.TextPathSideAttr
+	948,  // 3309: svg.TextPathAttribute.text_path_length_attr:type_name -> svg.TextPathLengthAttr
+	949,  // 3310: svg.TextPathAttribute.text_path_length_adjust_attr:type_name -> svg.TextPathLengthAdjustAttr
+	12,   // 3311: svg.TextPathAttribute.core_attribute:type_name -> svg.CoreAttribute
+	22,   // 3312: svg.TextPathAttribute.conditional_processing_attribute:type_name -> svg.ConditionalProcessingAttribute
+	25,   // 3313: svg.TextPathAttribute.aria_attribute:type_name -> svg.AriaAttribute
+	917,  // 3314: svg.TextPathAttribute.presentation_attribute:type_name -> svg.PresentationAttribute
+	83,   // 3315: svg.TextPathAttribute.global_event_attribute:type_name -> svg.GlobalEventAttribute
+	145,  // 3316: svg.TextPathAttribute.document_element_event_attribute:type_name -> svg.DocumentElementEventAttribute
+	149,  // 3317: svg.TextPathAttribute.graphical_event_attribute:type_name -> svg.GraphicalEventAttribute
+	156,  // 3318: svg.TextPathAttribute.xlink_attribute:type_name -> svg.XlinkAttribute
+	766,  // 3319: svg.TextPathPathAttr.svg_path:type_name -> svg.SvgPath
+	1476, // 3320: svg.TextPathPathAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	343,  // 3321: svg.TextPathHrefAttr.iri_type:type_name -> svg.IriType
+	1476, // 3322: svg.TextPathHrefAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	1880, // 3323: svg.TextPathStartOffsetAttr.alt1:type_name -> svg.TextPathStartOffsetAttr.Alt1
+	1476, // 3324: svg.TextPathStartOffsetAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	1881, // 3325: svg.TextPathMethodAttr.alt1:type_name -> svg.TextPathMethodAttr.Alt1
+	1476, // 3326: svg.TextPathMethodAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	1882, // 3327: svg.TextPathSpacingAttr.alt1:type_name -> svg.TextPathSpacingAttr.Alt1
+	1476, // 3328: svg.TextPathSpacingAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	1883, // 3329: svg.TextPathSideAttr.alt1:type_name -> svg.TextPathSideAttr.Alt1
+	1476, // 3330: svg.TextPathSideAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	1884, // 3331: svg.TextPathLengthAttr.alt1:type_name -> svg.TextPathLengthAttr.Alt1
+	1476, // 3332: svg.TextPathLengthAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	1885, // 3333: svg.TextPathLengthAdjustAttr.alt1:type_name -> svg.TextPathLengthAdjustAttr.Alt1
+	1476, // 3334: svg.TextPathLengthAdjustAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	354,  // 3335: svg.TextPathContent.character_data_type:type_name -> svg.CharacterDataType
+	2,    // 3336: svg.TextPathContent.descriptive_element:type_name -> svg.DescriptiveElement
+	5,    // 3337: svg.TextPathContent.paint_server_element:type_name -> svg.PaintServerElement
+	177,  // 3338: svg.TextPathContent.svgaelement:type_name -> svg.Svgaelement
+	232,  // 3339: svg.TextPathContent.svganimate_element:type_name -> svg.SvganimateElement
+	679,  // 3340: svg.TextPathContent.svgclip_path_element:type_name -> svg.SvgclipPathElement
+	733,  // 3341: svg.TextPathContent.svgmarker_element:type_name -> svg.SvgmarkerElement
+	684,  // 3342: svg.TextPathContent.svgmask_element:type_name -> svg.SvgmaskElement
+	388,  // 3343: svg.TextPathContent.svgscript_element:type_name -> svg.SvgscriptElement
+	255,  // 3344: svg.TextPathContent.svgset_element:type_name -> svg.SvgsetElement
+	396,  // 3345: svg.TextPathContent.svgstyle_element:type_name -> svg.SvgstyleElement
+	930,  // 3346: svg.TextPathContent.svgtspan_element:type_name -> svg.SvgtspanElement
+	1886, // 3347: svg.TextAnchorAttr.alt1:type_name -> svg.TextAnchorAttr.Alt1
+	1476, // 3348: svg.TextAnchorAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	1887, // 3349: svg.DominantBaselineAttr.alt1:type_name -> svg.DominantBaselineAttr.Alt1
+	1476, // 3350: svg.DominantBaselineAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	1888, // 3351: svg.AlignmentBaselineAttr.alt1:type_name -> svg.AlignmentBaselineAttr.Alt1
+	1476, // 3352: svg.AlignmentBaselineAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	1889, // 3353: svg.BaselineShiftAttr.alt1:type_name -> svg.BaselineShiftAttr.Alt1
+	1476, // 3354: svg.BaselineShiftAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	1890, // 3355: svg.DirectionAttr.alt1:type_name -> svg.DirectionAttr.Alt1
+	1476, // 3356: svg.DirectionAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	1891, // 3357: svg.UnicodeBidiAttr.alt1:type_name -> svg.UnicodeBidiAttr.Alt1
+	1476, // 3358: svg.UnicodeBidiAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	1892, // 3359: svg.WritingModeAttr.alt1:type_name -> svg.WritingModeAttr.Alt1
+	1476, // 3360: svg.WritingModeAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	1893, // 3361: svg.LetterSpacingAttr.alt1:type_name -> svg.LetterSpacingAttr.Alt1
+	1476, // 3362: svg.LetterSpacingAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	1894, // 3363: svg.WordSpacingAttr.alt1:type_name -> svg.WordSpacingAttr.Alt1
+	1476, // 3364: svg.WordSpacingAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	961,  // 3365: svg.TextDecorationAttr.text_decoration_value:type_name -> svg.TextDecorationValue
+	1476, // 3366: svg.TextDecorationAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	1410, // 3367: svg.TextDecorationValue.none_keyword:type_name -> svg.NoneKeyword
+	962,  // 3368: svg.TextDecorationValue.text_decoration_line:type_name -> svg.TextDecorationLine
+	963,  // 3369: svg.TextDecorationValue.text_decoration_style:type_name -> svg.TextDecorationStyle
+	1895, // 3370: svg.TextDecorationValue.seq1:type_name -> svg.TextDecorationValue.Seq1
+	1896, // 3371: svg.TextDecorationValue.seq2:type_name -> svg.TextDecorationValue.Seq2
+	1897, // 3372: svg.TextDecorationValue.seq3:type_name -> svg.TextDecorationValue.Seq3
+	1898, // 3373: svg.TextDecorationValue.seq4:type_name -> svg.TextDecorationValue.Seq4
+	1631, // 3374: svg.TextDecorationLine.underline_keyword:type_name -> svg.UnderlineKeyword
+	1440, // 3375: svg.TextDecorationLine.overline_keyword:type_name -> svg.OverlineKeyword
+	1330, // 3376: svg.TextDecorationLine.line_hyphen_minus_through_keyword:type_name -> svg.LineHyphenMinusThroughKeyword
+	1039, // 3377: svg.TextDecorationLine.blink_keyword:type_name -> svg.BlinkKeyword
+	1552, // 3378: svg.TextDecorationStyle.solid_keyword:type_name -> svg.SolidKeyword
+	1142, // 3379: svg.TextDecorationStyle.double_keyword:type_name -> svg.DoubleKeyword
+	1141, // 3380: svg.TextDecorationStyle.dotted_keyword:type_name -> svg.DottedKeyword
+	1119, // 3381: svg.TextDecorationStyle.dashed_keyword:type_name -> svg.DashedKeyword
+	1650, // 3382: svg.TextDecorationStyle.wavy_keyword:type_name -> svg.WavyKeyword
+	1899, // 3383: svg.TextOverflowAttr.alt1:type_name -> svg.TextOverflowAttr.Alt1
+	1476, // 3384: svg.TextOverflowAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	1900, // 3385: svg.TextRenderingAttr.alt1:type_name -> svg.TextRenderingAttr.Alt1
+	1476, // 3386: svg.TextRenderingAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	1901, // 3387: svg.WhiteSpaceAttr.alt1:type_name -> svg.WhiteSpaceAttr.Alt1
+	1476, // 3388: svg.WhiteSpaceAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	345,  // 3389: svg.FontFamilyAttr.string_type:type_name -> svg.StringType
+	1476, // 3390: svg.FontFamilyAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	969,  // 3391: svg.FontSizeAttr.font_size_value:type_name -> svg.FontSizeValue
+	1476, // 3392: svg.FontSizeAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	970,  // 3393: svg.FontSizeValue.font_absolute_size:type_name -> svg.FontAbsoluteSize
+	971,  // 3394: svg.FontSizeValue.font_relative_size:type_name -> svg.FontRelativeSize
+	336,  // 3395: svg.FontSizeValue.length_percentage_type:type_name -> svg.LengthPercentageType
+	1669, // 3396: svg.FontAbsoluteSize.xx_hyphen_minus_small_keyword:type_name -> svg.XxHyphenMinusSmallKeyword
+	1657, // 3397: svg.FontAbsoluteSize.x_hyphen_minus_small_keyword:type_name -> svg.XHyphenMinusSmallKeyword
+	1548, // 3398: svg.FontAbsoluteSize.small_keyword:type_name -> svg.SmallKeyword
+	1361, // 3399: svg.FontAbsoluteSize.medium_keyword:type_name -> svg.MediumKeyword
+	1240, // 3400: svg.FontAbsoluteSize.large_keyword:type_name -> svg.LargeKeyword
+	1656, // 3401: svg.FontAbsoluteSize.x_hyphen_minus_large_keyword:type_name -> svg.XHyphenMinusLargeKeyword
+	1668, // 3402: svg.FontAbsoluteSize.xx_hyphen_minus_large_keyword:type_name -> svg.XxHyphenMinusLargeKeyword
+	1670, // 3403: svg.FontAbsoluteSize.xxx_hyphen_minus_large_keyword:type_name -> svg.XxxHyphenMinusLargeKeyword
+	1241, // 3404: svg.FontRelativeSize.larger_keyword:type_name -> svg.LargerKeyword
+	1549, // 3405: svg.FontRelativeSize.smaller_keyword:type_name -> svg.SmallerKeyword
+	1902, // 3406: svg.FontSizeAdjustAttr.alt1:type_name -> svg.FontSizeAdjustAttr.Alt1
+	1476, // 3407: svg.FontSizeAdjustAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	1903, // 3408: svg.FontStyleAttr.alt1:type_name -> svg.FontStyleAttr.Alt1
+	1476, // 3409: svg.FontStyleAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	1904, // 3410: svg.FontStyleOblique.space:type_name -> svg.FontStyleOblique.Space
+	976,  // 3411: svg.FontVariantAttr.font_variant_value:type_name -> svg.FontVariantValue
+	1476, // 3412: svg.FontVariantAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	1412, // 3413: svg.FontVariantValue.normal_keyword:type_name -> svg.NormalKeyword
+	1410, // 3414: svg.FontVariantValue.none_keyword:type_name -> svg.NoneKeyword
+	977,  // 3415: svg.FontVariantValue.font_variant_caps:type_name -> svg.FontVariantCaps
+	978,  // 3416: svg.FontVariantValue.font_variant_ligatures:type_name -> svg.FontVariantLigatures
+	979,  // 3417: svg.FontVariantValue.font_variant_numeric:type_name -> svg.FontVariantNumeric
+	980,  // 3418: svg.FontVariantValue.font_variant_east_asian:type_name -> svg.FontVariantEastAsian
+	981,  // 3419: svg.FontVariantValue.font_variant_alternates:type_name -> svg.FontVariantAlternates
+	1547, // 3420: svg.FontVariantCaps.small_hyphen_minus_caps_keyword:type_name -> svg.SmallHyphenMinusCapsKeyword
+	1004, // 3421: svg.FontVariantCaps.all_hyphen_minus_small_hyphen_minus_caps_keyword:type_name -> svg.AllHyphenMinusSmallHyphenMinusCapsKeyword
+	1455, // 3422: svg.FontVariantCaps.petite_hyphen_minus_caps_keyword:type_name -> svg.PetiteHyphenMinusCapsKeyword
+	1002, // 3423: svg.FontVariantCaps.all_hyphen_minus_petite_hyphen_minus_caps_keyword:type_name -> svg.AllHyphenMinusPetiteHyphenMinusCapsKeyword
+	1632, // 3424: svg.FontVariantCaps.unicase_keyword:type_name -> svg.UnicaseKeyword
+	1615, // 3425: svg.FontVariantCaps.titling_hyphen_minus_caps_keyword:type_name -> svg.TitlingHyphenMinusCapsKeyword
+	1077, // 3426: svg.FontVariantLigatures.common_hyphen_minus_ligatures_keyword:type_name -> svg.CommonHyphenMinusLigaturesKeyword
+	1398, // 3427: svg.FontVariantLigatures.no_hyphen_minus_common_hyphen_minus_ligatures_keyword:type_name -> svg.NoHyphenMinusCommonHyphenMinusLigaturesKeyword
+	1138, // 3428: svg.FontVariantLigatures.discretionary_hyphen_minus_ligatures_keyword:type_name -> svg.DiscretionaryHyphenMinusLigaturesKeyword
+	1400, // 3429: svg.FontVariantLigatures.no_hyphen_minus_discretionary_hyphen_minus_ligatures_keyword:type_name -> svg.NoHyphenMinusDiscretionaryHyphenMinusLigaturesKeyword
+	1206, // 3430: svg.FontVariantLigatures.historical_hyphen_minus_ligatures_keyword:type_name -> svg.HistoricalHyphenMinusLigaturesKeyword
+	1402, // 3431: svg.FontVariantLigatures.no_hyphen_minus_historical_hyphen_minus_ligatures_keyword:type_name -> svg.NoHyphenMinusHistoricalHyphenMinusLigaturesKeyword
+	1087, // 3432: svg.FontVariantLigatures.contextual_keyword:type_name -> svg.ContextualKeyword
+	1399, // 3433: svg.FontVariantLigatures.no_hyphen_minus_contextual_keyword:type_name -> svg.NoHyphenMinusContextualKeyword
+	1334, // 3434: svg.FontVariantNumeric.lining_hyphen_minus_nums_keyword:type_name -> svg.LiningHyphenMinusNumsKeyword
+	1422, // 3435: svg.FontVariantNumeric.oldstyle_hyphen_minus_nums_keyword:type_name -> svg.OldstyleHyphenMinusNumsKeyword
+	1472, // 3436: svg.FontVariantNumeric.proportional_hyphen_minus_nums_keyword:type_name -> svg.ProportionalHyphenMinusNumsKeyword
+	1602, // 3437: svg.FontVariantNumeric.tabular_hyphen_minus_nums_keyword:type_name -> svg.TabularHyphenMinusNumsKeyword
+	1127, // 3438: svg.FontVariantNumeric.diagonal_hyphen_minus_fractions_keyword:type_name -> svg.DiagonalHyphenMinusFractionsKeyword
+	1563, // 3439: svg.FontVariantNumeric.stacked_hyphen_minus_fractions_keyword:type_name -> svg.StackedHyphenMinusFractionsKeyword
+	1432, // 3440: svg.FontVariantNumeric.ordinal_keyword:type_name -> svg.OrdinalKeyword
+	1541, // 3441: svg.FontVariantNumeric.slashed_hyphen_minus_zero_keyword:type_name -> svg.SlashedHyphenMinusZeroKeyword
+	1235, // 3442: svg.FontVariantEastAsian.jis78_keyword:type_name -> svg.Jis78Keyword
+	1236, // 3443: svg.FontVariantEastAsian.jis83_keyword:type_name -> svg.Jis83Keyword
+	1237, // 3444: svg.FontVariantEastAsian.jis90_keyword:type_name -> svg.Jis90Keyword
+	1234, // 3445: svg.FontVariantEastAsian.jis04_keyword:type_name -> svg.Jis04Keyword
+	1537, // 3446: svg.FontVariantEastAsian.simplified_keyword:type_name -> svg.SimplifiedKeyword
+	1620, // 3447: svg.FontVariantEastAsian.traditional_keyword:type_name -> svg.TraditionalKeyword
+	1178, // 3448: svg.FontVariantEastAsian.full_hyphen_minus_width_keyword:type_name -> svg.FullHyphenMinusWidthKeyword
+	1473, // 3449: svg.FontVariantEastAsian.proportional_hyphen_minus_width_keyword:type_name -> svg.ProportionalHyphenMinusWidthKeyword
+	1509, // 3450: svg.FontVariantEastAsian.ruby_keyword:type_name -> svg.RubyKeyword
+	1205, // 3451: svg.FontVariantAlternates.historical_hyphen_minus_forms_keyword:type_name -> svg.HistoricalHyphenMinusFormsKeyword
+	1578, // 3452: svg.FontVariantAlternates.stylistic_keyword:type_name -> svg.StylisticKeyword
+	1577, // 3453: svg.FontVariantAlternates.styleset_keyword:type_name -> svg.StylesetKeyword
+	1061, // 3454: svg.FontVariantAlternates.character_hyphen_minus_variant_keyword:type_name -> svg.CharacterHyphenMinusVariantKeyword
+	1586, // 3455: svg.FontVariantAlternates.swash_keyword:type_name -> svg.SwashKeyword
+	1435, // 3456: svg.FontVariantAlternates.ornaments_keyword:type_name -> svg.OrnamentsKeyword
+	1009, // 3457: svg.FontVariantAlternates.annotation_keyword:type_name -> svg.AnnotationKeyword
+	1905, // 3458: svg.FontWeightAttr.alt1:type_name -> svg.FontWeightAttr.Alt1
+	1476, // 3459: svg.FontWeightAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	1906, // 3460: svg.FontStretchAttr.alt1:type_name -> svg.FontStretchAttr.Alt1
+	1476, // 3461: svg.FontStretchAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	1907, // 3462: svg.InlineSizeAttr.alt1:type_name -> svg.InlineSizeAttr.Alt1
+	1476, // 3463: svg.InlineSizeAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	1908, // 3464: svg.GlyphOrientationVerticalAttr.alt1:type_name -> svg.GlyphOrientationVerticalAttr.Alt1
+	1476, // 3465: svg.GlyphOrientationVerticalAttr.quotation_mark_keyword:type_name -> svg.QuotationMarkKeyword
+	987,  // 3466: svg.TransformList.transform:type_name -> svg.Transform
+	987,  // 3467: svg.TransformList.transform_2:type_name -> svg.Transform
+	988,  // 3468: svg.Transform.matrix:type_name -> svg.Matrix
+	989,  // 3469: svg.Transform.translate:type_name -> svg.Translate
+	990,  // 3470: svg.Transform.scale:type_name -> svg.Scale
+	991,  // 3471: svg.Transform.rotate:type_name -> svg.Rotate
+	992,  // 3472: svg.Transform.skew_x:type_name -> svg.SkewX
+	993,  // 3473: svg.Transform.skew_y:type_name -> svg.SkewY
+	329,  // 3474: svg.Matrix.number_type:type_name -> svg.NumberType
+	1076, // 3475: svg.Matrix.comma_keyword:type_name -> svg.CommaKeyword
+	329,  // 3476: svg.Matrix.number_type_2:type_name -> svg.NumberType
+	1076, // 3477: svg.Matrix.comma_keyword_2:type_name -> svg.CommaKeyword
+	329,  // 3478: svg.Matrix.number_type_3:type_name -> svg.NumberType
+	1076, // 3479: svg.Matrix.comma_keyword_3:type_name -> svg.CommaKeyword
+	329,  // 3480: svg.Matrix.number_type_4:type_name -> svg.NumberType
+	1076, // 3481: svg.Matrix.comma_keyword_4:type_name -> svg.CommaKeyword
+	329,  // 3482: svg.Matrix.number_type_5:type_name -> svg.NumberType
+	1076, // 3483: svg.Matrix.comma_keyword_5:type_name -> svg.CommaKeyword
+	329,  // 3484: svg.Matrix.number_type_6:type_name -> svg.NumberType
+	1493, // 3485: svg.Matrix.right_parenthesis_keyword:type_name -> svg.RightParenthesisKeyword
+	329,  // 3486: svg.Translate.number_type:type_name -> svg.NumberType
+	1909, // 3487: svg.Translate.comma:type_name -> svg.Translate.Comma
+	1493, // 3488: svg.Translate.right_parenthesis_keyword:type_name -> svg.RightParenthesisKeyword
+	329,  // 3489: svg.Scale.number_type:type_name -> svg.NumberType
+	1910, // 3490: svg.Scale.comma:type_name -> svg.Scale.Comma
+	1493, // 3491: svg.Scale.right_parenthesis_keyword:type_name -> svg.RightParenthesisKeyword
+	329,  // 3492: svg.Rotate.number_type:type_name -> svg.NumberType
+	1911, // 3493: svg.Rotate.comma:type_name -> svg.Rotate.Comma
+	1493, // 3494: svg.Rotate.right_parenthesis_keyword:type_name -> svg.RightParenthesisKeyword
+	329,  // 3495: svg.SkewX.number_type:type_name -> svg.NumberType
+	1493, // 3496: svg.SkewX.right_parenthesis_keyword:type_name -> svg.RightParenthesisKeyword
+	329,  // 3497: svg.SkewY.number_type:type_name -> svg.NumberType
+	1493, // 3498: svg.SkewY.right_parenthesis_keyword:type_name -> svg.RightParenthesisKeyword
+	1123, // 3499: svg.XmlSpaceAttr.Alt1.default_keyword:type_name -> svg.DefaultKeyword
+	1469, // 3500: svg.XmlSpaceAttr.Alt1.preserve_keyword:type_name -> svg.PreserveKeyword
+	1227, // 3501: svg.AriaAutocompleteAttr.Alt1.inline_keyword:type_name -> svg.InlineKeyword
+	1337, // 3502: svg.AriaAutocompleteAttr.Alt1.list_keyword:type_name -> svg.ListKeyword
+	1047, // 3503: svg.AriaAutocompleteAttr.Alt1.both_keyword:type_name -> svg.BothKeyword
+	1410, // 3504: svg.AriaAutocompleteAttr.Alt1.none_keyword:type_name -> svg.NoneKeyword
+	1444, // 3505: svg.AriaCurrentAttr.Alt1.page_keyword:type_name -> svg.PageKeyword
+	1567, // 3506: svg.AriaCurrentAttr.Alt1.step_keyword:type_name -> svg.StepKeyword
+	1340, // 3507: svg.AriaCurrentAttr.Alt1.location_keyword:type_name -> svg.LocationKeyword
+	1120, // 3508: svg.AriaCurrentAttr.Alt1.date_keyword:type_name -> svg.DateKeyword
+	1613, // 3509: svg.AriaCurrentAttr.Alt1.time_keyword:type_name -> svg.TimeKeyword
+	1625, // 3510: svg.AriaCurrentAttr.Alt1.true_keyword:type_name -> svg.TrueKeyword
+	1159, // 3511: svg.AriaCurrentAttr.Alt1.false_keyword:type_name -> svg.FalseKeyword
+	1159, // 3512: svg.AriaHaspopupAttr.Alt1.false_keyword:type_name -> svg.FalseKeyword
+	1625, // 3513: svg.AriaHaspopupAttr.Alt1.true_keyword:type_name -> svg.TrueKeyword
+	1372, // 3514: svg.AriaHaspopupAttr.Alt1.menu_keyword:type_name -> svg.MenuKeyword
+	1338, // 3515: svg.AriaHaspopupAttr.Alt1.listbox_keyword:type_name -> svg.ListboxKeyword
+	1622, // 3516: svg.AriaHaspopupAttr.Alt1.tree_keyword:type_name -> svg.TreeKeyword
+	1196, // 3517: svg.AriaHaspopupAttr.Alt1.grid_keyword:type_name -> svg.GridKeyword
+	1128, // 3518: svg.AriaHaspopupAttr.Alt1.dialog_keyword:type_name -> svg.DialogKeyword
+	1190, // 3519: svg.AriaInvalidAttr.Alt1.grammar_keyword:type_name -> svg.GrammarKeyword
+	1159, // 3520: svg.AriaInvalidAttr.Alt1.false_keyword:type_name -> svg.FalseKeyword
+	1558, // 3521: svg.AriaInvalidAttr.Alt1.spelling_keyword:type_name -> svg.SpellingKeyword
+	1625, // 3522: svg.AriaInvalidAttr.Alt1.true_keyword:type_name -> svg.TrueKeyword
+	1420, // 3523: svg.AriaLiveAttr.Alt1.off_keyword:type_name -> svg.OffKeyword
+	1019, // 3524: svg.AriaLiveAttr.Alt1.assertive_keyword:type_name -> svg.AssertiveKeyword
+	1462, // 3525: svg.AriaLiveAttr.Alt1.polite_keyword:type_name -> svg.PoliteKeyword
+	1209, // 3526: svg.AriaOrientationAttr.Alt1.horizontal_keyword:type_name -> svg.HorizontalKeyword
+	1641, // 3527: svg.AriaOrientationAttr.Alt1.vertical_keyword:type_name -> svg.VerticalKeyword
+	1630, // 3528: svg.AriaOrientationAttr.Alt1.undefined_keyword:type_name -> svg.UndefinedKeyword
+	1018, // 3529: svg.AriaSortAttr.Alt1.ascending_keyword:type_name -> svg.AscendingKeyword
+	1126, // 3530: svg.AriaSortAttr.Alt1.descending_keyword:type_name -> svg.DescendingKeyword
+	1410, // 3531: svg.AriaSortAttr.Alt1.none_keyword:type_name -> svg.NoneKeyword
+	1436, // 3532: svg.AriaSortAttr.Alt1.other_keyword:type_name -> svg.OtherKeyword
+	1136, // 3533: svg.SvgZoomAndPanAttr.Alt1.disable_keyword:type_name -> svg.DisableKeyword
+	1350, // 3534: svg.SvgZoomAndPanAttr.Alt1.magnify_keyword:type_name -> svg.MagnifyKeyword
+	1024, // 3535: svg.SvgWidthAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
+	337,  // 3536: svg.SvgWidthAttr.Alt1.non_negative_length_percentage_type:type_name -> svg.NonNegativeLengthPercentageType
+	1024, // 3537: svg.SvgHeightAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
+	337,  // 3538: svg.SvgHeightAttr.Alt1.non_negative_length_percentage_type:type_name -> svg.NonNegativeLengthPercentageType
+	1529, // 3539: svg.AtargetAttr.Alt1.self_keyword:type_name -> svg.SelfKeyword
+	1452, // 3540: svg.AtargetAttr.Alt1.parent_keyword:type_name -> svg.ParentKeyword
+	1619, // 3541: svg.AtargetAttr.Alt1.top_keyword:type_name -> svg.TopKeyword
+	1038, // 3542: svg.AtargetAttr.Alt1.blank_keyword:type_name -> svg.BlankKeyword
+	348,  // 3543: svg.AtargetAttr.Alt1.xml_name_type:type_name -> svg.XmlNameType
+	1404, // 3544: svg.AreferrerpolicyAttr.Alt1.no_hyphen_minus_referrer_keyword:type_name -> svg.NoHyphenMinusReferrerKeyword
+	1403, // 3545: svg.AreferrerpolicyAttr.Alt1.no_hyphen_minus_referrer_hyphen_minus_when_hyphen_minus_downgrade_keyword:type_name -> svg.NoHyphenMinusReferrerHyphenMinusWhenHyphenMinusDowngradeKeyword
+	1434, // 3546: svg.AreferrerpolicyAttr.Alt1.origin_keyword:type_name -> svg.OriginKeyword
+	1433, // 3547: svg.AreferrerpolicyAttr.Alt1.origin_hyphen_minus_when_hyphen_minus_cross_hyphen_minus_origin_keyword:type_name -> svg.OriginHyphenMinusWhenHyphenMinusCrossHyphenMinusOriginKeyword
+	1516, // 3548: svg.AreferrerpolicyAttr.Alt1.same_hyphen_minus_origin_keyword:type_name -> svg.SameHyphenMinusOriginKeyword
+	1571, // 3549: svg.AreferrerpolicyAttr.Alt1.strict_hyphen_minus_origin_keyword:type_name -> svg.StrictHyphenMinusOriginKeyword
+	1570, // 3550: svg.AreferrerpolicyAttr.Alt1.strict_hyphen_minus_origin_hyphen_minus_when_hyphen_minus_cross_hyphen_minus_origin_keyword:type_name -> svg.StrictHyphenMinusOriginHyphenMinusWhenHyphenMinusCrossHyphenMinusOriginKeyword
+	1633, // 3551: svg.AreferrerpolicyAttr.Alt1.unsafe_hyphen_minus_url_keyword:type_name -> svg.UnsafeHyphenMinusUrlKeyword
+	195,  // 3552: svg.FullClockValue.FullStop.clock_fraction:type_name -> svg.ClockFraction
+	195,  // 3553: svg.PartialClockValue.FullStop.clock_fraction:type_name -> svg.ClockFraction
+	195,  // 3554: svg.TimecountValue.FullStop.clock_fraction:type_name -> svg.ClockFraction
+	1460, // 3555: svg.OffsetValue.Alt1.plus_sign_keyword:type_name -> svg.PlusSignKeyword
+	1213, // 3556: svg.OffsetValue.Alt1.hyphen_minus_keyword:type_name -> svg.HyphenMinusKeyword
+	1031, // 3557: svg.SyncbaseValue.Alt1.begin_keyword:type_name -> svg.BeginKeyword
+	1148, // 3558: svg.SyncbaseValue.Alt1.end_keyword:type_name -> svg.EndKeyword
+	1695, // 3559: svg.SyncbaseValue.Seq1.alt1:type_name -> svg.SyncbaseValue.Seq1.Alt1
+	187,  // 3560: svg.SyncbaseValue.Seq1.clock_value:type_name -> svg.ClockValue
+	1460, // 3561: svg.SyncbaseValue.Seq1.Alt1.plus_sign_keyword:type_name -> svg.PlusSignKeyword
+	1213, // 3562: svg.SyncbaseValue.Seq1.Alt1.hyphen_minus_keyword:type_name -> svg.HyphenMinusKeyword
+	348,  // 3563: svg.EventValue.Seq1.xml_name_type:type_name -> svg.XmlNameType
+	1179, // 3564: svg.EventValue.Seq1.full_stop_keyword:type_name -> svg.FullStopKeyword
+	1698, // 3565: svg.EventValue.Seq2.alt1:type_name -> svg.EventValue.Seq2.Alt1
+	187,  // 3566: svg.EventValue.Seq2.clock_value:type_name -> svg.ClockValue
+	1460, // 3567: svg.EventValue.Seq2.Alt1.plus_sign_keyword:type_name -> svg.PlusSignKeyword
+	1213, // 3568: svg.EventValue.Seq2.Alt1.hyphen_minus_keyword:type_name -> svg.HyphenMinusKeyword
+	348,  // 3569: svg.RepeatValue.Seq1.xml_name_type:type_name -> svg.XmlNameType
+	1179, // 3570: svg.RepeatValue.Seq1.full_stop_keyword:type_name -> svg.FullStopKeyword
+	1701, // 3571: svg.RepeatValue.Seq2.alt1:type_name -> svg.RepeatValue.Seq2.Alt1
+	187,  // 3572: svg.RepeatValue.Seq2.clock_value:type_name -> svg.ClockValue
+	1460, // 3573: svg.RepeatValue.Seq2.Alt1.plus_sign_keyword:type_name -> svg.PlusSignKeyword
+	1213, // 3574: svg.RepeatValue.Seq2.Alt1.hyphen_minus_keyword:type_name -> svg.HyphenMinusKeyword
+	1703, // 3575: svg.AccessKeyValue.Seq1.alt1:type_name -> svg.AccessKeyValue.Seq1.Alt1
+	187,  // 3576: svg.AccessKeyValue.Seq1.clock_value:type_name -> svg.ClockValue
+	1460, // 3577: svg.AccessKeyValue.Seq1.Alt1.plus_sign_keyword:type_name -> svg.PlusSignKeyword
+	1213, // 3578: svg.AccessKeyValue.Seq1.Alt1.hyphen_minus_keyword:type_name -> svg.HyphenMinusKeyword
+	203,  // 3579: svg.WallclockValue.Alt1.date_time:type_name -> svg.DateTime
+	205,  // 3580: svg.WallclockValue.Alt1.wall_time:type_name -> svg.WallTime
+	206,  // 3581: svg.WallTime.Alt1.hhmm_time:type_name -> svg.HhmmTime
+	207,  // 3582: svg.WallTime.Alt1.hhmmss_time:type_name -> svg.HhmmssTime
+	195,  // 3583: svg.HhmmssTime.FullStop.clock_fraction:type_name -> svg.ClockFraction
+	1708, // 3584: svg.Tzd.Seq1.alt1:type_name -> svg.Tzd.Seq1.Alt1
+	211,  // 3585: svg.Tzd.Seq1.hours24:type_name -> svg.Hours24
+	1070, // 3586: svg.Tzd.Seq1.colon_keyword:type_name -> svg.ColonKeyword
+	193,  // 3587: svg.Tzd.Seq1.minutes:type_name -> svg.Minutes
+	1460, // 3588: svg.Tzd.Seq1.Alt1.plus_sign_keyword:type_name -> svg.PlusSignKeyword
+	1213, // 3589: svg.Tzd.Seq1.Alt1.hyphen_minus_keyword:type_name -> svg.HyphenMinusKeyword
+	329,  // 3590: svg.AnimateTransformTranslateValue.Space.number_type:type_name -> svg.NumberType
+	329,  // 3591: svg.AnimateTransformScaleValue.Space.number_type:type_name -> svg.NumberType
+	329,  // 3592: svg.AnimateTransformRotateValue.Space.number_type:type_name -> svg.NumberType
+	1555, // 3593: svg.AnimateTransformRotateValue.Space.space_keyword:type_name -> svg.SpaceKeyword
+	329,  // 3594: svg.AnimateTransformRotateValue.Space.number_type_2:type_name -> svg.NumberType
+	187,  // 3595: svg.AnimateDurAttr.Alt1.clock_value:type_name -> svg.ClockValue
+	1360, // 3596: svg.AnimateDurAttr.Alt1.media_keyword:type_name -> svg.MediaKeyword
+	1218, // 3597: svg.AnimateDurAttr.Alt1.indefinite_keyword:type_name -> svg.IndefiniteKeyword
+	187,  // 3598: svg.AnimateMinAttr.Alt1.clock_value:type_name -> svg.ClockValue
+	1360, // 3599: svg.AnimateMinAttr.Alt1.media_keyword:type_name -> svg.MediaKeyword
+	187,  // 3600: svg.AnimateMaxAttr.Alt1.clock_value:type_name -> svg.ClockValue
+	1360, // 3601: svg.AnimateMaxAttr.Alt1.media_keyword:type_name -> svg.MediaKeyword
+	1008, // 3602: svg.AnimateRestartAttr.Alt1.always_keyword:type_name -> svg.AlwaysKeyword
+	1652, // 3603: svg.AnimateRestartAttr.Alt1.when_not_active_keyword:type_name -> svg.WhenNotActiveKeyword
+	1396, // 3604: svg.AnimateRestartAttr.Alt1.never_keyword:type_name -> svg.NeverKeyword
+	330,  // 3605: svg.AnimateRepeatCountAttr.Alt1.non_negative_number_type:type_name -> svg.NonNegativeNumberType
+	1218, // 3606: svg.AnimateRepeatCountAttr.Alt1.indefinite_keyword:type_name -> svg.IndefiniteKeyword
+	187,  // 3607: svg.AnimateRepeatDurAttr.Alt1.clock_value:type_name -> svg.ClockValue
+	1360, // 3608: svg.AnimateRepeatDurAttr.Alt1.media_keyword:type_name -> svg.MediaKeyword
+	1218, // 3609: svg.AnimateRepeatDurAttr.Alt1.indefinite_keyword:type_name -> svg.IndefiniteKeyword
+	1175, // 3610: svg.AnimateFillAttr.Alt1.freeze_keyword:type_name -> svg.FreezeKeyword
+	1485, // 3611: svg.AnimateFillAttr.Alt1.remove_keyword:type_name -> svg.RemoveKeyword
+	1137, // 3612: svg.AnimateCalcModeAttr.Alt1.discrete_keyword:type_name -> svg.DiscreteKeyword
+	1331, // 3613: svg.AnimateCalcModeAttr.Alt1.linear_keyword:type_name -> svg.LinearKeyword
+	1441, // 3614: svg.AnimateCalcModeAttr.Alt1.paced_keyword:type_name -> svg.PacedKeyword
+	1560, // 3615: svg.AnimateCalcModeAttr.Alt1.spline_keyword:type_name -> svg.SplineKeyword
+	1490, // 3616: svg.AnimateAdditiveAttr.Alt1.replace_keyword:type_name -> svg.ReplaceKeyword
+	1582, // 3617: svg.AnimateAdditiveAttr.Alt1.sum_keyword:type_name -> svg.SumKeyword
+	1410, // 3618: svg.AnimateAccumulateAttr.Alt1.none_keyword:type_name -> svg.NoneKeyword
+	1582, // 3619: svg.AnimateAccumulateAttr.Alt1.sum_keyword:type_name -> svg.SumKeyword
+	187,  // 3620: svg.SetDurAttr.Alt1.clock_value:type_name -> svg.ClockValue
+	1360, // 3621: svg.SetDurAttr.Alt1.media_keyword:type_name -> svg.MediaKeyword
+	1218, // 3622: svg.SetDurAttr.Alt1.indefinite_keyword:type_name -> svg.IndefiniteKeyword
+	187,  // 3623: svg.SetMinAttr.Alt1.clock_value:type_name -> svg.ClockValue
+	1360, // 3624: svg.SetMinAttr.Alt1.media_keyword:type_name -> svg.MediaKeyword
+	187,  // 3625: svg.SetMaxAttr.Alt1.clock_value:type_name -> svg.ClockValue
+	1360, // 3626: svg.SetMaxAttr.Alt1.media_keyword:type_name -> svg.MediaKeyword
+	1008, // 3627: svg.SetRestartAttr.Alt1.always_keyword:type_name -> svg.AlwaysKeyword
+	1652, // 3628: svg.SetRestartAttr.Alt1.when_not_active_keyword:type_name -> svg.WhenNotActiveKeyword
+	1396, // 3629: svg.SetRestartAttr.Alt1.never_keyword:type_name -> svg.NeverKeyword
+	330,  // 3630: svg.SetRepeatCountAttr.Alt1.non_negative_number_type:type_name -> svg.NonNegativeNumberType
+	1218, // 3631: svg.SetRepeatCountAttr.Alt1.indefinite_keyword:type_name -> svg.IndefiniteKeyword
+	187,  // 3632: svg.SetRepeatDurAttr.Alt1.clock_value:type_name -> svg.ClockValue
+	1360, // 3633: svg.SetRepeatDurAttr.Alt1.media_keyword:type_name -> svg.MediaKeyword
+	1218, // 3634: svg.SetRepeatDurAttr.Alt1.indefinite_keyword:type_name -> svg.IndefiniteKeyword
+	1175, // 3635: svg.SetFillAttr.Alt1.freeze_keyword:type_name -> svg.FreezeKeyword
+	1485, // 3636: svg.SetFillAttr.Alt1.remove_keyword:type_name -> svg.RemoveKeyword
+	187,  // 3637: svg.AnimateMotionDurAttr.Alt1.clock_value:type_name -> svg.ClockValue
+	1360, // 3638: svg.AnimateMotionDurAttr.Alt1.media_keyword:type_name -> svg.MediaKeyword
+	1218, // 3639: svg.AnimateMotionDurAttr.Alt1.indefinite_keyword:type_name -> svg.IndefiniteKeyword
+	187,  // 3640: svg.AnimateMotionMinAttr.Alt1.clock_value:type_name -> svg.ClockValue
+	1360, // 3641: svg.AnimateMotionMinAttr.Alt1.media_keyword:type_name -> svg.MediaKeyword
+	187,  // 3642: svg.AnimateMotionMaxAttr.Alt1.clock_value:type_name -> svg.ClockValue
+	1360, // 3643: svg.AnimateMotionMaxAttr.Alt1.media_keyword:type_name -> svg.MediaKeyword
+	1008, // 3644: svg.AnimateMotionRestartAttr.Alt1.always_keyword:type_name -> svg.AlwaysKeyword
+	1652, // 3645: svg.AnimateMotionRestartAttr.Alt1.when_not_active_keyword:type_name -> svg.WhenNotActiveKeyword
+	1396, // 3646: svg.AnimateMotionRestartAttr.Alt1.never_keyword:type_name -> svg.NeverKeyword
+	330,  // 3647: svg.AnimateMotionRepeatCountAttr.Alt1.non_negative_number_type:type_name -> svg.NonNegativeNumberType
+	1218, // 3648: svg.AnimateMotionRepeatCountAttr.Alt1.indefinite_keyword:type_name -> svg.IndefiniteKeyword
+	187,  // 3649: svg.AnimateMotionRepeatDurAttr.Alt1.clock_value:type_name -> svg.ClockValue
+	1360, // 3650: svg.AnimateMotionRepeatDurAttr.Alt1.media_keyword:type_name -> svg.MediaKeyword
+	1218, // 3651: svg.AnimateMotionRepeatDurAttr.Alt1.indefinite_keyword:type_name -> svg.IndefiniteKeyword
+	1175, // 3652: svg.AnimateMotionFillAttr.Alt1.freeze_keyword:type_name -> svg.FreezeKeyword
+	1485, // 3653: svg.AnimateMotionFillAttr.Alt1.remove_keyword:type_name -> svg.RemoveKeyword
+	1137, // 3654: svg.AnimateMotionCalcModeAttr.Alt1.discrete_keyword:type_name -> svg.DiscreteKeyword
+	1331, // 3655: svg.AnimateMotionCalcModeAttr.Alt1.linear_keyword:type_name -> svg.LinearKeyword
+	1441, // 3656: svg.AnimateMotionCalcModeAttr.Alt1.paced_keyword:type_name -> svg.PacedKeyword
+	1560, // 3657: svg.AnimateMotionCalcModeAttr.Alt1.spline_keyword:type_name -> svg.SplineKeyword
+	329,  // 3658: svg.AnimateMotionRotateAttr.Alt1.number_type:type_name -> svg.NumberType
+	1024, // 3659: svg.AnimateMotionRotateAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
+	1022, // 3660: svg.AnimateMotionRotateAttr.Alt1.auto_hyphen_minus_reverse_keyword:type_name -> svg.AutoHyphenMinusReverseKeyword
+	1490, // 3661: svg.AnimateMotionAdditiveAttr.Alt1.replace_keyword:type_name -> svg.ReplaceKeyword
+	1582, // 3662: svg.AnimateMotionAdditiveAttr.Alt1.sum_keyword:type_name -> svg.SumKeyword
+	1410, // 3663: svg.AnimateMotionAccumulateAttr.Alt1.none_keyword:type_name -> svg.NoneKeyword
+	1582, // 3664: svg.AnimateMotionAccumulateAttr.Alt1.sum_keyword:type_name -> svg.SumKeyword
+	187,  // 3665: svg.AnimateTransformDurAttr.Alt1.clock_value:type_name -> svg.ClockValue
+	1360, // 3666: svg.AnimateTransformDurAttr.Alt1.media_keyword:type_name -> svg.MediaKeyword
+	1218, // 3667: svg.AnimateTransformDurAttr.Alt1.indefinite_keyword:type_name -> svg.IndefiniteKeyword
+	187,  // 3668: svg.AnimateTransformMinAttr.Alt1.clock_value:type_name -> svg.ClockValue
+	1360, // 3669: svg.AnimateTransformMinAttr.Alt1.media_keyword:type_name -> svg.MediaKeyword
+	187,  // 3670: svg.AnimateTransformMaxAttr.Alt1.clock_value:type_name -> svg.ClockValue
+	1360, // 3671: svg.AnimateTransformMaxAttr.Alt1.media_keyword:type_name -> svg.MediaKeyword
+	1008, // 3672: svg.AnimateTransformRestartAttr.Alt1.always_keyword:type_name -> svg.AlwaysKeyword
+	1652, // 3673: svg.AnimateTransformRestartAttr.Alt1.when_not_active_keyword:type_name -> svg.WhenNotActiveKeyword
+	1396, // 3674: svg.AnimateTransformRestartAttr.Alt1.never_keyword:type_name -> svg.NeverKeyword
+	330,  // 3675: svg.AnimateTransformRepeatCountAttr.Alt1.non_negative_number_type:type_name -> svg.NonNegativeNumberType
+	1218, // 3676: svg.AnimateTransformRepeatCountAttr.Alt1.indefinite_keyword:type_name -> svg.IndefiniteKeyword
+	187,  // 3677: svg.AnimateTransformRepeatDurAttr.Alt1.clock_value:type_name -> svg.ClockValue
+	1360, // 3678: svg.AnimateTransformRepeatDurAttr.Alt1.media_keyword:type_name -> svg.MediaKeyword
+	1218, // 3679: svg.AnimateTransformRepeatDurAttr.Alt1.indefinite_keyword:type_name -> svg.IndefiniteKeyword
+	1175, // 3680: svg.AnimateTransformFillAttr.Alt1.freeze_keyword:type_name -> svg.FreezeKeyword
+	1485, // 3681: svg.AnimateTransformFillAttr.Alt1.remove_keyword:type_name -> svg.RemoveKeyword
+	1137, // 3682: svg.AnimateTransformCalcModeAttr.Alt1.discrete_keyword:type_name -> svg.DiscreteKeyword
+	1331, // 3683: svg.AnimateTransformCalcModeAttr.Alt1.linear_keyword:type_name -> svg.LinearKeyword
+	1441, // 3684: svg.AnimateTransformCalcModeAttr.Alt1.paced_keyword:type_name -> svg.PacedKeyword
+	1560, // 3685: svg.AnimateTransformCalcModeAttr.Alt1.spline_keyword:type_name -> svg.SplineKeyword
+	1621, // 3686: svg.AnimateTransformTypeAttr.Alt1.translate_keyword:type_name -> svg.TranslateKeyword
+	1520, // 3687: svg.AnimateTransformTypeAttr.Alt1.scale_keyword:type_name -> svg.ScaleKeyword
+	1497, // 3688: svg.AnimateTransformTypeAttr.Alt1.rotate_keyword:type_name -> svg.RotateKeyword
+	1538, // 3689: svg.AnimateTransformTypeAttr.Alt1.skew_x_keyword:type_name -> svg.SkewXKeyword
+	1539, // 3690: svg.AnimateTransformTypeAttr.Alt1.skew_y_keyword:type_name -> svg.SkewYKeyword
+	1490, // 3691: svg.AnimateTransformAdditiveAttr.Alt1.replace_keyword:type_name -> svg.ReplaceKeyword
+	1582, // 3692: svg.AnimateTransformAdditiveAttr.Alt1.sum_keyword:type_name -> svg.SumKeyword
+	1410, // 3693: svg.AnimateTransformAccumulateAttr.Alt1.none_keyword:type_name -> svg.NoneKeyword
+	1582, // 3694: svg.AnimateTransformAccumulateAttr.Alt1.sum_keyword:type_name -> svg.SumKeyword
+	330,  // 3695: svg.NumberOptionalNumberType.Space.non_negative_number_type:type_name -> svg.NonNegativeNumberType
+	363,  // 3696: svg.PreserveAspectRatio.Space.meet_or_slice:type_name -> svg.MeetOrSlice
+	1010, // 3697: svg.ImageCrossoriginAttr.Alt1.anonymous_keyword:type_name -> svg.AnonymousKeyword
+	1635, // 3698: svg.ImageCrossoriginAttr.Alt1.use_hyphen_minus_credentials_keyword:type_name -> svg.UseHyphenMinusCredentialsKeyword
+	1024, // 3699: svg.ImageWidthAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
+	337,  // 3700: svg.ImageWidthAttr.Alt1.non_negative_length_percentage_type:type_name -> svg.NonNegativeLengthPercentageType
+	1024, // 3701: svg.ImageHeightAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
+	337,  // 3702: svg.ImageHeightAttr.Alt1.non_negative_length_percentage_type:type_name -> svg.NonNegativeLengthPercentageType
+	1588, // 3703: svg.ImageDecodingAttr.Alt1.sync_keyword:type_name -> svg.SyncKeyword
+	1020, // 3704: svg.ImageDecodingAttr.Alt1.async_keyword:type_name -> svg.AsyncKeyword
+	1024, // 3705: svg.ImageDecodingAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
+	1024, // 3706: svg.ForeignObjectWidthAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
+	337,  // 3707: svg.ForeignObjectWidthAttr.Alt1.non_negative_length_percentage_type:type_name -> svg.NonNegativeLengthPercentageType
+	1024, // 3708: svg.ForeignObjectHeightAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
+	337,  // 3709: svg.ForeignObjectHeightAttr.Alt1.non_negative_length_percentage_type:type_name -> svg.NonNegativeLengthPercentageType
+	1136, // 3710: svg.ViewZoomAndPanAttr.Alt1.disable_keyword:type_name -> svg.DisableKeyword
+	1350, // 3711: svg.ViewZoomAndPanAttr.Alt1.magnify_keyword:type_name -> svg.MagnifyKeyword
+	1010, // 3712: svg.ScriptCrossoriginAttr.Alt1.anonymous_keyword:type_name -> svg.AnonymousKeyword
+	1635, // 3713: svg.ScriptCrossoriginAttr.Alt1.use_hyphen_minus_credentials_keyword:type_name -> svg.UseHyphenMinusCredentialsKeyword
+	1049, // 3714: svg.PointerEventsAttr.Alt1.bounding_hyphen_minus_box_keyword:type_name -> svg.BoundingHyphenMinusBoxKeyword
+	1646, // 3715: svg.PointerEventsAttr.Alt1.visible_painted_keyword:type_name -> svg.VisiblePaintedKeyword
+	1644, // 3716: svg.PointerEventsAttr.Alt1.visible_fill_keyword:type_name -> svg.VisibleFillKeyword
+	1647, // 3717: svg.PointerEventsAttr.Alt1.visible_stroke_keyword:type_name -> svg.VisibleStrokeKeyword
+	1645, // 3718: svg.PointerEventsAttr.Alt1.visible_keyword:type_name -> svg.VisibleKeyword
+	1445, // 3719: svg.PointerEventsAttr.Alt1.painted_keyword:type_name -> svg.PaintedKeyword
+	1164, // 3720: svg.PointerEventsAttr.Alt1.fill_keyword:type_name -> svg.FillKeyword
+	1573, // 3721: svg.PointerEventsAttr.Alt1.stroke_keyword:type_name -> svg.StrokeKeyword
+	1005, // 3722: svg.PointerEventsAttr.Alt1.all_keyword:type_name -> svg.AllKeyword
+	1410, // 3723: svg.PointerEventsAttr.Alt1.none_keyword:type_name -> svg.NoneKeyword
+	1024, // 3724: svg.PointerEventsAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
+	1412, // 3725: svg.FeBlendModeAttr.Alt1.normal_keyword:type_name -> svg.NormalKeyword
+	1389, // 3726: svg.FeBlendModeAttr.Alt1.multiply_keyword:type_name -> svg.MultiplyKeyword
+	1521, // 3727: svg.FeBlendModeAttr.Alt1.screen_keyword:type_name -> svg.ScreenKeyword
+	1101, // 3728: svg.FeBlendModeAttr.Alt1.darken_keyword:type_name -> svg.DarkenKeyword
+	1314, // 3729: svg.FeBlendModeAttr.Alt1.lighten_keyword:type_name -> svg.LightenKeyword
+	1439, // 3730: svg.FeBlendModeAttr.Alt1.overlay_keyword:type_name -> svg.OverlayKeyword
+	1072, // 3731: svg.FeBlendModeAttr.Alt1.color_hyphen_minus_dodge_keyword:type_name -> svg.ColorHyphenMinusDodgeKeyword
+	1071, // 3732: svg.FeBlendModeAttr.Alt1.color_hyphen_minus_burn_keyword:type_name -> svg.ColorHyphenMinusBurnKeyword
+	1201, // 3733: svg.FeBlendModeAttr.Alt1.hard_hyphen_minus_light_keyword:type_name -> svg.HardHyphenMinusLightKeyword
+	1551, // 3734: svg.FeBlendModeAttr.Alt1.soft_hyphen_minus_light_keyword:type_name -> svg.SoftHyphenMinusLightKeyword
+	1129, // 3735: svg.FeBlendModeAttr.Alt1.difference_keyword:type_name -> svg.DifferenceKeyword
+	1154, // 3736: svg.FeBlendModeAttr.Alt1.exclusion_keyword:type_name -> svg.ExclusionKeyword
+	1211, // 3737: svg.FeBlendModeAttr.Alt1.hue_keyword:type_name -> svg.HueKeyword
+	1519, // 3738: svg.FeBlendModeAttr.Alt1.saturation_keyword:type_name -> svg.SaturationKeyword
+	1073, // 3739: svg.FeBlendModeAttr.Alt1.color_keyword:type_name -> svg.ColorKeyword
+	1347, // 3740: svg.FeBlendModeAttr.Alt1.luminosity_keyword:type_name -> svg.LuminosityKeyword
+	1359, // 3741: svg.FeColorMatrixTypeAttr.Alt1.matrix_keyword:type_name -> svg.MatrixKeyword
+	1518, // 3742: svg.FeColorMatrixTypeAttr.Alt1.saturate_keyword:type_name -> svg.SaturateKeyword
+	1212, // 3743: svg.FeColorMatrixTypeAttr.Alt1.hue_rotate_keyword:type_name -> svg.HueRotateKeyword
+	1346, // 3744: svg.FeColorMatrixTypeAttr.Alt1.luminance_to_alpha_keyword:type_name -> svg.LuminanceToAlphaKeyword
+	1438, // 3745: svg.FeCompositeOperatorAttr.Alt1.over_keyword:type_name -> svg.OverKeyword
+	1217, // 3746: svg.FeCompositeOperatorAttr.Alt1.in_keyword:type_name -> svg.InKeyword
+	1437, // 3747: svg.FeCompositeOperatorAttr.Alt1.out_keyword:type_name -> svg.OutKeyword
+	1021, // 3748: svg.FeCompositeOperatorAttr.Alt1.atop_keyword:type_name -> svg.AtopKeyword
+	1667, // 3749: svg.FeCompositeOperatorAttr.Alt1.xor_keyword:type_name -> svg.XorKeyword
+	1315, // 3750: svg.FeCompositeOperatorAttr.Alt1.lighter_keyword:type_name -> svg.LighterKeyword
+	1016, // 3751: svg.FeCompositeOperatorAttr.Alt1.arithmetic_keyword:type_name -> svg.ArithmeticKeyword
+	1143, // 3752: svg.FeConvolveMatrixEdgeModeAttr.Alt1.duplicate_keyword:type_name -> svg.DuplicateKeyword
+	1655, // 3753: svg.FeConvolveMatrixEdgeModeAttr.Alt1.wrap_keyword:type_name -> svg.WrapKeyword
+	1410, // 3754: svg.FeConvolveMatrixEdgeModeAttr.Alt1.none_keyword:type_name -> svg.NoneKeyword
+	1477, // 3755: svg.FeDisplacementMapXchannelSelectorAttr.Alt1.r_keyword:type_name -> svg.RKeyword
+	1180, // 3756: svg.FeDisplacementMapXchannelSelectorAttr.Alt1.g_keyword:type_name -> svg.GKeyword
+	1026, // 3757: svg.FeDisplacementMapXchannelSelectorAttr.Alt1.b_keyword:type_name -> svg.BKeyword
+	994,  // 3758: svg.FeDisplacementMapXchannelSelectorAttr.Alt1.a_keyword:type_name -> svg.AKeyword
+	1477, // 3759: svg.FeDisplacementMapYchannelSelectorAttr.Alt1.r_keyword:type_name -> svg.RKeyword
+	1180, // 3760: svg.FeDisplacementMapYchannelSelectorAttr.Alt1.g_keyword:type_name -> svg.GKeyword
+	1026, // 3761: svg.FeDisplacementMapYchannelSelectorAttr.Alt1.b_keyword:type_name -> svg.BKeyword
+	994,  // 3762: svg.FeDisplacementMapYchannelSelectorAttr.Alt1.a_keyword:type_name -> svg.AKeyword
+	1143, // 3763: svg.FeGaussianBlurEdgeModeAttr.Alt1.duplicate_keyword:type_name -> svg.DuplicateKeyword
+	1655, // 3764: svg.FeGaussianBlurEdgeModeAttr.Alt1.wrap_keyword:type_name -> svg.WrapKeyword
+	1410, // 3765: svg.FeGaussianBlurEdgeModeAttr.Alt1.none_keyword:type_name -> svg.NoneKeyword
+	1010, // 3766: svg.FeImageCrossoriginAttr.Alt1.anonymous_keyword:type_name -> svg.AnonymousKeyword
+	1635, // 3767: svg.FeImageCrossoriginAttr.Alt1.use_hyphen_minus_credentials_keyword:type_name -> svg.UseHyphenMinusCredentialsKeyword
+	1149, // 3768: svg.FeMorphologyOperatorAttr.Alt1.erode_keyword:type_name -> svg.ErodeKeyword
+	1132, // 3769: svg.FeMorphologyOperatorAttr.Alt1.dilate_keyword:type_name -> svg.DilateKeyword
+	1568, // 3770: svg.FeTurbulenceStitchTilesAttr.Alt1.stitch_keyword:type_name -> svg.StitchKeyword
+	1406, // 3771: svg.FeTurbulenceStitchTilesAttr.Alt1.no_stitch_keyword:type_name -> svg.NoStitchKeyword
+	1174, // 3772: svg.FeTurbulenceTypeAttr.Alt1.fractal_noise_keyword:type_name -> svg.FractalNoiseKeyword
+	1626, // 3773: svg.FeTurbulenceTypeAttr.Alt1.turbulence_keyword:type_name -> svg.TurbulenceKeyword
+	1214, // 3774: svg.FeFuncRtypeAttr.Alt1.identity_keyword:type_name -> svg.IdentityKeyword
+	1599, // 3775: svg.FeFuncRtypeAttr.Alt1.table_keyword:type_name -> svg.TableKeyword
+	1137, // 3776: svg.FeFuncRtypeAttr.Alt1.discrete_keyword:type_name -> svg.DiscreteKeyword
+	1331, // 3777: svg.FeFuncRtypeAttr.Alt1.linear_keyword:type_name -> svg.LinearKeyword
+	1182, // 3778: svg.FeFuncRtypeAttr.Alt1.gamma_keyword:type_name -> svg.GammaKeyword
+	1214, // 3779: svg.FeFuncGtypeAttr.Alt1.identity_keyword:type_name -> svg.IdentityKeyword
+	1599, // 3780: svg.FeFuncGtypeAttr.Alt1.table_keyword:type_name -> svg.TableKeyword
+	1137, // 3781: svg.FeFuncGtypeAttr.Alt1.discrete_keyword:type_name -> svg.DiscreteKeyword
+	1331, // 3782: svg.FeFuncGtypeAttr.Alt1.linear_keyword:type_name -> svg.LinearKeyword
+	1182, // 3783: svg.FeFuncGtypeAttr.Alt1.gamma_keyword:type_name -> svg.GammaKeyword
+	1214, // 3784: svg.FeFuncBtypeAttr.Alt1.identity_keyword:type_name -> svg.IdentityKeyword
+	1599, // 3785: svg.FeFuncBtypeAttr.Alt1.table_keyword:type_name -> svg.TableKeyword
+	1137, // 3786: svg.FeFuncBtypeAttr.Alt1.discrete_keyword:type_name -> svg.DiscreteKeyword
+	1331, // 3787: svg.FeFuncBtypeAttr.Alt1.linear_keyword:type_name -> svg.LinearKeyword
+	1182, // 3788: svg.FeFuncBtypeAttr.Alt1.gamma_keyword:type_name -> svg.GammaKeyword
+	1214, // 3789: svg.FeFuncAtypeAttr.Alt1.identity_keyword:type_name -> svg.IdentityKeyword
+	1599, // 3790: svg.FeFuncAtypeAttr.Alt1.table_keyword:type_name -> svg.TableKeyword
+	1137, // 3791: svg.FeFuncAtypeAttr.Alt1.discrete_keyword:type_name -> svg.DiscreteKeyword
+	1331, // 3792: svg.FeFuncAtypeAttr.Alt1.linear_keyword:type_name -> svg.LinearKeyword
+	1182, // 3793: svg.FeFuncAtypeAttr.Alt1.gamma_keyword:type_name -> svg.GammaKeyword
+	1410, // 3794: svg.FilterAttr.Alt1.none_keyword:type_name -> svg.NoneKeyword
+	660,  // 3795: svg.FilterAttr.Alt1.filter_value_list:type_name -> svg.FilterValueList
+	339,  // 3796: svg.HueRotateFunction.Alt1.angle_type:type_name -> svg.AngleType
+	329,  // 3797: svg.HueRotateFunction.Alt1.number_type:type_name -> svg.NumberType
+	1024, // 3798: svg.ColorInterpolationFiltersAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
+	1513, // 3799: svg.ColorInterpolationFiltersAttr.Alt1.s_rgb_keyword:type_name -> svg.SRgbKeyword
+	1332, // 3800: svg.ColorInterpolationFiltersAttr.Alt1.linear_rgb_keyword:type_name -> svg.LinearRgbKeyword
+	1097, // 3801: svg.FloodColorAttr.Alt1.current_color_keyword:type_name -> svg.CurrentColorKeyword
+	1912, // 3802: svg.FloodColorAttr.Alt1.color_type:type_name -> google.protobuf.Any
+	1097, // 3803: svg.LightingColorAttr.Alt1.current_color_keyword:type_name -> svg.CurrentColorKeyword
+	1912, // 3804: svg.LightingColorAttr.Alt1.color_type:type_name -> google.protobuf.Any
+	1024, // 3805: svg.ImageRenderingAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
+	1427, // 3806: svg.ImageRenderingAttr.Alt1.optimize_speed_keyword:type_name -> svg.OptimizeSpeedKeyword
+	1426, // 3807: svg.ImageRenderingAttr.Alt1.optimize_quality_keyword:type_name -> svg.OptimizeQualityKeyword
+	1095, // 3808: svg.ImageRenderingAttr.Alt1.crisp_hyphen_minus_edges_keyword:type_name -> svg.CrispHyphenMinusEdgesKeyword
+	1457, // 3809: svg.ImageRenderingAttr.Alt1.pixelated_keyword:type_name -> svg.PixelatedKeyword
+	1345, // 3810: svg.MaskTypeAttr.Alt1.luminance_keyword:type_name -> svg.LuminanceKeyword
+	1006, // 3811: svg.MaskTypeAttr.Alt1.alpha_keyword:type_name -> svg.AlphaKeyword
+	1410, // 3812: svg.ClipPathAttr.Alt1.none_keyword:type_name -> svg.NoneKeyword
+	344,  // 3813: svg.ClipPathAttr.Alt1.url_type:type_name -> svg.UrlType
+	697,  // 3814: svg.ClipPathAttr.Alt1.basic_shape:type_name -> svg.BasicShape
+	696,  // 3815: svg.ClipPathAttr.Alt1.geometry_box:type_name -> svg.GeometryBox
+	695,  // 3816: svg.ClipPathAttr.Alt1.clip_path_combo:type_name -> svg.ClipPathCombo
+	697,  // 3817: svg.ClipPathCombo.Seq1.basic_shape:type_name -> svg.BasicShape
+	696,  // 3818: svg.ClipPathCombo.Seq1.geometry_box:type_name -> svg.GeometryBox
+	696,  // 3819: svg.ClipPathCombo.Seq2.geometry_box:type_name -> svg.GeometryBox
+	697,  // 3820: svg.ClipPathCombo.Seq2.basic_shape:type_name -> svg.BasicShape
+	336,  // 3821: svg.InsetFn.Space.length_percentage_type:type_name -> svg.LengthPercentageType
+	1789, // 3822: svg.InsetFn.Space.space:type_name -> svg.InsetFn.Space.Space
+	699,  // 3823: svg.InsetFn.SpaceRoundSpace.border_radius:type_name -> svg.BorderRadius
+	336,  // 3824: svg.InsetFn.Space.Space.length_percentage_type:type_name -> svg.LengthPercentageType
+	1790, // 3825: svg.InsetFn.Space.Space.space:type_name -> svg.InsetFn.Space.Space.Space
+	336,  // 3826: svg.InsetFn.Space.Space.Space.length_percentage_type:type_name -> svg.LengthPercentageType
+	336,  // 3827: svg.BorderRadius.Space.length_percentage_type:type_name -> svg.LengthPercentageType
+	1793, // 3828: svg.BorderRadius.Space.space:type_name -> svg.BorderRadius.Space.Space
+	336,  // 3829: svg.BorderRadius.Solidus.length_percentage_type:type_name -> svg.LengthPercentageType
+	1795, // 3830: svg.BorderRadius.Solidus.space:type_name -> svg.BorderRadius.Solidus.Space
+	336,  // 3831: svg.BorderRadius.Space.Space.length_percentage_type:type_name -> svg.LengthPercentageType
+	1794, // 3832: svg.BorderRadius.Space.Space.space:type_name -> svg.BorderRadius.Space.Space.Space
+	336,  // 3833: svg.BorderRadius.Space.Space.Space.length_percentage_type:type_name -> svg.LengthPercentageType
+	336,  // 3834: svg.BorderRadius.Solidus.Space.length_percentage_type:type_name -> svg.LengthPercentageType
+	1796, // 3835: svg.BorderRadius.Solidus.Space.space:type_name -> svg.BorderRadius.Solidus.Space.Space
+	336,  // 3836: svg.BorderRadius.Solidus.Space.Space.length_percentage_type:type_name -> svg.LengthPercentageType
+	1797, // 3837: svg.BorderRadius.Solidus.Space.Space.space:type_name -> svg.BorderRadius.Solidus.Space.Space.Space
+	336,  // 3838: svg.BorderRadius.Solidus.Space.Space.Space.length_percentage_type:type_name -> svg.LengthPercentageType
+	702,  // 3839: svg.CircleFn.Seq1.radial_size:type_name -> svg.RadialSize
+	1799, // 3840: svg.CircleFn.Seq1.space_at_space:type_name -> svg.CircleFn.Seq1.SpaceAtSpace
+	703,  // 3841: svg.CircleFn.Seq1.SpaceAtSpace.css_position:type_name -> svg.CssPosition
+	702,  // 3842: svg.EllipseFn.Seq1.radial_size:type_name -> svg.RadialSize
+	1555, // 3843: svg.EllipseFn.Seq1.space_keyword:type_name -> svg.SpaceKeyword
+	702,  // 3844: svg.EllipseFn.Seq1.radial_size_2:type_name -> svg.RadialSize
+	1801, // 3845: svg.EllipseFn.Seq1.space_at_space:type_name -> svg.EllipseFn.Seq1.SpaceAtSpace
+	703,  // 3846: svg.EllipseFn.Seq1.SpaceAtSpace.css_position:type_name -> svg.CssPosition
+	705,  // 3847: svg.CssPosition.Space.css_position_v:type_name -> svg.CssPositionV
+	711,  // 3848: svg.PolygonFn.Seq1.fill_rule:type_name -> svg.FillRule
+	1076, // 3849: svg.PolygonFn.Seq1.comma_keyword:type_name -> svg.CommaKeyword
+	333,  // 3850: svg.PolygonFn.SpaceRoundSpace.length_type:type_name -> svg.LengthType
+	1076, // 3851: svg.PolygonFn.SpaceRoundSpace.comma_keyword:type_name -> svg.CommaKeyword
+	711,  // 3852: svg.PathFn.Seq1.fill_rule:type_name -> svg.FillRule
+	1076, // 3853: svg.PathFn.Seq1.comma_keyword:type_name -> svg.CommaKeyword
+	711,  // 3854: svg.ShapeFn.Seq1.fill_rule:type_name -> svg.FillRule
+	1555, // 3855: svg.ShapeFn.Seq1.space_keyword:type_name -> svg.SpaceKeyword
+	1411, // 3856: svg.ClipRuleAttr.Alt1.nonzero_keyword:type_name -> svg.NonzeroKeyword
+	1150, // 3857: svg.ClipRuleAttr.Alt1.evenodd_keyword:type_name -> svg.EvenoddKeyword
+	1024, // 3858: svg.ClipAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
+	714,  // 3859: svg.ClipAttr.Alt1.clip_rect:type_name -> svg.ClipRect
+	1410, // 3860: svg.MaskAttr.Alt1.none_keyword:type_name -> svg.NoneKeyword
+	344,  // 3861: svg.MaskAttr.Alt1.url_type:type_name -> svg.UrlType
+	717,  // 3862: svg.MaskAttr.Alt1.mask_layer_list:type_name -> svg.MaskLayerList
+	721,  // 3863: svg.MaskLayerPosition.Solidus.mask_bg_size:type_name -> svg.MaskBgSize
+	336,  // 3864: svg.MaskBgSize.Seq1.length_percentage_type:type_name -> svg.LengthPercentageType
+	1555, // 3865: svg.MaskBgSize.Seq1.space_keyword:type_name -> svg.SpaceKeyword
+	336,  // 3866: svg.MaskBgSize.Seq1.length_percentage_type_2:type_name -> svg.LengthPercentageType
+	1813, // 3867: svg.MaskRepeatValue.Seq1.alt1:type_name -> svg.MaskRepeatValue.Seq1.Alt1
+	1555, // 3868: svg.MaskRepeatValue.Seq1.space_keyword:type_name -> svg.SpaceKeyword
+	1814, // 3869: svg.MaskRepeatValue.Seq1.alt2:type_name -> svg.MaskRepeatValue.Seq1.Alt2
+	1488, // 3870: svg.MaskRepeatValue.Seq1.Alt1.repeat_keyword:type_name -> svg.RepeatKeyword
+	1555, // 3871: svg.MaskRepeatValue.Seq1.Alt1.space_keyword:type_name -> svg.SpaceKeyword
+	1498, // 3872: svg.MaskRepeatValue.Seq1.Alt1.round_keyword:type_name -> svg.RoundKeyword
+	1405, // 3873: svg.MaskRepeatValue.Seq1.Alt1.no_hyphen_minus_repeat_keyword:type_name -> svg.NoHyphenMinusRepeatKeyword
+	1488, // 3874: svg.MaskRepeatValue.Seq1.Alt2.repeat_keyword:type_name -> svg.RepeatKeyword
+	1555, // 3875: svg.MaskRepeatValue.Seq1.Alt2.space_keyword:type_name -> svg.SpaceKeyword
+	1498, // 3876: svg.MaskRepeatValue.Seq1.Alt2.round_keyword:type_name -> svg.RoundKeyword
+	1405, // 3877: svg.MaskRepeatValue.Seq1.Alt2.no_hyphen_minus_repeat_keyword:type_name -> svg.NoHyphenMinusRepeatKeyword
+	731,  // 3878: svg.MaskLayerOriginClip.Seq1.mask_origin_box:type_name -> svg.MaskOriginBox
+	1555, // 3879: svg.MaskLayerOriginClip.Seq1.space_keyword:type_name -> svg.SpaceKeyword
+	730,  // 3880: svg.MaskLayerOriginClip.Seq1.mask_clip_box_value:type_name -> svg.MaskClipBoxValue
+	1575, // 3881: svg.MarkerMarkerUnitsAttr.Alt1.stroke_width_keyword:type_name -> svg.StrokeWidthKeyword
+	1636, // 3882: svg.MarkerMarkerUnitsAttr.Alt1.user_space_on_use_keyword:type_name -> svg.UserSpaceOnUseKeyword
+	336,  // 3883: svg.MarkerRefXattr.Alt1.length_percentage_type:type_name -> svg.LengthPercentageType
+	329,  // 3884: svg.MarkerRefXattr.Alt1.number_type:type_name -> svg.NumberType
+	1245, // 3885: svg.MarkerRefXattr.Alt1.left_keyword:type_name -> svg.LeftKeyword
+	1059, // 3886: svg.MarkerRefXattr.Alt1.center_keyword:type_name -> svg.CenterKeyword
+	1492, // 3887: svg.MarkerRefXattr.Alt1.right_keyword:type_name -> svg.RightKeyword
+	336,  // 3888: svg.MarkerRefYattr.Alt1.length_percentage_type:type_name -> svg.LengthPercentageType
+	329,  // 3889: svg.MarkerRefYattr.Alt1.number_type:type_name -> svg.NumberType
+	1619, // 3890: svg.MarkerRefYattr.Alt1.top_keyword:type_name -> svg.TopKeyword
+	1059, // 3891: svg.MarkerRefYattr.Alt1.center_keyword:type_name -> svg.CenterKeyword
+	1048, // 3892: svg.MarkerRefYattr.Alt1.bottom_keyword:type_name -> svg.BottomKeyword
+	1024, // 3893: svg.MarkerOrientAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
+	1023, // 3894: svg.MarkerOrientAttr.Alt1.auto_hyphen_minus_start_hyphen_minus_reverse_keyword:type_name -> svg.AutoHyphenMinusStartHyphenMinusReverseKeyword
+	339,  // 3895: svg.MarkerOrientAttr.Alt1.angle_type:type_name -> svg.AngleType
+	329,  // 3896: svg.MarkerOrientAttr.Alt1.number_type:type_name -> svg.NumberType
+	1411, // 3897: svg.FillRuleAttr.Alt1.nonzero_keyword:type_name -> svg.NonzeroKeyword
+	1150, // 3898: svg.FillRuleAttr.Alt1.evenodd_keyword:type_name -> svg.EvenoddKeyword
+	1053, // 3899: svg.StrokeLinecapAttr.Alt1.butt_keyword:type_name -> svg.ButtKeyword
+	1498, // 3900: svg.StrokeLinecapAttr.Alt1.round_keyword:type_name -> svg.RoundKeyword
+	1562, // 3901: svg.StrokeLinecapAttr.Alt1.square_keyword:type_name -> svg.SquareKeyword
+	1384, // 3902: svg.StrokeLinejoinAttr.Alt1.miter_keyword:type_name -> svg.MiterKeyword
+	1383, // 3903: svg.StrokeLinejoinAttr.Alt1.miter_hyphen_minus_clip_keyword:type_name -> svg.MiterHyphenMinusClipKeyword
+	1498, // 3904: svg.StrokeLinejoinAttr.Alt1.round_keyword:type_name -> svg.RoundKeyword
+	1033, // 3905: svg.StrokeLinejoinAttr.Alt1.bevel_keyword:type_name -> svg.BevelKeyword
+	1015, // 3906: svg.StrokeLinejoinAttr.Alt1.arcs_keyword:type_name -> svg.ArcsKeyword
+	1410, // 3907: svg.StrokeDasharrayAttr.Alt1.none_keyword:type_name -> svg.NoneKeyword
+	352,  // 3908: svg.StrokeDasharrayAttr.Alt1.dasharray_type:type_name -> svg.DasharrayType
+	336,  // 3909: svg.StrokeDashoffsetAttr.Alt1.length_percentage_type:type_name -> svg.LengthPercentageType
+	329,  // 3910: svg.StrokeDashoffsetAttr.Alt1.number_type:type_name -> svg.NumberType
+	1412, // 3911: svg.PaintOrderAttr.Alt1.normal_keyword:type_name -> svg.NormalKeyword
+	755,  // 3912: svg.PaintOrderAttr.Alt1.paint_order_list:type_name -> svg.PaintOrderList
+	1410, // 3913: svg.MarkerAttr.Alt1.none_keyword:type_name -> svg.NoneKeyword
+	344,  // 3914: svg.MarkerAttr.Alt1.url_type:type_name -> svg.UrlType
+	1410, // 3915: svg.MarkerStartAttr.Alt1.none_keyword:type_name -> svg.NoneKeyword
+	344,  // 3916: svg.MarkerStartAttr.Alt1.url_type:type_name -> svg.UrlType
+	1410, // 3917: svg.MarkerMidAttr.Alt1.none_keyword:type_name -> svg.NoneKeyword
+	344,  // 3918: svg.MarkerMidAttr.Alt1.url_type:type_name -> svg.UrlType
+	1410, // 3919: svg.MarkerEndAttr.Alt1.none_keyword:type_name -> svg.NoneKeyword
+	344,  // 3920: svg.MarkerEndAttr.Alt1.url_type:type_name -> svg.UrlType
+	1024, // 3921: svg.ColorInterpolationAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
+	1513, // 3922: svg.ColorInterpolationAttr.Alt1.s_rgb_keyword:type_name -> svg.SRgbKeyword
+	1332, // 3923: svg.ColorInterpolationAttr.Alt1.linear_rgb_keyword:type_name -> svg.LinearRgbKeyword
+	1024, // 3924: svg.ColorRenderingAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
+	1427, // 3925: svg.ColorRenderingAttr.Alt1.optimize_speed_keyword:type_name -> svg.OptimizeSpeedKeyword
+	1426, // 3926: svg.ColorRenderingAttr.Alt1.optimize_quality_keyword:type_name -> svg.OptimizeQualityKeyword
+	1024, // 3927: svg.ShapeRenderingAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
+	1427, // 3928: svg.ShapeRenderingAttr.Alt1.optimize_speed_keyword:type_name -> svg.OptimizeSpeedKeyword
+	1094, // 3929: svg.ShapeRenderingAttr.Alt1.crisp_edges_keyword:type_name -> svg.CrispEdgesKeyword
+	1184, // 3930: svg.ShapeRenderingAttr.Alt1.geometric_precision_keyword:type_name -> svg.GeometricPrecisionKeyword
+	1410, // 3931: svg.VectorEffectAttr.Alt1.none_keyword:type_name -> svg.NoneKeyword
+	1409, // 3932: svg.VectorEffectAttr.Alt1.non_hyphen_minus_scaling_hyphen_minus_stroke_keyword:type_name -> svg.NonHyphenMinusScalingHyphenMinusStrokeKeyword
+	1408, // 3933: svg.VectorEffectAttr.Alt1.non_hyphen_minus_scaling_hyphen_minus_size_keyword:type_name -> svg.NonHyphenMinusScalingHyphenMinusSizeKeyword
+	1407, // 3934: svg.VectorEffectAttr.Alt1.non_hyphen_minus_rotation_keyword:type_name -> svg.NonHyphenMinusRotationKeyword
+	1167, // 3935: svg.VectorEffectAttr.Alt1.fixed_hyphen_minus_position_keyword:type_name -> svg.FixedHyphenMinusPositionKeyword
+	768,  // 3936: svg.SvgPath.Seq1.move_to:type_name -> svg.MoveTo
+	1835, // 3937: svg.SvgPath.Seq1.space:type_name -> svg.SvgPath.Seq1.Space
+	767,  // 3938: svg.SvgPath.Seq1.Space.draw_to_command:type_name -> svg.DrawToCommand
+	1348, // 3939: svg.MoveTo.Alt1.m_keyword:type_name -> svg.MKeyword
+	1348, // 3940: svg.MoveTo.Alt1.m_keyword_2:type_name -> svg.MKeyword
+	1673, // 3941: svg.ClosePath.Alt1.z_keyword:type_name -> svg.ZKeyword
+	1673, // 3942: svg.ClosePath.Alt1.z_keyword_2:type_name -> svg.ZKeyword
+	1239, // 3943: svg.LineTo.Alt1.l_keyword:type_name -> svg.LKeyword
+	1239, // 3944: svg.LineTo.Alt1.l_keyword_2:type_name -> svg.LKeyword
+	1199, // 3945: svg.HorizontalLineTo.Alt1.h_keyword:type_name -> svg.HKeyword
+	1199, // 3946: svg.HorizontalLineTo.Alt1.h_keyword_2:type_name -> svg.HKeyword
+	1637, // 3947: svg.VerticalLineTo.Alt1.v_keyword:type_name -> svg.VKeyword
+	1637, // 3948: svg.VerticalLineTo.Alt1.v_keyword_2:type_name -> svg.VKeyword
+	1055, // 3949: svg.CurveTo.Alt1.c_keyword:type_name -> svg.CKeyword
+	1055, // 3950: svg.CurveTo.Alt1.c_keyword_2:type_name -> svg.CKeyword
+	1512, // 3951: svg.SmoothCurveTo.Alt1.s_keyword:type_name -> svg.SKeyword
+	1512, // 3952: svg.SmoothCurveTo.Alt1.s_keyword_2:type_name -> svg.SKeyword
+	1475, // 3953: svg.QuadraticBezierCurveTo.Alt1.q_keyword:type_name -> svg.QKeyword
+	1475, // 3954: svg.QuadraticBezierCurveTo.Alt1.q_keyword_2:type_name -> svg.QKeyword
+	1589, // 3955: svg.SmoothQuadraticBezierCurveTo.Alt1.t_keyword:type_name -> svg.TKeyword
+	1589, // 3956: svg.SmoothQuadraticBezierCurveTo.Alt1.t_keyword_2:type_name -> svg.TKeyword
+	994,  // 3957: svg.EllipticalArc.Alt1.a_keyword:type_name -> svg.AKeyword
+	994,  // 3958: svg.EllipticalArc.Alt1.a_keyword_2:type_name -> svg.AKeyword
+	1442, // 3959: svg.SpreadMethodAttr.Alt1.pad_keyword:type_name -> svg.PadKeyword
+	1482, // 3960: svg.SpreadMethodAttr.Alt1.reflect_keyword:type_name -> svg.ReflectKeyword
+	1488, // 3961: svg.SpreadMethodAttr.Alt1.repeat_keyword:type_name -> svg.RepeatKeyword
+	336,  // 3962: svg.LinearGradientX1attr.Alt1.length_percentage_type:type_name -> svg.LengthPercentageType
+	329,  // 3963: svg.LinearGradientX1attr.Alt1.number_type:type_name -> svg.NumberType
+	336,  // 3964: svg.LinearGradientY1attr.Alt1.length_percentage_type:type_name -> svg.LengthPercentageType
+	329,  // 3965: svg.LinearGradientY1attr.Alt1.number_type:type_name -> svg.NumberType
+	336,  // 3966: svg.LinearGradientX2attr.Alt1.length_percentage_type:type_name -> svg.LengthPercentageType
+	329,  // 3967: svg.LinearGradientX2attr.Alt1.number_type:type_name -> svg.NumberType
+	336,  // 3968: svg.LinearGradientY2attr.Alt1.length_percentage_type:type_name -> svg.LengthPercentageType
+	329,  // 3969: svg.LinearGradientY2attr.Alt1.number_type:type_name -> svg.NumberType
+	336,  // 3970: svg.RadialGradientCxAttr.Alt1.length_percentage_type:type_name -> svg.LengthPercentageType
+	329,  // 3971: svg.RadialGradientCxAttr.Alt1.number_type:type_name -> svg.NumberType
+	336,  // 3972: svg.RadialGradientCyAttr.Alt1.length_percentage_type:type_name -> svg.LengthPercentageType
+	329,  // 3973: svg.RadialGradientCyAttr.Alt1.number_type:type_name -> svg.NumberType
+	336,  // 3974: svg.RadialGradientFxAttr.Alt1.length_percentage_type:type_name -> svg.LengthPercentageType
+	329,  // 3975: svg.RadialGradientFxAttr.Alt1.number_type:type_name -> svg.NumberType
+	336,  // 3976: svg.RadialGradientFyAttr.Alt1.length_percentage_type:type_name -> svg.LengthPercentageType
+	329,  // 3977: svg.RadialGradientFyAttr.Alt1.number_type:type_name -> svg.NumberType
+	329,  // 3978: svg.StopOffsetAttr.Alt1.number_type:type_name -> svg.NumberType
+	335,  // 3979: svg.StopOffsetAttr.Alt1.percentage_type:type_name -> svg.PercentageType
+	1097, // 3980: svg.StopColorAttr.Alt1.current_color_keyword:type_name -> svg.CurrentColorKeyword
+	1912, // 3981: svg.StopColorAttr.Alt1.color_type:type_name -> google.protobuf.Any
+	1024, // 3982: svg.RectRxAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
+	337,  // 3983: svg.RectRxAttr.Alt1.non_negative_length_percentage_type:type_name -> svg.NonNegativeLengthPercentageType
+	1024, // 3984: svg.RectRyAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
+	337,  // 3985: svg.RectRyAttr.Alt1.non_negative_length_percentage_type:type_name -> svg.NonNegativeLengthPercentageType
+	1024, // 3986: svg.EllipseRxAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
+	337,  // 3987: svg.EllipseRxAttr.Alt1.non_negative_length_percentage_type:type_name -> svg.NonNegativeLengthPercentageType
+	1024, // 3988: svg.EllipseRyAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
+	337,  // 3989: svg.EllipseRyAttr.Alt1.non_negative_length_percentage_type:type_name -> svg.NonNegativeLengthPercentageType
+	336,  // 3990: svg.LineX1attr.Alt1.length_percentage_type:type_name -> svg.LengthPercentageType
+	329,  // 3991: svg.LineX1attr.Alt1.number_type:type_name -> svg.NumberType
+	336,  // 3992: svg.LineY1attr.Alt1.length_percentage_type:type_name -> svg.LengthPercentageType
+	329,  // 3993: svg.LineY1attr.Alt1.number_type:type_name -> svg.NumberType
+	336,  // 3994: svg.LineX2attr.Alt1.length_percentage_type:type_name -> svg.LengthPercentageType
+	329,  // 3995: svg.LineX2attr.Alt1.number_type:type_name -> svg.NumberType
+	336,  // 3996: svg.LineY2attr.Alt1.length_percentage_type:type_name -> svg.LengthPercentageType
+	329,  // 3997: svg.LineY2attr.Alt1.number_type:type_name -> svg.NumberType
+	1410, // 3998: svg.PathDattr.Alt1.none_keyword:type_name -> svg.NoneKeyword
+	766,  // 3999: svg.PathDattr.Alt1.svg_path:type_name -> svg.SvgPath
+	333,  // 4000: svg.SymbolRefXattr.Alt1.length_type:type_name -> svg.LengthType
+	1245, // 4001: svg.SymbolRefXattr.Alt1.left_keyword:type_name -> svg.LeftKeyword
+	1059, // 4002: svg.SymbolRefXattr.Alt1.center_keyword:type_name -> svg.CenterKeyword
+	1492, // 4003: svg.SymbolRefXattr.Alt1.right_keyword:type_name -> svg.RightKeyword
+	333,  // 4004: svg.SymbolRefYattr.Alt1.length_type:type_name -> svg.LengthType
+	1619, // 4005: svg.SymbolRefYattr.Alt1.top_keyword:type_name -> svg.TopKeyword
+	1059, // 4006: svg.SymbolRefYattr.Alt1.center_keyword:type_name -> svg.CenterKeyword
+	1048, // 4007: svg.SymbolRefYattr.Alt1.bottom_keyword:type_name -> svg.BottomKeyword
+	1024, // 4008: svg.SymbolWidthAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
+	337,  // 4009: svg.SymbolWidthAttr.Alt1.non_negative_length_percentage_type:type_name -> svg.NonNegativeLengthPercentageType
+	1024, // 4010: svg.SymbolHeightAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
+	337,  // 4011: svg.SymbolHeightAttr.Alt1.non_negative_length_percentage_type:type_name -> svg.NonNegativeLengthPercentageType
+	1024, // 4012: svg.UseWidthAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
+	337,  // 4013: svg.UseWidthAttr.Alt1.non_negative_length_percentage_type:type_name -> svg.NonNegativeLengthPercentageType
+	1024, // 4014: svg.UseHeightAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
+	337,  // 4015: svg.UseHeightAttr.Alt1.non_negative_length_percentage_type:type_name -> svg.NonNegativeLengthPercentageType
+	1645, // 4016: svg.VisibilityAttr.Alt1.visible_keyword:type_name -> svg.VisibleKeyword
+	1204, // 4017: svg.VisibilityAttr.Alt1.hidden_keyword:type_name -> svg.HiddenKeyword
+	1069, // 4018: svg.VisibilityAttr.Alt1.collapse_keyword:type_name -> svg.CollapseKeyword
+	1221, // 4019: svg.VisibilityAttr.Alt1.inherit_keyword:type_name -> svg.InheritKeyword
+	1645, // 4020: svg.OverflowAttr.Alt1.visible_keyword:type_name -> svg.VisibleKeyword
+	1204, // 4021: svg.OverflowAttr.Alt1.hidden_keyword:type_name -> svg.HiddenKeyword
+	1522, // 4022: svg.OverflowAttr.Alt1.scroll_keyword:type_name -> svg.ScrollKeyword
+	1024, // 4023: svg.OverflowAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
+	1221, // 4024: svg.OverflowAttr.Alt1.inherit_keyword:type_name -> svg.InheritKeyword
+	915,  // 4025: svg.TransformOriginPosition.Seq1.transform_origin_y:type_name -> svg.TransformOriginY
+	916,  // 4026: svg.TransformOriginPosition.Seq1.transform_origin_z:type_name -> svg.TransformOriginZ
+	336,  // 4027: svg.TextLengthAttr.Alt1.length_percentage_type:type_name -> svg.LengthPercentageType
+	329,  // 4028: svg.TextLengthAttr.Alt1.number_type:type_name -> svg.NumberType
+	1557, // 4029: svg.TextLengthAdjustAttr.Alt1.spacing_keyword:type_name -> svg.SpacingKeyword
+	1556, // 4030: svg.TextLengthAdjustAttr.Alt1.spacing_and_glyphs_keyword:type_name -> svg.SpacingAndGlyphsKeyword
+	336,  // 4031: svg.TextPositionList.Alt1.length_percentage_type:type_name -> svg.LengthPercentageType
+	329,  // 4032: svg.TextPositionList.Alt1.number_type:type_name -> svg.NumberType
+	336,  // 4033: svg.TspanLengthAttr.Alt1.length_percentage_type:type_name -> svg.LengthPercentageType
+	329,  // 4034: svg.TspanLengthAttr.Alt1.number_type:type_name -> svg.NumberType
+	1557, // 4035: svg.TspanLengthAdjustAttr.Alt1.spacing_keyword:type_name -> svg.SpacingKeyword
+	1556, // 4036: svg.TspanLengthAdjustAttr.Alt1.spacing_and_glyphs_keyword:type_name -> svg.SpacingAndGlyphsKeyword
+	336,  // 4037: svg.TextPathStartOffsetAttr.Alt1.length_percentage_type:type_name -> svg.LengthPercentageType
+	329,  // 4038: svg.TextPathStartOffsetAttr.Alt1.number_type:type_name -> svg.NumberType
+	1001, // 4039: svg.TextPathMethodAttr.Alt1.align_keyword:type_name -> svg.AlignKeyword
+	1569, // 4040: svg.TextPathMethodAttr.Alt1.stretch_keyword:type_name -> svg.StretchKeyword
+	1024, // 4041: svg.TextPathSpacingAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
+	1152, // 4042: svg.TextPathSpacingAttr.Alt1.exact_keyword:type_name -> svg.ExactKeyword
+	1245, // 4043: svg.TextPathSideAttr.Alt1.left_keyword:type_name -> svg.LeftKeyword
+	1492, // 4044: svg.TextPathSideAttr.Alt1.right_keyword:type_name -> svg.RightKeyword
+	336,  // 4045: svg.TextPathLengthAttr.Alt1.length_percentage_type:type_name -> svg.LengthPercentageType
+	329,  // 4046: svg.TextPathLengthAttr.Alt1.number_type:type_name -> svg.NumberType
+	1557, // 4047: svg.TextPathLengthAdjustAttr.Alt1.spacing_keyword:type_name -> svg.SpacingKeyword
+	1556, // 4048: svg.TextPathLengthAdjustAttr.Alt1.spacing_and_glyphs_keyword:type_name -> svg.SpacingAndGlyphsKeyword
+	1564, // 4049: svg.TextAnchorAttr.Alt1.start_keyword:type_name -> svg.StartKeyword
+	1378, // 4050: svg.TextAnchorAttr.Alt1.middle_keyword:type_name -> svg.MiddleKeyword
+	1148, // 4051: svg.TextAnchorAttr.Alt1.end_keyword:type_name -> svg.EndKeyword
+	1024, // 4052: svg.DominantBaselineAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
+	1608, // 4053: svg.DominantBaselineAttr.Alt1.text_hyphen_minus_bottom_keyword:type_name -> svg.TextHyphenMinusBottomKeyword
+	1007, // 4054: svg.DominantBaselineAttr.Alt1.alphabetic_keyword:type_name -> svg.AlphabeticKeyword
+	1215, // 4055: svg.DominantBaselineAttr.Alt1.ideographic_keyword:type_name -> svg.IdeographicKeyword
+	1378, // 4056: svg.DominantBaselineAttr.Alt1.middle_keyword:type_name -> svg.MiddleKeyword
+	1060, // 4057: svg.DominantBaselineAttr.Alt1.central_keyword:type_name -> svg.CentralKeyword
+	1358, // 4058: svg.DominantBaselineAttr.Alt1.mathematical_keyword:type_name -> svg.MathematicalKeyword
+	1200, // 4059: svg.DominantBaselineAttr.Alt1.hanging_keyword:type_name -> svg.HangingKeyword
+	1609, // 4060: svg.DominantBaselineAttr.Alt1.text_hyphen_minus_top_keyword:type_name -> svg.TextHyphenMinusTopKeyword
+	1030, // 4061: svg.AlignmentBaselineAttr.Alt1.baseline_keyword:type_name -> svg.BaselineKeyword
+	1608, // 4062: svg.AlignmentBaselineAttr.Alt1.text_hyphen_minus_bottom_keyword:type_name -> svg.TextHyphenMinusBottomKeyword
+	1007, // 4063: svg.AlignmentBaselineAttr.Alt1.alphabetic_keyword:type_name -> svg.AlphabeticKeyword
+	1215, // 4064: svg.AlignmentBaselineAttr.Alt1.ideographic_keyword:type_name -> svg.IdeographicKeyword
+	1378, // 4065: svg.AlignmentBaselineAttr.Alt1.middle_keyword:type_name -> svg.MiddleKeyword
+	1060, // 4066: svg.AlignmentBaselineAttr.Alt1.central_keyword:type_name -> svg.CentralKeyword
+	1358, // 4067: svg.AlignmentBaselineAttr.Alt1.mathematical_keyword:type_name -> svg.MathematicalKeyword
+	1200, // 4068: svg.AlignmentBaselineAttr.Alt1.hanging_keyword:type_name -> svg.HangingKeyword
+	1609, // 4069: svg.AlignmentBaselineAttr.Alt1.text_hyphen_minus_top_keyword:type_name -> svg.TextHyphenMinusTopKeyword
+	1579, // 4070: svg.BaselineShiftAttr.Alt1.sub_keyword:type_name -> svg.SubKeyword
+	1583, // 4071: svg.BaselineShiftAttr.Alt1.super_keyword:type_name -> svg.SuperKeyword
+	336,  // 4072: svg.BaselineShiftAttr.Alt1.length_percentage_type:type_name -> svg.LengthPercentageType
+	1344, // 4073: svg.DirectionAttr.Alt1.ltr_keyword:type_name -> svg.LtrKeyword
+	1504, // 4074: svg.DirectionAttr.Alt1.rtl_keyword:type_name -> svg.RtlKeyword
+	1412, // 4075: svg.UnicodeBidiAttr.Alt1.normal_keyword:type_name -> svg.NormalKeyword
+	1146, // 4076: svg.UnicodeBidiAttr.Alt1.embed_keyword:type_name -> svg.EmbedKeyword
+	1231, // 4077: svg.UnicodeBidiAttr.Alt1.isolate_keyword:type_name -> svg.IsolateKeyword
+	1034, // 4078: svg.UnicodeBidiAttr.Alt1.bidi_hyphen_minus_override_keyword:type_name -> svg.BidiHyphenMinusOverrideKeyword
+	1230, // 4079: svg.UnicodeBidiAttr.Alt1.isolate_hyphen_minus_override_keyword:type_name -> svg.IsolateHyphenMinusOverrideKeyword
+	1458, // 4080: svg.UnicodeBidiAttr.Alt1.plaintext_keyword:type_name -> svg.PlaintextKeyword
+	1208, // 4081: svg.WritingModeAttr.Alt1.horizontal_hyphen_minus_tb_keyword:type_name -> svg.HorizontalHyphenMinusTbKeyword
+	1639, // 4082: svg.WritingModeAttr.Alt1.vertical_hyphen_minus_rl_keyword:type_name -> svg.VerticalHyphenMinusRlKeyword
+	1638, // 4083: svg.WritingModeAttr.Alt1.vertical_hyphen_minus_lr_keyword:type_name -> svg.VerticalHyphenMinusLrKeyword
+	1534, // 4084: svg.WritingModeAttr.Alt1.sideways_hyphen_minus_rl_keyword:type_name -> svg.SidewaysHyphenMinusRlKeyword
+	1533, // 4085: svg.WritingModeAttr.Alt1.sideways_hyphen_minus_lr_keyword:type_name -> svg.SidewaysHyphenMinusLrKeyword
+	1343, // 4086: svg.WritingModeAttr.Alt1.lr_keyword:type_name -> svg.LrKeyword
+	1342, // 4087: svg.WritingModeAttr.Alt1.lr_hyphen_minus_tb_keyword:type_name -> svg.LrHyphenMinusTbKeyword
+	1495, // 4088: svg.WritingModeAttr.Alt1.rl_keyword:type_name -> svg.RlKeyword
+	1494, // 4089: svg.WritingModeAttr.Alt1.rl_hyphen_minus_tb_keyword:type_name -> svg.RlHyphenMinusTbKeyword
+	1605, // 4090: svg.WritingModeAttr.Alt1.tb_keyword:type_name -> svg.TbKeyword
+	1604, // 4091: svg.WritingModeAttr.Alt1.tb_hyphen_minus_rl_keyword:type_name -> svg.TbHyphenMinusRlKeyword
+	1412, // 4092: svg.LetterSpacingAttr.Alt1.normal_keyword:type_name -> svg.NormalKeyword
+	333,  // 4093: svg.LetterSpacingAttr.Alt1.length_type:type_name -> svg.LengthType
+	1412, // 4094: svg.WordSpacingAttr.Alt1.normal_keyword:type_name -> svg.NormalKeyword
+	336,  // 4095: svg.WordSpacingAttr.Alt1.length_percentage_type:type_name -> svg.LengthPercentageType
+	962,  // 4096: svg.TextDecorationValue.Seq1.text_decoration_line:type_name -> svg.TextDecorationLine
+	1555, // 4097: svg.TextDecorationValue.Seq1.space_keyword:type_name -> svg.SpaceKeyword
+	963,  // 4098: svg.TextDecorationValue.Seq1.text_decoration_style:type_name -> svg.TextDecorationStyle
+	962,  // 4099: svg.TextDecorationValue.Seq2.text_decoration_line:type_name -> svg.TextDecorationLine
+	1555, // 4100: svg.TextDecorationValue.Seq2.space_keyword:type_name -> svg.SpaceKeyword
+	1912, // 4101: svg.TextDecorationValue.Seq2.color_type:type_name -> google.protobuf.Any
+	963,  // 4102: svg.TextDecorationValue.Seq3.text_decoration_style:type_name -> svg.TextDecorationStyle
+	1555, // 4103: svg.TextDecorationValue.Seq3.space_keyword:type_name -> svg.SpaceKeyword
+	1912, // 4104: svg.TextDecorationValue.Seq3.color_type:type_name -> google.protobuf.Any
+	962,  // 4105: svg.TextDecorationValue.Seq4.text_decoration_line:type_name -> svg.TextDecorationLine
+	1555, // 4106: svg.TextDecorationValue.Seq4.space_keyword:type_name -> svg.SpaceKeyword
+	963,  // 4107: svg.TextDecorationValue.Seq4.text_decoration_style:type_name -> svg.TextDecorationStyle
+	1555, // 4108: svg.TextDecorationValue.Seq4.space_keyword_2:type_name -> svg.SpaceKeyword
+	1912, // 4109: svg.TextDecorationValue.Seq4.color_type:type_name -> google.protobuf.Any
+	1065, // 4110: svg.TextOverflowAttr.Alt1.clip_keyword:type_name -> svg.ClipKeyword
+	1145, // 4111: svg.TextOverflowAttr.Alt1.ellipsis_keyword:type_name -> svg.EllipsisKeyword
+	1024, // 4112: svg.TextRenderingAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
+	1427, // 4113: svg.TextRenderingAttr.Alt1.optimize_speed_keyword:type_name -> svg.OptimizeSpeedKeyword
+	1425, // 4114: svg.TextRenderingAttr.Alt1.optimize_legibility_keyword:type_name -> svg.OptimizeLegibilityKeyword
+	1184, // 4115: svg.TextRenderingAttr.Alt1.geometric_precision_keyword:type_name -> svg.GeometricPrecisionKeyword
+	1412, // 4116: svg.WhiteSpaceAttr.Alt1.normal_keyword:type_name -> svg.NormalKeyword
+	1467, // 4117: svg.WhiteSpaceAttr.Alt1.pre_keyword:type_name -> svg.PreKeyword
+	1415, // 4118: svg.WhiteSpaceAttr.Alt1.nowrap_keyword:type_name -> svg.NowrapKeyword
+	1466, // 4119: svg.WhiteSpaceAttr.Alt1.pre_hyphen_minus_wrap_keyword:type_name -> svg.PreHyphenMinusWrapKeyword
+	1465, // 4120: svg.WhiteSpaceAttr.Alt1.pre_hyphen_minus_line_keyword:type_name -> svg.PreHyphenMinusLineKeyword
+	1050, // 4121: svg.WhiteSpaceAttr.Alt1.break_hyphen_minus_spaces_keyword:type_name -> svg.BreakHyphenMinusSpacesKeyword
+	1410, // 4122: svg.FontSizeAdjustAttr.Alt1.none_keyword:type_name -> svg.NoneKeyword
+	329,  // 4123: svg.FontSizeAdjustAttr.Alt1.number_type:type_name -> svg.NumberType
+	1412, // 4124: svg.FontStyleAttr.Alt1.normal_keyword:type_name -> svg.NormalKeyword
+	1232, // 4125: svg.FontStyleAttr.Alt1.italic_keyword:type_name -> svg.ItalicKeyword
+	974,  // 4126: svg.FontStyleAttr.Alt1.font_style_oblique:type_name -> svg.FontStyleOblique
+	339,  // 4127: svg.FontStyleOblique.Space.angle_type:type_name -> svg.AngleType
+	1412, // 4128: svg.FontWeightAttr.Alt1.normal_keyword:type_name -> svg.NormalKeyword
+	1044, // 4129: svg.FontWeightAttr.Alt1.bold_keyword:type_name -> svg.BoldKeyword
+	1045, // 4130: svg.FontWeightAttr.Alt1.bolder_keyword:type_name -> svg.BolderKeyword
+	1315, // 4131: svg.FontWeightAttr.Alt1.lighter_keyword:type_name -> svg.LighterKeyword
+	329,  // 4132: svg.FontWeightAttr.Alt1.number_type:type_name -> svg.NumberType
+	1412, // 4133: svg.FontStretchAttr.Alt1.normal_keyword:type_name -> svg.NormalKeyword
+	1628, // 4134: svg.FontStretchAttr.Alt1.ultra_hyphen_minus_condensed_keyword:type_name -> svg.UltraHyphenMinusCondensedKeyword
+	1157, // 4135: svg.FontStretchAttr.Alt1.extra_hyphen_minus_condensed_keyword:type_name -> svg.ExtraHyphenMinusCondensedKeyword
+	1079, // 4136: svg.FontStretchAttr.Alt1.condensed_keyword:type_name -> svg.CondensedKeyword
+	1530, // 4137: svg.FontStretchAttr.Alt1.semi_hyphen_minus_condensed_keyword:type_name -> svg.SemiHyphenMinusCondensedKeyword
+	1531, // 4138: svg.FontStretchAttr.Alt1.semi_hyphen_minus_expanded_keyword:type_name -> svg.SemiHyphenMinusExpandedKeyword
+	1156, // 4139: svg.FontStretchAttr.Alt1.expanded_keyword:type_name -> svg.ExpandedKeyword
+	1158, // 4140: svg.FontStretchAttr.Alt1.extra_hyphen_minus_expanded_keyword:type_name -> svg.ExtraHyphenMinusExpandedKeyword
+	1629, // 4141: svg.FontStretchAttr.Alt1.ultra_hyphen_minus_expanded_keyword:type_name -> svg.UltraHyphenMinusExpandedKeyword
+	335,  // 4142: svg.FontStretchAttr.Alt1.percentage_type:type_name -> svg.PercentageType
+	1024, // 4143: svg.InlineSizeAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
+	336,  // 4144: svg.InlineSizeAttr.Alt1.length_percentage_type:type_name -> svg.LengthPercentageType
+	1024, // 4145: svg.GlyphOrientationVerticalAttr.Alt1.auto_keyword:type_name -> svg.AutoKeyword
+	339,  // 4146: svg.GlyphOrientationVerticalAttr.Alt1.angle_type:type_name -> svg.AngleType
+	329,  // 4147: svg.GlyphOrientationVerticalAttr.Alt1.number_type:type_name -> svg.NumberType
+	329,  // 4148: svg.Translate.Comma.number_type:type_name -> svg.NumberType
+	329,  // 4149: svg.Scale.Comma.number_type:type_name -> svg.NumberType
+	329,  // 4150: svg.Rotate.Comma.number_type:type_name -> svg.NumberType
+	1076, // 4151: svg.Rotate.Comma.comma_keyword:type_name -> svg.CommaKeyword
+	329,  // 4152: svg.Rotate.Comma.number_type_2:type_name -> svg.NumberType
+	4153, // [4153:4153] is the sub-list for method output_type
+	4153, // [4153:4153] is the sub-list for method input_type
+	4153, // [4153:4153] is the sub-list for extension type_name
+	4153, // [4153:4153] is the sub-list for extension extendee
+	0,    // [0:4153] is the sub-list for field type_name
 }
 
 func init() { file_svg_proto_init() }
@@ -141534,218 +141643,218 @@ func file_svg_proto_init() {
 		(*VectorEffectAttr_Alt1_NonHyphenMinusRotationKeyword)(nil),
 		(*VectorEffectAttr_Alt1_FixedHyphenMinusPositionKeyword)(nil),
 	}
-	file_svg_proto_msgTypes[1835].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1836].OneofWrappers = []any{
 		(*MoveTo_Alt1_MKeyword)(nil),
 		(*MoveTo_Alt1_MKeyword_2)(nil),
 	}
-	file_svg_proto_msgTypes[1836].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1837].OneofWrappers = []any{
 		(*ClosePath_Alt1_ZKeyword)(nil),
 		(*ClosePath_Alt1_ZKeyword_2)(nil),
 	}
-	file_svg_proto_msgTypes[1837].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1838].OneofWrappers = []any{
 		(*LineTo_Alt1_LKeyword)(nil),
 		(*LineTo_Alt1_LKeyword_2)(nil),
 	}
-	file_svg_proto_msgTypes[1838].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1839].OneofWrappers = []any{
 		(*HorizontalLineTo_Alt1_HKeyword)(nil),
 		(*HorizontalLineTo_Alt1_HKeyword_2)(nil),
 	}
-	file_svg_proto_msgTypes[1839].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1840].OneofWrappers = []any{
 		(*VerticalLineTo_Alt1_VKeyword)(nil),
 		(*VerticalLineTo_Alt1_VKeyword_2)(nil),
 	}
-	file_svg_proto_msgTypes[1840].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1841].OneofWrappers = []any{
 		(*CurveTo_Alt1_CKeyword)(nil),
 		(*CurveTo_Alt1_CKeyword_2)(nil),
 	}
-	file_svg_proto_msgTypes[1841].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1842].OneofWrappers = []any{
 		(*SmoothCurveTo_Alt1_SKeyword)(nil),
 		(*SmoothCurveTo_Alt1_SKeyword_2)(nil),
 	}
-	file_svg_proto_msgTypes[1842].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1843].OneofWrappers = []any{
 		(*QuadraticBezierCurveTo_Alt1_QKeyword)(nil),
 		(*QuadraticBezierCurveTo_Alt1_QKeyword_2)(nil),
 	}
-	file_svg_proto_msgTypes[1843].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1844].OneofWrappers = []any{
 		(*SmoothQuadraticBezierCurveTo_Alt1_TKeyword)(nil),
 		(*SmoothQuadraticBezierCurveTo_Alt1_TKeyword_2)(nil),
 	}
-	file_svg_proto_msgTypes[1844].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1845].OneofWrappers = []any{
 		(*EllipticalArc_Alt1_AKeyword)(nil),
 		(*EllipticalArc_Alt1_AKeyword_2)(nil),
 	}
-	file_svg_proto_msgTypes[1845].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1846].OneofWrappers = []any{
 		(*SpreadMethodAttr_Alt1_PadKeyword)(nil),
 		(*SpreadMethodAttr_Alt1_ReflectKeyword)(nil),
 		(*SpreadMethodAttr_Alt1_RepeatKeyword)(nil),
 	}
-	file_svg_proto_msgTypes[1846].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1847].OneofWrappers = []any{
 		(*LinearGradientX1Attr_Alt1_LengthPercentageType)(nil),
 		(*LinearGradientX1Attr_Alt1_NumberType)(nil),
 	}
-	file_svg_proto_msgTypes[1847].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1848].OneofWrappers = []any{
 		(*LinearGradientY1Attr_Alt1_LengthPercentageType)(nil),
 		(*LinearGradientY1Attr_Alt1_NumberType)(nil),
 	}
-	file_svg_proto_msgTypes[1848].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1849].OneofWrappers = []any{
 		(*LinearGradientX2Attr_Alt1_LengthPercentageType)(nil),
 		(*LinearGradientX2Attr_Alt1_NumberType)(nil),
 	}
-	file_svg_proto_msgTypes[1849].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1850].OneofWrappers = []any{
 		(*LinearGradientY2Attr_Alt1_LengthPercentageType)(nil),
 		(*LinearGradientY2Attr_Alt1_NumberType)(nil),
 	}
-	file_svg_proto_msgTypes[1850].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1851].OneofWrappers = []any{
 		(*RadialGradientCxAttr_Alt1_LengthPercentageType)(nil),
 		(*RadialGradientCxAttr_Alt1_NumberType)(nil),
 	}
-	file_svg_proto_msgTypes[1851].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1852].OneofWrappers = []any{
 		(*RadialGradientCyAttr_Alt1_LengthPercentageType)(nil),
 		(*RadialGradientCyAttr_Alt1_NumberType)(nil),
 	}
-	file_svg_proto_msgTypes[1852].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1853].OneofWrappers = []any{
 		(*RadialGradientFxAttr_Alt1_LengthPercentageType)(nil),
 		(*RadialGradientFxAttr_Alt1_NumberType)(nil),
 	}
-	file_svg_proto_msgTypes[1853].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1854].OneofWrappers = []any{
 		(*RadialGradientFyAttr_Alt1_LengthPercentageType)(nil),
 		(*RadialGradientFyAttr_Alt1_NumberType)(nil),
 	}
-	file_svg_proto_msgTypes[1854].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1855].OneofWrappers = []any{
 		(*StopOffsetAttr_Alt1_NumberType)(nil),
 		(*StopOffsetAttr_Alt1_PercentageType)(nil),
 	}
-	file_svg_proto_msgTypes[1855].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1856].OneofWrappers = []any{
 		(*StopColorAttr_Alt1_CurrentColorKeyword)(nil),
 		(*StopColorAttr_Alt1_ColorType)(nil),
 	}
-	file_svg_proto_msgTypes[1856].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1857].OneofWrappers = []any{
 		(*RectRxAttr_Alt1_AutoKeyword)(nil),
 		(*RectRxAttr_Alt1_NonNegativeLengthPercentageType)(nil),
 	}
-	file_svg_proto_msgTypes[1857].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1858].OneofWrappers = []any{
 		(*RectRyAttr_Alt1_AutoKeyword)(nil),
 		(*RectRyAttr_Alt1_NonNegativeLengthPercentageType)(nil),
 	}
-	file_svg_proto_msgTypes[1858].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1859].OneofWrappers = []any{
 		(*EllipseRxAttr_Alt1_AutoKeyword)(nil),
 		(*EllipseRxAttr_Alt1_NonNegativeLengthPercentageType)(nil),
 	}
-	file_svg_proto_msgTypes[1859].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1860].OneofWrappers = []any{
 		(*EllipseRyAttr_Alt1_AutoKeyword)(nil),
 		(*EllipseRyAttr_Alt1_NonNegativeLengthPercentageType)(nil),
 	}
-	file_svg_proto_msgTypes[1860].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1861].OneofWrappers = []any{
 		(*LineX1Attr_Alt1_LengthPercentageType)(nil),
 		(*LineX1Attr_Alt1_NumberType)(nil),
 	}
-	file_svg_proto_msgTypes[1861].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1862].OneofWrappers = []any{
 		(*LineY1Attr_Alt1_LengthPercentageType)(nil),
 		(*LineY1Attr_Alt1_NumberType)(nil),
 	}
-	file_svg_proto_msgTypes[1862].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1863].OneofWrappers = []any{
 		(*LineX2Attr_Alt1_LengthPercentageType)(nil),
 		(*LineX2Attr_Alt1_NumberType)(nil),
 	}
-	file_svg_proto_msgTypes[1863].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1864].OneofWrappers = []any{
 		(*LineY2Attr_Alt1_LengthPercentageType)(nil),
 		(*LineY2Attr_Alt1_NumberType)(nil),
 	}
-	file_svg_proto_msgTypes[1864].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1865].OneofWrappers = []any{
 		(*PathDattr_Alt1_NoneKeyword)(nil),
 		(*PathDattr_Alt1_SvgPath)(nil),
 	}
-	file_svg_proto_msgTypes[1865].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1866].OneofWrappers = []any{
 		(*SymbolRefXattr_Alt1_LengthType)(nil),
 		(*SymbolRefXattr_Alt1_LeftKeyword)(nil),
 		(*SymbolRefXattr_Alt1_CenterKeyword)(nil),
 		(*SymbolRefXattr_Alt1_RightKeyword)(nil),
 	}
-	file_svg_proto_msgTypes[1866].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1867].OneofWrappers = []any{
 		(*SymbolRefYattr_Alt1_LengthType)(nil),
 		(*SymbolRefYattr_Alt1_TopKeyword)(nil),
 		(*SymbolRefYattr_Alt1_CenterKeyword)(nil),
 		(*SymbolRefYattr_Alt1_BottomKeyword)(nil),
 	}
-	file_svg_proto_msgTypes[1867].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1868].OneofWrappers = []any{
 		(*SymbolWidthAttr_Alt1_AutoKeyword)(nil),
 		(*SymbolWidthAttr_Alt1_NonNegativeLengthPercentageType)(nil),
 	}
-	file_svg_proto_msgTypes[1868].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1869].OneofWrappers = []any{
 		(*SymbolHeightAttr_Alt1_AutoKeyword)(nil),
 		(*SymbolHeightAttr_Alt1_NonNegativeLengthPercentageType)(nil),
 	}
-	file_svg_proto_msgTypes[1869].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1870].OneofWrappers = []any{
 		(*UseWidthAttr_Alt1_AutoKeyword)(nil),
 		(*UseWidthAttr_Alt1_NonNegativeLengthPercentageType)(nil),
 	}
-	file_svg_proto_msgTypes[1870].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1871].OneofWrappers = []any{
 		(*UseHeightAttr_Alt1_AutoKeyword)(nil),
 		(*UseHeightAttr_Alt1_NonNegativeLengthPercentageType)(nil),
 	}
-	file_svg_proto_msgTypes[1871].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1872].OneofWrappers = []any{
 		(*VisibilityAttr_Alt1_VisibleKeyword)(nil),
 		(*VisibilityAttr_Alt1_HiddenKeyword)(nil),
 		(*VisibilityAttr_Alt1_CollapseKeyword)(nil),
 		(*VisibilityAttr_Alt1_InheritKeyword)(nil),
 	}
-	file_svg_proto_msgTypes[1872].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1873].OneofWrappers = []any{
 		(*OverflowAttr_Alt1_VisibleKeyword)(nil),
 		(*OverflowAttr_Alt1_HiddenKeyword)(nil),
 		(*OverflowAttr_Alt1_ScrollKeyword)(nil),
 		(*OverflowAttr_Alt1_AutoKeyword)(nil),
 		(*OverflowAttr_Alt1_InheritKeyword)(nil),
 	}
-	file_svg_proto_msgTypes[1874].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1875].OneofWrappers = []any{
 		(*TextLengthAttr_Alt1_LengthPercentageType)(nil),
 		(*TextLengthAttr_Alt1_NumberType)(nil),
 	}
-	file_svg_proto_msgTypes[1875].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1876].OneofWrappers = []any{
 		(*TextLengthAdjustAttr_Alt1_SpacingKeyword)(nil),
 		(*TextLengthAdjustAttr_Alt1_SpacingAndGlyphsKeyword)(nil),
 	}
-	file_svg_proto_msgTypes[1876].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1877].OneofWrappers = []any{
 		(*TextPositionList_Alt1_LengthPercentageType)(nil),
 		(*TextPositionList_Alt1_NumberType)(nil),
 	}
-	file_svg_proto_msgTypes[1877].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1878].OneofWrappers = []any{
 		(*TspanLengthAttr_Alt1_LengthPercentageType)(nil),
 		(*TspanLengthAttr_Alt1_NumberType)(nil),
 	}
-	file_svg_proto_msgTypes[1878].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1879].OneofWrappers = []any{
 		(*TspanLengthAdjustAttr_Alt1_SpacingKeyword)(nil),
 		(*TspanLengthAdjustAttr_Alt1_SpacingAndGlyphsKeyword)(nil),
 	}
-	file_svg_proto_msgTypes[1879].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1880].OneofWrappers = []any{
 		(*TextPathStartOffsetAttr_Alt1_LengthPercentageType)(nil),
 		(*TextPathStartOffsetAttr_Alt1_NumberType)(nil),
 	}
-	file_svg_proto_msgTypes[1880].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1881].OneofWrappers = []any{
 		(*TextPathMethodAttr_Alt1_AlignKeyword)(nil),
 		(*TextPathMethodAttr_Alt1_StretchKeyword)(nil),
 	}
-	file_svg_proto_msgTypes[1881].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1882].OneofWrappers = []any{
 		(*TextPathSpacingAttr_Alt1_AutoKeyword)(nil),
 		(*TextPathSpacingAttr_Alt1_ExactKeyword)(nil),
 	}
-	file_svg_proto_msgTypes[1882].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1883].OneofWrappers = []any{
 		(*TextPathSideAttr_Alt1_LeftKeyword)(nil),
 		(*TextPathSideAttr_Alt1_RightKeyword)(nil),
 	}
-	file_svg_proto_msgTypes[1883].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1884].OneofWrappers = []any{
 		(*TextPathLengthAttr_Alt1_LengthPercentageType)(nil),
 		(*TextPathLengthAttr_Alt1_NumberType)(nil),
 	}
-	file_svg_proto_msgTypes[1884].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1885].OneofWrappers = []any{
 		(*TextPathLengthAdjustAttr_Alt1_SpacingKeyword)(nil),
 		(*TextPathLengthAdjustAttr_Alt1_SpacingAndGlyphsKeyword)(nil),
 	}
-	file_svg_proto_msgTypes[1885].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1886].OneofWrappers = []any{
 		(*TextAnchorAttr_Alt1_StartKeyword)(nil),
 		(*TextAnchorAttr_Alt1_MiddleKeyword)(nil),
 		(*TextAnchorAttr_Alt1_EndKeyword)(nil),
 	}
-	file_svg_proto_msgTypes[1886].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1887].OneofWrappers = []any{
 		(*DominantBaselineAttr_Alt1_AutoKeyword)(nil),
 		(*DominantBaselineAttr_Alt1_TextHyphenMinusBottomKeyword)(nil),
 		(*DominantBaselineAttr_Alt1_AlphabeticKeyword)(nil),
@@ -141756,7 +141865,7 @@ func file_svg_proto_init() {
 		(*DominantBaselineAttr_Alt1_HangingKeyword)(nil),
 		(*DominantBaselineAttr_Alt1_TextHyphenMinusTopKeyword)(nil),
 	}
-	file_svg_proto_msgTypes[1887].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1888].OneofWrappers = []any{
 		(*AlignmentBaselineAttr_Alt1_BaselineKeyword)(nil),
 		(*AlignmentBaselineAttr_Alt1_TextHyphenMinusBottomKeyword)(nil),
 		(*AlignmentBaselineAttr_Alt1_AlphabeticKeyword)(nil),
@@ -141767,16 +141876,16 @@ func file_svg_proto_init() {
 		(*AlignmentBaselineAttr_Alt1_HangingKeyword)(nil),
 		(*AlignmentBaselineAttr_Alt1_TextHyphenMinusTopKeyword)(nil),
 	}
-	file_svg_proto_msgTypes[1888].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1889].OneofWrappers = []any{
 		(*BaselineShiftAttr_Alt1_SubKeyword)(nil),
 		(*BaselineShiftAttr_Alt1_SuperKeyword)(nil),
 		(*BaselineShiftAttr_Alt1_LengthPercentageType)(nil),
 	}
-	file_svg_proto_msgTypes[1889].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1890].OneofWrappers = []any{
 		(*DirectionAttr_Alt1_LtrKeyword)(nil),
 		(*DirectionAttr_Alt1_RtlKeyword)(nil),
 	}
-	file_svg_proto_msgTypes[1890].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1891].OneofWrappers = []any{
 		(*UnicodeBidiAttr_Alt1_NormalKeyword)(nil),
 		(*UnicodeBidiAttr_Alt1_EmbedKeyword)(nil),
 		(*UnicodeBidiAttr_Alt1_IsolateKeyword)(nil),
@@ -141784,7 +141893,7 @@ func file_svg_proto_init() {
 		(*UnicodeBidiAttr_Alt1_IsolateHyphenMinusOverrideKeyword)(nil),
 		(*UnicodeBidiAttr_Alt1_PlaintextKeyword)(nil),
 	}
-	file_svg_proto_msgTypes[1891].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1892].OneofWrappers = []any{
 		(*WritingModeAttr_Alt1_HorizontalHyphenMinusTbKeyword)(nil),
 		(*WritingModeAttr_Alt1_VerticalHyphenMinusRlKeyword)(nil),
 		(*WritingModeAttr_Alt1_VerticalHyphenMinusLrKeyword)(nil),
@@ -141797,25 +141906,25 @@ func file_svg_proto_init() {
 		(*WritingModeAttr_Alt1_TbKeyword)(nil),
 		(*WritingModeAttr_Alt1_TbHyphenMinusRlKeyword)(nil),
 	}
-	file_svg_proto_msgTypes[1892].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1893].OneofWrappers = []any{
 		(*LetterSpacingAttr_Alt1_NormalKeyword)(nil),
 		(*LetterSpacingAttr_Alt1_LengthType)(nil),
 	}
-	file_svg_proto_msgTypes[1893].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1894].OneofWrappers = []any{
 		(*WordSpacingAttr_Alt1_NormalKeyword)(nil),
 		(*WordSpacingAttr_Alt1_LengthPercentageType)(nil),
 	}
-	file_svg_proto_msgTypes[1898].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1899].OneofWrappers = []any{
 		(*TextOverflowAttr_Alt1_ClipKeyword)(nil),
 		(*TextOverflowAttr_Alt1_EllipsisKeyword)(nil),
 	}
-	file_svg_proto_msgTypes[1899].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1900].OneofWrappers = []any{
 		(*TextRenderingAttr_Alt1_AutoKeyword)(nil),
 		(*TextRenderingAttr_Alt1_OptimizeSpeedKeyword)(nil),
 		(*TextRenderingAttr_Alt1_OptimizeLegibilityKeyword)(nil),
 		(*TextRenderingAttr_Alt1_GeometricPrecisionKeyword)(nil),
 	}
-	file_svg_proto_msgTypes[1900].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1901].OneofWrappers = []any{
 		(*WhiteSpaceAttr_Alt1_NormalKeyword)(nil),
 		(*WhiteSpaceAttr_Alt1_PreKeyword)(nil),
 		(*WhiteSpaceAttr_Alt1_NowrapKeyword)(nil),
@@ -141823,23 +141932,23 @@ func file_svg_proto_init() {
 		(*WhiteSpaceAttr_Alt1_PreHyphenMinusLineKeyword)(nil),
 		(*WhiteSpaceAttr_Alt1_BreakHyphenMinusSpacesKeyword)(nil),
 	}
-	file_svg_proto_msgTypes[1901].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1902].OneofWrappers = []any{
 		(*FontSizeAdjustAttr_Alt1_NoneKeyword)(nil),
 		(*FontSizeAdjustAttr_Alt1_NumberType)(nil),
 	}
-	file_svg_proto_msgTypes[1902].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1903].OneofWrappers = []any{
 		(*FontStyleAttr_Alt1_NormalKeyword)(nil),
 		(*FontStyleAttr_Alt1_ItalicKeyword)(nil),
 		(*FontStyleAttr_Alt1_FontStyleOblique)(nil),
 	}
-	file_svg_proto_msgTypes[1904].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1905].OneofWrappers = []any{
 		(*FontWeightAttr_Alt1_NormalKeyword)(nil),
 		(*FontWeightAttr_Alt1_BoldKeyword)(nil),
 		(*FontWeightAttr_Alt1_BolderKeyword)(nil),
 		(*FontWeightAttr_Alt1_LighterKeyword)(nil),
 		(*FontWeightAttr_Alt1_NumberType)(nil),
 	}
-	file_svg_proto_msgTypes[1905].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1906].OneofWrappers = []any{
 		(*FontStretchAttr_Alt1_NormalKeyword)(nil),
 		(*FontStretchAttr_Alt1_UltraHyphenMinusCondensedKeyword)(nil),
 		(*FontStretchAttr_Alt1_ExtraHyphenMinusCondensedKeyword)(nil),
@@ -141851,11 +141960,11 @@ func file_svg_proto_init() {
 		(*FontStretchAttr_Alt1_UltraHyphenMinusExpandedKeyword)(nil),
 		(*FontStretchAttr_Alt1_PercentageType)(nil),
 	}
-	file_svg_proto_msgTypes[1906].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1907].OneofWrappers = []any{
 		(*InlineSizeAttr_Alt1_AutoKeyword)(nil),
 		(*InlineSizeAttr_Alt1_LengthPercentageType)(nil),
 	}
-	file_svg_proto_msgTypes[1907].OneofWrappers = []any{
+	file_svg_proto_msgTypes[1908].OneofWrappers = []any{
 		(*GlyphOrientationVerticalAttr_Alt1_AutoKeyword)(nil),
 		(*GlyphOrientationVerticalAttr_Alt1_AngleType)(nil),
 		(*GlyphOrientationVerticalAttr_Alt1_NumberType)(nil),
@@ -141866,7 +141975,7 @@ func file_svg_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_svg_proto_rawDesc), len(file_svg_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   1911,
+			NumMessages:   1912,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

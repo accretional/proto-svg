@@ -92,10 +92,20 @@ func scalarizeLeaves(root *pb.ASTNode) *pb.ASTNode {
 		return nil
 	}
 	if root.GetKind() == compiler.KindRule && (leafTypes[norm(root.GetValue())] || hasRange(root)) {
+		// Keep the rule's leading terminals (a hex color's "#", a dashed
+		// ident's "--") in front of the scalar: the prefix pass records them
+		// as the message prefix and StripKeywords then removes them, so the
+		// message still lowers to `string value = 1` — but the parser can
+		// recognize (and require) the leading token instead of treating the
+		// leaf as an unconstrained text swallow.
+		body := append(leadingTerminals(root), &pb.ASTNode{Kind: compiler.KindScalar, Value: "value"})
+		if len(body) > 1 {
+			body = []*pb.ASTNode{{Kind: compiler.KindSequence, Children: body}}
+		}
 		return &pb.ASTNode{
 			Kind:     compiler.KindRule,
 			Value:    root.GetValue(),
-			Children: []*pb.ASTNode{{Kind: compiler.KindScalar, Value: "value"}},
+			Children: body,
 		}
 	}
 	kids := make([]*pb.ASTNode, 0, len(root.GetChildren()))
@@ -103,6 +113,33 @@ func scalarizeLeaves(root *pb.ASTNode) *pb.ASTNode {
 		kids = append(kids, scalarizeLeaves(c))
 	}
 	return &pb.ASTNode{Kind: root.GetKind(), Value: root.GetValue(), Children: kids}
+}
+
+// leadingTerminals returns copies of the terminal tokens a leaf rule's body
+// sequence starts with ("--" for dashed_ident_type, "#" for hex_color_type).
+// A rule whose body isn't a sequence, or doesn't begin with a terminal, has
+// none.
+func leadingTerminals(rule *pb.ASTNode) []*pb.ASTNode {
+	kids := rule.GetChildren()
+	if len(kids) != 1 || kids[0].GetKind() != compiler.KindSequence {
+		return nil
+	}
+	seq := kids[0].GetChildren()
+	// A leaf that also ENDS with a terminal is a delimited literal (a quoted
+	// string), not a marker-prefixed one: the codec has no suffix mechanism,
+	// so keeping only the lead would break the pairing. Such leaves stay a
+	// bare unconstrained scalar, as before.
+	if len(seq) > 0 && seq[len(seq)-1].GetKind() == compiler.KindTerminal {
+		return nil
+	}
+	var lead []*pb.ASTNode
+	for _, c := range seq {
+		if c.GetKind() != compiler.KindTerminal {
+			break
+		}
+		lead = append(lead, &pb.ASTNode{Kind: compiler.KindTerminal, Value: c.GetValue()})
+	}
+	return lead
 }
 
 // hasRange reports whether the node's own subtree contains a character range.

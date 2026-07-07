@@ -183,16 +183,20 @@ PathDAttr = ' d="' , ( "none" | SvgPath ) , '"' ;
    Points sub-grammar (docs/GRAMMAR_PLAN.md §f; referenced by Polyline/Polygon)
 
    The spec gives: <points> = [ <number>+ ]# (CSS VDS).  Expanded to EBNF:
-   a non-empty sequence of PointsCoordinatePair values; the renderer space-joins
-   them.  Odd-coordinate error (drop last token) is a semantic overlay rule, not
-   grammar.
+   a non-empty sequence of PointsCoordinatePair values. The pair-internal ","
+   and the inter-pair " " are grammar terminals — two adjacent unconstrained
+   number scalars carry no boundary, so the delimiters must be structural for
+   both the parser (they bound each number's capture) and the renderer (markup
+   grammars concatenate; the terminals ARE the joins). The other spec-legal
+   spellings (all-whitespace, comma-between-pairs) normalize to this canonical
+   form.  Odd-coordinate error (drop last token) is a semantic overlay rule,
+   not grammar.
 
-   PointsCoordinatePair = two NumberType values (renderer space-joins within the
-   pair).  Named PointsCoordinatePair (not CoordinatePair) to avoid collision with
+   Named PointsCoordinatePair (not CoordinatePair) to avoid collision with
    path.ebnf's CoordinatePair under gluon's norm-dedupe.
 
    Points is a VALUE grammar (no markup): it sits inside the attribute quotes.
    ============================================================================ *)
 
-Points               = PointsCoordinatePair , { PointsCoordinatePair } ;
-PointsCoordinatePair = NumberType , NumberType ;
+Points               = PointsCoordinatePair , { " " , PointsCoordinatePair } ;
+PointsCoordinatePair = NumberType , "," , NumberType ;

@@ -8344,7 +8344,11 @@ message SvgPath {
   message Seq1 {
     MoveTo move_to = 1;
 
-    repeated DrawToCommand draw_to_command = 2;
+    repeated Space space = 2;
+
+    message Space {
+      DrawToCommand draw_to_command = 1;
+    }
   }
 }
 
@@ -8529,23 +8533,31 @@ message EllipticalArc {
 }
 
 message EllipticalArcArgumentSequence {
-  EllipticalArcArgument elliptical_arc_argument = 1;
-
-  repeated EllipticalArcArgument elliptical_arc_argument_2 = 2;
+  repeated EllipticalArcArgument elliptical_arc_argument = 1;
 }
 
 message EllipticalArcArgument {
   NumberType number_type = 1;
 
-  NumberType number_type_2 = 2;
+  SpaceKeyword space_keyword = 2;
 
-  PathRotation path_rotation = 3;
+  NumberType number_type_2 = 3;
 
-  ArcFlag arc_flag = 4;
+  SpaceKeyword space_keyword_2 = 4;
 
-  ArcFlag arc_flag_2 = 5;
+  PathRotation path_rotation = 5;
 
-  CoordinatePair coordinate_pair = 6;
+  SpaceKeyword space_keyword_3 = 6;
+
+  ArcFlag arc_flag = 7;
+
+  SpaceKeyword space_keyword_4 = 8;
+
+  ArcFlag arc_flag_2 = 9;
+
+  SpaceKeyword space_keyword_5 = 10;
+
+  CoordinatePair coordinate_pair = 11;
 }
 
 message PathRotation {
@@ -8555,35 +8567,39 @@ message PathRotation {
 }
 
 message CoordinatePairSequence {
-  CoordinatePair coordinate_pair = 1;
-
-  repeated CoordinatePair coordinate_pair_2 = 2;
+  repeated CoordinatePair coordinate_pair = 1;
 }
 
 message CoordinateSequence {
-  NumberType number_type = 1;
-
-  repeated NumberType number_type_2 = 2;
+  repeated NumberType number_type = 1;
 }
 
 message CoordinatePairDouble {
   CoordinatePair coordinate_pair = 1;
 
-  CoordinatePair coordinate_pair_2 = 2;
+  SpaceKeyword space_keyword = 2;
+
+  CoordinatePair coordinate_pair_2 = 3;
 }
 
 message CoordinatePairTriplet {
   CoordinatePair coordinate_pair = 1;
 
-  CoordinatePair coordinate_pair_2 = 2;
+  SpaceKeyword space_keyword = 2;
 
-  CoordinatePair coordinate_pair_3 = 3;
+  CoordinatePair coordinate_pair_2 = 3;
+
+  SpaceKeyword space_keyword_2 = 4;
+
+  CoordinatePair coordinate_pair_3 = 5;
 }
 
 message CoordinatePair {
   NumberType number_type = 1;
 
-  NumberType number_type_2 = 2;
+  SpaceKeyword space_keyword = 2;
+
+  NumberType number_type_2 = 3;
 }
 
 message ArcFlag {
@@ -9661,15 +9677,15 @@ message PathDattr {
 }
 
 message Points {
-  PointsCoordinatePair points_coordinate_pair = 1;
-
-  repeated PointsCoordinatePair points_coordinate_pair_2 = 2;
+  repeated PointsCoordinatePair points_coordinate_pair = 1;
 }
 
 message PointsCoordinatePair {
   NumberType number_type = 1;
 
-  NumberType number_type_2 = 2;
+  CommaKeyword comma_keyword = 2;
+
+  NumberType number_type_2 = 3;
 }
 
 message SvgsymbolElement {

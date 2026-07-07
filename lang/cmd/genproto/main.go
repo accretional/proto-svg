@@ -95,6 +95,7 @@ func main() {
 	prefixMapOut := flag.String("prefix-map", "proto/pb/svg/prefix_map.go", "generated MessagePrefix map")
 	separatorMapOut := flag.String("separator-map", "proto/pb/svg/separator_map.go", "generated FieldSeparator map")
 	seamMapOut := flag.String("seam-map", "proto/pb/svg/seam_map.go", "generated SeamType map")
+	requiredMapOut := flag.String("required-map", "proto/pb/svg/required_map.go", "generated FieldRequired map")
 	pkgName := flag.String("package", "svg", "proto package name")
 	goPkg := flag.String("go-package", "github.com/accretional/proto-svg/proto/pb/svg;svgpb", "go_package option")
 	depsFile := flag.String("deps", "grammar_deps.bzl", "Starlark build-dependency file for cross-grammar seams (missing = standalone build)")
@@ -218,10 +219,16 @@ func main() {
 	ast.Root = emptyKeywordRules(ast.Root)
 	ast.Root = compiler.StripKeywords(ast.Root)
 
+	requiredCand := map[string]bool{}
 	fdp, err := compiler.Compile(ast, compiler.Options{
 		Package:   *pkgName,
 		GoPackage: *goPkg,
 		FileName:  filepath.Base(*bundledOut),
+		OnField: func(parent, name string, node *pb.ASTNode) {
+			if nodeRequired(node) {
+				requiredCand[parent+"."+name] = true
+			}
+		},
 	})
 	if err != nil {
 		log.Fatalf("compiler.Compile: %v", err)
@@ -231,6 +238,7 @@ func main() {
 	emptyOneofs := pruneEmptyOneofs(fdp)
 	renamed := uniquifyFields(fdp)
 	seam, externalized := seamgen.ExternalizeToAny(fdp, *pkgName, grammarDeps)
+	required := filterRequired(fdp, *pkgName, requiredCand)
 	fmt.Printf("compiled %d messages from %d rules\n", len(fdp.GetMessageType()), len(gd.GetRules()))
 	if len(dups) > 0 {
 		fmt.Printf("note: deduped %d colliding message name(s): %v\n", len(dups), dups)
@@ -306,6 +314,11 @@ func main() {
 		log.Fatalf("write %s: %v", *seamMapOut, err)
 	}
 	fmt.Printf("wrote %s (%d entries)\n", *seamMapOut, len(seam))
+
+	if err := os.WriteFile(*requiredMapOut, []byte(formatRequiredMap(goPkgName, required)), 0o644); err != nil {
+		log.Fatalf("write %s: %v", *requiredMapOut, err)
+	}
+	fmt.Printf("wrote %s (%d entries)\n", *requiredMapOut, len(required))
 }
 
 // dedupeMessages removes duplicate top-level messages by name, keeping the

@@ -443,7 +443,7 @@ func (e *Enumerator) structuredInstances(attrName, valFQN string, m *descriptorp
 	case "PreserveAspectRatio":
 		return paths("none", "xMidYMid meet", "xMinYMin slice")
 	case "TransformList", "Transform":
-		return paths("translate(20 10)", "rotate(45)", "scale(1.5)", "skewX(20)")
+		return paths("translate(20,10)", "rotate(45)", "scale(1.5)", "skewX(20)")
 	case "SvgPath", "PathData":
 		return paths("M10 10 L90 90", "M10 50 Q50 10 90 50", "M20 20 H80 V80 H20 Z")
 	case "Points", "PointsList":

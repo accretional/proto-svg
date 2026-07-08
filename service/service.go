@@ -25,6 +25,7 @@ func init() {
 		Required:     svgpb.FieldRequired,
 		ScalarStops:  svgpb.ScalarStopChars,
 		SmartSpacing: false, // SVG: markup; spacing baked into terminals.
+		TokenWS:      true,  // …but ignorable inter-element whitespace is skipped.
 	})
 }
 

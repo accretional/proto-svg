@@ -1597,7 +1597,7 @@ message XlinkTitleAttr {
 }
 
 message Svgsvgelement {
-  SvgXmlnsAttr svg_xmlns_attr = 1;
+  Space space = 1;
 
   repeated SvgAttribute svg_attribute = 2;
 
@@ -1606,6 +1606,10 @@ message Svgsvgelement {
   repeated ContainerContent container_content = 4;
 
   LessThanSignSolidusSvgGreaterThanSignKeyword less_than_sign_solidus_svg_greater_than_sign_keyword = 5;
+
+  message Space {
+    SvgXmlnsAttr svg_xmlns_attr = 1;
+  }
 }
 
 message SvgXmlnsAttr {
@@ -2186,7 +2190,7 @@ message WallclockValue {
 message DateTime {
   Date date = 1;
 
-  TKeyword t_keyword = 2;
+  CapitalTKeyword capital_t_keyword = 2;
 
   WallTime wall_time = 3;
 }
@@ -2261,7 +2265,7 @@ message Hours24 {
 
 message Tzd {
   oneof value {
-    ZKeyword z_keyword = 1;
+    CapitalZKeyword capital_z_keyword = 1;
 
     Seq1 seq1 = 2;
   }
@@ -3987,6 +3991,16 @@ message IriType {
 }
 
 message UrlType {
+  UrlContentType url_content_type = 1;
+
+  RightParenthesisKeyword right_parenthesis_keyword = 2;
+}
+
+message UrlContentType {
+  repeated UrlContentChar url_content_char = 1;
+}
+
+message UrlContentChar {
   string value = 1;
 }
 
@@ -4067,7 +4081,11 @@ message PaintType {
 message PaintRef {
   UrlType url_type = 1;
 
-  PaintFallback paint_fallback = 2;
+  Space space = 2;
+
+  message Space {
+    PaintFallback paint_fallback = 1;
+  }
 }
 
 message PaintFallback {
@@ -4891,43 +4909,81 @@ message FeColorMatrixScalarValue {
 message FeColorMatrixMatrixValues {
   NumberType number_type = 1;
 
-  NumberType number_type_2 = 2;
+  SpaceKeyword space_keyword = 2;
 
-  NumberType number_type_3 = 3;
+  NumberType number_type_2 = 3;
 
-  NumberType number_type_4 = 4;
+  SpaceKeyword space_keyword_2 = 4;
 
-  NumberType number_type_5 = 5;
+  NumberType number_type_3 = 5;
 
-  NumberType number_type_6 = 6;
+  SpaceKeyword space_keyword_3 = 6;
 
-  NumberType number_type_7 = 7;
+  NumberType number_type_4 = 7;
 
-  NumberType number_type_8 = 8;
+  SpaceKeyword space_keyword_4 = 8;
 
-  NumberType number_type_9 = 9;
+  NumberType number_type_5 = 9;
 
-  NumberType number_type_10 = 10;
+  SpaceKeyword space_keyword_5 = 10;
 
-  NumberType number_type_11 = 11;
+  NumberType number_type_6 = 11;
 
-  NumberType number_type_12 = 12;
+  SpaceKeyword space_keyword_6 = 12;
 
-  NumberType number_type_13 = 13;
+  NumberType number_type_7 = 13;
 
-  NumberType number_type_14 = 14;
+  SpaceKeyword space_keyword_7 = 14;
 
-  NumberType number_type_15 = 15;
+  NumberType number_type_8 = 15;
 
-  NumberType number_type_16 = 16;
+  SpaceKeyword space_keyword_8 = 16;
 
-  NumberType number_type_17 = 17;
+  NumberType number_type_9 = 17;
 
-  NumberType number_type_18 = 18;
+  SpaceKeyword space_keyword_9 = 18;
 
-  NumberType number_type_19 = 19;
+  NumberType number_type_10 = 19;
 
-  NumberType number_type_20 = 20;
+  SpaceKeyword space_keyword_10 = 20;
+
+  NumberType number_type_11 = 21;
+
+  SpaceKeyword space_keyword_11 = 22;
+
+  NumberType number_type_12 = 23;
+
+  SpaceKeyword space_keyword_12 = 24;
+
+  NumberType number_type_13 = 25;
+
+  SpaceKeyword space_keyword_13 = 26;
+
+  NumberType number_type_14 = 27;
+
+  SpaceKeyword space_keyword_14 = 28;
+
+  NumberType number_type_15 = 29;
+
+  SpaceKeyword space_keyword_15 = 30;
+
+  NumberType number_type_16 = 31;
+
+  SpaceKeyword space_keyword_16 = 32;
+
+  NumberType number_type_17 = 33;
+
+  SpaceKeyword space_keyword_17 = 34;
+
+  NumberType number_type_18 = 35;
+
+  SpaceKeyword space_keyword_18 = 36;
+
+  NumberType number_type_19 = 37;
+
+  SpaceKeyword space_keyword_19 = 38;
+
+  NumberType number_type_20 = 39;
 }
 
 message FeColorMatrixXattr {
@@ -5479,13 +5535,13 @@ message FeDisplacementMapXchannelSelectorAttr {
 
   message Alt1 {
     oneof value {
-      RKeyword r_keyword = 1;
+      CapitalRKeyword capital_r_keyword = 1;
 
-      GKeyword g_keyword = 2;
+      CapitalGKeyword capital_g_keyword = 2;
 
-      BKeyword b_keyword = 3;
+      CapitalBKeyword capital_b_keyword = 3;
 
-      AKeyword a_keyword = 4;
+      CapitalAKeyword capital_a_keyword = 4;
     }
   }
 }
@@ -5497,13 +5553,13 @@ message FeDisplacementMapYchannelSelectorAttr {
 
   message Alt1 {
     oneof value {
-      RKeyword r_keyword = 1;
+      CapitalRKeyword capital_r_keyword = 1;
 
-      GKeyword g_keyword = 2;
+      CapitalGKeyword capital_g_keyword = 2;
 
-      BKeyword b_keyword = 3;
+      CapitalBKeyword capital_b_keyword = 3;
 
-      AKeyword a_keyword = 4;
+      CapitalAKeyword capital_a_keyword = 4;
     }
   }
 }
@@ -7029,15 +7085,27 @@ message ContrastFunction {
 }
 
 message DropShadowFunction {
-  google.protobuf.Any color_type = 1;
+  Seq1 seq1 = 1;
 
   LengthType length_type = 2;
 
-  LengthType length_type_2 = 3;
+  SpaceKeyword space_keyword = 3;
 
-  LengthType length_type_3 = 4;
+  LengthType length_type_2 = 4;
 
-  RightParenthesisKeyword right_parenthesis_keyword = 5;
+  Space space = 5;
+
+  RightParenthesisKeyword right_parenthesis_keyword = 6;
+
+  message Seq1 {
+    google.protobuf.Any color_type = 1;
+
+    SpaceKeyword space_keyword = 2;
+  }
+
+  message Space {
+    LengthType length_type = 1;
+  }
 }
 
 message GrayscaleFunction {
@@ -8383,9 +8451,9 @@ message MoveTo {
 
   message Alt1 {
     oneof value {
-      MKeyword m_keyword = 1;
+      CapitalMKeyword capital_m_keyword = 1;
 
-      MKeyword m_keyword_2 = 2;
+      MKeyword m_keyword = 2;
     }
   }
 }
@@ -8395,9 +8463,9 @@ message ClosePath {
 
   message Alt1 {
     oneof value {
-      ZKeyword z_keyword = 1;
+      CapitalZKeyword capital_z_keyword = 1;
 
-      ZKeyword z_keyword_2 = 2;
+      ZKeyword z_keyword = 2;
     }
   }
 }
@@ -8409,9 +8477,9 @@ message LineTo {
 
   message Alt1 {
     oneof value {
-      LKeyword l_keyword = 1;
+      CapitalLKeyword capital_l_keyword = 1;
 
-      LKeyword l_keyword_2 = 2;
+      LKeyword l_keyword = 2;
     }
   }
 }
@@ -8423,9 +8491,9 @@ message HorizontalLineTo {
 
   message Alt1 {
     oneof value {
-      HKeyword h_keyword = 1;
+      CapitalHKeyword capital_h_keyword = 1;
 
-      HKeyword h_keyword_2 = 2;
+      HKeyword h_keyword = 2;
     }
   }
 }
@@ -8437,9 +8505,9 @@ message VerticalLineTo {
 
   message Alt1 {
     oneof value {
-      VKeyword v_keyword = 1;
+      CapitalVKeyword capital_v_keyword = 1;
 
-      VKeyword v_keyword_2 = 2;
+      VKeyword v_keyword = 2;
     }
   }
 }
@@ -8451,9 +8519,9 @@ message CurveTo {
 
   message Alt1 {
     oneof value {
-      CKeyword c_keyword = 1;
+      CapitalCKeyword capital_c_keyword = 1;
 
-      CKeyword c_keyword_2 = 2;
+      CKeyword c_keyword = 2;
     }
   }
 }
@@ -8471,9 +8539,9 @@ message SmoothCurveTo {
 
   message Alt1 {
     oneof value {
-      SKeyword s_keyword = 1;
+      CapitalSKeyword capital_s_keyword = 1;
 
-      SKeyword s_keyword_2 = 2;
+      SKeyword s_keyword = 2;
     }
   }
 }
@@ -8491,9 +8559,9 @@ message QuadraticBezierCurveTo {
 
   message Alt1 {
     oneof value {
-      QKeyword q_keyword = 1;
+      CapitalQKeyword capital_q_keyword = 1;
 
-      QKeyword q_keyword_2 = 2;
+      QKeyword q_keyword = 2;
     }
   }
 }
@@ -8511,9 +8579,9 @@ message SmoothQuadraticBezierCurveTo {
 
   message Alt1 {
     oneof value {
-      TKeyword t_keyword = 1;
+      CapitalTKeyword capital_t_keyword = 1;
 
-      TKeyword t_keyword_2 = 2;
+      TKeyword t_keyword = 2;
     }
   }
 }
@@ -8525,9 +8593,9 @@ message EllipticalArc {
 
   message Alt1 {
     oneof value {
-      AKeyword a_keyword = 1;
+      CapitalAKeyword capital_a_keyword = 1;
 
-      AKeyword a_keyword_2 = 2;
+      AKeyword a_keyword = 2;
     }
   }
 }
@@ -11650,9 +11718,6 @@ message AutoKeyword {
 message AzureKeyword {
 }
 
-message BKeyword {
-}
-
 message BackgroundAlphaKeyword {
 }
 
@@ -11741,6 +11806,45 @@ message CKeyword {
 }
 
 message CadetblueKeyword {
+}
+
+message CapitalAKeyword {
+}
+
+message CapitalBKeyword {
+}
+
+message CapitalCKeyword {
+}
+
+message CapitalGKeyword {
+}
+
+message CapitalHKeyword {
+}
+
+message CapitalLKeyword {
+}
+
+message CapitalMKeyword {
+}
+
+message CapitalQKeyword {
+}
+
+message CapitalRKeyword {
+}
+
+message CapitalSKeyword {
+}
+
+message CapitalTKeyword {
+}
+
+message CapitalVKeyword {
+}
+
+message CapitalZKeyword {
 }
 
 message CaptionKeyword {
@@ -12110,9 +12214,6 @@ message FullHyphenMinusWidthKeyword {
 }
 
 message FullStopKeyword {
-}
-
-message GKeyword {
 }
 
 message GainsboroKeyword {
@@ -13001,9 +13102,6 @@ message QKeyword {
 }
 
 message QuotationMarkKeyword {
-}
-
-message RKeyword {
 }
 
 message RadioKeyword {

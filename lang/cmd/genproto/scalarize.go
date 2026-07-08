@@ -47,7 +47,8 @@ var leafTypes = normSet(
 	"hex_color",
 	"functional_color",
 	"iri_type",
-	"url_type",
+	// url_type is deliberately absent: UrlType is structured ("url(" content
+	// ")") so a bare paint/color value can never match as a URL.
 	"string_type",
 	"char_type",
 	"custom_ident_type",

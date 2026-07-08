@@ -1,5 +1,5 @@
 # rules unreachable from SvgDocument (pruned)
-# count: 45
+# count: 47
 
 CoordinateType
 MaskClipAttr
@@ -23,10 +23,12 @@ SVGUnknownElement
 TimeType
 UnknownAttribute
 angle_unit
+chardata_char
 digit
 exponent
 fraction
 hex_digit
+iri_char
 length_unit
 letter
 lowercase_letter

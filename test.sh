@@ -4,6 +4,8 @@
 # Runs the full build, then asserts the pipeline's outputs are present, correct,
 # and well-formed:
 #   - ./build.sh                              (setup -> genproto -> gen)
+#   - codec round-trip gate                   (chrome-testing/generated/
+#                                              _codec_failures.tsv must be empty)
 #   - go vet ./...                            (static analysis)
 #   - go test -count=1 ./...                  (unit tests; skipped if none exist)
 #   - proto/svg.proto + proto/svg.fdset exist and are non-empty
@@ -34,6 +36,21 @@ echo "########################################"
 echo ""
 echo "============ Build ============"
 "$ROOT/build.sh"
+
+# ── Codec round-trip (every walked gallery path must be faithful) ───────────
+echo ""
+echo "============ Codec round-trip ============"
+CODEC_TSV="$ROOT/chrome-testing/generated/_codec_failures.tsv"
+if [[ -f "$CODEC_TSV" ]]; then
+  CODEC_ROWS=$(( $(wc -l <"$CODEC_TSV") - 1 ))
+  if [[ "$CODEC_ROWS" -le 0 ]]; then
+    pass "codec round-trip: every walked gallery path renders faithfully"
+  else
+    fail "codec round-trip: $CODEC_ROWS failing path(s) — see $CODEC_TSV"
+  fi
+else
+  fail "codec failures report missing: $CODEC_TSV (build did not run the walk)"
+fi
 
 # ── go vet ──────────────────────────────────────────────────────────────────
 echo ""

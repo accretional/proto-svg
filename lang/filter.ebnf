@@ -201,12 +201,16 @@ FeColorMatrixTypeAttr = ' type="' ,
 FeColorMatrixValuesAttr = ' values="' , FeColorMatrixValuesType , '"' ;
 FeColorMatrixValuesType  = FeColorMatrixMatrixValues | FeColorMatrixScalarValue ;
 FeColorMatrixScalarValue = NumberType ;   (* saturate amount OR hueRotate angle *)
-(* the 20 entries of a 4×5 colour matrix; the renderer space-joins the numbers *)
+(* the 20 entries of a 4×5 colour matrix. The single-space separators are
+   grammar terminals: adjacent unconstrained number scalars carry no boundary,
+   so the delimiters must be structural for both the parser (they bound each
+   number's capture) and the concatenating renderer (the terminals ARE the
+   joins). *)
 FeColorMatrixMatrixValues =
-    NumberType , NumberType , NumberType , NumberType , NumberType ,
-    NumberType , NumberType , NumberType , NumberType , NumberType ,
-    NumberType , NumberType , NumberType , NumberType , NumberType ,
-    NumberType , NumberType , NumberType , NumberType , NumberType ;
+    NumberType , " " , NumberType , " " , NumberType , " " , NumberType , " " , NumberType , " " ,
+    NumberType , " " , NumberType , " " , NumberType , " " , NumberType , " " , NumberType , " " ,
+    NumberType , " " , NumberType , " " , NumberType , " " , NumberType , " " , NumberType , " " ,
+    NumberType , " " , NumberType , " " , NumberType , " " , NumberType , " " , NumberType ;
 
 FeColorMatrixXAttr      = ' x="'      , LengthPercentageType , '"' ;
 FeColorMatrixYAttr      = ' y="'      , LengthPercentageType , '"' ;
@@ -920,7 +924,7 @@ ContrastFunction = "contrast(" , [ NumberPercentage ] , ")" ;
 
 (* drop-shadow( <color>? && <length>{2,3} ) — color may precede or follow the
    lengths; modeled as optional color plus two-or-three lengths. *)
-DropShadowFunction = "drop-shadow(" , [ ColorType ] , LengthType , LengthType , [ LengthType ] , ")" ;
+DropShadowFunction = "drop-shadow(" , [ ColorType , " " ] , LengthType , " " , LengthType , [ " " , LengthType ] , ")" ;
 
 (* grayscale( <number-percentage>? ) *)
 GrayscaleFunction = "grayscale(" , [ NumberPercentage ] , ")" ;

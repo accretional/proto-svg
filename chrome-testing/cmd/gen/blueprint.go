@@ -937,7 +937,7 @@ func companionFor(tag, varied, value string) (companions [][2]string, overrides 
 		// stay valid (overlay.go returns "120").
 		if varied == "type" && value == "matrix" {
 			// channel-swap: R↔B (and keep G, A) — clearly distinct from hueRotate.
-			overrides["values"] = "0 0 1 0 0  0 1 0 0 0  1 0 0 0 0  0 0 0 1 0"
+			overrides["values"] = "0 0 1 0 0 0 1 0 0 0 1 0 0 0 0 0 0 0 1 0"
 		}
 		// (feComposite k1-k4 ↔ operator="arithmetic" is now a TUNED BASE — baselineFor
 		// sets operator="arithmetic" + k-seeds — so no per-preset companion is needed.)
@@ -1108,7 +1108,9 @@ func bodyFor(tag string) string {
 		return `(function(){var t=document.getElementById('slot-target');if(t){t.setAttribute('fill','#16c79a');}})();`
 	case "style":
 		// A CSS body that styles the blueprint's .slot shapes so cards differ.
-		return `.slot{fill:#e94560;stroke:#16c79a;stroke-width:3}`
+		// codec-canonical CSS spelling (the codec's render is idempotent on it),
+		// so the <style> content seam round-trips byte-exact.
+		return `.slot { fill:#e94560; stroke:#16c79a; stroke-width:3 }`
 	case "text":
 		return `Text` // a real word so x/y/dx/dy/rotate/textLength visibly deform it
 	case "textPath":

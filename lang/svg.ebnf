@@ -55,7 +55,7 @@ DataAttr      = ' data-name="' , StringType , '"' ;
 (* ── ConditionalProcessingAttributes ──────────────────────────────────────── *)
 
 ConditionalProcessingAttribute = RequiredExtensionsAttr | SystemLanguageAttr ;
-RequiredExtensionsAttr = ' requiredExtensions="' , StringType , '"' ;
+RequiredExtensionsAttr = ' requiredExtensions="' , [ StringType ] , '"' ;  (* empty = no extensions required *)
 SystemLanguageAttr     = ' systemLanguage="' , StringType , '"' ;
 
 (* ── AriaAttributes (role + 47 aria-*; every closed set enumerated) ────────── *)
@@ -267,7 +267,8 @@ XlinkTitleAttr = ' xlink:title="' , StringType , '"' ;
    xmlns is mandatory when an .svg file is opened directly (without it the browser
    does not recognise the markup as SVG). They are part of the grammar, not an
    optional attribute, because a real SVG root always carries them. *)
-SVGSVGElement = '<svg ', SvgXmlnsAttr , { SvgAttribute } , ">" , { ContainerContent } , "</svg>" ;
+(* the xmlns block is optional: inline <svg> in HTML omits it *)
+SVGSVGElement = "<svg" , [ " " , SvgXmlnsAttr ] , { SvgAttribute } , ">" , { ContainerContent } , "</svg>" ;
 SvgXmlnsAttr = 'xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"' ;
 
 SvgAttribute = SvgViewBoxAttr | SvgPreserveAspectRatioAttr | SvgZoomAndPanAttr

@@ -9,7 +9,7 @@ package svgpb
 var SeamType = map[string]string{
 	".svg.AnimationValue.color_type": "css.ColorType",
 	".svg.ColorAttr.color_type": "css.ColorType",
-	".svg.DropShadowFunction.color_type": "css.ColorType",
+	".svg.DropShadowFunction.Seq1.color_type": "css.ColorType",
 	".svg.FloodColorAttr.Alt1.color_type": "css.ColorType",
 	".svg.LightingColorAttr.Alt1.color_type": "css.ColorType",
 	".svg.PaintFallback.color_type": "css.ColorType",

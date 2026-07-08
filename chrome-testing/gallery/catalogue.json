@@ -245,11 +245,11 @@
      "prov": "grammar"
     },
     {
-     "name": "transform=translate(20 10)",
+     "name": "transform=translate(20,10)",
      "values": {
-      "transform": "translate(20 10)"
+      "transform": "translate(20,10)"
      },
-     "meaning": "applies the transform translate(20 10)",
+     "meaning": "applies the transform translate(20,10)",
      "prov": "grammar"
     },
     {
@@ -1396,11 +1396,11 @@
      "prov": "grammar"
     },
     {
-     "name": "transform=translate(20 10)",
+     "name": "transform=translate(20,10)",
      "values": {
-      "transform": "translate(20 10)"
+      "transform": "translate(20,10)"
      },
-     "meaning": "applies the transform translate(20 10)",
+     "meaning": "applies the transform translate(20,10)",
      "prov": "grammar"
     },
     {
@@ -2047,11 +2047,11 @@
      "prov": "grammar"
     },
     {
-     "name": "transform=translate(20 10)",
+     "name": "transform=translate(20,10)",
      "values": {
-      "transform": "translate(20 10)"
+      "transform": "translate(20,10)"
      },
-     "meaning": "applies the transform translate(20 10)",
+     "meaning": "applies the transform translate(20,10)",
      "prov": "grammar"
     },
     {
@@ -2641,7 +2641,7 @@
      "name": "type=matrix",
      "values": {
       "type": "matrix",
-      "values": "0 0 1 0 0  0 1 0 0 0  1 0 0 0 0  0 0 0 1 0"
+      "values": "0 0 1 0 0 0 1 0 0 0 1 0 0 0 0 0 0 0 1 0"
      },
      "meaning": "matrix type",
      "prov": "grammar"
@@ -10317,11 +10317,11 @@
      "prov": "grammar"
     },
     {
-     "name": "transform=translate(20 10)",
+     "name": "transform=translate(20,10)",
      "values": {
-      "transform": "translate(20 10)"
+      "transform": "translate(20,10)"
      },
-     "meaning": "applies the transform translate(20 10)",
+     "meaning": "applies the transform translate(20,10)",
      "prov": "grammar"
     },
     {
@@ -10581,11 +10581,11 @@
      "prov": "grammar"
     },
     {
-     "name": "transform=translate(20 10)",
+     "name": "transform=translate(20,10)",
      "values": {
-      "transform": "translate(20 10)"
+      "transform": "translate(20,10)"
      },
-     "meaning": "applies the transform translate(20 10)",
+     "meaning": "applies the transform translate(20,10)",
      "prov": "grammar"
     },
     {
@@ -10871,11 +10871,11 @@
      "prov": "grammar"
     },
     {
-     "name": "transform=translate(20 10)",
+     "name": "transform=translate(20,10)",
      "values": {
-      "transform": "translate(20 10)"
+      "transform": "translate(20,10)"
      },
-     "meaning": "applies the transform translate(20 10)",
+     "meaning": "applies the transform translate(20,10)",
      "prov": "grammar"
     },
     {
@@ -11331,11 +11331,11 @@
      "prov": "grammar"
     },
     {
-     "name": "transform=translate(20 10)",
+     "name": "transform=translate(20,10)",
      "values": {
-      "transform": "translate(20 10)"
+      "transform": "translate(20,10)"
      },
-     "meaning": "applies the transform translate(20 10)",
+     "meaning": "applies the transform translate(20,10)",
      "prov": "grammar"
     },
     {
@@ -11465,11 +11465,11 @@
      "prov": "grammar"
     },
     {
-     "name": "gradientTransform=translate(20 10)",
+     "name": "gradientTransform=translate(20,10)",
      "values": {
-      "gradientTransform": "translate(20 10)"
+      "gradientTransform": "translate(20,10)"
      },
-     "meaning": "transforms the gradient by translate(20 10)",
+     "meaning": "transforms the gradient by translate(20,10)",
      "prov": "grammar"
     },
     {
@@ -12928,11 +12928,11 @@
      "prov": "grammar"
     },
     {
-     "name": "transform=translate(20 10)",
+     "name": "transform=translate(20,10)",
      "values": {
-      "transform": "translate(20 10)"
+      "transform": "translate(20,10)"
      },
-     "meaning": "applies the transform translate(20 10)",
+     "meaning": "applies the transform translate(20,10)",
      "prov": "grammar"
     },
     {
@@ -13140,11 +13140,11 @@
    "base": "\u003csvg xmlns=\"http://www.w3.org/2000/svg\" width=\"120\" height=\"120\" viewBox=\"0 0 100 100\"\u003e\u003cdefs\u003e\u003cpattern data-lab=\"\" id=\"slot\" width=\"20\" height=\"20\" patternUnits=\"userSpaceOnUse\"\u003e\u003crect width=\"20\" height=\"20\" fill=\"#11201c\"\u003e\u003c/rect\u003e\u003cpath d=\"M0 20 L20 0\" stroke=\"#4ee39a\" stroke-width=\"2.5\"\u003e\u003c/path\u003e\u003ccircle cx=\"6\" cy=\"6\" r=\"3.5\" fill=\"#f5a623\"\u003e\u003c/circle\u003e\u003c/pattern\u003e\u003c/defs\u003e\u003crect x=\"5\" y=\"5\" width=\"90\" height=\"90\" fill=\"url(#slot)\"/\u003e\u003c/svg\u003e",
    "presets": [
     {
-     "name": "patternTransform=translate(20 10)",
+     "name": "patternTransform=translate(20,10)",
      "values": {
-      "patternTransform": "translate(20 10)"
+      "patternTransform": "translate(20,10)"
      },
-     "meaning": "transforms the pattern by translate(20 10)",
+     "meaning": "transforms the pattern by translate(20,10)",
      "prov": "grammar"
     },
     {
@@ -13725,11 +13725,11 @@
      "prov": "grammar"
     },
     {
-     "name": "transform=translate(20 10)",
+     "name": "transform=translate(20,10)",
      "values": {
-      "transform": "translate(20 10)"
+      "transform": "translate(20,10)"
      },
-     "meaning": "applies the transform translate(20 10)",
+     "meaning": "applies the transform translate(20,10)",
      "prov": "grammar"
     },
     {
@@ -14066,11 +14066,11 @@
      "prov": "grammar"
     },
     {
-     "name": "transform=translate(20 10)",
+     "name": "transform=translate(20,10)",
      "values": {
-      "transform": "translate(20 10)"
+      "transform": "translate(20,10)"
      },
-     "meaning": "applies the transform translate(20 10)",
+     "meaning": "applies the transform translate(20,10)",
      "prov": "grammar"
     },
     {
@@ -14216,11 +14216,11 @@
      "prov": "grammar"
     },
     {
-     "name": "gradientTransform=translate(20 10)",
+     "name": "gradientTransform=translate(20,10)",
      "values": {
-      "gradientTransform": "translate(20 10)"
+      "gradientTransform": "translate(20,10)"
      },
-     "meaning": "transforms the gradient by translate(20 10)",
+     "meaning": "transforms the gradient by translate(20,10)",
      "prov": "grammar"
     },
     {
@@ -15017,11 +15017,11 @@
      "prov": "grammar"
     },
     {
-     "name": "transform=translate(20 10)",
+     "name": "transform=translate(20,10)",
      "values": {
-      "transform": "translate(20 10)"
+      "transform": "translate(20,10)"
      },
-     "meaning": "applies the transform translate(20 10)",
+     "meaning": "applies the transform translate(20,10)",
      "prov": "grammar"
     },
     {
@@ -15617,11 +15617,11 @@
      "prov": "curated"
     },
     {
-     "name": "transform=translate(20 10)",
+     "name": "transform=translate(20,10)",
      "values": {
-      "transform": "translate(20 10)"
+      "transform": "translate(20,10)"
      },
-     "meaning": "applies the transform translate(20 10)",
+     "meaning": "applies the transform translate(20,10)",
      "prov": "grammar"
     },
     {
@@ -16004,11 +16004,11 @@
      "prov": "grammar"
     },
     {
-     "name": "transform=translate(20 10)",
+     "name": "transform=translate(20,10)",
      "values": {
-      "transform": "translate(20 10)"
+      "transform": "translate(20,10)"
      },
-     "meaning": "applies the transform translate(20 10)",
+     "meaning": "applies the transform translate(20,10)",
      "prov": "grammar"
     },
     {
@@ -16467,11 +16467,11 @@
      "prov": "grammar"
     },
     {
-     "name": "transform=translate(20 10)",
+     "name": "transform=translate(20,10)",
      "values": {
-      "transform": "translate(20 10)"
+      "transform": "translate(20,10)"
      },
-     "meaning": "applies the transform translate(20 10)",
+     "meaning": "applies the transform translate(20,10)",
      "prov": "grammar"
     }
    ]
@@ -16977,11 +16977,11 @@
      "prov": "grammar"
     },
     {
-     "name": "transform=translate(20 10)",
+     "name": "transform=translate(20,10)",
      "values": {
-      "transform": "translate(20 10)"
+      "transform": "translate(20,10)"
      },
-     "meaning": "applies the transform translate(20 10)",
+     "meaning": "applies the transform translate(20,10)",
      "prov": "grammar"
     },
     {
@@ -17578,11 +17578,11 @@
      "prov": "grammar"
     },
     {
-     "name": "transform=translate(20 10)",
+     "name": "transform=translate(20,10)",
      "values": {
-      "transform": "translate(20 10)"
+      "transform": "translate(20,10)"
      },
-     "meaning": "applies the transform translate(20 10)",
+     "meaning": "applies the transform translate(20,10)",
      "prov": "grammar"
     },
     {
@@ -18147,11 +18147,11 @@
      "prov": "grammar"
     },
     {
-     "name": "transform=translate(20 10)",
+     "name": "transform=translate(20,10)",
      "values": {
-      "transform": "translate(20 10)"
+      "transform": "translate(20,10)"
      },
-     "meaning": "applies the transform translate(20 10)",
+     "meaning": "applies the transform translate(20,10)",
      "prov": "grammar"
     },
     {
@@ -18541,11 +18541,11 @@
      "prov": "grammar"
     },
     {
-     "name": "transform=translate(20 10)",
+     "name": "transform=translate(20,10)",
      "values": {
-      "transform": "translate(20 10)"
+      "transform": "translate(20,10)"
      },
-     "meaning": "applies the transform translate(20 10)",
+     "meaning": "applies the transform translate(20,10)",
      "prov": "grammar"
     },
     {

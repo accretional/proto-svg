@@ -151,13 +151,22 @@ NamedColor =
   | "yellowgreen" ;
 
 (* <IRI>/<FuncIRI>: a fragment, a relative/absolute URL, or url(...) *)
-IriType = "#" , name | "url(" , { url_char } , ")" | { url_char } ;
+(* A bare IRI can never contain the attribute's quote delimiters, and the
+   url(...) form's content can't contain the closing paren. *)
+IriType = "#" , name | "url(" , { url_content_char } , ")" | { iri_char } ;
+iri_char = "!" | "#" ... "&" | "(" ... "~" ;
 
 (* <url>: the url(...) functional form *)
-UrlType = "url(" , { url_char } , ")" ;
+(* Structured: "url(" anchors the match (a bare paint value must not parse as
+   a URL), the content is one scalarized token, ")" closes. *)
+UrlType = "url(" , url_content_type , ")" ;
+url_content_type = { url_content_char } ;
+url_content_char = "!" | "#" ... "'" | "*" ... "~" ;   (* printable minus parens and the quote *)
 
 (* <string> *)
-StringType = '"' , { string_char } , '"' ;
+(* SVG attribute string content: the ATTRIBUTE supplies the quotes, so the
+   value itself is quote-free free text (unlike CSS <string>). *)
+StringType = { string_char } ;
 
 (* a single character (SMIL accessKey(<char>)) — one code point, not a string. *)
 CharType = string_char ;
@@ -195,7 +204,10 @@ EventSymbolType = name ;
 
 (* raw character data: the text content of title/desc/text/tspan/style/script/
    metadata/foreignObject (sits between tags, unquoted, no markup) *)
-CharacterDataType = { string_char } ;
+(* XML character data: any printable char EXCEPT "<" (which always begins
+   markup — the boundary the parser cuts at). *)
+CharacterDataType = { chardata_char } ;
+chardata_char = " " ... ";" | "=" ... "~" ;
 
 (* ── Structured shared value grammars (NOT scalarized; rendered) ─────────── *)
 
@@ -219,7 +231,7 @@ UnitType = "userSpaceOnUse" | "objectBoundingBox" ;
    keyword arms are terminals; only ColorType/UrlType sub-parts scalarize. *)
 PaintType     = "none" | "currentColor" | "context-fill" | "context-stroke"
               | ColorType | PaintRef ;
-PaintRef      = UrlType , [ PaintFallback ] ;
+PaintRef      = UrlType , [ " " , PaintFallback ] ;   (* the space is the join *)
 PaintFallback = "none" | "currentColor" | ColorType ;
 
 (* viewBox = min-x min-y width height (renderer space-joins the four numbers) *)

@@ -6,6 +6,7 @@
 /chrome-testing/gen
 /chrome-testing/shoot
 /genproto
+/chrome-testing/generated/_codec_failures.tsv
 
 # Generated gallery bundle (regenerate via chrome-testing/dist.sh)
 /chrome-testing/dist/

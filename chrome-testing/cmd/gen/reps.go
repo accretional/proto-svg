@@ -34,12 +34,12 @@ var reps = map[string][]string{
 	"AlphaValue":             {"0.5", "0", "1", "0.25", "0.75"},
 
 	// ── length / percentage / coordinate ───────────────────────────────────
-	"LengthType":                      {"10", "24px", "2em", "1.5rem", "50%", "12pt"},
+	"LengthType":                      {"10", "24px", "2em", "1.5rem", "4mm", "12pt"},
 	"NonNegativeLengthType":           {"10", "24px", "2em", "1.5rem", "8", "12pt"},
 	"PercentageType":                  {"50%", "100%", "25%", "0%", "80%"},
 	"LengthPercentageType":            {"10", "24px", "2em", "50%", "75%"},
 	"NonNegativeLengthPercentageType": {"10", "24px", "2em", "50%", "75%"},
-	"CoordinateType":                  {"0", "10", "-5.5", "100px", "50%", "2.5em"},
+	"CoordinateType":                  {"0", "10", "-5.5", "100px", "4mm", "2.5em"},
 
 	// ── angle / time ────────────────────────────────────────────────────────
 	"AngleType": {"0deg", "45deg", "90deg", "180deg", "0.25turn"},

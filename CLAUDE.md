@@ -38,9 +38,9 @@ each one runs the previous stages, so running the outermost runs everything.
 ## The pipeline (grammar is the source of truth)
 
 ```
-lang/*.ebnf  ──genproto──▶  proto/svg.proto + proto/svg.fdset
-(14 modules,                 + proto/pb/svg/{prefix_map,separator_map}.go
- svg.ebnf is root)
+lang/*.ebnf  ──genproto──▶  proto/svg.proto + proto/svg.fdset + svg.pb.go
+(14 modules,                 + proto/pb/svg/{prefix,separator,seam,required,
+ svg.ebnf is root)              scalar_stops}_map.go  (the codec's tables)
       │
       └──gen──▶  chrome-testing/gallery/catalogue.json  (the SVG Lab data contract:
                  per element → typed attribute controls + presets + base SVG)
@@ -58,10 +58,16 @@ lang/*.ebnf  ──genproto──▶  proto/svg.proto + proto/svg.fdset
 
 2. **genproto (`tools/genproto.sh`).** Runs `go run ./lang/cmd/genproto/`, which
    uses **gluon** to compile the concatenated grammar into `proto/svg.proto`,
-   the binary `proto/svg.fdset`, and the grammar-derived lookup tables
-   `proto/pb/svg/prefix_map.go` and `proto/pb/svg/separator_map.go`. gluon lifts
-   the leading markup terminals into the prefix map so the renderer can re-emit
-   them.
+   the binary `proto/svg.fdset`, protoc Go bindings, and the grammar-derived
+   lookup tables in `proto/pb/svg/`: `prefix_map` (leading terminals),
+   `separator_map` (list separators), `seam_map` (Any-seam embedded types —
+   css colors, css stylesheets, html foreignObject content), `required_map`
+   (mandatory fields), and `scalar_stops_map` (characters a scalarized leaf can
+   never contain). The gluon codec (`../gluon/v2/codec`) parses and renders
+   entirely from these tables; `service/` registers them and exposes
+   Parse/Render. Every walked gallery path must round-trip byte-exact through
+   the codec — failures land in `chrome-testing/generated/_codec_failures.tsv`,
+   which must stay header-only.
 
 3. **gen (`tools/gen.sh`).** Runs `go run ./chrome-testing/cmd/gen/`, which
    compiles the grammar in memory, walks the proto message graph, and enumerates
@@ -135,8 +141,10 @@ best-effort and never fatal to the build/test pipeline.
 ## Go module
 
 `github.com/accretional/proto-svg`, with `replace` directives pointing at the
-sibling checkouts `../gluon` and `../proto-merge`. `go mod tidy` (run by
-`setup.sh`) resolves them; both sibling checkouts must be present.
+sibling checkouts `../gluon`, `../proto-merge`, `../proto-css`, and
+`../proto-html` (the css/html grammars link at runtime for the Any seams).
+`go mod tidy` (run by `setup.sh`) resolves them; the sibling checkouts must be
+present.
 
 ## Ports
 

@@ -37,12 +37,20 @@ go run ./lang/cmd/genproto/ \
 	-separator-map proto/pb/svg/separator_map.go \
 	-seam-map proto/pb/svg/seam_map.go \
 	-package svg \
-	-go-package 'github.com/accretional/proto-svg/proto/pb/svg;svgpb'
+	-go-package 'github.com/accretional/proto-svg/proto/pb/svg;svgpb' \
+	-service-proto proto/svg_service.proto \
+	-service-go-package 'github.com/accretional/proto-svg/proto/pb/svgservice;svgservicepb'
 
 # (d) protoc: svg.proto -> Go. any.proto is a well-known type; no other imports.
 protoc -I proto \
 	--go_out=. --go_opt=module=github.com/accretional/proto-svg \
 	proto/svg.proto
 
-# (e) Sanity-check the generated package compiles.
+# (d') protoc: svg_service.proto -> Go + gRPC (the repo-owned SvgService surface).
+protoc -I proto \
+	--go_out=. --go_opt=module=github.com/accretional/proto-svg \
+	--go-grpc_out=. --go-grpc_opt=module=github.com/accretional/proto-svg \
+	proto/svg_service.proto
+
+# (e) Sanity-check the generated packages compile.
 go build ./proto/...

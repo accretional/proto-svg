@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"fmt"
 	"sort"
 	"strings"
@@ -9,7 +10,8 @@ import (
 	"google.golang.org/protobuf/reflect/protoregistry"
 
 	svgpb "github.com/accretional/proto-svg/proto/pb/svg"
-	svc "github.com/accretional/proto-svg/service"
+	svgservicepb "github.com/accretional/proto-svg/proto/pb/svgservice"
+	"github.com/accretional/proto-svg/service"
 
 	// Link the embedded grammars so the codec structures and renders the seams:
 	// css for paint colors (fill / stroke / stop-color / …), html for the
@@ -59,7 +61,13 @@ func buildTagRoot() map[string]string {
 	return m
 }
 
-// codecRender routes grammar-element markup through the codec (Parse→Render).
+// svgService is the SvgService the gallery renders through — the same server
+// service/cmd/server exposes over gRPC, driven in-process here so the gen
+// exercises the exact Parse/Render surface clients see.
+var svgService = service.NewServer()
+
+// codecRender routes grammar-element markup through the SvgService (Parse with
+// the element's root type → Render of the Any-packed node).
 // On success it returns the codec's rendering — byte-identical to the input when
 // the round-trip is faithful. On any failure it returns the ORIGINAL markup plus
 // the error, so the caller can fall back and record the gap rather than abort.
@@ -68,15 +76,16 @@ func codecRender(tag, markup string) (string, error) {
 	if root == "" {
 		return markup, fmt.Errorf("no shipped root type for <%s>", tag)
 	}
-	msg, err := svc.ParseAs(markup, root)
+	ctx := context.Background()
+	parsed, err := svgService.Parse(ctx, &svgservicepb.ParseRequest{Svg: markup, Type: root})
 	if err != nil {
 		return markup, fmt.Errorf("parse: %w", err)
 	}
-	out, err := svc.Render(msg)
+	rendered, err := svgService.Render(ctx, &svgservicepb.RenderRequest{Node: parsed.GetNode()})
 	if err != nil {
 		return markup, fmt.Errorf("render: %w", err)
 	}
-	return out, nil
+	return rendered.GetSvg(), nil
 }
 
 // ── per-path codec report ─────────────────────────────────────────────────────

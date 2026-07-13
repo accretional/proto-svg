@@ -65,9 +65,17 @@ lang/*.ebnf  ──genproto──▶  proto/svg.proto + proto/svg.fdset + svg.pb
    (mandatory fields), and `scalar_stops_map` (characters a scalarized leaf can
    never contain). The gluon codec (`../gluon/v2/codec`) parses and renders
    entirely from these tables; `service/` registers them and exposes
-   Parse/Render. Every walked gallery path must round-trip byte-exact through
-   the codec — failures land in `chrome-testing/generated/_codec_failures.tsv`,
-   which must stay header-only.
+   Parse/Render. genproto also emits `proto/svg_service.proto` (gluon
+   `v2/servicegen`): the repo-owned `SvgService` gRPC surface
+   (Parse/Render/RenderStream rooted at `SvgDocument`, with subtree
+   parse/render via `ParseRequest.type` / Any-packed `node`), compiled into
+   `proto/pb/svgservice/` and implemented by `service/server.go` (run via
+   `service/cmd/server`, port :50053, gRPC reflection on; links css/html so
+   their schemas reflect too). The gallery gen renders every walked path
+   through this service. Every walked gallery path must round-trip byte-exact
+   through the codec — failures land in
+   `chrome-testing/generated/_codec_failures.tsv`, which must stay
+   header-only.
 
 3. **gen (`tools/gen.sh`).** Runs `go run ./chrome-testing/cmd/gen/`, which
    compiles the grammar in memory, walks the proto message graph, and enumerates

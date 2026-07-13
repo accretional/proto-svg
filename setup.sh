@@ -40,6 +40,28 @@ check_cmd() {
 check_cmd go      "Install from https://go.dev/dl/"
 check_cmd python3 "Install Python 3 from https://python.org"
 check_cmd git     "Install git from https://git-scm.com"
+check_cmd protoc  "Install protobuf (e.g. brew install protobuf)"
+
+# protoc-gen-go / protoc-gen-go-grpc may live in GOPATH/bin without being on
+# PATH. They compile proto/svg.proto and the generated svg_service.proto gRPC
+# surface in tools/genproto.sh.
+export PATH="$PATH:$(go env GOPATH)/bin"
+if command -v protoc-gen-go &>/dev/null; then
+  ok "protoc-gen-go found: $(command -v protoc-gen-go)"
+else
+  echo "  installing protoc-gen-go…"
+  go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
+  command -v protoc-gen-go &>/dev/null && ok "protoc-gen-go installed" \
+    || bad "protoc-gen-go install failed"
+fi
+if command -v protoc-gen-go-grpc &>/dev/null; then
+  ok "protoc-gen-go-grpc found: $(command -v protoc-gen-go-grpc)"
+else
+  echo "  installing protoc-gen-go-grpc…"
+  go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
+  command -v protoc-gen-go-grpc &>/dev/null && ok "protoc-gen-go-grpc installed" \
+    || bad "protoc-gen-go-grpc install failed"
+fi
 
 # Google Chrome detection (same logic as chrome-testing/snap.sh).
 CHROME=""
